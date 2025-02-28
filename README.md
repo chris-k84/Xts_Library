@@ -31,6 +31,8 @@ This allows functionality like resetting parts, activating tracks for movers, se
 
 2) The Mover element deals with all things mover, it recieves its interface to the XTS driver mover elements from the XTS class. As such it contains a full command suite for everything a mover can do. This includes activating onto a track, moving, resetting, detection, triggering leave and arrive and more. 
 
+3) Station and Sequence, these 2 units combine to achieve a common application fiunction of XTS. the majority of implementations of the XTS are indexing devices, movers go from station to station with product and wait for a process to occur. As such the library includes a basic implementation for a station, the intention is that this be used in projects by extending this class and adding your own functionality to the cyclic method. If this is done then the index sequnece can be used. This is essentially prewritten statemachine for an XTS mover, pass your station array and mover to the index sequence, and on a run signal it will simply step the mover through each station, stopping at each and waiting for the station to report done.
+
 ## Tests
 
 Tests will be performed using a testing framework **[Tc3_UnitTest](https://github.com/PeterZerlauth/Tc3_UnitTest)** by Peter Zerlauth. Being Honest testing was not done at the start, but at least Unit Tests will be rolled out to the older components. Refactoring components will allow TDD to be used on some elements. To keep it clean any additions must now have a test.
