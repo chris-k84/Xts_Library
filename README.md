@@ -16,11 +16,14 @@ This project is an attempt to use good programming practice to create a standard
 
 ## Description
 
-The system has classes for XTS hardware and management, a mover class is implemented for each physical mover and each has a sequence controller. PackML is used as a global state machine, with each class running local state machines based on this. This allows the system to fit seemlessly in a standard packaging environment. Operations of classes are implemented as wrapped classes implementing a Task interface.
+The library is created solely to implement XTS functionality, other functions have been slowly pulled out and puished into their own repos.
+This change means that you are not forced to use the XTS library with any of my structural systems. However you are required to instance the components
+and run them via a cycle call to a cyclic method. All functionality are then implemented through method calls.
 
 ## System Design
 
-The MAIN program instances a class Machine, this contains the Xts Manager and Hardware classes. it also instances an array of a mover type, these get a movement class that can be editted depending on operation requirements.
+The repo is split into 3 projects, the library, unit testing project and a demo project for s simple system.
+
 
 ## Tests
 
