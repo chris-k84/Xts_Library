@@ -23,7 +23,11 @@ and run them via a cycle call to a cyclic method. All functionality are then imp
 ## System Design
 
 The repo is split into 3 projects, the library, unit testing project and a demo project for s simple system.
+The library project contains all functionality, it is referenced in the test project and actually installed and included in the demo one.
+The library is brokem into 3 elements, Mover, Station and XTS.
 
+1) The XTS elements deal with all things system, this includes communication to the XTS driver (XPU), the tracks, parts and mover commands avaialable there.
+This allows functionality like resetting parts, activating tracks for movers, selecting tracks for detection and many other functions. It contains a hardware object which handles all the functions associated with the actual motor modules of the XTS, operations include monitoring voltage, errors and more.
 
 ## Tests
 
