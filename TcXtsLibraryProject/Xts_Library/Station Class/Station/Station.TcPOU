@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.11">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="Station" Id="{506a1b5f-d283-4b99-9adf-318a9c36fdac}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Station EXTENDS CyclicBase IMPLEMENTS IStation, ICyclic
 VAR_INPUT

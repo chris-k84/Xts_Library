@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="XtsPart" Id="{39541d00-22ec-4750-829d-4864a624597e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsPart EXTENDS CyclicBase
 VAR

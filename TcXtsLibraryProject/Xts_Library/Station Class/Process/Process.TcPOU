@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="Process" Id="{5bb3084c-8dc2-4985-92e4-194b505a9bed}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Process EXTENDS Station IMPLEMENTS IProcess
 VAR_INPUT

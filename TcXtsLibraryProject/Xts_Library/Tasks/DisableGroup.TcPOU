@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="DisableGroup" Id="{e309beac-a8f6-4753-8ed9-d8f37883f7b3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK DisableGroup EXTENDS TaskBase
 VAR_INPUT

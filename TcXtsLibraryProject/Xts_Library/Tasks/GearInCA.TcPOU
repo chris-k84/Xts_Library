@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="GearInCA" Id="{4eabfc6f-0e0b-4cf2-8798-42f7d613e2e0}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC GearInCA EXTENDS TaskBase
 VAR

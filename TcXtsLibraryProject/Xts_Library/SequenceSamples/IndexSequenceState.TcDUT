@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1">
   <DUT Name="IndexSequenceState" Id="{ce85cd05-6efc-434a-9ea4-df6144a01750}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}

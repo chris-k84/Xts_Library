@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.11">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="TmsEmbarkSingleSwitch" Id="{a1345a8f-d28a-4176-804e-11454f70b667}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TmsEmbarkSingleSwitch EXTENDS Process IMPLEMENTS ITF_SwitchStation
 VAR

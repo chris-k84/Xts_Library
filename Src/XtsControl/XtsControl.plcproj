@@ -9,7 +9,7 @@
     <WriteProductVersion>true</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
     <Name>XtsControl</Name>
-    <ProgramVersion>3.1.4026.13</ProgramVersion>
+    <ProgramVersion>3.1.4026.14</ProgramVersion>
     <Application>{76b5c7e3-5e01-4c60-82fd-836a1581bde6}</Application>
     <TypeSystem>{58bbbd95-fcda-425e-beb9-5ba1f7af41c4}</TypeSystem>
     <Implicit_Task_Info>{d3be959d-141b-4591-896f-1edca68eee24}</Implicit_Task_Info>

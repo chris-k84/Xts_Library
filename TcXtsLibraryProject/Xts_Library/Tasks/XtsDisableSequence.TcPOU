@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.11">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="XtsDisableSequence" Id="{da9628bf-0fcc-432f-b10d-3ad4dd4b7f24}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsDisableSequence EXTENDS TaskBase
 VAR_INPUT

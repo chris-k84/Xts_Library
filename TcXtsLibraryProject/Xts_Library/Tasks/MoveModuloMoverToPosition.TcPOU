@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="MoveModuloMoverToPosition" Id="{86a89fc0-d952-4342-8bc4-3e7afaf8d6b0}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK MoveModuloMoverToPosition EXTENDS TaskBase
 VAR_INPUT

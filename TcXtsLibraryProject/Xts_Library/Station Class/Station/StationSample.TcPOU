@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.11">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="StationSample" Id="{5d12cef2-4f81-4470-ba05-8f124fe21580}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK StationSample EXTENDS Process
 VAR
