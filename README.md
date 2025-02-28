@@ -29,6 +29,8 @@ The library is brokem into 3 elements, Mover, Station and XTS.
 1) The XTS elements deal with all things system, this includes communication to the XTS driver (XPU), the tracks, parts and mover commands avaialable there.
 This allows functionality like resetting parts, activating tracks for movers, selecting tracks for detection and many other functions. It contains a hardware object which handles all the functions associated with the actual motor modules of the XTS, operations include monitoring voltage, errors and more.
 
+2) The Mover element deals with all things mover, it recieves its interface to the XTS driver mover elements from the XTS class. As such it contains a full command suite for everything a mover can do. This includes activating onto a track, moving, resetting, detection, triggering leave and arrive and more. 
+
 ## Tests
 
 Tests will be performed using a testing framework **[Tc3_UnitTest](https://github.com/PeterZerlauth/Tc3_UnitTest)** by Peter Zerlauth. Being Honest testing was not done at the start, but at least Unit Tests will be rolled out to the older components. Refactoring components will allow TDD to be used on some elements. To keep it clean any additions must now have a test.
