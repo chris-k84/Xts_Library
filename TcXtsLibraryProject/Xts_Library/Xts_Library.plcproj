@@ -154,7 +154,7 @@
     <Compile Include="XTS Class\Xts Collision Group\ITF_CAMover.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Xts Hardware\I_XtsTrack.TcIO">
+    <Compile Include="XTS Class\Xts Hardware\Sub Components\I_XtsTrack.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="XTS Class\Xts Hardware\Sub Components\XtsMotorModule.TcPOU">
