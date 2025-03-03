@@ -18,12 +18,15 @@ VAR
 	removeAllAxes : RemoveAllMoverFromGroup(THIS^);
 	grpStop : StopMoverGroup(THIS^);
 	removeMover : RemoveMoverFromGroup(THIS^);
+	_MyName: STRING;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
-    <Method Name="AddMoverToThisGroup" Id="{9f418b4e-0cf8-4b65-9d2d-7e6c1a46690c}">
+    <Folder Name="Commands" Id="{8586cf21-15e1-44d9-a164-c4e3c5e15810}" />
+    <Folder Name="Status" Id="{f0a1ad0e-7de5-4634-834b-41b20fa92032}" />
+    <Method Name="AddMoverToThisGroup" Id="{9f418b4e-0cf8-4b65-9d2d-7e6c1a46690c}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD AddMoverToThisGroup : HRESULT
 VAR_INPUT
 	MoverToAdd : ITF_XtsMoverAxis;
@@ -54,7 +57,10 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_ICaGroup := CAGroupXtsIoEnvInterface;]]></ST>
+          <ST><![CDATA[_ICaGroup := CAGroupXtsIoEnvInterface;
+_MyName := _ICaGroup.GetObjectName();
+
+]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -94,7 +100,7 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Disable" Id="{236769ac-ee48-442c-86de-25258567af7c}">
+    <Method Name="Disable" Id="{236769ac-ee48-442c-86de-25258567af7c}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Disable : BOOL
 VAR_INPUT
 END_VAR
@@ -105,7 +111,7 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Enable" Id="{9a19e9ba-2611-4357-a3d4-698f998ad87d}">
+    <Method Name="Enable" Id="{9a19e9ba-2611-4357-a3d4-698f998ad87d}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Enable : BOOL
 VAR_INPUT
 END_VAR
@@ -116,7 +122,7 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetAxisCount" Id="{45b9081d-ba05-41c5-b1b6-c67859faca98}">
+    <Method Name="GetAxisCount" Id="{45b9081d-ba05-41c5-b1b6-c67859faca98}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetAxisCount : udint
 VAR_INPUT
 END_VAR
@@ -125,7 +131,7 @@ END_VAR
         <ST><![CDATA[GetAxisCount := _caGroup.NcToPlc.Common.GroupAxesCount;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="GroupRef" Id="{05d388ea-a899-4954-b35a-8298ecb26dd6}">
+    <Property Name="GroupRef" Id="{05d388ea-a899-4954-b35a-8298ecb26dd6}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY GroupRef : reference to AXES_GROUP_REF]]></Declaration>
       <Get Name="Get" Id="{9960c5ab-7079-4a22-9f43-e4d1a1a5992b}">
         <Declaration><![CDATA[VAR
@@ -136,7 +142,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="GroupState" Id="{a7850ad8-4f08-4a22-bf4c-efbfd8c96cf5}">
+    <Property Name="GroupState" Id="{a7850ad8-4f08-4a22-bf4c-efbfd8c96cf5}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY GroupState : CAGroupStatus]]></Declaration>
       <Get Name="Get" Id="{51b877d1-f5c7-479f-9b28-cdb51e8876b7}">
         <Declaration><![CDATA[VAR
@@ -163,7 +169,7 @@ END_IF]]></ST>
         </Implementation>
       </Get>
     </Property>
-    <Method Name="GroupStop" Id="{96e619f0-ba68-4e46-ba5e-bd7a0dcefde6}">
+    <Method Name="GroupStop" Id="{96e619f0-ba68-4e46-ba5e-bd7a0dcefde6}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GroupStop : HRESULT
 VAR_INPUT
 END_VAR
@@ -175,7 +181,18 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="RemoveAllMovers" Id="{72daaa8f-92d0-4f12-b8f9-45742cf249d6}">
+    <Property Name="MyName" Id="{e6811d98-40d4-4440-8374-6ce3386e7963}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
+      <Get Name="Get" Id="{e4b2e201-13a7-44e4-888f-38c692b30d08}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyName := _MyName;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="RemoveAllMovers" Id="{72daaa8f-92d0-4f12-b8f9-45742cf249d6}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD RemoveAllMovers : HRESULT
 VAR_INPUT
 END_VAR
@@ -187,7 +204,7 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="RemoveAMover" Id="{c380af90-39ac-42df-b7a5-a3aab3a831b8}">
+    <Method Name="RemoveAMover" Id="{c380af90-39ac-42df-b7a5-a3aab3a831b8}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD RemoveAMover : BOOL
 VAR_INPUT
 	moverId : UDINT;
@@ -199,7 +216,7 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Reset" Id="{109a65fd-df03-46ac-84a7-fd0107d964ee}">
+    <Method Name="Reset" Id="{109a65fd-df03-46ac-84a7-fd0107d964ee}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Reset : BOOL
 ]]></Declaration>
       <Implementation>
@@ -208,63 +225,5 @@ END_IF]]></ST>
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="CollisionGroup">
-      <LineId Id="52" Count="0" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.AddMoverToThisGroup">
-      <LineId Id="8" Count="1" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="7" Count="0" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.CAGroupXtsIoEnvInterface.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.CAGroupXtsIoEnvInterface.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.Cycle">
-      <LineId Id="56" Count="0" />
-      <LineId Id="59" Count="14" />
-      <LineId Id="57" Count="0" />
-      <LineId Id="76" Count="0" />
-      <LineId Id="74" Count="1" />
-      <LineId Id="58" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.Disable">
-      <LineId Id="5" Count="2" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.Enable">
-      <LineId Id="5" Count="2" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.GetAxisCount">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.GroupRef.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.GroupState.Get">
-      <LineId Id="9" Count="15" />
-      <LineId Id="6" Count="0" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.GroupStop">
-      <LineId Id="5" Count="1" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="7" Count="0" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.RemoveAllMovers">
-      <LineId Id="5" Count="1" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="7" Count="0" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.RemoveAMover">
-      <LineId Id="5" Count="2" />
-    </LineIds>
-    <LineIds Name="CollisionGroup.Reset">
-      <LineId Id="4" Count="2" />
-    </LineIds>
   </POU>
 </TcPlcObject>

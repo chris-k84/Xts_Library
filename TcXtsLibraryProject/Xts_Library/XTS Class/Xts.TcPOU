@@ -5,6 +5,7 @@
 VAR
 	MyName : STRING;
 	_MyXts : INT;
+	_MyCAGroup : STRING;
 	_XtsEnabled : BOOL;
 	XtsIoEnvVar : XTSIOEnvVarWrapper;
 	mcCollisionGroup : CollisionGroup;
@@ -125,6 +126,7 @@ END_VAR
 		
 	XtsSystemInitialisation.PassGroupReference:
 		mcCollisionGroup.CAGroupXtsIoEnvInterface := XtsIoEnvVar.GetCaGroupInterface(_MyXts);
+		_MyCAGroup := mcCollisionGroup.MyName;
 		XtsHwState := XtsSystemInitialisation.InitialiseHardware;
 	
 	XtsSystemInitialisation.InitialiseHardware:
