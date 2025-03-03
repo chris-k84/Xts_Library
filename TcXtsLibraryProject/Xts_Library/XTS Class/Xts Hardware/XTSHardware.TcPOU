@@ -24,6 +24,9 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Folder Name="Commands" Id="{fac9eba9-c7de-4a76-a05e-49072f1b1bf8}" />
+    <Folder Name="Settings" Id="{977db0ee-8b4c-4e4e-adde-487140886b9b}" />
+    <Folder Name="Status" Id="{1e7de418-5187-4871-82b8-ce216901bd03}" />
     <Method Name="Cycle" Id="{907368a2-7640-4dfa-a8a9-6f1d20861921}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR_INPUT
@@ -38,7 +41,7 @@ FOR i := 0 TO UDINT_TO_INT(MyTrackCount-1) DO
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="getAllMoversValid" Id="{61902ec7-4049-4544-9a8e-27dabf1b61be}">
+    <Method Name="getAllMoversValid" Id="{61902ec7-4049-4544-9a8e-27dabf1b61be}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getAllMoversValid : BOOL
 VAR_INPUT
 END_VAR
@@ -50,7 +53,7 @@ END_VAR
  END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="getMoversDetected" Id="{6134912a-11cc-419f-9366-ca4c2c2c2f9f}">
+    <Method Name="getMoversDetected" Id="{6134912a-11cc-419f-9366-ca4c2c2c2f9f}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getMoversDetected : BOOL
 VAR_INPUT
 END_VAR
@@ -65,7 +68,7 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetTrackByOTCID" Id="{d55b1037-e87a-4176-a531-719c46a289ea}">
+    <Method Name="GetTrackByOTCID" Id="{d55b1037-e87a-4176-a531-719c46a289ea}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetTrackByOTCID : I_XtsTrack
 VAR_INPUT
 	trackOTCID : OTCID;
@@ -79,7 +82,7 @@ END_VAR
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Initialise" Id="{95822be7-e433-46ff-bfc3-e4b3c51e2a74}">
+    <Method Name="Initialise" Id="{95822be7-e433-46ff-bfc3-e4b3c51e2a74}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR_INPUT
 END_VAR
@@ -142,7 +145,7 @@ END_CASE
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Is24VdcOK" Id="{16c30a69-c544-4706-ba78-c8aed5346201}">
+    <Method Name="Is24VdcOK" Id="{16c30a69-c544-4706-ba78-c8aed5346201}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD Is24VdcOK : HRESULT
 VAR_INPUT
 END_VAR
@@ -156,7 +159,7 @@ FOR i := 0 TO (MyXPUInterface.GetPartCount() -1) DO
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Is48VdcOK" Id="{ff4a117c-24f4-4466-b159-c15d29dc7330}">
+    <Method Name="Is48VdcOK" Id="{ff4a117c-24f4-4466-b159-c15d29dc7330}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD Is48VdcOK : HRESULT
 VAR_INPUT
 END_VAR
@@ -170,7 +173,7 @@ FOR i := 0 TO (MyXPUInterface.GetPartCount() - 1) DO
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsInSim" Id="{c26b05e6-e2eb-40cc-bea5-adcd4dafa0e7}">
+    <Method Name="IsInSim" Id="{c26b05e6-e2eb-40cc-bea5-adcd4dafa0e7}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsInSim : BOOL
 VAR_INPUT
 END_VAR
@@ -184,7 +187,7 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MyNumberParts" Id="{a98ec162-431e-48cc-ae6d-f8949630ea06}">
+    <Property Name="MyNumberParts" Id="{a98ec162-431e-48cc-ae6d-f8949630ea06}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyNumberParts : int]]></Declaration>
       <Get Name="Get" Id="{6aea69f8-39b7-432c-a6be-0e19820e9502}">
         <Declaration><![CDATA[VAR
@@ -203,7 +206,7 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Property Name="MyNumberTracks" Id="{4b737a8f-2e1c-463e-a095-5f8b64b3f222}">
+    <Property Name="MyNumberTracks" Id="{4b737a8f-2e1c-463e-a095-5f8b64b3f222}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyNumberTracks : int]]></Declaration>
       <Get Name="Get" Id="{42884cba-9387-4d1f-8822-97815c1c289f}">
         <Declaration><![CDATA[VAR
@@ -222,7 +225,7 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Property Name="MyXts" Id="{97cba7e2-9698-4397-a6b4-6da9e2abe688}">
+    <Property Name="MyXts" Id="{97cba7e2-9698-4397-a6b4-6da9e2abe688}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyXts : INT]]></Declaration>
       <Get Name="Get" Id="{ad7d6d73-4fab-4d05-975f-01e196f73334}">
         <Declaration><![CDATA[VAR
@@ -260,7 +263,7 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="SetTrackForDetection" Id="{33a6fd5d-a8a8-4e54-be38-eeae850dd3e9}">
+    <Method Name="SetTrackForDetection" Id="{33a6fd5d-a8a8-4e54-be38-eeae850dd3e9}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetTrackForDetection : BOOL
 VAR_INPUT
 	TrackToDetect : INT;
@@ -280,7 +283,7 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TriggerMoverDetection" Id="{15e78533-ebfe-46e6-bd25-18e4044d6883}">
+    <Method Name="TriggerMoverDetection" Id="{15e78533-ebfe-46e6-bd25-18e4044d6883}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD TriggerMoverDetection : BOOL
 VAR_INPUT
 END_VAR
@@ -292,7 +295,7 @@ TriggerMoverDetection := true;
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TriggerMoverID" Id="{23436421-ecb3-466c-b86b-5fefe5c7904c}">
+    <Method Name="TriggerMoverID" Id="{23436421-ecb3-466c-b86b-5fefe5c7904c}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD TriggerMoverID : BOOL
 VAR_INPUT
 END_VAR]]></Declaration>
