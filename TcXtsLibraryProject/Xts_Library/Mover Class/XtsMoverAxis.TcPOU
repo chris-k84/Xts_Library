@@ -18,7 +18,7 @@ VAR
 	_MoverAbsMoveOptions : ST_MoveAbsoluteCAOptions;
 	_stTmsActPositions			: ST_PositionInfo;
 	_CurrentTrack : I_XtsTrack;
-	_MyCAGroup : ITF_CAMover;
+	_MyCAGroup : ICollisionGroup;
 	_ForwardOnly : BOOL := TRUE;
 END_VAR
 VAR CONSTANT
@@ -453,7 +453,7 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyCAGroup" Id="{ef4ebc28-e3bd-4e4a-8472-4104ad14ebae}" FolderPath="Administration\">
-      <Declaration><![CDATA[PROPERTY MyCAGroup : ITF_CAMover]]></Declaration>
+      <Declaration><![CDATA[PROPERTY MyCAGroup : ICollisionGroup]]></Declaration>
       <Get Name="Get" Id="{d4b3e253-6981-43ac-859c-776f6b4fec7d}">
         <Declaration><![CDATA[VAR
 END_VAR
@@ -567,145 +567,5 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="XtsMoverAxis">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.Acceleration.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.Acceleration.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.ActivateTrack">
-      <LineId Id="3" Count="9" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.ActivateZeroReferenceSystem">
-      <LineId Id="3" Count="8" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.AxisRef.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.Cycle">
-      <LineId Id="3" Count="21" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.Deceleration.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.Deceleration.Set">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.DisableMover">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.EnableMover">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.Gap.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.Gap.Set">
-      <LineId Id="3" Count="5" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.Gear">
-      <LineId Id="3" Count="8" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.GetMoverCtrlOTCID">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.GetMoverOTCID">
-      <LineId Id="1" Count="1" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.HaltAxis">
-      <LineId Id="3" Count="7" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.IdentInGroup.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.inGear">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.IsActive">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.isMoverAtPosition">
-      <LineId Id="3" Count="12" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.isMoverDetected">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.isMoverEnabled">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.isMoverStationary">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.Jerk.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.Jerk.Set">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.MoverErrorID.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.MoversActiveTrack.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.MoverXtsIoEnvInterface.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.MoverXtsIoEnvInterface.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.MoveTo">
-      <LineId Id="3" Count="37" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.MyCAGroup.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.MyCAGroup.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.MyMasterRef.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.MyMasterRef.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.PositiveDirectionOnly.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.PositiveDirectionOnly.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.ResetAxis">
-      <LineId Id="3" Count="7" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.SetForceCouple">
-      <LineId Id="1" Count="1" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.SwapMover">
-      <LineId Id="1" Count="1" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.TriggerMoverArrive">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMoverAxis.TriggerMoverLeave">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

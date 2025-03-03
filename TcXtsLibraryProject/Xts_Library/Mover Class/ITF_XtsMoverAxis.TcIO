@@ -145,7 +145,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Property Name="MyCAGroup" Id="{7bdbd73e-c8bd-4342-9139-b02fb8b34afa}" FolderPath="Administration\">
-      <Declaration><![CDATA[PROPERTY MyCAGroup : ITF_CAMover]]></Declaration>
+      <Declaration><![CDATA[PROPERTY MyCAGroup : ICollisionGroup]]></Declaration>
       <Get Name="Get" Id="{02d1886c-e164-4472-af91-ae6725f23e23}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
