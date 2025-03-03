@@ -124,37 +124,5 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <LineIds Name="XtsTrack">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsTrack.Cycle">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsTrack.Initialise">
-      <LineId Id="3" Count="22" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsTrack.MyOTCID.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsTrack.MyOTCID.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsTrack.MyXtsIoEnvInterface.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsTrack.MyXtsIoEnvInterface.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsTrack.RemoveFromDetection">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsTrack.SetForDetection">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsTrack.TrackLength.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

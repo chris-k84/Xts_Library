@@ -122,39 +122,5 @@ END_VAR
         <ST><![CDATA[InSim := true;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="XtsMotorModule">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMotorModule.Cycle">
-      <LineId Id="3" Count="9" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMotorModule.Initialise">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMotorModule.Is24VOK">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMotorModule.Is48VOK">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMotorModule.MyCoEInterface.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMotorModule.MyCoEInterface.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMotorModule.MyModuleInterface.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMotorModule.MyModuleInterface.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMotorModule.SetInSim">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

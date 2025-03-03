@@ -157,19 +157,19 @@
     <Compile Include="XTS Class\Xts Hardware\I_XtsTrack.TcIO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="XTS Class\Xts Hardware\Sub Components\XtsMotorModule.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XTS Class\Xts Hardware\Sub Components\XtsPart.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XTS Class\Xts Hardware\Sub Components\XtsTrack.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="XTS Class\Xts Hardware\XtsSystemInitialisation.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="XTS Class\Xts Hardware\XTSHardware.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XTS Class\Xts Hardware\XtsMotorModule.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XTS Class\Xts Hardware\XtsPart.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XTS Class\Xts Hardware\XtsTrack.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="XTS Class\Xts.TcPOU">
@@ -191,6 +191,7 @@
     <Folder Include="XTS Class\XPU" />
     <Folder Include="XTS Class\Xts Collision Group" />
     <Folder Include="XTS Class\Xts Hardware" />
+    <Folder Include="XTS Class\Xts Hardware\Sub Components" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ExternalTypes.tmc">
