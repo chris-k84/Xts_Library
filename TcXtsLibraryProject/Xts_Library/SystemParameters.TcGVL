@@ -3,8 +3,6 @@
   <GVL Name="SystemParameters" Id="{a42cb835-2569-4791-97b8-892f4c778688}" ParameterList="True">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL CONSTANT
-	MaxModulesInPart  : UINT := 20;
-	MaxPartsInTrack : UINT := 5;
 	NumberOfMovers : UINT := 10;
 	NumberOfStations : UINT := 6;
 	NumberOfParts : UINT := 1;

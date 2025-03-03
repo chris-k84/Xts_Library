@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="XTSHardware_V2" Id="{2082c175-1a19-4a3f-b920-8dbd46477756}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XTSHardware_V2 EXTENDS CyclicBase IMPLEMENTS I_Initialise
+  <POU Name="XTSHardware" Id="{2082c175-1a19-4a3f-b920-8dbd46477756}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK XTSHardware EXTENDS CyclicBase IMPLEMENTS I_Initialise
 VAR
 	XtsParts : ARRAY[0..SystemParameters.NumberOfParts-1] OF XtsPart;
+	_MyNumberParts : INT;
 	XtsTracks : ARRAY[0..SystemParameters.NumberOfTracks-1] OF XtsTrack;
+	_MyNumberTracks : INT;
 	TrackOTCIDs: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF Tc3_XTS_Utility.OTCID;
 	MyXPUInterface : Tc3_XTS_Utility.I_TcIoXtsProcessingUnit;
 	MyXtsIoEnvVarRef : ITF_XTSIOEnvVarWrapper;
@@ -182,6 +184,44 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Property Name="MyNumberParts" Id="{a98ec162-431e-48cc-ae6d-f8949630ea06}">
+      <Declaration><![CDATA[PROPERTY MyNumberParts : int]]></Declaration>
+      <Get Name="Get" Id="{6aea69f8-39b7-432c-a6be-0e19820e9502}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyNumberParts := _MyNumberParts;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{3a096234-62c8-4cae-b087-998329491864}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_MyNumberParts := MyNumberParts;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="MyNumberTracks" Id="{4b737a8f-2e1c-463e-a095-5f8b64b3f222}">
+      <Declaration><![CDATA[PROPERTY MyNumberTracks : int]]></Declaration>
+      <Get Name="Get" Id="{42884cba-9387-4d1f-8822-97815c1c289f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyNumberTracks := _MyNumberTracks;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{615cc55c-cb9a-4994-a6a7-0d139d5ef074}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_MyNumberTracks := MyNumberTracks;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Property Name="MyXts" Id="{97cba7e2-9698-4397-a6b4-6da9e2abe688}">
       <Declaration><![CDATA[PROPERTY MyXts : INT]]></Declaration>
       <Get Name="Get" Id="{ad7d6d73-4fab-4d05-975f-01e196f73334}">

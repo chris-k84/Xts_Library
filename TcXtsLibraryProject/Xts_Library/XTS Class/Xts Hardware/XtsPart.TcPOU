@@ -8,7 +8,7 @@ VAR
 	MyModuleCount : UDINT;
 	PartDriveState: Tc3_XTS_Utility.DriveState;
 	_ReadyToEnable: BOOL;
-	MyModules : ARRAY[0..SystemParameters.MaxModulesInPart] OF XtsMotorModule;
+	MyModules : ARRAY[0..11] OF XtsMotorModule;
 	ModuleIndex: UDINT := 1;
 	InSim : BOOL;
 	i : UINT;
@@ -165,36 +165,5 @@ END_VAR
         <ST><![CDATA[InSim := true;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="XtsPart">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsPart.Cycle">
-      <LineId Id="3" Count="32" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsPart.Initialise">
-      <LineId Id="3" Count="32" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsPart.Is24VBusOK">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsPart.Is48VBusOK">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsPart.MyXtsIoEnvInterface.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsPart.MyXtsIoEnvInterface.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsPart.ResetPart">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsPart.SetInSim">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

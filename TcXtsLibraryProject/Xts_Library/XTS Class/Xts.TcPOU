@@ -8,7 +8,7 @@ VAR
 	_XtsEnabled : BOOL;
 	XtsIoEnvVar : XTSIOEnvVarWrapper;
 	mcCollisionGroup : CollisionGroup;
-	XtsHardware : XTSHardware_V2 := (MyXtsIoEnvVarWrapper := XtsIoEnvVar);
+	XtsHardware : XTSHardware := (MyXtsIoEnvVarWrapper := XtsIoEnvVar);
 	XtsHwState : XtsSystemInitialisation;
 	EnableSequence : XtsEnableSequence(mcCollisionGroup);
 	DisableSequence : XtsDisableSequence(mcCollisionGroup);
@@ -25,6 +25,8 @@ END_VAR]]></Declaration>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
     <Folder Name="Operations" Id="{0e8598c4-3d58-4c14-a12f-6fd3f3ea02bf}" />
+    <Folder Name="Settings" Id="{cec05bdb-9232-4b5d-b91e-848bd7bc55d9}" />
+    <Folder Name="Status" Id="{c34f5481-c408-4671-a299-9c4a6e31956c}" />
     <Method Name="ActivateTracksInMovers" Id="{682f2d4e-bf73-44bf-93e3-716a6d45755c}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD PUBLIC ActivateTracksInMovers : BOOL
 VAR
@@ -109,7 +111,7 @@ END_VAR
         <ST><![CDATA[GetTrackByOCTID := XtsHardware.GetTrackByOTCID(trackOTCID := TrackId);]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}">
+    <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR_INPUT
 END_VAR
@@ -173,7 +175,7 @@ END_VAR
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsXtsIdle" Id="{98f4e7e8-94b6-4461-9a7b-2bd1c0aafde4}">
+    <Method Name="IsXtsIdle" Id="{98f4e7e8-94b6-4461-9a7b-2bd1c0aafde4}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsXtsIdle : BOOL
 VAR_INPUT
 END_VAR
@@ -182,7 +184,7 @@ END_VAR
         <ST><![CDATA[IsXtsIdle := DisableSequence.Done;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsXtsReady" Id="{73e2c3f0-1b32-45c2-a8cc-fbf01ac18258}">
+    <Method Name="IsXtsReady" Id="{73e2c3f0-1b32-45c2-a8cc-fbf01ac18258}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsXtsReady : BOOL
 VAR_INPUT
 END_VAR
@@ -200,7 +202,45 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MyXts" Id="{b982f888-fcea-49f3-8b85-76339b257fce}">
+    <Property Name="MyNumberOfParts" Id="{33632734-2180-4c77-982d-f6997ead5bb5}" FolderPath="Settings\">
+      <Declaration><![CDATA[PROPERTY MyNumberOfParts : int]]></Declaration>
+      <Get Name="Get" Id="{ec285ff9-810a-46b0-8941-68dcdc1ab79d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyNumberOfParts := XtsHardware.MyNumberParts;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{4cb5fde4-6845-43ef-b95e-df4929829b0c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[XtsHardware.MyNumberParts := MyNumberOfParts;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="MyNumberOfTracks" Id="{6b69c4c6-afe3-46d9-bc08-86224f82f24a}" FolderPath="Settings\">
+      <Declaration><![CDATA[PROPERTY MyNumberOfTracks : int]]></Declaration>
+      <Get Name="Get" Id="{cab0d03f-ccb1-4d2e-adb6-3d697ceee44c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyNumberOfTracks := XtsHardware.MyNumberTracks;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{b24fc04c-e333-4935-bdff-3eff5a7d9932}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[XtsHardware.MyNumberTracks := MyNumberOfTracks;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="MyXts" Id="{b982f888-fcea-49f3-8b85-76339b257fce}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyXts : INT]]></Declaration>
       <Get Name="Get" Id="{7260ae55-6d72-4286-9779-c205f4bf658b}">
         <Declaration><![CDATA[VAR
