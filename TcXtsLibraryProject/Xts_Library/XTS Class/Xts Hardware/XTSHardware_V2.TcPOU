@@ -16,6 +16,7 @@ VAR
 	bTriggerDetect: BOOL;
 	bMoverIdDetectionError: BOOL;
 	bMoverIdDetected: BOOL;
+	_MyXts : INT := 1;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -89,7 +90,7 @@ END_VAR]]></Declaration>
 	0:
 		IF MyXtsIoEnvVarRef <> 0 THEN
 			IF MyXtsIoEnvVarRef.IsInitialised() THEN
-				MyXPUInterface := MyXtsIoEnvVarRef.GetXPUInterface();
+				MyXPUInterface := MyXtsIoEnvVarRef.GetXPUInterface(_MyXts);
 				XtsIoEnvInitialiseState := 1;
 			END_IF
 		END_IF
@@ -181,6 +182,25 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Property Name="MyXts" Id="{97cba7e2-9698-4397-a6b4-6da9e2abe688}">
+      <Declaration><![CDATA[PROPERTY MyXts : INT]]></Declaration>
+      <Get Name="Get" Id="{ad7d6d73-4fab-4d05-975f-01e196f73334}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyXts := _MyXts;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{7ade4ba5-90b5-400a-aadf-8d737611d6d9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_MyXts := MyXts;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Property Name="MyXtsIoEnvVarWrapper" Id="{9f0e6f27-b8f0-452c-b07d-d4d2a7ed1b3b}">
       <Declaration><![CDATA[PROPERTY MyXtsIoEnvVarWrapper : itf_xtsioenvvarwrapper]]></Declaration>
       <Get Name="Get" Id="{ef18a883-259a-46c5-ac1a-fd1d0138159b}">
@@ -273,61 +293,5 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="XTSHardware_V2">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.Cycle">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.getAllMoversValid">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.getMoversDetected">
-      <LineId Id="3" Count="5" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.GetTrackByOTCID">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.Initialise">
-      <LineId Id="3" Count="50" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.Is24VdcOK">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.Is48VdcOK">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.IsInSim">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.MyXtsIoEnvVarWrapper.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.MyXtsIoEnvVarWrapper.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.SetTrackForDetection">
-      <LineId Id="31" Count="4" />
-      <LineId Id="39" Count="0" />
-      <LineId Id="36" Count="2" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.TriggerMoverDetection">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware_V2.TriggerMoverID">
-      <LineId Id="3" Count="32" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

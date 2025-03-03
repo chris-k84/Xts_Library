@@ -41,8 +41,8 @@ END_VAR]]></Declaration>
     <Method Name="GetXPUInterface" Id="{01d39393-68d5-4f22-a8cb-82a779c4b78e}">
       <Declaration><![CDATA[METHOD GetXPUInterface : I_TcIoXtsProcessingUnit
 VAR_INPUT
-END_VAR
-]]></Declaration>
+	MyXts : INT;
+END_VAR]]></Declaration>
     </Method>
     <Method Name="IsInitialised" Id="{2cbac030-77c4-4d36-9dea-9ce3d8292980}">
       <Declaration><![CDATA[METHOD IsInitialised : BOOL

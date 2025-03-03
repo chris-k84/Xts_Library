@@ -200,6 +200,25 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
+    <Property Name="MyXts" Id="{b982f888-fcea-49f3-8b85-76339b257fce}">
+      <Declaration><![CDATA[PROPERTY MyXts : INT]]></Declaration>
+      <Get Name="Get" Id="{7260ae55-6d72-4286-9779-c205f4bf658b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyXts := XtsHardware.MyXts;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{f9bbe24a-eac8-4b47-a949-a650212b0818}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[XtsHardware.MyXts := MyXts;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="StopXts" Id="{4b648283-f5f4-4d47-a58f-be53e519365d}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD StopXts : BOOL
 VAR_INPUT

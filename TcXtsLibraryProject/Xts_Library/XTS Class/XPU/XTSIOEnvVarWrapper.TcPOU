@@ -78,10 +78,13 @@ END_VAR]]></Declaration>
     <Method Name="GetXPUInterface" Id="{a6b4198a-d372-4fc0-b700-debb44563dc0}">
       <Declaration><![CDATA[METHOD GetXPUInterface : I_TcIoXtsProcessingUnit
 VAR_INPUT
+	MyXts : INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetXPUInterface := XPU;]]></ST>
+        <ST><![CDATA[GetXPUInterface := XtsIoEnvironment.XpuTcIo(MyXts);
+XPU := XtsIoEnvironment.XpuTcIo(MyXts);
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{f0d17991-21f7-403c-899a-0fcccbff041e}">
@@ -92,7 +95,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF XtsIoEnvironment.Init(TRUE) THEN
 	XtsIoEnvironment.Init(FALSE);
-	XPU := XtsIoEnvironment.XpuTcIo(1);
 	Initialise := Initialised := TRUE;
 END_IF]]></ST>
       </Implementation>
@@ -136,44 +138,5 @@ END_VAR
         <ST><![CDATA[TriggerRedetection := XPU.TriggerRedetection();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="XTSIOEnvVarWrapper">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSIOEnvVarWrapper.FB_init">
-      <LineId Id="1" Count="1" />
-    </LineIds>
-    <LineIds Name="XTSIOEnvVarWrapper.GetCaGroupInterface">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSIOEnvVarWrapper.GetMotorModuleInterface">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSIOEnvVarWrapper.GetMoverInterface">
-      <LineId Id="1" Count="1" />
-    </LineIds>
-    <LineIds Name="XTSIOEnvVarWrapper.GetPartInterface">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSIOEnvVarWrapper.GetTrackInterface">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSIOEnvVarWrapper.GetXPUInterface">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSIOEnvVarWrapper.Initialise">
-      <LineId Id="1" Count="4" />
-    </LineIds>
-    <LineIds Name="XTSIOEnvVarWrapper.IsInitialised">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSIOEnvVarWrapper.IsInSim">
-      <LineId Id="1" Count="2" />
-    </LineIds>
-    <LineIds Name="XTSIOEnvVarWrapper.TriggerDetection">
-      <LineId Id="1" Count="1" />
-    </LineIds>
-    <LineIds Name="XTSIOEnvVarWrapper.TriggerRedetection">
-      <LineId Id="1" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
