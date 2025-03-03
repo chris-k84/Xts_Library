@@ -31,7 +31,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetCaGroupInterface := XtsIoEnvironment.Mc2CaGroup(1);]]></ST>
+        <ST><![CDATA[GetCaGroupInterface := XtsIoEnvironment.Mc2CaGroup(CAGroupNumber);]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetMotorModuleInterface" Id="{9af7c768-b524-4dfc-b4c9-d134e43969ae}">

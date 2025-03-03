@@ -4,6 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Xts IMPLEMENTS ICyclic, I_Initialise
 VAR
 	MyName : STRING;
+	_MyXts : INT;
 	_XtsEnabled : BOOL;
 	XtsIoEnvVar : XTSIOEnvVarWrapper;
 	mcCollisionGroup : CollisionGroup;
@@ -123,7 +124,7 @@ END_VAR
 		END_IF
 		
 	XtsSystemInitialisation.PassGroupReference:
-		mcCollisionGroup.CAGroupXtsIoEnvInterface := XtsIoEnvVar.GetCaGroupInterface(1);
+		mcCollisionGroup.CAGroupXtsIoEnvInterface := XtsIoEnvVar.GetCaGroupInterface(_MyXts);
 		XtsHwState := XtsSystemInitialisation.InitialiseHardware;
 	
 	XtsSystemInitialisation.InitialiseHardware:
@@ -255,7 +256,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[XtsHardware.MyXts := MyXts;]]></ST>
+          <ST><![CDATA[XtsHardware.MyXts := _MyXts := MyXts;]]></ST>
         </Implementation>
       </Set>
     </Property>
