@@ -15,9 +15,11 @@ VAR
 	State : UINT;	
 	i : UINT;
 	AtHome: BOOL;
-	_MoverArray : ARRAY[1..SystemParameters.NumberOfMovers] OF ITF_XtsMoverAxis;
 	EnabledTrigger : R_TRIG;
 	DisabledTrigger : R_TRIG;
+END_VAR
+VAR_IN_OUT
+	_MoverArray : ARRAY[*] OF ITF_XtsMoverAxis;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
@@ -29,7 +31,7 @@ VAR
 	ActivateTrackResult : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[FOR i := 1 TO SystemParameters.NumberOfMovers DO
+        <ST><![CDATA[FOR i := 1 TO TO_UINT(UPPER_BOUND(_MoverArray,1)) DO
 	_MoverArray[i].ActivateTrack(newTrack := _MoverArray[i].MoversActiveTrack,
 									Track := XtsHardware.GetTrackByOTCID(trackOTCID := _MoverArray[i].MoversActiveTrack));
 END_FOR
@@ -90,15 +92,9 @@ END_VAR
 VAR_INPUT
 END_VAR
 VAR
-	//TmsMoverInterface : ITmsMover;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//FOR i := 1 TO SystemParameters.NumberOfMovers DO
-//	IF __QUERYINTERFACE(_MoverArray[i],TmsMoverInterface) THEN
-//		TmsMoverInterface.SetMoverInterface(MoverInterface := _XtsTrackHardware.GetMoverEnvInterface(i));
-//	END_IF
-//END_FOR
-FOR i := 1 TO SystemParameters.NumberOfMovers DO
+        <ST><![CDATA[FOR i := 1 TO TO_UINT(UPPER_BOUND(_MoverArray,1)) DO
 	_MoverArray[i].MoverXtsIoEnvInterface := XtsIoEnvVar.GetMoverInterface(i);
 END_FOR]]></ST>
       </Implementation>
@@ -195,27 +191,6 @@ END_VAR
         <ST><![CDATA[IsXtsReady := _XtsEnabled;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MoverArray" Id="{5c1cfa9c-be49-4324-bcf5-1be968bfce44}">
-      <Declaration><![CDATA[PROPERTY MoverArray : array[1..SystemParameters.NumberOfMovers] of ITF_XtsMoverAxis]]></Declaration>
-      <Get Name="Get" Id="{2b512b99-b3b1-44cb-bf62-7cd45f8e95a6}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MoverArray := _MoverArray;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{806f65c3-00a8-4311-b6e2-aa6af5313c87}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MoverArray := MoverArray;
-EnableSequence.MoverArray := MoverArray;
-DisableSequence.MoverArray := MoverArray;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Method Name="MoverHomeSequence" Id="{5c2deb91-ebd0-4a93-99ec-6a6bbbd5e076}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD PUBLIC Abstract MoverHomeSequence : BOOL
 VAR_INPUT
@@ -234,53 +209,5 @@ END_VAR
         <ST><![CDATA[mcCollisionGroup.GroupStop();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="Xts">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.ActivateTracksInMovers">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.Cycle">
-      <LineId Id="3" Count="17" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.DisableXTS">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.EnableXTS">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.GetTMSMoverInterface">
-      <LineId Id="3" Count="6" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.GetTrackByOCTID">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.Initialise">
-      <LineId Id="3" Count="39" />
-      <LineId Id="44" Count="14" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.IsXtsIdle">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.IsXtsReady">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MoverArray.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MoverArray.Set">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MoverHomeSequence">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.StopXts">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
