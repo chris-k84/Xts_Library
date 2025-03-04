@@ -141,7 +141,7 @@ END_VAR
 		END_IF
 		
 	XtsSystemInitialisation.Redetect:
-		IF XtsHardware.TriggerMoverDetection() THEN
+		IF XtsHardware.TriggerRedetection() = 1 THEN
 			XtsHwState := XtsSystemInitialisation.MoversValid;
 		END_IF
 		
