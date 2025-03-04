@@ -69,6 +69,15 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="GetNumberOfDetectedMovers" Id="{c42e09ab-aa24-40e6-b823-628b7ba84a39}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD GetNumberOfDetectedMovers : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetNumberOfDetectedMovers := MyXPUInterface.GetDetectedMoverCount();]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="GetTrackByOTCID" Id="{d55b1037-e87a-4176-a531-719c46a289ea}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetTrackByOTCID : I_XtsTrack
 VAR_INPUT
