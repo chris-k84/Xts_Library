@@ -56,5 +56,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="SetMoverNumbers" Id="{e7155623-9592-4b90-9105-ecb66a0ed718}">
+      <Declaration><![CDATA[METHOD SetMoverNumbers : HRESULT
+VAR_INPUT
+	NumberOfMovers : INT;
+END_VAR
+]]></Declaration>
+    </Method>
   </Itf>
 </TcPlcObject>

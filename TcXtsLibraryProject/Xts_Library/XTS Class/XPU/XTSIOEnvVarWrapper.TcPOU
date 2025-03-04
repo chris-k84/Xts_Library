@@ -119,6 +119,20 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetMoverNumbers" Id="{fda2cbfb-05d3-433d-b308-26404cfa0e4a}">
+      <Declaration><![CDATA[METHOD SetMoverNumbers : HRESULT
+VAR_INPUT
+	NumberOfMovers : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF XPU.SetConfiguredDetectionCount(nConfiguredMoverDetectionCount := TO_UDINT(NumberOfMovers)) THEN
+	SetMoverNumbers := 1;
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="TriggerDetection" Id="{1bac5fa5-b8a9-4a64-8a15-4af89462d3b7}">
       <Declaration><![CDATA[METHOD TriggerDetection : BOOL
 VAR_INPUT

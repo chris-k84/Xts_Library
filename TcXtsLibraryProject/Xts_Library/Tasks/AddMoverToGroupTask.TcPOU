@@ -92,32 +92,5 @@ END_VAR
         <ST><![CDATA[_CaGroup := myCaGroup;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="AddMoverToGroupTask">
-      <LineId Id="77" Count="0" />
-    </LineIds>
-    <LineIds Name="AddMoverToGroupTask.Abort">
-      <LineId Id="4" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="6" Count="0" />
-    </LineIds>
-    <LineIds Name="AddMoverToGroupTask.AddMover">
-      <LineId Id="4" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="10" Count="0" />
-    </LineIds>
-    <LineIds Name="AddMoverToGroupTask.Cycle">
-      <LineId Id="42" Count="0" />
-      <LineId Id="6" Count="2" />
-      <LineId Id="37" Count="0" />
-      <LineId Id="9" Count="19" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="29" Count="0" />
-      <LineId Id="43" Count="1" />
-      <LineId Id="30" Count="3" />
-    </LineIds>
-    <LineIds Name="AddMoverToGroupTask.FB_init">
-      <LineId Id="7" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
