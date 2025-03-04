@@ -276,6 +276,20 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="SetMoverNumbers" Id="{fda2cbfb-05d3-433d-b308-26404cfa0e4a}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD SetMoverNumbers : HRESULT
+VAR_INPUT
+	NumberOfMovers : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF MyXPUInterface.SetConfiguredDetectionCount(nConfiguredMoverDetectionCount := TO_UDINT(NumberOfMovers)) THEN
+	SetMoverNumbers := 1;
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SetTrackForDetection" Id="{33a6fd5d-a8a8-4e54-be38-eeae850dd3e9}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetTrackForDetection : BOOL
 VAR_INPUT
