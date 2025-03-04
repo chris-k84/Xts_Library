@@ -363,5 +363,16 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="TriggerRedetection" Id="{0183a3e0-45ff-4ec4-b868-d12cfe75fb77}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD TriggerRedetection : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF MyXPUInterface.TriggerRedetection() THEN
+	TriggerRedetection := 1;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
