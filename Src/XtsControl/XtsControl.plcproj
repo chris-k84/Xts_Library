@@ -25,6 +25,9 @@
     <Compile Include="Machine Class\SampleSequence.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Machine Class\ThisXTS.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>

@@ -1,15 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Xts" Id="{4538c683-94fc-49a1-b5ad-30ffec5e4eff}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Xts IMPLEMENTS ICyclic, I_Initialise
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Xts
+VAR_GENERIC CONSTANT
+	MyMoverNumber : INT := 1;
+END_VAR
+IMPLEMENTS ICyclic, I_Initialise
 VAR
 	MyName : STRING;
 	_MyXts : INT;
 	_MyCAGroup : STRING;
 	_XtsEnabled : BOOL;
+	_MoverArray : ARRAY[0..MyMoverNumber] OF ITF_XtsMoverAxis;
 	XtsIoEnvVar : XTSIOEnvVarWrapper;
 	mcCollisionGroup : CollisionGroup;
-	XtsHardware : XTSHardware := (MyXtsIoEnvVarWrapper := XtsIoEnvVar);
+	MyXtsHardware : XTSHardware := (MyXtsIoEnvVarWrapper := XtsIoEnvVar);
 	XtsHwState : XtsSystemInitialisation;
 	EnableSequence : XtsEnableSequence(mcCollisionGroup);
 	DisableSequence : XtsDisableSequence(mcCollisionGroup);
@@ -18,9 +23,7 @@ VAR
 	AtHome: BOOL;
 	EnabledTrigger : R_TRIG;
 	DisabledTrigger : R_TRIG;
-END_VAR
-VAR_IN_OUT
-	_MoverArray : ARRAY[*] OF ITF_XtsMoverAxis;
+	currentMoverNumber: INT;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
@@ -36,7 +39,7 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[FOR i := 1 TO TO_UINT(UPPER_BOUND(_MoverArray,1)) DO
 	_MoverArray[i].ActivateTrack(newTrack := _MoverArray[i].MoversActiveTrack,
-									Track := XtsHardware.GetTrackByOTCID(trackOTCID := _MoverArray[i].MoversActiveTrack));
+									Track := MyXtsHardware.GetTrackByOTCID(trackOTCID := _MoverArray[i].MoversActiveTrack));
 END_FOR
 ActivateTracksInMovers := true;]]></ST>
       </Implementation>
@@ -56,7 +59,7 @@ DisableResult := DisableSequence.Cycle();
 CollisionResult := mcCollisionGroup.Cycle();
 EnabledTrigger(CLK := EnableSequence.Done);
 DisabledTrigger(CLK := DisableSequence.Done);
-XtsHardware.Cycle();
+MyXtsHardware.Cycle();
 IF EnabledTrigger.Q THEN
 	_XtsEnabled := TRUE;
 END_IF
@@ -109,7 +112,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetTrackByOCTID := XtsHardware.GetTrackByOTCID(trackOTCID := TrackId);]]></ST>
+        <ST><![CDATA[GetTrackByOCTID := MyXtsHardware.GetTrackByOTCID(trackOTCID := TrackId);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}" FolderPath="Operations\">
@@ -130,45 +133,45 @@ END_VAR
 		XtsHwState := XtsSystemInitialisation.InitialiseHardware;
 	
 	XtsSystemInitialisation.InitialiseHardware:
-		IF XtsHardware.Initialise() = 2 THEN
-			MyName := XtsHardware.MyName;
+		IF MyXtsHardware.Initialise() = 2 THEN
+			MyName := MyXtsHardware.MyName;
 			XtsHwState := XtsSystemInitialisation.SetDetection;
 		END_IF
 	
 	XtsSystemInitialisation.SetDetection:
-		IF XtsHardware.SetTrackForDetection(1) THEN
+		IF MyXtsHardware.SetTrackForDetection(1) THEN
 			XtsHwState := XtsSystemInitialisation.Redetect;
 		END_IF
 		
 	XtsSystemInitialisation.Redetect:
-		IF XtsHardware.TriggerRedetection() = 1 THEN
+		IF MyXtsHardware.TriggerRedetection() = 1 THEN
 			XtsHwState := XtsSystemInitialisation.MoversValid;
 		END_IF
 		
 	XtsSystemInitialisation.MoversValid:
-		IF XtsHardware.getAllMoversValid() THEN
+		IF MyXtsHardware.getAllMoversValid() THEN
 			XtsHwState := XtsSystemInitialisation.AllMoversFound;
 		END_IF
 	
 	XtsSystemInitialisation.AllMoversFound:
-		IF XtsHardware.getMoversDetected() THEN
+		IF MyXtsHardware.getMoversDetected() THEN
 			XtsHwState := XtsSystemInitialisation.XTSMode;
 		END_IF
 		
 	XtsSystemInitialisation.XTSMode:
-		IF XtsHardware.IsInSim() THEN
+		IF MyXtsHardware.IsInSim() THEN
 			XtsHwState := XtsSystemInitialisation.MoverIdDetection;
 		ELSE
 			XtsHwState := XtsSystemInitialisation.CheckModuleVoltages;
 		END_IF
 		
 	XtsSystemInitialisation.CheckModuleVoltages:
-		IF XtsHardware.Is24VdcOK() = 2 AND XtsHardware.Is48VdcOK() = 2 THEN
+		IF MyXtsHardware.Is24VdcOK() = 2 AND MyXtsHardware.Is48VdcOK() = 2 THEN
 			XtsHwState := XtsSystemInitialisation.MoverIdDetection;
 		END_IF
 	
 	XtsSystemInitialisation.MoverIdDetection:
-		IF XtsHardware.TriggerMoverID() THEN
+		IF MyXtsHardware.TriggerMoverID() THEN
 			XtsHwState := XtsSystemInitialisation.HWReady;
 			GetTMSMoverInterface();
 		END_IF
@@ -212,7 +215,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MyNumberOfParts := XtsHardware.MyNumberParts;]]></ST>
+          <ST><![CDATA[MyNumberOfParts := MyXtsHardware.MyNumberParts;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{4cb5fde4-6845-43ef-b95e-df4929829b0c}">
@@ -220,7 +223,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[XtsHardware.MyNumberParts := MyNumberOfParts;]]></ST>
+          <ST><![CDATA[MyXtsHardware.MyNumberParts := MyNumberOfParts;]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -231,7 +234,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MyNumberOfTracks := XtsHardware.MyNumberTracks;]]></ST>
+          <ST><![CDATA[MyNumberOfTracks := MyXtsHardware.MyNumberTracks;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{b24fc04c-e333-4935-bdff-3eff5a7d9932}">
@@ -239,7 +242,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[XtsHardware.MyNumberTracks := MyNumberOfTracks;]]></ST>
+          <ST><![CDATA[MyXtsHardware.MyNumberTracks := MyNumberOfTracks;]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -250,7 +253,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MyXts := XtsHardware.MyXts;]]></ST>
+          <ST><![CDATA[MyXts := MyXtsHardware.MyXts;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{f9bbe24a-eac8-4b47-a949-a650212b0818}">
@@ -258,10 +261,23 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[XtsHardware.MyXts := _MyXts := MyXts;]]></ST>
+          <ST><![CDATA[MyXtsHardware.MyXts := _MyXts := MyXts;]]></ST>
         </Implementation>
       </Set>
     </Property>
+    <Method Name="RegisterMovers" Id="{a3bbc877-121f-4130-8916-a04d2ba4dd9d}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD RegisterMovers : BOOL
+VAR_INPUT
+	MyMover : ITF_XtsMoverAxis;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF currentMoverNumber <= MyMoverNumber THEN
+	_MoverArray[currentMoverNumber] := MyMover;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="StopXts" Id="{4b648283-f5f4-4d47-a58f-be53e519365d}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD StopXts : BOOL
 VAR_INPUT
