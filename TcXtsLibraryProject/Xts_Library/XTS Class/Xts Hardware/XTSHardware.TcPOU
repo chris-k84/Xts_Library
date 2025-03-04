@@ -316,7 +316,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MyXPUInterface.TriggerRedetection();
+        <ST><![CDATA[MyXPUInterface.TriggerDetection();
 Logger.Send(TC_EVENTS.XtsHardwareEvents.MoverDetectionInitiated,'');
 TriggerMoverDetection := true;
 ]]></ST>
