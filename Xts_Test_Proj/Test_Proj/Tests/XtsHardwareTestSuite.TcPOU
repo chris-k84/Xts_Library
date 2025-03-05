@@ -12,6 +12,7 @@ END_VAR
       <ST><![CDATA[HardwareRejectsCallsWithNoXPU_Test();
 HardwareIdentifiesNoXpu_Test();
 RegisterXPU_Test();
+HardwareWontCycleWithoutInit_Test();
 IF ReRun THEN
 	TestSuite.ReRunTests();
 	ReRun := FALSE;
@@ -40,6 +41,20 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(MyXtsHardware.Initialise());
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HardwareWontCycleWithoutInit_Test" Id="{fba77493-9432-4925-a6b5-53c91b6f648a}">
+      <Declaration><![CDATA[METHOD HardwareWontCycleWithoutInit_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(MyXtsHardware.Cycle());
 	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
