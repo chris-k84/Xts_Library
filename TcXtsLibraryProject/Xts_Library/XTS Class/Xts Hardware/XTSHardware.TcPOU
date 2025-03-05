@@ -21,6 +21,7 @@ VAR
 	_MyXts : INT := 1;
 	_MyName : STRING;
 	_isInitialised: BOOL;
+	_hasXPU : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -96,6 +97,15 @@ END_VAR
 		GetTrackByOTCID := XtsTracks[i];
 	END_IF
 END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HasXPU" Id="{6ea3239f-d8a6-4ea4-a8cf-a5b51d9c01b2}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD HasXPU : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{95822be7-e433-46ff-bfc3-e4b3c51e2a74}" FolderPath="Commands\">
@@ -299,7 +309,8 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MyXtsIoEnvVarRef := MyXtsIoEnvVarWrapper;]]></ST>
+          <ST><![CDATA[MyXtsIoEnvVarRef := MyXtsIoEnvVarWrapper;
+_hasXPU := TRUE;]]></ST>
         </Implementation>
       </Set>
     </Property>

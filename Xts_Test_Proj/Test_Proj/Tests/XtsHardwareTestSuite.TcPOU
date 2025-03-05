@@ -10,12 +10,26 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[HardwareRejectsCallsWithNoXPU_Test();
+HardwareIdentifiesNoXpu_Test();
 RegisterXPU_Test();
 IF ReRun THEN
 	TestSuite.ReRunTests();
 	ReRun := FALSE;
 END_IF]]></ST>
     </Implementation>
+    <Method Name="HardwareIdentifiesNoXpu_Test" Id="{8917a178-edef-4eb2-9cd2-49d29f8c1ec8}">
+      <Declaration><![CDATA[METHOD HardwareIdentifiesNoXpu_Test : BOOL
+VAR_INST
+	Expected : BOOL := FALSE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := MyXtsHardware.HasXPU();
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="HardwareRejectsCallsWithNoXPU_Test" Id="{1788fe5c-f52a-4593-9903-c640bbecef8a}">
       <Declaration><![CDATA[METHOD HardwareRejectsCallsWithNoXPU_Test : BOOL
 VAR_INST
@@ -38,7 +52,8 @@ VAR_INST
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED(MyXtsHardware.Initialise());
+	MyXtsHardware.MyXtsIoEnvVarWrapper := XtsIoEnvVar;
+	Actual := MyXtsHardware.HasXPU();
 	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
