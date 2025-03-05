@@ -105,7 +105,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[HasXPU := _hasXPU;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{95822be7-e433-46ff-bfc3-e4b3c51e2a74}" FolderPath="Commands\">
