@@ -31,10 +31,13 @@
     <Compile Include="Tests\XtsCaGroupTestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\XtsClassTests.TcPOU">
+    <Compile Include="Tests\XtsClassTestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\XtsHardwareTesting.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\XtsHardwareTestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\XtsMoverTestSuite.TcPOU">
@@ -60,16 +63,50 @@
       <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_System</Namespace>
     </PlaceholderReference>
+    <PlaceholderReference Include="Tc3PlcTestSuite">
+      <DefaultResolution>Tc3PlcTestSuite, * (Simmel)</DefaultResolution>
+      <Namespace>Tc3PlcTestSuite</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
       <SystemLibrary>true</SystemLibrary>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Xts Library">
+      <DefaultResolution>Xts Library, * (BeckhoffUK)</DefaultResolution>
+      <Namespace>Xts_Library</Namespace>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Test_Proj.tmc">
       <SubType>Content</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderResolution Include="System_VisuElemMeter">
+      <Resolution>VisuElemMeter, * (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="System_VisuElems">
+      <Resolution>VisuElems, * (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="System_VisuElemsSpecialControls">
+      <Resolution>VisuElemsSpecialControls, * (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="System_VisuElemsWinControls">
+      <Resolution>VisuElemsWinControls, * (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="System_VisuElemTextEditor">
+      <Resolution>VisuElemTextEditor, * (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="System_VisuElemXYChart">
+      <Resolution>VisuElemXYChart, * (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="System_VisuInputs">
+      <Resolution>VisuInputs, * (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="System_VisuNativeControl">
+      <Resolution>VisuNativeControl, * (System)</Resolution>
+    </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

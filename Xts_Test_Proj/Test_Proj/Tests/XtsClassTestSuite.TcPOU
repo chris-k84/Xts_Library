@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="XtsClassTests" Id="{7d78b050-bb38-4110-9cb6-9104c4069eaf}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsClassTests
+  <POU Name="XtsClassTestSuite" Id="{7d78b050-bb38-4110-9cb6-9104c4069eaf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsClassTestSuite
 VAR
 	
 END_VAR

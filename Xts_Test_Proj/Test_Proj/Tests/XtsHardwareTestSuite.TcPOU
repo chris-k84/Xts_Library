@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="XtsHardwareTestSuite" Id="{b560ca6a-e691-471a-a25d-3f29414ba80e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsHardwareTestSuite
+VAR
+	XtsIoEnvVar : XTSIOEnvVarWrapper;
+	MyXtsHardware : XTSHardware;
+	ReRun: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF ReRun THEN
+	TestSuite.ReRunTests();
+	ReRun := FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <Method Name="HardwareRejectsCallsWithNoXPU_Test" Id="{1788fe5c-f52a-4593-9903-c640bbecef8a}">
+      <Declaration><![CDATA[METHOD HardwareRejectsCallsWithNoXPU_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(MyXtsHardware.Initialise());
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
