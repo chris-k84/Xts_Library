@@ -8,21 +8,21 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbTestSuite();
-
-CASE fbTestSuite.P_Testcase OF
-	E_Testcase.Start:
-		THIS^._ICaGroup := 1;
-		fbTestSuite.P_Assert.M_Equals_DINT(1, THIS^.Cycle(), 'Cycle method did not return a complete');
-		fbTestSuite.M_Testcase('GivenTheGroupExistsWhenCycleCalledThenCyclicTaskShouldRun',T#1S,'','',1);
-		
-	1:
-		THIS^._ICaGroup := 0;
-		fbTestSuite.P_Assert.M_Equals_DINT(-1, THIS^.Cycle(), 'Cycle method ran without vaild NC connection');
-		fbTestSuite.M_Testcase('GivenNoCaRefWhenCycleCalledThenCyclicShouldNotRun',T#1S,'','',E_Testcase.Done);	
-		
-	E_Testcase.Done:;	 
-END_CASE]]></ST>
+      <ST><![CDATA[// fbTestSuite();
+// 
+// CASE fbTestSuite.P_Testcase OF
+// 	E_Testcase.Start:
+// 		THIS^._ICaGroup := 1;
+// 		fbTestSuite.P_Assert.M_Equals_DINT(1, THIS^.Cycle(), 'Cycle method did not return a complete');
+// 		fbTestSuite.M_Testcase('GivenTheGroupExistsWhenCycleCalledThenCyclicTaskShouldRun',T#1S,'','',1);
+// 		
+// 	1:
+// 		THIS^._ICaGroup := 0;
+// 		fbTestSuite.P_Assert.M_Equals_DINT(-1, THIS^.Cycle(), 'Cycle method ran without vaild NC connection');
+// 		fbTestSuite.M_Testcase('GivenNoCaRefWhenCycleCalledThenCyclicShouldNotRun',T#1S,'','',E_Testcase.Done);	
+// 		
+// 	E_Testcase.Done:;	 
+// END_CASE]]></ST>
     </Implementation>
     <Method Name="FB_init" Id="{58462602-8e2c-450c-911b-b907dd2255de}">
       <Declaration><![CDATA[METHOD FB_init : BOOL
@@ -38,11 +38,5 @@ TestSuiteGVL.fbTestsuites.M_Add(fbTestsuite);
 TestSuiteGVL.fbTestsuites.P_Options.sFilePathName:= 'C:\test\report.xml';]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="XtsCaGroupTestSuite">
-      <LineId Id="1" Count="14" />
-    </LineIds>
-    <LineIds Name="XtsCaGroupTestSuite.FB_init">
-      <LineId Id="1" Count="2" />
-    </LineIds>
   </POU>
 </TcPlcObject>

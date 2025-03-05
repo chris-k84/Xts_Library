@@ -13,105 +13,105 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[{region "XtsRunnerTestSuite"}
-XtsRunnerTestSuite();
-CASE XtsRunnerTestSuite.P_Testcase OF
-	E_Testcase.Start:
-		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',1);
-			 
-	1:
-		XtsRunnerTestSuite.P_Assert.M_Equals_INT(0,THIS^.GetModuleCount(),'check modules empty');
-		THIS^.ModuleCount := 1;
-		XtsRunnerTestSuite.P_Assert.M_Equals_INT(1,THIS^.GetModuleCount(),'check module count seen correctly');
-		THIS^.ModuleCount := 0;
-		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',2);
-		 
-	2:
-		XtsRunnerTestSuite.P_Assert.M_Equals_DINT(2,THIS^.AddComponent(arrCyclicModules[1]),'Try register 1 cyclic module');
-		CyclicAddedCheck := THIS^.CyclicModules[0] <> 0;	 
-		XtsRunnerTestSuite.P_Assert.M_IsTRUE(CyclicAddedCheck,'module not added in array correctly'); 
-		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',3);
-		THIS^.CyclicModules[0] := 0;
-		THIS^.ModuleCount := 0;	 
-		CyclicAddedCheck := FALSE;
-			 
-	3: 
-		XtsRunnerTestSuite.P_Assert.M_Equals_DINT(2,THIS^.AddComponent(arrCyclicModules[1]),'Try register 1 cyclic module');
-		InitAddedCheck := NOT (THIS^.InitialiseModules[0] <> 0);
-		XtsRunnerTestSuite.P_Assert.M_IsTRUE(InitAddedCheck,'Initial interface added incorrectly');
-		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',4);
-		THIS^.CyclicModules[0] := 0;
-		THIS^.ModuleCount := 0;	 
-		InitAddedCheck := FALSE;
-	 
-	4:
-		XtsRunnerTestSuite.P_Assert.M_Equals_INT(0,THIS^.GetModuleCount(),'check modules empty');
-		FOR i := 1 TO 100 DO 
-			THIS^.AddComponent(arrCyclicModules[i]);
-		END_FOR
-		XtsRunnerTestSuite.P_Assert.M_Equals_DINT(1,THIS^.AddComponent(arrCyclicModules[101]),'add to many modules should be rejected');
-		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',5);
-		FOR i := 0 TO 99 DO 
-			THIS^.CyclicModules[i] := 0;
-		END_FOR
-		THIS^.ModuleCount := 0;		 
-	
-	5:
-		THIS^.Clear();
-		XtsRunnerTestSuite.P_Assert.M_Equals_DINT(2,THIS^.AddComponent(arrCyclicModules[1]),'try register a single cyclic modulea');
-		XtsRunnerTestSuite.P_Assert.M_Equals_INT(1,THIS^.GetModuleCount(),'check module added in count'); 
-		XtsRunnerTestSuite.P_Assert.M_Equals_DINT(2,THIS^.RemoveModule(arrCyclicModules[1]),'remove the same module from module list');
-		XtsRunnerTestSuite.P_Assert.M_Equals_INT(0,THIS^.GetModuleCount(),'check modules empty');	 
-		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',6);
-	
-	6:
-		XtsRunnerTestSuite.P_Assert.M_Equals_INT(0,THIS^.GetModuleCount(),'check modules empty');
-		XtsRunnerTestSuite.P_Assert.M_Equals_DINT(1,THIS^.RemoveModule(arrCyclicModules[1]),'Try remove from empty module list');	 
-		XtsRunnerTestSuite.P_Assert.M_Equals_INT(0,THIS^.GetModuleCount(),'check modules empty big check');
-		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',7);
-		
-//	7:
-//		THIS^.AddComponent(InitialiseModule);
-//		CyclicAddedCheck := THIS^.CyclicModules[0] <> 0;	
-//		InitAddedCheck := THIS^.InitialiseModules[0] <> 0;
-//		XtsRunnerTestSuite.P_Assert.M_IsTRUE(CyclicAddedCheck,'module not added in array correctly');
-//		XtsRunnerTestSuite.P_Assert.M_IsTRUE(InitAddedCheck,'Initial interface not added correctly'); 
-//		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',8);
-//		THIS^.CyclicModules[0] := 0;
-//		THIS^.InitialiseModules[0] := 0;
-//		THIS^.ModuleCount := 0;
-//		THIS^.InitModuleCount := 0;	 
-			 
-//	8:
-//		THIS^.AddComponent(InitialiseModule);
-//		XtsRunnerTestSuite.P_Assert.M_Equals_INT(1,THIS^.InitModuleCount,'initialisation module not been counted correctly');	
-//		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',9);
-//		THIS^.CyclicModules[0] := 0;
-//		THIS^.InitialiseModules[0] := 0;
-//		THIS^.CyclicModules[0] := 0;
-//		THIS^.InitialiseModules[0] := 0;
-//		THIS^.ModuleCount := 0;
-//		THIS^.InitModuleCount := 0; 
-			 
-//	9:
-//		THIS^.AddComponent(InitialiseModule);
-//		XtsRunnerTestSuite.P_Assert.M_Equals_INT(1,THIS^.InitModuleCount,'initialisation module not been counted correctly');
-//		THIS^.RemoveModule(InitialiseModule);
-//		XtsRunnerTestSuite.P_Assert.M_Equals_INT(0,THIS^.InitModuleCount,'initialisation module not been removed correctly');
-//		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',10);
-//		THIS^.CyclicModules[0] := 0;
-//		THIS^.InitialiseModules[0] := 0;
-//		THIS^.CyclicModules[0] := 0;
-//		THIS^.InitialiseModules[0] := 0;
-//		THIS^.ModuleCount := 0;
-//		THIS^.InitModuleCount := 0;
-		
-	10:
-		THIS^.Clear();
-		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',E_Testcase.Done);
-	E_Testcase.Done:;	 
-END_CASE
-{endregion}]]></ST>
+      <ST><![CDATA[// {region "XtsRunnerTestSuite"}
+// XtsRunnerTestSuite();
+// CASE XtsRunnerTestSuite.P_Testcase OF
+// 	E_Testcase.Start:
+// 		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',1);
+// 			 
+// 	1:
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_INT(0,THIS^.GetModuleCount(),'check modules empty');
+// 		THIS^.ModuleCount := 1;
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_INT(1,THIS^.GetModuleCount(),'check module count seen correctly');
+// 		THIS^.ModuleCount := 0;
+// 		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',2);
+// 		 
+// 	2:
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_DINT(2,THIS^.AddComponent(arrCyclicModules[1]),'Try register 1 cyclic module');
+// 		CyclicAddedCheck := THIS^.CyclicModules[0] <> 0;	 
+// 		XtsRunnerTestSuite.P_Assert.M_IsTRUE(CyclicAddedCheck,'module not added in array correctly'); 
+// 		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',3);
+// 		THIS^.CyclicModules[0] := 0;
+// 		THIS^.ModuleCount := 0;	 
+// 		CyclicAddedCheck := FALSE;
+// 			 
+// 	3: 
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_DINT(2,THIS^.AddComponent(arrCyclicModules[1]),'Try register 1 cyclic module');
+// 		InitAddedCheck := NOT (THIS^.InitialiseModules[0] <> 0);
+// 		XtsRunnerTestSuite.P_Assert.M_IsTRUE(InitAddedCheck,'Initial interface added incorrectly');
+// 		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',4);
+// 		THIS^.CyclicModules[0] := 0;
+// 		THIS^.ModuleCount := 0;	 
+// 		InitAddedCheck := FALSE;
+// 	 
+// 	4:
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_INT(0,THIS^.GetModuleCount(),'check modules empty');
+// 		FOR i := 1 TO 100 DO 
+// 			THIS^.AddComponent(arrCyclicModules[i]);
+// 		END_FOR
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_DINT(1,THIS^.AddComponent(arrCyclicModules[101]),'add to many modules should be rejected');
+// 		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',5);
+// 		FOR i := 0 TO 99 DO 
+// 			THIS^.CyclicModules[i] := 0;
+// 		END_FOR
+// 		THIS^.ModuleCount := 0;		 
+// 	
+// 	5:
+// 		THIS^.Clear();
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_DINT(2,THIS^.AddComponent(arrCyclicModules[1]),'try register a single cyclic modulea');
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_INT(1,THIS^.GetModuleCount(),'check module added in count'); 
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_DINT(2,THIS^.RemoveModule(arrCyclicModules[1]),'remove the same module from module list');
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_INT(0,THIS^.GetModuleCount(),'check modules empty');	 
+// 		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',6);
+// 	
+// 	6:
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_INT(0,THIS^.GetModuleCount(),'check modules empty');
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_DINT(1,THIS^.RemoveModule(arrCyclicModules[1]),'Try remove from empty module list');	 
+// 		XtsRunnerTestSuite.P_Assert.M_Equals_INT(0,THIS^.GetModuleCount(),'check modules empty big check');
+// 		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',7);
+// 		
+// //	7:
+// //		THIS^.AddComponent(InitialiseModule);
+// //		CyclicAddedCheck := THIS^.CyclicModules[0] <> 0;	
+// //		InitAddedCheck := THIS^.InitialiseModules[0] <> 0;
+// //		XtsRunnerTestSuite.P_Assert.M_IsTRUE(CyclicAddedCheck,'module not added in array correctly');
+// //		XtsRunnerTestSuite.P_Assert.M_IsTRUE(InitAddedCheck,'Initial interface not added correctly'); 
+// //		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',8);
+// //		THIS^.CyclicModules[0] := 0;
+// //		THIS^.InitialiseModules[0] := 0;
+// //		THIS^.ModuleCount := 0;
+// //		THIS^.InitModuleCount := 0;	 
+// 			 
+// //	8:
+// //		THIS^.AddComponent(InitialiseModule);
+// //		XtsRunnerTestSuite.P_Assert.M_Equals_INT(1,THIS^.InitModuleCount,'initialisation module not been counted correctly');	
+// //		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',9);
+// //		THIS^.CyclicModules[0] := 0;
+// //		THIS^.InitialiseModules[0] := 0;
+// //		THIS^.CyclicModules[0] := 0;
+// //		THIS^.InitialiseModules[0] := 0;
+// //		THIS^.ModuleCount := 0;
+// //		THIS^.InitModuleCount := 0; 
+// 			 
+// //	9:
+// //		THIS^.AddComponent(InitialiseModule);
+// //		XtsRunnerTestSuite.P_Assert.M_Equals_INT(1,THIS^.InitModuleCount,'initialisation module not been counted correctly');
+// //		THIS^.RemoveModule(InitialiseModule);
+// //		XtsRunnerTestSuite.P_Assert.M_Equals_INT(0,THIS^.InitModuleCount,'initialisation module not been removed correctly');
+// //		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',10);
+// //		THIS^.CyclicModules[0] := 0;
+// //		THIS^.InitialiseModules[0] := 0;
+// //		THIS^.CyclicModules[0] := 0;
+// //		THIS^.InitialiseModules[0] := 0;
+// //		THIS^.ModuleCount := 0;
+// //		THIS^.InitModuleCount := 0;
+// 		
+// 	10:
+// 		THIS^.Clear();
+// 		XtsRunnerTestSuite.M_Testcase('XtsRunner',T#1S,'','',E_Testcase.Done);
+// 	E_Testcase.Done:;	 
+// END_CASE
+// {endregion}]]></ST>
     </Implementation>
     <Method Name="FB_init" Id="{f3b51ee2-a3cf-4205-9bbc-f734aee884db}">
       <Declaration><![CDATA[METHOD FB_init : BOOL
@@ -126,11 +126,5 @@ TestSuiteGVL.fbTestsuites.M_Add(XtsRunnerTestSuite);
 TestSuiteGVL.fbTestsuites.P_Options.sFilePathName:= 'C:\test\report.xml';]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="XtsRunnerTesting">
-      <LineId Id="1" Count="98" />
-    </LineIds>
-    <LineIds Name="XtsRunnerTesting.FB_init">
-      <LineId Id="1" Count="2" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -47,17 +47,5 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <LineIds Name="XtsTrackStub">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsTrackStub.MyOTCID.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsTrackStub.MyOTCID.Set">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsTrackStub.TrackLength.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

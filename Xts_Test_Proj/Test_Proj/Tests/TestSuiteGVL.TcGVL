@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1">
-  <GVL Name="TestSuiteGVL" Id="{cfebde9e-5caa-491e-9955-0f85762b2ab7}">
-    <Declaration><![CDATA[{attribute 'qualified_only'}
-VAR_GLOBAL
-	fbTestsuites:			FB_Testsuites;	
-END_VAR]]></Declaration>
-  </GVL>
-</TcPlcObject>

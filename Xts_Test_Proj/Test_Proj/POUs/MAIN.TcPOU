@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="MAIN" Id="{dc5d3262-2c75-40be-bcf4-e3452be8a2b3}">
+  <POU Name="MAIN" Id="{dc5d3262-2c75-40be-bcf4-e3452be8a2b3}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	XtsHWTestSuite : XtsHardwareTestSuite;
 END_VAR
-]]>
-    </Declaration>
+]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[XtsHWTestSuite();]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
