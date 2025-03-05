@@ -27,5 +27,17 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="RegisterXPU_Test" Id="{b248b030-f2bc-411a-8466-8dc5754b8803}">
+      <Declaration><![CDATA[METHOD RegisterXPU_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(MyXtsHardware.Initialise());
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
