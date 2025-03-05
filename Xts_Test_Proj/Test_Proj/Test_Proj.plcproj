@@ -68,8 +68,8 @@
       <Namespace>Tc3_Module</Namespace>
       <SystemLibrary>true</SystemLibrary>
     </PlaceholderReference>
-    <PlaceholderReference Include="Xts Library">
-      <DefaultResolution>Xts Library, * (BeckhoffUK)</DefaultResolution>
+    <PlaceholderReference Include="[Xts Library]">
+      <DefaultResolution>[Xts Library], * (BeckhoffUK)</DefaultResolution>
       <Namespace>Xts_Library</Namespace>
     </PlaceholderReference>
   </ItemGroup>

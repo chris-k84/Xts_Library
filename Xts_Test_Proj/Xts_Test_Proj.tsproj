@@ -1,5 +1,219 @@
 <?xml version="1.0"?>
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.14">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{BFADB756-C9B4-493A-9C4C-39296337DFEF}" PersistentType="true">XtsCaGroupEvents</Name>
+			<DisplayName TxtId=""><![CDATA[NewEventClass1_DisplayText]]></DisplayName>
+			<EventId>
+				<Name Id="1">CAGroupEnable</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group Enable Command]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">CAGroupEnabling</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group Enabling]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">CAGroupEnableError</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group Enable Error]]></DisplayName>
+				<Severity>Error</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">CAGroupEnabled</Name>
+				<DisplayName TxtId=""><![CDATA[Collision Group Enabled]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">CAGroupDisable</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group Disable Command]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">CAGroupDisabling</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group Disabling]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">CAGroupDisableError</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group Disable Error]]></DisplayName>
+				<Severity>Error</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">CAGroupDisabled</Name>
+				<DisplayName TxtId=""><![CDATA[CA Groups has been disabled]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">CAGroupStop</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group Stopping command]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">CAGroupStopping</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group Stopping]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">CAGroupStopError</Name>
+				<DisplayName TxtId=""><![CDATA[Error in CA Groups Stop]]></DisplayName>
+				<Severity>Error</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">CAGroupStopped</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group has stopped]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="13">CaGroupRemoveMovers</Name>
+				<DisplayName TxtId=""><![CDATA[Remove movers command]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="14">CAGroupRemoving</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group Removing Movers]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="15">CAGroupRemoveError</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group Remove All Movers Error]]></DisplayName>
+				<Severity>Error</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="16">AllMoversRemoved</Name>
+				<DisplayName TxtId=""><![CDATA[All Movers removed from CA Group]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="17">CAGroupReset</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group reset command]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="18">CAGroupResetting</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group resetting]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="19">CAGroupResetError</Name>
+				<DisplayName TxtId=""><![CDATA[CA GRoup Reset Error]]></DisplayName>
+				<Severity>Error</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="20">CAGroupResetDone</Name>
+				<DisplayName TxtId=""><![CDATA[CA Group Reset is done]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="31">AddingMoverToGroup</Name>
+				<DisplayName TxtId=""><![CDATA[Adding Current Mover To CA Group]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="32">AllMoversAdded</Name>
+				<DisplayName TxtId=""><![CDATA[All Movers Added To Group]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="33">AllMoversEnabled</Name>
+				<DisplayName TxtId=""><![CDATA[All Movers are Enabled]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="39">AllMoversDisabled</Name>
+				<DisplayName TxtId=""><![CDATA[All Movers have been disabled]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{D18B2ADF-208A-485C-AFE8-AF531DEF23E0}"/>
+				<Hide GUID="{A14A65BD-20AA-4BAB-A005-164464960B7F}"/>
+				<Hide GUID="{0D485C21-B88D-450F-A93B-3B12CC2B2B4B}"/>
+				<Hide GUID="{DF8BF769-9ACD-4B21-867E-633BC24460E7}"/>
+				<Hide GUID="{031C22D4-DF30-4F0C-9F6C-0611DDBE0B21}"/>
+				<Hide GUID="{43F91E73-31CA-4FED-AA85-4831CE917C69}"/>
+				<Hide GUID="{9399C73D-FA44-466A-B40A-98C966A422BA}"/>
+				<Hide GUID="{8D16F146-C013-4285-8E33-391AF9B3CD15}"/>
+				<Hide GUID="{C48D5FFF-4BE3-42B2-B423-D430E9CBDD0E}"/>
+				<Hide GUID="{F2A6001B-BB2A-40EA-9305-56A657569F6D}"/>
+				<Hide GUID="{03A4F831-2F61-4A5B-AD64-7AC947BD185C}"/>
+				<Hide GUID="{6E18E1AD-C0AF-4FC5-87F1-F1AB1201E401}"/>
+				<Hide GUID="{72C47FE5-4DAF-47C1-BA35-DFCAD7C21243}"/>
+				<Hide GUID="{DD176614-36B2-4B57-BFC6-989925E99A82}"/>
+				<Hide GUID="{A15E1E20-48A5-4C15-B5D3-5FDE491A0963}"/>
+				<Hide GUID="{245CB665-1AD7-4FB5-8957-3AA1E1D71835}"/>
+				<Hide GUID="{4ED63E26-4A3E-4FD6-ABC0-DC95C1A7E086}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{91507BCE-8382-4438-9008-5A139AEBC160}" PersistentType="true">XtsHardwareEvents</Name>
+			<DisplayName TxtId=""><![CDATA[NewEventClass_DisplayText]]></DisplayName>
+			<EventId>
+				<Name Id="1">MoversDetected</Name>
+				<DisplayName TxtId=""><![CDATA[All Movers Detected]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">AllMoversValid</Name>
+				<DisplayName TxtId=""><![CDATA[All Movers Are Valid]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">ExpectedMoversDetected</Name>
+				<DisplayName TxtId=""><![CDATA[The Expected Number of Movers Was Detected]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">ActiveTracksAddedForDetection</Name>
+				<DisplayName TxtId=""><![CDATA[Tracks added for mover detection]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">ExpectedMoversNotFound</Name>
+				<DisplayName TxtId=""><![CDATA[Expected number of movers not found on track]]></DisplayName>
+				<Severity>Error</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">XtsInSimulationMode</Name>
+				<DisplayName TxtId=""><![CDATA[Xts running in simulation mode]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">MoverDetectionInitiated</Name>
+				<DisplayName TxtId=""><![CDATA[Mover detection started on track]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">Mover1DetectionStarted</Name>
+				<DisplayName TxtId=""><![CDATA[Mover 1 detection started]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">Mover1DetectionFailed</Name>
+				<DisplayName TxtId=""><![CDATA[Mover 1 detection failed]]></DisplayName>
+				<Severity>Error</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">Mover1DetectionComplete</Name>
+				<DisplayName TxtId=""><![CDATA[Mover 1 detection complete]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">StandardMoverNumberingComplete</Name>
+				<DisplayName TxtId=""><![CDATA[Movers using standard numbering]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">XtsTracksCountError</Name>
+				<DisplayName TxtId=""><![CDATA[Number of XTS Tracks does not match]]></DisplayName>
+				<Severity>Error</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{873DD3B9-D1F9-4D80-8270-496111E1E5A6}"/>
+				<Hide GUID="{681E3F63-287C-427C-AA4B-FED38812577A}"/>
+				<Hide GUID="{00DE8E8A-BA2F-4C21-92B2-F85A687714C5}"/>
+			</Hides>
+		</DataType>
+	</DataTypes>
 	<Project ProjectGUID="{D6CDE109-AFE6-47BF-82D3-4F48E24801D5}" TargetNetId="199.4.42.250.1.1" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
 			<Tasks>
