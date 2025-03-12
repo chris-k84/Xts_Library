@@ -58,5 +58,20 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="MoverRejectsGapLow_Test" Id="{6530a17d-1991-47b3-b4cb-06ac96089734}">
+      <Declaration><![CDATA[METHOD MoverRejectsGapLow_Test : BOOL
+VAR_INST
+	Expected : mc_lreal := 100.0;
+	Actual	 : mc_lreal;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testMover.Gap := 25.0;
+	Actual := testMover.Gap;
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
