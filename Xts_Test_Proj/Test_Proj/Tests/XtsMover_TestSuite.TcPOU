@@ -9,11 +9,27 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[MoverRejectsCycleCallWithNoAxisRef_Test();
+MoverAcceptsEnableCommand_Test();
+MoverRejectsDisableCommand_Test();
 IF ReRun THEN
 	TestSuite.ReRunTests();
 	ReRun := FALSE;
 END_IF]]></ST>
     </Implementation>
+    <Method Name="MoverAcceptsEnableCommand_Test" Id="{716146c2-e85b-4cfe-8ba6-0d5e0d358526}">
+      <Declaration><![CDATA[METHOD MoverAcceptsEnableCommand_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED( testMover.EnableMover());
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="MoverRejectsCycleCallWithNoAxisRef_Test" Id="{fb3f91ca-683c-4eda-a124-b2b3567eaec3}">
       <Declaration><![CDATA[METHOD MoverRejectsCycleCallWithNoAxisRef_Test : BOOL
 VAR_INST
@@ -24,6 +40,20 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.Cycle());
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsDisableCommand_Test" Id="{61adacd1-bbb3-4810-9e81-807401845494}">
+      <Declaration><![CDATA[METHOD MoverRejectsDisableCommand_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED( testMover.DisableMover());
 	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

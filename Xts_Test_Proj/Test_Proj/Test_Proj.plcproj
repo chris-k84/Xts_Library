@@ -33,9 +33,6 @@
     <Compile Include="Tests\XtsHardware_TestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\XtsMoverTestSuite_old.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Tests\XtsMover_TestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -45,6 +42,10 @@
     <Folder Include="Tests" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="Tc2_MC2">
+      <DefaultResolution>Tc2_MC2, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_MC2</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>
