@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="XtsMoverTestSuite" Id="{d5190c30-b415-4dc1-98ad-8c09263a2d99}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsMoverTestSuite EXTENDS XtsMoverAxis
+  <POU Name="XtsMoverTestSuite_old" Id="{d5190c30-b415-4dc1-98ad-8c09263a2d99}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsMoverTestSuite_old EXTENDS XtsMoverAxis
 VAR
 	fbTestSuite : FB_Testsuite;
 	xtsTrack : XtsTrackStub;

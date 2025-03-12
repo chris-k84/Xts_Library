@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="XtsMover_TestSuite" Id="{35b3f83a-ddd6-49c7-a80a-724734d90825}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsMover_TestSuite
+VAR
+	testMover : XtsMoverAxis;
+	ReRun: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MoverRejectsCycleCallWithNoAxisRef_Test();
+IF ReRun THEN
+	TestSuite.ReRunTests();
+	ReRun := FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <Method Name="MoverRejectsCycleCallWithNoAxisRef_Test" Id="{fb3f91ca-683c-4eda-a124-b2b3567eaec3}">
+      <Declaration><![CDATA[METHOD MoverRejectsCycleCallWithNoAxisRef_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED( testMover.Cycle());
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

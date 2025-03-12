@@ -3,11 +3,13 @@
   <POU Name="MAIN" Id="{dc5d3262-2c75-40be-bcf4-e3452be8a2b3}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	XtsHWTestSuite : XtsHardwareTestSuite;
+	XtsHWTestSuite : XtsHardware_TestSuite;
+	XtsMoverTestSuite : XtsMover_TestSuite;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[XtsHWTestSuite();]]></ST>
+      <ST><![CDATA[XtsHWTestSuite();
+XtsMoverTestSuite();]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
