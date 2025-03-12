@@ -11,6 +11,10 @@ END_VAR
       <ST><![CDATA[MoverRejectsCycleCallWithNoAxisRef_Test();
 MoverAcceptsEnableCommand_Test();
 MoverRejectsDisableCommand_Test();
+MoverRejectsGapLow_Test();
+MoverAcceptsGoodGap_Test();
+MoverRejectsHighVeloCommand_Test();
+MoverRejectsNegVeloCommand_Test();
 IF ReRun THEN
 	TestSuite.ReRunTests();
 	ReRun := FALSE;
@@ -26,6 +30,21 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED( testMover.EnableMover());
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverAcceptsGoodGap_Test" Id="{a49e7a7f-b905-403f-b266-dc77e02f27a1}">
+      <Declaration><![CDATA[METHOD MoverAcceptsGoodGap_Test : BOOL
+VAR_INST
+	Expected : mc_lreal := 120.0;
+	Actual	 : mc_lreal;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testMover.Gap := 120.0;
+	Actual := testMover.Gap;
 	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -69,6 +88,33 @@ END_VAR
         <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testMover.Gap := 25.0;
 	Actual := testMover.Gap;
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsHighVeloCommand_Test" Id="{5ee085d8-22d2-44c9-b967-7741b9170bcb}">
+      <Declaration><![CDATA[METHOD MoverRejectsHighVeloCommand_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED( testMover.MoveTo(100.0,5000.0,true));
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsNegVeloCommand_Test" Id="{64cadcb0-5bf1-4cfd-9d6d-2fa99dffcb0d}">
+      <Declaration><![CDATA[METHOD MoverRejectsNegVeloCommand_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED( testMover.MoveTo(100.0,-1.0,TRUE));
 	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

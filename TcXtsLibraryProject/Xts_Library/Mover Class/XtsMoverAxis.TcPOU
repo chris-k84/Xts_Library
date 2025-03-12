@@ -411,7 +411,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT MoverMoveCommand.Busy AND MoveVelocity < _MaxMoverVelocity AND (*RequiredPosition < _ActiveTrackLength AND*) Gap >= 50.0 THEN
+        <ST><![CDATA[IF NOT MoverMoveCommand.Busy AND MoveVelocity < _MaxMoverVelocity AND MoveVelocity > 0.0 AND Gap >= 50.0 THEN
 	IF NonModuloMove THEN
 		IF THIS^.MoverMoveCommand.MoveTo(Position := RequiredPosition, 
 										Velocity := MoveVelocity, 
