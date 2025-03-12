@@ -5,6 +5,8 @@
 VAR
 	testMover : XtsMoverAxis;
 	ReRun: BOOL;
+	stubTrack : XtsTrack;
+	stubITrack: Xts_Library.I_XtsTrack := stubTrack;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -15,6 +17,9 @@ MoverRejectsGapLow_Test();
 MoverAcceptsGoodGap_Test();
 MoverRejectsHighVeloCommand_Test();
 MoverRejectsNegVeloCommand_Test();
+MoverRejectsResetWithNoError_Test();
+MoverRejectsActiavteTrackWithInvalidInterface_Test();
+MoverRejectsActivateTrackInvalidOTCID_Test();
 IF ReRun THEN
 	TestSuite.ReRunTests();
 	ReRun := FALSE;
@@ -45,6 +50,33 @@ END_VAR
         <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testMover.Gap := 120.0;
 	Actual := testMover.Gap;
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsActiavteTrackWithInvalidInterface_Test" Id="{63f382c0-31c1-4b25-adcd-c20a2309c7b9}">
+      <Declaration><![CDATA[METHOD MoverRejectsActiavteTrackWithInvalidInterface_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED( testMover.ActivateTrack(NewTrack := 16#1010E2, Track := 0));
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsActivateTrackInvalidOTCID_Test" Id="{2fd27368-4a82-43e0-950b-41f666bdc2fa}">
+      <Declaration><![CDATA[METHOD MoverRejectsActivateTrackInvalidOTCID_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED( testMover.ActivateTrack(NewTrack := 0,Track := stubITrack));
 	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -115,6 +147,19 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.MoveTo(100.0,-1.0,TRUE));
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsResetWithNoError_Test" Id="{f5425bf8-2274-4dca-931b-4651d9a2101b}">
+      <Declaration><![CDATA[METHOD MoverRejectsResetWithNoError_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED( testMover.ResetAxis());
 	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
