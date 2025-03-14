@@ -2,6 +2,75 @@
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.14">
 	<DataTypes>
 		<DataType>
+			<Name GUID="{91507BCE-8382-4438-9008-5A139AEBC160}" PersistentType="true">XtsHardwareEvents</Name>
+			<DisplayName TxtId=""><![CDATA[NewEventClass_DisplayText]]></DisplayName>
+			<EventId>
+				<Name Id="1">MoversDetected</Name>
+				<DisplayName TxtId=""><![CDATA[All Movers Detected]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">AllMoversValid</Name>
+				<DisplayName TxtId=""><![CDATA[All Movers Are Valid]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">ExpectedMoversDetected</Name>
+				<DisplayName TxtId=""><![CDATA[The Expected Number of Movers Was Detected]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">ActiveTracksAddedForDetection</Name>
+				<DisplayName TxtId=""><![CDATA[Tracks added for mover detection]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">ExpectedMoversNotFound</Name>
+				<DisplayName TxtId=""><![CDATA[Expected number of movers not found on track]]></DisplayName>
+				<Severity>Error</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">XtsInSimulationMode</Name>
+				<DisplayName TxtId=""><![CDATA[Xts running in simulation mode]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">MoverDetectionInitiated</Name>
+				<DisplayName TxtId=""><![CDATA[Mover detection started on track]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">Mover1DetectionStarted</Name>
+				<DisplayName TxtId=""><![CDATA[Mover 1 detection started]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">Mover1DetectionFailed</Name>
+				<DisplayName TxtId=""><![CDATA[Mover 1 detection failed]]></DisplayName>
+				<Severity>Error</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">Mover1DetectionComplete</Name>
+				<DisplayName TxtId=""><![CDATA[Mover 1 detection complete]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">StandardMoverNumberingComplete</Name>
+				<DisplayName TxtId=""><![CDATA[Movers using standard numbering]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">XtsTracksCountError</Name>
+				<DisplayName TxtId=""><![CDATA[Number of XTS Tracks does not match]]></DisplayName>
+				<Severity>Error</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{873DD3B9-D1F9-4D80-8270-496111E1E5A6}"/>
+				<Hide GUID="{681E3F63-287C-427C-AA4B-FED38812577A}"/>
+				<Hide GUID="{00DE8E8A-BA2F-4C21-92B2-F85A687714C5}"/>
+			</Hides>
+		</DataType>
+		<DataType>
 			<Name GUID="{BFADB756-C9B4-493A-9C4C-39296337DFEF}" PersistentType="true">XtsCaGroupEvents</Name>
 			<DisplayName TxtId=""><![CDATA[NewEventClass1_DisplayText]]></DisplayName>
 			<EventId>
@@ -142,75 +211,6 @@
 				<Hide GUID="{A15E1E20-48A5-4C15-B5D3-5FDE491A0963}"/>
 				<Hide GUID="{245CB665-1AD7-4FB5-8957-3AA1E1D71835}"/>
 				<Hide GUID="{4ED63E26-4A3E-4FD6-ABC0-DC95C1A7E086}"/>
-			</Hides>
-		</DataType>
-		<DataType>
-			<Name GUID="{91507BCE-8382-4438-9008-5A139AEBC160}" PersistentType="true">XtsHardwareEvents</Name>
-			<DisplayName TxtId=""><![CDATA[NewEventClass_DisplayText]]></DisplayName>
-			<EventId>
-				<Name Id="1">MoversDetected</Name>
-				<DisplayName TxtId=""><![CDATA[All Movers Detected]]></DisplayName>
-				<Severity>Info</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="2">AllMoversValid</Name>
-				<DisplayName TxtId=""><![CDATA[All Movers Are Valid]]></DisplayName>
-				<Severity>Info</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="3">ExpectedMoversDetected</Name>
-				<DisplayName TxtId=""><![CDATA[The Expected Number of Movers Was Detected]]></DisplayName>
-				<Severity>Info</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="4">ActiveTracksAddedForDetection</Name>
-				<DisplayName TxtId=""><![CDATA[Tracks added for mover detection]]></DisplayName>
-				<Severity>Info</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="5">ExpectedMoversNotFound</Name>
-				<DisplayName TxtId=""><![CDATA[Expected number of movers not found on track]]></DisplayName>
-				<Severity>Error</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="6">XtsInSimulationMode</Name>
-				<DisplayName TxtId=""><![CDATA[Xts running in simulation mode]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="7">MoverDetectionInitiated</Name>
-				<DisplayName TxtId=""><![CDATA[Mover detection started on track]]></DisplayName>
-				<Severity>Info</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="8">Mover1DetectionStarted</Name>
-				<DisplayName TxtId=""><![CDATA[Mover 1 detection started]]></DisplayName>
-				<Severity>Info</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="9">Mover1DetectionFailed</Name>
-				<DisplayName TxtId=""><![CDATA[Mover 1 detection failed]]></DisplayName>
-				<Severity>Error</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="10">Mover1DetectionComplete</Name>
-				<DisplayName TxtId=""><![CDATA[Mover 1 detection complete]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="11">StandardMoverNumberingComplete</Name>
-				<DisplayName TxtId=""><![CDATA[Movers using standard numbering]]></DisplayName>
-				<Severity>Info</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="12">XtsTracksCountError</Name>
-				<DisplayName TxtId=""><![CDATA[Number of XTS Tracks does not match]]></DisplayName>
-				<Severity>Error</Severity>
-			</EventId>
-			<Hides>
-				<Hide GUID="{873DD3B9-D1F9-4D80-8270-496111E1E5A6}"/>
-				<Hide GUID="{681E3F63-287C-427C-AA4B-FED38812577A}"/>
-				<Hide GUID="{00DE8E8A-BA2F-4C21-92B2-F85A687714C5}"/>
 			</Hides>
 		</DataType>
 	</DataTypes>

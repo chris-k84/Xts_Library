@@ -1,17 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Xts" Id="{4538c683-94fc-49a1-b5ad-30ffec5e4eff}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Xts
-VAR_GENERIC CONSTANT
-	MyMoverNumber : INT := 1;
-END_VAR
-IMPLEMENTS ICyclic, I_Initialise
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Xts IMPLEMENTS ICyclic, I_Initialise
 VAR
 	MyName : STRING;
 	_MyXts : INT;
 	_MyCAGroup : STRING;
 	_XtsEnabled : BOOL;
-	_MoverArray : ARRAY[0..MyMoverNumber] OF ITF_XtsMoverAxis;
+	_MoverArray : ARRAY[0..MaxMovers] OF ITF_XtsMoverAxis;
 	XtsIoEnvVar : XTSIOEnvVarWrapper;
 	mcCollisionGroup : CollisionGroup;
 	MyXtsHardware : XTSHardware := (MyXtsIoEnvVarWrapper := XtsIoEnvVar);
@@ -23,7 +19,10 @@ VAR
 	AtHome: BOOL;
 	EnabledTrigger : R_TRIG;
 	DisabledTrigger : R_TRIG;
-	currentMoverNumber: INT;
+	_registeredNumberOfMovers: INT;
+END_VAR
+VAR CONSTANT
+	MaxMovers : INT := 255;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
@@ -37,7 +36,7 @@ VAR
 	ActivateTrackResult : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[FOR i := 1 TO TO_UINT(UPPER_BOUND(_MoverArray,1)) DO
+        <ST><![CDATA[FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
 	_MoverArray[i].ActivateTrack(newTrack := _MoverArray[i].MoversActiveTrack,
 									Track := MyXtsHardware.GetTrackByOTCID(trackOTCID := _MoverArray[i].MoversActiveTrack));
 END_FOR
@@ -272,8 +271,9 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF currentMoverNumber <= MyMoverNumber THEN
-	_MoverArray[currentMoverNumber] := MyMover;
+        <ST><![CDATA[IF _registeredNumberOfMovers <= MaxMovers THEN
+	_MoverArray[_registeredNumberOfMovers] := MyMover;
+	_registeredNumberOfMovers := _registeredNumberOfMovers + 1;
 END_IF
 ]]></ST>
       </Implementation>

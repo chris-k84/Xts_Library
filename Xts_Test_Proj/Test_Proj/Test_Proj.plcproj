@@ -16,6 +16,10 @@
     <Implicit_KindOfTask>{a16fa2bc-4550-4dc6-b7da-35ac1de241bd}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{8cb804e8-b6e8-41aa-a310-50d414c73ef8}</Implicit_Jitter_Distribution>
     <LibraryReferences>{1328b05a-0bdf-423b-b6de-3360645ab602}</LibraryReferences>
+    <Released>false</Released>
+    <AllowChecksForLibrary>false</AllowChecksForLibrary>
+    <POUsForPropertyAccessIncluded>false</POUsForPropertyAccessIncluded>
+    <GlobalVersionStructureIncluded>false</GlobalVersionStructureIncluded>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="PlcTask.TcTTO">
@@ -25,9 +29,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\XtsCaGroupTestSuite.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tests\XtsHardwareTesting.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\XtsHardware_TestSuite.TcPOU">

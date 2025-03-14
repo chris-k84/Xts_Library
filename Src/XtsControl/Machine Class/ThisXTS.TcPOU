@@ -5,7 +5,7 @@
 VAR_GENERIC CONSTANT
 	MoverNumber : INT := 1;
 END_VAR
-EXTENDS Xts<MoverNumber>
+EXTENDS Xts
 VAR
 	Init: BOOL;
 END_VAR
@@ -33,17 +33,5 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="ThisXTS">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ThisXTS.Cycle">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ThisXTS.Initialise">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ThisXTS.MoverHomeSequence">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
