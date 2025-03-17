@@ -4,7 +4,6 @@
     <Declaration><![CDATA[FUNCTION_BLOCK XtsMover_TestSuite
 VAR
 	testMover : XtsMoverAxis;
-	ReRun: BOOL;
 	stubTrack : XtsTrack;
 	stubITrack: Xts_Library.I_XtsTrack := stubTrack;
 END_VAR

@@ -6,6 +6,7 @@ VAR
 	testXts : StubXts;
 	stubMover : XtsMoverAxis;
 	stubIMover : ITF_XtsMoverAxis := stubMover;
+	stubIMoverEmpty : ITF_XtsMoverAxis;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -36,7 +37,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED(testXts.RegisterMovers(stubIMover));
+	Actual := FAILED(testXts.RegisterMovers(stubIMoverEmpty));
 	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
