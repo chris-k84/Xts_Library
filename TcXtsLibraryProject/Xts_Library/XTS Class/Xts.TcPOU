@@ -271,7 +271,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _registeredNumberOfMovers <= MaxMovers THEN
+        <ST><![CDATA[IF MyMover <> 0 AND_THEN  _registeredNumberOfMovers <= MaxMovers THEN
 	_MoverArray[_registeredNumberOfMovers] := MyMover;
 	_registeredNumberOfMovers := _registeredNumberOfMovers + 1;
 	RegisterMovers := 1;
