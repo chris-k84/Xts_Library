@@ -99,7 +99,7 @@ END_VAR
 VAR
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[FOR i := 1 TO TO_UINT(UPPER_BOUND(_MoverArray,1)) DO
+        <ST><![CDATA[FOR i := 1 TO (_registeredNumberOfMovers - 1) DO
 	_MoverArray[i].MoverXtsIoEnvInterface := XtsIoEnvVar.GetMoverInterface(i);
 END_FOR]]></ST>
       </Implementation>
@@ -265,7 +265,7 @@ END_VAR
       </Set>
     </Property>
     <Method Name="RegisterMovers" Id="{a3bbc877-121f-4130-8916-a04d2ba4dd9d}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD RegisterMovers : BOOL
+      <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
 VAR_INPUT
 	MyMover : ITF_XtsMoverAxis;
 END_VAR
@@ -274,6 +274,9 @@ END_VAR
         <ST><![CDATA[IF _registeredNumberOfMovers <= MaxMovers THEN
 	_MoverArray[_registeredNumberOfMovers] := MyMover;
 	_registeredNumberOfMovers := _registeredNumberOfMovers + 1;
+	RegisterMovers := 1;
+ELSE
+	RegisterMovers := -1;
 END_IF
 ]]></ST>
       </Implementation>
