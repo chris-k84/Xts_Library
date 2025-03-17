@@ -12,11 +12,7 @@ END_VAR
       <ST><![CDATA[HardwareRejectsCallsWithNoXPU_Test();
 HardwareIdentifiesNoXpu_Test();
 RegisterXPU_Test();
-HardwareWontCycleWithoutInit_Test();
-IF ReRun THEN
-	TestSuite.ReRunTests();
-	ReRun := FALSE;
-END_IF]]></ST>
+HardwareWontCycleWithoutInit_Test();]]></ST>
     </Implementation>
     <Method Name="HardwareIdentifiesNoXpu_Test" Id="{8917a178-edef-4eb2-9cd2-49d29f8c1ec8}">
       <Declaration><![CDATA[METHOD HardwareIdentifiesNoXpu_Test : BOOL

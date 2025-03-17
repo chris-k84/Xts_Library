@@ -5,11 +5,18 @@
 VAR
 	XtsHWTestSuite : XtsHardware_TestSuite;
 	XtsMoverTestSuite : XtsMover_TestSuite;
+	XtsTestSuite : Xts_TestSuite;
+	ReRun: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[XtsHWTestSuite();
-XtsMoverTestSuite();]]></ST>
+XtsMoverTestSuite();
+XtsTestSuite();
+IF ReRun THEN
+	TestSuite.ReRunTests();
+	ReRun := FALSE;
+END_IF]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

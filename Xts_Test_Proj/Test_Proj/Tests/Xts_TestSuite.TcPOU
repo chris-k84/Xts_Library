@@ -3,13 +3,30 @@
   <POU Name="Xts_TestSuite" Id="{f988a3d2-66dc-4a17-94a6-1c6d0d5b97aa}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Xts_TestSuite
 VAR
-	testXts : XTS;
-	stubMover : ITF_XtsMoverAxis;
+	testXts : StubXts;
+	stubMover : XtsMoverAxis;
+	stubIMover : ITF_XtsMoverAxis := stubMover;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[XtsRejectsDuplicateRegistrations_Test();
+XtsRejectsEmptyMoverInterface_Test();]]></ST>
     </Implementation>
+    <Method Name="XtsRejectsDuplicateRegistrations_Test" Id="{2abcd70d-a448-49f3-9d1e-d845a3867de7}">
+      <Declaration><![CDATA[METHOD XtsRejectsDuplicateRegistrations_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.RegisterMovers(stubIMover);
+	Actual := FAILED(testXts.RegisterMovers(stubIMover));
+	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="XtsRejectsEmptyMoverInterface_Test" Id="{13a25e22-1073-4550-977d-af76eedfa7bf}">
       <Declaration><![CDATA[METHOD XtsRejectsEmptyMoverInterface_Test : BOOL
 VAR_INST
@@ -19,7 +36,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED(testXts.RegisterMovers(stubMover));
+	Actual := FAILED(testXts.RegisterMovers(stubIMover));
 	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StubXts" Id="{59a8f0f1-3a37-4f6e-9e76-a82474ad05c1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StubXts EXTENDS Xts
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Cycle" Id="{ba7fc6ec-53fe-46e8-b7e8-7d8528b5c436}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD Cycle : Xts_Library.Base_Library.HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Initialise" Id="{abac4287-77d3-4784-8f98-5b30950ef3e3}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD Initialise : Xts_Library.Base_Library.HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverHomeSequence" Id="{75f313ff-91f0-4398-b273-e26bade55a8b}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD MoverHomeSequence : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

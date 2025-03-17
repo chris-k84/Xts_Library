@@ -19,11 +19,7 @@ MoverRejectsHighVeloCommand_Test();
 MoverRejectsNegVeloCommand_Test();
 MoverRejectsResetWithNoError_Test();
 MoverRejectsActiavteTrackWithInvalidInterface_Test();
-MoverRejectsActivateTrackInvalidOTCID_Test();
-IF ReRun THEN
-	TestSuite.ReRunTests();
-	ReRun := FALSE;
-END_IF]]></ST>
+MoverRejectsActivateTrackInvalidOTCID_Test();]]></ST>
     </Implementation>
     <Method Name="MoverAcceptsEnableCommand_Test" Id="{716146c2-e85b-4cfe-8ba6-0d5e0d358526}">
       <Declaration><![CDATA[METHOD MoverAcceptsEnableCommand_Test : BOOL
