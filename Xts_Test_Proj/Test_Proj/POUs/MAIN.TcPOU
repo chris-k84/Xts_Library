@@ -6,7 +6,9 @@ VAR
 	XtsHWTestSuite : XtsHardware_TestSuite;
 	XtsMoverTestSuite : XtsMover_TestSuite;
 	XtsTestSuite : Xts_TestSuite;
+	TestSuites : ARRAY[0..2] OF ITestSuite := [XtsHWTestSuite, XtsMoverTestSuite, XtsTestSuite];
 	ReRun: BOOL;
+	i: INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -14,7 +16,9 @@ END_VAR
 XtsMoverTestSuite();
 XtsTestSuite();
 IF ReRun THEN
-	TestSuite.ReRunTests();
+	FOR i := 0 TO 2 DO
+		TestSuites[i].ReRunTests();
+	END_FOR
 	ReRun := FALSE;
 END_IF]]></ST>
     </Implementation>

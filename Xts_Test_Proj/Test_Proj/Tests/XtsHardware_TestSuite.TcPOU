@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsHardware_TestSuite" Id="{b560ca6a-e691-471a-a25d-3f29414ba80e}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsHardware_TestSuite
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsHardware_TestSuite EXTENDS FB_TestSuite<TestSuite_Parameter.MaxTestCount>
 VAR
 	XtsIoEnvVar : XTSIOEnvVarWrapper;
 	MyXtsHardware : XTSHardware;
@@ -20,9 +20,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := MyXtsHardware.HasXPU();
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -34,9 +34,9 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(MyXtsHardware.Initialise());
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -48,9 +48,9 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(MyXtsHardware.Cycle());
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -61,10 +61,10 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	MyXtsHardware.MyXtsIoEnvVarWrapper := XtsIoEnvVar;
 	Actual := MyXtsHardware.HasXPU();
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>

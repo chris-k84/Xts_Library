@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsMover_TestSuite" Id="{35b3f83a-ddd6-49c7-a80a-724734d90825}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsMover_TestSuite
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsMover_TestSuite EXTENDS FB_TestSuite<TestSuite_Parameter.MaxTestCount>
 VAR
 	testMover : XtsMoverAxis;
 	stubTrack : XtsTrack;
@@ -28,9 +28,9 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED( testMover.EnableMover());
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -42,10 +42,10 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testMover.Gap := 120.0;
 	Actual := testMover.Gap;
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -56,9 +56,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.ActivateTrack(NewTrack := 16#1010E2, Track := 0));
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -70,9 +70,9 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.ActivateTrack(NewTrack := 0,Track := stubITrack));
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -84,9 +84,9 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.Cycle());
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -98,9 +98,9 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.DisableMover());
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -112,10 +112,10 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testMover.Gap := 25.0;
 	Actual := testMover.Gap;
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -126,9 +126,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.MoveTo(100.0,5000.0,true));
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -140,9 +140,9 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.MoveTo(100.0,-1.0,TRUE));
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -153,9 +153,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TestSuite.Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.ResetAxis());
-	TestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
