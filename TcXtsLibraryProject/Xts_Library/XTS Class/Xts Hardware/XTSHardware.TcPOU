@@ -57,7 +57,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[ IF MyXPUInterface.GetAreAllPositionsValid() THEN
 	 getAllMoversValid := TRUE;
-	 Logger.Send(TC_EVENTS.XtsHardwareEvents.AllMoversValid,'');
  END_IF]]></ST>
       </Implementation>
     </Method>
@@ -69,10 +68,8 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF MyXPUInterface.GetDetectedMoverCount() = MyXPUInterface.GetExpectedMoverCount() THEN
 	getMoversDetected := TRUE;
-	Logger.Send(TC_EVENTS.XtsHardwareEvents.ExpectedMoversDetected,UDINT_TO_STRING(MyXPUInterface.GetExpectedMoverCount()));
 ELSE
 	getMoversDetected := FALSE;
-	Logger.Send(TC_EVENTS.XtsHardwareEvents.ExpectedMoversNotFound,'');
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -220,7 +217,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF  MyXtsIoEnvVarRef.IsInSim() THEN
 	IsInSim := TRUE;
-	Logger.Send(TC_EVENTS.XtsHardwareEvents.XtsInSimulationMode,'');
 ELSE
 	IsInSim := FALSE;
 END_IF]]></ST>
@@ -337,13 +333,11 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF MyTrackCount = 1 THEN
 	MyXPUInterface.TrackTcIo(1).SetIsIncludedInDetection(TRUE);
-	Logger.Send(TC_EVENTS.XtsHardwareEvents.ActiveTracksAddedForDetection, UDINT_TO_STRING(MyXPUInterface.GetTrackCount()));
 	SetTrackForDetection := TRUE;
 ELSE
 	IF TrackToDetect <= MyTrackCount THEN 
 		SetTrackForDetection := TRUE;
 		MyXPUInterface.TrackTcIo(TrackToDetect).SetIsIncludedInDetection(TRUE);
-		Logger.Send(TC_EVENTS.XtsHardwareEvents.ActiveTracksAddedForDetection, UDINT_TO_STRING(MyXPUInterface.GetTrackCount()));
 	END_IF
 END_IF]]></ST>
       </Implementation>
@@ -355,8 +349,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[MyXPUInterface.TriggerDetection();
-Logger.Send(TC_EVENTS.XtsHardwareEvents.MoverDetectionInitiated,'');
-TriggerMoverDetection := true;
+TriggerMoverDetection := TRUE;
 ]]></ST>
       </Implementation>
     </Method>
@@ -374,8 +367,7 @@ IF MyXPUInterface.GetMoverIdDetectionMode() = E_MoverIdDetectionMode.Mover1 THEN
 		
 		// Trigger the "MoverIdDetection".
 		MyXPUInterface.TriggerMoverIdDetection();
-		Logger.Send(TC_EVENTS.XtsHardwareEvents.Mover1DetectionStarted,'');
-		bTriggerDetect := true;
+		bTriggerDetect := TRUE;
 	END_IF
 
 	// Check for error or success of "MoverIdDetection".
@@ -385,7 +377,6 @@ IF MyXPUInterface.GetMoverIdDetectionMode() = E_MoverIdDetectionMode.Mover1 THEN
 	
 	// If the detection has an error, check for errors in output and try again.
 	IF bMoverIdDetectionError THEN
-		Logger.Send(TC_EVENTS.XtsHardwareEvents.Mover1DetectionFailed,'');
 		RETURN; 
 	END_IF
 
@@ -394,10 +385,8 @@ IF MyXPUInterface.GetMoverIdDetectionMode() = E_MoverIdDetectionMode.Mover1 THEN
 		RETURN;
 	END_IF	
 	TriggerMoverID := TRUE;	
-	Logger.Send(TC_EVENTS.XtsHardwareEvents.Mover1DetectionComplete,'');
 ELSE
 	TriggerMoverID := TRUE;
-	Logger.Send(TC_EVENTS.XtsHardwareEvents.StandardMoverNumberingComplete,'');
 END_IF]]></ST>
       </Implementation>
     </Method>
