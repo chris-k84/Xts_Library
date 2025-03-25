@@ -108,37 +108,5 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <LineIds Name="ActivateTrackForMover">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.Abort">
-      <LineId Id="5" Count="3" />
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.Cycle">
-      <LineId Id="42" Count="0" />
-      <LineId Id="6" Count="2" />
-      <LineId Id="37" Count="0" />
-      <LineId Id="9" Count="16" />
-      <LineId Id="48" Count="0" />
-      <LineId Id="26" Count="3" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="43" Count="1" />
-      <LineId Id="31" Count="1" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.Execute">
-      <LineId Id="13" Count="1" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="15" Count="1" />
-      <LineId Id="6" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.FB_init">
-      <LineId Id="7" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.NewTrackId.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
