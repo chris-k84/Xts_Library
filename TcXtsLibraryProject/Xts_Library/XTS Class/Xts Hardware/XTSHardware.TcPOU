@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XTSHardware" Id="{2082c175-1a19-4a3f-b920-8dbd46477756}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XTSHardware EXTENDS CyclicBase IMPLEMENTS I_Initialise
+    <Declaration><![CDATA[FUNCTION_BLOCK XTSHardware IMPLEMENTS ICyclic, I_Initialise
 VAR
 	XtsParts : ARRAY[0..19] OF XtsPart;
 	_MyNumberParts : INT;
