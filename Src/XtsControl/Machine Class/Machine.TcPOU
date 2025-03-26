@@ -23,7 +23,7 @@ VAR
 	iStationArray : ARRAY[1..SystemParameters.NumberOfStations] OF IProcess := [Station1,Station2,
 																					Station3,Station4,
 																					Station5];//,Station6];
-	MyXts : ThisXTS<NumberOFSystemMovers>;
+	MyXts : ThisXTS;
 	MoverSequences : ARRAY[1..NumberOFSystemMovers] OF IndexMoverSequence := [8((MyStations := iStationArray,
 																				MyStartPosition := 1000.0))];	
 	i : INT;

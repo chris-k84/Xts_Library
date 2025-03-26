@@ -2,30 +2,13 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.11">
   <POU Name="ThisXTS" Id="{adc628a7-7a2e-4111-937d-b66eb159493c}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ThisXTS
-VAR_GENERIC CONSTANT
-	MoverNumber : INT := 1;
-END_VAR
 EXTENDS Xts
 VAR
-	Init: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="Cycle" Id="{16f22d82-89fb-42a5-bac1-37b743ca68d6}">
-      <Declaration><![CDATA[METHOD Cycle : HRESULT
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Initialise" Id="{cdf3b76c-1012-4974-adb2-5f065d185579}">
-      <Declaration><![CDATA[METHOD Initialise : HRESULT]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="MoverHomeSequence" Id="{dd65f3ed-d01b-4f9f-95cc-8438905256ec}">
       <Declaration><![CDATA[METHOD MoverHomeSequence : BOOL
 ]]></Declaration>
