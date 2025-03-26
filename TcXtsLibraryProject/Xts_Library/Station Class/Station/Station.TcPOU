@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Station" Id="{506a1b5f-d283-4b99-9adf-318a9c36fdac}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Station EXTENDS CyclicBase IMPLEMENTS IStation, ICyclic
+    <Declaration><![CDATA[FUNCTION_BLOCK Station IMPLEMENTS IStation, I_Cyclic
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -163,54 +163,5 @@ END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="Station">
-      <LineId Id="118" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.Abort">
-      <LineId Id="6" Count="3" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.Cycle">
-      <LineId Id="27" Count="14" />
-      <LineId Id="22" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.HasMover">
-      <LineId Id="7" Count="2" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="17" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.IsClear">
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.isComplete">
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.IsLastStation.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.IsLastStation.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.IsOperating">
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.IsReady">
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.MoverAway">
-      <LineId Id="2" Count="0" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="10" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.Position.Get">
-      <LineId Id="5" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.Position.Set">
-      <LineId Id="5" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

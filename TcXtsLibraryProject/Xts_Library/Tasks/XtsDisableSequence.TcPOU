@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsDisableSequence" Id="{da9628bf-0fcc-432f-b10d-3ad4dd4b7f24}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsDisableSequence EXTENDS TaskBase
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsDisableSequence IMPLEMENTS I_Task
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -13,6 +13,10 @@ VAR
 	AllMoversDisabled: BOOL;	
 	arrMovers : ARRAY[1..SystemParameters.NumberOfMovers] OF ITF_XtsMoverAxis;
 	CaGroupResetResult: BOOL;
+		State: INT;
+	_Done: BOOL;
+	_Error: BOOL;
+	_Busy: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
@@ -27,6 +31,19 @@ State := 0;
 Abort := true;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Busy" Id="{31fee075-b465-44b4-a7dd-aab9d5d631b4}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Busy : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{edcd40ed-55fa-45eb-9c70-bed5c284d98d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Busy := _Busy;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Cycle" Id="{981b7190-eb15-4a0a-8875-0afb334ed36e}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR
@@ -54,12 +71,10 @@ CASE State OF
 //				LoggerResult := Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupStop,'');
 //				State := 10;
 				IF _collisionGroup.GroupStop() = 2 THEN
-					LoggerResult := Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupStop,'');
 					State := 10;
 				END_IF
 			ELSE
 				IF _collisionGroup.RemoveAllMovers() = 2 THEN
-					LoggerResult := Logger.Send(TC_EVENTS.XtsCaGroupEvents.CaGroupRemoveMovers,'');
 					State := 20;
 				END_IF
 				
@@ -68,7 +83,6 @@ CASE State OF
 		
 	10:
 		IF _collisionGroup.GroupState = CAGroupStatus.mcGroupStateStandby THEN
-			LoggerResult := Logger.Send(TC_EVENTS.XtsCaGroupEvents.CaGroupRemoveMovers,'');
 			IF _collisionGroup.RemoveAllMovers() = 2 THEN
 				State := 20;
 			END_IF
@@ -88,15 +102,12 @@ CASE State OF
 			AllMoversDisabled := TRUE AND NOT arrMovers[moverNumbers].isMoverEnabled();
 		END_FOR
 		IF AllMoversDisabled THEN
-			LoggerResult := Logger.Send(TC_EVENTS.XtsCaGroupEvents.AllMoversDisabled,'');
 			State := 40;
 			CaGroupDisableResult := _collisionGroup.Disable();
-			LoggerResult := Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupDisable,'');
 		END_IF
 	40:
 		IF _collisionGroup.GroupState = CAGroupStatus.mcGroupStateErrorStop THEN
 			CaGroupResetResult := _collisionGroup.Reset();
-			LoggerResult := Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupReset,'');
 		END_IF	
 		State := 50;
 		
@@ -130,6 +141,32 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Done" Id="{440a0b71-7140-4d16-8dd2-a4a4081fd61d}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Done : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{e5bec694-8449-46b8-8efe-c1c6e77a0a8d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Done := _Done;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Error" Id="{6b8cc903-8899-4daa-98e1-e8890e9ccd7b}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Error : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{9fda5300-f4eb-497a-ab0f-244402c0a65e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Error := _Error;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="FB_init" Id="{5c39a8d0-8d47-4b10-ae0c-53e63f445cbe}">
       <Declaration><![CDATA[METHOD FB_init : BOOL
 VAR_INPUT
@@ -161,47 +198,5 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="XtsDisableSequence">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsDisableSequence.Abort">
-      <LineId Id="24" Count="1" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsDisableSequence.Cycle">
-      <LineId Id="179" Count="9" />
-      <LineId Id="286" Count="1" />
-      <LineId Id="261" Count="0" />
-      <LineId Id="288" Count="1" />
-      <LineId Id="285" Count="0" />
-      <LineId Id="189" Count="0" />
-      <LineId Id="191" Count="0" />
-      <LineId Id="276" Count="0" />
-      <LineId Id="192" Count="0" />
-      <LineId Id="262" Count="1" />
-      <LineId Id="265" Count="0" />
-      <LineId Id="264" Count="0" />
-      <LineId Id="195" Count="5" />
-      <LineId Id="202" Count="1" />
-      <LineId Id="266" Count="1" />
-      <LineId Id="204" Count="4" />
-      <LineId Id="210" Count="25" />
-      <LineId Id="238" Count="7" />
-      <LineId Id="247" Count="3" />
-      <LineId Id="88" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsDisableSequence.Disable">
-      <LineId Id="6" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsDisableSequence.FB_init">
-      <LineId Id="21" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsDisableSequence.MoverArray.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsDisableSequence.MoverArray.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

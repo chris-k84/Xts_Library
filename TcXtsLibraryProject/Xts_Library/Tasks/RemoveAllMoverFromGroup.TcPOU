@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="RemoveAllMoverFromGroup" Id="{1511d483-7397-4cd0-a6db-08dd652e8cbb}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK RemoveAllMoverFromGroup EXTENDS TaskBase
+    <Declaration><![CDATA[FUNCTION_BLOCK RemoveAllMoverFromGroup  IMPLEMENTS I_Task
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -11,6 +11,10 @@ VAR
 	_caGroup			: ICollisionGroup;
 	_removeAllMovers : BOOL;
 	_errorId: UDINT;
+		State: INT;
+	_Done: BOOL;
+	_Error: BOOL;
+	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -25,6 +29,19 @@ Abort := true;
 State := 0;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Busy" Id="{0d92caac-9bc0-454c-a618-8bcbd6fddbf0}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Busy : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{b2be66ef-24ca-4f17-b275-22f37a693e1a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Busy := _Busy;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Cycle" Id="{c68e4170-0a2c-460f-9ca9-a0eca48c8c15}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR_INPUT
@@ -43,7 +60,6 @@ CASE State OF
 			IF RemoveAllFromGrp.Busy THEN
 				_removeAllMovers := FALSE;
 				State := 10;
-				Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupRemoving,'');
 			END_IF
 		END_IF
 		
@@ -51,11 +67,9 @@ CASE State OF
 		IF NOT RemoveAllFromGrp.Busy THEN
 			IF RemoveAllFromGrp.Done THEN
 				_Done := TRUE;
-				Logger.Send(TC_EVENTS.XtsCaGroupEvents.AllMoversRemoved,'');
 			ELSIF RemoveAllFromGrp.Error THEN
 				_Error := TRUE;
 				_errorId := RemoveAllFromGrp.ErrorId;
-				Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupRemoveError,'');
 			END_IF
 			_Busy := FALSE;
 			RemoveAllFromGrp.Execute := false;
@@ -70,6 +84,32 @@ END_CASE
 RemoveAllFromGrp(AxesGroup := _caGroup.GroupRef);]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Done" Id="{975b270f-4493-4b56-b51c-510ba823888a}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Done : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{95b9fdb8-73f9-4ddb-bfc3-1e9d09e71602}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Done := _Done;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Error" Id="{db24f627-0029-4f0f-a1df-743d439176a7}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Error : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{5d6c2566-9991-444d-a2dc-e184008251a9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Error := _Error;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="FB_init" Id="{639b4db7-7f3c-417a-8c60-934c2a4c839a}">
       <Declaration><![CDATA[METHOD FB_init : BOOL
 VAR_INPUT
@@ -89,30 +129,5 @@ END_VAR
         <ST><![CDATA[RemoveAllMover := _removeAllMovers := true;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="RemoveAllMoverFromGroup">
-      <LineId Id="302" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveAllMoverFromGroup.Abort">
-      <LineId Id="4" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="6" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveAllMoverFromGroup.Cycle">
-      <LineId Id="45" Count="0" />
-      <LineId Id="6" Count="2" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="9" Count="23" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="33" Count="0" />
-      <LineId Id="46" Count="1" />
-      <LineId Id="34" Count="2" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveAllMoverFromGroup.FB_init">
-      <LineId Id="7" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveAllMoverFromGroup.RemoveAllMover">
-      <LineId Id="8" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

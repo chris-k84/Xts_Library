@@ -2,7 +2,7 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="ResetGroup" Id="{c0d0b360-5fec-467e-a65e-491de04b13b3}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'hide_all_locals'}
-FUNCTION_BLOCK ResetGroup EXTENDS TaskBase
+FUNCTION_BLOCK ResetGroup  IMPLEMENTS I_Task
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -11,6 +11,10 @@ VAR
 	groupReset			: MC_GroupReset;
 	_caGroup			: ICollisionGroup;
 	_resetGroup : BOOL;
+		State: INT;
+	_Done: BOOL;
+	_Error: BOOL;
+	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -25,6 +29,19 @@ State := 0;
 Abort := true;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Busy" Id="{082143e7-cb0d-4693-a3c5-aae125aac900}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Busy : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{f3fb4d35-6498-4dc3-9624-a4dbbaa48d6a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Busy := _Busy;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Cycle" Id="{60490ba9-dc4f-4168-a59d-a16c9df8b6fb}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR_INPUT
@@ -43,7 +60,6 @@ CASE State OF
 			IF groupReset.Busy THEN
 				State := 10;
 				_resetGroup := FALSE;
-				Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupResetting,'');
 			END_IF
 		END_IF
 	
@@ -51,10 +67,8 @@ CASE State OF
 		IF NOT groupReset.Busy THEN
 			IF groupReset.Done THEN
 				_Done := TRUE;
-				Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupResetDone,'');
 			ELSIF groupReset.Error THEN
 				_Error := TRUE;
-				Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupResetError,'');
 			END_IF
 			_Busy := FALSE;
 			groupReset.Execute := false;
@@ -69,6 +83,32 @@ END_CASE
 groupReset(AxesGroup := _caGroup.GroupRef);]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Done" Id="{c50ed748-a155-44f3-a4e5-da3ebbeffcb4}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Done : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{896b956f-5079-4ce4-b4a1-b426f3d4396f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Done := _Done;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Error" Id="{7cc41ac6-6a8c-4645-8a85-d402bdf38d38}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Error : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{62d28ef8-841d-4940-8890-5b4066e5f424}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Error := _Error;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Execute" Id="{d2d6e3c9-1d94-473e-8bef-e969b6fceb58}">
       <Declaration><![CDATA[METHOD Execute : BOOL
 ]]></Declaration>
@@ -88,28 +128,5 @@ END_VAR
         <ST><![CDATA[_caGroup := MyCaGroup;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="ResetGroup">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="ResetGroup.Abort">
-      <LineId Id="4" Count="2" />
-    </LineIds>
-    <LineIds Name="ResetGroup.Cycle">
-      <LineId Id="44" Count="0" />
-      <LineId Id="6" Count="2" />
-      <LineId Id="39" Count="0" />
-      <LineId Id="9" Count="22" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="32" Count="0" />
-      <LineId Id="45" Count="1" />
-      <LineId Id="33" Count="2" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="ResetGroup.Execute">
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="ResetGroup.FB_init">
-      <LineId Id="7" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

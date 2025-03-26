@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="EnableGroup" Id="{01c66182-3535-4445-8b1b-a8f549e6d0ab}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK EnableGroup EXTENDS TaskBase
+    <Declaration><![CDATA[FUNCTION_BLOCK EnableGroup  IMPLEMENTS I_Task
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -10,6 +10,10 @@ VAR
 	groupEnable			: MC_GroupEnable;
 	_caGroup			: ICollisionGroup;
 	_enableGroup : BOOL;
+		State: INT;
+	_Done: BOOL;
+	_Error: BOOL;
+	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -24,6 +28,19 @@ Abort := TRUE;
 State := 0;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Busy" Id="{4e4db787-2247-4ffa-a4fa-212f7c481400}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Busy : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{8a7815a8-c1fd-47de-9b79-1b1569675505}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Busy := _Busy;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Cycle" Id="{53999691-fece-418c-ba0c-d2348e6bf666}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR_INPUT
@@ -42,7 +59,6 @@ CASE State OF
 			IF groupEnable.Busy THEN
 				State := 10;
 				_enableGroup := FALSE;
-				Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupEnabling,'');
 			END_IF
 		END_IF
 	
@@ -50,10 +66,8 @@ CASE State OF
 		IF NOT groupEnable.Busy THEN
 			IF groupEnable.Done THEN
 				_Done := TRUE;
-				Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupEnabled,'');
 			ELSIF groupEnable.Error THEN
 				_Error := TRUE;
-				Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupEnableError,'');
 			END_IF
 			_Busy := FALSE;
 			groupEnable.Execute := false;
@@ -68,6 +82,32 @@ END_CASE
 groupEnable(AxesGroup := _caGroup.GroupRef);]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Done" Id="{a772c0a8-091e-4c87-9bf2-8f9e57381133}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Done : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{50223277-a964-4c91-8fe3-3b1b9979de48}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Done := _Done;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Error" Id="{3c7c1991-df63-4a12-9a6d-e45eb55d1f39}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Error : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{f9f90eb7-811c-45c6-9af2-24f6616a22a6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Error := _Error;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Execute" Id="{6b5a42b1-94d9-46bc-bf55-d1fbc24c1815}">
       <Declaration><![CDATA[METHOD Execute : BOOL
 ]]></Declaration>
@@ -87,28 +127,5 @@ END_VAR
         <ST><![CDATA[_caGroup := MyCaGroup;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="EnableGroup">
-      <LineId Id="139" Count="0" />
-    </LineIds>
-    <LineIds Name="EnableGroup.Abort">
-      <LineId Id="4" Count="2" />
-    </LineIds>
-    <LineIds Name="EnableGroup.Cycle">
-      <LineId Id="44" Count="0" />
-      <LineId Id="6" Count="2" />
-      <LineId Id="39" Count="0" />
-      <LineId Id="9" Count="22" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="32" Count="0" />
-      <LineId Id="45" Count="1" />
-      <LineId Id="33" Count="2" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="EnableGroup.Execute">
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="EnableGroup.FB_init">
-      <LineId Id="7" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

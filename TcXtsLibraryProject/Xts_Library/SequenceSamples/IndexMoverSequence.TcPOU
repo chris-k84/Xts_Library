@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="IndexMoverSequence" Id="{50af290e-a0d7-45b3-a647-c8828b096bd1}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK IndexMoverSequence EXTENDS CyclicBase
+    <Declaration><![CDATA[FUNCTION_BLOCK IndexMoverSequence IMPLEMENTS I_Cyclic
 VAR
 	State : IndexSequenceState;  
 	CurrentStation : UINT;
@@ -256,54 +256,5 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="IndexMoverSequence">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.Abort">
-      <LineId Id="3" Count="6" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.Cycle">
-      <LineId Id="8" Count="88" />
-      <LineId Id="98" Count="2" />
-      <LineId Id="109" Count="7" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.MoverVelocity.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.MoverVelocity.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.MyMover.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.MyMover.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.MyStartPosition.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.MyStartPosition.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.MyStations.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.MyStations.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.StartIndexing">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.StopIndexing">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.XtsNoHome.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="IndexMoverSequence.XtsNoHome.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

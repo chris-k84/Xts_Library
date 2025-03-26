@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="HaltMover" Id="{16fe934f-2b92-45c5-becd-cbf7a242dbb1}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK HaltMover EXTENDS TaskBase
+    <Declaration><![CDATA[FUNCTION_BLOCK HaltMover  IMPLEMENTS I_Task
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -10,6 +10,10 @@ VAR
 	haltMoverCA : Tc3_McCollisionAvoidance.MC_HaltCA;
 	_Axis : REFERENCE TO Tc2_MC2.AXIS_REF;
 	_HaltMover : BOOL;
+		State: INT;
+	_Done: BOOL;
+	_Error: BOOL;
+	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -25,6 +29,19 @@ Abort := TRUE;
 State := 0;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Busy" Id="{410b2236-4b2d-41d8-b891-c048fa414dcc}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Busy : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{5856c273-62b7-4af7-b86e-de01e6cc2e07}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Busy := _Busy;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Cycle" Id="{1e7367c4-25b5-40fa-b219-770d9b7044ce}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR_INPUT
@@ -83,6 +100,32 @@ END_VAR
           <ST><![CDATA[haltMoverCA.Deceleration := Deceleration;]]></ST>
         </Implementation>
       </Set>
+    </Property>
+    <Property Name="Done" Id="{a09eb2b9-def0-4c01-868b-84cd3b62dc56}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Done : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{a5814443-bbb5-4f85-a263-8110f08b71d3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Done := _Done;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Error" Id="{6bb2ee39-e78a-4989-a5b3-4f1b4a227870}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Error : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{206c977d-3fc3-4519-bfba-0ba62f311fe7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Error := _Error;]]></ST>
+        </Implementation>
+      </Get>
     </Property>
     <Method Name="Execute" Id="{87eca2aa-365e-4c2f-b198-b62e8029fb82}">
       <Declaration><![CDATA[METHOD Execute : BOOL
@@ -148,52 +191,5 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="HaltMover">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="HaltMover.Abort">
-      <LineId Id="5" Count="0" />
-      <LineId Id="13" Count="1" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="HaltMover.Cycle">
-      <LineId Id="40" Count="0" />
-      <LineId Id="6" Count="2" />
-      <LineId Id="35" Count="0" />
-      <LineId Id="9" Count="19" />
-      <LineId Id="36" Count="0" />
-      <LineId Id="29" Count="0" />
-      <LineId Id="41" Count="1" />
-      <LineId Id="30" Count="1" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="HaltMover.Deceleration.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="HaltMover.Deceleration.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="HaltMover.Execute">
-      <LineId Id="9" Count="1" />
-      <LineId Id="12" Count="1" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="HaltMover.FB_init">
-      <LineId Id="7" Count="0" />
-    </LineIds>
-    <LineIds Name="HaltMover.Gap.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="HaltMover.Gap.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="HaltMover.Jerk.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="HaltMover.Jerk.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

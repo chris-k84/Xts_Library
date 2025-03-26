@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="ActivateTrackForMover" Id="{03f53080-a7f0-4bc3-a76f-2f27947df261}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ActivateTrackForMover EXTENDS TaskBase
+    <Declaration><![CDATA[FUNCTION_BLOCK ActivateTrackForMover IMPLEMENTS I_Task
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -12,6 +12,10 @@ VAR
 	_ActivateTrack : BOOL;
 	_newTrackId : OTCID;
 	_errorId: UDINT;
+	State: INT;
+	_Done: BOOL;
+	_Error: BOOL;
+	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -28,6 +32,19 @@ Abort := TRUE;
 State := 0;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Busy" Id="{23074907-2ae6-43d6-952f-8555fe23ba80}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Busy : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{4a3a6bc3-a08b-4d30-bf35-0fdb74a6daa4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Busy := _Busy;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Cycle" Id="{57b0f6ac-3d25-41af-b69c-d2ca0682dcf2}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR_INPUT
@@ -70,6 +87,32 @@ END_CASE
 mcActivateTrack(Axis := _Axis);]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Done" Id="{c8440faf-d9f2-4d0f-8b0f-12623384efd8}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Done : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{567704db-7419-4756-aae9-b62178c2fc84}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Done := _Done;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Error" Id="{cd1cdc81-f00a-4514-9adc-1c583f307c6e}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Error : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{a7583719-1e76-4918-b599-0ba47213ed74}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Error := _Error;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Execute" Id="{b92caa48-be0c-4823-bb15-e823e8bc1934}">
       <Declaration><![CDATA[METHOD PUBLIC Execute : BOOL
 VAR_INPUT
