@@ -171,8 +171,8 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="ResetAxis" Id="{6858a2d4-c501-4639-b0f6-64db9416c8f9}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD ResetAxis : HRESULT
+    <Method Name="Reset" Id="{6858a2d4-c501-4639-b0f6-64db9416c8f9}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>

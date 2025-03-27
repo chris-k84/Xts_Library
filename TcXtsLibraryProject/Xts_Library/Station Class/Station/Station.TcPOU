@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Station" Id="{506a1b5f-d283-4b99-9adf-318a9c36fdac}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Station IMPLEMENTS IStation, I_Cyclic
+    <Declaration><![CDATA[FUNCTION_BLOCK Station IMPLEMENTS IStation, I_Cyclic, I_Resettable
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -26,20 +26,6 @@ END_VAR
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
-    <Method Name="Abort" Id="{b49ff0e5-eb8b-49bd-befd-0bab45ac01fe}">
-      <Declaration><![CDATA[METHOD Abort : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_Complete := FALSE;
-_Empty := TRUE;
-_Operating := FALSE;
-_Ready := TRUE;
-Abort := true;
-]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="Cycle" Id="{718bc2ed-83e9-4df0-b688-ff0112cf7157}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR_INPUT
@@ -163,5 +149,19 @@ END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>
+    <Method Name="Reset" Id="{b49ff0e5-eb8b-49bd-befd-0bab45ac01fe}">
+      <Declaration><![CDATA[METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_Complete := FALSE;
+_Empty := TRUE;
+_Operating := FALSE;
+_Ready := TRUE;
+Reset := true;
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

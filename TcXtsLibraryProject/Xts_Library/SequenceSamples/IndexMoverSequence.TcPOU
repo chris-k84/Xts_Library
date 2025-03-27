@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="IndexMoverSequence" Id="{50af290e-a0d7-45b3-a647-c8828b096bd1}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK IndexMoverSequence IMPLEMENTS I_Cyclic
+    <Declaration><![CDATA[FUNCTION_BLOCK IndexMoverSequence IMPLEMENTS I_Cyclic, I_Resettable
 VAR
 	State : IndexSequenceState;  
 	CurrentStation : UINT;
@@ -18,22 +18,6 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
-    <Method Name="Abort" Id="{01dd3306-e903-4754-85c4-ea13c41e0b8c}">
-      <Declaration><![CDATA[METHOD Abort : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[State := IndexSequenceState.Available;
-CurrentStation := 0;
-TargetStationPosition := 0.0;
-stSequenceInfo.CurrentStation := UINT_TO_INT(CurrentStation);
-stSequenceInfo.MoverId := ThisMover.AxisRef.NcToPlc.AxisId;
-stSequenceInfo.State := State;
-stSequenceInfo.Velocity := ThisMover.AxisRef.NcToPlc.ActVelo;
-Abort := TRUE;]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="Cycle" Id="{0bc270b2-0e7a-4545-b872-87f2d15ca3f5}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR_INPUT
@@ -219,6 +203,22 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="Reset" Id="{01dd3306-e903-4754-85c4-ea13c41e0b8c}">
+      <Declaration><![CDATA[METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[State := IndexSequenceState.Available;
+CurrentStation := 0;
+TargetStationPosition := 0.0;
+stSequenceInfo.CurrentStation := UINT_TO_INT(CurrentStation);
+stSequenceInfo.MoverId := ThisMover.AxisRef.NcToPlc.AxisId;
+stSequenceInfo.State := State;
+stSequenceInfo.Velocity := ThisMover.AxisRef.NcToPlc.ActVelo;
+Reset := TRUE;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="StartIndexing" Id="{6e4b7f28-1f53-404c-b56b-f1310c888415}">
       <Declaration><![CDATA[METHOD StartIndexing : BOOL
 VAR_INPUT

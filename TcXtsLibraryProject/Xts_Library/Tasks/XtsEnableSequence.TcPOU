@@ -66,14 +66,14 @@ END_VAR]]></Declaration>
 		
 	10:
 		FOR moverNumbers := 1 TO SystemParameters.NumberOfMovers DO
-			arrMovers[moverNumbers].ResetAxis();
+			arrMovers[moverNumbers].Reset();
 		END_FOR
 		moverNumbers := 1;
 		State := 20;
 		
 	20:
 		IF _collisionGroup.GroupState = CAGroupStatus.mcGroupStateErrorStop THEN
-			CAGroupResetResult := _collisionGroup.Reset();
+			CAGroupResetResult := SUCCEEDED(_collisionGroup.Reset());
 		END_IF
 		State := 30;
 		

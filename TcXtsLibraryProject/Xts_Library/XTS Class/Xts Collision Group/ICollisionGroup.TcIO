@@ -53,7 +53,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="Reset" Id="{52cfbceb-29c1-48af-b76e-6022383fab33}">
-      <Declaration><![CDATA[METHOD Reset : BOOL
+      <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>

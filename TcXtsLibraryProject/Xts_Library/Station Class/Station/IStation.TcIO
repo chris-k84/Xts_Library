@@ -3,12 +3,6 @@
   <Itf Name="IStation" Id="{67c9d406-11c9-44e2-83e4-d307b4e3d366}">
     <Declaration><![CDATA[INTERFACE IStation
 ]]></Declaration>
-    <Method Name="Abort" Id="{951f5a5d-5d46-44f3-aea0-884233e0c15b}">
-      <Declaration><![CDATA[METHOD Abort : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="HasMover" Id="{e0d36098-8d65-476a-990c-e6fc9c4a3a40}">
       <Declaration><![CDATA[METHOD HasMover : BOOL
 VAR_INPUT
@@ -64,5 +58,11 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
+    <Method Name="Reset" Id="{951f5a5d-5d46-44f3-aea0-884233e0c15b}">
+      <Declaration><![CDATA[METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
   </Itf>
 </TcPlcObject>

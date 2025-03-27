@@ -107,7 +107,7 @@ CASE State OF
 		END_IF
 	40:
 		IF _collisionGroup.GroupState = CAGroupStatus.mcGroupStateErrorStop THEN
-			CaGroupResetResult := _collisionGroup.Reset();
+			CaGroupResetResult := SUCCEEDED(_collisionGroup.Reset());
 		END_IF	
 		State := 50;
 		

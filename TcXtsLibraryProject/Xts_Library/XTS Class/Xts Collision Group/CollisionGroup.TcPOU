@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="CollisionGroup" Id="{8907fd76-d392-4030-a5c6-041188f5b990}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK CollisionGroup IMPLEMENTS I_Cyclic, ICollisionGroup
+    <Declaration><![CDATA[FUNCTION_BLOCK CollisionGroup IMPLEMENTS I_Cyclic, ICollisionGroup, I_Resettable
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -217,7 +217,7 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{109a65fd-df03-46ac-84a7-fd0107d964ee}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD Reset : BOOL
+      <Declaration><![CDATA[METHOD Reset : HRESULT
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT resetCAGroup.Busy THEN

@@ -11,22 +11,6 @@ END_VAR
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
-    <Method Name="Abort" Id="{21e0d1b2-4f5f-428f-96cf-1000dff3cb8d}">
-      <Declaration><![CDATA[METHOD Abort : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[SUPER^();
-
-Abort := TRUE;
-_Complete := FALSE;
-_Empty := TRUE;
-_Operating := FALSE;
-_Ready := TRUE;
-StationMovers := State := 0;]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="Cycle" Id="{b831bddf-8042-4785-99f9-40cdea1773f4}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR
@@ -99,36 +83,5 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="StationSample">
-      <LineId Id="128" Count="0" />
-    </LineIds>
-    <LineIds Name="StationSample.Abort">
-      <LineId Id="5" Count="1" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="12" Count="3" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
-    <LineIds Name="StationSample.Cycle">
-      <LineId Id="54" Count="0" />
-      <LineId Id="6" Count="1" />
-      <LineId Id="59" Count="2" />
-      <LineId Id="8" Count="24" />
-      <LineId Id="55" Count="1" />
-      <LineId Id="33" Count="0" />
-      <LineId Id="35" Count="0" />
-      <LineId Id="57" Count="0" />
-      <LineId Id="36" Count="0" />
-      <LineId Id="45" Count="1" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="67" Count="0" />
-      <LineId Id="66" Count="0" />
-      <LineId Id="68" Count="1" />
-    </LineIds>
-    <LineIds Name="StationSample.TempPropTime.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StationSample.TempPropTime.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
