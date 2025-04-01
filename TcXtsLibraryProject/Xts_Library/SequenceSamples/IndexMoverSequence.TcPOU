@@ -204,7 +204,7 @@ END_VAR
       </Set>
     </Property>
     <Method Name="Reset" Id="{01dd3306-e903-4754-85c4-ea13c41e0b8c}">
-      <Declaration><![CDATA[METHOD Reset : BOOL
+      <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -216,7 +216,7 @@ stSequenceInfo.CurrentStation := UINT_TO_INT(CurrentStation);
 stSequenceInfo.MoverId := ThisMover.AxisRef.NcToPlc.AxisId;
 stSequenceInfo.State := State;
 stSequenceInfo.Velocity := ThisMover.AxisRef.NcToPlc.ActVelo;
-Reset := TRUE;]]></ST>
+Reset := 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="StartIndexing" Id="{6e4b7f28-1f53-404c-b56b-f1310c888415}">

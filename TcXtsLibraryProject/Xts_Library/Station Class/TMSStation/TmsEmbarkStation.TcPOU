@@ -4,7 +4,8 @@
     <Declaration><![CDATA[FUNCTION_BLOCK TmsEmbarkStation EXTENDS Station IMPLEMENTS ITF_SwitchStation
 VAR
 	DepartMover : ITF_XtsMoverAxis;
-	SwitchAxis : MC2_Axis_Base;
+	Axis : AXIS_REF;
+	SwitchAxis : Axis_Base(Axis);
 	_switchUpperPosition : MC_LREAL;
 	_switchLowerPosition : MC_LREAL;
 	ExecuteSequence : BOOL;
@@ -307,67 +308,5 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="TmsEmbarkStation">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.BoardVelocity.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.BoardVelocity.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.Cycle">
-      <LineId Id="3" Count="86" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.HasMover">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.MoverAway">
-      <LineId Id="3" Count="5" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.StartSwitch">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.StopSwitch">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.SwitchLowerPosition.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.SwitchLowerPosition.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.SwitchMoveComplete">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.SwitchTravelPosition.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.SwitchTravelPosition.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.SwitchUpperPosition.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.SwitchUpperPosition.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.TrackIds.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.TrackIds.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.TrackLevel.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkStation.TrackLevel.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

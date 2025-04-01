@@ -9,7 +9,7 @@ VAR
 	MoverPowerCommand : AxisPower(MyAxisRef);
 	MoverMoveCommand : MoveModuloMoverToPosition(MyAxisRef) := (Gap := 100.0);
 	MoverHaltCommand : HaltMover(MyAxisRef);
-	MoverResetCommand : AxesReset(MyAxisRef);
+	MoverResetCommand : AxisReset(MyAxisRef);
 	MoverActivateTrackCommand : ActivateTrackForMover(MyAxisRef);
 	axesGear	: GearInCA(MyAxisRef);
 	_ipTcIoXtsMover	: I_TcIoXtsXpuMover;
@@ -20,6 +20,7 @@ VAR
 	_CurrentTrack : I_XtsTrack;
 	_MyCAGroup : ICollisionGroup;
 	_ForwardOnly : BOOL := TRUE;
+	CurrentTask : I_Task;
 END_VAR
 VAR CONSTANT
 	_MaxMoverVelocity : MC_LREAL := 4000.0;
@@ -160,7 +161,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF THIS^.isMoverEnabled() AND NOT MoverPowerCommand.Busy THEN
-	MoverPowerCommand.Disable();
+	MoverPowerCommand.Disable(CurrentTask);
 	DisableMover := 1;
 ELSE
 	DisableMover := -1;
@@ -174,7 +175,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF (NOT MoverPowerCommand.Busy) AND NOT THIS^.isMoverEnabled() THEN // AND _CurrentTrack <> 0 THEN
-	MoverPowerCommand.Enable();
+	MoverPowerCommand.Enable(CurrentTask);
 	EnableMover := 1;
 ELSE
 	EnableMover := -1;
@@ -516,7 +517,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT MoverResetCommand.Busy AND _MyAxisStatus.Error THEN
-	IF MoverResetCommand.Execute() = S_OK THEN
+	IF MoverResetCommand.Execute(CurrentTask) = S_OK THEN
 		Reset := 1;
 	ELSE
 		Reset := -1;

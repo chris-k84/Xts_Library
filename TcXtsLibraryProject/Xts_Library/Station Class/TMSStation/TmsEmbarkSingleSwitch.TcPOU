@@ -5,7 +5,8 @@
 VAR
 	DepartMover : ITF_XtsMoverAxis;
 	ExecuteSequence : BOOL;
-	SwitchAxis : MC2_Axis_Base;
+	Axis : AXIS_REF;
+	SwitchAxis : Axis_Base(Axis);
 	_switchLoadPosition : MC_LREAL;
 	_switchUnloadPosition : MC_LREAL;
 	State :(
@@ -94,7 +95,7 @@ CASE State OF
 		END_IF
 		
 	BoardingComplete:
-		IF SwitchAxis.MoveToPosition(Position := _switchUnloadPosition, Velocity := _SwitchVelocity) THEN
+		IF Succeeded( SwitchAxis.MoveToPosition(Position := _switchUnloadPosition, Velocity := _SwitchVelocity)) THEN
 			State := Moving;
 		END_IF
 		
@@ -114,7 +115,7 @@ CASE State OF
 		END_IF
 	
 	ReturnHome:
-		IF SwitchAxis.MoveToPosition(Position := _switchLoadPosition, Velocity := _SwitchVelocity) THEN
+		IF SUCCEEDED( SwitchAxis.MoveToPosition(Position := _switchLoadPosition, Velocity := _SwitchVelocity)) THEN
 			State := Done;
 		END_IF
 			
@@ -189,7 +190,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SwitchAxis.ResetAxis();]]></ST>
+        <ST><![CDATA[SwitchAxis.Reset();]]></ST>
       </Implementation>
     </Method>
     <Method Name="StartSwitch" Id="{ae2b2fa3-2884-439d-8324-d04aeee3d2a6}">
@@ -315,81 +316,5 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="TmsEmbarkSingleSwitch">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.BoardVelocity.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.BoardVelocity.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.Cycle">
-      <LineId Id="3" Count="13" />
-      <LineId Id="20" Count="8" />
-      <LineId Id="32" Count="4" />
-      <LineId Id="40" Count="5" />
-      <LineId Id="49" Count="4" />
-      <LineId Id="57" Count="4" />
-      <LineId Id="65" Count="22" />
-      <LineId Id="91" Count="7" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.DisableLift">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.EnableLift">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.HasMover">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.MoverAway">
-      <LineId Id="3" Count="5" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.ResetLift">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.StartSwitch">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.StopSwitch">
-      <LineId Id="1" Count="1" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchLoadPosition.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchLoadPosition.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchMoveComplete">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchTravelPosition.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchTravelPosition.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchUnloadPosition.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchUnloadPosition.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchVelocity.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchVelocity.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.TargetTrackId.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.TargetTrackId.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -142,3 +142,4 @@ artifacts/
 *.nuget.props
 *.nuget.targets
 /Src/XtsOpenProject.~u
+/Xts_Test_Proj/Test_Proj/_CompileInfo_Upload/D86E0639-20BC-DF66-3025-DD7F48B16FD7.compileinfo

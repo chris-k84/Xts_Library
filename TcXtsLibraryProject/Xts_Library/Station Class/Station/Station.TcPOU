@@ -150,7 +150,7 @@ END_IF]]></ST>
       </Set>
     </Property>
     <Method Name="Reset" Id="{b49ff0e5-eb8b-49bd-befd-0bab45ac01fe}">
-      <Declaration><![CDATA[METHOD Reset : BOOL
+      <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -159,7 +159,7 @@ END_VAR
 _Empty := TRUE;
 _Operating := FALSE;
 _Ready := TRUE;
-Reset := true;
+Reset := 1;
 ]]></ST>
       </Implementation>
     </Method>
