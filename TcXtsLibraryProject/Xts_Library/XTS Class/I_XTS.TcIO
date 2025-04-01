@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_XTS" Id="{eb22a7d8-6cc9-41fe-bacb-ecb9c288212d}">
+    <Declaration><![CDATA[INTERFACE I_XTS
+]]></Declaration>
+    <Method Name="RegisterMovers" Id="{e65bc655-b1b5-4ed3-91eb-2d51871a4d75}">
+      <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
+VAR_INPUT
+	MyMover : ITF_XtsMoverAxis;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

@@ -133,6 +133,9 @@
     <Compile Include="Tasks\XtsEnableSequence.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="XTS Class\I_XTS.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="XTS Class\XPU\ITF_XTSIOEnvVarWrapper.TcIO">
       <SubType>Code</SubType>
     </Compile>
