@@ -5,7 +5,6 @@
 VAR
 	XtsIoEnvironment : Tc3_XTS_Utility.FB_TcIoXtsEnvironment;
 	stXtsEnvironmentConfiguration	: ST_XtsEnvironmentConfiguration;
-	XPU: Tc3_XTS_Utility.I_TcIoXtsProcessingUnit;
 	Initialised : BOOL;
 END_VAR
 ]]></Declaration>
@@ -44,7 +43,6 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[GetXPUInterface := XtsIoEnvironment.XpuTcIo(MyXts);
-XPU := XtsIoEnvironment.XpuTcIo(MyXts);
 ]]></ST>
       </Implementation>
     </Method>
