@@ -120,6 +120,7 @@ END_VAR]]></Declaration>
         <ST><![CDATA[CASE XtsIoEnvInitialiseState OF
 	0:
 		IF _MyXpu = 0 THEN
+			Initialise := -1;
 			RETURN;
 		ELSE
 			_MyName := _MyXpu.P_ObjectName;
