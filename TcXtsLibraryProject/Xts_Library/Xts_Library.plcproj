@@ -133,10 +133,19 @@
     <Compile Include="Tasks\XtsEnableSequence.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\I_XTS.TcIO">
+    <Compile Include="XTS Class\Interfaces\I_CollisionGroup.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\XPU\I_XtsIoEnvVar.TcIO">
+    <Compile Include="XTS Class\Interfaces\I_XTS.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XTS Class\Interfaces\I_XtsHardware.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XTS Class\Interfaces\I_XtsIoEnvVar.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XTS Class\Interfaces\I_XtsTrack.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="XTS Class\XPU\XtsIoEnvVar.TcPOU">
@@ -151,15 +160,6 @@
     <Compile Include="XTS Class\Xts Collision Group\CollisionGroup.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Xts Collision Group\I_CollisionGroup.TcIO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XTS Class\Xts Hardware\I_XtsHardware.TcIO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XTS Class\Xts Hardware\Sub Components\I_XtsTrack.TcIO">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="XTS Class\Xts Hardware\Sub Components\XtsMotorModule.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -169,13 +169,13 @@
     <Compile Include="XTS Class\Xts Hardware\Sub Components\XtsTrack.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Xts Hardware\XtsSystemInitialisation.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="XTS Class\Xts Hardware\XTSHardware.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Xts.TcPOU">
+    <Compile Include="XTS Class\XTS\Xts.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XTS Class\XTS\XtsSystemInitialisation.TcDUT">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -191,6 +191,8 @@
     <Folder Include="Tasks" />
     <Folder Include="VISUs" />
     <Folder Include="XTS Class" />
+    <Folder Include="XTS Class\Interfaces" />
+    <Folder Include="XTS Class\XTS" />
     <Folder Include="XTS Class\XPU" />
     <Folder Include="XTS Class\Xts Collision Group" />
     <Folder Include="XTS Class\Xts Hardware" />
