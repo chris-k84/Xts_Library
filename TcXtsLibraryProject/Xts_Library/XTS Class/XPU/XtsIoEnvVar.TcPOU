@@ -36,47 +36,6 @@ END_VAR
         <ST><![CDATA[GetCaGroupInterface := XtsIoEnvironment.Mc2CaGroup(CAGroupNumber);]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetMotorModuleInterface" Id="{9af7c768-b524-4dfc-b4c9-d134e43969ae}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD PUBLIC GetMotorModuleInterface : I_TcIoXtsPartModule
-VAR_INPUT
-	PartNumber : INT;
-	ModuleNumber : INT;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[XPU.PartTcIo(PartNumber).ModuleTcIo(ModuleNumber);]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GetMoverInterface" Id="{dbc9b774-d169-476b-835b-9bf55e4a60d9}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD PUBLIC GetMoverInterface : I_TcIoXtsXpuMover
-VAR_INPUT
-	MoverId : INT;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetMoverInterface := XPU.MoverTcIo(MoverID);
-]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GetPartInterface" Id="{a60c8186-f31f-4591-b959-ebb1bad32c7a}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD PUBLIC GetPartInterface : I_TcIoXtsXpuPart
-VAR_INPUT
-	PartNumber : INT;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetPartInterface := XPU.PartTcIo(PartNumber);]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GetTrackInterface" Id="{36334a76-598d-4a99-aaef-0a407eed48bd}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD PUBLIC GetTrackInterface : I_TcIoXtsXpuTrack
-VAR_INPUT
-	TrackNumber : INT;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetTrackInterface := XPU.TrackTcIo(TrackNumber);]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="GetXPUInterface" Id="{a6b4198a-d372-4fc0-b700-debb44563dc0}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetXPUInterface : I_TcIoXtsProcessingUnit
 VAR_INPUT

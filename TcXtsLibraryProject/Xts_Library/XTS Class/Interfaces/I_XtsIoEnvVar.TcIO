@@ -12,34 +12,6 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GetMotorModuleInterface" Id="{c9e316a7-456a-49d5-b1f4-827c270545da}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD PUBLIC GetMotorModuleInterface : I_TcIoXtsPartModule
-VAR_INPUT
-	PartNumber : INT;
-	ModuleNumber : INT;
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="GetMoverInterface" Id="{30f73f3d-ac87-4263-a943-1883fb33de68}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD PUBLIC GetMoverInterface : I_TcIoXtsXpuMover
-VAR_INPUT
-	MoverId : INT;
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="GetPartInterface" Id="{33ed9cb1-a852-4796-a6f8-db3ef7d84470}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD PUBLIC GetPartInterface : I_TcIoXtsXpuPart
-VAR_INPUT
-	PartNumber : INT;
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="GetTrackInterface" Id="{46ac4c9d-e2d5-4696-a8bf-e6e5f3db6a25}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD PUBLIC GetTrackInterface : I_TcIoXtsXpuTrack
-VAR_INPUT
-	TrackNumber : INT;
-END_VAR]]></Declaration>
-    </Method>
     <Method Name="GetXPUInterface" Id="{01d39393-68d5-4f22-a8cb-82a779c4b78e}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetXPUInterface : I_TcIoXtsProcessingUnit
 VAR_INPUT
