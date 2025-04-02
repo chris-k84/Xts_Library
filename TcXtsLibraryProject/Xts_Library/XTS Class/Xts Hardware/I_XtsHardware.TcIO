@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <Itf Name="I_XtsHardware" Id="{9afac880-0754-4de0-b157-657ea2ab2f5c}">
-    <Declaration><![CDATA[INTERFACE I_XtsHardware EXTENDS I_Cyclic
+    <Declaration><![CDATA[INTERFACE I_XtsHardware
 ]]></Declaration>
     <Method Name="getAllMoversValid" Id="{3d107ad0-1a72-4602-abbb-1177fad35523}">
       <Declaration><![CDATA[METHOD getAllMoversValid : BOOL
