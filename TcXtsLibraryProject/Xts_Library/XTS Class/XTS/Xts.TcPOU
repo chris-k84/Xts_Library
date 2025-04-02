@@ -142,6 +142,7 @@ END_VAR
 	XtsSystemInitialisation.Init:
 		IF _XtsIoEnvVar.IsInitialised() THEN
 			_XPU := _XtsIoEnvVar.GetXPUInterface(_MyXts);
+			_MyXtsHardware.MyXpu := _XPU;
 			XtsHwState := XtsSystemInitialisation.PassGroupReference;
 		END_IF
 		

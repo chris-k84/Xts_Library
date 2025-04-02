@@ -82,6 +82,15 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
+    <Property Name="MyXpu" Id="{e2e815a3-d77a-4532-829a-eddabfcaecf8}">
+      <Declaration><![CDATA[PROPERTY MyXpu : I_TcIoXtsProcessingUnit]]></Declaration>
+      <Get Name="Get" Id="{bcee566b-b874-4152-ba22-6584fd88703d}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{98412ca9-12f3-48a0-a17f-85457d787566}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
     <Property Name="MyXts" Id="{53462daf-bea5-4a22-960f-7d5bfcc2ce3c}">
       <Declaration><![CDATA[PROPERTY MyXts : INT]]></Declaration>
       <Get Name="Get" Id="{0d7e989b-6c34-4c03-ad75-2a4dfad812ae}">
