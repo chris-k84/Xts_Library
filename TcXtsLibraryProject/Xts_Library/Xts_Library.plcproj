@@ -136,10 +136,10 @@
     <Compile Include="XTS Class\I_XTS.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\XPU\ITF_XTSIOEnvVarWrapper.TcIO">
+    <Compile Include="XTS Class\XPU\I_XtsIoEnvVar.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\XPU\XTSIOEnvVarWrapper.TcPOU">
+    <Compile Include="XTS Class\XPU\XtsIoEnvVar.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="XTS Class\Xts Collision Group\CAGroupInfo.TcDUT">

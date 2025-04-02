@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <Itf Name="ITF_XTSIOEnvVarWrapper" Id="{30a06d50-ef59-4bfa-9dd3-f949d401bfcc}">
-    <Declaration><![CDATA[INTERFACE ITF_XTSIOEnvVarWrapper
+  <Itf Name="I_XtsIoEnvVar" Id="{30a06d50-ef59-4bfa-9dd3-f949d401bfcc}">
+    <Declaration><![CDATA[INTERFACE I_XtsIoEnvVar
 ]]></Declaration>
     <Folder Name="Commands" Id="{1b5e6e83-f497-41ee-a2d2-91152888ebf2}" />
     <Folder Name="Status" Id="{e000e9df-d48c-426c-8c4b-b82c6c436d9c}" />

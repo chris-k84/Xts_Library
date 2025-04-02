@@ -8,7 +8,7 @@ VAR
 	_MyCAGroup : STRING;
 	_XtsEnabled : BOOL;
 	_MoverArray : ARRAY[0..MaxMovers] OF ITF_XtsMoverAxis;
-	_XtsIoEnvVar : ITF_XTSIOEnvVarWrapper;
+	_XtsIoEnvVar : I_XtsIoEnvVar;
 	mcCollisionGroup : CollisionGroup;
 	_MyXtsHardware : I_XtsHardware;
 	XtsHwState : XtsSystemInitialisation;
@@ -101,7 +101,7 @@ METHOD FB_Init: BOOL
 VAR_INPUT
     bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
     bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)   
-	XtsIoEnvVar : ITF_XTSIOEnvVarWrapper;
+	XtsIoEnvVar : I_XtsIoEnvVar;
 	XtsHardware : I_XtsHardware;
 END_VAR]]></Declaration>
       <Implementation>

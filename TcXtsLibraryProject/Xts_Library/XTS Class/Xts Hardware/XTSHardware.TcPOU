@@ -9,7 +9,7 @@ VAR
 	_MyNumberTracks : INT;
 	TrackOTCIDs: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF Tc3_XTS_Utility.OTCID;
 	MyXPUInterface : Tc3_XTS_Utility.I_TcIoXtsProcessingUnit;
-	MyXtsIoEnvVarRef : ITF_XTSIOEnvVarWrapper;
+	MyXtsIoEnvVarRef : I_XtsIoEnvVar;
 	XtsIoEnvInitialiseState : INT;
 	i: UDINT;
 	MyPartCount: UDINT;
@@ -290,14 +290,14 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Property Name="MyXtsIoEnvVarWrapper" Id="{9f0e6f27-b8f0-452c-b07d-d4d2a7ed1b3b}">
-      <Declaration><![CDATA[PROPERTY MyXtsIoEnvVarWrapper : itf_xtsioenvvarwrapper]]></Declaration>
+    <Property Name="MyXtsIoEnvVar" Id="{9f0e6f27-b8f0-452c-b07d-d4d2a7ed1b3b}">
+      <Declaration><![CDATA[PROPERTY MyXtsIoEnvVar : I_XtsIoEnvVar]]></Declaration>
       <Get Name="Get" Id="{ef18a883-259a-46c5-ac1a-fd1d0138159b}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MyXtsIoEnvVarWrapper := MyXtsIoEnvVarRef;]]></ST>
+          <ST><![CDATA[MyXtsIoEnvVar := MyXtsIoEnvVarRef;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{3f18a9fd-c75b-45a9-b0a5-a4cb82b21b6b}">
@@ -305,7 +305,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MyXtsIoEnvVarRef := MyXtsIoEnvVarWrapper;
+          <ST><![CDATA[MyXtsIoEnvVarRef := MyXtsIoEnvVar;
 _hasXPU := TRUE;]]></ST>
         </Implementation>
       </Set>

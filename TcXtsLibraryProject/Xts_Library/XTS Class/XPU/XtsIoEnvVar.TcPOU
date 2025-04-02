@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="XTSIOEnvVarWrapper" Id="{03c3c931-6ee3-4ab9-88b9-320f3e1d8e15}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XTSIOEnvVarWrapper IMPLEMENTS ITF_XTSIOEnvVarWrapper
+  <POU Name="XtsIoEnvVar" Id="{03c3c931-6ee3-4ab9-88b9-320f3e1d8e15}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsIoEnvVar IMPLEMENTS I_XtsIoEnvVar
 VAR
 	XtsIoEnvironment : Tc3_XTS_Utility.FB_TcIoXtsEnvironment;
 	stXtsEnvironmentConfiguration	: ST_XtsEnvironmentConfiguration;
