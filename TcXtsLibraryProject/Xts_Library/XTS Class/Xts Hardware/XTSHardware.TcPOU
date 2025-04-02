@@ -209,7 +209,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[isInitialised := _isInitialised;]]></ST>
       </Implementation>
     </Method>
     <Method Name="IsInSim" Id="{c26b05e6-e2eb-40cc-bea5-adcd4dafa0e7}" FolderPath="Status\">
