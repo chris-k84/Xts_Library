@@ -52,11 +52,5 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="IsInSim" Id="{99a43894-e3d7-4159-bbc1-2893547f4c2e}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInSim : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
   </Itf>
 </TcPlcObject>

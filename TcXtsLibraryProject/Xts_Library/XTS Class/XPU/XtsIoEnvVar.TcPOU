@@ -110,16 +110,5 @@ END_VAR
         <ST><![CDATA[IsInitialised := Initialised;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsInSim" Id="{4972b79f-8f9e-49c6-8407-5f314a09a94a}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInSim : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF  XPU.GetOperationMode() = OperationMode.Simulation THEN
-	IsInSim := TRUE;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
   </POU>
 </TcPlcObject>

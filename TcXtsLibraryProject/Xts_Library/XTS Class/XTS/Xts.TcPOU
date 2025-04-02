@@ -7,6 +7,7 @@ VAR
 	_MyXts : INT;
 	_MyCAGroup : STRING;
 	_XtsEnabled : BOOL;
+	_XPU : I_TcIoXtsProcessingUnit;
 	_MoverArray : ARRAY[0..MaxMovers] OF I_XtsMover;
 	_XtsIoEnvVar : I_XtsIoEnvVar;
 	ICollisionGroup : I_CollisionGroup;
@@ -140,10 +141,13 @@ END_VAR
       <Implementation>
         <ST><![CDATA[CASE XtsHwState OF
 	XtsSystemInitialisation.Init:
-		XtsHwState := XtsSystemInitialisation.PassGroupReference;
+		IF _XtsIoEnvVar.IsInitialised() THEN
+			XtsHwState := XtsSystemInitialisation.PassGroupReference;
+		END_IF
 		
 	XtsSystemInitialisation.PassGroupReference:
 		_MyCAGroup := ICollisionGroup.MyName;
+		ICollisionGroup.CAGroupXtsIoEnvInterface := _XtsIoEnvVar.GetCaGroupInterface(_MyXts);
 		XtsHwState := XtsSystemInitialisation.InitialiseHardware;
 	
 	XtsSystemInitialisation.InitialiseHardware:

@@ -8,10 +8,8 @@ VAR
 	XtsTracks : ARRAY[0..9] OF XtsTrack;
 	_MyNumberTracks : INT;
 	TrackOTCIDs: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF Tc3_XTS_Utility.OTCID;
-	MyXPUInterface : Tc3_XTS_Utility.I_TcIoXtsProcessingUnit;
-	MyXtsIoEnvVarRef : I_XtsIoEnvVar;
+	_MyXpu : Tc3_XTS_Utility.I_TcIoXtsProcessingUnit;
 	XtsIoEnvInitialiseState : INT;
-	i: UDINT;
 	MyPartCount: UDINT;
 	MyTrackCount: UDINT;
 	bMoverIdDetectionActive: BOOL;
@@ -32,7 +30,8 @@ END_VAR
     <Folder Name="Status" Id="{1e7de418-5187-4871-82b8-ce216901bd03}" />
     <Method Name="Cycle" Id="{907368a2-7640-4dfa-a8a9-6f1d20861921}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
-VAR_INPUT
+VAR
+	i : UDINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -55,7 +54,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[ IF MyXPUInterface.GetAreAllPositionsValid() THEN
+        <ST><![CDATA[ IF _MyXpu.GetAreAllPositionsValid() THEN
 	 getAllMoversValid := TRUE;
  END_IF]]></ST>
       </Implementation>
@@ -66,7 +65,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyXPUInterface.GetDetectedMoverCount() = MyXPUInterface.GetExpectedMoverCount() THEN
+        <ST><![CDATA[IF _MyXpu.GetDetectedMoverCount() = _MyXpu.GetExpectedMoverCount() THEN
 	getMoversDetected := TRUE;
 ELSE
 	getMoversDetected := FALSE;
@@ -79,13 +78,16 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetNumberOfDetectedMovers := MyXPUInterface.GetDetectedMoverCount();]]></ST>
+        <ST><![CDATA[GetNumberOfDetectedMovers := _MyXpu.GetDetectedMoverCount();]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetTrackByOTCID" Id="{d55b1037-e87a-4176-a531-719c46a289ea}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetTrackByOTCID : I_XtsTrack
 VAR_INPUT
 	trackOTCID : OTCID;
+END_VAR
+VAR
+	i: UDINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -107,7 +109,8 @@ END_VAR
     </Method>
     <Method Name="Initialise" Id="{95822be7-e433-46ff-bfc3-e4b3c51e2a74}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
-VAR_INPUT
+VAR
+	i: UDINT;
 END_VAR
 
 VAR
@@ -116,20 +119,17 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE XtsIoEnvInitialiseState OF
 	0:
-		IF MyXtsIoEnvVarRef <> 0 THEN
-			IF MyXtsIoEnvVarRef.IsInitialised() THEN
-				MyXPUInterface := MyXtsIoEnvVarRef.GetXPUInterface(_MyXts);
-				_MyName := MyXPUInterface.P_ObjectName;
-				XtsIoEnvInitialiseState := 1;
-			END_IF
+		IF _MyXpu = 0 THEN
+			RETURN;
 		ELSE
-			Initialise := -1;
+			_MyName := _MyXpu.P_ObjectName;
+			XtsIoEnvInitialiseState := 1;
 		END_IF
 	1:
-		MyPartCount := MyXPUInterface.GetPartCount();
+		MyPartCount := _MyXpu.GetPartCount();
 		IF MyPartCount = _MyNumberParts THEN
 			FOR i := 0 TO UDINT_TO_INT(MyPartCount - 1) DO
-				XtsParts[i].MyXtsIoEnvInterface := MyXPUInterface.PartTcIo(UDINT_TO_UINT(i + 1));
+				XtsParts[i].MyXtsIoEnvInterface := _MyXpu.PartTcIo(UDINT_TO_UINT(i + 1));
 				IF THIS^.IsInSim() THEN
 					XtsParts[i].SetInSim();
 				END_IF
@@ -139,12 +139,12 @@ END_VAR]]></Declaration>
 			XtsIoEnvInitialiseState := 999;
 		END_IF
 	3:
-		MyTrackCount := MyXPUInterface.GetTrackCount();
-		MyXPUInterface.GetTrackOids();
-		TrackOTCIDs := MyXPUInterface.P_TrackOids;
+		MyTrackCount := _MyXpu.GetTrackCount();
+		_MyXpu.GetTrackOids();
+		TrackOTCIDs := _MyXpu.P_TrackOids;
 		IF MyTrackCount = _MyNumberTracks THEN
 			FOR i := 0 TO UDINT_TO_INT(MyTrackCount - 1) DO
-				XtsTracks[i].MyXtsIoEnvInterface := MyXPUInterface.TrackTcIo(UDINT_TO_UINT(i + 1));
+				XtsTracks[i].MyXtsIoEnvInterface := _MyXpu.TrackTcIo(UDINT_TO_UINT(i + 1));
 				XtsTracks[i].MyOTCID := TrackOTCIDs[i + 1];
 			END_FOR
 			XtsIoEnvInitialiseState := 4;
@@ -174,12 +174,13 @@ END_CASE
     </Method>
     <Method Name="Is24VdcOK" Id="{16c30a69-c544-4706-ba78-c8aed5346201}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD Is24VdcOK : HRESULT
-VAR_INPUT
+VAR
+	i : UDINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Is24VdcOK := 2;
-FOR i := 0 TO (MyXPUInterface.GetPartCount() -1) DO
+FOR i := 0 TO (_MyXpu.GetPartCount() -1) DO
 	IF XtsParts[i].Is24VBusOK() = 1 THEN
 		Is24VdcOK := 1;
 	END_IF
@@ -188,12 +189,13 @@ END_FOR]]></ST>
     </Method>
     <Method Name="Is48VdcOK" Id="{ff4a117c-24f4-4466-b159-c15d29dc7330}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD Is48VdcOK : HRESULT
-VAR_INPUT
+VAR
+	i : UDINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Is48VdcOK := 2;
-FOR i := 0 TO (MyXPUInterface.GetPartCount() - 1) DO
+FOR i := 0 TO (_MyXpu.GetPartCount() - 1) DO
 	IF XtsParts[i].Is48VBusOK() = 1 THEN
 		Is48VdcOK := 1;
 	END_IF
@@ -215,10 +217,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF  MyXtsIoEnvVarRef.IsInSim() THEN
+        <ST><![CDATA[IF  _MyXpu.GetOperationMode() = OperationMode.Simulation  THEN
 	IsInSim := TRUE;
-ELSE
-	IsInSim := FALSE;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -271,6 +271,26 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Property Name="MyXpu" Id="{9f0e6f27-b8f0-452c-b07d-d4d2a7ed1b3b}">
+      <Declaration><![CDATA[PROPERTY MyXpu : I_TcIoXtsProcessingUnit]]></Declaration>
+      <Get Name="Get" Id="{ef18a883-259a-46c5-ac1a-fd1d0138159b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyXpu := _MyXpu;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{3f18a9fd-c75b-45a9-b0a5-a4cb82b21b6b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_MyXpu := MyXpu;
+_hasXPU := TRUE;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Property Name="MyXts" Id="{97cba7e2-9698-4397-a6b4-6da9e2abe688}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyXts : INT]]></Declaration>
       <Get Name="Get" Id="{ad7d6d73-4fab-4d05-975f-01e196f73334}">
@@ -290,26 +310,6 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Property Name="MyXtsIoEnvVar" Id="{9f0e6f27-b8f0-452c-b07d-d4d2a7ed1b3b}">
-      <Declaration><![CDATA[PROPERTY MyXtsIoEnvVar : I_XtsIoEnvVar]]></Declaration>
-      <Get Name="Get" Id="{ef18a883-259a-46c5-ac1a-fd1d0138159b}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyXtsIoEnvVar := MyXtsIoEnvVarRef;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{3f18a9fd-c75b-45a9-b0a5-a4cb82b21b6b}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyXtsIoEnvVarRef := MyXtsIoEnvVar;
-_hasXPU := TRUE;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Method Name="SetMoverNumbers" Id="{fda2cbfb-05d3-433d-b308-26404cfa0e4a}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetMoverNumbers : HRESULT
 VAR_INPUT
@@ -317,7 +317,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyXPUInterface.SetConfiguredDetectionCount(nConfiguredMoverDetectionCount := TO_UDINT(NumberOfMovers)) THEN
+        <ST><![CDATA[IF _MyXpu.SetConfiguredDetectionCount(nConfiguredMoverDetectionCount := TO_UDINT(NumberOfMovers)) THEN
 	SetMoverNumbers := 1;
 END_IF
 
@@ -332,12 +332,12 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF MyTrackCount = 1 THEN
-	MyXPUInterface.TrackTcIo(1).SetIsIncludedInDetection(TRUE);
+	_MyXpu.TrackTcIo(1).SetIsIncludedInDetection(TRUE);
 	SetTrackForDetection := TRUE;
 ELSE
 	IF TrackToDetect <= MyTrackCount THEN 
 		SetTrackForDetection := TRUE;
-		MyXPUInterface.TrackTcIo(TrackToDetect).SetIsIncludedInDetection(TRUE);
+		_MyXpu.TrackTcIo(TrackToDetect).SetIsIncludedInDetection(TRUE);
 	END_IF
 END_IF]]></ST>
       </Implementation>
@@ -348,7 +348,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MyXPUInterface.TriggerDetection();
+        <ST><![CDATA[_MyXpu.TriggerDetection();
 TriggerMoverDetection := TRUE;
 ]]></ST>
       </Implementation>
@@ -360,20 +360,20 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[// Mover1 Functionality		
 // Check if "MoverIdDetectionMode" has been activated under the XtsProcessingUnit object.
-IF MyXPUInterface.GetMoverIdDetectionMode() = E_MoverIdDetectionMode.Mover1 THEN
+IF _MyXpu.GetMoverIdDetectionMode() = E_MoverIdDetectionMode.Mover1 THEN
 
 	// Check if the "MoverIdDetection" has already been started or the Mover1 was found.
 	IF NOT (bMoverIdDetectionActive OR bMoverIdDetected OR bTriggerDetect) THEN
 		
 		// Trigger the "MoverIdDetection".
-		MyXPUInterface.TriggerMoverIdDetection();
+		_MyXpu.TriggerMoverIdDetection();
 		bTriggerDetect := TRUE;
 	END_IF
 
 	// Check for error or success of "MoverIdDetection".
-	bMoverIdDetectionError 	:= MyXPUInterface.GetHasMoverIdDetectionError();
-	bMoverIdDetected 	:= MyXPUInterface.GetIsMoverIdDetectionValid();
-	bMoverIdDetectionActive	:= MyXPUInterface.GetIsMoverIdDetectionActive();
+	bMoverIdDetectionError 	:= _MyXpu.GetHasMoverIdDetectionError();
+	bMoverIdDetected 	:= _MyXpu.GetIsMoverIdDetectionValid();
+	bMoverIdDetectionActive	:= _MyXpu.GetIsMoverIdDetectionActive();
 	
 	// If the detection has an error, check for errors in output and try again.
 	IF bMoverIdDetectionError THEN
@@ -396,7 +396,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyXPUInterface.TriggerRedetection() THEN
+        <ST><![CDATA[IF _MyXpu.TriggerRedetection() THEN
 	TriggerRedetection := 1;
 END_IF]]></ST>
       </Implementation>
