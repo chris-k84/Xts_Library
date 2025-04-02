@@ -16,7 +16,6 @@ VAR
 	EnableSequence : XtsEnableSequence(ICollisionGroup);
 	DisableSequence : XtsDisableSequence(ICollisionGroup);
 	State : UINT;	
-	i : UINT;
 	AtHome: BOOL;
 	EnabledTrigger : R_TRIG;
 	DisabledTrigger : R_TRIG;
@@ -36,6 +35,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD PUBLIC ActivateTracksInMovers : BOOL
 VAR
 	ActivateTrackResult : BOOL;
+	i : UINT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
@@ -113,13 +113,12 @@ ICollisionGroup := CAGroup;]]></ST>
     </Method>
     <Method Name="GetTMSMoverInterface" Id="{0e64eced-3444-47ea-9660-c818e7a9dea9}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD PUBLIC GetTMSMoverInterface : BOOL
-VAR_INPUT
-END_VAR
 VAR
+	i : UINT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[FOR i := 1 TO (_registeredNumberOfMovers - 1) DO
-	_MoverArray[i].MoverXtsIoEnvInterface := _XtsIoEnvVar.GetMoverInterface(i);
+	_MoverArray[i].MoverXtsIoEnvInterface := _XPU.MoverTcIo(i);
 END_FOR]]></ST>
       </Implementation>
     </Method>
@@ -142,6 +141,7 @@ END_VAR
         <ST><![CDATA[CASE XtsHwState OF
 	XtsSystemInitialisation.Init:
 		IF _XtsIoEnvVar.IsInitialised() THEN
+			_XPU := _XtsIoEnvVar.GetXPUInterface(_MyXts);
 			XtsHwState := XtsSystemInitialisation.PassGroupReference;
 		END_IF
 		
@@ -297,7 +297,9 @@ END_VAR
 VAR_INPUT
 	MyMover : I_XtsMover;
 END_VAR
-]]></Declaration>
+VAR
+	i : UINT;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF MyMover <> 0 THEN
 	MoverRegistered := FALSE;
