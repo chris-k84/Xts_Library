@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_XtsHardware" Id="{9afac880-0754-4de0-b157-657ea2ab2f5c}">
+    <Declaration><![CDATA[INTERFACE I_XtsHardware EXTENDS I_Cyclic
+]]></Declaration>
+    <Method Name="getAllMoversValid" Id="{3d107ad0-1a72-4602-abbb-1177fad35523}">
+      <Declaration><![CDATA[METHOD getAllMoversValid : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="getMoversDetected" Id="{4f24c08e-ded5-4a22-a453-8322683f6c40}">
+      <Declaration><![CDATA[METHOD getMoversDetected : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="GetNumberOfDetectedMovers" Id="{391d3de8-a002-42ee-857e-e96f502d6c34}">
+      <Declaration><![CDATA[METHOD GetNumberOfDetectedMovers : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="GetTrackByOTCID" Id="{32320bf3-efb9-473d-bca7-a0ced8f8657b}">
+      <Declaration><![CDATA[METHOD GetTrackByOTCID : I_XtsTrack
+VAR_INPUT
+	trackOTCID : OTCID;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="HasXPU" Id="{4bb0c294-1f51-4661-82c9-c8d7d52811fe}">
+      <Declaration><![CDATA[METHOD HasXPU : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Is24VdcOK" Id="{d84db133-10f1-4c84-aee2-357bd38938fd}">
+      <Declaration><![CDATA[METHOD Is24VdcOK : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Is48VdcOK" Id="{df545d44-305d-4b7a-922f-4b561f83d56a}">
+      <Declaration><![CDATA[METHOD Is48VdcOK : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="IsInitialised" Id="{eb3371dd-7907-4a18-ba2b-9ef954004075}">
+      <Declaration><![CDATA[METHOD IsInitialised : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="IsInSim" Id="{5eeeddd9-9ad7-4819-b9a4-994a910fffac}">
+      <Declaration><![CDATA[METHOD IsInSim : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="MyName" Id="{b43d0e80-e621-46e0-af70-0a677800dc98}">
+      <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
+      <Get Name="Get" Id="{494ebcb6-a0a6-498f-a4fa-49193344e0b2}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="MyNumberParts" Id="{8baf703f-4030-43b9-bdf8-f6888d62a51a}">
+      <Declaration><![CDATA[PROPERTY MyNumberParts : int]]></Declaration>
+      <Get Name="Get" Id="{0b7c22e3-40c5-447c-8669-8bda14b6c107}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{5fd5e677-eecf-47de-bd59-50e6a5a429b3}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="MyNumberTracks" Id="{060a46c5-290c-4bcd-90e6-de762c9e2c08}">
+      <Declaration><![CDATA[PROPERTY MyNumberTracks : int]]></Declaration>
+      <Get Name="Get" Id="{32b0bf5c-9771-495a-89d6-3032bdd0b8c3}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{9407f136-b996-42ff-9b05-517db21ec39e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="MyXts" Id="{53462daf-bea5-4a22-960f-7d5bfcc2ce3c}">
+      <Declaration><![CDATA[PROPERTY MyXts : INT]]></Declaration>
+      <Get Name="Get" Id="{0d7e989b-6c34-4c03-ad75-2a4dfad812ae}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{09a1cb2a-649a-43ca-b93f-1edc829a7cd1}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Method Name="SetMoverNumbers" Id="{7821c5af-a98b-4e00-bdec-978858c91986}">
+      <Declaration><![CDATA[METHOD SetMoverNumbers : HRESULT
+VAR_INPUT
+	NumberOfMovers : INT;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SetTrackForDetection" Id="{7c4c42dc-3b9e-4422-a554-a366e105c556}">
+      <Declaration><![CDATA[METHOD SetTrackForDetection : BOOL
+VAR_INPUT
+	TrackToDetect : INT;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="TriggerMoverDetection" Id="{3ca79f9d-8f1a-40ef-9b71-3df667743234}">
+      <Declaration><![CDATA[METHOD TriggerMoverDetection : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="TriggerMoverID" Id="{94d400e7-7631-41b8-b1e4-2b7514685c32}">
+      <Declaration><![CDATA[METHOD TriggerMoverID : BOOL
+VAR_INPUT
+END_VAR]]></Declaration>
+    </Method>
+    <Method Name="TriggerRedetection" Id="{02f3159c-a37c-4b20-ae4e-7c65bf1966cb}">
+      <Declaration><![CDATA[METHOD TriggerRedetection : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>
