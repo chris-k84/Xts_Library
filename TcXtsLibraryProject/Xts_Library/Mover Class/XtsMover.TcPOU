@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="XtsMoverAxis" Id="{f9a43ed2-0578-4aed-857c-1a3adef0c7f6}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsMoverAxis IMPLEMENTS I_Cyclic, ITF_XtsMoverAxis, I_Resettable
+  <POU Name="XtsMover" Id="{f9a43ed2-0578-4aed-857c-1a3adef0c7f6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsMover IMPLEMENTS I_Cyclic, I_XtsMover, I_Resettable
 VAR
 	MyAxisRef : AXIS_REF;
 	_MyAxisStatus : ST_AxisStatus;

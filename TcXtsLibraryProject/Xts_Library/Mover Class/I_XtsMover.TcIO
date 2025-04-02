@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <Itf Name="ITF_XtsMoverAxis" Id="{3dcfc709-5ede-408c-bb46-9ff1ab7ba3a2}">
-    <Declaration><![CDATA[INTERFACE ITF_XtsMoverAxis
+  <Itf Name="I_XtsMover" Id="{3dcfc709-5ede-408c-bb46-9ff1ab7ba3a2}">
+    <Declaration><![CDATA[INTERFACE I_XtsMover
 ]]></Declaration>
     <Folder Name="Administration" Id="{4954b02a-5467-474b-b4cc-9e953c27295d}" />
     <Folder Name="Commands" Id="{106fb726-2896-4a76-8d42-ca08d03a1871}" />
