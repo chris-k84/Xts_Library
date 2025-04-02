@@ -3,7 +3,7 @@
   <POU Name="XtsMover_TestSuite" Id="{35b3f83a-ddd6-49c7-a80a-724734d90825}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsMover_TestSuite EXTENDS FB_TestSuite<TestSuite_Parameter.MaxTestCount>
 VAR
-	testMover : XtsMoverAxis;
+	testMover : XtsMover;
 	stubTrack : XtsTrack;
 	stubITrack: Xts_Library.I_XtsTrack := stubTrack;
 END_VAR

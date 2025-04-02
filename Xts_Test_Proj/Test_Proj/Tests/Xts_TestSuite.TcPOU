@@ -3,10 +3,13 @@
   <POU Name="Xts_TestSuite" Id="{f988a3d2-66dc-4a17-94a6-1c6d0d5b97aa}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Xts_TestSuite EXTENDS FB_TestSuite<TestSuite_Parameter.MaxTestCount>
 VAR
-	testXts : StubXts;
-	stubMover : XtsMoverAxis;
-	stubIMover : ITF_XtsMoverAxis := stubMover;
-	stubIMoverEmpty : ITF_XtsMoverAxis;
+	dummyIoEnvVar : XtsIoEnvVar;
+	dummyXtsHw : XTSHardware;
+	dummyCaGroup : CollisionGroup;
+	testXts : StubXts(dummyIoEnvVar,dummyXtsHw,dummyCaGroup);
+	stubMover : XtsMover;
+	stubIMover : I_XtsMover := stubMover;
+	stubIMoverEmpty : I_XtsMover;
 END_VAR
 ]]></Declaration>
     <Implementation>

@@ -3,8 +3,8 @@
   <POU Name="XtsCaGroupTestSuite" Id="{136b9f37-13c3-40d8-adf9-d2fba64dd482}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsCaGroupTestSuite EXTENDS CollisionGroup
 VAR
-	fbTestSuites : FB_Testsuites;
-	fbTestSuite : FB_Testsuite;
+	//fbTestSuites : FB_Testsuites;
+	//fbTestSuite : FB_Testsuite;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -29,13 +29,13 @@ END_VAR
 VAR_INPUT
 	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
 	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	XtsRunner : I_ObjectRunner;
+	//XtsRunner : I_ObjectRunner;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//// Add Testsuite to Testsuites
-TestSuiteGVL.fbTestsuites.M_Add(fbTestsuite);
-TestSuiteGVL.fbTestsuites.P_Options.sFilePathName:= 'C:\test\report.xml';]]></ST>
+// TestSuiteGVL.fbTestsuites.M_Add(fbTestsuite);
+// TestSuiteGVL.fbTestsuites.P_Options.sFilePathName:= 'C:\test\report.xml';]]></ST>
       </Implementation>
     </Method>
   </POU>

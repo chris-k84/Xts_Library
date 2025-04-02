@@ -3,7 +3,7 @@
   <POU Name="XtsHardware_TestSuite" Id="{b560ca6a-e691-471a-a25d-3f29414ba80e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsHardware_TestSuite EXTENDS FB_TestSuite<TestSuite_Parameter.MaxTestCount>
 VAR
-	XtsIoEnvVar : XTSIOEnvVarWrapper;
+	TestXtsIoEnvVar : XtsIoEnvVar;
 	MyXtsHardware : XTSHardware;
 END_VAR
 ]]></Declaration>
@@ -62,7 +62,7 @@ VAR_INST
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	MyXtsHardware.MyXtsIoEnvVarWrapper := XtsIoEnvVar;
+	MyXtsHardware.MyXpu := TestXtsIoEnvVar.GetXPUInterface(1);
 	Actual := MyXtsHardware.HasXPU();
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
