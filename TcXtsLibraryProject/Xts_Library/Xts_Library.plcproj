@@ -42,10 +42,10 @@
     <VirtualLibrary>true</VirtualLibrary>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Mover Class\ITF_XtsMoverAxis.TcIO">
+    <Compile Include="Mover Class\I_XtsMover.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mover Class\XtsMoverAxis.TcPOU">
+    <Compile Include="Mover Class\XtsMover.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SequenceSamples\IndexMoverSequence.TcPOU">
@@ -151,7 +151,7 @@
     <Compile Include="XTS Class\Xts Collision Group\CollisionGroup.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Xts Collision Group\ICollisionGroup.TcIO">
+    <Compile Include="XTS Class\Xts Collision Group\I_CollisionGroup.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="XTS Class\Xts Hardware\I_XtsHardware.TcIO">

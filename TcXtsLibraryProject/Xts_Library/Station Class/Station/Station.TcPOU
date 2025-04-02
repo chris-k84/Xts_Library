@@ -20,7 +20,7 @@ VAR
 	ProductCounter : R_TRIG;
 	Products : DINT;
 	LastStation : BOOL;
-	MyMover : ITF_XtsMoverAxis;
+	MyMover : I_XtsMover;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -53,7 +53,7 @@ Cycle := S_OK;]]></ST>
     <Method Name="HasMover" Id="{cfa7f397-450b-4982-8373-384ee5df1767}">
       <Declaration><![CDATA[METHOD HasMover : BOOL
 VAR_INPUT
-	mover : ITF_XtsMoverAxis;
+	mover : I_XtsMover;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[StationMovers := StationMovers + 1;

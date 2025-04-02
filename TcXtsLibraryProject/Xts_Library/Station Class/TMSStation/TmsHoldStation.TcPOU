@@ -5,7 +5,7 @@
 VAR
 	_EmbarkStation : IStation;
 	ExecuteSeqeunce : BOOL;
-	HoldMover : ITF_XtsMoverAxis;
+	HoldMover : I_XtsMover;
 	State :(
 		Init,                                               
 		Ready,                                 
@@ -81,7 +81,7 @@ END_IF]]></ST>
     <Method Name="HasMover" Id="{a266c45f-308b-42ff-85d6-9dbbc61ca57d}">
       <Declaration><![CDATA[METHOD HasMover : BOOL
 VAR_INPUT
-	mover : ITF_XtsMoverAxis;
+	mover : I_XtsMover;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF StationMovers <= 2 THEN
@@ -146,36 +146,5 @@ END_VAR
 State := Aborting;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="TmsHoldStation">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsHoldStation.Cycle">
-      <LineId Id="3" Count="13" />
-      <LineId Id="20" Count="7" />
-      <LineId Id="31" Count="5" />
-      <LineId Id="40" Count="9" />
-      <LineId Id="51" Count="11" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsHoldStation.HasMover">
-      <LineId Id="3" Count="6" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsHoldStation.MoverAway">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsHoldStation.MyEmbarkStation.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsHoldStation.MyEmbarkStation.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsHoldStation.StartStation">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsHoldStation.StopStation">
-      <LineId Id="1" Count="1" />
-    </LineIds>
   </POU>
 </TcPlcObject>

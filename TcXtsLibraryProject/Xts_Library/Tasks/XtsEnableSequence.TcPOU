@@ -7,11 +7,11 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	_collisionGroup : ICollisionGroup;
+	_collisionGroup : I_CollisionGroup;
 	moverNumbers : UINT;
 	AllMoversEnabled: BOOL;
 	EnableTrigger : BOOL;	
-	arrMovers : ARRAY[1..SystemParameters.NumberOfMovers] OF ITF_XtsMoverAxis;
+	arrMovers : ARRAY[1..SystemParameters.NumberOfMovers] OF I_XtsMover;
 		State: INT;
 	_Done: BOOL;
 	_Error: BOOL;
@@ -159,7 +159,7 @@ END_VAR
 VAR_INPUT
 	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
 	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	MyCaGroup : ICollisionGroup;
+	MyCaGroup : I_CollisionGroup;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -167,7 +167,7 @@ END_VAR
       </Implementation>
     </Method>
     <Property Name="MoverArray" Id="{2acddb92-7228-4ce1-abf4-c52047e8db87}">
-      <Declaration><![CDATA[PROPERTY MoverArray : array[1..SystemParameters.NumberOfMovers] of ITF_XtsMoverAxis]]></Declaration>
+      <Declaration><![CDATA[PROPERTY MoverArray : array[1..SystemParameters.NumberOfMovers] of I_XtsMover]]></Declaration>
       <Get Name="Get" Id="{45d4b80a-6470-4599-bc0b-107c251d2b9f}">
         <Declaration><![CDATA[VAR
 END_VAR

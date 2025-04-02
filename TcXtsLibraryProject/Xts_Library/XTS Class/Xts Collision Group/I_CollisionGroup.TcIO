@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <Itf Name="ICollisionGroup" Id="{3fc566cf-3f15-4187-97a8-f8d156c2ea05}">
-    <Declaration><![CDATA[INTERFACE ICollisionGroup
+  <Itf Name="I_CollisionGroup" Id="{3fc566cf-3f15-4187-97a8-f8d156c2ea05}">
+    <Declaration><![CDATA[INTERFACE I_CollisionGroup
 ]]></Declaration>
     <Method Name="AddMoverToThisGroup" Id="{e0521e35-3414-4dd6-b2e7-4ac92ca8a051}">
       <Declaration><![CDATA[METHOD AddMoverToThisGroup : HRESULT
 VAR_INPUT
-	MoverToAdd : ITF_XtsMoverAxis;
+	MoverToAdd : I_XtsMover;
 END_VAR
 ]]></Declaration>
     </Method>
@@ -46,6 +46,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="MyName" Id="{989d2fa8-4a9f-4077-ad60-57e1e6700080}">
+      <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
+      <Get Name="Get" Id="{962bda42-6307-4da5-99e1-648fbb7790b1}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="RemoveAllMovers" Id="{ef3d94da-4e03-448c-b177-7286a6d747e3}">
       <Declaration><![CDATA[METHOD RemoveAllMovers : HRESULT
 VAR_INPUT

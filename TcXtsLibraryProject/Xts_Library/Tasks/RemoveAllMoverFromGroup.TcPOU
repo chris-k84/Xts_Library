@@ -8,7 +8,7 @@ VAR_OUTPUT
 END_VAR
 VAR
 	RemoveAllFromGrp			: MC_UngroupAllAxes;
-	_caGroup			: ICollisionGroup;
+	_caGroup			: I_CollisionGroup;
 	_removeAllMovers : BOOL;
 	_errorId: UDINT;
 		State: INT;
@@ -115,7 +115,7 @@ END_VAR
 VAR_INPUT
 	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
 	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	MyCaGroup : ICollisionGroup;	
+	MyCaGroup : I_CollisionGroup;	
 END_VAR
 ]]></Declaration>
       <Implementation>

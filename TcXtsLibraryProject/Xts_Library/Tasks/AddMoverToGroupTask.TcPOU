@@ -8,7 +8,7 @@ VAR_OUTPUT
 END_VAR
 VAR
 	AddtoGrp			: MC_AddAxisToGroup;
-	_CaGroup			: ICollisionGroup;
+	_CaGroup			: I_CollisionGroup;
 	_Axis				: REFERENCE TO AXIS_REF;
 	_addMover : BOOL;
 	_moverNumber : UDINT;
@@ -33,7 +33,7 @@ State := 0;]]></ST>
     <Method Name="AddMover" Id="{481f5339-50ec-48c8-9b4c-100ecb265f94}">
       <Declaration><![CDATA[METHOD AddMover : BOOL
 VAR_INPUT
-	MoverToAdd : ITF_XtsMoverAxis;
+	MoverToAdd : I_XtsMover;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -128,7 +128,7 @@ END_VAR
 VAR_INPUT
 	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
 	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	myCaGroup : ICollisionGroup;	
+	myCaGroup : I_CollisionGroup;	
 END_VAR
 ]]></Declaration>
       <Implementation>

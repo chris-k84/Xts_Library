@@ -9,7 +9,7 @@ VAR
 	_MoverVelocity : MC_LREAL := 1000.0;
 	stSequenceInfo : MoverSequenceInfo;
 	StationArray : ARRAY[1..SystemParameters.NumberOfStations] OF IProcess;
-	ThisMover : ITF_XtsMoverAxis;
+	ThisMover : I_XtsMover;
 	ExecuteSequence : BOOL;
 	_startPosition : MC_LREAL;
 	_XtsNoHome : BOOL;
@@ -147,7 +147,7 @@ END_VAR
       </Set>
     </Property>
     <Property Name="MyMover" Id="{d0dbd650-93c6-4e7f-a733-abc40a2f12bf}">
-      <Declaration><![CDATA[PROPERTY MyMover : ITF_XtsMoverAxis]]></Declaration>
+      <Declaration><![CDATA[PROPERTY MyMover : I_XtsMover]]></Declaration>
       <Get Name="Get" Id="{52e46adf-1b9f-404f-a8d7-de686d91d4ef}">
         <Declaration><![CDATA[VAR
 END_VAR

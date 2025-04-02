@@ -6,7 +6,7 @@
     <Method Name="RegisterMovers" Id="{e65bc655-b1b5-4ed3-91eb-2d51871a4d75}">
       <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
 VAR_INPUT
-	MyMover : ITF_XtsMoverAxis;
+	MyMover : I_XtsMover;
 END_VAR
 ]]></Declaration>
     </Method>

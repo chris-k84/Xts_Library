@@ -8,7 +8,7 @@ VAR_OUTPUT
 END_VAR
 VAR
 	groupStop			: MC_GroupStop;
-	_caGroup			: ICollisionGroup;
+	_caGroup			: I_CollisionGroup;
 	_stopGroup : BOOL;
 	_jerk : MC_LREAL;
 	_deceleration : MC_LREAL;
@@ -140,7 +140,7 @@ END_VAR
 VAR_INPUT
 	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
 	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	CAGroup : ICollisionGroup;
+	CAGroup : I_CollisionGroup;
 END_VAR
 ]]></Declaration>
       <Implementation>

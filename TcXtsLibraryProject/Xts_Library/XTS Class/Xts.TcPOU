@@ -7,13 +7,13 @@ VAR
 	_MyXts : INT;
 	_MyCAGroup : STRING;
 	_XtsEnabled : BOOL;
-	_MoverArray : ARRAY[0..MaxMovers] OF ITF_XtsMoverAxis;
+	_MoverArray : ARRAY[0..MaxMovers] OF I_XtsMover;
 	_XtsIoEnvVar : I_XtsIoEnvVar;
-	mcCollisionGroup : CollisionGroup;
+	ICollisionGroup : I_CollisionGroup;
 	_MyXtsHardware : I_XtsHardware;
 	XtsHwState : XtsSystemInitialisation;
-	EnableSequence : XtsEnableSequence(mcCollisionGroup);
-	DisableSequence : XtsDisableSequence(mcCollisionGroup);
+	EnableSequence : XtsEnableSequence(ICollisionGroup);
+	DisableSequence : XtsDisableSequence(ICollisionGroup);
 	State : UINT;	
 	i : UINT;
 	AtHome: BOOL;
@@ -56,7 +56,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[EnableResult := EnableSequence.Cycle();
 DisableResult := DisableSequence.Cycle();
-CollisionResult := mcCollisionGroup.Cycle();
 EnabledTrigger(CLK := EnableSequence.Done);
 DisabledTrigger(CLK := DisableSequence.Done);
 IF EnabledTrigger.Q THEN
@@ -103,10 +102,12 @@ VAR_INPUT
     bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)   
 	XtsIoEnvVar : I_XtsIoEnvVar;
 	XtsHardware : I_XtsHardware;
+	CAGroup : I_CollisionGroup;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[_XtsIoEnvVar := XtsIoEnvVar;
-_MyXtsHardware := XtsHardware;]]></ST>
+_MyXtsHardware := XtsHardware;
+ICollisionGroup := CAGroup;]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetTMSMoverInterface" Id="{0e64eced-3444-47ea-9660-c818e7a9dea9}" FolderPath="Operations\">
@@ -142,8 +143,7 @@ END_VAR
 		XtsHwState := XtsSystemInitialisation.PassGroupReference;
 		
 	XtsSystemInitialisation.PassGroupReference:
-		mcCollisionGroup.CAGroupXtsIoEnvInterface := _XtsIoEnvVar.GetCaGroupInterface(_MyXts);
-		_MyCAGroup := mcCollisionGroup.MyName;
+		_MyCAGroup := ICollisionGroup.MyName;
 		XtsHwState := XtsSystemInitialisation.InitialiseHardware;
 	
 	XtsSystemInitialisation.InitialiseHardware:
@@ -291,7 +291,7 @@ END_VAR
     <Method Name="RegisterMovers" Id="{a3bbc877-121f-4130-8916-a04d2ba4dd9d}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
 VAR_INPUT
-	MyMover : ITF_XtsMoverAxis;
+	MyMover : I_XtsMover;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -320,7 +320,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[mcCollisionGroup.GroupStop();]]></ST>
+        <ST><![CDATA[ICollisionGroup.GroupStop();]]></ST>
       </Implementation>
     </Method>
   </POU>

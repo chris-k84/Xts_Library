@@ -3,7 +3,7 @@
   <POU Name="TmsEmbarkStation" Id="{4d15a973-29cb-4ffe-934a-8f072d992ec0}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TmsEmbarkStation EXTENDS Station IMPLEMENTS ITF_SwitchStation
 VAR
-	DepartMover : ITF_XtsMoverAxis;
+	DepartMover : I_XtsMover;
 	Axis : AXIS_REF;
 	SwitchAxis : Axis_Base(Axis);
 	_switchUpperPosition : MC_LREAL;
@@ -156,7 +156,7 @@ SwitchAxis.Cycle();]]></ST>
     <Method Name="HasMover" Id="{466b4750-cbf0-42df-80f2-b3d4852756ba}">
       <Declaration><![CDATA[METHOD HasMover : BOOL
 VAR_INPUT
-	mover : ITF_XtsMoverAxis;
+	mover : I_XtsMover;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF StationMovers <= 2 THEN

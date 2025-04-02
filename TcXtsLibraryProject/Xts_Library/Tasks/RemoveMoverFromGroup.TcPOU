@@ -4,7 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK RemoveMoverFromGroup  IMPLEMENTS I_Task
 VAR
 	mcRemoveAxisFromGroup : MC_RemoveAxisFromGroup;
-	_GroupRef : ICollisionGroup;
+	_GroupRef : I_CollisionGroup;
 	_Leave: BOOL;
 		State: INT;
 	_Done: BOOL;
@@ -123,7 +123,7 @@ END_IF]]></ST>
 VAR_INPUT
 	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
 	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	GroupRef : ICollisionGroup;
+	GroupRef : I_CollisionGroup;
 END_VAR
 ]]></Declaration>
       <Implementation>
