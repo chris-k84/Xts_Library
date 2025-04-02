@@ -8,7 +8,7 @@ VAR
 	_MyCAGroup : STRING;
 	_XtsEnabled : BOOL;
 	_MoverArray : ARRAY[0..MaxMovers] OF ITF_XtsMoverAxis;
-	XtsIoEnvVar : XTSIOEnvVarWrapper;
+	_XtsIoEnvVar : ITF_XTSIOEnvVarWrapper;
 	mcCollisionGroup : CollisionGroup;
 	MyXtsHardware : XTSHardware := (MyXtsIoEnvVarWrapper := XtsIoEnvVar);
 	XtsHwState : XtsSystemInitialisation;
@@ -91,6 +91,21 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[EnableSequence.Enable();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_Init" Id="{d6ce6c85-5c43-4276-b07f-92a2e669b228}">
+      <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
+//The return value is not evaluated. For a specific influence, you can also declare the
+//methods explicitly and provide additional code there with the standard initialization
+//code. You can evaluate the return value.
+METHOD FB_Init: BOOL
+VAR_INPUT
+    bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
+    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)   
+	XtsIoEnvVar : ITF_XTSIOEnvVarWrapper;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_XtsIoEnvVar := XtsIoEnvVar;]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetTMSMoverInterface" Id="{0e64eced-3444-47ea-9660-c818e7a9dea9}" FolderPath="Operations\">
@@ -265,6 +280,15 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="RegisterHardware" Id="{535f01ed-4415-4576-8745-b33a0669ceb6}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD RegisterHardware : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="RegisterMovers" Id="{a3bbc877-121f-4130-8916-a04d2ba4dd9d}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
 VAR_INPUT
