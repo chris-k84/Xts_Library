@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Xts_TestSuite" Id="{f988a3d2-66dc-4a17-94a6-1c6d0d5b97aa}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Xts_TestSuite EXTENDS FB_TestSuite<TestSuite_Parameter.MaxTestCount>
+    <Declaration><![CDATA[FUNCTION_BLOCK Xts_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
 	dummyIoEnvVar : XtsIoEnvVar;
 	dummyXtsHw : XTSHardware;
@@ -45,5 +45,17 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="Xts_TestSuite">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts_TestSuite.XtsRejectsDuplicateRegistrations_Test">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts_TestSuite.XtsRejectsEmptyMoverInterface_Test">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

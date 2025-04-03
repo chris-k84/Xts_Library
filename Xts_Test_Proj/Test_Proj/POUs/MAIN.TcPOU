@@ -6,7 +6,7 @@ VAR
 	XtsHWTestSuite : XtsHardware_TestSuite;
 	XtsMoverTestSuite : XtsMover_TestSuite;
 	XtsTestSuite : Xts_TestSuite;
-	TestSuites : ARRAY[0..2] OF ITestSuite := [XtsHWTestSuite, XtsMoverTestSuite, XtsTestSuite];
+	TestSuites : ARRAY[0..2] OF I_TestSuite := [XtsHWTestSuite, XtsMoverTestSuite, XtsTestSuite];
 	ReRun: BOOL;
 	i: INT;
 END_VAR
@@ -22,5 +22,9 @@ IF ReRun THEN
 	ReRun := FALSE;
 END_IF]]></ST>
     </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="3" Count="7" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

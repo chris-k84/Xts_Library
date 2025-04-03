@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsHardware_TestSuite" Id="{b560ca6a-e691-471a-a25d-3f29414ba80e}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsHardware_TestSuite EXTENDS FB_TestSuite<TestSuite_Parameter.MaxTestCount>
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsHardware_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
 	TestXtsIoEnvVar : XtsIoEnvVar;
 	MyXtsHardware : XTSHardware;
@@ -68,5 +68,25 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="XtsHardware_TestSuite">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsHardware_TestSuite.HardwareIdentifiesNoXpu_Test">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsHardware_TestSuite.HardwareRejectsCallsWithNoXPU_Test">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsHardware_TestSuite.HardwareWontCycleWithoutInit_Test">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsHardware_TestSuite.RegisterXPU_Test">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

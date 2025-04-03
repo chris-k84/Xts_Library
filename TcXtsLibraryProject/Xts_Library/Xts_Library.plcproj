@@ -245,10 +245,6 @@
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
     </PlaceholderReference>
-    <PlaceholderReference Include="Tc3_PackML_V2">
-      <DefaultResolution>Tc3_PackML_V2, * (Beckhoff Automation GmbH)</DefaultResolution>
-      <Namespace>Tc3_PackML_V2</Namespace>
-    </PlaceholderReference>
     <PlaceholderReference Include="Tc3_XTS_Utility">
       <DefaultResolution>Tc3_XTS_Utility, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_XTS_Utility</Namespace>
