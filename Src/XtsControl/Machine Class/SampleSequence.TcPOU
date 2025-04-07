@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.12">
   <POU Name="SampleSequence" Id="{aeca387d-57da-4277-9b3c-59b22eeb58f8}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK SampleSequence EXTENDS CyclicBase
+    <Declaration><![CDATA[FUNCTION_BLOCK SampleSequence IMPLEMENTS I_Cyclic
 VAR
-	ThisMover : I_XtsMoverAxis;
+	ThisMover : I_XtsMover;
 	LeaveTest: BOOL;
 	ArriveTest: BOOL;
 	TestMove: BOOL;
@@ -21,29 +21,17 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF LeaveTest THEN
-	MyMover.TriggerMoverLeave();
+	ThisMover.TriggerMoverLeave();
 END_IF
 
 IF ArriveTest THEN
-	MyMover.TriggerMoverArrive();
+	ThisMover.TriggerMoverArrive();
 END_IF
 
 IF TestMove THEN
-	MyMover.MoveTo(RequiredPosition := Position, MoveVelocity := Velocity);
+	ThisMover.MoveTo(RequiredPosition := Position, MoveVelocity := Velocity, NonModuloMove := FALSE);
 	TestMove := FALSE;
 END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="FB_init" Id="{b21bcb06-91a6-46b3-bb9d-ed6a9a698452}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
-VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	XtsRunner : I_ObjectRunner;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[XtsRunner.AddComponent(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyMover" Id="{c23dd5f6-58df-442d-9989-7b1384c2b3ac}">
@@ -81,9 +69,6 @@ END_VAR
       <LineId Id="16" Count="0" />
       <LineId Id="18" Count="0" />
       <LineId Id="17" Count="0" />
-    </LineIds>
-    <LineIds Name="SampleSequence.FB_init">
-      <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="SampleSequence.MyMover.Get">
       <LineId Id="2" Count="0" />

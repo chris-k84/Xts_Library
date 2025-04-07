@@ -9,7 +9,7 @@
     <WriteProductVersion>true</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
     <Name>XtsControl</Name>
-    <ProgramVersion>3.1.4026.14</ProgramVersion>
+    <ProgramVersion>3.1.4026.15</ProgramVersion>
     <Application>{76b5c7e3-5e01-4c60-82fd-836a1581bde6}</Application>
     <TypeSystem>{58bbbd95-fcda-425e-beb9-5ba1f7af41c4}</TypeSystem>
     <Implicit_Task_Info>{d3be959d-141b-4591-896f-1edca68eee24}</Implicit_Task_Info>
@@ -41,6 +41,10 @@
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="Base Library">
+      <DefaultResolution>Base Library, * (Beckhoff UK)</DefaultResolution>
+      <Namespace>Base_Library</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Pack ML Library">
       <DefaultResolution>Pack ML Library, * (Beckhoff UK)</DefaultResolution>
       <Namespace>Pack_ML_Library</Namespace>
@@ -61,6 +65,10 @@
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
     </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_PackML_V2">
+      <DefaultResolution>Tc3_PackML_V2, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_PackML_V2</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Xts Library">
       <DefaultResolution>Xts Library, * (BeckhoffUK)</DefaultResolution>
       <Namespace>Xts_Library</Namespace>
@@ -74,8 +82,8 @@
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-  <Data>
-    <o xml:space="preserve" t="OptionKey">
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
@@ -2375,7 +2383,10 @@
         <o>
           <v n="Name">"{8F99A816-E488-41E4-9FA3-846536012284}"</v>
           <d n="SubKeys" t="Hashtable" />
-          <d n="Values" t="Hashtable" />
+          <d n="Values" t="Hashtable" ckt="String" cvt="String">
+            <v>DisabledWarningIds</v>
+            <v>5410</v>
+          </d>
         </o>
         <v>{F66C7017-BDD8-4114-926C-81D6D687E35F}</v>
         <o>
@@ -2389,16 +2400,16 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-  </Data>
-  <TypeList>
-    <Type n="Boolean">System.Boolean</Type>
-    <Type n="Hashtable">System.Collections.Hashtable</Type>
-    <Type n="Int32">System.Int32</Type>
-    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-    <Type n="String">System.String</Type>
-    <Type n="UInt32">System.UInt32</Type>
-  </TypeList>
-</XmlArchive>
+        </Data>
+        <TypeList>
+          <Type n="Boolean">System.Boolean</Type>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="Int32">System.Int32</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+          <Type n="UInt32">System.UInt32</Type>
+        </TypeList>
+      </XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>
