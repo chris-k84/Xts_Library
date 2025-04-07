@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.12">
   <POU Name="Machine" Id="{e8d4edde-6e68-4e80-9f5b-2e9346044142}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Machine EXTENDS PML_Method_Base
 VAR
@@ -30,6 +30,7 @@ VAR
 	MoverSequences : ARRAY[1..NumberOFSystemMovers] OF IndexMoverSequence := [8((MyStations := iStationArray,
 																				MyStartPosition := 1000.0))];	
 	i : INT;
+	RegisterationComplete : BOOL;
 END_VAR
 VAR CONSTANT
 	NumberOFSystemMovers : INT := 8;
@@ -82,13 +83,16 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF XtsModuleRunner.Initialise() = 2 THEN
+        <ST><![CDATA[IF NOT RegisterationComplete THEN
 	FOR i := 1 TO NumberOFSystemMovers DO
 		XtsModuleRunner.RegisterModule(Movers[i]);
 		XtsModuleRunner.RegisterModule(MoverSequences[i]);
 		MoverSequences[(Xts_Library.SystemParameters.NumberOfMovers+1)-i].MyMover := Movers[(Xts_Library.SystemParameters.NumberOfMovers+1)-i]; 
 		MyXts.RegisterMovers(MyMover := iMovers[i]);
 	END_FOR
+	XtsModuleRunner.RegisterModule(systemXtsioEnvVar);
+	XtsModuleRunner.RegisterModule(systemXtsHardware);
+	XtsModuleRunner.RegisterModule(systemCAGroup);
 	XtsModuleRunner.RegisterModule(MyXts);
 	XtsModuleRunner.RegisterModule(Station1);
 	XtsModuleRunner.RegisterModule(Station2);
@@ -98,6 +102,9 @@ END_VAR
 	THIS^.PackMLStateMachine := xtsStateMachine;
 	xtsStateMachine.PmlModeCommand(Mode := E_PMLProtectedUnitMode.ePMLProtUnitMode_Production);
 	xtsStateMachine.PmlStateCommand(Command := E_PMLCommand.ePMLCommand_Abort);
+	RegisterationComplete := TRUE;
+END_IF
+IF XtsModuleRunner.Initialise() = 2 THEN
 	Initialise := TRUE;
 END_IF
 ]]></ST>
@@ -157,7 +164,14 @@ ipackml.SetStateComplete();]]></ST>
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="Machine.Initialise">
-      <LineId Id="3" Count="17" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="4" Count="5" />
+      <LineId Id="25" Count="2" />
+      <LineId Id="10" Count="8" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="19" Count="1" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="Machine.Resetting">

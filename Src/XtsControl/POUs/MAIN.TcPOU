@@ -22,19 +22,19 @@ END_CASE
 
 
 IF Reset THEN
-	fbMachine.SetPackML(state := E_PMLCommand.Reset);
+	fbMachine.SetPackML(state := E_PMLCommand.ePMLCommand_Reset);
 	Reset := FALSE;
 END_IF
 IF Abort THEN
-	fbMachine.SetPackML(state := E_PMLCommand.Abort);
+	fbMachine.SetPackML(state := E_PMLCommand.ePMLCommand_Abort);
 	Abort := FALSE;
 END_IF
 IF Clear THEN
-	fbMachine.SetPackML(state := E_PMLCommand.Clear);
+	fbMachine.SetPackML(state := E_PMLCommand.ePMLCommand_Clear);
 	Clear := FALSE;
 END_IF
 IF Start THEN
-	fbMachine.SetPackML(state := E_PMLCommand.Start);
+	fbMachine.SetPackML(state := E_PMLCommand.ePMLCommand_Start);
 	Start := FALSE;
 END_IF]]></ST>
     </Implementation>

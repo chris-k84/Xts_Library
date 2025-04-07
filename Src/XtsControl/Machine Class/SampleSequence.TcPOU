@@ -35,7 +35,7 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyMover" Id="{c23dd5f6-58df-442d-9989-7b1384c2b3ac}">
-      <Declaration><![CDATA[PROPERTY MyMover : I_XtsMoverAxis]]></Declaration>
+      <Declaration><![CDATA[PROPERTY MyMover : I_XtsMover]]></Declaration>
       <Get Name="Get" Id="{b9d1641a-aa56-4f84-90c7-004f2597e2ee}">
         <Declaration><![CDATA[VAR
 END_VAR
