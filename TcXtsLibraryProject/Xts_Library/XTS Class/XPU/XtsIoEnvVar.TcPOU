@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsIoEnvVar" Id="{03c3c931-6ee3-4ab9-88b9-320f3e1d8e15}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsIoEnvVar IMPLEMENTS I_XtsIoEnvVar
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsIoEnvVar IMPLEMENTS I_XtsIoEnvVar, I_Object, I_Initialisable
 VAR
 	XtsIoEnvironment : Tc3_XTS_Utility.FB_TcIoXtsEnvironment;
 	stXtsEnvironmentConfiguration	: ST_XtsEnvironmentConfiguration;
@@ -47,14 +47,15 @@ END_VAR
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{f0d17991-21f7-403c-899a-0fcccbff041e}">
-      <Declaration><![CDATA[METHOD PUBLIC Initialise : BOOL
+      <Declaration><![CDATA[METHOD PUBLIC Initialise : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF XtsIoEnvironment.Init(TRUE) THEN
 	XtsIoEnvironment.Init(FALSE);
-	Initialise := Initialised := TRUE;
+	Initialise := 2;
+	Initialised := TRUE;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -67,5 +68,39 @@ END_VAR
         <ST><![CDATA[IsInitialised := Initialised;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="RegisterWithParent" Id="{37203846-0f41-471d-b37e-9d946dd0bd38}">
+      <Declaration><![CDATA[METHOD RegisterWithParent
+VAR_INPUT
+	Runner	: I_HostObjects;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Runner.RegisterInitialise(THIS^);]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="XtsIoEnvVar">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsIoEnvVar.FB_init">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsIoEnvVar.GetCaGroupInterface">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsIoEnvVar.GetXPUInterface">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsIoEnvVar.Initialise">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsIoEnvVar.IsInitialised">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsIoEnvVar.RegisterWithParent">
+      <LineId Id="1" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
