@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="CollisionGroup" Id="{8907fd76-d392-4030-a5c6-041188f5b990}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK CollisionGroup IMPLEMENTS I_Cyclic, I_CollisionGroup, I_Resettable
+    <Declaration><![CDATA[FUNCTION_BLOCK CollisionGroup IMPLEMENTS I_Cyclic, I_CollisionGroup, I_Resettable, I_Object
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -192,6 +192,16 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="RegisterWithParent" Id="{0f4efa96-221e-4b5f-b62b-0cd9b26287ac}">
+      <Declaration><![CDATA[METHOD RegisterWithParent
+VAR_INPUT
+	Runner	: I_HostObjects;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Runner.RegisterCyclic(THIS^);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="RemoveAllMovers" Id="{72daaa8f-92d0-4f12-b8f9-45742cf249d6}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD RemoveAllMovers : HRESULT
 VAR_INPUT
@@ -225,5 +235,63 @@ END_IF]]></ST>
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="CollisionGroup">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.AddMoverToThisGroup">
+      <LineId Id="3" Count="5" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.CAGroupXtsIoEnvInterface.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.CAGroupXtsIoEnvInterface.Set">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.Cycle">
+      <LineId Id="3" Count="20" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.Disable">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.Enable">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.GetAxisCount">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.GroupRef.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.GroupState.Get">
+      <LineId Id="3" Count="15" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.GroupStop">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.MyName.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.RegisterWithParent">
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.RemoveAllMovers">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.RemoveAMover">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="CollisionGroup.Reset">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

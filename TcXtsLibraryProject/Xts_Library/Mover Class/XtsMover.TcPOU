@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsMover" Id="{f9a43ed2-0578-4aed-857c-1a3adef0c7f6}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsMover IMPLEMENTS I_Cyclic, I_XtsMover, I_Resettable
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsMover IMPLEMENTS I_Cyclic, I_XtsMover, I_Resettable, I_Object
 VAR
 	MyAxisRef : AXIS_REF;
 	_MyAxisStatus : ST_AxisStatus;
@@ -510,6 +510,16 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="RegisterWithParent" Id="{0c8fc6cb-d807-4926-a588-870aa525c7f2}">
+      <Declaration><![CDATA[METHOD RegisterWithParent
+VAR_INPUT
+	Runner	: I_HostObjects;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Runner.RegisterCyclic(THIS^);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Reset" Id="{e9d8249c-2f88-4980-a483-ceda82c7ab80}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD PUBLIC Reset : HRESULT
 VAR_INPUT
@@ -691,6 +701,9 @@ END_VAR
     </LineIds>
     <LineIds Name="XtsMover.PositiveDirectionOnly.Set">
       <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsMover.RegisterWithParent">
+      <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="XtsMover.Reset">
       <LineId Id="3" Count="7" />

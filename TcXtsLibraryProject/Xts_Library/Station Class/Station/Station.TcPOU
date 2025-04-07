@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Station" Id="{506a1b5f-d283-4b99-9adf-318a9c36fdac}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Station IMPLEMENTS IStation, I_Cyclic, I_Resettable
+    <Declaration><![CDATA[FUNCTION_BLOCK Station IMPLEMENTS IStation, I_Cyclic, I_Resettable, I_Object
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -149,6 +149,16 @@ END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>
+    <Method Name="RegisterWithParent" Id="{d8402b41-2440-40c0-90f4-c70380862930}">
+      <Declaration><![CDATA[METHOD RegisterWithParent
+VAR_INPUT
+	Runner	: I_HostObjects;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Runner.RegisterCyclic(THIS^);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Reset" Id="{b49ff0e5-eb8b-49bd-befd-0bab45ac01fe}">
       <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
@@ -163,5 +173,53 @@ Reset := 1;
 ]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="Station">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.Cycle">
+      <LineId Id="3" Count="14" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.HasMover">
+      <LineId Id="3" Count="4" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.IsClear">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.isComplete">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.IsLastStation.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.IsLastStation.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.IsOperating">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.IsReady">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.MoverAway">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.Position.Get">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.Position.Set">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.RegisterWithParent">
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="Station.Reset">
+      <LineId Id="3" Count="4" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

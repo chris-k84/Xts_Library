@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Xts" Id="{4538c683-94fc-49a1-b5ad-30ffec5e4eff}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Xts IMPLEMENTS I_Cyclic, I_Initialisable, I_XTS
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Xts IMPLEMENTS I_Cyclic, I_Initialisable, I_XTS, I_Object
 VAR
 	MyName : STRING;
 	_MyXts : INT;
@@ -101,14 +101,14 @@ METHOD FB_Init: BOOL
 VAR_INPUT
     bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
     bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)   
-	XtsIoEnvVar : I_XtsIoEnvVar;
-	XtsHardware : I_XtsHardware;
-	CAGroup : I_CollisionGroup;
+	MyXtsIoEnvVar : I_XtsIoEnvVar;
+	MyXtsHardware : I_XtsHardware;
+	MyCAGroup : I_CollisionGroup;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_XtsIoEnvVar := XtsIoEnvVar;
-_MyXtsHardware := XtsHardware;
-ICollisionGroup := CAGroup;]]></ST>
+        <ST><![CDATA[_XtsIoEnvVar := MyXtsIoEnvVar;
+_MyXtsHardware := MyXtsHardware;
+ICollisionGroup := MyCAGroup;]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetTMSMoverInterface" Id="{0e64eced-3444-47ea-9660-c818e7a9dea9}" FolderPath="Operations\">
@@ -321,6 +321,17 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
+    <Method Name="RegisterWithParent" Id="{5a27c335-0022-4ddf-98ff-1436953bbdbd}">
+      <Declaration><![CDATA[METHOD RegisterWithParent
+VAR_INPUT
+	Runner	: I_HostObjects;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Runner.RegisterCyclic(THIS^);
+Runner.RegisterInitialise(THIS^);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="StopXts" Id="{4b648283-f5f4-4d47-a58f-be53e519365d}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD StopXts : BOOL
 VAR_INPUT
@@ -330,5 +341,77 @@ END_VAR
         <ST><![CDATA[ICollisionGroup.GroupStop();]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="Xts">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.ActivateTracksInMovers">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.Cycle">
+      <LineId Id="3" Count="15" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.DisableXTS">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.EnableXTS">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.FB_Init">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.GetTMSMoverInterface">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.GetTrackByOCTID">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.Initialise">
+      <LineId Id="3" Count="58" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.IsXtsIdle">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.IsXtsReady">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.MoverHomeSequence">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.MyNumberOfParts.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.MyNumberOfParts.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.MyNumberOfTracks.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.MyNumberOfTracks.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.MyXts.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.MyXts.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.RegisterHardware">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.RegisterMovers">
+      <LineId Id="3" Count="15" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.RegisterWithParent">
+      <LineId Id="1" Count="1" />
+    </LineIds>
+    <LineIds Name="Xts.StopXts">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

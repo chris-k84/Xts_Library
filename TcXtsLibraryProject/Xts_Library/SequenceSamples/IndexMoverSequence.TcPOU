@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="IndexMoverSequence" Id="{50af290e-a0d7-45b3-a647-c8828b096bd1}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK IndexMoverSequence IMPLEMENTS I_Cyclic, I_Resettable
+    <Declaration><![CDATA[FUNCTION_BLOCK IndexMoverSequence IMPLEMENTS I_Cyclic, I_Resettable, I_Object
 VAR
 	State : IndexSequenceState;  
 	CurrentStation : UINT;
@@ -203,6 +203,16 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="RegisterWithParent" Id="{4ad7e011-f71b-4cbe-b657-57f840858ed2}">
+      <Declaration><![CDATA[METHOD RegisterWithParent
+VAR_INPUT
+	Runner	: I_HostObjects;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Runner.RegisterCyclic(THIS^);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Reset" Id="{01dd3306-e903-4754-85c4-ea13c41e0b8c}">
       <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
@@ -256,5 +266,55 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <LineIds Name="IndexMoverSequence">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.Cycle">
+      <LineId Id="3" Count="99" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.MoverVelocity.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.MoverVelocity.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.MyMover.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.MyMover.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.MyStartPosition.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.MyStartPosition.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.MyStations.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.MyStations.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.RegisterWithParent">
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.Reset">
+      <LineId Id="3" Count="6" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.StartIndexing">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.StopIndexing">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.XtsNoHome.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IndexMoverSequence.XtsNoHome.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
