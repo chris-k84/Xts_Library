@@ -5,8 +5,8 @@
 VAR
 	XtsModuleRunner : ObjectRunner;
 	xtsStateMachine : PMLStateMachine;
-	Movers : ARRAY[1..NumberOFSystemMovers] OF XtsMoverAxis;
-	iMovers : ARRAY[1..NumberOFSystemMovers] OF ITF_XtsMoverAxis := [Movers[1],Movers[2],
+	Movers : ARRAY[1..NumberOFSystemMovers] OF XtsMover;
+	iMovers : ARRAY[1..NumberOFSystemMovers] OF I_XtsMover := [Movers[1],Movers[2],
 																				Movers[3],Movers[4],
 																				Movers[5],Movers[6],
 																				Movers[7],Movers[8]];
@@ -135,5 +135,38 @@ END_VAR
 ipackml.SetStateComplete();]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="Machine">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Machine.Aborting">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Machine.Clearing">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Machine.Cycle">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Machine.GetPackML">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Machine.Initialise">
+      <LineId Id="3" Count="17" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Machine.Resetting">
+      <LineId Id="3" Count="4" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Machine.SetPackML">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Machine.Starting">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
