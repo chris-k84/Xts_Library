@@ -32,8 +32,7 @@ Abort := true;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{31fee075-b465-44b4-a7dd-aab9d5d631b4}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Busy : BOOL
+      <Declaration><![CDATA[PROPERTY Busy : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{edcd40ed-55fa-45eb-9c70-bed5c284d98d}">
         <Declaration><![CDATA[VAR
@@ -142,8 +141,7 @@ END_IF
       </Implementation>
     </Method>
     <Property Name="Done" Id="{440a0b71-7140-4d16-8dd2-a4a4081fd61d}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Done : BOOL
+      <Declaration><![CDATA[PROPERTY Done : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{e5bec694-8449-46b8-8efe-c1c6e77a0a8d}">
         <Declaration><![CDATA[VAR
@@ -155,8 +153,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="Error" Id="{6b8cc903-8899-4daa-98e1-e8890e9ccd7b}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Error : BOOL
+      <Declaration><![CDATA[PROPERTY Error : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{9fda5300-f4eb-497a-ab0f-244402c0a65e}">
         <Declaration><![CDATA[VAR
@@ -198,5 +195,38 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <LineIds Name="XtsDisableSequence">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsDisableSequence.Abort">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsDisableSequence.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsDisableSequence.Cycle">
+      <LineId Id="3" Count="70" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsDisableSequence.Disable">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsDisableSequence.Done.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsDisableSequence.Error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsDisableSequence.FB_init">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsDisableSequence.MoverArray.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="XtsDisableSequence.MoverArray.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

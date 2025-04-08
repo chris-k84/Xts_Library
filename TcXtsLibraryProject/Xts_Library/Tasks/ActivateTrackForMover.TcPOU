@@ -33,8 +33,7 @@ State := 0;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{23074907-2ae6-43d6-952f-8555fe23ba80}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Busy : BOOL
+      <Declaration><![CDATA[PROPERTY Busy : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{4a3a6bc3-a08b-4d30-bf35-0fdb74a6daa4}">
         <Declaration><![CDATA[VAR
@@ -88,8 +87,7 @@ mcActivateTrack(Axis := _Axis);]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{c8440faf-d9f2-4d0f-8b0f-12623384efd8}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Done : BOOL
+      <Declaration><![CDATA[PROPERTY Done : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{567704db-7419-4756-aae9-b62178c2fc84}">
         <Declaration><![CDATA[VAR
@@ -101,8 +99,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="Error" Id="{cd1cdc81-f00a-4514-9adc-1c583f307c6e}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Error : BOOL
+      <Declaration><![CDATA[PROPERTY Error : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{a7583719-1e76-4918-b599-0ba47213ed74}">
         <Declaration><![CDATA[VAR
@@ -151,5 +148,35 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <LineIds Name="ActivateTrackForMover">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackForMover.Abort">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackForMover.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackForMover.Cycle">
+      <LineId Id="3" Count="32" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackForMover.Done.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackForMover.Error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackForMover.Execute">
+      <LineId Id="3" Count="4" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackForMover.FB_init">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackForMover.NewTrackId.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

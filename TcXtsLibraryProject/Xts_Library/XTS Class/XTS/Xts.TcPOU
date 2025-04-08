@@ -35,7 +35,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD PUBLIC ActivateTracksInMovers : BOOL
 VAR
 	ActivateTrackResult : BOOL;
-	i : UINT;
+	i : INT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
@@ -114,11 +114,11 @@ ICollisionGroup := MyCAGroup;]]></ST>
     <Method Name="GetTMSMoverInterface" Id="{0e64eced-3444-47ea-9660-c818e7a9dea9}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD PUBLIC GetTMSMoverInterface : BOOL
 VAR
-	i : UINT;
+	i : INT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[FOR i := 1 TO (_registeredNumberOfMovers - 1) DO
-	_MoverArray[i].MoverXtsIoEnvInterface := _XPU.MoverTcIo(i);
+	_MoverArray[i].MoverXtsIoEnvInterface := _XPU.MoverTcIo(TO_UINT(i));
 END_FOR]]></ST>
       </Implementation>
     </Method>
@@ -299,7 +299,7 @@ VAR_INPUT
 	MyMover : I_XtsMover;
 END_VAR
 VAR
-	i : UINT;
+	i : INT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF MyMover <> 0 THEN

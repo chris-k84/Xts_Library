@@ -29,8 +29,7 @@ State := 0;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{4e4db787-2247-4ffa-a4fa-212f7c481400}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Busy : BOOL
+      <Declaration><![CDATA[PROPERTY Busy : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{8a7815a8-c1fd-47de-9b79-1b1569675505}">
         <Declaration><![CDATA[VAR
@@ -83,8 +82,7 @@ groupEnable(AxesGroup := _caGroup.GroupRef);]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{a772c0a8-091e-4c87-9bf2-8f9e57381133}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Done : BOOL
+      <Declaration><![CDATA[PROPERTY Done : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{50223277-a964-4c91-8fe3-3b1b9979de48}">
         <Declaration><![CDATA[VAR
@@ -96,8 +94,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="Error" Id="{3c7c1991-df63-4a12-9a6d-e45eb55d1f39}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Error : BOOL
+      <Declaration><![CDATA[PROPERTY Error : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{f9f90eb7-811c-45c6-9af2-24f6616a22a6}">
         <Declaration><![CDATA[VAR
@@ -127,5 +124,31 @@ END_VAR
         <ST><![CDATA[_caGroup := MyCaGroup;]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="EnableGroup">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="EnableGroup.Abort">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="EnableGroup.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="EnableGroup.Cycle">
+      <LineId Id="3" Count="31" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="EnableGroup.Done.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="EnableGroup.Error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="EnableGroup.Execute">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="EnableGroup.FB_init">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

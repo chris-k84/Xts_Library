@@ -49,8 +49,7 @@ END_VAR
       </Set>
     </Property>
     <Property Name="Busy" Id="{98ae5732-f508-463a-8f9c-9f54ad1821f5}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Busy : BOOL
+      <Declaration><![CDATA[PROPERTY Busy : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{84ba2f1a-36fd-4d7b-97cb-ca57f0f3f0c7}">
         <Declaration><![CDATA[VAR
@@ -121,8 +120,7 @@ END_VAR
       </Set>
     </Property>
     <Property Name="Done" Id="{706feeb3-2a28-4a2a-b819-7bb55bd73ff5}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Done : BOOL
+      <Declaration><![CDATA[PROPERTY Done : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{37c3e926-1b46-4356-8064-b4a1dfbf3ce5}">
         <Declaration><![CDATA[VAR
@@ -134,8 +132,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="Error" Id="{d69fd401-b2dd-44f6-914b-954c635c1b05}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Error : BOOL
+      <Declaration><![CDATA[PROPERTY Error : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{c20a1bf9-e383-400a-99fa-a6607965fe21}">
         <Declaration><![CDATA[VAR
@@ -232,5 +229,63 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <LineIds Name="MoveModuloMoverToPosition">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Abort">
+      <LineId Id="3" Count="4" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Acceleration.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Acceleration.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Cycle">
+      <LineId Id="3" Count="31" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Deceleration.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Deceleration.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Done.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.FB_init">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Gap.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Gap.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Jerk.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Jerk.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.MoveTo">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Options.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.Options.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

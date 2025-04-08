@@ -32,7 +32,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetCaGroupInterface := XtsIoEnvironment.Mc2CaGroup(CAGroupNumber);]]></ST>
+        <ST><![CDATA[GetCaGroupInterface := XtsIoEnvironment.Mc2CaGroup(TO_UINT(CAGroupNumber));]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetXPUInterface" Id="{a6b4198a-d372-4fc0-b700-debb44563dc0}" FolderPath="Commands\">
@@ -42,7 +42,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetXPUInterface := XtsIoEnvironment.XpuTcIo(MyXts);
+        <ST><![CDATA[GetXPUInterface := XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts));
 ]]></ST>
       </Implementation>
     </Method>

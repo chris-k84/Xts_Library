@@ -30,8 +30,7 @@ State := 0;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{0d92caac-9bc0-454c-a618-8bcbd6fddbf0}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Busy : BOOL
+      <Declaration><![CDATA[PROPERTY Busy : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{b2be66ef-24ca-4f17-b275-22f37a693e1a}">
         <Declaration><![CDATA[VAR
@@ -85,8 +84,7 @@ RemoveAllFromGrp(AxesGroup := _caGroup.GroupRef);]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{975b270f-4493-4b56-b51c-510ba823888a}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Done : BOOL
+      <Declaration><![CDATA[PROPERTY Done : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{95b9fdb8-73f9-4ddb-bfc3-1e9d09e71602}">
         <Declaration><![CDATA[VAR
@@ -98,8 +96,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="Error" Id="{db24f627-0029-4f0f-a1df-743d439176a7}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Error : BOOL
+      <Declaration><![CDATA[PROPERTY Error : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{5d6c2566-9991-444d-a2dc-e184008251a9}">
         <Declaration><![CDATA[VAR
@@ -129,5 +126,31 @@ END_VAR
         <ST><![CDATA[RemoveAllMover := _removeAllMovers := true;]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="RemoveAllMoverFromGroup">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="RemoveAllMoverFromGroup.Abort">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="RemoveAllMoverFromGroup.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="RemoveAllMoverFromGroup.Cycle">
+      <LineId Id="3" Count="32" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="RemoveAllMoverFromGroup.Done.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="RemoveAllMoverFromGroup.Error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="RemoveAllMoverFromGroup.FB_init">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="RemoveAllMoverFromGroup.RemoveAllMover">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

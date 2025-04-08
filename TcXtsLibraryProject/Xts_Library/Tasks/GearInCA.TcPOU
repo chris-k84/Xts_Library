@@ -28,8 +28,7 @@ State := 0;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{4b87a8a5-0488-49e9-9c97-79ee531d0f30}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Busy : BOOL
+      <Declaration><![CDATA[PROPERTY Busy : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{ae7f8c84-bd44-4377-ac93-c5e80d9322fd}">
         <Declaration><![CDATA[VAR
@@ -80,8 +79,7 @@ END_IF ]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{4ec2e7b3-ecd4-4788-b9d1-484eeb59988f}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Done : BOOL
+      <Declaration><![CDATA[PROPERTY Done : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{870c3b62-4cf2-4c56-9b9c-d05cf4fbc241}">
         <Declaration><![CDATA[VAR
@@ -93,8 +91,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="Error" Id="{b0cd652d-d067-40fd-9e01-a5029b2c46d5}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Error : BOOL
+      <Declaration><![CDATA[PROPERTY Error : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{3fb8f055-5da1-4e27-bc19-18113abf4bbd}">
         <Declaration><![CDATA[VAR
@@ -168,5 +165,44 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <LineIds Name="GearInCA">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="GearInCA.Abort">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="GearInCA.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="GearInCA.Cycle">
+      <LineId Id="3" Count="29" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="GearInCA.Done.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="GearInCA.Error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="GearInCA.FB_init">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="GearInCA.MyGearMaster.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="GearInCA.MyGearMaster.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="GearInCA.Sync">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="GearInCA.SyncStrategy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="GearInCA.SyncStrategy.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

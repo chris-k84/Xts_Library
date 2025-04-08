@@ -30,8 +30,7 @@ Abort := true;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{082143e7-cb0d-4693-a3c5-aae125aac900}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Busy : BOOL
+      <Declaration><![CDATA[PROPERTY Busy : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{f3fb4d35-6498-4dc3-9624-a4dbbaa48d6a}">
         <Declaration><![CDATA[VAR
@@ -84,8 +83,7 @@ groupReset(AxesGroup := _caGroup.GroupRef);]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{c50ed748-a155-44f3-a4e5-da3ebbeffcb4}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Done : BOOL
+      <Declaration><![CDATA[PROPERTY Done : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{896b956f-5079-4ce4-b4a1-b426f3d4396f}">
         <Declaration><![CDATA[VAR
@@ -97,8 +95,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="Error" Id="{7cc41ac6-6a8c-4645-8a85-d402bdf38d38}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Error : BOOL
+      <Declaration><![CDATA[PROPERTY Error : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{62d28ef8-841d-4940-8890-5b4066e5f424}">
         <Declaration><![CDATA[VAR
@@ -128,5 +125,31 @@ END_VAR
         <ST><![CDATA[_caGroup := MyCaGroup;]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="ResetGroup">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.Abort">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.Cycle">
+      <LineId Id="3" Count="31" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.Done.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.Error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.Execute">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.FB_init">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

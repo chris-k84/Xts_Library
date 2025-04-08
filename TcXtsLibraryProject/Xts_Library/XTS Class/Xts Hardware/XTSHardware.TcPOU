@@ -38,10 +38,10 @@ END_VAR
         <ST><![CDATA[IF NOT _isInitialised THEN
 	Cycle := -1;
 ELSE
-	FOR i := 0 TO UDINT_TO_INT(MyPartCount-1) DO
+	FOR i := 0 TO (MyPartCount - 1) DO
 		XtsParts[i].Cycle();
 	END_FOR
-	FOR i := 0 TO UDINT_TO_INT(MyTrackCount-1) DO
+	FOR i := 0 TO (MyTrackCount-1) DO
 		XtsTracks[i].Cycle();
 	END_FOR
 	Cycle := 1;
@@ -87,7 +87,7 @@ VAR_INPUT
 	trackOTCID : OTCID;
 END_VAR
 VAR
-	i: UDINT;
+	i: INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -110,11 +110,7 @@ END_VAR
     <Method Name="Initialise" Id="{95822be7-e433-46ff-bfc3-e4b3c51e2a74}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR
-	i: UDINT;
-END_VAR
-
-VAR
-	
+	i: INT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE XtsIoEnvInitialiseState OF
@@ -128,9 +124,9 @@ END_VAR]]></Declaration>
 		END_IF
 	1:
 		MyPartCount := _MyXpu.GetPartCount();
-		IF MyPartCount = _MyNumberParts THEN
-			FOR i := 0 TO UDINT_TO_INT(MyPartCount - 1) DO
-				XtsParts[i].MyXtsIoEnvInterface := _MyXpu.PartTcIo(UDINT_TO_UINT(i + 1));
+		IF TO_INT(MyPartCount) = _MyNumberParts THEN
+			FOR i := 0 TO (TO_INT(MyPartCount) - 1) DO
+				XtsParts[i].MyXtsIoEnvInterface := _MyXpu.PartTcIo(TO_UINT(i + 1));
 				IF THIS^.IsInSim() THEN
 					XtsParts[i].SetInSim();
 				END_IF
@@ -143,9 +139,9 @@ END_VAR]]></Declaration>
 		MyTrackCount := _MyXpu.GetTrackCount();
 		_MyXpu.GetTrackOids();
 		TrackOTCIDs := _MyXpu.P_TrackOids;
-		IF MyTrackCount = _MyNumberTracks THEN
+		IF TO_INT(MyTrackCount) = _MyNumberTracks THEN
 			FOR i := 0 TO UDINT_TO_INT(MyTrackCount - 1) DO
-				XtsTracks[i].MyXtsIoEnvInterface := _MyXpu.TrackTcIo(UDINT_TO_UINT(i + 1));
+				XtsTracks[i].MyXtsIoEnvInterface := _MyXpu.TrackTcIo(TO_UINT(i + 1));
 				XtsTracks[i].MyOTCID := TrackOTCIDs[i + 1];
 			END_FOR
 			XtsIoEnvInitialiseState := 4;
