@@ -17,6 +17,7 @@ VAR
 	DisableSequence : XtsDisableSequence(ICollisionGroup);
 	State : UINT;	
 	AtHome: BOOL;
+	Initialised : BOOL;
 	EnabledTrigger : R_TRIG;
 	DisabledTrigger : R_TRIG;
 	_registeredNumberOfMovers: INT;
@@ -196,8 +197,16 @@ END_VAR
 		END_IF
 	
 	XtsSystemInitialisation.HWReady:
-		Initialise := 2;	
+		Initialise := 2;
+		Initialised := TRUE;	
 END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsInitialised" Id="{ffca4056-5f8a-485d-b64d-57c6377addfd}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsInitialised : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsInitialised := Initialised;]]></ST>
       </Implementation>
     </Method>
     <Method Name="IsXtsIdle" Id="{98f4e7e8-94b6-4461-9a7b-2bd1c0aafde4}" FolderPath="Status\">
@@ -370,8 +379,11 @@ END_VAR
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="Xts.Initialise">
-      <LineId Id="3" Count="58" />
+      <LineId Id="3" Count="59" />
       <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Xts.IsInitialised">
+      <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="Xts.IsXtsIdle">
       <LineId Id="2" Count="0" />
