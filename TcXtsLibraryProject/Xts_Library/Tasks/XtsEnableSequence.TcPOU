@@ -11,11 +11,15 @@ VAR
 	moverNumbers : UINT;
 	AllMoversEnabled: BOOL;
 	EnableTrigger : BOOL;	
-	arrMovers : ARRAY[1..SystemParameters.NumberOfMovers] OF I_XtsMover;
-		State: INT;
+	arrMovers : ARRAY[0..MaxMovers] OF I_XtsMover;
+	_registeredNumberOfMovers : INT;
+	State: INT;
 	_Done: BOOL;
 	_Error: BOOL;
 	_Busy: BOOL;
+END_VAR
+VAR CONSTANT
+	MaxMovers : INT := 255;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
@@ -64,10 +68,10 @@ END_VAR]]></Declaration>
 		END_IF
 		
 	10:
-		FOR moverNumbers := 1 TO SystemParameters.NumberOfMovers DO
+		FOR moverNumbers := 0 TO _registeredNumberOfMovers DO
 			arrMovers[moverNumbers].Reset();
 		END_FOR
-		moverNumbers := 1;
+		moverNumbers := 0;
 		State := 20;
 		
 	20:
@@ -87,7 +91,7 @@ END_VAR]]></Declaration>
 			moverNumbers := moverNumbers + 1;
 			State := 30;
 		ELSE
-			FOR moverNumbers := 1 TO SystemParameters.NumberOfMovers DO
+			FOR moverNumbers := 0 TO _registeredNumberOfMovers DO
 				arrMovers[moverNumbers].EnableMover();
 			END_FOR
 			State := 50;
@@ -95,7 +99,7 @@ END_VAR]]></Declaration>
 		
 	50:
 		AllMoversEnabled := TRUE;
-		FOR moverNumbers := 1 TO SystemParameters.NumberOfMovers DO
+		FOR moverNumbers := 0 TO _registeredNumberOfMovers DO
 			AllMoversEnabled := TRUE AND arrMovers[moverNumbers].isMoverEnabled();
 		END_FOR
 		IF AllMoversEnabled THEN
@@ -163,57 +167,18 @@ END_VAR
         <ST><![CDATA[_collisionGroup := MyCaGroup;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MoverArray" Id="{2acddb92-7228-4ce1-abf4-c52047e8db87}">
-      <Declaration><![CDATA[PROPERTY MoverArray : array[1..SystemParameters.NumberOfMovers] of I_XtsMover]]></Declaration>
-      <Get Name="Get" Id="{45d4b80a-6470-4599-bc0b-107c251d2b9f}">
-        <Declaration><![CDATA[VAR
+    <Method Name="RegisterMovers" Id="{330a136c-c434-49ce-bb82-6de99c18307c}">
+      <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
+VAR_INPUT
+	MyMover : I_XtsMover;
 END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MoverArray := arrMovers;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{2f5a4b68-8d6e-4eaa-8b71-147268b7ef4e}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[arrMovers := MoverArray;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <LineIds Name="XtsEnableSequence">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsEnableSequence.Abort">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsEnableSequence.Busy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsEnableSequence.Cycle">
-      <LineId Id="3" Count="60" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsEnableSequence.Done.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsEnableSequence.Enable">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsEnableSequence.Error.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsEnableSequence.FB_init">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsEnableSequence.MoverArray.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsEnableSequence.MoverArray.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
+VAR
+	i : INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[arrMovers[_registeredNumberOfMovers] := MyMover;
+_registeredNumberOfMovers := _registeredNumberOfMovers + 1;]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
