@@ -109,7 +109,9 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[_XtsIoEnvVar := MyXtsIoEnvVar;
 _MyXtsHardware := MyXtsHardware;
-ICollisionGroup := MyCAGroup;]]></ST>
+ICollisionGroup := MyCAGroup;
+EnableSequence.FB_init(FALSE,FALSE,ICollisionGroup);
+DisableSequence.FB_init(FALSE,FALSE,ICollisionGroup);]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetTMSMoverInterface" Id="{0e64eced-3444-47ea-9660-c818e7a9dea9}" FolderPath="Operations\">
@@ -350,80 +352,5 @@ END_VAR
         <ST><![CDATA[ICollisionGroup.GroupStop();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="Xts">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.ActivateTracksInMovers">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.Cycle">
-      <LineId Id="3" Count="15" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.DisableXTS">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.EnableXTS">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.FB_Init">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.GetTMSMoverInterface">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.GetTrackByOCTID">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.Initialise">
-      <LineId Id="3" Count="59" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.IsInitialised">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.IsXtsIdle">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.IsXtsReady">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MoverHomeSequence">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MyNumberOfParts.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MyNumberOfParts.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MyNumberOfTracks.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MyNumberOfTracks.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MyXts.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MyXts.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.RegisterHardware">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.RegisterMovers">
-      <LineId Id="3" Count="15" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.RegisterWithParent">
-      <LineId Id="1" Count="1" />
-    </LineIds>
-    <LineIds Name="Xts.StopXts">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
