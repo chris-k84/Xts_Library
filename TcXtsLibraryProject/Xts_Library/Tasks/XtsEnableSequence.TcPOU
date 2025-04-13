@@ -171,9 +171,6 @@ END_VAR
       <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
 VAR_INPUT
 	MyMover : I_XtsMover;
-END_VAR
-VAR
-	i : INT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[arrMovers[_registeredNumberOfMovers] := MyMover;
