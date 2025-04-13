@@ -10,16 +10,14 @@ END_VAR
     </Implementation>
     <Method Name="MoverHomeSequence" Id="{dd65f3ed-d01b-4f9f-95cc-8438905256ec}">
       <Declaration><![CDATA[METHOD MoverHomeSequence : BOOL
-]]></Declaration>
+VAR
+	i : INT;
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[FOR i := 0 TO 7 DO 
+	_MoverArray[i].MoveTo(1000.0,1000.0,FALSE);
+END_FOR]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="ThisXTS">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ThisXTS.MoverHomeSequence">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

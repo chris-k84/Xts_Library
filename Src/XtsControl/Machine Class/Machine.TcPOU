@@ -5,11 +5,11 @@
 VAR
 	XtsModuleRunner : ObjectRunner;
 	xtsStateMachine : PMLStateMachine;
-	Movers : ARRAY[1..NumberOFSystemMovers] OF XtsMover;
-	iMovers : ARRAY[1..NumberOFSystemMovers] OF I_XtsMover := [Movers[1],Movers[2],
-																				Movers[3],Movers[4],
-																				Movers[5],Movers[6],
-																				Movers[7],Movers[8]];
+	Movers : ARRAY[0..7] OF XtsMover;
+	iMovers : ARRAY[0..7] OF I_XtsMover := [Movers[0],Movers[1],
+											Movers[2],Movers[3],
+											Movers[4],Movers[5],
+											Movers[6],Movers[7]];
 	Station1 : StationSample := (Position := 850.0, 
 									TempPropTime := T#1500MS);
 	Station2 : StationSample := (Position := 1200.0, 
@@ -20,14 +20,14 @@ VAR
 									TempPropTime := T#1500MS);
 	Station5 : StationSample := (Position := 2400.0, 
 									TempPropTime := T#1500MS);
-	iStationArray : ARRAY[1..SystemParameters.NumberOfStations] OF IProcess := [Station1,Station2,
+	iStationArray : ARRAY[0..SystemParameters.NumberOfStations] OF IProcess := [Station1,Station2,
 																					Station3,Station4,
 																					Station5];//,Station6];
 	systemXtsioEnvVar : XtsIoEnvVar;	
 	systemXtsHardware : XTSHardware;				
 	systemCAGroup : CollisionGroup;															
 	MyXts : ThisXTS(systemXtsioEnvVar,systemXtsHardware,systemCAGroup) := (MyXts := 1, MyNumberOfParts := 1, MyNumberOfTracks := 1);
-	MoverSequences : ARRAY[1..NumberOFSystemMovers] OF IndexMoverSequence := [8((MyStations := iStationArray,
+	MoverSequences : ARRAY[0..7] OF IndexMoverSequence := [8((MyStations := iStationArray,
 																				MyStartPosition := 1000.0))];	
 	i : INT;
 	RegisterationComplete : BOOL;
@@ -84,10 +84,10 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT RegisterationComplete THEN
-	FOR i := 1 TO NumberOFSystemMovers DO
+	FOR i := 0 TO 7 DO
 		XtsModuleRunner.RegisterModule(Movers[i]);
 		XtsModuleRunner.RegisterModule(MoverSequences[i]);
-		MoverSequences[(Xts_Library.SystemParameters.NumberOfMovers+1)-i].MyMover := Movers[(Xts_Library.SystemParameters.NumberOfMovers+1)-i]; 
+		MoverSequences[i].MyMover := Movers[i]; 
 		MyXts.RegisterMovers(MyMover := iMovers[i]);
 	END_FOR
 	XtsModuleRunner.RegisterModule(systemXtsioEnvVar);
@@ -104,9 +104,11 @@ END_VAR
 	xtsStateMachine.PmlStateCommand(Command := E_PMLCommand.ePMLCommand_Abort);
 	RegisterationComplete := TRUE;
 END_IF
-IF XtsModuleRunner.Initialise() = 2 THEN
+
+IF XtsModuleRunner.Initialise() = 1 THEN
 	Initialise := TRUE;
 END_IF
+
 ]]></ST>
       </Implementation>
     </Method>
@@ -145,45 +147,5 @@ END_VAR
 ipackml.SetStateComplete();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="Machine">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.Aborting">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.Clearing">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.Cycle">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.GetPackML">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.Initialise">
-      <LineId Id="23" Count="0" />
-      <LineId Id="4" Count="5" />
-      <LineId Id="25" Count="2" />
-      <LineId Id="10" Count="8" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="19" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.Resetting">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.SetPackML">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Machine.Starting">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
