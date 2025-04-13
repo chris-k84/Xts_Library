@@ -93,7 +93,7 @@ CASE State OF
 	
 	20:
 		IF _collisionGroup.GetAxisCount() = 0 THEN
-			FOR moverNumbers := 0 TO _registeredNumberOfMovers DO
+			FOR moverNumbers := 0 TO (_registeredNumberOfMovers-1) DO
 				arrMovers[moverNumbers].DisableMover();
 			END_FOR
 			State := 30;
