@@ -101,7 +101,7 @@ CASE State OF
 		
 	30:
 		AllMoversDisabled := TRUE;
-		FOR moverNumbers := 0 TO _registeredNumberOfMovers DO
+		FOR moverNumbers := 0 TO (_registeredNumberOfMovers-1) DO
 			AllMoversDisabled := TRUE AND NOT arrMovers[moverNumbers].isMoverEnabled();
 		END_FOR
 		IF AllMoversDisabled THEN

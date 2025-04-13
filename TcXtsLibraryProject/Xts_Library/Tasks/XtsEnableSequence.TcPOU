@@ -68,7 +68,7 @@ END_VAR]]></Declaration>
 		END_IF
 		
 	10:
-		FOR moverNumbers := 0 TO _registeredNumberOfMovers DO
+		FOR moverNumbers := 0 TO (_registeredNumberOfMovers-1) DO
 			arrMovers[moverNumbers].Reset();
 		END_FOR
 		moverNumbers := 0;
@@ -91,7 +91,7 @@ END_VAR]]></Declaration>
 			moverNumbers := moverNumbers + 1;
 			State := 30;
 		ELSE
-			FOR moverNumbers := 0 TO _registeredNumberOfMovers DO
+			FOR moverNumbers := 0 TO (_registeredNumberOfMovers-1) DO
 				arrMovers[moverNumbers].EnableMover();
 			END_FOR
 			State := 50;
@@ -99,7 +99,7 @@ END_VAR]]></Declaration>
 		
 	50:
 		AllMoversEnabled := TRUE;
-		FOR moverNumbers := 0 TO _registeredNumberOfMovers DO
+		FOR moverNumbers := 0 TO (_registeredNumberOfMovers-1) DO
 			AllMoversEnabled := TRUE AND arrMovers[moverNumbers].isMoverEnabled();
 		END_FOR
 		IF AllMoversEnabled THEN
