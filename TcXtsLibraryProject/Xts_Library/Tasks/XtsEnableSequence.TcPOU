@@ -87,7 +87,7 @@ END_VAR]]></Declaration>
 		
 		
 	40:
-		IF moverNumbers <> SystemParameters.NumberOfMovers THEN
+		IF moverNumbers <> (_registeredNumberOfMovers-1) THEN
 			moverNumbers := moverNumbers + 1;
 			State := 30;
 		ELSE
