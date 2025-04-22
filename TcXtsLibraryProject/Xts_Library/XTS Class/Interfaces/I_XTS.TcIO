@@ -3,10 +3,34 @@
   <Itf Name="I_XTS" Id="{eb22a7d8-6cc9-41fe-bacb-ecb9c288212d}">
     <Declaration><![CDATA[INTERFACE I_XTS
 ]]></Declaration>
+    <Method Name="DisableXTS" Id="{d730e6bc-30f4-400f-83c5-0a8ef7530dc6}">
+      <Declaration><![CDATA[METHOD DisableXTS : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="EnableXTS" Id="{a90bf243-5fbb-42eb-a2e5-eb1ea9f490a9}">
+      <Declaration><![CDATA[METHOD EnableXTS : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoverHomeSequence" Id="{ac0ec977-8522-4017-9641-ad2a4c242c82}">
+      <Declaration><![CDATA[METHOD PUBLIC Abstract MoverHomeSequence : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="RegisterMovers" Id="{e65bc655-b1b5-4ed3-91eb-2d51871a4d75}">
       <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
 VAR_INPUT
 	MyMover : I_XtsMover;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="StopXts" Id="{d7591d56-8a8c-46a1-bfd3-85f1f168760d}">
+      <Declaration><![CDATA[METHOD StopXts : BOOL
+VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>

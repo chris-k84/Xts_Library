@@ -299,15 +299,6 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="RegisterHardware" Id="{535f01ed-4415-4576-8745-b33a0669ceb6}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD RegisterHardware : HRESULT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="RegisterMovers" Id="{a3bbc877-121f-4130-8916-a04d2ba4dd9d}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
 VAR_INPUT
