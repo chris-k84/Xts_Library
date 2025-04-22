@@ -227,6 +227,15 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
+    <Method Name="getCurrentPosition" Id="{7d5a975d-08c0-41e2-b667-ea0e7fe80524}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD getCurrentPosition : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[getCurrentPosition := MyAxisRef.NcToPlc.ActPos;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="getErrorID" Id="{5ba2965f-231a-47cc-bcc5-dfd172bd6d02}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getErrorID : udint
 VAR_INPUT
