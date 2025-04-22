@@ -15,6 +15,22 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="IsInitialised" Id="{e1565fab-ac95-48ac-ae78-e46b6110b4fc}">
+      <Declaration><![CDATA[METHOD IsInitialised : BOOL
+]]></Declaration>
+    </Method>
+    <Method Name="IsXtsIdle" Id="{a58467b2-fd55-49b7-9538-35b2ad34103b}">
+      <Declaration><![CDATA[METHOD IsXtsIdle : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="IsXtsReady" Id="{88e988d8-b3fd-4023-a27f-e2263614dcbf}">
+      <Declaration><![CDATA[METHOD IsXtsReady : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="MoverHomeSequence" Id="{ac0ec977-8522-4017-9641-ad2a4c242c82}">
       <Declaration><![CDATA[METHOD PUBLIC Abstract MoverHomeSequence : BOOL
 VAR_INPUT
