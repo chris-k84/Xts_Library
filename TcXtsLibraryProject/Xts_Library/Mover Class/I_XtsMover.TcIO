@@ -68,6 +68,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="getCurrentPosition" Id="{449a4b63-7e3e-4dcb-b1ac-b51087274561}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD getCurrentPosition : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="HaltAxis" Id="{881642ff-213b-4030-944f-bd624c008c64}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD HaltAxis : HRESULT
 VAR_INPUT
