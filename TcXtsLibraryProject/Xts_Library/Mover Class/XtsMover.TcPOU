@@ -227,6 +227,15 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
+    <Method Name="getErrorID" Id="{5ba2965f-231a-47cc-bcc5-dfd172bd6d02}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD getErrorID : udint
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[getErrorID := _MyAxisStatus.ErrorID;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="GetMoverCtrlOTCID" Id="{6852d0c0-13fb-4a6d-9e8b-5d538e770d2f}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD GetMoverCtrlOTCID : XtsMoverControllerOTCID
 VAR_INPUT
@@ -261,6 +270,15 @@ END_VAR
 ELSE
 	HaltAxis := -1;
 END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="hasError" Id="{6d2c5795-b984-4bf0-9ad4-9c8de694c1dd}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD hasError : bool
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[hasError := _MyAxisStatus.Error;]]></ST>
       </Implementation>
     </Method>
     <Property Name="IdentInGroup" Id="{4d5563a0-634a-4074-a0e4-612875dd790c}" FolderPath="Administration\">

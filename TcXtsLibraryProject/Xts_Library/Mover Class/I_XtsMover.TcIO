@@ -74,8 +74,20 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="getErrorID" Id="{a612c5fe-d8b5-4fa8-bdd1-0b403db857b6}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD getErrorID : udint
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="HaltAxis" Id="{881642ff-213b-4030-944f-bd624c008c64}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD HaltAxis : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="hasError" Id="{7ce66a5e-0e33-4ba6-a4f9-8dfd3f947bf4}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD hasError : bool
 VAR_INPUT
 END_VAR
 ]]></Declaration>
