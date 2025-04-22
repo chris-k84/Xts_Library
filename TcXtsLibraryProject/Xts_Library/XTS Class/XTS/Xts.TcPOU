@@ -115,7 +115,7 @@ DisableSequence.FB_init(FALSE,FALSE,ICollisionGroup);]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetTMSMoverInterface" Id="{0e64eced-3444-47ea-9660-c818e7a9dea9}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD PRIVATE GetTMSMoverInterface : BOOL
+      <Declaration><![CDATA[METHOD PROTECTED GetTMSMoverInterface : BOOL
 VAR
 	i : INT;
 END_VAR]]></Declaration>
@@ -126,7 +126,7 @@ END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetTrackByOCTID" Id="{1d75e1be-3c32-4213-9fda-cb384fa7a069}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD PRIVATE GetTrackByOCTID : I_XtsTrack
+      <Declaration><![CDATA[METHOD PROTECTED GetTrackByOCTID : I_XtsTrack
 VAR_INPUT
 	TrackId : OTCID;
 END_VAR
