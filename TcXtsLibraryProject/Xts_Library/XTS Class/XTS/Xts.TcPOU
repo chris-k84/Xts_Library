@@ -37,13 +37,15 @@ END_VAR]]></Declaration>
 VAR
 	ActivateTrackResult : BOOL;
 	i : INT;
+	track : OTCID;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
-	_MoverArray[i].ActivateTrack(newTrack := _MoverArray[i].MoversActiveTrack,
-									Track := _MyXtsHardware.GetTrackByOTCID(trackOTCID := _MoverArray[i].MoversActiveTrack));
+	track := _MoverArray[i].MoversActiveTrack;
+	_MoverArray[i].ActivateTrack(newTrack := track,
+									Track := _MyXtsHardware.GetTrackByOTCID(track));
 END_FOR
-ActivateTracksInMovers := true;]]></ST>
+ActivateTracksInMovers := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Cycle" Id="{da42838e-fb00-40a5-96f4-b787aa883566}">
