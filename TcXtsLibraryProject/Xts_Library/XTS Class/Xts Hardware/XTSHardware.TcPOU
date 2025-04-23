@@ -91,7 +91,7 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[FOR i := 0 TO _MyNumberTracks DO
+        <ST><![CDATA[FOR i := 0 TO _MyNumberTracks - 1 DO
 	IF trackOTCID = XtsTracks[i].MyOTCID THEN
 		GetTrackByOTCID := XtsTracks[i];
 	END_IF
@@ -409,100 +409,5 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="XTSHardware">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.Cycle">
-      <LineId Id="3" Count="9" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.getAllMoversValid">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.getMoversDetected">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.GetNumberOfDetectedMovers">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.GetTrackByOTCID">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.HasXPU">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.Initialise">
-      <LineId Id="3" Count="52" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.Is24VdcOK">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.Is48VdcOK">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.IsInitialised">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.IsInSim">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyName.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyNumberParts.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyNumberParts.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyNumberTracks.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyNumberTracks.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyXpu.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyXpu.Set">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyXts.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyXts.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.RegisterWithParent">
-      <LineId Id="1" Count="1" />
-    </LineIds>
-    <LineIds Name="XTSHardware.SetMoverNumbers">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.SetTrackForDetection">
-      <LineId Id="3" Count="7" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.TriggerMoverDetection">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.TriggerMoverID">
-      <LineId Id="3" Count="28" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.TriggerRedetection">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
