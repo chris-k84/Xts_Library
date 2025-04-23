@@ -21,6 +21,10 @@ VAR
 	_MyCAGroup : I_CollisionGroup;
 	_ForwardOnly : BOOL := TRUE;
 	CurrentTask : I_Task;
+	myControllerId: Tc3_XTS_Utility.I_McXtsMoverController;
+	myControllerOid: OTCID;
+	MyId: UDINT;
+	MyMoverId: STRING(3);
 END_VAR
 VAR CONSTANT
 	_MaxMoverVelocity : MC_LREAL := 4000.0;
@@ -131,7 +135,10 @@ ELSE
 END_IF
 MyAxisRef.ReadStatus();
 _MyNCData := MyAxisRef.NcToPlc;
-_MyAxisStatus := MyAxisRef.Status;]]></ST>
+_MyAxisStatus := MyAxisRef.Status;
+
+myControllerOid := _ipTcIoXtsMover.P_MoverControllerOid;
+MyId := _ipTcIoXtsMover.GetAxisId();]]></ST>
       </Implementation>
     </Method>
     <Property Name="Deceleration" Id="{3def2bbc-f7ec-4120-acb9-2ff2a2789bd5}" FolderPath="Dynamics\">
@@ -571,8 +578,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_ipTcIoXtsMover.MoverController.SetForceCouple(nForceCouple := XtsMoverCtrlOTCID);
-]]></ST>
+        <ST><![CDATA[_ipTcIoXtsMover.MoverController.SetForceCouple(nForceCouple := XtsMoverCtrlOTCID);]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwapMover" Id="{075d081f-a4ad-470f-95aa-ced1f28cc5a8}" FolderPath="Administration\">
