@@ -125,16 +125,6 @@ END_VAR]]></Declaration>
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetTrackByOCTID" Id="{1d75e1be-3c32-4213-9fda-cb384fa7a069}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD PROTECTED GetTrackByOCTID : I_XtsTrack
-VAR_INPUT
-	TrackId : OTCID;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetTrackByOCTID := _MyXtsHardware.GetTrackByOTCID(trackOTCID := TrackId);]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR
