@@ -123,8 +123,8 @@ VAR
 	i : INT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[FOR i := 1 TO (_registeredNumberOfMovers - 1) DO
-	_MoverArray[i].MoverXtsIoEnvInterface := _XPU.MoverTcIo(TO_UINT(i));
+        <ST><![CDATA[FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
+	_MoverArray[i].MoverXtsIoEnvInterface := _XPU.MoverTcIo(TO_UINT(i + 1));
 END_FOR]]></ST>
       </Implementation>
     </Method>
@@ -140,9 +140,6 @@ END_VAR
 		IF _XtsIoEnvVar.IsInitialised() THEN
 			_XPU := _XtsIoEnvVar.GetXPUInterface(_MyXts);
 			_MyXtsHardware.MyXpu := _XPU;
-			FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
-				_MoverArray[i].MoverXtsIoEnvInterface := _XPU.MoverTcIo(i + 1);
-			END_FOR
 			XtsHwState := XtsSystemInitialisation.PassGroupReference;
 		END_IF
 		
