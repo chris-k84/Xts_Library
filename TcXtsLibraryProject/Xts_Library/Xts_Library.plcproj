@@ -248,6 +248,16 @@
     <PlaceholderReference Include="Tc3_XTS_Utility">
       <DefaultResolution>Tc3_XTS_Utility, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_XTS_Utility</Namespace>
+      <Parameters>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST">
+          <Key>MAXXTSCAGROUP</Key>
+          <Value>8</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST">
+          <Key>MAXXTSPROCESSINGUNITS</Key>
+          <Value>8</Value>
+        </Parameter>
+      </Parameters>
     </PlaceholderReference>
   </ItemGroup>
   <ProjectExtensions>

@@ -78,29 +78,5 @@ END_VAR
         <ST><![CDATA[Runner.RegisterInitialise(THIS^);]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="XtsIoEnvVar">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsIoEnvVar.FB_init">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsIoEnvVar.GetCaGroupInterface">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsIoEnvVar.GetXPUInterface">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsIoEnvVar.Initialise">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsIoEnvVar.IsInitialised">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsIoEnvVar.RegisterWithParent">
-      <LineId Id="1" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
