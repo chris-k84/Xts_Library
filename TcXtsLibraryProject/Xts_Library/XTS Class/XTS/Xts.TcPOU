@@ -330,6 +330,15 @@ END_VAR
 Runner.RegisterInitialise(THIS^);]]></ST>
       </Implementation>
     </Method>
+    <Method Name="Reset" Id="{f4cda3e0-308c-460d-87ee-c1616441d1b6}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ICollisionGroup.Reset();]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="StopXts" Id="{4b648283-f5f4-4d47-a58f-be53e519365d}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD StopXts : BOOL
 VAR_INPUT

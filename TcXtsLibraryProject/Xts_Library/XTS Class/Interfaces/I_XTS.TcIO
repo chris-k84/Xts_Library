@@ -44,6 +44,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="Reset" Id="{1314f0dc-0a66-4dbc-aa58-dd78d21ed251}">
+      <Declaration><![CDATA[METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="StopXts" Id="{d7591d56-8a8c-46a1-bfd3-85f1f168760d}">
       <Declaration><![CDATA[METHOD StopXts : BOOL
 VAR_INPUT
