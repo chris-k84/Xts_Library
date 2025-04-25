@@ -53,11 +53,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyModuleCoEInterface.InfoData.AuxiliaryVoltage24V < (Nominal24Vdc * 0.9) THEN
-	Is24VOK := 1;
+        <ST><![CDATA[Is24VOK := 1;
+IF MyModuleCoEInterface.InfoData.AuxiliaryVoltage24V < (Nominal24Vdc * 0.9) THEN
+	Is24VOK := -1;
 END_IF
 IF MyModuleCoEInterface.InfoData.AuxiliaryVoltage24V > (Nominal24Vdc * 1.1) THEN
-	Is24VOK := 1;
+	Is24VOK := -1;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -67,11 +68,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyModuleCoEInterface.InfoData.DcLinkVoltage < (Nominal48Vdc * 0.9) THEN
-	Is48VOK := 1;
+        <ST><![CDATA[Is48VOK := 1;
+IF MyModuleCoEInterface.InfoData.DcLinkVoltage < (Nominal48Vdc * 0.9) THEN
+	Is48VOK := -1;
 END_IF
 IF MyModuleCoEInterface.InfoData.DcLinkVoltage > (Nominal48Vdc * 1.1) THEN
-	Is48VOK := 1;
+	Is48VOK := -1;
 END_IF]]></ST>
       </Implementation>
     </Method>
