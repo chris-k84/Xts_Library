@@ -61,7 +61,7 @@ CASE State OF
 		END_IF
 		
 	10:
-		IF GearInPosCA.InSync THEN
+		IF GearInPosCA.InSync OR GearInPosCA.CommandAborted THEN
 			GearInPosCA.Execute := FALSE;
 			_Busy := FALSE;
 			_Done := TRUE;
@@ -165,44 +165,5 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="GearInCA">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="GearInCA.Abort">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="GearInCA.Busy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="GearInCA.Cycle">
-      <LineId Id="3" Count="29" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="GearInCA.Done.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="GearInCA.Error.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="GearInCA.FB_init">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="GearInCA.MyGearMaster.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="GearInCA.MyGearMaster.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="GearInCA.Sync">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="GearInCA.SyncStrategy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="GearInCA.SyncStrategy.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
