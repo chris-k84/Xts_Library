@@ -563,6 +563,8 @@ END_VAR
         <ST><![CDATA[IF NOT MoverResetCommand.Busy AND _MyAxisStatus.Error THEN
 	IF MoverResetCommand.Execute(CurrentTask) = S_OK THEN
 		Reset := 1;
+		axesGear.Abort();
+		MoverMoveCommand.Abort();
 	ELSE
 		Reset := -1;
 	END_IF
