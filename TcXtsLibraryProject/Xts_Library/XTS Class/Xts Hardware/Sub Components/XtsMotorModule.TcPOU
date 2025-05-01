@@ -6,8 +6,8 @@ VAR
 	MyModuleIoInterface : I_TcIoXtsPartModule;
 	CurrentLive: LREAL;
 	MaxCurrent: LREAL;
-	Nominal24Vdc : LREAL := 24000;
-	Nominal48Vdc : LREAL := 48000;
+	Nominal24Vdc : REAL := 24.0;
+	Nominal48Vdc : REAL := 48.0;
 	InSim : BOOL;
 	Module24Vdc: REAL;
 	Module48Vdc: REAL;
@@ -50,10 +50,10 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Is24VOK := 1;
-IF MyModuleIoInterface.GetAuxiliaryVoltage24V() < (Nominal24Vdc * 0.9) THEN
+IF Module24Vdc < (Nominal24Vdc * 0.9) THEN
 	Is24VOK := -1;
 END_IF
-IF MyModuleIoInterface.GetAuxiliaryVoltage24V() > (Nominal24Vdc * 1.1) THEN
+IF Module24Vdc > (Nominal24Vdc * 1.1) THEN
 	Is24VOK := -1;
 END_IF]]></ST>
       </Implementation>
@@ -65,10 +65,10 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Is48VOK := 1;
-IF MyModuleIoInterface.GetDCLinkVoltage() < (Nominal48Vdc * 0.9) THEN
+IF Module48Vdc < (Nominal48Vdc * 0.9) THEN
 	Is48VOK := -1;
 END_IF
-IF MyModuleIoInterface.GetDCLinkVoltage() > (Nominal48Vdc * 1.1) THEN
+IF Module48Vdc > (Nominal48Vdc * 1.1) THEN
 	Is48VOK := -1;
 END_IF]]></ST>
       </Implementation>
