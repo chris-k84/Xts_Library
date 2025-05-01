@@ -5,13 +5,13 @@
 VAR
 	MyModuleIoInterface : I_TcIoXtsPartModule;
 	MyModuleCoEInterface : I_AT2xxxXtsMotor;
-	CurrentLive: DINT;
-	MaxCurrent: DINT;
+	CurrentLive: LREAL;
+	MaxCurrent: LREAL;
 	Nominal24Vdc : LREAL := 24000;
 	Nominal48Vdc : LREAL := 48000;
 	InSim : BOOL;
-	Module24Vdc: UINT;
-	Module48Vdc: UINT;
+	Module24Vdc: REAL;
+	Module48Vdc: REAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -24,13 +24,10 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF MyModuleCoEInterface <> 0 AND NOT InSim THEN
-	MyModuleCoEInterface.InfoData.Update();
-	MyModuleCoEInterface.DiagData.Update();
-	//MyModuleCoEInterface.AllCoE.UpdateAllCoEData();
-	CurrentLive:=MyModuleCoEInterface.InfoData.OverallCurrent;
-	MaxCurrent:=MyModuleCoEInterface.InfoData.MaxOverallCurrentLast500ms;
-	Module24Vdc := MyModuleCoEInterface.InfoData.AuxiliaryVoltage24V;
-	Module48Vdc := MyModuleCoEInterface.InfoData.DcLinkVoltage;
+	CurrentLive:= MyModuleIoInterface.GetOverallCurrent();
+	MaxCurrent:=  MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
+	Module24Vdc := MyModuleIoInterface.GetAuxiliaryVoltage24V();
+	Module48Vdc := MyModuleIoInterface.GetDCLinkVoltage();
 END_IF
 
 ]]></ST>
@@ -54,10 +51,10 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Is24VOK := 1;
-IF MyModuleCoEInterface.InfoData.AuxiliaryVoltage24V < (Nominal24Vdc * 0.9) THEN
+IF MyModuleIoInterface.GetAuxiliaryVoltage24V() < (Nominal24Vdc * 0.9) THEN
 	Is24VOK := -1;
 END_IF
-IF MyModuleCoEInterface.InfoData.AuxiliaryVoltage24V > (Nominal24Vdc * 1.1) THEN
+IF MyModuleIoInterface.GetAuxiliaryVoltage24V() > (Nominal24Vdc * 1.1) THEN
 	Is24VOK := -1;
 END_IF]]></ST>
       </Implementation>
@@ -69,10 +66,10 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Is48VOK := 1;
-IF MyModuleCoEInterface.InfoData.DcLinkVoltage < (Nominal48Vdc * 0.9) THEN
+IF MyModuleIoInterface.GetDCLinkVoltage() < (Nominal48Vdc * 0.9) THEN
 	Is48VOK := -1;
 END_IF
-IF MyModuleCoEInterface.InfoData.DcLinkVoltage > (Nominal48Vdc * 1.1) THEN
+IF MyModuleIoInterface.GetDCLinkVoltage() > (Nominal48Vdc * 1.1) THEN
 	Is48VOK := -1;
 END_IF]]></ST>
       </Implementation>
