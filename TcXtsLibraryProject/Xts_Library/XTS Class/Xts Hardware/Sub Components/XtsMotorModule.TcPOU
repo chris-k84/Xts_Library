@@ -74,25 +74,6 @@ IF MyModuleIoInterface.GetDCLinkVoltage() > (Nominal48Vdc * 1.1) THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MyCoEInterface" Id="{deb7d555-7556-4b66-ad9b-3c26c6b34c42}">
-      <Declaration><![CDATA[PROPERTY MyCoEInterface : I_AT2xxxXtsMotor]]></Declaration>
-      <Get Name="Get" Id="{8461ccf8-f83e-404c-a347-71da6ba8563a}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyCoEInterface := MyModuleCoEInterface;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{e0b2dbb9-69f1-4a7b-955f-87ac0078a8d2}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyModuleCoEInterface := MyCoEInterface;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Property Name="MyModuleInterface" Id="{2168d719-80a8-412e-a875-7c102bb8a0d2}">
       <Declaration><![CDATA[PROPERTY MyModuleInterface : I_TcIoXtsPartModule]]></Declaration>
       <Get Name="Get" Id="{89cf633f-414b-41a7-b6da-6e0666d662cd}">

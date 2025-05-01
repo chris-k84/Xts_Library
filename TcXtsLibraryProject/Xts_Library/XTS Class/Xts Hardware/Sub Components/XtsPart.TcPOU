@@ -81,7 +81,6 @@ END_VAR
 			InSim := true;
 		ELSE
 			FOR i := 0 TO UDINT_TO_UINT(MyModuleCount - 1) DO
-				MyModules[i].MyCoEInterface := _MyInterface.ModuleCoE(i + 1);
 				MyModules[i].MyModuleInterface := _MyInterface.ModuleTcIo(i + 1);
 			END_FOR
 			XtsIoEnvInitialiseState := 2;
