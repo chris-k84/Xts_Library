@@ -4,7 +4,6 @@
     <Declaration><![CDATA[FUNCTION_BLOCK XtsMotorModule EXTENDS CyclicBase
 VAR
 	MyModuleIoInterface : I_TcIoXtsPartModule;
-	MyModuleCoEInterface : I_AT2xxxXtsMotor;
 	CurrentLive: LREAL;
 	MaxCurrent: LREAL;
 	Nominal24Vdc : LREAL := 24000;
@@ -23,7 +22,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyModuleCoEInterface <> 0 AND NOT InSim THEN
+        <ST><![CDATA[IF MyModuleIoInterface <> 0 AND NOT InSim THEN
 	CurrentLive:= MyModuleIoInterface.GetOverallCurrent();
 	MaxCurrent:=  MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
 	Module24Vdc := MyModuleIoInterface.GetAuxiliaryVoltage24V();
