@@ -247,18 +247,48 @@
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_XTS_Utility">
       <DefaultResolution>Tc3_XTS_Utility, * (Beckhoff Automation GmbH)</DefaultResolution>
-      <Namespace>Tc3_XTS_Utility</Namespace>
-      <Parameters>
-        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST">
-          <Key>MAXXTSCAGROUP</Key>
-          <Value>8</Value>
-        </Parameter>
-        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST">
-          <Key>MAXXTSPROCESSINGUNITS</Key>
-          <Value>8</Value>
-        </Parameter>
-      </Parameters>
     </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderResolution Include="Base Library">
+      <Resolution>Base Library, 2.1.0.0 (Beckhoff UK)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Eventlogger Library">
+      <Resolution>Eventlogger Library, 2.1.0.0 (Beckhoff UK)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Motion Library">
+      <Resolution>Motion Library, 2.3.0.0 (Beckhoff UK)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc2_Math">
+      <Resolution>Tc2_Math, 3.5.1.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc2_MC2">
+      <Resolution>Tc2_MC2, 3.3.69.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc2_Standard">
+      <Resolution>Tc2_Standard, 3.4.5.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc2_System">
+      <Resolution>Tc2_System, 3.9.1.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc2_Utilities">
+      <Resolution>Tc2_Utilities, 3.9.2.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc3_EventLogger">
+      <Resolution>Tc3_EventLogger, 3.3.13.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc3_Mc3Definitions">
+      <Resolution>Tc3_Mc3Definitions, 3.3.72.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc3_McCollisionAvoidance">
+      <Resolution>Tc3_McCollisionAvoidance, 3.3.72.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc3_McCoordinatedMotion">
+      <Resolution>Tc3_McCoordinatedMotion, 3.3.72.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc3_Module">
+      <Resolution>Tc3_Module, 3.4.5.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

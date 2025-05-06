@@ -9,8 +9,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="getMoversDetected" Id="{4f24c08e-ded5-4a22-a453-8322683f6c40}">
-      <Declaration><![CDATA[METHOD getMoversDetected : BOOL
+    <Method Name="getNumberMoversDetected" Id="{f24c38ad-dbfa-488d-af77-9f21cd2a2d34}">
+      <Declaration><![CDATA[METHOD getNumberMoversDetected : UDINT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -42,6 +42,12 @@ END_VAR
     </Method>
     <Method Name="Is48VdcOK" Id="{df545d44-305d-4b7a-922f-4b561f83d56a}">
       <Declaration><![CDATA[METHOD Is48VdcOK : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="isExpectedMoversFound" Id="{aa48d66d-e689-4a24-808d-2ead7682c5a9}">
+      <Declaration><![CDATA[METHOD isExpectedMoversFound : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>

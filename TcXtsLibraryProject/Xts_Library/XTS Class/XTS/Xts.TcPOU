@@ -21,6 +21,7 @@ VAR
 	EnabledTrigger : R_TRIG;
 	DisabledTrigger : R_TRIG;
 	_registeredNumberOfMovers: INT;
+	DetectedMoverCount : UDINT;
 	MoverRegistered: BOOL;
 END_VAR
 VAR CONSTANT
@@ -170,7 +171,8 @@ END_VAR
 		END_IF
 	
 	XtsSystemInitialisation.AllMoversFound:
-		IF _MyXtsHardware.getMoversDetected() THEN
+		IF _MyXtsHardware.isExpectedMoversFound() THEN
+			DetectedMoverCount := _MyXtsHardware.GetNumberOfDetectedMovers();
 			XtsHwState := XtsSystemInitialisation.XTSMode;
 		END_IF
 		
