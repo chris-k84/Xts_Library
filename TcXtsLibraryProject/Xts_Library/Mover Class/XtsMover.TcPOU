@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsMover" Id="{f9a43ed2-0578-4aed-857c-1a3adef0c7f6}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsMover IMPLEMENTS I_Cyclic, I_XtsMover, I_Resettable, I_Object
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsMover IMPLEMENTS I_Cyclic, I_XtsMover, I_Abortable, I_Resettable, I_Object
 VAR
 	MyAxisRef : AXIS_REF;
 	_MyAxisStatus : ST_AxisStatus;
@@ -9,7 +9,7 @@ VAR
 	TaskCollection : ObjectRunner;
 	MoverPowerCommand : EnableDisableTask := (AxisRef := MyAxisRef);
 	MoverMoveCommand : MoveModuloMoverToPosition(MyAxisRef) := (Gap := 100.0);
-	MoverHaltCommand : HaltMover(MyAxisRef);
+	MoverHaltCommand : HaltMover := (AxisRef := MyAxisRef);
 	MoverResetCommand : CoEResetTask := (AxisRef := MyAxisRef);
 	MoverActivateTrackCommand : ActivateTrackForMover(MyAxisRef);
 	axesGear	: GearInCA(MyAxisRef);
@@ -115,10 +115,9 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF isMoverDetected() THEN
-	MoverPowerCommand.Cycle();
+	TaskCollection.Cycle();
 	MoverMoveCommand.Cycle();
 	MoverHaltCommand.Cycle();
-	MoverResetCommand.Cycle();
 	MoverActivateTrackCommand.Cycle();
 	axesGear.Cycle();
 	TrackChangeTrigger(CLK := MoverActivateTrackCommand.Done);
@@ -202,7 +201,8 @@ VAR_INPUT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TaskCollection.RegisterModule(MoverPowerCommand);
-TaskCollection.RegisterModule(MoverResetCommand);]]></ST>
+TaskCollection.RegisterModule(MoverResetCommand);
+TaskCollection.RegisterModule(MoverHaltCommand);]]></ST>
       </Implementation>
     </Method>
     <Property Name="Gap" Id="{dd72da9d-fc94-421a-8ee7-a84a721dd20c}" FolderPath="Dynamics\">
@@ -650,7 +650,8 @@ END_VAR
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="XtsMover.Cycle">
-      <LineId Id="3" Count="24" />
+      <LineId Id="3" Count="3" />
+      <LineId Id="8" Count="19" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="XtsMover.Deceleration.Get">
@@ -669,7 +670,7 @@ END_VAR
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="XtsMover.FB_Init">
-      <LineId Id="1" Count="1" />
+      <LineId Id="1" Count="2" />
     </LineIds>
     <LineIds Name="XtsMover.Gap.Get">
       <LineId Id="2" Count="0" />
