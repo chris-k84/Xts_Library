@@ -15,12 +15,6 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GetNumberOfDetectedMovers" Id="{391d3de8-a002-42ee-857e-e96f502d6c34}">
-      <Declaration><![CDATA[METHOD GetNumberOfDetectedMovers : UDINT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="GetTrackByOTCID" Id="{32320bf3-efb9-473d-bca7-a0ced8f8657b}">
       <Declaration><![CDATA[METHOD GetTrackByOTCID : I_XtsTrack
 VAR_INPUT
