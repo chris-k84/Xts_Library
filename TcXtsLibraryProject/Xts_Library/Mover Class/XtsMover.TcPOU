@@ -21,7 +21,6 @@ VAR
 	_CurrentTrack : I_XtsTrack;
 	_MyCAGroup : I_CollisionGroup;
 	_ForwardOnly : BOOL := TRUE;
-	CurrentTask : I_Task;
 	myControllerId: Tc3_XTS_Utility.I_McXtsMoverController;
 	myControllerOid: OTCID;
 	MyId: UDINT;

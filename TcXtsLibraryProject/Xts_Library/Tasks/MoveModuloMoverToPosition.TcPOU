@@ -12,15 +12,12 @@ END_VAR
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
     <Method Name="Abort" Id="{5c5502fe-cfbb-4721-939d-6b8391fd3812}">
-      <Declaration><![CDATA[METHOD Abort : BOOL
+      <Declaration><![CDATA[METHOD Abort : HRESULT
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[moveAbs.Execute := FALSE;
 moveAbs.Position := moveAbs.Velocity := 0;
-_MoveMover := false;
-_Busy := FALSE;
-Abort := true;
-State := 0;]]></ST>
+]]></ST>
       </Implementation>
     </Method>
     <Property Name="Acceleration" Id="{bd8e2346-8872-4feb-ac95-f472cf2ca2c7}">
@@ -214,7 +211,7 @@ Runner.RegisterTask(THIS^);]]></ST>
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="MoveModuloMoverToPosition.Abort">
-      <LineId Id="3" Count="4" />
+      <LineId Id="3" Count="1" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="MoveModuloMoverToPosition.Acceleration.Get">
