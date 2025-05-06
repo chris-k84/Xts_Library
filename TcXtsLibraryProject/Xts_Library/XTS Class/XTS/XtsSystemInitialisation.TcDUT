@@ -2,7 +2,6 @@
 <TcPlcObject Version="1.1.0.1">
   <DUT Name="XtsSystemInitialisation" Id="{3651fba9-c72e-488e-9f30-9cd847bba8bf}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
-{attribute 'strict'}
 TYPE XtsSystemInitialisation :
 (
 	Init := 0,
