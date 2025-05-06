@@ -8,7 +8,7 @@ VAR
 	_MyNCData : NCTOPLC_AXIS_REF;
 	TaskCollection : ObjectRunner;
 	MoverPowerCommand : EnableDisableTask := (AxisRef := MyAxisRef);
-	MoverMoveCommand : MoveModuloMoverToPosition(MyAxisRef) := (Gap := 100.0);
+	MoverMoveCommand : MoveModuloMoverToPosition:= (AxisRef := MyAxisRef, Gap := 100.0);
 	MoverHaltCommand : HaltMover := (AxisRef := MyAxisRef);
 	MoverResetCommand : CoEResetTask := (AxisRef := MyAxisRef);
 	MoverActivateTrackCommand : ActivateTrackForMover:= (AxisRef := MyAxisRef);
@@ -116,9 +116,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF isMoverDetected() THEN
 	TaskCollection.Cycle();
-	MoverMoveCommand.Cycle();
-	MoverHaltCommand.Cycle();
-	MoverActivateTrackCommand.Cycle();
 	axesGear.Cycle();
 	TrackChangeTrigger(CLK := MoverActivateTrackCommand.Done);
 	IF TrackChangeTrigger.Q THEN
@@ -650,8 +647,8 @@ END_VAR
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="XtsMover.Cycle">
-      <LineId Id="3" Count="3" />
-      <LineId Id="8" Count="19" />
+      <LineId Id="3" Count="1" />
+      <LineId Id="9" Count="18" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="XtsMover.Deceleration.Get">
