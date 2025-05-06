@@ -172,7 +172,7 @@ END_VAR
 	
 	XtsSystemInitialisation.AllMoversFound:
 		IF _MyXtsHardware.isExpectedMoversFound() THEN
-			DetectedMoverCount := _MyXtsHardware.GetNumberOfDetectedMovers();
+			DetectedMoverCount := _MyXtsHardware.getNumberMoversDetected();
 			XtsHwState := XtsSystemInitialisation.XTSMode;
 		END_IF
 		

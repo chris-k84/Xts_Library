@@ -59,6 +59,16 @@ END_VAR
  END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="GetDetectionState" Id="{5c04b4df-babc-44c4-8315-87ac6e89bad7}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD GetDetectionState : DetectionStateEnum
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetDetectionState := _MyXpu.GetDetectionState();
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="getNumberMoversDetected" Id="{6134912a-11cc-419f-9366-ca4c2c2c2f9f}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getNumberMoversDetected : UDINT
 VAR_INPUT
