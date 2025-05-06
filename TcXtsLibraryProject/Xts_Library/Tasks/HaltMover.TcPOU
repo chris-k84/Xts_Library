@@ -11,13 +11,9 @@ END_VAR
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
     <Method Name="Abort" Id="{48a4c415-0254-4332-8d1a-2734e5dda505}">
-      <Declaration><![CDATA[METHOD Abort : BOOL]]></Declaration>
+      <Declaration><![CDATA[METHOD Abort : Hresult]]></Declaration>
       <Implementation>
-        <ST><![CDATA[haltMoverCA.Execute := FALSE;
-_Busy := FALSE;
-_HaltMover := FALSE;
-Abort := TRUE;
-State := 0;]]></ST>
+        <ST><![CDATA[haltMoverCA.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="AxisRef" Id="{a9bddd31-e205-4bbe-b0be-0bb7ddf7f5e3}">
@@ -47,7 +43,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Busy := HaltMover.Busy;]]></ST>
+          <ST><![CDATA[Busy := haltMoverCA.Busy;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -88,7 +84,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := HaltMover.Done;]]></ST>
+          <ST><![CDATA[Done := haltMoverCA.Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -100,7 +96,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := HaltMover.Error;]]></ST>
+          <ST><![CDATA[Error := haltMoverCA.Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -167,8 +163,7 @@ Runner.RegisterTask(THIS^);]]></ST>
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="HaltMover.Abort">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
+      <LineId Id="3" Count="0" />
     </LineIds>
     <LineIds Name="HaltMover.AxisRef.Get">
       <LineId Id="1" Count="0" />
