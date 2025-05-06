@@ -24,7 +24,6 @@ VAR
 	myControllerId: Tc3_XTS_Utility.I_McXtsMoverController;
 	myControllerOid: OTCID;
 	MyId: UDINT;
-	MyMoverId: STRING(3);
 END_VAR
 VAR CONSTANT
 	_MaxMoverVelocity : MC_LREAL := 4000.0;
