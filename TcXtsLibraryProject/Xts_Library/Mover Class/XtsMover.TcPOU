@@ -12,7 +12,7 @@ VAR
 	HaltBehaviour : HaltMoverTask := (AxisRef := MyAxisRef);
 	ResetBehaviour : CoEResetTask := (AxisRef := MyAxisRef);
 	MoverActivateTrackBehaviour : ActivateTrackTask:= (AxisRef := MyAxisRef);
-	GearBehaviour	: GearInCA(MyAxisRef);
+	GearBehaviour	: GearCATask := (AxisRef := MyAxisRef);
 	_ipTcIoXtsMover	: I_TcIoXtsXpuMover;
 	_ActiveTrackLength : MC_LREAL;
 	TrackChangeTrigger : R_TRIG;
@@ -234,7 +234,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT GearBehaviour.Busy AND __ISVALIDREF(GearBehaviour.MyGearMaster) AND MasterPosition <= _ActiveTrackLength AND SlavePosition <= _ActiveTrackLength THEN
-	IF GearBehaviour.Sync(MasterPosition := MasterPosition, SlavePosition := SlavePosition) THEN
+	IF GearBehaviour.GearIn(MasterPosition := MasterPosition, SlavePosition := SlavePosition) THEN
 		Gear := 1;
 	ELSE
 		Gear := -1;

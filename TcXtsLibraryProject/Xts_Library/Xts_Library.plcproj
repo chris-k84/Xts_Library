@@ -106,7 +106,7 @@
     <Compile Include="Tasks\EnableGroup.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tasks\GearInCA.TcPOU">
+    <Compile Include="Tasks\GearCATask.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tasks\HaltMoverTask.TcPOU">

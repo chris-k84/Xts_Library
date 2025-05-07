@@ -1,32 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="GearInCA" Id="{4eabfc6f-0e0b-4cf2-8798-42f7d613e2e0}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC GearInCA  IMPLEMENTS I_Task
+  <POU Name="GearCATask" Id="{4eabfc6f-0e0b-4cf2-8798-42f7d613e2e0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC GearCATask  IMPLEMENTS I_Task, I_Cyclic, I_Abortable, I_Object
 VAR
 	GearInPosCA : Tc3_McCollisionAvoidance.MC_GearInPosCA;
 	_syncStrategy : Tc3_Mc3Definitions.MC_SYNC_STRATEGY := Tc3_Mc3Definitions.MC_SYNC_STRATEGY.mcSyncStrategyEarly;
-	_SlaveAxis : REFERENCE TO Tc2_MC2.AXIS_REF;
+	_Axis : REFERENCE TO Tc2_MC2.AXIS_REF;
 	_MasterAxis : REFERENCE TO Tc2_MC2.AXIS_REF;
 	_GearMover: BOOL;
 	_ErrorID: UDINT;
-		State: INT;
-	_Done: BOOL;
-	_Error: BOOL;
-	_Busy: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
     <Method Name="Abort" Id="{33a44f0c-0e3b-4808-ac44-6bb8acc99a21}">
-      <Declaration><![CDATA[METHOD Abort : BOOL]]></Declaration>
+      <Declaration><![CDATA[METHOD Abort : HRESULT]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GearInPosCA.Execute := FALSE;
-_GearMover := FALSE;
-_Busy := false;
-Abort := true;
-State := 0;]]></ST>
+        <ST><![CDATA[GearInPosCA.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="AxisRef" Id="{0f68f651-c257-44ad-87dc-835c319262ab}">
+      <Declaration><![CDATA[PROPERTY AxisRef : reference to Axis_ref]]></Declaration>
+      <Get Name="Get" Id="{91707023-0326-4b68-8fd2-e5492a27d9e4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[AxisRef	REF= _Axis;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{39399c11-a5f8-4a75-b023-bce910d235d3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Axis REF= AxisRef;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Property Name="Busy" Id="{4b87a8a5-0488-49e9-9c97-79ee531d0f30}">
       <Declaration><![CDATA[PROPERTY Busy : BOOL
 ]]></Declaration>
@@ -35,7 +46,7 @@ State := 0;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Busy := _Busy;]]></ST>
+          <ST><![CDATA[Busy := GearInPosCA.Busy;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -45,36 +56,9 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-CASE State OF
-	0:
-		IF _GearMover THEN
-			Cycle := S_PENDING;
-			_Done := FALSE;
-			_Error := FALSE;
-			_Busy := TRUE;
-			GearInPosCA.Execute := TRUE;
-			IF GearInPosCA.Busy THEN
-				State := 10;
-				_GearMover := FALSE;
-			END_IF
-		END_IF
-		
-	10:
-		IF GearInPosCA.InSync OR GearInPosCA.CommandAborted THEN
-			GearInPosCA.Execute := FALSE;
-			_Busy := FALSE;
-			_Done := TRUE;
-			State := 0;
-			Cycle := S_OK;
-		END_IF
-	ELSE
-		Cycle := E_FAIL;
-END_CASE
-_Error := GearInPosCA.Error;
-_ErrorID := GearInPosCA.ErrorId;
-IF __ISVALIDREF(_MasterAxis) AND __ISVALIDREF(_SlaveAxis) THEN
-	GearInPosCA(Master := _MasterAxis, Slave := _SlaveAxis, SyncStrategy := _syncStrategy, Velocity := 2000.0, RatioNumerator := 1, Gap := 60.0);
+        <ST><![CDATA[_ErrorID := GearInPosCA.ErrorId;
+IF __ISVALIDREF(_MasterAxis) AND __ISVALIDREF(_Axis) THEN
+	GearInPosCA(Master := _MasterAxis, Slave := _Axis, SyncStrategy := _syncStrategy, Velocity := 2000.0, RatioNumerator := 1, Gap := 60.0);
 END_IF ]]></ST>
       </Implementation>
     </Method>
@@ -86,7 +70,7 @@ END_IF ]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := _Done;]]></ST>
+          <ST><![CDATA[Done := not GearInPosCA.Busy;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -98,22 +82,34 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := _Error;]]></ST>
+          <ST><![CDATA[Error := GearInPosCA.Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
-    <Method Name="FB_init" Id="{3fc0c81f-a0ab-4736-b340-c6d7f16fcfa0}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
+    <Method Name="GearIn" Id="{3bab61dc-be16-4255-9286-dba4fcc8047d}">
+      <Declaration><![CDATA[METHOD PUBLIC GearIn : BOOL
 VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	axis : reference TO AXIS_REF;
+	MasterPosition : MC_LREAL;
+	SlavePosition : MC_LREAL;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_SlaveAxis REF= axis;]]></ST>
+        <ST><![CDATA[GearInPosCA.MasterSyncPosition := MasterPosition;
+GearInPosCA.SlaveSyncPosition := SlavePosition;
+GearInPosCA.Execute := GearIn := true;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="InGear" Id="{c9e803f5-cebb-4c19-b377-00252c85ab24}">
+      <Declaration><![CDATA[PROPERTY InGear : BOOL]]></Declaration>
+      <Get Name="Get" Id="{17c26d55-83f1-4329-92e5-113849e0d783}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[InGear := GearInPosCA.InSync;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="MyGearMaster" Id="{a46ef8fb-4e90-4897-9dcd-a04c2dd2e88d}">
       <Declaration><![CDATA[PROPERTY MyGearMaster : REFERENCE TO AXIS_REF]]></Declaration>
       <Get Name="Get" Id="{e800e4fe-3c89-421e-9396-ebf9ce3426e8}">
@@ -133,17 +129,16 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="Sync" Id="{3bab61dc-be16-4255-9286-dba4fcc8047d}">
-      <Declaration><![CDATA[METHOD PUBLIC Sync : BOOL
+    <Method Name="RegisterWithParent" Id="{fed5492a-b4e6-4fd8-9634-fede4c878459}">
+      <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
-	MasterPosition : MC_LREAL;
-	SlavePosition : MC_LREAL;
+	Runner	: Base_Library.I_HostObjects;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GearInPosCA.MasterSyncPosition := MasterPosition;
-GearInPosCA.SlaveSyncPosition := SlavePosition;
-_GearMover := Sync := true;]]></ST>
+        <ST><![CDATA[Runner.RegisterCyclic(THIS^);
+Runner.RegisterAbortable(THIS^);
+Runner.RegisterTask(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Property Name="SyncStrategy" Id="{74227846-5fda-4bbe-ac22-10f463d682ca}">
