@@ -152,7 +152,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SwitchAxis.EnableAxis();]]></ST>
+        <ST><![CDATA[SwitchAxis.EnableAxis(FALSE,FALSE);]]></ST>
       </Implementation>
     </Method>
     <Method Name="HasMover" Id="{3dfbfe5d-88fb-42cd-8ef4-33bfd88b9fd1}">

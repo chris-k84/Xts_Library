@@ -1,32 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="MoveModuloMoverToPosition" Id="{86a89fc0-d952-4342-8bc4-3e7afaf8d6b0}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK MoveModuloMoverToPosition  IMPLEMENTS I_Task
+    <Declaration><![CDATA[FUNCTION_BLOCK MoveModuloMoverToPosition  IMPLEMENTS I_Task, I_Cyclic, I_Object, I_Abortable
 VAR
 	moveAbs	: MC_MoveAbsoluteCA;
 	_Axis : REFERENCE TO AXIS_REF;
-	_MoveMover : BOOL;
 	_stOptions : ST_MoveAbsoluteCAOptions;
-	_ErrorId: UDINT;
-		State: INT;
-	_Done: BOOL;
-	_Error: BOOL;
-	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
     <Method Name="Abort" Id="{5c5502fe-cfbb-4721-939d-6b8391fd3812}">
-      <Declaration><![CDATA[METHOD Abort : BOOL
+      <Declaration><![CDATA[METHOD Abort : HRESULT
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[moveAbs.Execute := FALSE;
 moveAbs.Position := moveAbs.Velocity := 0;
-_MoveMover := false;
-_Busy := FALSE;
-Abort := true;
-State := 0;]]></ST>
+]]></ST>
       </Implementation>
     </Method>
     <Property Name="Acceleration" Id="{bd8e2346-8872-4feb-ac95-f472cf2ca2c7}">
@@ -48,6 +39,25 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Property Name="AxisRef" Id="{f580a694-3b65-4030-87ca-bcac6820ed0e}">
+      <Declaration><![CDATA[PROPERTY AxisRef : reference to Axis_ref]]></Declaration>
+      <Get Name="Get" Id="{7844fea5-7585-46ce-89d1-d518d3791463}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[AxisRef	REF= _Axis;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{8364ed17-5c2f-4208-b144-b38ccd52dc0b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Axis REF= AxisRef;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Property Name="Busy" Id="{98ae5732-f508-463a-8f9c-9f54ad1821f5}">
       <Declaration><![CDATA[PROPERTY Busy : BOOL
 ]]></Declaration>
@@ -56,7 +66,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Busy := _Busy;]]></ST>
+          <ST><![CDATA[Busy := moveAbs.Busy;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -65,39 +75,8 @@ END_VAR
 VAR_INPUT
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-CASE State OF
-	0:
-		IF _MoveMover THEN
-			Cycle := S_PENDING;
-			_Done := FALSE;
-			_Error := FALSE;
-			_Busy := TRUE;
-			moveAbs.Execute := TRUE;
-			IF moveAbs.Busy THEN
-				State := 10;
-				_MoveMover := FALSE;
-			END_IF
-		END_IF
-		
-	10:
-		IF NOT moveAbs.Busy THEN
-			IF moveAbs.Done THEN
-				_Done := TRUE;
-			ELSIF moveAbs.Error THEN
-				_Error := TRUE;
-				_ErrorId := moveAbs.ErrorId;
-			END_IF
-			_Busy := FALSE;
-			moveAbs.Execute := FALSE;
-			State := 0;
-			Cycle := S_OK;
-		END_IF
-	ELSE
-		Cycle := E_FAIL;
-END_CASE
-
-moveAbs(Axis := _Axis, Options := _stOptions);]]></ST>
+        <ST><![CDATA[moveAbs(Axis := _Axis, Options := _stOptions);
+moveAbs.Execute := false;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Deceleration" Id="{9b084d4a-e02d-4702-912a-4bc5910ddae2}">
@@ -127,7 +106,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := _Done;]]></ST>
+          <ST><![CDATA[Done := moveAbs.Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -139,23 +118,10 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := _Error;]]></ST>
+          <ST><![CDATA[Error := moveAbs.Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
-    <Method Name="FB_init" Id="{37fbed4c-5b49-4a9c-886b-a9cda5653c34}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
-VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	axis : reference TO AXIS_REF;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_Axis REF= axis;
-]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="Gap" Id="{6f40f3be-1ac5-4f41-a512-900c33b72e2e}">
       <Declaration><![CDATA[PROPERTY PUBLIC Gap : mc_lreal]]></Declaration>
       <Get Name="Get" Id="{d520ecb2-c250-4598-84bd-dc6b0a2aef6c}">
@@ -207,7 +173,7 @@ END_VAR]]></Declaration>
 moveAbs.Velocity := Velocity;
 moveAbs.Direction := Direction;
 moveAbs.Options.AdditionalTurns := Turns;
-_MoveMover := MoveTo := true;]]></ST>
+moveAbs.Execute := MoveTo := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Options" Id="{1dd7fc51-dd5a-4f57-a3ca-696f6637a39e}">
@@ -229,11 +195,23 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="RegisterWithParent" Id="{d5091b4b-bfac-4bc2-8672-2fc22997a298}">
+      <Declaration><![CDATA[METHOD RegisterWithParent
+VAR_INPUT
+	Runner	: Base_Library.I_HostObjects;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Runner.RegisterCyclic(THIS^);
+Runner.RegisterAbortable(THIS^);
+Runner.RegisterTask(THIS^);]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="MoveModuloMoverToPosition">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="MoveModuloMoverToPosition.Abort">
-      <LineId Id="3" Count="4" />
+      <LineId Id="3" Count="1" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="MoveModuloMoverToPosition.Acceleration.Get">
@@ -242,12 +220,17 @@ END_VAR
     <LineIds Name="MoveModuloMoverToPosition.Acceleration.Set">
       <LineId Id="2" Count="0" />
     </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.AxisRef.Get">
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.AxisRef.Set">
+      <LineId Id="1" Count="0" />
+    </LineIds>
     <LineIds Name="MoveModuloMoverToPosition.Busy.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="MoveModuloMoverToPosition.Cycle">
-      <LineId Id="3" Count="31" />
-      <LineId Id="2" Count="0" />
+      <LineId Id="2" Count="1" />
     </LineIds>
     <LineIds Name="MoveModuloMoverToPosition.Deceleration.Get">
       <LineId Id="2" Count="0" />
@@ -259,10 +242,6 @@ END_VAR
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="MoveModuloMoverToPosition.Error.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.FB_init">
-      <LineId Id="3" Count="0" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="MoveModuloMoverToPosition.Gap.Get">
@@ -286,6 +265,9 @@ END_VAR
     </LineIds>
     <LineIds Name="MoveModuloMoverToPosition.Options.Set">
       <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveModuloMoverToPosition.RegisterWithParent">
+      <LineId Id="1" Count="2" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -1,34 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="HaltMover" Id="{16fe934f-2b92-45c5-becd-cbf7a242dbb1}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK HaltMover  IMPLEMENTS I_Task
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
+    <Declaration><![CDATA[FUNCTION_BLOCK HaltMover  IMPLEMENTS I_Task, I_Object, I_Cyclic, I_Abortable
 VAR
 	haltMoverCA : Tc3_McCollisionAvoidance.MC_HaltCA;
 	_Axis : REFERENCE TO Tc2_MC2.AXIS_REF;
-	_HaltMover : BOOL;
-		State: INT;
-	_Done: BOOL;
-	_Error: BOOL;
-	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
     <Method Name="Abort" Id="{48a4c415-0254-4332-8d1a-2734e5dda505}">
-      <Declaration><![CDATA[METHOD Abort : BOOL]]></Declaration>
+      <Declaration><![CDATA[METHOD Abort : Hresult]]></Declaration>
       <Implementation>
-        <ST><![CDATA[haltMoverCA.Execute := FALSE;
-_Busy := FALSE;
-_HaltMover := FALSE;
-Abort := TRUE;
-State := 0;]]></ST>
+        <ST><![CDATA[haltMoverCA.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="AxisRef" Id="{a9bddd31-e205-4bbe-b0be-0bb7ddf7f5e3}">
+      <Declaration><![CDATA[PROPERTY AxisRef : reference to Axis_ref]]></Declaration>
+      <Get Name="Get" Id="{0e3b6af2-4e89-4c29-9315-30e22f8c6b94}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[AxisRef	REF= _Axis;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{0e14ea90-18e4-4a1c-9f4c-2cea8c3719c9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Axis REF= AxisRef;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Property Name="Busy" Id="{410b2236-4b2d-41d8-b891-c048fa414dcc}">
       <Declaration><![CDATA[PROPERTY Busy : BOOL
 ]]></Declaration>
@@ -37,7 +43,7 @@ State := 0;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Busy := _Busy;]]></ST>
+          <ST><![CDATA[Busy := haltMoverCA.Busy;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -47,38 +53,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-CASE State OF
-	0:
-		IF _HaltMover THEN
-			Cycle := S_PENDING;
-			_Done := FALSE;
-			_Error := FALSE;
-			_Busy := TRUE;
-			haltMoverCA.Execute := TRUE;
-			IF haltMoverCA.Busy THEN
-				State := 10;
-				_HaltMover := FALSE;
-			END_IF
-		END_IF
-	
-	10:
-		IF NOT haltMoverCA.Busy THEN
-			IF haltMoverCA.Done THEN
-				_Done := TRUE;
-			ELSIF haltMoverCA.Error THEN
-				_Error := TRUE;
-			END_IF
-			_Busy := FALSE;
-			haltMoverCA.Execute := FALSE;
-			State := 0;
-			Cycle := S_OK;
-		END_IF
-	ELSE
-		Cycle := E_FAIL;
-END_CASE
-
-haltMoverCA(Axis := _Axis);]]></ST>
+        <ST><![CDATA[haltMoverCA(Axis := _Axis);
+haltMoverCA.Execute := false;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Deceleration" Id="{c87d7270-1a2e-466f-a142-6139e2eda06f}">
@@ -108,7 +84,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := _Done;]]></ST>
+          <ST><![CDATA[Done := haltMoverCA.Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -120,7 +96,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := _Error;]]></ST>
+          <ST><![CDATA[Error := haltMoverCA.Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -130,24 +106,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _HaltMover THEN
-	Execute := _HaltMover := TRUE;
-ELSE
-	Execute := false;
-END_IF
-]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="FB_init" Id="{0fd2927a-947b-415e-b53d-5482c2b0a045}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
-VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	Axis : reference TO AXIS_REF;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_Axis REF= Axis;]]></ST>
+        <ST><![CDATA[Execute := haltMoverCA.Execute := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Gap" Id="{a94177ce-b18c-4479-ae6f-5707566b0317}">
@@ -188,19 +147,35 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="RegisterWithParent" Id="{1eb21580-73b7-42fe-bf94-583ead68438b}">
+      <Declaration><![CDATA[METHOD RegisterWithParent
+VAR_INPUT
+	Runner	: Base_Library.I_HostObjects;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Runner.RegisterCyclic(THIS^);
+Runner.RegisterAbortable(THIS^);
+Runner.RegisterTask(THIS^);]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="HaltMover">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="HaltMover.Abort">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
+      <LineId Id="3" Count="0" />
+    </LineIds>
+    <LineIds Name="HaltMover.AxisRef.Get">
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="HaltMover.AxisRef.Set">
+      <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="HaltMover.Busy.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="HaltMover.Cycle">
-      <LineId Id="3" Count="30" />
-      <LineId Id="2" Count="0" />
+      <LineId Id="2" Count="1" />
     </LineIds>
     <LineIds Name="HaltMover.Deceleration.Get">
       <LineId Id="2" Count="0" />
@@ -215,11 +190,7 @@ END_VAR
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="HaltMover.Execute">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="HaltMover.FB_init">
-      <LineId Id="2" Count="0" />
+      <LineId Id="4" Count="0" />
     </LineIds>
     <LineIds Name="HaltMover.Gap.Get">
       <LineId Id="2" Count="0" />
@@ -232,6 +203,9 @@ END_VAR
     </LineIds>
     <LineIds Name="HaltMover.Jerk.Set">
       <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="HaltMover.RegisterWithParent">
+      <LineId Id="1" Count="2" />
     </LineIds>
   </POU>
 </TcPlcObject>
