@@ -94,7 +94,7 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="Tasks\ActivateTrackForMover.TcPOU">
+    <Compile Include="Tasks\ActivateTrackTask.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tasks\AddMoverToGroupTask.TcPOU">
@@ -109,10 +109,10 @@
     <Compile Include="Tasks\GearInCA.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tasks\HaltMover.TcPOU">
+    <Compile Include="Tasks\HaltMoverTask.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tasks\MoveModuloMoverToPosition.TcPOU">
+    <Compile Include="Tasks\MoveToPositionTask.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tasks\RemoveAllMoverFromGroup.TcPOU">
@@ -247,17 +247,33 @@
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_XTS_Utility">
       <DefaultResolution>Tc3_XTS_Utility, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_XTS_Utility</Namespace>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
-    <PlaceholderResolution Include="Base Library">
-      <Resolution>Base Library, 2.1.0.0 (Beckhoff UK)</Resolution>
+    <PlaceholderResolution Include="System_VisuElemBase">
+      <Resolution>VisuElemBase, 4.7.0.0 (System)</Resolution>
     </PlaceholderResolution>
-    <PlaceholderResolution Include="Eventlogger Library">
-      <Resolution>Eventlogger Library, 2.1.0.0 (Beckhoff UK)</Resolution>
+    <PlaceholderResolution Include="System_VisuElemMeter">
+      <Resolution>VisuElemMeter, 4.7.0.0 (System)</Resolution>
     </PlaceholderResolution>
-    <PlaceholderResolution Include="Motion Library">
-      <Resolution>Motion Library, 2.3.0.0 (Beckhoff UK)</Resolution>
+    <PlaceholderResolution Include="System_VisuElems">
+      <Resolution>VisuElems, 4.7.0.0 (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="System_VisuElemsSpecialControls">
+      <Resolution>VisuElemsSpecialControls, 4.7.0.0 (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="System_VisuElemsWinControls">
+      <Resolution>VisuElemsWinControls, 4.7.0.0 (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="System_VisuElemTextEditor">
+      <Resolution>VisuElemTextEditor, 4.7.0.0 (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="System_VisuInputs">
+      <Resolution>VisuInputs, 4.7.0.0 (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="System_VisuNativeControl">
+      <Resolution>VisuNativeControl, 4.7.0.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_Math">
       <Resolution>Tc2_Math, 3.5.1.0 (Beckhoff Automation GmbH)</Resolution>
@@ -293,8 +309,8 @@
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-        <Data>
-          <o xml:space="preserve" t="OptionKey">
+  <Data>
+    <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
@@ -2611,16 +2627,16 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-        </Data>
-        <TypeList>
-          <Type n="Boolean">System.Boolean</Type>
-          <Type n="Hashtable">System.Collections.Hashtable</Type>
-          <Type n="Int32">System.Int32</Type>
-          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-          <Type n="String">System.String</Type>
-          <Type n="UInt32">System.UInt32</Type>
-        </TypeList>
-      </XmlArchive>
+  </Data>
+  <TypeList>
+    <Type n="Boolean">System.Boolean</Type>
+    <Type n="Hashtable">System.Collections.Hashtable</Type>
+    <Type n="Int32">System.Int32</Type>
+    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+    <Type n="String">System.String</Type>
+    <Type n="UInt32">System.UInt32</Type>
+  </TypeList>
+</XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>

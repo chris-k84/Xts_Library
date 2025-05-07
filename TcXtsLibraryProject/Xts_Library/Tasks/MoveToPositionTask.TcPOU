@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="MoveModuloMoverToPosition" Id="{86a89fc0-d952-4342-8bc4-3e7afaf8d6b0}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK MoveModuloMoverToPosition  IMPLEMENTS I_Task, I_Cyclic, I_Object, I_Abortable
+  <POU Name="MoveToPositionTask" Id="{86a89fc0-d952-4342-8bc4-3e7afaf8d6b0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MoveToPositionTask  IMPLEMENTS I_Task, I_Cyclic, I_Object, I_Abortable
 VAR
 	moveAbs	: MC_MoveAbsoluteCA;
 	_Axis : REFERENCE TO AXIS_REF;
@@ -207,67 +207,5 @@ Runner.RegisterAbortable(THIS^);
 Runner.RegisterTask(THIS^);]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="MoveModuloMoverToPosition">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Abort">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Acceleration.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Acceleration.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.AxisRef.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.AxisRef.Set">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Busy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Cycle">
-      <LineId Id="2" Count="1" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Deceleration.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Deceleration.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Done.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Error.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Gap.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Gap.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Jerk.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Jerk.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.MoveTo">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Options.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.Options.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="MoveModuloMoverToPosition.RegisterWithParent">
-      <LineId Id="1" Count="2" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -70,8 +70,8 @@
       <DefaultResolution>Tc3_PlcTestSuite, * (Simmel)</DefaultResolution>
       <Namespace>Tc3_PlcTestSuite</Namespace>
     </PlaceholderReference>
-    <PlaceholderReference Include="[Xts Library]">
-      <DefaultResolution>[Xts Library], * (BeckhoffUK)</DefaultResolution>
+    <PlaceholderReference Include="Xts Library">
+      <DefaultResolution>Xts Library, * (BeckhoffUK)</DefaultResolution>
       <Namespace>Xts_Library</Namespace>
     </PlaceholderReference>
   </ItemGroup>

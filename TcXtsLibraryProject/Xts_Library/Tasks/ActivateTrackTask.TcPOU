@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="ActivateTrackForMover" Id="{03f53080-a7f0-4bc3-a76f-2f27947df261}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ActivateTrackForMover IMPLEMENTS I_Task, I_Cyclic, I_Object, I_Abortable
+  <POU Name="ActivateTrackTask" Id="{03f53080-a7f0-4bc3-a76f-2f27947df261}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ActivateTrackTask IMPLEMENTS I_Task, I_Cyclic, I_Object, I_Abortable
 VAR
 	mcActivateTrack : Tc3_McCollisionAvoidance.MC_ActivateTrack;
 	_Axis : REFERENCE TO Tc2_MC2.AXIS_REF;
@@ -123,42 +123,5 @@ Runner.RegisterAbortable(THIS^);
 Runner.RegisterTask(THIS^);]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="ActivateTrackForMover">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.Abort">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.AxisRef.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.AxisRef.Set">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.Busy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.Cycle">
-      <LineId Id="35" Count="0" />
-      <LineId Id="2" Count="0" />
-      <LineId Id="36" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.Done.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.Error.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.Execute">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.NewTrackId.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackForMover.RegisterWithParent">
-      <LineId Id="1" Count="2" />
-    </LineIds>
   </POU>
 </TcPlcObject>
