@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="MoveToPositionTask" Id="{86a89fc0-d952-4342-8bc4-3e7afaf8d6b0}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK MoveToPositionTask  IMPLEMENTS I_Task, I_Cyclic, I_Object, I_Abortable
+    <Declaration><![CDATA[FUNCTION_BLOCK MoveToPositionTask IMPLEMENTS I_Task, I_Cyclic, I_Object, I_Abortable
 VAR
 	moveAbs	: MC_MoveAbsoluteCA;
 	_Axis : REFERENCE TO AXIS_REF;
@@ -207,5 +207,69 @@ Runner.RegisterAbortable(THIS^);
 Runner.RegisterTask(THIS^);]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="MoveToPositionTask">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Abort">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Acceleration.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Acceleration.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.AxisRef.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.AxisRef.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Cycle">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Deceleration.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Deceleration.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Done.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Gap.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Gap.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Jerk.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Jerk.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.MoveTo">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Options.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.Options.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveToPositionTask.RegisterWithParent">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
