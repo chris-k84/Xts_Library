@@ -18,7 +18,7 @@
     <Released>false</Released>
     <Title>Xts Library</Title>
     <Company>BeckhoffUK</Company>
-    <ProjectVersion>8.1.0.0</ProjectVersion>
+    <ProjectVersion>8.1.0.1</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory>
         <Id>{4c30be10-0c29-4796-921e-62ecfda40191}</Id>
@@ -252,28 +252,28 @@
   </ItemGroup>
   <ItemGroup>
     <PlaceholderResolution Include="System_VisuElemBase">
-      <Resolution>VisuElemBase, 4.7.0.0 (System)</Resolution>
+      <Resolution>VisuElemBase, * (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="System_VisuElemMeter">
-      <Resolution>VisuElemMeter, 4.7.0.0 (System)</Resolution>
+      <Resolution>VisuElemMeter, * (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="System_VisuElems">
-      <Resolution>VisuElems, 4.7.0.0 (System)</Resolution>
+      <Resolution>VisuElems, * (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="System_VisuElemsSpecialControls">
-      <Resolution>VisuElemsSpecialControls, 4.7.0.0 (System)</Resolution>
+      <Resolution>VisuElemsSpecialControls, * (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="System_VisuElemsWinControls">
-      <Resolution>VisuElemsWinControls, 4.7.0.0 (System)</Resolution>
+      <Resolution>VisuElemsWinControls, * (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="System_VisuElemTextEditor">
-      <Resolution>VisuElemTextEditor, 4.7.0.0 (System)</Resolution>
+      <Resolution>VisuElemTextEditor, * (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="System_VisuInputs">
-      <Resolution>VisuInputs, 4.7.0.0 (System)</Resolution>
+      <Resolution>VisuInputs, * (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="System_VisuNativeControl">
-      <Resolution>VisuNativeControl, 4.7.0.0 (System)</Resolution>
+      <Resolution>VisuNativeControl, * (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_Math">
       <Resolution>Tc2_Math, 3.5.1.0 (Beckhoff Automation GmbH)</Resolution>
@@ -304,6 +304,9 @@
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_Module">
       <Resolution>Tc3_Module, 3.4.5.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc3_XTS_Utility">
+      <Resolution>Tc3_XTS_Utility, * (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>
