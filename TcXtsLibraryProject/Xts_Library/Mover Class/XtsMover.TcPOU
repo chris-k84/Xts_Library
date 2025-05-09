@@ -24,6 +24,7 @@ VAR
 	myControllerId: Tc3_XTS_Utility.I_McXtsMoverController;
 	myControllerOid: OTCID;
 	MyId: UDINT;
+	Initialised : BOOL;
 END_VAR
 VAR CONSTANT
 	_MaxMoverVelocity : MC_LREAL := 4000.0;
@@ -112,7 +113,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF isMoverDetected() THEN
+        <ST><![CDATA[IF Initialised THEN
 	TaskCollection.Cycle();
 	IF TrackChangeTrigger.Q THEN
 		_MoverAbsMoveOptions.PositionReferenceSystem :=  MoverActivateTrackBehaviour.NewTrackId;
@@ -125,13 +126,11 @@ END_VAR
 	Cycle := 1;
 ELSE
 	Cycle := -1;
+	Initialise();
 END_IF
 MyAxisRef.ReadStatus();
 _MyNCData := MyAxisRef.NcToPlc;
-_MyAxisStatus := MyAxisRef.Status;
-
-myControllerOid := _ipTcIoXtsMover.P_MoverControllerOid;
-MyId := _ipTcIoXtsMover.GetAxisId();]]></ST>
+_MyAxisStatus := MyAxisRef.Status;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Deceleration" Id="{3def2bbc-f7ec-4120-acb9-2ff2a2789bd5}" FolderPath="Dynamics\">
@@ -327,6 +326,20 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[inGear := GearBehaviour.GearInPosCA.InSync;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Initialise" Id="{158eaadb-7779-40c3-b4d7-ef64750e6b36}">
+      <Declaration><![CDATA[METHOD Initialise : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF _ipTcIoXtsMover <> 0 AND isMoverDetected() THEN
+	myControllerOid := _ipTcIoXtsMover.P_MoverControllerOid;
+	MyId := _ipTcIoXtsMover.GetAxisId();
+	Initialise := TRUE;
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="IsActive" Id="{4093fe18-48a9-45f2-9701-210b5183f8f4}" FolderPath="Status\">
