@@ -8,12 +8,14 @@ VAR
 	MyModuleCount : UDINT;
 	PartDriveState: Tc3_XTS_Utility.DriveState;
 	_ReadyToEnable: BOOL;
-	MyModules : ARRAY[0..11] OF XtsMotorModule;
+	MyModules : ARRAY[0..MaxModulesPerPart] OF XtsMotorModule;
 	ModuleIndex: UDINT := 1;
 	InSim : BOOL;
 	i : UINT;
 END_VAR
-]]></Declaration>
+VAR CONSTANT
+	MaxModulesPerPart : INT := 30;
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
