@@ -31,10 +31,22 @@
     <Compile Include="POUs\StubXts.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\ActivateTrackTask_TestSuite.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Tests\DisableGroupTask_TestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\EnableGroupTask_TestSuite.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\GearCATask_TestSuite.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\HaltMoverTask_TestSuite.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\MoveMoverTask_TestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\ResetGroupTast_TestSuite.TcPOU">

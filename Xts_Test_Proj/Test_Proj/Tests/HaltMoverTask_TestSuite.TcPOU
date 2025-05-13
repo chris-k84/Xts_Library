@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="HaltMoverTask_TestSuite" Id="{d7b1227a-089d-4d2d-9759-410675fe30bc}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK HaltMoverTask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

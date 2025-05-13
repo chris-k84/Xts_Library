@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="ActivateTrackTask_TestSuite" Id="{433ac03a-1058-45df-bdb1-c68a454a01bf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ActivateTrackTask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
