@@ -3,9 +3,9 @@
   <POU Name="XTSHardware" Id="{2082c175-1a19-4a3f-b920-8dbd46477756}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XTSHardware IMPLEMENTS I_Cyclic, I_Initialisable, I_XtsHardware, I_Object
 VAR
-	XtsParts : ARRAY[0..19] OF XtsPart;
+	XtsParts : ARRAY[0..MaxPartsPerTrack] OF XtsPart;
 	_MyNumberParts : INT;
-	XtsTracks : ARRAY[0..9] OF XtsTrack;
+	XtsTracks : ARRAY[0..MaxTracksPerXts] OF XtsTrack;
 	_MyNumberTracks : INT;
 	TrackOTCIDs: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF Tc3_XTS_Utility.OTCID;
 	_MyXpu : Tc3_XTS_Utility.I_TcIoXtsProcessingUnit;
@@ -21,7 +21,10 @@ VAR
 	_isInitialised: BOOL;
 	_hasXPU : BOOL;
 END_VAR
-]]></Declaration>
+VAR CONSTANT
+	MaxPartsPerTrack : INT := 9;
+	MaxTracksPerXts : INT := 9;
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
@@ -57,6 +60,15 @@ END_VAR
         <ST><![CDATA[ IF _MyXpu.GetAreAllPositionsValid() THEN
 	 getAllMoversValid := TRUE;
  END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetConfigMoverNumber" Id="{43f766d9-966d-4623-a223-676c73e2281d}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetConfigMoverNumber : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetConfigMoverNumber := _MyXpu.GetConfiguredDetectionCount();]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetDetectionState" Id="{5c04b4df-babc-44c4-8315-87ac6e89bad7}" FolderPath="Status\">

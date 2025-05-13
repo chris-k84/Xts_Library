@@ -9,6 +9,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="GetConfigMoverNumber" Id="{840a6c17-fbef-4810-9acd-02a47aa8f2b0}">
+      <Declaration><![CDATA[METHOD GetConfigMoverNumber : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="GetDetectionState" Id="{fa37bb06-5333-4945-837b-ed2607a0f10b}">
       <Declaration><![CDATA[METHOD GetDetectionState : DetectionStateEnum
 VAR_INPUT
