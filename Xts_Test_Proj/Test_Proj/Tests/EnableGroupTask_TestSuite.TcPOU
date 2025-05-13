@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="EnableGroupTask_TestSuite" Id="{d6808c9c-8ee3-49b7-b959-6f6cf8674f6b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK EnableGroupTask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
