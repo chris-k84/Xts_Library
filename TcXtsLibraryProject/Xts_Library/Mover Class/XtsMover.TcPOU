@@ -337,7 +337,7 @@ END_VAR
         <ST><![CDATA[IF _ipTcIoXtsMover <> 0 AND isMoverDetected() THEN
 	myControllerOid := _ipTcIoXtsMover.P_MoverControllerOid;
 	MyId := _ipTcIoXtsMover.GetAxisId();
-	Initialise := TRUE;
+	Initialised := Initialise:= TRUE;
 END_IF
 ]]></ST>
       </Implementation>
