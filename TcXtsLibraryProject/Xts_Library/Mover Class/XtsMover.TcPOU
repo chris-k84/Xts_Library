@@ -65,7 +65,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT MoverActivateTrackBehaviour.Busy AND THIS^.isMoverStationary() AND NewTrack <> 0  THEN
-	IF MoverActivateTrackBehaviour.Execute(Track := Track.MyOTCID) THEN
+	IF Succeeded(MoverActivateTrackBehaviour.Execute(Track := Track.MyOTCID)) THEN
 		_CurrentTrack := Track;
 		_ActiveTrackLength := Track.TrackLength;
 		ActivateTrack := 1;
@@ -85,7 +85,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT MoverActivateTrackBehaviour.Busy AND THIS^.isMoverStationary() THEN // AND NewTrack <> 0  THEN
-	IF MoverActivateTrackBehaviour.Execute(Track := NewTrack) THEN
+	IF SUCCEEDED(MoverActivateTrackBehaviour.Execute(Track := NewTrack)) THEN
 		_CurrentTrack := 0;
 		ActivateZeroReferenceSystem := 1;
 	ELSE

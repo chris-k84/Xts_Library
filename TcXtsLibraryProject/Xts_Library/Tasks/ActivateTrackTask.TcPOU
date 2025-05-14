@@ -86,17 +86,17 @@ END_VAR
       </Get>
     </Property>
     <Method Name="Execute" Id="{b92caa48-be0c-4823-bb15-e823e8bc1934}">
-      <Declaration><![CDATA[METHOD PUBLIC Execute : BOOL
+      <Declaration><![CDATA[METHOD PUBLIC Execute : HRESULT
 VAR_INPUT
 	Track : OTCID;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT mcActivateTrack.Busy THEN
-	Execute := mcActivateTrack.Execute := TRUE;
+        <ST><![CDATA[IF NOT mcActivateTrack.Execute AND Track <> 0 THEN
+	mcActivateTrack.Execute := TRUE;
 	mcActivateTrack.TrackId := Track;
 ELSE
-	Execute := false;
+	Execute := -1;
 END_IF;]]></ST>
       </Implementation>
     </Method>
