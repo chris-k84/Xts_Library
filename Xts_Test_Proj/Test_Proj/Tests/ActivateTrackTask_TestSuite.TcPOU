@@ -3,10 +3,77 @@
   <POU Name="ActivateTrackTask_TestSuite" Id="{433ac03a-1058-45df-bdb1-c68a454a01bf}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ActivateTrackTask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
+	stubAxis : AXIS_REF;
+	testActivateTask : ActivateTrackTask := (AxisRef := stubAxis);
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[TaskAcceptsCommand_Test();
+TaskRejectsCommandsWithNoAxis_Test();
+TaskRejectsDuplicateCommand_Test();
+TaskRejectsNullTrackCommand_Test();]]></ST>
     </Implementation>
+    <Method Name="TaskAcceptsCommand_Test" Id="{f38ea97e-61d4-4314-a23a-9dbdc22547e6}">
+      <Declaration><![CDATA[METHOD TaskAcceptsCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(testActivateTask.Execute(Track := 16#01));
+	testActivateTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsCommandsWithNoAxis_Test" Id="{d94842dc-f2af-4120-92da-d5763bf7c624}">
+      <Declaration><![CDATA[METHOD TaskRejectsCommandsWithNoAxis_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testActivateTask.AxisRef REF= 16#0;
+	Actual := FAILED(testActivateTask.Execute(Track := 16#01));
+	testActivateTask.Abort();
+	testActivateTask.AxisRef REF= stubAxis;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsDuplicateCommand_Test" Id="{09fd1bc0-99f9-465b-899a-d4b787d799cb}">
+      <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testActivateTask.Execute(Track := 16#01);
+	Actual := FAILED(testActivateTask.Execute(Track := 16#01));
+	testActivateTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsNullTrackCommand_Test" Id="{f20a193c-f923-4de9-a85a-3ad1f9005177}">
+      <Declaration><![CDATA[METHOD TaskRejectsNullTrackCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(testActivateTask.Execute(Track := 16#0));
+	testActivateTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

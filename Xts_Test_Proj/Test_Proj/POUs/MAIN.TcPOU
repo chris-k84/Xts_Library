@@ -6,7 +6,8 @@ VAR
 	XtsHWTestSuite : XtsHardware_TestSuite;
 	XtsMoverTestSuite : XtsMover_TestSuite;
 	XtsTestSuite : Xts_TestSuite;
-	TestSuites : ARRAY[0..2] OF I_TestSuite := [XtsHWTestSuite, XtsMoverTestSuite, XtsTestSuite];
+	ActivateTrackTestSuite : ActivateTrackTask_TestSuite;
+	TestSuites : ARRAY[0..3] OF I_TestSuite := [XtsHWTestSuite, XtsMoverTestSuite, XtsTestSuite, ActivateTrackTestSuite];
 	ReRun: BOOL;
 	i: INT;
 END_VAR
@@ -15,8 +16,9 @@ END_VAR
       <ST><![CDATA[XtsHWTestSuite();
 XtsMoverTestSuite();
 XtsTestSuite();
+ActivateTrackTestSuite();
 IF ReRun THEN
-	FOR i := 0 TO 2 DO
+	FOR i := 0 TO 3 DO
 		TestSuites[i].ReRunTests();
 	END_FOR
 	ReRun := FALSE;
