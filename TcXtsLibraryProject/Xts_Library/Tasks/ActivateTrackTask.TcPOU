@@ -92,7 +92,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT mcActivateTrack.Execute AND Track <> 0 THEN
+        <ST><![CDATA[IF NOT mcActivateTrack.Execute AND Track <> 0 AND __ISVALIDREF(_Axis) THEN
 	mcActivateTrack.Execute := TRUE;
 	mcActivateTrack.TrackId := Track;
 ELSE
