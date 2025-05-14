@@ -80,6 +80,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="GetMoverCtrlOTCID" Id="{863e8ade-d7f2-439e-8b15-5f1837c580a0}" FolderPath="Administration\">
+      <Declaration><![CDATA[METHOD GetMoverCtrlOTCID : XtsMoverControllerOTCID
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="HaltAxis" Id="{881642ff-213b-4030-944f-bd624c008c64}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD HaltAxis : HRESULT
 VAR_INPUT
@@ -198,6 +204,13 @@ END_VAR
     <Method Name="Reset" Id="{6858a2d4-c501-4639-b0f6-64db9416c8f9}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SetForceCouple" Id="{99e00719-7cb8-4a43-85db-8a5d5fa2d5af}" FolderPath="Administration\">
+      <Declaration><![CDATA[METHOD SetForceCouple : HRESULT
+VAR_INPUT
+	XtsMoverCtrlOTCID : Tc3_XTS_Utility.XtsMoverControllerOTCID;
 END_VAR
 ]]></Declaration>
     </Method>
