@@ -36,7 +36,7 @@ State := 0;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Busy := _Busy;]]></ST>
+          <ST><![CDATA[Busy := groupEnable.Busy;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -46,39 +46,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-CASE State OF
-	0:
-		IF _enableGroup THEN
-			Cycle := S_PENDING;
-			_Done := FALSE;
-			_Error := FALSE;
-			_Busy := TRUE;
-			groupEnable.Execute := TRUE;
-			IF groupEnable.Busy THEN
-				State := 10;
-				_enableGroup := FALSE;
-			END_IF
-		END_IF
-	
-	10:
-		IF NOT groupEnable.Busy THEN
-			IF groupEnable.Done THEN
-				_Done := TRUE;
-			ELSIF groupEnable.Error THEN
-				_Error := TRUE;
-			END_IF
-			_Busy := FALSE;
-			groupEnable.Execute := false;
-			State := 0;
-			Cycle := S_OK;
-		END_IF
-	ELSE
-		Cycle := E_FAIL;
-END_CASE
-
-
-groupEnable(AxesGroup := _caGroup.GroupRef);]]></ST>
+        <ST><![CDATA[groupEnable(AxesGroup := _caGroup.GroupRef);
+groupEnable.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{a772c0a8-091e-4c87-9bf2-8f9e57381133}">
@@ -89,7 +58,7 @@ groupEnable(AxesGroup := _caGroup.GroupRef);]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := _Done;]]></ST>
+          <ST><![CDATA[Done := groupEnable.Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -101,15 +70,19 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := _Error;]]></ST>
+          <ST><![CDATA[Error := groupEnable.Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Method Name="Execute" Id="{6b5a42b1-94d9-46bc-bf55-d1fbc24c1815}">
-      <Declaration><![CDATA[METHOD Execute : BOOL
+      <Declaration><![CDATA[METHOD Execute : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Execute := _enableGroup := true;]]></ST>
+        <ST><![CDATA[IF NOT groupEnable.Execute THEN
+	groupEnable.Execute := TRUE;
+ELSE
+	Execute := -1;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="FB_init" Id="{7ad275c7-67dd-42d2-bf9e-97af0354a9b5}">
@@ -124,31 +97,5 @@ END_VAR
         <ST><![CDATA[_caGroup := MyCaGroup;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="EnableGroup">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="EnableGroup.Abort">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="EnableGroup.Busy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="EnableGroup.Cycle">
-      <LineId Id="3" Count="31" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="EnableGroup.Done.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="EnableGroup.Error.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="EnableGroup.Execute">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="EnableGroup.FB_init">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
