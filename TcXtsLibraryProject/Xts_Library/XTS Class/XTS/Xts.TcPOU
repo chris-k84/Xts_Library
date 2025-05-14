@@ -329,7 +329,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Runner.RegisterCyclic(THIS^);
-Runner.RegisterInitialise(THIS^);]]></ST>
+Runner.RegisterInitialisable(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{f4cda3e0-308c-460d-87ee-c1616441d1b6}" FolderPath="Operations\">

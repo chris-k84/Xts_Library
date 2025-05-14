@@ -334,7 +334,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Runner.RegisterCyclic(THIS^);
-Runner.RegisterInitialise(THIS^);]]></ST>
+Runner.RegisterInitialisable(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetMoverNumbers" Id="{fda2cbfb-05d3-433d-b308-26404cfa0e4a}" FolderPath="Commands\">
