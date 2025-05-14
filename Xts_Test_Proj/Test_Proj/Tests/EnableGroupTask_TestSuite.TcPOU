@@ -3,10 +3,44 @@
   <POU Name="EnableGroupTask_TestSuite" Id="{d6808c9c-8ee3-49b7-b959-6f6cf8674f6b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK EnableGroupTask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
+	stubCAGroup : I_CollisionGroup;
+	testEnableGrp : EnableGroup(stubCAGroup);
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[TaskAcceptsCommand_Test();
+TaskRejectsDuplicateCommand_Task();]]></ST>
     </Implementation>
+    <Method Name="TaskAcceptsCommand_Test" Id="{beb45d47-5fed-4188-ab53-ba5d365cdd2a}">
+      <Declaration><![CDATA[METHOD TaskAcceptsCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(testEnableGrp.Execute());
+	testEnableGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsDuplicateCommand_Task" Id="{91cc6bf8-c893-4511-981e-1a160e7e4439}">
+      <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Task
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testEnableGrp.Execute();
+	Actual := FAILED(testEnableGrp.Execute());
+	testEnableGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
