@@ -9,11 +9,6 @@ END_VAR
 VAR
 	groupEnable			: MC_GroupEnable;
 	_caGroup			: I_CollisionGroup;
-	_enableGroup : BOOL;
-		State: INT;
-	_Done: BOOL;
-	_Error: BOOL;
-	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -24,8 +19,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[groupEnable.Execute := FALSE;
-Abort := TRUE;
-State := 0;]]></ST>
+Abort := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{4e4db787-2247-4ffa-a4fa-212f7c481400}">
