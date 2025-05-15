@@ -9,11 +9,6 @@ END_VAR
 VAR
 	groupDisable		: MC_GroupDisable;
 	_caGroup			: I_CollisionGroup;
-	_disableGroup : BOOL;
-		State: INT;
-	_Done: BOOL;
-	_Error: BOOL;
-	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -23,8 +18,7 @@ END_VAR
       <Declaration><![CDATA[METHOD Abort : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[State := 0;
-groupDisable.Execute := FALSE;
+        <ST><![CDATA[groupDisable.Execute := FALSE;
 Abort := true;]]></ST>
       </Implementation>
     </Method>
@@ -36,7 +30,7 @@ Abort := true;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Busy := _Busy;]]></ST>
+          <ST><![CDATA[Busy := groupDisable.Busy;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -46,39 +40,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-CASE State OF
-	0:
-		IF _disableGroup THEN
-			Cycle := S_PENDING;
-			_Done := FALSE;
-			_Error := FALSE;
-			_Busy := TRUE;
-			groupDisable.Execute := TRUE;
-			IF groupDisable.Busy THEN
-				_disableGroup := FALSE;
-				State := 10;
-			END_IF
-		END_IF
-	
-	10:
-		IF NOT groupDisable.Busy THEN
-			IF groupDisable.Done THEN
-				_Done := TRUE;
-			ELSIF groupDisable.Error THEN
-				_Error := TRUE;
-			END_IF
-			_Busy := FALSE;
-			groupDisable.Execute := false;
-			State := 0;
-			Cycle := S_OK;
-		END_IF
-	ELSE
-		Cycle := E_FAIL;
-END_CASE
-
-
-groupDisable(AxesGroup := _caGroup.GroupRef);]]></ST>
+        <ST><![CDATA[groupDisable(AxesGroup := _caGroup.GroupRef);
+groupDisable.Execute := false;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{6399d63a-c4a7-4051-98bb-74ddbb9f8698}">
@@ -89,7 +52,7 @@ groupDisable(AxesGroup := _caGroup.GroupRef);]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := _Done;]]></ST>
+          <ST><![CDATA[Done := groupDisable.Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -101,15 +64,19 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := _Error;]]></ST>
+          <ST><![CDATA[Error := groupDisable.Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Method Name="Execute" Id="{957a3466-1261-44df-92f7-84f5463a1c53}">
-      <Declaration><![CDATA[METHOD Execute : BOOL
+      <Declaration><![CDATA[METHOD Execute : hresult
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Execute := _disableGroup := TRUE;
+        <ST><![CDATA[IF NOT groupDisable.Execute THEN
+	groupDisable.Execute := TRUE;
+ELSE
+	Execute := -1;
+END_IF
 ]]></ST>
       </Implementation>
     </Method>
@@ -125,32 +92,5 @@ END_VAR
         <ST><![CDATA[_caGroup := MyCaGroup;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="DisableGroup">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="DisableGroup.Abort">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="DisableGroup.Busy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="DisableGroup.Cycle">
-      <LineId Id="3" Count="31" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="DisableGroup.Done.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="DisableGroup.Error.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="DisableGroup.Execute">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="DisableGroup.FB_init">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
