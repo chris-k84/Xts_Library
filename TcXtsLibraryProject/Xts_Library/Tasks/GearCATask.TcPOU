@@ -56,10 +56,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_ErrorID := GearInPosCA.ErrorId;
-IF __ISVALIDREF(_MasterAxis) AND __ISVALIDREF(_Axis) THEN
-	GearInPosCA(Master := _MasterAxis, Slave := _Axis, SyncStrategy := _syncStrategy, Velocity := 2000.0, RatioNumerator := 1, Gap := 60.0);
-END_IF ]]></ST>
+        <ST><![CDATA[IF NOT __ISVALIDREF(_MasterAxis) OR NOT __ISVALIDREF(_Axis) THEN
+	Cycle := -1;
+	RETURN;
+END_IF
+_ErrorID := GearInPosCA.ErrorId; 
+GearInPosCA(Master := _MasterAxis, Slave := _Axis, SyncStrategy := _syncStrategy, Velocity := 2000.0, RatioNumerator := 1, Gap := 60.0);
+GearInPosCA.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{4ec2e7b3-ecd4-4788-b9d1-484eeb59988f}">
@@ -87,16 +90,21 @@ END_VAR
       </Get>
     </Property>
     <Method Name="GearIn" Id="{3bab61dc-be16-4255-9286-dba4fcc8047d}">
-      <Declaration><![CDATA[METHOD PUBLIC GearIn : BOOL
+      <Declaration><![CDATA[METHOD PUBLIC GearIn : HRESULT
 VAR_INPUT
 	MasterPosition : MC_LREAL;
 	SlavePosition : MC_LREAL;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GearInPosCA.MasterSyncPosition := MasterPosition;
-GearInPosCA.SlaveSyncPosition := SlavePosition;
-GearInPosCA.Execute := GearIn := true;]]></ST>
+        <ST><![CDATA[IF NOT GearInPosCA.Execute AND __ISVALIDREF(_Axis) AND __ISVALIDREF(_MasterAxis) THEN
+	GearInPosCA.MasterSyncPosition := MasterPosition;
+	GearInPosCA.SlaveSyncPosition := SlavePosition;
+	GearInPosCA.Execute := TRUE;
+ELSE
+	GearIn := -1;
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Property Name="InGear" Id="{c9e803f5-cebb-4c19-b377-00252c85ab24}">

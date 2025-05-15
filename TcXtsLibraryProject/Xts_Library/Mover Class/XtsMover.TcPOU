@@ -234,7 +234,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT GearBehaviour.Busy AND __ISVALIDREF(GearBehaviour.MyGearMaster) AND MasterPosition <= _ActiveTrackLength AND SlavePosition <= _ActiveTrackLength THEN
-	IF GearBehaviour.GearIn(MasterPosition := MasterPosition, SlavePosition := SlavePosition) THEN
+	IF SUCCEEDED(GearBehaviour.GearIn(MasterPosition := MasterPosition, SlavePosition := SlavePosition)) THEN
 		Gear := 1;
 	ELSE
 		Gear := -1;
