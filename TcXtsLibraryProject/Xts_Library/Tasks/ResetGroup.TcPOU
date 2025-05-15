@@ -1,20 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="ResetGroup" Id="{c0d0b360-5fec-467e-a65e-491de04b13b3}" SpecialFunc="None">
-    <Declaration><![CDATA[{attribute 'hide_all_locals'}
-FUNCTION_BLOCK ResetGroup  IMPLEMENTS I_Task
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
+    <Declaration><![CDATA[FUNCTION_BLOCK ResetGroup  IMPLEMENTS I_Task
 VAR
 	groupReset			: MC_GroupReset;
 	_caGroup			: I_CollisionGroup;
-	_resetGroup : BOOL;
-		State: INT;
-	_Done: BOOL;
-	_Error: BOOL;
-	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -25,8 +15,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[groupReset.Execute := FALSE;
-State := 0;
-Abort := true;]]></ST>
+Abort := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{082143e7-cb0d-4693-a3c5-aae125aac900}">
@@ -37,7 +26,7 @@ Abort := true;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Busy := _Busy;]]></ST>
+          <ST><![CDATA[Busy := groupReset.Busy;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -47,39 +36,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-CASE State OF
-	0:
-		IF _resetGroup THEN
-			Cycle := S_PENDING;
-			_Done := FALSE;
-			_Error := FALSE;
-			_Busy := TRUE;
-			groupReset.Execute := TRUE;
-			IF groupReset.Busy THEN
-				State := 10;
-				_resetGroup := FALSE;
-			END_IF
-		END_IF
-	
-	10:
-		IF NOT groupReset.Busy THEN
-			IF groupReset.Done THEN
-				_Done := TRUE;
-			ELSIF groupReset.Error THEN
-				_Error := TRUE;
-			END_IF
-			_Busy := FALSE;
-			groupReset.Execute := false;
-			State := 0;
-			Cycle := S_OK;
-		END_IF
-	ELSE
-		Cycle := E_FAIL;
-END_CASE
-
-
-groupReset(AxesGroup := _caGroup.GroupRef);]]></ST>
+        <ST><![CDATA[groupReset(AxesGroup := _caGroup.GroupRef);
+groupReset.Execute := false;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{c50ed748-a155-44f3-a4e5-da3ebbeffcb4}">
@@ -90,7 +48,7 @@ groupReset(AxesGroup := _caGroup.GroupRef);]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := _Done;]]></ST>
+          <ST><![CDATA[Done := groupReset.Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -102,15 +60,19 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := _Error;]]></ST>
+          <ST><![CDATA[Error := groupReset.Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
     <Method Name="Execute" Id="{d2d6e3c9-1d94-473e-8bef-e969b6fceb58}">
-      <Declaration><![CDATA[METHOD Execute : BOOL
+      <Declaration><![CDATA[METHOD Execute : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Execute := _resetGroup := true;]]></ST>
+        <ST><![CDATA[IF NOT groupReset.Execute THEN
+	groupReset.Execute := TRUE;
+ELSE
+	Execute := -1;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="FB_init" Id="{747a23bd-39e4-4843-a82d-196c2af18fd6}">
@@ -125,31 +87,5 @@ END_VAR
         <ST><![CDATA[_caGroup := MyCaGroup;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="ResetGroup">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ResetGroup.Abort">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ResetGroup.Busy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ResetGroup.Cycle">
-      <LineId Id="3" Count="31" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ResetGroup.Done.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ResetGroup.Error.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ResetGroup.Execute">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ResetGroup.FB_init">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
