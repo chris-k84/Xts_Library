@@ -3,10 +3,96 @@
   <POU Name="GearCATask_TestSuite" Id="{061b6bca-7336-459c-b0e8-a83117c82ddd}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK GearCATask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
+	testMaster : AXIS_REF;
+	testAxis : AXIS_REF;
+	testGearTask : GearCATask := (AxisRef := testAxis, MyGearMaster := testMaster);
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[TaskAcceptsGearCommand_Test();
+TaskRejectCyclewithNoAxisRefs_Test();
+TaskRejectCyclewithNoMasterRefs_Test();
+TaskRejectsGearWithNoAxisRef_Test();
+TaskRejectGearwithNoMasterRefs_Test();]]></ST>
     </Implementation>
+    <Method Name="TaskAcceptsGearCommand_Test" Id="{acd9c547-0c6e-4db9-bf91-fa3e2f9bc389}">
+      <Declaration><![CDATA[METHOD TaskAcceptsGearCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(testGearTask.GearIn(1.0,1.0));
+	testGearTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectCyclewithNoAxisRefs_Test" Id="{78458915-68cb-441b-9d0d-8cb297e74b27}">
+      <Declaration><![CDATA[METHOD TaskRejectCyclewithNoAxisRefs_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testGearTask.AxisRef REF= 16#0;
+	Actual := FAILED(testGearTask.Cycle());
+	testGearTask.AxisRef REF= testAxis;
+	testGearTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectCyclewithNoMasterRefs_Test" Id="{dc5295ee-0a48-4be8-81f1-301f8ca559bd}">
+      <Declaration><![CDATA[METHOD TaskRejectCyclewithNoMasterRefs_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testGearTask.MyGearMaster REF= 16#0;
+	Actual := FAILED(testGearTask.Cycle());
+	testGearTask.MyGearMaster REF= testMaster;
+	testGearTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectGearwithNoMasterRefs_Test" Id="{3962e37a-30d9-468d-8447-b46584f032b9}">
+      <Declaration><![CDATA[METHOD TaskRejectGearwithNoMasterRefs_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testGearTask.MyGearMaster REF= 16#0;
+	Actual := FAILED(testGearTask.GearIn(MasterPosition := 0, SlavePosition := 0));
+	testGearTask.MyGearMaster REF= testMaster;
+	testGearTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsGearWithNoAxisRef_Test" Id="{d54072f7-f527-4fd9-b2c7-75d741a10e69}">
+      <Declaration><![CDATA[METHOD TaskRejectsGearWithNoAxisRef_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testGearTask.AxisRef REF= 16#0;
+	Actual := FAILED(testGearTask.GearIn(0.0, 0.0));
+	testGearTask.AxisRef REF= testAxis;
+	testGearTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
