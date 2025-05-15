@@ -39,7 +39,7 @@
     <AllowChecksForLibrary>false</AllowChecksForLibrary>
     <POUsForPropertyAccessIncluded>false</POUsForPropertyAccessIncluded>
     <GlobalVersionStructureIncluded>false</GlobalVersionStructureIncluded>
-    <VirtualLibrary>true</VirtualLibrary>
+    <VirtualLibrary>false</VirtualLibrary>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Mover Class\I_XtsMover.TcIO">

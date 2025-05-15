@@ -473,10 +473,10 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF NOT MoveBehaviour.Busy AND MoveVelocity < _MaxMoverVelocity AND MoveVelocity > 0.0 AND Gap >= 50.0 THEN
 	IF NonModuloMove THEN
-		IF THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
+		IF SUCCEEDED(THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
 										Velocity := MoveVelocity, 
 										Direction := Tc3_Mc3Definitions.MC_DIRECTION.mcDirectionNonModulo, 
-										Turns := 0) THEN
+										Turns := 0)) THEN
 										
 			MoveTo := 1;
 		END_IF
@@ -489,18 +489,18 @@ END_VAR
 			MoveTo := 1;
 		ELSE
 			IF RequiredPosition > MyAxisRef.NcToPlc.ModuloActPos THEN
-				IF THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
+				IF SUCCEEDED( THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
 											Velocity := MoveVelocity, 
 											Direction := Tc3_Mc3Definitions.MC_DIRECTION.mcDirectionPositive, 
-											Turns := 0) THEN
+											Turns := 0)) THEN
 											
 					MoveTo := 1;
 				END_IF
 			ELSE
-				IF THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
+				IF SUCCEEDED(THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
 											Velocity := MoveVelocity, 
 											Direction := Tc3_Mc3Definitions.MC_DIRECTION.mcDirectionNegative, 
-											Turns := 0) THEN
+											Turns := 0)) THEN
 											
 					MoveTo := 1;
 				END_IF	
