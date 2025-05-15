@@ -3,10 +3,79 @@
   <POU Name="HaltMoverTask_TestSuite" Id="{d7b1227a-089d-4d2d-9759-410675fe30bc}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK HaltMoverTask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
+	stubAxis : AXIS_REF;
+	testHaltMover : HaltMoverTask := (AxisRef := stubAxis);
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[TaskRejectsCommandWithNoAxisRef_Testy();
+TaskRejectsDuplicateCommand_Test();
+TaskWontCycleWithoutAxisRef_Test();
+TaskAcceptsCommand_Test();]]></ST>
     </Implementation>
+    <Method Name="TaskAcceptsCommand_Test" Id="{fb6fb1d2-beaf-43e9-a2b1-bb05d4d56bf2}">
+      <Declaration><![CDATA[METHOD TaskAcceptsCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := Succeeded(testHaltMover.Execute());
+	testHaltMover.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsCommandWithNoAxisRef_Testy" Id="{78fc3f65-b7dc-45a5-8cf9-915543da9eb3}">
+      <Declaration><![CDATA[METHOD TaskRejectsCommandWithNoAxisRef_Testy
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testHaltMover.AxisRef REF= 16#0;
+	Actual := FAILED(testHaltMover.Execute());
+	testHaltMover.Abort();
+	testHaltMover.AxisRef REF= stubAxis;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsDuplicateCommand_Test" Id="{bd7d62a4-1b55-4518-ac05-e7232036c5c4}">
+      <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testHaltMover.Execute();
+	Actual := FAILED(testHaltMover.Execute());
+	testHaltMover.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskWontCycleWithoutAxisRef_Test" Id="{936e1fe3-a6d5-43d7-8093-3d608f36ee71}">
+      <Declaration><![CDATA[METHOD TaskWontCycleWithoutAxisRef_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testHaltMover.AxisRef REF= 16#0;
+	Actual := FAILED(testHaltMover.Cycle());
+	testHaltMover.Abort();
+	testHaltMover.AxisRef REF= stubAxis;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

@@ -3,18 +3,20 @@
   <POU Name="MAIN" Id="{dc5d3262-2c75-40be-bcf4-e3452be8a2b3}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	XtsHWTestSuite : XtsHardware_TestSuite;
-	XtsMoverTestSuite : XtsMover_TestSuite;
-	XtsTestSuite : Xts_TestSuite;
-	ActivateTrackTestSuite : ActivateTrackTask_TestSuite;
-	EnableGroupTestSuite : EnableGroupTask_TestSuite;
-	DisableGroupTestSuite : DisableGroupTask_TestSuite;
-	TestSuites : ARRAY[0..5] OF I_TestSuite := [XtsHWTestSuite, 
+	XtsHWTestSuite : XtsHardware_TestSuite := (TestSuiteName := 'XtsHWTestSuite');
+	XtsMoverTestSuite : XtsMover_TestSuite := (TestSuiteName := 'XtsMoverTestsuite');
+	XtsTestSuite : Xts_TestSuite := (TestSuiteName := 'XtsTestSuite');
+	ActivateTrackTestSuite : ActivateTrackTask_TestSuite := (TestSuiteName := 'ActivateTrackTestSuite');
+	EnableGroupTestSuite : EnableGroupTask_TestSuite := (TestSuiteName := 'EnableGroupTestSuite');
+	DisableGroupTestSuite : DisableGroupTask_TestSuite := (TestSuiteName := 'DisableGroupTestsuite');
+	HaltMoverTestSuite : HaltMoverTask_TestSuite := (TestSuiteName := 'HaltMoverTestSuite');
+	TestSuites : ARRAY[0..6] OF I_TestSuite := [XtsHWTestSuite, 
 												XtsMoverTestSuite, 
 												XtsTestSuite, 
 												ActivateTrackTestSuite, 
 												EnableGroupTestSuite,
-												DisableGroupTestSuite];
+												DisableGroupTestSuite,
+												HaltMoverTestSuite];
 	ReRun: BOOL;
 	i: INT;
 END_VAR
@@ -26,8 +28,9 @@ XtsTestSuite();
 ActivateTrackTestSuite();
 EnableGroupTestSuite();
 DisableGroupTestSuite();
+HaltMoverTestSuite();
 IF ReRun THEN
-	FOR i := 0 TO 5 DO
+	FOR i := 0 TO 6 DO
 		TestSuites[i].ReRunTests();
 	END_FOR
 	ReRun := FALSE;
