@@ -82,6 +82,10 @@
       <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_System</Namespace>
     </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Mc3Definitions">
+      <DefaultResolution>Tc3_Mc3Definitions, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Mc3Definitions</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
@@ -92,7 +96,7 @@
       <Namespace>Tc3_PlcTestSuite</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Xts Library">
-      <DefaultResolution>[Xts Library], * (BeckhoffUK)</DefaultResolution>
+      <DefaultResolution>Xts Library, * (BeckhoffUK)</DefaultResolution>
       <Namespace>Xts_Library</Namespace>
     </PlaceholderReference>
   </ItemGroup>

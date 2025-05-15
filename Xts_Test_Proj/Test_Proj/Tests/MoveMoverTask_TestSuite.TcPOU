@@ -3,10 +3,94 @@
   <POU Name="MoveMoverTask_TestSuite" Id="{3c6dc573-70f3-4fa0-a64c-028210806be9}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK MoveMoverTask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
+	stubAxis : AXIS_REF;
+	testMoveTask : MoveToPositionTask := (AxisRef := stubAxis);
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[TaskRejectCyclewithNoAxisRefs_Test();
+TaskRejectMovewithNoAxisRefs_Test();
+TaskRejectsZeroAccelSet_Test();
+TaskRejectsZeroVeloMove_Test();
+TaskAcceptsValidMoveCommand_Test();]]></ST>
     </Implementation>
+    <Method Name="TaskAcceptsValidMoveCommand_Test" Id="{e9d379e6-6863-4b38-8749-39f7f46ba32d}">
+      <Declaration><![CDATA[METHOD TaskAcceptsValidMoveCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(testMoveTask.MoveTo(1.0,1.0,tc3_mc3definitions.MC_DIRECTION.mcDirectionNegative,0));
+	testMoveTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectCyclewithNoAxisRefs_Test" Id="{cea8ae0e-65b7-42c7-be1d-83ca270a6f8b}">
+      <Declaration><![CDATA[METHOD TaskRejectCyclewithNoAxisRefs_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMoveTask.AxisRef REF= 16#0;
+	Actual := FAILED(testMoveTask.Cycle());
+	testMoveTask.AxisRef REF= stubAxis;
+	testMoveTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectMovewithNoAxisRefs_Test" Id="{936e50d8-e875-4d1c-9c35-f00cbe24977a}">
+      <Declaration><![CDATA[METHOD TaskRejectMovewithNoAxisRefs_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMoveTask.AxisRef REF= 16#0;
+	Actual := FAILED(testMoveTask.MoveTo(0.0,0.0,Tc3_Mc3Definitions.MC_DIRECTION.mcDirectionNegative,0));
+	testMoveTask.AxisRef REF= stubAxis;
+	testMoveTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsZeroAccelSet_Test" Id="{0680505a-b3c5-484d-8ec8-d6b7def2f093}">
+      <Declaration><![CDATA[METHOD TaskRejectsZeroAccelSet_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMoveTask.Acceleration := 32.0;
+	testMoveTask.Acceleration := 0.0;
+	Actual := testMoveTask.Acceleration = 32.0;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsZeroVeloMove_Test" Id="{23a2a9cd-c0be-4be6-af02-44f166ce64a0}">
+      <Declaration><![CDATA[METHOD TaskRejectsZeroVeloMove_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(testMoveTask.MoveTo(1.0,0.0,tc3_mc3definitions.MC_DIRECTION.mcDirectionNegative,0));
+	testMoveTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
