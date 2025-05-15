@@ -289,7 +289,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT HaltBehaviour.Busy THEN
-	IF HaltBehaviour.Execute() THEN
+	IF SUCCEEDED(HaltBehaviour.Execute()) THEN
 		HaltAxis := 1;
 	ELSE
 		HaltAxis := -1;
