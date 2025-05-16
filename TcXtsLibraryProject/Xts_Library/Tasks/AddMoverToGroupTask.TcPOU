@@ -12,10 +12,6 @@ VAR
 	_Axis				: REFERENCE TO AXIS_REF;
 	_addMover : BOOL;
 	_moverNumber : UDINT;
-	State: INT;
-	_Done: BOOL;
-	_Error: BOOL;
-	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -26,8 +22,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[AddtoGrp.Execute := FALSE;
-Abort := true;
-State := 0;]]></ST>
+Abort := true;]]></ST>
       </Implementation>
     </Method>
     <Method Name="AddMover" Id="{481f5339-50ec-48c8-9b4c-100ecb265f94}">
@@ -37,10 +32,14 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_Axis REF= MoverToAdd.AxisRef;
-AddtoGrp.IdentInGroup := MoverToAdd.IdentInGroup;
-_Busy := TRUE;
-_addMover := TRUE;]]></ST>
+        <ST><![CDATA[IF MoverToAdd <> 0 AND NOT AddtoGrp.Execute THEN
+	AddtoGrp.Execute := TRUE;
+	AddtoGrp.IdentInGroup := MoverToAdd.IdentInGroup;
+	AddtoGrp.Axis REF= MoverToAdd.AxisRef;
+ELSE
+	AddMover := -1;
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{c78e23b2-93cd-417a-a8b9-63c9e9a6bdb1}">
@@ -51,7 +50,7 @@ _addMover := TRUE;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Busy := _Busy;]]></ST>
+          <ST><![CDATA[Busy := AddtoGrp.Busy;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -61,39 +60,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-CASE State OF
-	0:
-		IF _addMover THEN
-			Cycle := S_PENDING;
-			_Done := FALSE;
-			_Error := FALSE;
-			_Busy := TRUE;
-			AddtoGrp.Execute := TRUE;
-			IF AddtoGrp.Busy THEN
-				State := 10;
-				_addMover := FALSE;
-			END_IF
-		END_IF
-	
-	10:
-		IF NOT AddtoGrp.Busy THEN
-			IF AddtoGrp.Done THEN
-				_Done := TRUE;
-			ELSIF AddtoGrp.Error THEN
-				_Error := TRUE;
-			END_IF
-			_Busy := FALSE;
-			AddtoGrp.Execute := false;
-			State := 0;
-			Cycle := S_OK;
-		END_IF
-	ELSE
-		Cycle := E_FAIL;
-END_CASE
-
+        <ST><![CDATA[IF _CaGroup = 0 OR NOT __ISVALIDREF(AddtoGrp.Axis) THEN
+	Cycle := -1;
+	RETURN;
+END_IF
 AddtoGrp(AxesGroup := _CaGroup.GroupRef,
-			Axis := _Axis);]]></ST>
+			Axis := _Axis);
+AddtoGrp.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{cfadbdb7-dc76-4c06-a611-19c594f321f8}">
@@ -104,7 +77,7 @@ AddtoGrp(AxesGroup := _CaGroup.GroupRef,
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := _Done;]]></ST>
+          <ST><![CDATA[Done := AddtoGrp.Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -116,7 +89,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := _Error;]]></ST>
+          <ST><![CDATA[Error := AddtoGrp.Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
