@@ -38,5 +38,21 @@ END_VAR
 // TestSuiteGVL.fbTestsuites.P_Options.sFilePathName:= 'C:\test\report.xml';]]></ST>
       </Implementation>
     </Method>
+    <Method Name="TaskRejectsAddingSameMover_Test" Id="{d3aa7857-c4a4-46bc-a9ac-fdcae634440c}">
+      <Declaration><![CDATA[METHOD TaskRejectsAddingSameMover_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMoverToGrp.AddMover(stubAxis);
+	Actual := SUCCEEDED(testMoverToGrp.AddMover(stubAxis));
+	testMoverToGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

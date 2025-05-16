@@ -13,8 +13,7 @@ END_VAR
       <ST><![CDATA[TaskAcceptsMover_Test();
 TaskRejectsCyclewithNoCAGroup_Test();
 TaskRejectsInvalidMover_Test();
-TaskRejectsDuplicateCommand_Test();
-TaskRejectsAddingSameMover_Test();]]></ST>
+TaskRejectsDuplicateCommand_Test();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsMover_Test" Id="{76d622a8-3592-402c-963b-8fe6effd36e5}">
       <Declaration><![CDATA[METHOD TaskAcceptsMover_Test
@@ -25,22 +24,6 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	Actual := SUCCEEDED(testMoverToGrp.AddMover(stubAxis));
-	testMoverToGrp.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="TaskRejectsAddingSameMover_Test" Id="{d3aa7857-c4a4-46bc-a9ac-fdcae634440c}">
-      <Declaration><![CDATA[METHOD TaskRejectsAddingSameMover_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	testMoverToGrp.AddMover(stubAxis);
 	Actual := SUCCEEDED(testMoverToGrp.AddMover(stubAxis));
 	testMoverToGrp.Abort();
 	Test(__POUNAME()).AssertEqual(Expected, Actual);

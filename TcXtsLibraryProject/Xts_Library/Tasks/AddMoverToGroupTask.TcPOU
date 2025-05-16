@@ -10,8 +10,6 @@ VAR
 	AddtoGrp			: MC_AddAxisToGroup;
 	_CaGroup			: I_CollisionGroup;
 	_Axis				: REFERENCE TO AXIS_REF;
-	_addMover : BOOL;
-	_moverNumber : UDINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -35,7 +33,7 @@ END_VAR
         <ST><![CDATA[IF MoverToAdd <> 0 AND NOT AddtoGrp.Execute THEN
 	AddtoGrp.Execute := TRUE;
 	AddtoGrp.IdentInGroup := MoverToAdd.IdentInGroup;
-	AddtoGrp.Axis REF= MoverToAdd.AxisRef;
+	_Axis REF= MoverToAdd.AxisRef;
 ELSE
 	AddMover := -1;
 END_IF
@@ -60,7 +58,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _CaGroup = 0 OR NOT __ISVALIDREF(AddtoGrp.Axis) THEN
+        <ST><![CDATA[IF _CaGroup = 0 OR NOT __ISVALIDREF(_Axis) THEN
 	Cycle := -1;
 	RETURN;
 END_IF
