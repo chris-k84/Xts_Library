@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="AddMover_TestSuite" Id="{e6d2eae2-d6b8-40f3-b93b-ee6358707c5b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AddMover_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+VAR
+	stubCAGroup : I_CollisionGroup;
+	stubAxis : XtsMover;
+	stubAxis1 : XtsMover;
+	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TaskAcceptsMover_Test();
+TaskRejectsCyclewithNoCAGroup_Test();
+TaskRejectsInvalidMover_Test();
+TaskRejectsDuplicateCommand_Test();
+TaskRejectsAddingSameMover_Test();]]></ST>
+    </Implementation>
+    <Method Name="TaskAcceptsMover_Test" Id="{76d622a8-3592-402c-963b-8fe6effd36e5}">
+      <Declaration><![CDATA[METHOD TaskAcceptsMover_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(testMoverToGrp.AddMover(stubAxis));
+	testMoverToGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsAddingSameMover_Test" Id="{d3aa7857-c4a4-46bc-a9ac-fdcae634440c}">
+      <Declaration><![CDATA[METHOD TaskRejectsAddingSameMover_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMoverToGrp.AddMover(stubAxis);
+	Actual := SUCCEEDED(testMoverToGrp.AddMover(stubAxis));
+	testMoverToGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsCyclewithNoCAGroup_Test" Id="{67079034-a882-4395-b22e-5f8c5fbf43fc}">
+      <Declaration><![CDATA[METHOD TaskRejectsCyclewithNoCAGroup_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(testMoverToGrp.Cycle());
+	testMoverToGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsDuplicateCommand_Test" Id="{caf75f25-819a-48cc-a5c7-cd789f30bab6}">
+      <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMoverToGrp.AddMover(stubAxis);
+	Actual := FAILED(testMoverToGrp.AddMover(stubAxis1));
+	testMoverToGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsInvalidMover_Test" Id="{e3b9e3da-2293-4563-b5f0-6f0df1b14381}">
+      <Declaration><![CDATA[METHOD TaskRejectsInvalidMover_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(testMoverToGrp.AddMover(16#0));
+	testMoverToGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

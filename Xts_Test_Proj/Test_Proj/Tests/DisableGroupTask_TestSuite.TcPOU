@@ -4,7 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK DisableGroupTask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
 	stubCAGroup : I_CollisionGroup;
-	testDisableGrp : DisableGroup(stubCAGroup);
+	testDisableGrp : DisableGroup := (MyCollisionGroup := stubCAGroup);
 END_VAR
 ]]></Declaration>
     <Implementation>

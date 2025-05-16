@@ -13,8 +13,8 @@ VAR
 	ReadGroupStatus : Tc3_McCoordinatedMotion.MC_GroupReadStatus;
 	resetCAGroup : ResetGroup := (MyCollisionGroup := THIS^);
 	enableCAGroup : EnableGroup := (MyCollisionGroup := THIS^);
-	disableCAGroup : DisableGroup:= (MyCollisionGroup := THIS^);
-	addMover : AddMoverToGroupTask(THIS^);
+	disableCAGroup : DisableGroup := (MyCollisionGroup := THIS^);
+	addMover : AddMoverToGroupTask := (MyCollisionGroup := THIS^);
 	removeAllAxes : RemoveAllMoverFromGroup(THIS^);
 	grpStop : StopMoverGroup(THIS^);
 	removeMover : RemoveMoverFromGroup(THIS^);

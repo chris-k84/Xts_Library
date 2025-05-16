@@ -4,7 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK ResetGroupTast_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
 	stubCAGroup : I_CollisionGroup;
-	testResetGrp : ResetGroup(stubCAGroup);
+	testResetGrp : ResetGroup:= (MyCollisionGroup := stubCAGroup);
 END_VAR
 ]]></Declaration>
     <Implementation>
