@@ -79,17 +79,24 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="FB_init" Id="{7ad275c7-67dd-42d2-bf9e-97af0354a9b5}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
-VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	MyCaGroup : I_CollisionGroup;	
+    <Property Name="MyCollisionGroup" Id="{4ec7cc23-7094-408b-87af-591e7c9596ca}">
+      <Declaration><![CDATA[PROPERTY MyCollisionGroup : I_CollisionGroup]]></Declaration>
+      <Get Name="Get" Id="{7e162f97-609a-4d5e-8ef7-d97f2590a7d7}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_caGroup := MyCaGroup;]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[MyCollisionGroup := _caGroup;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{f6b98b9b-247c-45c3-9781-3be9ceb23789}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_caGroup := MyCollisionGroup;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
   </POU>
 </TcPlcObject>
