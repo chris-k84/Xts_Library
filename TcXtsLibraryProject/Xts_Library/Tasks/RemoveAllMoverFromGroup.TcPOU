@@ -107,18 +107,25 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="FB_init" Id="{639b4db7-7f3c-417a-8c60-934c2a4c839a}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
-VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	MyCaGroup : I_CollisionGroup;	
+    <Property Name="MyCollisionGroup" Id="{648a0ebd-d48b-4f7d-8cf0-533de95e54f9}">
+      <Declaration><![CDATA[PROPERTY MyCollisionGroup : I_CollisionGroup]]></Declaration>
+      <Get Name="Get" Id="{047a9927-cc59-4451-88c4-bc2ec66e5e78}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_caGroup := MyCaGroup;]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[MyCollisionGroup := _caGroup;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{bc0a67ea-d15d-45ca-af76-84a2bf2313ea}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_caGroup := MyCollisionGroup;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="RemoveAllMover" Id="{0b41790b-140c-4897-91fc-096c85c5f45b}">
       <Declaration><![CDATA[METHOD RemoveAllMover : BOOL
 ]]></Declaration>
@@ -126,31 +133,5 @@ END_VAR
         <ST><![CDATA[RemoveAllMover := _removeAllMovers := true;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="RemoveAllMoverFromGroup">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveAllMoverFromGroup.Abort">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveAllMoverFromGroup.Busy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveAllMoverFromGroup.Cycle">
-      <LineId Id="3" Count="32" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveAllMoverFromGroup.Done.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveAllMoverFromGroup.Error.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveAllMoverFromGroup.FB_init">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveAllMoverFromGroup.RemoveAllMover">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

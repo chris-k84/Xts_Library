@@ -52,6 +52,9 @@
     <Compile Include="Tests\MoveMoverTask_TestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\RemoveAllMover_TestSuite.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Tests\ResetGroupTast_TestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
