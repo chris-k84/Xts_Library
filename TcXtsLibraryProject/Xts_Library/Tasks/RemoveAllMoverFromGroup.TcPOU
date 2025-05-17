@@ -2,19 +2,9 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="RemoveAllMoverFromGroup" Id="{1511d483-7397-4cd0-a6db-08dd652e8cbb}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK RemoveAllMoverFromGroup  IMPLEMENTS I_Task
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
 VAR
 	RemoveAllFromGrp			: MC_UngroupAllAxes;
 	_caGroup			: I_CollisionGroup;
-	_removeAllMovers : BOOL;
-	_errorId: UDINT;
-		State: INT;
-	_Done: BOOL;
-	_Error: BOOL;
-	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -37,7 +27,7 @@ State := 0;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Busy := _Busy;]]></ST>
+          <ST><![CDATA[Busy := RemoveAllFromGrp.Busy;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -47,40 +37,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-CASE State OF
-	0:
-		IF _removeAllMovers THEN
-			Cycle := S_PENDING;
-			_Done := FALSE;
-			_Error := FALSE;
-			_Busy := TRUE;
-			RemoveAllFromGrp.Execute := TRUE;
-			IF RemoveAllFromGrp.Busy THEN
-				_removeAllMovers := FALSE;
-				State := 10;
-			END_IF
-		END_IF
-		
-	10:
-		IF NOT RemoveAllFromGrp.Busy THEN
-			IF RemoveAllFromGrp.Done THEN
-				_Done := TRUE;
-			ELSIF RemoveAllFromGrp.Error THEN
-				_Error := TRUE;
-				_errorId := RemoveAllFromGrp.ErrorId;
-			END_IF
-			_Busy := FALSE;
-			RemoveAllFromGrp.Execute := false;
-			State := 0;
-			Cycle := S_OK;
-		END_IF
-	ELSE
-		Cycle := E_FAIL;
-END_CASE
-
-
-RemoveAllFromGrp(AxesGroup := _caGroup.GroupRef);]]></ST>
+        <ST><![CDATA[IF _caGroup = 0 THEN
+	Cycle := -1;
+	RETURN;
+END_IF
+RemoveAllFromGrp(AxesGroup := _caGroup.GroupRef);
+RemoveAllFromGrp.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{975b270f-4493-4b56-b51c-510ba823888a}">
@@ -91,7 +53,7 @@ RemoveAllFromGrp(AxesGroup := _caGroup.GroupRef);]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := _Done;]]></ST>
+          <ST><![CDATA[Done := RemoveAllFromGrp.Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -103,7 +65,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := _Error;]]></ST>
+          <ST><![CDATA[Error := RemoveAllFromGrp.Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
