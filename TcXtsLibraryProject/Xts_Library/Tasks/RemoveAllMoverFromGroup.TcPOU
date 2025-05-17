@@ -15,8 +15,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[RemoveAllFromGrp.Execute := FALSE;
-Abort := true;
-State := 0;]]></ST>
+Abort := true;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{0d92caac-9bc0-454c-a618-8bcbd6fddbf0}">
