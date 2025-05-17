@@ -89,10 +89,14 @@ END_VAR
       </Set>
     </Property>
     <Method Name="RemoveAllMover" Id="{0b41790b-140c-4897-91fc-096c85c5f45b}">
-      <Declaration><![CDATA[METHOD RemoveAllMover : BOOL
+      <Declaration><![CDATA[METHOD RemoveAllMover : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[RemoveAllMover := _removeAllMovers := true;]]></ST>
+        <ST><![CDATA[IF NOT RemoveAllFromGrp.Execute AND _caGroup <> 0 THEN
+	RemoveAllFromGrp.Execute := TRUE;
+ELSE
+	RemoveAllMover := -1;
+END_IF]]></ST>
       </Implementation>
     </Method>
   </POU>
