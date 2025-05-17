@@ -40,7 +40,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[groupDisable(AxesGroup := _caGroup.GroupRef);
+        <ST><![CDATA[IF _caGroup = 0 THEN
+	cycle := -1;
+	RETURN;
+END_IF
+groupDisable(AxesGroup := _caGroup.GroupRef);
 groupDisable.Execute := false;]]></ST>
       </Implementation>
     </Method>
