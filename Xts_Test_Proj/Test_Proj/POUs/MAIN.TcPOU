@@ -14,7 +14,8 @@ VAR
 	GearCATestSuite : GearCATask_TestSuite := (TestSuiteName := 'GearCATestSuite');
 	MoveMoverTestSuite : MoveMoverTask_TestSuite := (TestSuiteName := 'MoveMoverTestSuite');
 	AddMoverTestSuite : AddMover_TestSuite := (TestSuiteName := 'AddMoverTestSuite');
-	TestSuites : ARRAY[0..10] OF I_TestSuite := [XtsHWTestSuite, 
+	RemoveAllTestSuite : RemoveAllMover_TestSuite := (TestSuiteName := 'RemoveAllTestSuite');
+	TestSuites : ARRAY[0..11] OF I_TestSuite := [XtsHWTestSuite, 
 												XtsMoverTestSuite, 
 												XtsTestSuite, 
 												ActivateTrackTestSuite, 
@@ -24,7 +25,8 @@ VAR
 												ResetGroupTestSuite,
 												GearCATestSuite,
 												MoveMoverTestSuite,
-												AddMoverTestSuite];
+												AddMoverTestSuite,
+												RemoveAllTestSuite];
 	ReRun: BOOL;
 	i: INT;
 END_VAR
@@ -41,8 +43,9 @@ ResetGroupTestSuite();
 GearCATestSuite();
 MoveMoverTestSuite();
 AddMoverTestSuite();
+RemoveAllTestSuite();
 IF ReRun THEN
-	FOR i := 0 TO 10 DO
+	FOR i := 0 TO 11 DO
 		TestSuites[i].ReRunTests();
 	END_FOR
 	ReRun := FALSE;

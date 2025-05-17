@@ -36,7 +36,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[groupReset(AxesGroup := _caGroup.GroupRef);
+        <ST><![CDATA[IF _caGroup = 0 THEN
+	cycle := -1;
+	RETURN;
+END_IF
+groupReset(AxesGroup := _caGroup.GroupRef);
 groupReset.Execute := false;]]></ST>
       </Implementation>
     </Method>
