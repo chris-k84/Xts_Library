@@ -15,7 +15,7 @@ VAR
 	enableCAGroup : EnableGroup := (MyCollisionGroup := THIS^);
 	disableCAGroup : DisableGroup := (MyCollisionGroup := THIS^);
 	addMover : AddMoverToGroupTask := (MyCollisionGroup := THIS^);
-	removeAllAxes : RemoveAllMoverFromGroup(THIS^);
+	removeAllAxes : RemoveAllMoverFromGroup := (MyCollisionGroup := THIS^);
 	grpStop : StopMoverGroup(THIS^);
 	removeMover : RemoveMoverFromGroup(THIS^);
 	_MyName: STRING;
