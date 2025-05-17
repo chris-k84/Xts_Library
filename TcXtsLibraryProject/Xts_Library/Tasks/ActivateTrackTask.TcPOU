@@ -56,7 +56,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_newTrackId := mcActivateTrack.TrackId;
+        <ST><![CDATA[IF NOT __ISVALIDREF(_Axis) THEN
+	Cycle := -1;
+	RETURN;
+END_IF
+_newTrackId := mcActivateTrack.TrackId;
 mcActivateTrack(Axis := _Axis);
 mcActivateTrack.Execute := FALSE;]]></ST>
       </Implementation>
