@@ -7,7 +7,7 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	_collisionGroup : I_CollisionGroup;
+	_caGroup : I_CollisionGroup;
 	moverNumbers : UINT;
 	AllMoversEnabled: BOOL;
 	EnableTrigger : BOOL;	
@@ -75,13 +75,13 @@ END_VAR]]></Declaration>
 		State := 20;
 		
 	20:
-		IF _collisionGroup.GroupState = CAGroupStatus.mcGroupStateErrorStop THEN
-			CAGroupResetResult := SUCCEEDED(_collisionGroup.Reset());
+		IF _caGroup.GroupState = CAGroupStatus.mcGroupStateErrorStop THEN
+			CAGroupResetResult := SUCCEEDED(_caGroup.Reset());
 		END_IF
 		State := 30;
 		
 	30:
-		IF _collisionGroup.AddMoverToThisGroup(MoverToAdd := arrMovers[moverNumbers]) =2 THEN
+		IF _caGroup.AddMoverToThisGroup(MoverToAdd := arrMovers[moverNumbers]) =2 THEN
 			State := 40;
 		END_IF
 		
@@ -103,12 +103,12 @@ END_VAR]]></Declaration>
 			AllMoversEnabled := TRUE AND arrMovers[moverNumbers].isMoverEnabled();
 		END_FOR
 		IF AllMoversEnabled THEN
-			CAGroupEnableResult := _collisionGroup.Enable();
+			CAGroupEnableResult := _caGroup.Enable();
 			State := 60;
 		END_IF
 		
 	60:
-		IF _collisionGroup.GroupState = 2 THEN
+		IF _caGroup.GroupState = 2 THEN
 			State := 0;
 			_Busy := FALSE;
 			_Done := TRUE;
@@ -155,18 +155,25 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="FB_init" Id="{a4125f89-7eca-48c2-8cb0-d4574c798d78}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
-VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	MyCaGroup : I_CollisionGroup;
+    <Property Name="MyCollisionGroup" Id="{0c241349-a398-40a0-a115-326a5cd04bf6}">
+      <Declaration><![CDATA[PROPERTY MyCollisionGroup : I_CollisionGroup]]></Declaration>
+      <Get Name="Get" Id="{c45de961-c00e-41dd-bc0b-0921ea45f3ce}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_collisionGroup := MyCaGroup;]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[MyCollisionGroup := _caGroup;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{0715b558-a706-48d8-a891-3862516fa554}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_caGroup := MyCollisionGroup;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="RegisterMovers" Id="{330a136c-c434-49ce-bb82-6de99c18307c}">
       <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
 VAR_INPUT
