@@ -36,7 +36,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[groupStop(AxesGroup := _caGroup.GroupRef);
+        <ST><![CDATA[IF _caGroup = 0 THEN
+	cycle := -1;
+	RETURN;
+END_IF
+groupStop(AxesGroup := _caGroup.GroupRef);
 groupStop.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
@@ -84,10 +88,14 @@ END_VAR
       </Get>
     </Property>
     <Method Name="Execute" Id="{699db21e-cd5b-48cd-b391-3ef65bad1290}">
-      <Declaration><![CDATA[METHOD Execute : BOOL
+      <Declaration><![CDATA[METHOD Execute : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_stopGroup := Execute := true;]]></ST>
+        <ST><![CDATA[IF NOT groupStop.Execute THEN
+	groupStop.Execute := TRUE;
+ELSE
+	Execute := -1;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Property Name="Jerk" Id="{753822d2-3240-4ac1-a838-285435826cfe}">
