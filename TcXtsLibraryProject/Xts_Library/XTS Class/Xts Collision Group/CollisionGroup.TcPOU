@@ -58,9 +58,9 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[_ICaGroup := CAGroupXtsIoEnvInterface;
-_MyName := _ICaGroup.P_ObjectName;
-
-]]></ST>
+IF _ICaGroup <> 0 THEN
+	_MyName := _ICaGroup.P_ObjectName;
+END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>

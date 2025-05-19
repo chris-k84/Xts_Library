@@ -13,8 +13,8 @@ VAR
 	ICollisionGroup : I_CollisionGroup;
 	_MyXtsHardware : I_XtsHardware;
 	XtsHwState : XtsSystemInitialisation;
-	EnableSequence : XtsEnableSequence(ICollisionGroup);
-	DisableSequence : XtsDisableSequence(ICollisionGroup);
+	EnableSequence : XtsEnableSequence;
+	DisableSequence : XtsDisableSequence;
 	State : UINT;	
 	AtHome: BOOL;
 	Initialised : BOOL;
@@ -85,7 +85,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[DisableXTS := DisableSequence.Disable();]]></ST>
+        <ST><![CDATA[DisableXTS := SUCCEEDED(DisableSequence.Disable());]]></ST>
       </Implementation>
     </Method>
     <Method Name="EnableXTS" Id="{e800781e-1435-4747-9cb4-9b9fab34ca22}" FolderPath="Operations\">
@@ -114,8 +114,8 @@ END_VAR]]></Declaration>
         <ST><![CDATA[_XtsIoEnvVar := MyXtsIoEnvVar;
 _MyXtsHardware := MyXtsHardware;
 ICollisionGroup := MyCAGroup;
-EnableSequence.FB_init(FALSE,FALSE,ICollisionGroup);
-DisableSequence.FB_init(FALSE,FALSE,ICollisionGroup);]]></ST>
+EnableSequence.MyCollisionGroup := ICollisionGroup;
+DisableSequence.MyCollisionGroup := ICollisionGroup;]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetTMSMoverInterface" Id="{0e64eced-3444-47ea-9660-c818e7a9dea9}" FolderPath="Operations\">

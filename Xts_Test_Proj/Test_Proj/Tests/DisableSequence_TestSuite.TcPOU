@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="DisableSequence_TestSuite" Id="{f559856d-01d4-4848-9917-85e528e26102}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK DisableSequence_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+VAR
+	stubCAGroup : CollisionGroup;
+	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SequenceAcceptsDiableCommand_Test();
+//SequenceRejectsCommandWithNoAxes_Test();
+SequenceRejectsCommandWithNoCAGroup_Test();
+SequenceRejectsDuplicateCommand_Test();]]></ST>
+    </Implementation>
+    <Method Name="SequenceAcceptsDiableCommand_Test" Id="{9968cbcb-1e07-4776-8222-2487796f2d34}">
+      <Declaration><![CDATA[METHOD SequenceAcceptsDiableCommand_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(DisableSequence.Disable());
+	DisableSequence.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SequenceRejectsCommandWithNoAxes_Test" Id="{23a2eea3-b5fb-4474-bc7a-20d66dc6a2ed}">
+      <Declaration><![CDATA[METHOD SequenceRejectsCommandWithNoAxes_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	DisableSequence.Disable();
+	Actual := FAILED(DisableSequence.Disable());
+	DisableSequence.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SequenceRejectsCommandWithNoCAGroup_Test" Id="{d0d31a4d-e07f-4a4c-9dd5-b75eb64a2cab}">
+      <Declaration><![CDATA[METHOD SequenceRejectsCommandWithNoCAGroup_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	DisableSequence.MyCollisionGroup := 0;
+	Actual := FAILED(DisableSequence.Disable());
+	DisableSequence.MyCollisionGroup := stubCAGroup;
+	DisableSequence.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SequenceRejectsDuplicateCommand_Test" Id="{8dc243ec-fddf-46dc-ad15-142d6952e617}">
+      <Declaration><![CDATA[METHOD SequenceRejectsDuplicateCommand_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	DisableSequence.Disable();
+	Actual := FAILED(DisableSequence.Disable());
+	DisableSequence.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

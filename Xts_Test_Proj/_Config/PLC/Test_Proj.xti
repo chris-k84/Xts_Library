@@ -1305,7 +1305,7 @@ and will return to Group State Standby when the situation permits.
 		</DataType>
 	</DataTypes>
 	<Project GUID="{9D834261-4541-48F3-87B7-1F0DD96DA306}" Name="Test_Proj" PrjFilePath="..\..\Test_Proj\Test_Proj.plcproj" TmcFilePath="..\..\Test_Proj\Test_Proj.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{8CDD20E4-BF3C-7412-C189-23C00406A91B}" TmcPath="Test_Proj\Test_Proj.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{BAF24BFE-2278-D1F8-260C-34F3CCD662BA}" TmcPath="Test_Proj\Test_Proj.tmc">
 			<Name>Test_Proj Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="2" AreaNo="1">
@@ -1362,6 +1362,14 @@ and will return to Group State Standby when the situation permits.
 					<Name>MAIN.CaGroupTestSuite.caGroup._caGroup.PlcToNc</Name>
 					<Type GUID="{0E2E3852-A98C-4AF3-81E2-209EE128940C}" Namespace="MC">CDT_PLCTOMC_GROUP</Type>
 				</Var>
+				<Var>
+					<Name>MAIN.EnableSequenceTestSuite.stubCAGroup._caGroup.PlcToNc</Name>
+					<Type GUID="{0E2E3852-A98C-4AF3-81E2-209EE128940C}" Namespace="MC">CDT_PLCTOMC_GROUP</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.DisableSequenceTestSuite.stubCAGroup._caGroup.PlcToNc</Name>
+					<Type GUID="{0E2E3852-A98C-4AF3-81E2-209EE128940C}" Namespace="MC">CDT_PLCTOMC_GROUP</Type>
+				</Var>
 			</Vars>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
@@ -1415,6 +1423,14 @@ and will return to Group State Standby when the situation permits.
 				</Var>
 				<Var>
 					<Name>MAIN.CaGroupTestSuite.caGroup._caGroup.NcToPlc</Name>
+					<Type GUID="{467F4325-10DF-4BC1-88DD-E8240EB4F8E3}" Namespace="MC">CDT_MCTOPLC_GROUP</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EnableSequenceTestSuite.stubCAGroup._caGroup.NcToPlc</Name>
+					<Type GUID="{467F4325-10DF-4BC1-88DD-E8240EB4F8E3}" Namespace="MC">CDT_MCTOPLC_GROUP</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.DisableSequenceTestSuite.stubCAGroup._caGroup.NcToPlc</Name>
 					<Type GUID="{467F4325-10DF-4BC1-88DD-E8240EB4F8E3}" Namespace="MC">CDT_MCTOPLC_GROUP</Type>
 				</Var>
 			</Vars>

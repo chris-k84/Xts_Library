@@ -22,7 +22,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	caGroup.CAGroupXtsIoEnvInterface := 0;
-	Actual := SUCCEEDED(caGroup.Cycle());
+	Actual := FAILED(caGroup.Cycle());
 	caGroup.CAGroupXtsIoEnvInterface := stubRef;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
