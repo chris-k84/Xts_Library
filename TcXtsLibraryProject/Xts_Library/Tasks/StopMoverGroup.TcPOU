@@ -51,7 +51,7 @@ groupStop.Execute := FALSE;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Deceleration := _deceleration;]]></ST>
+          <ST><![CDATA[Deceleration := groupStop.Deceleration;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{d5d2a280-9e98-49b7-b6fe-a592814414dd}">
@@ -59,7 +59,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_deceleration := Deceleration;]]></ST>
+          <ST><![CDATA[groupStop.Deceleration := Deceleration;]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -105,7 +105,7 @@ END_IF]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Jerk := _jerk;]]></ST>
+          <ST><![CDATA[Jerk := groupStop.Jerk;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{1e87f5ff-9029-43fd-96bd-fd5c4e284768}">
@@ -113,7 +113,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_jerk := Jerk;]]></ST>
+          <ST><![CDATA[groupStop.Jerk := Jerk;]]></ST>
         </Implementation>
       </Set>
     </Property>
