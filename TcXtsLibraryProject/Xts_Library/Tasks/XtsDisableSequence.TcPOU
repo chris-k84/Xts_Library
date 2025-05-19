@@ -7,7 +7,7 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	_collisionGroup : I_CollisionGroup;
+	_caGroup : I_CollisionGroup;
 	DisableTrigger: BOOL;
 	moverNumbers : UINT := 1;
 	AllMoversDisabled: BOOL;	
@@ -67,17 +67,12 @@ CASE State OF
 			_Busy := TRUE;
 			_Done := FALSE;
 			_Error := FALSE;
-			IF _collisionGroup.GroupState = CAGroupStatus.mcGroupStateMoving THEN
-//				FOR moverNumbers := 1 TO SystemParameters.NumberOfMovers DO
-//					arrMovers[moverNumbers].HaltAxis();
-//				END_FOR
-//				LoggerResult := Logger.Send(TC_EVENTS.XtsCaGroupEvents.CAGroupStop,'');
-//				State := 10;
-				IF _collisionGroup.GroupStop() = 2 THEN
+			IF _caGroup.GroupState = CAGroupStatus.mcGroupStateMoving THEN
+				IF _caGroup.GroupStop() = 2 THEN
 					State := 10;
 				END_IF
 			ELSE
-				IF _collisionGroup.RemoveAllMovers() = 2 THEN
+				IF _caGroup.RemoveAllMovers() = 2 THEN
 					State := 20;
 				END_IF
 				
@@ -85,14 +80,14 @@ CASE State OF
 		END_IF
 		
 	10:
-		IF _collisionGroup.GroupState = CAGroupStatus.mcGroupStateStandby THEN
-			IF _collisionGroup.RemoveAllMovers() = 2 THEN
+		IF _caGroup.GroupState = CAGroupStatus.mcGroupStateStandby THEN
+			IF _caGroup.RemoveAllMovers() = 2 THEN
 				State := 20;
 			END_IF
 		END_IF
 	
 	20:
-		IF _collisionGroup.GetAxisCount() = 0 THEN
+		IF _caGroup.GetAxisCount() = 0 THEN
 			FOR moverNumbers := 0 TO (_registeredNumberOfMovers-1) DO
 				arrMovers[moverNumbers].DisableMover();
 			END_FOR
@@ -106,16 +101,16 @@ CASE State OF
 		END_FOR
 		IF AllMoversDisabled THEN
 			State := 40;
-			CaGroupDisableResult := _collisionGroup.Disable();
+			CaGroupDisableResult := _caGroup.Disable();
 		END_IF
 	40:
-		IF _collisionGroup.GroupState = CAGroupStatus.mcGroupStateErrorStop THEN
-			CaGroupResetResult := SUCCEEDED(_collisionGroup.Reset());
+		IF _caGroup.GroupState = CAGroupStatus.mcGroupStateErrorStop THEN
+			CaGroupResetResult := SUCCEEDED(_caGroup.Reset());
 		END_IF	
 		State := 50;
 		
 	50:
-		IF _collisionGroup.GroupState = 1 THEN
+		IF _caGroup.GroupState = 1 THEN
 			State := 0;
 			Cycle := S_OK;
 			_Busy := FALSE;
@@ -168,18 +163,25 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="FB_init" Id="{5c39a8d0-8d47-4b10-ae0c-53e63f445cbe}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
-VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	MyCaGroup : I_CollisionGroup;
+    <Property Name="MyCollisionGroup" Id="{c7fd1228-60ef-40d1-92d9-53941726749d}">
+      <Declaration><![CDATA[PROPERTY MyCollisionGroup : I_CollisionGroup]]></Declaration>
+      <Get Name="Get" Id="{f9297380-397a-4a19-b263-02faa8995379}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_collisionGroup := MyCaGroup;]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[MyCollisionGroup := _caGroup;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{cab14c86-20cf-4862-8d26-8fda29b066be}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_caGroup := MyCollisionGroup;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="RegisterMovers" Id="{bd03069d-dc66-46bd-8900-f6243d7673f8}">
       <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
 VAR_INPUT
