@@ -1,41 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsCaGroupTestSuite" Id="{136b9f37-13c3-40d8-adf9-d2fba64dd482}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsCaGroupTestSuite EXTENDS CollisionGroup
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsCaGroupTestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
-	//fbTestSuites : FB_Testsuites;
-	//fbTestSuite : FB_Testsuite;
+	stubRef : I_Mc2CaGroup;
+	stubMover : XtsMover;
+	caGroup : CollisionGroup;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// fbTestSuite();
-// 
-// CASE fbTestSuite.P_Testcase OF
-// 	E_Testcase.Start:
-// 		THIS^._ICaGroup := 1;
-// 		fbTestSuite.P_Assert.M_Equals_DINT(1, THIS^.Cycle(), 'Cycle method did not return a complete');
-// 		fbTestSuite.M_Testcase('GivenTheGroupExistsWhenCycleCalledThenCyclicTaskShouldRun',T#1S,'','',1);
-// 		
-// 	1:
-// 		THIS^._ICaGroup := 0;
-// 		fbTestSuite.P_Assert.M_Equals_DINT(-1, THIS^.Cycle(), 'Cycle method ran without vaild NC connection');
-// 		fbTestSuite.M_Testcase('GivenNoCaRefWhenCycleCalledThenCyclicShouldNotRun',T#1S,'','',E_Testcase.Done);	
-// 		
-// 	E_Testcase.Done:;	 
-// END_CASE]]></ST>
+      <ST><![CDATA[TaskRejectsAddingSameMover_Test();
+CAGroupWontCycleWithoutRef_Test();]]></ST>
     </Implementation>
-    <Method Name="FB_init" Id="{58462602-8e2c-450c-911b-b907dd2255de}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
-VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	//XtsRunner : I_ObjectRunner;
+    <Method Name="CAGroupWontCycleWithoutRef_Test" Id="{e3581f72-55e7-47cd-9d46-22dfebcdb8e0}">
+      <Declaration><![CDATA[METHOD CAGroupWontCycleWithoutRef_Test : HRESULT
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//// Add Testsuite to Testsuites
-// TestSuiteGVL.fbTestsuites.M_Add(fbTestsuite);
-// TestSuiteGVL.fbTestsuites.P_Options.sFilePathName:= 'C:\test\report.xml';]]></ST>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	caGroup.CAGroupXtsIoEnvInterface := 0;
+	Actual := SUCCEEDED(caGroup.Cycle());
+	caGroup.CAGroupXtsIoEnvInterface := stubRef;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="TaskRejectsAddingSameMover_Test" Id="{d3aa7857-c4a4-46bc-a9ac-fdcae634440c}">
@@ -47,9 +37,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	testMoverToGrp.AddMover(stubAxis);
-	Actual := SUCCEEDED(testMoverToGrp.AddMover(stubAxis));
-	testMoverToGrp.Abort();
+	Actual := SUCCEEDED(caGroup.AddMoverToThisGroup(stubMover));
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

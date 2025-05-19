@@ -101,6 +101,10 @@
       <DefaultResolution>Tc3_PlcTestSuite, * (Simmel)</DefaultResolution>
       <Namespace>Tc3_PlcTestSuite</Namespace>
     </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_XTS_Utility">
+      <DefaultResolution>Tc3_XTS_Utility, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_XTS_Utility</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Xts Library">
       <DefaultResolution>[Xts Library], * (BeckhoffUK)</DefaultResolution>
       <Namespace>Xts_Library</Namespace>
