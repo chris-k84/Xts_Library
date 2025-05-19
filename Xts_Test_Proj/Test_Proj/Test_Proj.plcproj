@@ -58,6 +58,9 @@
     <Compile Include="Tests\ResetGroupTast_TestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\StopGroupTask_TestSuite.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Tests\XtsCaGroupTestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
