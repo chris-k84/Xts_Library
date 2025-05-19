@@ -10,5 +10,70 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Method Name="TaskAcceptsValidCommand_Test" Id="{bbbd6c90-0584-49fd-9b9a-b03e6807aed2}">
+      <Declaration><![CDATA[METHOD TaskAcceptsValidCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(testStopGrp.Execute());
+	testStopGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsCommandWithNoRef_Test" Id="{d1ce67c8-b8c6-45a7-99fc-4bf33acd3be8}">
+      <Declaration><![CDATA[METHOD TaskRejectsCommandWithNoRef_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testStopGrp.MyCollisionGroup := 0;
+	Actual := SUCCEEDED(testStopGrp.Execute());
+	testStopGrp.MyCollisionGroup := stubCAGroup;
+	testStopGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsCycleWithNoRef_Test" Id="{ef2644e4-091e-4487-8a64-1b9096d6b7d5}">
+      <Declaration><![CDATA[METHOD TaskRejectsCycleWithNoRef_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testStopGrp.MyCollisionGroup := 0;
+	Actual := FAILED(testStopGrp.Cycle());
+	testStopGrp.MyCollisionGroup := stubCAGroup;
+	testStopGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsDuplicateCommand_Test" Id="{bffcdbff-9e58-4f9c-b472-3c027ffeccec}">
+      <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testStopGrp.Execute();
+	Actual := FAILED(testStopGrp.Execute());
+	testStopGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

@@ -16,7 +16,8 @@ VAR
 	AddMoverTestSuite : AddMover_TestSuite := (TestSuiteName := 'AddMoverTestSuite');
 	RemoveAllTestSuite : RemoveAllMover_TestSuite := (TestSuiteName := 'RemoveAllTestSuite');
 	CaGroupTestSuite : XtsCaGroupTestSuite := (TestSuiteName := 'CAGroupTestSuite');
-	TestSuites : ARRAY[0..12] OF I_TestSuite := [XtsHWTestSuite, 
+	GroupStopTestSuite : StopGroupTask_TestSuite := (TestSuiteName := 'StopGroupTestSuite');
+	TestSuites : ARRAY[0..13] OF I_TestSuite := [XtsHWTestSuite, 
 												XtsMoverTestSuite, 
 												XtsTestSuite, 
 												ActivateTrackTestSuite, 
@@ -28,7 +29,8 @@ VAR
 												MoveMoverTestSuite,
 												AddMoverTestSuite,
 												RemoveAllTestSuite,
-												CaGroupTestSuite];
+												CaGroupTestSuite,
+												GroupStopTestSuite];
 	ReRun: BOOL;
 	i: INT;
 END_VAR
@@ -47,8 +49,9 @@ MoveMoverTestSuite();
 AddMoverTestSuite();
 RemoveAllTestSuite();
 CaGroupTestSuite();
+GroupStopTestSuite();
 IF ReRun THEN
-	FOR i := 0 TO 12 DO
+	FOR i := 0 TO 13 DO
 		TestSuites[i].ReRunTests();
 	END_FOR
 	ReRun := FALSE;
