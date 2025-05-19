@@ -2,20 +2,9 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="StopMoverGroup" Id="{1c1e07aa-be1f-4f5f-9f83-11f52cae0c47}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK StopMoverGroup  IMPLEMENTS I_Task
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
 VAR
 	groupStop			: MC_GroupStop;
 	_caGroup			: I_CollisionGroup;
-	_stopGroup : BOOL;
-	_jerk : MC_LREAL;
-	_deceleration : MC_LREAL;
-		State: INT;
-	_Done: BOOL;
-	_Error: BOOL;
-	_Busy: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -48,38 +37,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-CASE State OF
-	0:
-		IF _stopGroup THEN
-			Cycle := S_PENDING;
-			_Done := FALSE;
-			_Error := FALSE;
-			_Busy := TRUE;
-			groupStop.Execute := TRUE;
-			IF groupStop.Busy THEN
-				State := 10;
-				_stopGroup := FALSE;
-			END_IF
-		END_IF
-	10:
-		IF groupStop.Done THEN
-			_Done := TRUE;
-		ELSIF groupStop.Error THEN
-			_Error := TRUE;
-		END_IF
-		IF _Done OR _Error THEN
-			_Busy := FALSE;
-			groupStop.Execute := FALSE;
-			State := 0;
-			Cycle := S_OK;
-		END_IF
-	ELSE
-		Cycle := E_FAIL;
-END_CASE
-
-
-groupStop(AxesGroup := _caGroup.GroupRef);]]></ST>
+        <ST><![CDATA[groupStop(AxesGroup := _caGroup.GroupRef);
+groupStop.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Deceleration" Id="{4b0f086c-1d53-44e4-86b9-9d4a701184a7}">
@@ -132,18 +91,6 @@ END_VAR
         <ST><![CDATA[_stopGroup := Execute := true;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="FB_init" Id="{4499cf15-952b-423e-bc0b-2b67686c6e93}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
-VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	CAGroup : I_CollisionGroup;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_caGroup := CAGroup;]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="Jerk" Id="{753822d2-3240-4ac1-a838-285435826cfe}">
       <Declaration><![CDATA[PROPERTY PUBLIC Jerk : MC_LREAL]]></Declaration>
       <Get Name="Get" Id="{8ec059f8-9a70-4be4-bfe0-899344b2368e}">
@@ -163,43 +110,24 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="StopMoverGroup">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StopMoverGroup.Abort">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StopMoverGroup.Busy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StopMoverGroup.Cycle">
-      <LineId Id="3" Count="30" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StopMoverGroup.Deceleration.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StopMoverGroup.Deceleration.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StopMoverGroup.Done.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StopMoverGroup.Error.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StopMoverGroup.Execute">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StopMoverGroup.FB_init">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StopMoverGroup.Jerk.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StopMoverGroup.Jerk.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
+    <Property Name="MyCollisionGroup" Id="{cb0f23e2-035b-4579-8b52-c9ccb0257f5c}">
+      <Declaration><![CDATA[PROPERTY MyCollisionGroup : I_CollisionGroup]]></Declaration>
+      <Get Name="Get" Id="{38655085-d38f-4fef-8c73-780213a29125}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyCollisionGroup := _caGroup;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{a086e748-ccfd-4e70-a062-66778ac8e3ed}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_caGroup := MyCollisionGroup;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
   </POU>
 </TcPlcObject>
