@@ -15,8 +15,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[groupStop.Execute := FALSE;
-State := 0;
-Abort := true;]]></ST>
+Abort := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{9ebae655-1de1-4c1a-bbd5-86026ed197c9}">
@@ -27,7 +26,7 @@ Abort := true;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Busy := _Busy;]]></ST>
+          <ST><![CDATA[Busy := groupStop.Busy;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -68,7 +67,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := _Done;]]></ST>
+          <ST><![CDATA[Done := groupStop.Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -80,7 +79,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := _Error;]]></ST>
+          <ST><![CDATA[Error := groupStop.Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
