@@ -132,13 +132,15 @@ END_VAR
       </Get>
     </Property>
     <Method Name="Enable" Id="{1c2a3468-bb52-4165-8d13-732b960a1dd0}">
-      <Declaration><![CDATA[METHOD Enable : BOOL
+      <Declaration><![CDATA[METHOD Enable : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _Busy THEN
-	EnableTrigger := Enable := true;
+        <ST><![CDATA[IF NOT _Busy AND NOT EnableTrigger AND _caGroup <> 0 THEN
+	EnableTrigger := TRUE;
+ELSE
+	Enable := -1;
 END_IF
 ]]></ST>
       </Implementation>

@@ -128,13 +128,15 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="Disable" Id="{024bbd18-8e3c-4aa1-9d04-45454423df20}">
-      <Declaration><![CDATA[METHOD Disable : BOOL
+      <Declaration><![CDATA[METHOD Disable : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _Busy THEN
-	DisableTrigger := Disable := true;
+        <ST><![CDATA[IF NOT _Busy AND NOT DisableTrigger AND _caGroup <> 0 THEN
+	DisableTrigger := TRUE;
+ELSE
+	Disable := -1;
 END_IF
 ]]></ST>
       </Implementation>
