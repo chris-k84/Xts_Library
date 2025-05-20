@@ -387,7 +387,7 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[// Mover1 Functionality		
 // Check if "MoverIdDetectionMode" has been activated under the XtsProcessingUnit object.
-IF _MyXpu.GetMoverIdDetectionMode() = E_MoverIdDetectionMode.Mover1 THEN
+IF _MyXpu.GetMoverIdDetectionMode() <> MoverIdDetectionMode.Standard THEN
 
 	// Check if the "MoverIdDetection" has already been started or the Mover1 was found.
 	IF NOT (bMoverIdDetectionActive OR bMoverIdDetected OR bTriggerDetect) THEN
