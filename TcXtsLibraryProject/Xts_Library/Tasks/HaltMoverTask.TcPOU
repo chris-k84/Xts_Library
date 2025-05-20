@@ -76,7 +76,9 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[haltMoverCA.Deceleration := Deceleration;]]></ST>
+          <ST><![CDATA[IF Deceleration > 0.0 THEN
+	haltMoverCA.Deceleration := Deceleration;
+END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -132,7 +134,9 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[haltMoverCA.Gap := Gap;]]></ST>
+          <ST><![CDATA[IF Gap > 50.0 THEN
+	haltMoverCA.Gap := Gap;
+END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -151,7 +155,9 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[haltMoverCA.Jerk := Jerk;]]></ST>
+          <ST><![CDATA[IF Jerk > 0.0 THEN
+	haltMoverCA.Jerk := Jerk;
+END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>

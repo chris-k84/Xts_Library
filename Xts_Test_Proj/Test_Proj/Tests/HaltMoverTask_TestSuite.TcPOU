@@ -11,7 +11,10 @@ END_VAR
       <ST><![CDATA[TaskRejectsCommandWithNoAxisRef_Testy();
 TaskRejectsDuplicateCommand_Test();
 TaskWontCycleWithoutAxisRef_Test();
-TaskAcceptsCommand_Test();]]></ST>
+TaskAcceptsCommand_Test();
+TaskRejectsZeroDecel_Test();
+TaskRejectsZeroJerk_Test();
+TaskRejectsInvalidGap_Test();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsCommand_Test" Id="{fb6fb1d2-beaf-43e9-a2b1-bb05d4d56bf2}">
       <Declaration><![CDATA[METHOD TaskAcceptsCommand_Test
@@ -57,6 +60,57 @@ END_VAR
 	testHaltMover.Execute();
 	Actual := FAILED(testHaltMover.Execute());
 	testHaltMover.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsInvalidGap_Test" Id="{3fbde906-4c70-4bb7-b8a4-fe505520d990}">
+      <Declaration><![CDATA[METHOD TaskRejectsInvalidGap_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testHaltMover.Gap := 1000.0;
+	testHaltMover.Gap := 25.0;
+	Actual := testHaltMover.Jerk > 50.0;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsZeroDecel_Test" Id="{6e7b6622-a53d-4b78-9592-e7b8fdc3d9ea}">
+      <Declaration><![CDATA[METHOD TaskRejectsZeroDecel_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testHaltMover.Deceleration := 1000.0;
+	testHaltMover.Deceleration := 0.0;
+	Actual := testHaltMover.Deceleration <> 0.0;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsZeroJerk_Test" Id="{398c4671-f64c-4f24-abfa-aad4dea4b2a1}">
+      <Declaration><![CDATA[METHOD TaskRejectsZeroJerk_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testHaltMover.Jerk := 1000.0;
+	testHaltMover.Jerk := 0.0;
+	Actual := testHaltMover.Jerk <> 0.0;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
