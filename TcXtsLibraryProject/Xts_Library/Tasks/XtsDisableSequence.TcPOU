@@ -2,10 +2,6 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsDisableSequence" Id="{da9628bf-0fcc-432f-b10d-3ad4dd4b7f24}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsDisableSequence IMPLEMENTS I_Task
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
 VAR
 	_caGroup : I_CollisionGroup;
 	DisableTrigger: BOOL;

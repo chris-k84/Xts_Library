@@ -59,7 +59,9 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[groupStop.Deceleration := Deceleration;]]></ST>
+          <ST><![CDATA[IF Deceleration > 0.0 THEN
+	groupStop.Deceleration := Deceleration;
+END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -113,7 +115,9 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[groupStop.Jerk := Jerk;]]></ST>
+          <ST><![CDATA[IF Jerk > 0.0 THEN
+	groupStop.Jerk := Jerk;
+END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>

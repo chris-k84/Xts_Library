@@ -2,10 +2,6 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsEnableSequence" Id="{b7e7ab09-3a30-4ddb-a242-e0b5aa00cbc9}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsEnableSequence  IMPLEMENTS I_Task
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
 VAR
 	_caGroup : I_CollisionGroup;
 	moverNumbers : UINT;

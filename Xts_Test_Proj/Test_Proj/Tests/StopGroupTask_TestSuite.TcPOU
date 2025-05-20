@@ -8,7 +8,12 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[TaskAcceptsValidCommand_Test();
+TaskRejectsCommandWithNoRef_Test();
+TaskRejectsCycleWithNoRef_Test();
+TaskRejectsDuplicateCommand_Test();
+TaskRejectsZeroDecel_Test();
+TaskRejectsZeroJerk_Test();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsValidCommand_Test" Id="{bbbd6c90-0584-49fd-9b9a-b03e6807aed2}">
       <Declaration><![CDATA[METHOD TaskAcceptsValidCommand_Test
@@ -71,6 +76,40 @@ END_VAR
 	testStopGrp.Execute();
 	Actual := FAILED(testStopGrp.Execute());
 	testStopGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsZeroDecel_Test" Id="{2ad511e9-12d7-4d9d-9f2e-89b206f19ab8}">
+      <Declaration><![CDATA[METHOD TaskRejectsZeroDecel_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testStopGrp.Deceleration := 1000.0;
+	testStopGrp.Deceleration := 0.0;
+	Actual := testStopGrp.Deceleration <> 0.0;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsZeroJerk_Test" Id="{0cdab2f7-a911-4354-b921-151032733675}">
+      <Declaration><![CDATA[METHOD TaskRejectsZeroJerk_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testStopGrp.Jerk := 1000.0;
+	testStopGrp.Jerk := 0.0;
+	Actual := testStopGrp.Jerk <> 0.0;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
