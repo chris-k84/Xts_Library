@@ -6,6 +6,9 @@ VAR
 	moveAbs	: MC_MoveAbsoluteCA;
 	_Axis : REFERENCE TO AXIS_REF;
 	_stOptions : ST_MoveAbsoluteCAOptions;
+	_Done: BOOL;
+	_Error: BOOL;
+	_ErrorId: UDINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -81,6 +84,11 @@ END_VAR]]></Declaration>
 	Cycle := -1;
 	RETURN;
 END_IF
+_Done := moveAbs.Done OR _Done;
+_Error := moveAbs.Error OR _Error;
+IF moveAbs.ErrorId <> 0 THEN
+	_ErrorId := moveAbs.ErrorId;
+END_IF
 moveAbs(Axis := _Axis, Options := _stOptions);
 moveAbs.Execute := false;]]></ST>
       </Implementation>
@@ -114,7 +122,7 @@ END_IF]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := moveAbs.Done;]]></ST>
+          <ST><![CDATA[Done := _Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -126,7 +134,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := moveAbs.Error;]]></ST>
+          <ST><![CDATA[Error := _Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -187,6 +195,10 @@ END_VAR]]></Declaration>
 	moveAbs.Direction := Direction;
 	moveAbs.Options.AdditionalTurns := Turns;
 	moveAbs.Execute := TRUE;
+	_Error := FALSE;
+	_ErrorId := 0;
+	_Done := FALSE;
+	
 ELSE
 	MoveTo := -1;
 END_IF
