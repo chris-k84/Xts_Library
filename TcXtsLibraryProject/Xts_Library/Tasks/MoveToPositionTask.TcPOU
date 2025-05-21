@@ -100,7 +100,9 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[moveAbs.Deceleration := Deceleration;]]></ST>
+          <ST><![CDATA[IF Deceleration > 0.0 THEN
+	moveAbs.Deceleration := Deceleration;
+END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -143,7 +145,9 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[moveAbs.Gap := Gap;]]></ST>
+          <ST><![CDATA[IF Gap > 50.0 THEN
+	moveAbs.Gap := Gap;
+END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -162,7 +166,9 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[moveAbs.Jerk := Jerk;]]></ST>
+          <ST><![CDATA[IF Jerk > 0.0 THEN
+	moveAbs.Jerk := Jerk;
+END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>

@@ -12,7 +12,10 @@ END_VAR
 TaskRejectMovewithNoAxisRefs_Test();
 TaskRejectsZeroAccelSet_Test();
 TaskRejectsZeroVeloMove_Test();
-TaskAcceptsValidMoveCommand_Test();]]></ST>
+TaskAcceptsValidMoveCommand_Test();
+TaskRejectsUnvalidGapSet_Test();
+TaskRejectsZeroDecelSet_Test();
+TaskRejectsZeroJerkSet_Test();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsValidMoveCommand_Test" Id="{e9d379e6-6863-4b38-8749-39f7f46ba32d}">
       <Declaration><![CDATA[METHOD TaskAcceptsValidMoveCommand_Test
@@ -61,6 +64,22 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="TaskRejectsUnvalidGapSet_Test" Id="{9434b53d-5dd2-44ed-abe8-7bbd73f61bde}">
+      <Declaration><![CDATA[METHOD TaskRejectsUnvalidGapSet_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMoveTask.Gap := 62.0;
+	testMoveTask.Gap := 0.0;
+	Actual := testMoveTask.Gap = 62.0;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="TaskRejectsZeroAccelSet_Test" Id="{0680505a-b3c5-484d-8ec8-d6b7def2f093}">
       <Declaration><![CDATA[METHOD TaskRejectsZeroAccelSet_Test
 VAR_INST
@@ -73,6 +92,38 @@ END_VAR
 	testMoveTask.Acceleration := 32.0;
 	testMoveTask.Acceleration := 0.0;
 	Actual := testMoveTask.Acceleration = 32.0;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsZeroDecelSet_Test" Id="{a9a3bd09-5a19-4b2a-b3d8-3d7c6873a02b}">
+      <Declaration><![CDATA[METHOD TaskRejectsZeroDecelSet_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMoveTask.Deceleration := 32.0;
+	testMoveTask.Deceleration := 0.0;
+	Actual := testMoveTask.Deceleration = 32.0;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsZeroJerkSet_Test" Id="{d881c961-9d8d-4b46-ae8d-8641b8f61da4}">
+      <Declaration><![CDATA[METHOD TaskRejectsZeroJerkSet_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMoveTask.Jerk := 32.0;
+	testMoveTask.Jerk := 0.0;
+	Actual := testMoveTask.Jerk = 32.0;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
