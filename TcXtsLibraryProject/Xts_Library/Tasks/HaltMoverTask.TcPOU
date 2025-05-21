@@ -5,6 +5,9 @@
 VAR
 	haltMoverCA : Tc3_McCollisionAvoidance.MC_HaltCA;
 	_Axis : REFERENCE TO Tc2_MC2.AXIS_REF;
+	_Error: BOOL;
+	_ErrorID: UDINT;
+	_Done: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -58,6 +61,11 @@ END_VAR
 	RETURN;
 END_IF
 haltMoverCA(Axis := _Axis);
+_Done := haltMoverCA.Done OR _Done;
+_Error := haltMoverCA.Error OR _Error;
+IF haltMoverCA.ErrorId <> 0 THEN
+	_ErrorID := haltMoverCA.ErrorId;
+END_IF
 haltMoverCA.Execute := false;]]></ST>
       </Implementation>
     </Method>
@@ -90,7 +98,7 @@ END_IF]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := haltMoverCA.Done;]]></ST>
+          <ST><![CDATA[Done := _Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -102,7 +110,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := haltMoverCA.Error;]]></ST>
+          <ST><![CDATA[Error := _Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -114,6 +122,9 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF NOT haltMoverCA.Execute AND __ISVALIDREF(_axis) THEN
 	haltMoverCA.Execute := TRUE;
+	_Error := FALSE;
+	_ErrorId := 0;
+	_Done := FALSE;
 ELSE
 	Execute := -1;
 END_IF]]></ST>
