@@ -8,6 +8,8 @@ VAR
 	_Axis : REFERENCE TO Tc2_MC2.AXIS_REF;
 	_MasterAxis : REFERENCE TO Tc2_MC2.AXIS_REF;
 	_GearMover: BOOL;
+	_Done : BOOL;
+	_Error : BOOL;
 	_ErrorID: UDINT;
 END_VAR]]></Declaration>
     <Implementation>
@@ -60,7 +62,10 @@ END_VAR
 	Cycle := -1;
 	RETURN;
 END_IF
-_ErrorID := GearInPosCA.ErrorId; 
+_Error := GearInPosCA.Error OR _Error;
+IF  GearInPosCA.ErrorId <> 0 THEN
+	_ErrorID := GearInPosCA.ErrorId;	
+END_IF
 GearInPosCA(Master := _MasterAxis, Slave := _Axis, SyncStrategy := _syncStrategy, Velocity := 2000.0, RatioNumerator := 1, Gap := 60.0);
 GearInPosCA.Execute := FALSE;]]></ST>
       </Implementation>
@@ -85,7 +90,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := GearInPosCA.Error;]]></ST>
+          <ST><![CDATA[Error := _Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -101,6 +106,8 @@ END_VAR
 	GearInPosCA.MasterSyncPosition := MasterPosition;
 	GearInPosCA.SlaveSyncPosition := SlavePosition;
 	GearInPosCA.Execute := TRUE;
+	_Error := FALSE;
+	_ErrorID := 0;
 ELSE
 	GearIn := -1;
 END_IF
