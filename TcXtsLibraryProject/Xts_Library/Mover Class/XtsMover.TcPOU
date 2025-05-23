@@ -251,7 +251,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[getCurrentPosition := _stTmsActPositions.fTrackPosition]]></ST>
+        <ST><![CDATA[getCurrentPosition := _stTmsActPositions.fTrackPosition;]]></ST>
       </Implementation>
     </Method>
     <Method Name="getErrorID" Id="{5ba2965f-231a-47cc-bcc5-dfd172bd6d02}" FolderPath="Status\">
