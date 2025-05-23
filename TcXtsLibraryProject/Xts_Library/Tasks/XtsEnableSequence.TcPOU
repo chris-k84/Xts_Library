@@ -77,7 +77,7 @@ END_VAR]]></Declaration>
 		State := 30;
 		
 	30:
-		IF _caGroup.AddMoverToThisGroup(MoverToAdd := arrMovers[moverNumbers]) =2 THEN
+		IF Succeeded( _caGroup.AddMoverToThisGroup(MoverToAdd := arrMovers[moverNumbers])) THEN
 			State := 40;
 		END_IF
 		
