@@ -19,7 +19,6 @@
     <Method Name="ActivateTrack" Id="{ba6e327e-25a9-4189-a1a0-64429eeca8b6}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ActivateTrack : HRESULT
 VAR_INPUT
-	NewTrack : OTCID;
 	Track : I_XtsTrack;
 END_VAR
 ]]></Declaration>
@@ -27,7 +26,7 @@ END_VAR
     <Method Name="ActivateZeroReferenceSystem" Id="{ab0eeb60-9673-46f5-be7f-8e50f8587ea1}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ActivateZeroReferenceSystem : HRESULT
 VAR_INPUT
-	NewTrack : OTCID;
+	NewTrack : I_XtsTrack;
 END_VAR
 ]]></Declaration>
     </Method>
