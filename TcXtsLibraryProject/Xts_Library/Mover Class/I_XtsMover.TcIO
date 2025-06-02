@@ -66,8 +66,8 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="getCurrentPosition" Id="{449a4b63-7e3e-4dcb-b1ac-b51087274561}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getCurrentPosition : LREAL
+    <Method Name="getActPosition" Id="{cb245680-cf62-4460-9916-bd21e35bcc6b}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD getActPosition : LREAL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -80,6 +80,12 @@ END_VAR
     </Method>
     <Method Name="GetMoverCtrlOTCID" Id="{863e8ade-d7f2-439e-8b15-5f1837c580a0}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD GetMoverCtrlOTCID : XtsMoverControllerOTCID
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="getTrackPosition" Id="{449a4b63-7e3e-4dcb-b1ac-b51087274561}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD getTrackPosition : LREAL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
