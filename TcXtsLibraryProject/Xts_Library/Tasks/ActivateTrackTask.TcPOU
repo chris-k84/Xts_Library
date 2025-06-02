@@ -92,13 +92,13 @@ END_VAR
     <Method Name="Execute" Id="{b92caa48-be0c-4823-bb15-e823e8bc1934}">
       <Declaration><![CDATA[METHOD PUBLIC Execute : HRESULT
 VAR_INPUT
-	Track : OTCID;
+	Track : I_XtsTrack;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT mcActivateTrack.Execute AND Track <> 0 AND __ISVALIDREF(_Axis) THEN
 	mcActivateTrack.Execute := TRUE;
-	mcActivateTrack.TrackId := Track;
+	mcActivateTrack.TrackId := Track.MyOTCID;
 ELSE
 	Execute := -1;
 END_IF;]]></ST>
