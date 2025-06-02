@@ -105,7 +105,7 @@ CASE State OF
 		END_IF
 		
 	ActivateTrackForMover:
-		DepartMover.ActivateTrack(NewTrack := _TargetTrackId.MyOTCID,Track := _TargetTrackId);		
+		DepartMover.ActivateTrack(Track := _TargetTrackId);		
 		State := CheckTrackActive;
 
 	CheckTrackActive:
@@ -315,75 +315,5 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="TmsEmbarkSingleSwitch">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.BoardVelocity.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.BoardVelocity.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.Cycle">
-      <LineId Id="3" Count="74" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.DisableLift">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.EnableLift">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.HasMover">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.MoverAway">
-      <LineId Id="3" Count="5" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.ResetLift">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.StartSwitch">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.StopSwitch">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchLoadPosition.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchLoadPosition.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchMoveComplete">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchTravelPosition.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchTravelPosition.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchUnloadPosition.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchUnloadPosition.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchVelocity.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.SwitchVelocity.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.TargetTrackId.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="TmsEmbarkSingleSwitch.TargetTrackId.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
