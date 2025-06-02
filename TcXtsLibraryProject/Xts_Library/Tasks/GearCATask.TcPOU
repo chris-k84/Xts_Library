@@ -5,12 +5,11 @@
 VAR
 	GearInPosCA : Tc3_McCollisionAvoidance.MC_GearInPosCA;
 	_syncStrategy : Tc3_Mc3Definitions.MC_SYNC_STRATEGY := Tc3_Mc3Definitions.MC_SYNC_STRATEGY.mcSyncStrategyEarly;
-	_Axis : REFERENCE TO Tc2_MC2.AXIS_REF;
-	_MasterAxis : REFERENCE TO Tc2_MC2.AXIS_REF;
-	_GearMover: BOOL;
-	_Done : BOOL;
+	_SlaveAxis : I_XtsMover;
+	_MasterAxis : I_XtsMover;
 	_Error : BOOL;
 	_ErrorID: UDINT;
+	_Options: Tc3_McCollisionAvoidance.ST_GearInPosCAOptions;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
@@ -21,25 +20,6 @@ END_VAR]]></Declaration>
         <ST><![CDATA[GearInPosCA.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="AxisRef" Id="{0f68f651-c257-44ad-87dc-835c319262ab}">
-      <Declaration><![CDATA[PROPERTY AxisRef : reference to Axis_ref]]></Declaration>
-      <Get Name="Get" Id="{91707023-0326-4b68-8fd2-e5492a27d9e4}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[AxisRef	REF= _Axis;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{39399c11-a5f8-4a75-b023-bce910d235d3}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_Axis REF= AxisRef;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Property Name="Busy" Id="{4b87a8a5-0488-49e9-9c97-79ee531d0f30}">
       <Declaration><![CDATA[PROPERTY Busy : BOOL
 ]]></Declaration>
@@ -58,7 +38,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT __ISVALIDREF(_MasterAxis) OR NOT __ISVALIDREF(_Axis) THEN
+        <ST><![CDATA[IF _MasterAxis = 0 OR _SlaveAxis = 0 THEN
 	Cycle := -1;
 	RETURN;
 END_IF
@@ -66,7 +46,13 @@ _Error := GearInPosCA.Error OR _Error;
 IF  GearInPosCA.ErrorId <> 0 THEN
 	_ErrorID := GearInPosCA.ErrorId;	
 END_IF
-GearInPosCA(Master := _MasterAxis, Slave := _Axis, SyncStrategy := _syncStrategy, Velocity := 2000.0, RatioNumerator := 1, Gap := 60.0);
+GearInPosCA(Master := _MasterAxis.AxisRef, 
+			Slave := _SlaveAxis.AxisRef, 
+			SyncStrategy := _syncStrategy, 
+			Velocity := 2000.0, 
+			RatioNumerator := 1, 
+			Gap := 60.0,
+			Options := _Options);
 GearInPosCA.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
@@ -102,7 +88,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT GearInPosCA.Execute AND __ISVALIDREF(_Axis) AND __ISVALIDREF(_MasterAxis) THEN
+        <ST><![CDATA[IF NOT GearInPosCA.Execute AND _SlaveAxis <> 0 AND _MasterAxis <> 0 THEN
 	GearInPosCA.MasterSyncPosition := MasterPosition;
 	GearInPosCA.SlaveSyncPosition := SlavePosition;
 	GearInPosCA.Execute := TRUE;
@@ -126,13 +112,13 @@ END_VAR
       </Get>
     </Property>
     <Property Name="MyGearMaster" Id="{a46ef8fb-4e90-4897-9dcd-a04c2dd2e88d}">
-      <Declaration><![CDATA[PROPERTY MyGearMaster : REFERENCE TO AXIS_REF]]></Declaration>
+      <Declaration><![CDATA[PROPERTY MyGearMaster : I_XtsMover]]></Declaration>
       <Get Name="Get" Id="{e800e4fe-3c89-421e-9396-ebf9ce3426e8}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MyGearMaster REF= _MasterAxis;]]></ST>
+          <ST><![CDATA[MyGearMaster := _MasterAxis;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{8696c54d-0b3c-4ca7-832b-6895b239a418}">
@@ -140,7 +126,26 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_MasterAxis REF= MyGearMaster;]]></ST>
+          <ST><![CDATA[_MasterAxis := MyGearMaster;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Options" Id="{3ec06b45-d390-4cd7-ab95-c8993071a4c3}">
+      <Declaration><![CDATA[PROPERTY Options : ST_GearInPosCAOptions]]></Declaration>
+      <Get Name="Get" Id="{95caec38-ca05-43eb-8be7-a4a80fe73a03}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Options := _Options;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{2224afa6-774f-46a1-b23c-dbe6d3be0d20}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Options := Options;]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -156,6 +161,25 @@ Runner.RegisterAbortable(THIS^);
 Runner.RegisterTask(THIS^);]]></ST>
       </Implementation>
     </Method>
+    <Property Name="SlaveAxis" Id="{0f68f651-c257-44ad-87dc-835c319262ab}">
+      <Declaration><![CDATA[PROPERTY SlaveAxis : I_XtsMover]]></Declaration>
+      <Get Name="Get" Id="{91707023-0326-4b68-8fd2-e5492a27d9e4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[SlaveAxis := _SlaveAxis;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{39399c11-a5f8-4a75-b023-bce910d235d3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_SlaveAxis := SlaveAxis;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Property Name="SyncStrategy" Id="{74227846-5fda-4bbe-ac22-10f463d682ca}">
       <Declaration><![CDATA[PROPERTY PUBLIC SyncStrategy : mc_sync_strategy]]></Declaration>
       <Get Name="Get" Id="{1146c154-913b-407f-8846-59691fdc56f4}">
