@@ -51,7 +51,6 @@ GearInPosCA(Master := _MasterAxis.AxisRef,
 			SyncStrategy := _syncStrategy, 
 			Velocity := 2000.0, 
 			RatioNumerator := 1, 
-			Gap := 60.0,
 			Options := _Options);
 GearInPosCA.Execute := FALSE;]]></ST>
       </Implementation>
