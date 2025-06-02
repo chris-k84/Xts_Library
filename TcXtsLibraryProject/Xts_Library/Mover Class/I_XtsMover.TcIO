@@ -60,14 +60,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="Gear" Id="{e0c78185-a7ab-4223-b289-235f40f7bfac}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD PUBLIC Gear : HRESULT
-VAR_INPUT
-	MasterPosition : MC_LREAL;
-	SlavePosition : MC_LREAL;
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="getCurrentPosition" Id="{449a4b63-7e3e-4dcb-b1ac-b51087274561}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getCurrentPosition : LREAL
 VAR_INPUT
@@ -104,12 +96,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="inGear" Id="{140b65ad-c5b4-4978-8426-42292faef3cc}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD inGear : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="isMoverAtPosition" Id="{bc703c47-0b4d-4374-b07c-1240b49b484e}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD isMoverAtPosition : BOOL
 VAR_INPUT
@@ -180,15 +166,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
       <Set Name="Set" Id="{0add7ecc-1e34-4c45-86ea-05d00a10668e}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
-    </Property>
-    <Property Name="MyMasterRef" Id="{ef955fbf-3876-4064-a941-698a35c297a1}" FolderPath="Administration\">
-      <Declaration><![CDATA[PROPERTY MyMasterRef : REFERENCE TO AXIS_REF]]></Declaration>
-      <Get Name="Get" Id="{a4aadfe1-030c-4097-bbb9-7ab611ed666a}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-      <Set Name="Set" Id="{f70f72b0-a05b-4221-b76a-6ab9157d064d}">
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>

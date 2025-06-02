@@ -12,7 +12,6 @@ VAR
 	HaltBehaviour : HaltMoverTask := (AxisRef := MyAxisRef);
 	ResetBehaviour : CoEResetTask := (AxisRef := MyAxisRef);
 	MoverActivateTrackBehaviour : ActivateTrackTask:= (AxisRef := MyAxisRef);
-	GearBehaviour	: GearCATask := (AxisRef := MyAxisRef);
 	_ipTcIoXtsMover	: I_TcIoXtsXpuMover;
 	_ActiveTrackLength : MC_LREAL;
 	TrackChangeTrigger : R_TRIG;
@@ -21,7 +20,6 @@ VAR
 	_CurrentTrack : I_XtsTrack;
 	_MyCAGroup : I_CollisionGroup;
 	_ForwardOnly : BOOL := TRUE;
-	myControllerId: Tc3_XTS_Utility.I_McXtsMoverController;
 	myControllerOid: OTCID;
 	MyId: UDINT;
 	Initialised : BOOL;
@@ -115,6 +113,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF Initialised THEN
 	TaskCollection.Cycle();
+	TrackChangeTrigger(CLK := MoverActivateTrackBehaviour.Done);
 	IF TrackChangeTrigger.Q THEN
 		_MoverAbsMoveOptions.PositionReferenceSystem :=  MoverActivateTrackBehaviour.NewTrackId;
 		_MoverAbsMoveOptions.DynamicsReferenceSystem := MoverActivateTrackBehaviour.NewTrackId;
@@ -196,7 +195,6 @@ END_VAR]]></Declaration>
 TaskCollection.RegisterModule(ResetBehaviour);
 TaskCollection.RegisterModule(HaltBehaviour);
 TaskCollection.RegisterModule(MoveBehaviour);
-TaskCollection.RegisterModule(GearBehaviour);
 TaskCollection.RegisterModule(MoverActivateTrackBehaviour);]]></ST>
       </Implementation>
     </Method>
@@ -225,26 +223,6 @@ END_IF
         </Implementation>
       </Set>
     </Property>
-    <Method Name="Gear" Id="{b0aa32af-e1ad-43df-b90e-7e7d830bc963}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD PUBLIC Gear : HRESULT
-VAR_INPUT
-	MasterPosition : MC_LREAL;
-	SlavePosition : MC_LREAL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF NOT GearBehaviour.Busy AND __ISVALIDREF(GearBehaviour.MyGearMaster) AND MasterPosition <= _ActiveTrackLength AND SlavePosition <= _ActiveTrackLength THEN
-	IF SUCCEEDED(GearBehaviour.GearIn(MasterPosition := MasterPosition, SlavePosition := SlavePosition)) THEN
-		Gear := 1;
-	ELSE
-		Gear := -1;
-	END_IF
-ELSE
-	Gear := -1;
-END_IF
-]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="getCurrentPosition" Id="{7d5a975d-08c0-41e2-b667-ea0e7fe80524}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getCurrentPosition : LREAL
 VAR_INPUT
@@ -319,15 +297,6 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="inGear" Id="{0809336a-3200-4d64-8806-8b040d87d191}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD inGear : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[inGear := GearBehaviour.GearInPosCA.InSync;]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="Initialise" Id="{158eaadb-7779-40c3-b4d7-ef64750e6b36}">
       <Declaration><![CDATA[METHOD Initialise : BOOL
 VAR_INPUT
@@ -531,25 +500,6 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Property Name="MyMasterRef" Id="{9a3e9617-3bee-43bf-8371-dedd27acecb0}" FolderPath="Administration\">
-      <Declaration><![CDATA[PROPERTY MyMasterRef : REFERENCE TO AXIS_REF]]></Declaration>
-      <Get Name="Get" Id="{d8c8a090-d5eb-4847-8f12-c276f8e68cfb}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyMasterRef REF= GearBehaviour.MyGearMaster;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{f5a13744-c943-4208-a476-90f7059f62be}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[GearBehaviour.MyGearMaster REF= MyMasterRef;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Property Name="PositiveDirectionOnly" Id="{993fe16b-05a5-4eca-a38c-6463f3e7295c}" FolderPath="Administration\">
       <Declaration><![CDATA[PROPERTY PositiveDirectionOnly : BOOL]]></Declaration>
       <Get Name="Get" Id="{581a1e54-141a-440c-9d85-39be9d6e8e36}">
@@ -588,7 +538,6 @@ END_VAR
         <ST><![CDATA[IF NOT ResetBehaviour.Busy AND _MyAxisStatus.Error THEN
 	IF ResetBehaviour.Reset() = S_OK THEN
 		Reset := 1;
-		GearBehaviour.Abort();
 		MoveBehaviour.Abort();
 	ELSE
 		Reset := -1;
