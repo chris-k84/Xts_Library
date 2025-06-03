@@ -67,6 +67,15 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="RemoveAMover" Id="{ef48cf2e-8bac-48d4-bde6-7be9e9dfb88f}">
+      <Declaration><![CDATA[METHOD RemoveAMover : BOOL
+VAR_INPUT
+	moverId : I_XtsMover;
+END_VAR
+VAR
+	i : INT;
+END_VAR]]></Declaration>
+    </Method>
     <Method Name="Reset" Id="{52cfbceb-29c1-48af-b76e-6022383fab33}">
       <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT

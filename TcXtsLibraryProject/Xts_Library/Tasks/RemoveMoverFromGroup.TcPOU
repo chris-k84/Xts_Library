@@ -103,13 +103,13 @@ END_VAR
     <Method Name="Execute" Id="{efa5d448-3299-4d10-a02c-919548e37d2d}">
       <Declaration><![CDATA[METHOD Execute : BOOL
 VAR_INPUT
-	AxisID : UDINT;
+	AxisID : IDENT_IN_GROUP_REF;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT _Leave THEN
 	Execute := _Leave := TRUE;
-	mcRemoveAxisFromGroup.IdentInGroup := UDINT_TO_IDENTINGROUP(id := AxisID);
+	mcRemoveAxisFromGroup.IdentInGroup := AxisID;
 ELSE
 	Execute := false;
 END_IF]]></ST>
@@ -128,33 +128,5 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="RemoveMoverFromGroup">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveMoverFromGroup.Abort">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveMoverFromGroup.Busy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveMoverFromGroup.Cycle">
-      <LineId Id="3" Count="30" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveMoverFromGroup.Done.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveMoverFromGroup.Error.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveMoverFromGroup.Execute">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="RemoveMoverFromGroup.FB_init">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
