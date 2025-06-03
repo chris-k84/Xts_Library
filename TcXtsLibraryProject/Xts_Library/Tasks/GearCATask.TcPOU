@@ -79,6 +79,25 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="Gap" Id="{75e2c062-5a55-40da-ba32-f55019bc90aa}">
+      <Declaration><![CDATA[PROPERTY Gap : lreal]]></Declaration>
+      <Get Name="Get" Id="{d4e06fc5-3102-4f29-aefb-f3e318ce05af}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Gap := GearInPosCA.Gap;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{37317b1b-35df-4cea-b144-44e060ec9355}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[GearInPosCA.Gap := Gap;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="GearIn" Id="{3bab61dc-be16-4255-9286-dba4fcc8047d}">
       <Declaration><![CDATA[METHOD PUBLIC GearIn : HRESULT
 VAR_INPUT
