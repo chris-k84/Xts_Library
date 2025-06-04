@@ -156,7 +156,7 @@ END_VAR
 		END_IF
 	
 	XtsSystemInitialisation.SetDetection:
-		IF _MyXtsHardware.SetTrackForDetection(1) THEN
+		IF SUCCEEDED(_MyXtsHardware.SetTrackForDetection(1)) THEN
 			XtsHwState := XtsSystemInitialisation.Redetect;
 		END_IF
 		
