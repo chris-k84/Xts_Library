@@ -112,6 +112,13 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
+    <Method Name="RemoveTrackFromDetection" Id="{6b996083-6718-40f8-8385-c5509d71f04d}">
+      <Declaration><![CDATA[METHOD RemoveTrackFromDetection : HRESULT
+VAR_INPUT
+	TrackToRemove : INT;
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="SetMoverNumbers" Id="{7821c5af-a98b-4e00-bdec-978858c91986}">
       <Declaration><![CDATA[METHOD SetMoverNumbers : HRESULT
 VAR_INPUT
@@ -119,8 +126,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="SetTrackForDetection" Id="{7c4c42dc-3b9e-4422-a554-a366e105c556}">
-      <Declaration><![CDATA[METHOD SetTrackForDetection : BOOL
+    <Method Name="SetTrackForDetection" Id="{e5174e94-1d43-416d-9cf0-82b8810737fe}">
+      <Declaration><![CDATA[METHOD SetTrackForDetection : HRESULT
 VAR_INPUT
 	TrackToDetect : INT;
 END_VAR

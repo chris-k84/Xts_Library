@@ -337,6 +337,20 @@ END_VAR
 Runner.RegisterInitialisable(THIS^);]]></ST>
       </Implementation>
     </Method>
+    <Method Name="RemoveTrackFromDetection" Id="{1e31681d-3ada-48de-80fd-ab8c9694949c}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD RemoveTrackFromDetection : HRESULT
+VAR_INPUT
+	TrackToRemove : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TrackToRemove > MyTrackCount OR MyTrackCount = 1 THEN
+	RemoveTrackFromDetection := -1;
+	RETURN;
+END_IF
+XtsTracks[TrackToRemove].RemoveFromDetection();]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SetMoverNumbers" Id="{fda2cbfb-05d3-433d-b308-26404cfa0e4a}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetMoverNumbers : HRESULT
 VAR_INPUT
@@ -352,21 +366,18 @@ END_IF
       </Implementation>
     </Method>
     <Method Name="SetTrackForDetection" Id="{33a6fd5d-a8a8-4e54-be38-eeae850dd3e9}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD SetTrackForDetection : BOOL
+      <Declaration><![CDATA[METHOD SetTrackForDetection : HRESULT
 VAR_INPUT
 	TrackToDetect : INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyTrackCount = 1 THEN
-	_MyXpu.TrackTcIo(1).SetIsIncludedInDetection(TRUE);
-	SetTrackForDetection := TRUE;
-ELSE
-	IF TrackToDetect <= MyTrackCount THEN 
-		SetTrackForDetection := TRUE;
-		_MyXpu.TrackTcIo(TrackToDetect).SetIsIncludedInDetection(TRUE);
-	END_IF
-END_IF]]></ST>
+        <ST><![CDATA[IF TrackToDetect > MyTrackCount THEN
+	RemoveTrackFromDetection := -1;
+	RETURN;
+END_IF
+XtsTracks[TrackToDetect].SetForDetection();
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="TriggerMoverDetection" Id="{15e78533-ebfe-46e6-bd25-18e4044d6883}" FolderPath="Commands\">
