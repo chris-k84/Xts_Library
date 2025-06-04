@@ -373,7 +373,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TrackToDetect > MyTrackCount THEN
-	RemoveTrackFromDetection := -1;
+	SetTrackForDetection := -1;
 	RETURN;
 END_IF
 XtsTracks[TrackToDetect].SetForDetection();
