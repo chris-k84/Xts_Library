@@ -348,7 +348,7 @@ END_VAR
 	RemoveTrackFromDetection := -1;
 	RETURN;
 END_IF
-XtsTracks[TrackToRemove].RemoveFromDetection();]]></ST>
+XtsTracks[TrackToRemove - 1].RemoveFromDetection();]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetMoverNumbers" Id="{fda2cbfb-05d3-433d-b308-26404cfa0e4a}" FolderPath="Commands\">
@@ -376,7 +376,7 @@ END_VAR
 	SetTrackForDetection := -1;
 	RETURN;
 END_IF
-XtsTracks[TrackToDetect].SetForDetection();
+XtsTracks[TrackToDetect - 1].SetForDetection();
 ]]></ST>
       </Implementation>
     </Method>
