@@ -71,9 +71,6 @@ END_VAR
       <Declaration><![CDATA[METHOD RemoveAMover : BOOL
 VAR_INPUT
 	Mover : I_XtsMover;
-END_VAR
-VAR
-	i : INT;
 END_VAR]]></Declaration>
     </Method>
     <Method Name="Reset" Id="{52cfbceb-29c1-48af-b76e-6022383fab33}">
