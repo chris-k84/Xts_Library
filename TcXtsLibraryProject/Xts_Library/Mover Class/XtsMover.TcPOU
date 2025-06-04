@@ -61,7 +61,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT MoverActivateTrackBehaviour.Busy AND THIS^.isMoverStationary() AND Track.MyOTCID <> 0  THEN
+        <ST><![CDATA[IF Track = 0 THEN
+	ActivateTrack := -1;
+	RETURN;
+END_IF
+IF NOT MoverActivateTrackBehaviour.Busy AND THIS^.isMoverStationary() AND Track.MyOTCID <> 0  THEN
 	IF Succeeded(MoverActivateTrackBehaviour.Execute(Track := Track)) THEN
 		_CurrentTrack := Track;
 		_ActiveTrackLength := Track.TrackLength;
