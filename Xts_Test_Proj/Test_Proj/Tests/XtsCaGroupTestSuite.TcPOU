@@ -9,40 +9,8 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[TaskRejectsAddingSameMover_Test();
-CAGroupWontCycleWithoutRef_Test();]]></ST>
+      <ST><![CDATA[TaskRejectsAddingSameMover_Test();]]></ST>
     </Implementation>
-    <Method Name="CAGroupWontCycleWithoutRef_Test" Id="{e3581f72-55e7-47cd-9d46-22dfebcdb8e0}">
-      <Declaration><![CDATA[METHOD CAGroupWontCycleWithoutRef_Test : HRESULT
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	caGroup.AddMoverToThisGroup(stubMover);
-	Actual := FAILED(caGroup.AddMoverToThisGroup(stubMover));
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GroupRejectsAddingSameAxis_Test" Id="{69309b1a-01b7-4239-ac93-39e8ed3f4508}">
-      <Declaration><![CDATA[METHOD GroupRejectsAddingSameAxis_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-
-	Actual := FAILED(caGroup.Cycle());
-	caGroup.CAGroupXtsIoEnvInterface := stubRef;
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="TaskRejectsAddingSameMover_Test" Id="{d3aa7857-c4a4-46bc-a9ac-fdcae634440c}">
       <Declaration><![CDATA[METHOD TaskRejectsAddingSameMover_Test
 VAR_INST
@@ -52,7 +20,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	Actual := SUCCEEDED(caGroup.AddMoverToThisGroup(stubMover));
+	caGroup.AddMoverToThisGroup(stubMover);
+	Actual := FAILED(caGroup.AddMoverToThisGroup(stubMover));
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

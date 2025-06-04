@@ -3,9 +3,9 @@
   <POU Name="GearCATask_TestSuite" Id="{061b6bca-7336-459c-b0e8-a83117c82ddd}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK GearCATask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
-	testMaster : AXIS_REF;
-	testAxis : AXIS_REF;
-	testGearTask : GearCATask := (AxisRef := testAxis, MyGearMaster := testMaster);
+	testMaster : XtsMover;
+	testAxis : XtsMover;
+	testGearTask : GearCATask := (slaveAxis := testAxis, MyGearMaster := testMaster);
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -38,9 +38,9 @@ VAR_INST
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	testGearTask.AxisRef REF= 16#0;
+	testGearTask.SlaveAxis := 16#0;
 	Actual := FAILED(testGearTask.Cycle());
-	testGearTask.AxisRef REF= testAxis;
+	testGearTask.SlaveAxis := testAxis;
 	testGearTask.Abort();
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -54,9 +54,9 @@ VAR_INST
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	testGearTask.MyGearMaster REF= 16#0;
+	testGearTask.MyGearMaster := 0;
 	Actual := FAILED(testGearTask.Cycle());
-	testGearTask.MyGearMaster REF= testMaster;
+	testGearTask.MyGearMaster := testMaster;
 	testGearTask.Abort();
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -70,9 +70,9 @@ VAR_INST
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	testGearTask.MyGearMaster REF= 16#0;
+	testGearTask.MyGearMaster := 0;
 	Actual := FAILED(testGearTask.GearIn(MasterPosition := 0, SlavePosition := 0));
-	testGearTask.MyGearMaster REF= testMaster;
+	testGearTask.MyGearMaster := testMaster;
 	testGearTask.Abort();
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -86,9 +86,9 @@ VAR_INST
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	testGearTask.AxisRef REF= 16#0;
+	testGearTask.SlaveAxis := 0;
 	Actual := FAILED(testGearTask.GearIn(0.0, 0.0));
-	testGearTask.AxisRef REF= testAxis;
+	testGearTask.SlaveAxis := testAxis;
 	testGearTask.Abort();
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>

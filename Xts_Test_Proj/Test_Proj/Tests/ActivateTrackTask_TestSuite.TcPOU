@@ -4,6 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK ActivateTrackTask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
 	stubAxis : AXIS_REF;
+	stubTrack : XtsTrack;
 	testActivateTask : ActivateTrackTask := (AxisRef := stubAxis);
 END_VAR
 ]]></Declaration>
@@ -21,7 +22,7 @@ VAR_INST
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	Actual := SUCCEEDED(testActivateTask.Execute(Track := 16#01));
+	Actual := SUCCEEDED(testActivateTask.Execute(Track := stubTrack));
 	testActivateTask.Abort();
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -37,7 +38,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testActivateTask.AxisRef REF= 16#0;
-	Actual := FAILED(testActivateTask.Execute(Track := 16#01));
+	Actual := FAILED(testActivateTask.Execute(Track := stubTrack));
 	testActivateTask.Abort();
 	testActivateTask.AxisRef REF= stubAxis;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
@@ -53,8 +54,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	testActivateTask.Execute(Track := 16#01);
-	Actual := FAILED(testActivateTask.Execute(Track := 16#01));
+	testActivateTask.Execute(Track := stubTrack);
+	Actual := FAILED(testActivateTask.Execute(Track := stubTrack));
 	testActivateTask.Abort();
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>

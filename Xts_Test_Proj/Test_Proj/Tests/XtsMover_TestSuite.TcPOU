@@ -57,7 +57,7 @@ VAR_INST
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED( testMover.ActivateTrack(NewTrack := 16#1010E2, Track := 0));
+	Actual := FAILED( testMover.ActivateTrack(Track := 0));
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -71,7 +71,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED( testMover.ActivateTrack(NewTrack := 0,Track := stubITrack));
+	Actual := FAILED( testMover.ActivateTrack(Track := stubITrack));
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -159,49 +159,5 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="XtsMover_TestSuite">
-      <LineId Id="3" Count="8" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMover_TestSuite.MoverAcceptsEnableCommand_Test">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMover_TestSuite.MoverAcceptsGoodGap_Test">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMover_TestSuite.MoverRejectsActiavteTrackWithInvalidInterface_Test">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMover_TestSuite.MoverRejectsActivateTrackInvalidOTCID_Test">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMover_TestSuite.MoverRejectsCycleCallWithNoAxisRef_Test">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMover_TestSuite.MoverRejectsDisableCommand_Test">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMover_TestSuite.MoverRejectsGapLow_Test">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMover_TestSuite.MoverRejectsHighVeloCommand_Test">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMover_TestSuite.MoverRejectsNegVeloCommand_Test">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XtsMover_TestSuite.MoverRejectsResetWithNoError_Test">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
