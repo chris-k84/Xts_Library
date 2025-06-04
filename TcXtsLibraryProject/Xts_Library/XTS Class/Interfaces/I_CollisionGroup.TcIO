@@ -70,7 +70,7 @@ END_VAR
     <Method Name="RemoveAMover" Id="{ef48cf2e-8bac-48d4-bde6-7be9e9dfb88f}">
       <Declaration><![CDATA[METHOD RemoveAMover : BOOL
 VAR_INPUT
-	moverId : I_XtsMover;
+	Mover : I_XtsMover;
 END_VAR
 VAR
 	i : INT;
