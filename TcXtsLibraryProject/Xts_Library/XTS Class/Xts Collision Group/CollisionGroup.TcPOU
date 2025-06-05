@@ -231,7 +231,7 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="RemoveAMover" Id="{c380af90-39ac-42df-b7a5-a3aab3a831b8}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD RemoveAMover : BOOL
+      <Declaration><![CDATA[METHOD RemoveAMover : HRESULT
 VAR_INPUT
 	Mover : I_XtsMover;
 END_VAR
@@ -246,6 +246,8 @@ END_VAR]]></Declaration>
 // 			GroupMoverIdents[i] := UDINT_TO_IDENTINGROUP(0);
 // 		END_IF
 // 	END_FOR
+ELSE
+	RemoveAMover := -1;
 END_IF]]></ST>
       </Implementation>
     </Method>
