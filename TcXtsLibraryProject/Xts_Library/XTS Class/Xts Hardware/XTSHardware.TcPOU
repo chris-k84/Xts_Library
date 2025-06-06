@@ -387,8 +387,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_MyXpu.TriggerDetection();
-TriggerMoverDetection := TRUE;
-]]></ST>
+TriggerMoverDetection := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="TriggerMoverID" Id="{23436421-ecb3-466c-b86b-5fefe5c7904c}" FolderPath="Commands\">

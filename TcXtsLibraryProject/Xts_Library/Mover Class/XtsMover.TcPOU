@@ -586,7 +586,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_ipTcIoXtsMover.TriggerArrive();]]></ST>
+        <ST><![CDATA[TriggerMoverArrive := _ipTcIoXtsMover.TriggerArrive();]]></ST>
       </Implementation>
     </Method>
     <Method Name="TriggerMoverLeave" Id="{074e60e5-1df3-46d8-92fd-930fc05fcb13}" FolderPath="Administration\">
