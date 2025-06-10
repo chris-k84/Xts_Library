@@ -134,7 +134,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="TriggerMoverDetection" Id="{3ca79f9d-8f1a-40ef-9b71-3df667743234}">
-      <Declaration><![CDATA[METHOD TriggerMoverDetection : BOOL
+      <Declaration><![CDATA[METHOD TriggerMoverDetection : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
