@@ -161,7 +161,7 @@ END_VAR
 		END_IF
 		
 	XtsSystemInitialisation.Redetect:
-		IF _MyXtsHardware.TriggerRedetection() = 1 THEN
+		IF SUCCEEDED(_MyXtsHardware.TriggerRedetection()) THEN
 			XtsHwState := XtsSystemInitialisation.MoversValid;
 		END_IF
 		
