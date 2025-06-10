@@ -55,6 +55,7 @@ IF NOT registered AND NOT addMover.Busy THEN
 	FOR i := 0 TO MaxMovers DO
 		IF GroupMovers[i] = 0 THEN
 			GroupMovers[i] := MoverToAdd;
+			EXIT;
 		END_IF
 	END_FOR
 ELSE
