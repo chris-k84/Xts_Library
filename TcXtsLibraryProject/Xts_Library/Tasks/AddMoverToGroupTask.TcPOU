@@ -10,6 +10,9 @@ VAR
 	AddtoGrp			: MC_AddAxisToGroup;
 	_CaGroup			: I_CollisionGroup;
 	_Axis				: REFERENCE TO AXIS_REF;
+	_Done 				: BOOL;
+	_Error				: BOOL;
+	_ErrorID			: UDINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -62,6 +65,11 @@ END_VAR
 	Cycle := -1;
 	RETURN;
 END_IF
+_Done := AddtoGrp.Done OR _Done;
+_Error := AddtoGrp.Error OR _Error;
+IF AddtoGrp.ErrorId <> 0 THEN
+	_ErrorId := AddtoGrp.ErrorId;
+END_IF
 AddtoGrp(AxesGroup := _CaGroup.GroupRef,
 			Axis := _Axis);
 AddtoGrp.Execute := FALSE;]]></ST>
@@ -75,7 +83,7 @@ AddtoGrp.Execute := FALSE;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := AddtoGrp.Done;]]></ST>
+          <ST><![CDATA[Done := _Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -87,7 +95,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := AddtoGrp.Error;]]></ST>
+          <ST><![CDATA[Error := _Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
