@@ -25,9 +25,6 @@ END_VAR
     </Method>
     <Method Name="ActivateZeroReferenceSystem" Id="{ab0eeb60-9673-46f5-be7f-8e50f8587ea1}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ActivateZeroReferenceSystem : HRESULT
-VAR_INPUT
-	NewTrack : I_XtsTrack;
-END_VAR
 ]]></Declaration>
     </Method>
     <Property Name="AxisRef" Id="{b9459322-2642-4758-9d1a-f140abbed4b3}" FolderPath="Administration\">
