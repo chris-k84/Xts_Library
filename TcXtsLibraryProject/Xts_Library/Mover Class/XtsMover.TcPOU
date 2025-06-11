@@ -417,7 +417,12 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MoversActiveTrack := _ipTcIoXtsMover.GetActiveTrackObjectId();]]></ST>
+          <ST><![CDATA[// IF _CurrentTrack <> 0 THEN
+// 	MoversActiveTrack := _CurrentTrack.MyOTCID;
+// ELSE
+// 	MoversActiveTrack := 0;
+// END_IF
+MoversActiveTrack := _ipTcIoXtsMover.GetActiveTrackObjectId();]]></ST>
         </Implementation>
       </Get>
     </Property>
