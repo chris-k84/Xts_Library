@@ -105,6 +105,12 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Method Name="IsActive" Id="{9fd93deb-ce14-4220-ace9-86cd93c7a80c}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsActive : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="isMoverAtPosition" Id="{bc703c47-0b4d-4374-b07c-1240b49b484e}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD isMoverAtPosition : BOOL
 VAR_INPUT
