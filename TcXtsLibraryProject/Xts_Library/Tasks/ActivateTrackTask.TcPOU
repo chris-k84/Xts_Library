@@ -6,6 +6,9 @@ VAR
 	mcActivateTrack : Tc3_McCollisionAvoidance.MC_ActivateTrack;
 	_Axis : REFERENCE TO Tc2_MC2.AXIS_REF;
 	_newTrackId : OTCID;
+	_Done : BOOL;
+	_Error : BOOL;
+	_ErrorId : UDINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -60,6 +63,11 @@ END_VAR
 	Cycle := -1;
 	RETURN;
 END_IF
+_Done := mcActivateTrack.Done OR _Done;
+_Error := mcActivateTrack.Error OR _Error;
+IF mcActivateTrack.ErrorId <> 0 THEN
+	_ErrorId := mcActivateTrack.ErrorId;
+END_IF
 _newTrackId := mcActivateTrack.TrackId;
 mcActivateTrack(Axis := _Axis);
 mcActivateTrack.Execute := FALSE;]]></ST>
@@ -73,7 +81,7 @@ mcActivateTrack.Execute := FALSE;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := mcActivateTrack.Done;]]></ST>
+          <ST><![CDATA[Done := _Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -85,7 +93,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := mcActivateTrack.Error;]]></ST>
+          <ST><![CDATA[Error := _Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -99,6 +107,9 @@ END_VAR
         <ST><![CDATA[IF NOT mcActivateTrack.Execute AND Track <> 0 AND __ISVALIDREF(_Axis) THEN
 	mcActivateTrack.Execute := TRUE;
 	mcActivateTrack.TrackId := Track.MyOTCID;
+	_Error := FALSE;
+	_ErrorId := 0;
+	_Done := FALSE;
 ELSE
 	Execute := -1;
 END_IF;]]></ST>
