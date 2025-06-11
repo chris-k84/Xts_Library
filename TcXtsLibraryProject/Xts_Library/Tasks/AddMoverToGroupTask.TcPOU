@@ -37,6 +37,9 @@ END_VAR
 	AddtoGrp.Execute := TRUE;
 	AddtoGrp.IdentInGroup := MoverToAdd.IdentInGroup;
 	_Axis REF= MoverToAdd.AxisRef;
+	_Error := FALSE;
+	_ErrorId := 0;
+	_Done := FALSE;
 ELSE
 	AddMover := -1;
 END_IF
