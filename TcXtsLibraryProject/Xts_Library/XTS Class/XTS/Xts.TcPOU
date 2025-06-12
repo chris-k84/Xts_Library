@@ -97,6 +97,44 @@ END_VAR
         <ST><![CDATA[EnableSequence.Enable();]]></ST>
       </Implementation>
     </Method>
+    <Property Name="ExpectedNumberOfParts" Id="{33632734-2180-4c77-982d-f6997ead5bb5}" FolderPath="Settings\">
+      <Declaration><![CDATA[PROPERTY ExpectedNumberOfParts : int]]></Declaration>
+      <Get Name="Get" Id="{ec285ff9-810a-46b0-8941-68dcdc1ab79d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ExpectedNumberOfParts := _MyXtsHardware.ExpectedNumberOfParts;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{4cb5fde4-6845-43ef-b95e-df4929829b0c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_MyXtsHardware.ExpectedNumberOfParts := ExpectedNumberOfParts;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="ExpectedNumberOfTracks" Id="{6b69c4c6-afe3-46d9-bc08-86224f82f24a}" FolderPath="Settings\">
+      <Declaration><![CDATA[PROPERTY ExpectedNumberOfTracks : int]]></Declaration>
+      <Get Name="Get" Id="{cab0d03f-ccb1-4d2e-adb6-3d697ceee44c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ExpectedNumberOfTracks := _MyXtsHardware.ExpectedNumberOfTracks;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{b24fc04c-e333-4935-bdff-3eff5a7d9932}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_MyXtsHardware.ExpectedNumberOfTracks := ExpectedNumberOfTracks;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="FB_Init" Id="{d6ce6c85-5c43-4276-b07f-92a2e669b228}">
       <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
 //The return value is not evaluated. For a specific influence, you can also declare the
@@ -234,44 +272,6 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MyNumberOfParts" Id="{33632734-2180-4c77-982d-f6997ead5bb5}" FolderPath="Settings\">
-      <Declaration><![CDATA[PROPERTY MyNumberOfParts : int]]></Declaration>
-      <Get Name="Get" Id="{ec285ff9-810a-46b0-8941-68dcdc1ab79d}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyNumberOfParts := _MyXtsHardware.MyNumberParts;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{4cb5fde4-6845-43ef-b95e-df4929829b0c}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyXtsHardware.MyNumberParts := MyNumberOfParts;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Property Name="MyNumberOfTracks" Id="{6b69c4c6-afe3-46d9-bc08-86224f82f24a}" FolderPath="Settings\">
-      <Declaration><![CDATA[PROPERTY MyNumberOfTracks : int]]></Declaration>
-      <Get Name="Get" Id="{cab0d03f-ccb1-4d2e-adb6-3d697ceee44c}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyNumberOfTracks := _MyXtsHardware.MyNumberTracks;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{b24fc04c-e333-4935-bdff-3eff5a7d9932}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyXtsHardware.MyNumberTracks := MyNumberOfTracks;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Property Name="MyXts" Id="{b982f888-fcea-49f3-8b85-76339b257fce}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyXts : INT]]></Declaration>
       <Get Name="Get" Id="{7260ae55-6d72-4286-9779-c205f4bf658b}">
@@ -297,10 +297,10 @@ VAR_INPUT
 	MyMover : I_XtsMover;
 END_VAR
 VAR
-	i : INT;
+	i : uINT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyMover <> 0 THEN
+        <ST><![CDATA[IF MyMover <> 0 AND Initialised THEN
 	MoverRegistered := FALSE;
 	FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
 		IF _MoverArray[i] = MyMover THEN
@@ -313,6 +313,9 @@ END_VAR]]></Declaration>
 		_registeredNumberOfMovers := _registeredNumberOfMovers + 1;
 		EnableSequence.RegisterMovers(MyMover);
 		DisableSequence.RegisterMovers(MyMover);
+		FOR i := 1 TO _MyXtsHardware.DetectedNumberOfTracks DO
+			MyMover.RegisterTracks(Track := _MyXtsHardware.GetTrackByNumber(i));
+		END_FOR
 		RegisterMovers := 1;
 	END_IF
 ELSE
