@@ -13,7 +13,6 @@ VAR
 	ResetBehaviour : CoEResetTask := (AxisRef := MyAxisRef);
 	MoverActivateTrackBehaviour : ActivateTrackTask:= (AxisRef := MyAxisRef);
 	_ipTcIoXtsMover	: I_TcIoXtsXpuMover;
-	_ActiveTrackLength : MC_LREAL;
 	TrackChangeTrigger : R_TRIG;
 	_MoverAbsMoveOptions : ST_MoveAbsoluteCAOptions;
 	_stTmsActPositions : ST_PositionInfo;
@@ -60,7 +59,7 @@ END_VAR
     <Method Name="ActivateTrack" Id="{f7604675-5338-4e11-9132-b17d5df72cc8}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ActivateTrack : HRESULT
 VAR_INPUT
-	Track : I_XtsTrack;
+	Track : INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -68,10 +67,9 @@ END_VAR
 	ActivateTrack := -1;
 	RETURN;
 END_IF
-IF NOT MoverActivateTrackBehaviour.Busy AND THIS^.isMoverStationary() AND Track.MyOTCID <> 0  THEN
-	IF Succeeded(MoverActivateTrackBehaviour.Execute(Track := Track)) THEN
-		_CurrentTrack := Track;
-		_ActiveTrackLength := Track.TrackLength;
+IF NOT MoverActivateTrackBehaviour.Busy AND THIS^.isMoverStationary() AND MyTracks[Track].MyOTCID <> 0  THEN
+	IF Succeeded(MoverActivateTrackBehaviour.Execute(Track := MyTracks[Track])) THEN
+		_CurrentTrack := MyTracks[Track];
 		ActivateTrack := 1;
 	ELSE
 		ActivateTrack := -1;
