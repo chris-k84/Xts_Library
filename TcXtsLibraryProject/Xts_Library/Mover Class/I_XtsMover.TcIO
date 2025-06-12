@@ -193,6 +193,12 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
+    <Method Name="RegisterTracks" Id="{f708c3cc-b99d-4712-bcc3-26ae6f024fa0}" FolderPath="Administration\">
+      <Declaration><![CDATA[METHOD RegisterTracks : HRESULT
+VAR_INPUT
+	Track : I_XtsTrack;
+END_VAR]]></Declaration>
+    </Method>
     <Method Name="Reset" Id="{6858a2d4-c501-4639-b0f6-64db9416c8f9}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT

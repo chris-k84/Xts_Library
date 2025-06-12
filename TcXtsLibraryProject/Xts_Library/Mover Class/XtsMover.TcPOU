@@ -23,6 +23,8 @@ VAR
 	myControllerOid: OTCID;
 	MyId: UDINT;
 	Initialised : BOOL;
+	MyTrackCount : INT;
+	MyTracks : ARRAY[0..5] OF I_XtsTrack;
 	NullTrack : XtsTrack;
 END_VAR
 VAR CONSTANT
@@ -533,6 +535,37 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="RegisterTracks" Id="{33623a4f-6a2b-45ed-b81c-64a295cf1295}" FolderPath="Administration\">
+      <Declaration><![CDATA[METHOD RegisterTracks : HRESULT
+VAR_INPUT
+	Track : I_XtsTrack;
+END_VAR
+VAR
+	Registered : BOOL;
+	i : INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Track = 0 THEN
+	RegisterTracks := -1;
+	RETURN;
+END_IF
+Registered := FALSE;
+FOR i := 0 TO 5 DO 
+	IF Track = MyTracks[i] THEN
+		Registered := TRUE;
+	END_IF
+END_FOR
+IF NOT Registered THEN
+	FOR i := 0 TO 5 DO
+		IF MyTracks[i] = 0 THEN
+			MyTracks[i] := Track;
+			MyTrackCount := MyTrackCount + 1;
+			EXIT;
+		END_IF
+	END_FOR
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="RegisterWithParent" Id="{0c8fc6cb-d807-4926-a588-870aa525c7f2}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
