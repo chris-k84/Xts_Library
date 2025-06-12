@@ -3,6 +3,30 @@
   <Itf Name="I_XtsHardware" Id="{9afac880-0754-4de0-b157-657ea2ab2f5c}">
     <Declaration><![CDATA[INTERFACE I_XtsHardware
 ]]></Declaration>
+    <Property Name="DetectedNumberOfTracks" Id="{1f7b777e-4e84-4e05-a960-b4258ee4a093}">
+      <Declaration><![CDATA[PROPERTY DetectedNumberOfTracks : UINT]]></Declaration>
+      <Get Name="Get" Id="{b975fd9f-07a4-422f-a5dd-e3785eb793b3}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ExpectedNumberOfParts" Id="{8baf703f-4030-43b9-bdf8-f6888d62a51a}">
+      <Declaration><![CDATA[PROPERTY ExpectedNumberOfParts : int]]></Declaration>
+      <Get Name="Get" Id="{0b7c22e3-40c5-447c-8669-8bda14b6c107}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{5fd5e677-eecf-47de-bd59-50e6a5a429b3}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="ExpectedNumberOfTracks" Id="{060a46c5-290c-4bcd-90e6-de762c9e2c08}">
+      <Declaration><![CDATA[PROPERTY ExpectedNumberOfTracks : int]]></Declaration>
+      <Get Name="Get" Id="{32b0bf5c-9771-495a-89d6-3032bdd0b8c3}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{9407f136-b996-42ff-9b05-517db21ec39e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
     <Method Name="getAllMoversValid" Id="{3d107ad0-1a72-4602-abbb-1177fad35523}">
       <Declaration><![CDATA[METHOD getAllMoversValid : BOOL
 VAR_INPUT
@@ -24,6 +48,13 @@ END_VAR
     <Method Name="getNumberMoversDetected" Id="{f24c38ad-dbfa-488d-af77-9f21cd2a2d34}">
       <Declaration><![CDATA[METHOD getNumberMoversDetected : UDINT
 VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="GetTrackByNumber" Id="{fdddf6a5-daa4-4b5f-bc28-556a31f03729}">
+      <Declaration><![CDATA[METHOD GetTrackByNumber : I_XtsTrack
+VAR_INPUT
+	TrackNumber : UINT;
 END_VAR
 ]]></Declaration>
     </Method>
@@ -75,24 +106,6 @@ END_VAR
       <Get Name="Get" Id="{494ebcb6-a0a6-498f-a4fa-49193344e0b2}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
-    </Property>
-    <Property Name="MyNumberParts" Id="{8baf703f-4030-43b9-bdf8-f6888d62a51a}">
-      <Declaration><![CDATA[PROPERTY MyNumberParts : int]]></Declaration>
-      <Get Name="Get" Id="{0b7c22e3-40c5-447c-8669-8bda14b6c107}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-      <Set Name="Set" Id="{5fd5e677-eecf-47de-bd59-50e6a5a429b3}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
-    </Property>
-    <Property Name="MyNumberTracks" Id="{060a46c5-290c-4bcd-90e6-de762c9e2c08}">
-      <Declaration><![CDATA[PROPERTY MyNumberTracks : int]]></Declaration>
-      <Get Name="Get" Id="{32b0bf5c-9771-495a-89d6-3032bdd0b8c3}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-      <Set Name="Set" Id="{9407f136-b996-42ff-9b05-517db21ec39e}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
     </Property>
     <Property Name="MyXpu" Id="{e2e815a3-d77a-4532-829a-eddabfcaecf8}">
       <Declaration><![CDATA[PROPERTY MyXpu : I_TcIoXtsProcessingUnit]]></Declaration>

@@ -51,6 +51,55 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Property Name="DetectedNumberOfTracks" Id="{1aee3abf-438c-401a-96dd-e5d65d11e759}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY DetectedNumberOfTracks : UINT]]></Declaration>
+      <Get Name="Get" Id="{6b1c17e2-83ee-47f8-b12c-999752617527}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[DetectedNumberOfTracks := TO_UINT( MyTrackCount); ]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ExpectedNumberOfParts" Id="{a98ec162-431e-48cc-ae6d-f8949630ea06}" FolderPath="Settings\">
+      <Declaration><![CDATA[PROPERTY ExpectedNumberOfParts : int]]></Declaration>
+      <Get Name="Get" Id="{6aea69f8-39b7-432c-a6be-0e19820e9502}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ExpectedNumberOfParts := _MyNumberParts;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{3a096234-62c8-4cae-b087-998329491864}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_MyNumberParts := ExpectedNumberOfParts;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="ExpectedNumberOfTracks" Id="{4b737a8f-2e1c-463e-a095-5f8b64b3f222}" FolderPath="Settings\">
+      <Declaration><![CDATA[PROPERTY ExpectedNumberOfTracks : int]]></Declaration>
+      <Get Name="Get" Id="{42884cba-9387-4d1f-8822-97815c1c289f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ExpectedNumberOfTracks := _MyNumberTracks;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{615cc55c-cb9a-4994-a6a7-0d139d5ef074}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_MyNumberTracks := ExpectedNumberOfTracks;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="getAllMoversValid" Id="{61902ec7-4049-4544-9a8e-27dabf1b61be}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getAllMoversValid : BOOL
 VAR_INPUT
@@ -88,6 +137,17 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[getNumberMoversDetected := _MyXpu.GetDetectedMoverCount();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetTrackByNumber" Id="{f2581b5d-dcdf-4c20-8ad6-39f08544aef0}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetTrackByNumber : I_XtsTrack
+VAR_INPUT
+	TrackNumber : UINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetTrackByNumber := XtsTracks[TrackNumber];
 ]]></ST>
       </Implementation>
     </Method>
@@ -249,44 +309,6 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="MyNumberParts" Id="{a98ec162-431e-48cc-ae6d-f8949630ea06}" FolderPath="Settings\">
-      <Declaration><![CDATA[PROPERTY MyNumberParts : int]]></Declaration>
-      <Get Name="Get" Id="{6aea69f8-39b7-432c-a6be-0e19820e9502}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyNumberParts := _MyNumberParts;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{3a096234-62c8-4cae-b087-998329491864}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyNumberParts := MyNumberParts;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Property Name="MyNumberTracks" Id="{4b737a8f-2e1c-463e-a095-5f8b64b3f222}" FolderPath="Settings\">
-      <Declaration><![CDATA[PROPERTY MyNumberTracks : int]]></Declaration>
-      <Get Name="Get" Id="{42884cba-9387-4d1f-8822-97815c1c289f}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyNumberTracks := _MyNumberTracks;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{615cc55c-cb9a-4994-a6a7-0d139d5ef074}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyNumberTracks := MyNumberTracks;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Property Name="MyXpu" Id="{9f0e6f27-b8f0-452c-b07d-d4d2a7ed1b3b}">
       <Declaration><![CDATA[PROPERTY MyXpu : I_TcIoXtsProcessingUnit]]></Declaration>
       <Get Name="Get" Id="{ef18a883-259a-46c5-ac1a-fd1d0138159b}">
@@ -446,120 +468,5 @@ _MyXpu.TriggerRedetection();
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="XTSHardware">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.Cycle">
-      <LineId Id="3" Count="9" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.getAllMoversValid">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.GetConfigMoverNumber">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.GetDetectionState">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.getNumberMoversDetected">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.GetTrackByOTCID">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.HasXPU">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.Initialise">
-      <LineId Id="3" Count="52" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.Is24VdcOK">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.Is48VdcOK">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.isExpectedMoversFound">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.IsInitialised">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.IsInSim">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyName.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyNumberParts.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyNumberParts.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyNumberTracks.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyNumberTracks.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyXpu.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyXpu.Set">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyXts.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.MyXts.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.RegisterWithParent">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.RemoveTrackFromDetection">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.SetMoverNumbers">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.SetTrackForDetection">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.TriggerMoverDetection">
-      <LineId Id="4" Count="1" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.TriggerMoverID">
-      <LineId Id="3" Count="28" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="XTSHardware.TriggerRedetection">
-      <LineId Id="5" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
