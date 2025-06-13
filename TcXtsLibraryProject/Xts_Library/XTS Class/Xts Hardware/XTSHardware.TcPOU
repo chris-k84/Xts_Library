@@ -147,7 +147,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetTrackByNumber := XtsTracks[TrackNumber];
+        <ST><![CDATA[GetTrackByNumber := XtsTracks[TrackNumber - 1];
 ]]></ST>
       </Implementation>
     </Method>
