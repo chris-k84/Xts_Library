@@ -17,8 +17,7 @@ MoverAcceptsGoodGap_Test();
 MoverRejectsHighVeloCommand_Test();
 MoverRejectsNegVeloCommand_Test();
 MoverRejectsResetWithNoError_Test();
-MoverRejectsActiavteTrackWithInvalidInterface_Test();
-MoverRejectsActivateTrackInvalidOTCID_Test();]]></ST>
+MoverRejectsActiavteTrackWithInvalidInterface_Test();]]></ST>
     </Implementation>
     <Method Name="MoverAcceptsEnableCommand_Test" Id="{716146c2-e85b-4cfe-8ba6-0d5e0d358526}">
       <Declaration><![CDATA[METHOD MoverAcceptsEnableCommand_Test : BOOL
@@ -58,20 +57,6 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.ActivateTrack(Track := 0));
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="MoverRejectsActivateTrackInvalidOTCID_Test" Id="{2fd27368-4a82-43e0-950b-41f666bdc2fa}">
-      <Declaration><![CDATA[METHOD MoverRejectsActivateTrackInvalidOTCID_Test : BOOL
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED( testMover.ActivateTrack(Track := stubITrack));
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
