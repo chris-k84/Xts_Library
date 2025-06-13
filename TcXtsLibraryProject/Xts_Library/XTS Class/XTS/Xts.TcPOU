@@ -43,8 +43,8 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[ActivateTracksInMovers := TRUE;
 FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
-	track := _MoverArray[i].MoversActiveTrack;
-	IF _MoverArray[i].ActivateTrack(Track := _MyXtsHardware.GetTrackByOTCID(track)) = -1 THEN
+// 	track := _MoverArray[i].MoversActiveTrack;
+	IF _MoverArray[i].ActivateTrack(Track := 1) = -1 THEN
 		ActivateTracksInMovers := FALSE;
 	END_IF
 END_FOR]]></ST>
