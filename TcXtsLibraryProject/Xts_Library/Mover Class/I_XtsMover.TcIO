@@ -19,7 +19,7 @@
     <Method Name="ActivateTrack" Id="{ba6e327e-25a9-4189-a1a0-64429eeca8b6}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ActivateTrack : HRESULT
 VAR_INPUT
-	Track : I_XtsTrack;
+	Track : INT;
 END_VAR
 ]]></Declaration>
     </Method>
