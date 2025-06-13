@@ -67,7 +67,7 @@ END_VAR
 	ActivateTrack := -1;
 	RETURN;
 END_IF
-IF NOT MoverActivateTrackBehaviour.Busy AND THIS^.isMoverStationary() AND MyTracks[Track].MyOTCID <> 0  THEN
+IF NOT MoverActivateTrackBehaviour.Busy AND THIS^.isMoverStationary() AND MyTracks[Track - 1].MyOTCID <> 0  THEN
 	IF Succeeded(MoverActivateTrackBehaviour.Execute(Track := MyTracks[Track - 1])) THEN
 		_CurrentTrack := MyTracks[Track - 1];
 		ActivateTrack := 1;
@@ -180,7 +180,7 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="FB_Init" Id="{e6cdc000-5fb3-42ba-8ce8-01408a72b06f}">
+    <Method Name="FB_Init" Id="{e6cdc000-5fb3-42ba-8ce8-01408a72b06f}" FolderPath="Administration\">
       <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
 //The return value is not evaluated. For a specific influence, you can also declare the
 //methods explicitly and provide additional code there with the standard initialization
@@ -306,7 +306,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Initialise" Id="{158eaadb-7779-40c3-b4d7-ef64750e6b36}">
+    <Method Name="Initialise" Id="{158eaadb-7779-40c3-b4d7-ef64750e6b36}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD Initialise : BOOL
 VAR_INPUT
 END_VAR
@@ -571,7 +571,7 @@ IF NOT Registered THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="RegisterWithParent" Id="{0c8fc6cb-d807-4926-a588-870aa525c7f2}">
+    <Method Name="RegisterWithParent" Id="{0c8fc6cb-d807-4926-a588-870aa525c7f2}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
 	Runner	: I_HostObjects;
