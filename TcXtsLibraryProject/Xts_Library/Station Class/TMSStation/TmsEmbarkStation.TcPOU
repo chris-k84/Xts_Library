@@ -128,9 +128,9 @@ CASE State OF
 		
 	ActivateTrackForMover:
 		IF _TrackLevel = 1 THEN
-			DepartMover.ActivateTrack(Track := arrTrackIds[2]);
+			DepartMover.ActivateTrack(Track := 2);
 		ELSE
-			DepartMover.ActivateTrack(Track := arrTrackIds[1]);
+			DepartMover.ActivateTrack(Track := 1);
 		END_IF
 		State := Moving;
 		_Complete := TRUE;

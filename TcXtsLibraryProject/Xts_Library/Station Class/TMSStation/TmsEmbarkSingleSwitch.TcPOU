@@ -23,7 +23,8 @@ VAR
 		Done,
 		Aborting); 
 	_switchPosition: MC_LREAL;
-	_TargetTrackId : I_XtsTrack;
+	_TargetTrackId : INT;
+	_TargetTrack : I_XtsTrack;
 	_BoardVelocity : MC_LREAL;
 	_SwitchVelocity : MC_LREAL;
 END_VAR
@@ -109,7 +110,7 @@ CASE State OF
 		State := CheckTrackActive;
 
 	CheckTrackActive:
-		IF DepartMover.MoversActiveTrack = _TargetTrackId.MyOTCID AND SwitchAxis.isAtPosition(position := _switchUnloadPosition) THEN
+		IF DepartMover.MoversActiveTrack = _TargetTrack.MyOTCID AND SwitchAxis.isAtPosition(position := _switchUnloadPosition) THEN
 			State := ReturnHome;
 			_Complete := TRUE;
 		END_IF
@@ -297,7 +298,7 @@ END_VAR
       </Set>
     </Property>
     <Property Name="TargetTrackId" Id="{60f84ea8-30a8-4877-b5ee-78b5070ad98e}">
-      <Declaration><![CDATA[PROPERTY TargetTrackId : I_XtsTrack]]></Declaration>
+      <Declaration><![CDATA[PROPERTY TargetTrackId : INT]]></Declaration>
       <Get Name="Get" Id="{cbe6c8be-4cbe-4755-ac3d-aca3acacdfc2}">
         <Declaration><![CDATA[VAR
 END_VAR
