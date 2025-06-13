@@ -84,7 +84,7 @@ CASE State OF
 		END_IF
 	
 	IndexSequenceState.GetNextMove:
-		IF CurrentStation = SystemParameters.NumberOfStations THEN
+		IF CurrentStation = SystemParameters.NumberOfStations - 1 THEN
 			IF ThisMover.MoveTo(RequiredPosition := _startPosition,
 							MoveVelocity := _MoverVelocity,
 							NonModuloMove := _NonModuloMoves) = 1 THEN

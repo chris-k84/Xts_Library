@@ -68,6 +68,16 @@
     <PlaceholderReference Include="Xts Library">
       <DefaultResolution>[Xts Library], * (BeckhoffUK)</DefaultResolution>
       <Namespace>Xts_Library</Namespace>
+      <Parameters>
+        <Parameter ListName="SYSTEMPARAMETERS" xmlns="">
+          <Key>NUMBEROFMOVERS</Key>
+          <Value>8</Value>
+        </Parameter>
+        <Parameter ListName="SYSTEMPARAMETERS" xmlns="">
+          <Key>NUMBEROFSTATIONS</Key>
+          <Value>5</Value>
+        </Parameter>
+      </Parameters>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
