@@ -26,7 +26,7 @@ VAR
 	systemXtsioEnvVar : XtsIoEnvVar;	
 	systemXtsHardware : XTSHardware;				
 	systemCAGroup : CollisionGroup;															
-	MyXts : ThisXTS(systemXtsioEnvVar,systemXtsHardware,systemCAGroup) := (MyXts := 1, MyNumberOfParts := 1, MyNumberOfTracks := 1);
+	MyXts : ThisXTS(systemXtsioEnvVar,systemXtsHardware,systemCAGroup) := (MyXts := 1, ExpectedNumberOfParts := 1, ExpectedNumberOfTracks := 1);
 	MoverSequences : ARRAY[0..7] OF IndexMoverSequence := [8((MyStations := iStationArray,
 																				MyStartPosition := 1000.0))];	
 	i : INT;
@@ -88,7 +88,6 @@ END_VAR
 		XtsModuleRunner.RegisterModule(Movers[i]);
 		XtsModuleRunner.RegisterModule(MoverSequences[i]);
 		MoverSequences[i].MyMover := Movers[i]; 
-		MyXts.RegisterMovers(MyMover := iMovers[i]);
 	END_FOR
 	XtsModuleRunner.RegisterModule(systemXtsioEnvVar);
 	XtsModuleRunner.RegisterModule(systemXtsHardware);
@@ -107,6 +106,9 @@ END_IF
 
 IF XtsModuleRunner.Initialise() = 1 THEN
 	Initialise := TRUE;
+	FOR i := 0 TO 7 DO
+		MyXts.RegisterMovers(MyMover := iMovers[i]);
+	END_FOR
 END_IF
 
 ]]></ST>

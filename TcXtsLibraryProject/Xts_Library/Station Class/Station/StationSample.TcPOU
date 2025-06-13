@@ -27,6 +27,7 @@ IF _isProcess THEN
 ELSE
 	CASE State OF
 		0:
+			_Ready := TRUE;
 			IF _HasMover THEN
 				_Operating := TRUE;
 				_Empty := FALSE;

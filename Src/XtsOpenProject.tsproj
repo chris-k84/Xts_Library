@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.15">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.16">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{C929B002-BF94-48A2-937B-5D20DED8EF3B}">OperationMode</Name>
@@ -3724,11 +3724,11 @@
 							<Parameter OnlineParameter="true" ReadOnly="true" Group="Structure">
 								<Name>MoverObjectIds</Name>
 								<Comment><![CDATA[Returns an array containing the object IDs of all movers.]]></Comment>
-								<BitSize>32</BitSize>
+								<BitSize>256</BitSize>
 								<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
 								<ArrayInfo>
 									<LBound>0</LBound>
-									<Elements Min="1" Max="500">1</Elements>
+									<Elements Min="1" Max="500">8</Elements>
 								</ArrayInfo>
 								<PTCID>#x0308020b</PTCID>
 								<ContextId>1</ContextId>
@@ -3928,11 +3928,11 @@
 							<Parameter OnlineParameter="true" ReadOnly="true" Group="Mover Detection">
 								<Name>MoverPositions</Name>
 								<Comment><![CDATA[Returns an array containing the actual positions of all movers.]]></Comment>
-								<BitSize>128</BitSize>
+								<BitSize>1024</BitSize>
 								<BaseType GUID="{283AABF9-D69F-474D-96EC-640C4E757556}">MoverPosition</BaseType>
 								<ArrayInfo>
 									<LBound>0</LBound>
-									<Elements Min="1" Max="500">1</Elements>
+									<Elements Min="1" Max="500">8</Elements>
 								</ArrayInfo>
 								<PTCID>#x0308020d</PTCID>
 								<ContextId>1</ContextId>
@@ -3964,11 +3964,11 @@
 							<Parameter OnlineParameter="true" ReadOnly="true" Group="Mover ID Detection">
 								<Name>MoverIds</Name>
 								<Comment><![CDATA[Returns an array containing the IDs of all movers.]]></Comment>
-								<BitSize>32</BitSize>
+								<BitSize>256</BitSize>
 								<BaseType GUID="{18071995-0000-0000-0000-000100000003}">STRING(3)</BaseType>
 								<ArrayInfo>
 									<LBound>0</LBound>
-									<Elements Min="1" Max="500">1</Elements>
+									<Elements Min="1" Max="500">8</Elements>
 								</ArrayInfo>
 								<PTCID>#x0308027c</PTCID>
 								<ContextId>1</ContextId>
