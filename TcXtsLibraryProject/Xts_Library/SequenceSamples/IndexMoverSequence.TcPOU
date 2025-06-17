@@ -42,7 +42,7 @@ CASE State OF
 		END_IF
 			
 	IndexSequenceState.AtStart:
-		IF StationArray[1].IsReady() THEN
+		IF StationArray[0].IsReady() THEN
 			State := IndexSequenceState.GetNextMove;
 		END_IF
 
