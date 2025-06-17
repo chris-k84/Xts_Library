@@ -23,11 +23,12 @@ VAR
 	MyId: UDINT;
 	Initialised : BOOL;
 	MyTrackCount : INT;
-	MyTracks : ARRAY[0..5] OF I_XtsTrack;
+	MyTracks : ARRAY[0..MaxTracks] OF I_XtsTrack;
 	NullTrack : XtsTrack;
 END_VAR
 VAR CONSTANT
 	_MaxMoverVelocity : MC_LREAL := 4000.0;
+	MaxTracks : INT := 5;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -418,18 +419,20 @@ END_VAR
       </Get>
     </Property>
     <Property Name="MoversActiveTrack" Id="{15471ba0-8341-48c7-a2d0-01ca6286078a}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY PUBLIC MoversActiveTrack : OTCID]]></Declaration>
+      <Declaration><![CDATA[PROPERTY PUBLIC MoversActiveTrack : INT]]></Declaration>
       <Get Name="Get" Id="{2721855b-e1d8-4f74-a352-28794ee4ae69}">
         <Declaration><![CDATA[VAR
+	i : INT;
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[// IF _CurrentTrack <> 0 THEN
-// 	MoversActiveTrack := _CurrentTrack.MyOTCID;
-// ELSE
-// 	MoversActiveTrack := 0;
-// END_IF
-MoversActiveTrack := _ipTcIoXtsMover.GetActiveTrackObjectId();]]></ST>
+          <ST><![CDATA[MoversActiveTrack := _ipTcIoXtsMover.GetActiveTrackObjectId();
+FOR i := 0 TO MyTrackCount - 1 DO
+	IF MyTracks[i] :=  _ipTcIoXtsMover.GetActiveTrackObjectId() THEN
+		MoversActiveTrack := i + 1;
+		EXIT;
+	END_IF
+END_FOR]]></ST>
         </Implementation>
       </Get>
     </Property>
