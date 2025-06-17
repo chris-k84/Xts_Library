@@ -152,7 +152,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="MoversActiveTrack" Id="{f033ba71-1699-4f66-8762-38178a524724}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY PUBLIC MoversActiveTrack : OTCID]]></Declaration>
+      <Declaration><![CDATA[PROPERTY PUBLIC MoversActiveTrack : INT]]></Declaration>
       <Get Name="Get" Id="{ab30b8a7-22d3-4a5c-a941-ce17b5400c54}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>

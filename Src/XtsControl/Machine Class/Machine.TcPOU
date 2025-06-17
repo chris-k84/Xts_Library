@@ -31,6 +31,7 @@ VAR
 																				MyStartPosition := 1000.0))];	
 	i : INT;
 	RegisterationComplete : BOOL;
+	Mover1ActiveTrack: INT;
 END_VAR
 VAR CONSTANT
 	NumberOFSystemMovers : INT := 8;
@@ -146,7 +147,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[MyXts.MoverHomeSequence();
-ipackml.SetStateComplete();]]></ST>
+ipackml.SetStateComplete();
+Mover1ActiveTrack := iMovers[0].MoversActiveTrack;]]></ST>
       </Implementation>
     </Method>
   </POU>
