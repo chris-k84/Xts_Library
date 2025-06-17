@@ -28,7 +28,7 @@ VAR
 	systemCAGroup : CollisionGroup;															
 	MyXts : ThisXTS(systemXtsioEnvVar,systemXtsHardware,systemCAGroup) := (MyXts := 1, ExpectedNumberOfParts := 1, ExpectedNumberOfTracks := 1);
 	MoverSequences : ARRAY[0..7] OF IndexMoverSequence := [8((MyStations := iStationArray,
-																				MyStartPosition := 1000.0))];	
+																				MyStartPosition := 600.0))];	
 	i : INT;
 	RegisterationComplete : BOOL;
 	Mover1ActiveTrack: INT;
@@ -124,6 +124,7 @@ END_VAR
         <ST><![CDATA[IF NOT MyXts.IsXtsReady() THEN
 	MyXts.EnableXTS();
 ELSE
+	MyXts.MoverHomeSequence();
 	ipackml.SetStateComplete();
 END_IF
 ]]></ST>
@@ -146,9 +147,20 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MyXts.MoverHomeSequence();
-ipackml.SetStateComplete();
-Mover1ActiveTrack := iMovers[0].MoversActiveTrack;]]></ST>
+        <ST><![CDATA[FOR i := 0 TO 7 DO
+	MoverSequences[i].StartIndexing();
+END_FOR
+ipackml.SetStateComplete();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Stopping" Id="{02b1b8bd-0341-4ecb-af0a-a89be5d6c7e8}">
+      <Declaration><![CDATA[METHOD PROTECTED Stopping : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i := 0 TO 7 DO
+	MoverSequences[i].StopIndexing();
+END_FOR
+ipackml.SetStateComplete();]]></ST>
       </Implementation>
     </Method>
   </POU>
