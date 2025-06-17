@@ -318,11 +318,7 @@ END_VAR]]></Declaration>
         <ST><![CDATA[IF _ipTcIoXtsMover <> 0 AND isMoverDetected() AND MyTrackCount <> 0 THEN
 	myControllerOid := _ipTcIoXtsMover.P_MoverControllerOid;
 	MyId := _ipTcIoXtsMover.GetAxisId();
-	FOR i := 0 TO MyTrackCount - 1 DO
-		IF MyTracks[i].MyOTCID = MoversActiveTrack THEN
-			_CurrentTrack := MyTracks[i];
-		END_IF
-	END_FOR
+	_CurrentTrack := MyTracks[MoversActiveTrack - 1];
 	Initialised := Initialise:= TRUE;
 END_IF
 ]]></ST>
