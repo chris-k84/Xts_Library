@@ -28,14 +28,14 @@ END_VAR
         <ST><![CDATA[Cycle := S_OK;
 CASE State OF
 	Init:
-		_Operating := _Empty := _Complete := _Ready := _HasMover := FALSE;
+		_Operating := _IsClear := _Complete := _Ready := _HasMover := FALSE;
 		StationMovers := 0;
 		State := Ready;
 	
 	Ready:	
 		IF ExecuteSeqeunce THEN
 			_Operating := _Complete := _HasMover := FALSE;
-			_Empty := _Ready := TRUE;
+			_IsClear := _Ready := TRUE;
 			StationMovers := 0;
 			State := Waiting;
 		END_IF
@@ -44,7 +44,7 @@ CASE State OF
 		IF _HasMover THEN
 			State := Processing;
 			_Operating := TRUE;
-			_Empty := FALSE;
+			_IsClear := FALSE;
 			_Ready := FALSE;
 		END_IF
 		
@@ -58,7 +58,7 @@ CASE State OF
 		IF NOT _HasMover THEN
 			State := Waiting;
 			_Operating := FALSE;
-			_Empty := TRUE;
+			_IsClear := TRUE;
 			_Ready := TRUE;
 			_Complete := FALSE;
 			HoldMover := 0;

@@ -7,13 +7,11 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	_Empty : BOOL;
+	_IsClear : BOOL;
 	_Complete : BOOL;
 	_Operating : BOOL;
 	_Ready : BOOL;
 	_Position : LREAL := 0.0;
-	NumberOfPositions : INT := 0;
-	AssignedPositions : INT := 1;
 	StationMovers : INT;
 	_HasMover : BOOL;
 	ProductCounter : R_TRIG;
@@ -30,7 +28,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[IF _HasMover THEN
+	IF MyMover.getTrackPosition() = MyPosition THEN
+		//isclear = false
+	END_IF
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="FB_Init" Id="{65a20629-1237-49a2-826d-db1ec64ff183}">
@@ -52,7 +54,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD IsClear : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IsClear := _Empty;]]></ST>
+        <ST><![CDATA[IsClear := _IsClear;]]></ST>
       </Implementation>
     </Method>
     <Method Name="isComplete" Id="{5a7054f2-4dbb-4c61-9bd3-b1648c0eccb5}" FolderPath="Status\">
@@ -82,10 +84,7 @@ VAR_INPUT
 	mover : I_XtsMover;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[StationMovers := StationMovers + 1;
-IF StationMovers = NumberOfPositions THEN
-	_HasMover := TRUE;
-END_IF
+        <ST><![CDATA[_HasMover := true;
 MyMover := mover;
 MoverArriving := TRUE;]]></ST>
       </Implementation>
@@ -118,7 +117,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_Complete := FALSE;
-_Empty := TRUE;
+_IsClear := TRUE;
 _Operating := FALSE;
 _Ready := TRUE;
 ]]></ST>

@@ -30,7 +30,7 @@ ELSE
 			_Ready := TRUE;
 			IF _HasMover THEN
 				_Operating := TRUE;
-				_Empty := FALSE;
+				_IsClear := FALSE;
 				_Ready := FALSE;
 				Operation.IN := TRUE;
 				State := 1;
@@ -46,7 +46,7 @@ ELSE
 			END_IF
 		2:
 			_Complete := FALSE;
-			_Empty := TRUE;
+			_IsClear := TRUE;
 			_Operating := FALSE;
 			_Ready := TRUE;
 			State := 0;
