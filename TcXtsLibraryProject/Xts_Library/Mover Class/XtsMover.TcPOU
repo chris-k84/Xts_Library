@@ -230,7 +230,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[getActPosition := MyAxisRef.NcToPlc.ActPos;]]></ST>
+        <ST><![CDATA[getActPosition := MyAxisRef.NcToPlc.ActPos;
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="getErrorID" Id="{5ba2965f-231a-47cc-bcc5-dfd172bd6d02}" FolderPath="Status\">
@@ -340,18 +341,20 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Position > 1 THEN
-	IF _stTmsActPositions.fTrackPosition < position + 1 AND _stTmsActPositions.fTrackPosition > position - 1 THEN
-		isMoverAtPosition := TRUE;
+        <ST><![CDATA[IF _CurrentTrack <> 0 THEN
+	IF Position > 1 THEN
+		IF _stTmsActPositions.fTrackPosition < position + 1 AND _stTmsActPositions.fTrackPosition > position - 1 THEN
+			isMoverAtPosition := TRUE;
+		ELSE
+			isMoverAtPosition := FALSE;
+		END_IF  
 	ELSE
-		isMoverAtPosition := FALSE;
-	END_IF  
-ELSE
-	IF _stTmsActPositions.fTrackPosition < position + 1 AND _stTmsActPositions.fTrackPosition > 0.0  
-		OR _stTmsActPositions.fTrackPosition < _CurrentTrack.TrackLength AND _stTmsActPositions.fTrackPosition > _CurrentTrack.TrackLength - 1 THEN
-		isMoverAtPosition := TRUE;
-	ELSE
-		isMoverAtPosition := FALSE;
+		IF _stTmsActPositions.fTrackPosition < position + 1 AND _stTmsActPositions.fTrackPosition > 0.0  
+			OR _stTmsActPositions.fTrackPosition < _CurrentTrack.TrackLength AND _stTmsActPositions.fTrackPosition > _CurrentTrack.TrackLength - 1 THEN
+			isMoverAtPosition := TRUE;
+		ELSE
+			isMoverAtPosition := FALSE;
+		END_IF
 	END_IF
 END_IF]]></ST>
       </Implementation>

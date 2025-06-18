@@ -214,7 +214,7 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{823D7D36-8BF7-436B-9621-3004CD8896DF}" TargetNetId="5.148.231.237.1.1" Target64Bit="true" ShowHideConfigurations="#x106">
+	<Project ProjectGUID="{823D7D36-8BF7-436B-9621-3004CD8896DF}" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
 			<Tasks>
 				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
