@@ -153,8 +153,8 @@ BaseCallResult := SUPER^.Cycle();
 SwitchAxis.Cycle();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="HasMover" Id="{466b4750-cbf0-42df-80f2-b3d4852756ba}">
-      <Declaration><![CDATA[METHOD HasMover : BOOL
+    <Method Name="MoverArriving" Id="{466b4750-cbf0-42df-80f2-b3d4852756ba}">
+      <Declaration><![CDATA[METHOD MoverArriving : BOOL
 VAR_INPUT
 	mover : I_XtsMover;
 END_VAR]]></Declaration>
@@ -164,7 +164,7 @@ END_VAR]]></Declaration>
 	DepartMover := mover;
 	_HasMover := TRUE;
 END_IF
-HasMover := TRUE;]]></ST>
+MoverArriving := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoverAway" Id="{45498adf-6827-4a97-8c80-ff53aebb1724}">

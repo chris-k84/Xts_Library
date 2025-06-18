@@ -54,7 +54,7 @@ CASE State OF
 				ELSE
 					State := IndexSequenceState.AtStation;
 				END_IF
-				StationArray[CurrentStation].HasMover(ThisMover);
+				StationArray[CurrentStation].MoverArriving(ThisMover);
 			ELSE
 				State := IndexSequenceState.QueuedAtStation;
 			END_IF

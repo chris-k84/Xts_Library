@@ -78,8 +78,8 @@ IF CycleResult = E_FAIL THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="HasMover" Id="{a266c45f-308b-42ff-85d6-9dbbc61ca57d}">
-      <Declaration><![CDATA[METHOD HasMover : BOOL
+    <Method Name="MoverArriving" Id="{a266c45f-308b-42ff-85d6-9dbbc61ca57d}">
+      <Declaration><![CDATA[METHOD MoverArriving : BOOL
 VAR_INPUT
 	mover : I_XtsMover;
 END_VAR]]></Declaration>
@@ -88,9 +88,9 @@ END_VAR]]></Declaration>
 	StationMovers := StationMovers + 1;
 	HoldMover := mover;
 	_HasMover := TRUE;
-	HasMover := TRUE;
+	MoverArriving := TRUE;
 ELSE
-	HasMover := FALSE;
+	MoverArriving := FALSE;
 END_IF]]></ST>
       </Implementation>
     </Method>

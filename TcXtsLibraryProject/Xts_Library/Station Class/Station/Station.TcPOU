@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Station" Id="{506a1b5f-d283-4b99-9adf-318a9c36fdac}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Station IMPLEMENTS IStation, I_Cyclic, I_Resettable, I_Object
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Station IMPLEMENTS IStation, I_Cyclic, I_Resettable, I_Object
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -11,47 +11,73 @@ VAR
 	_Complete : BOOL;
 	_Operating : BOOL;
 	_Ready : BOOL;
-	_Positions : ARRAY[1..4] OF MC_LREAL := [0.0,0.0,0.0,0.0];
+	_Position : LREAL := 0.0;
 	NumberOfPositions : INT := 0;
 	AssignedPositions : INT := 1;
 	StationMovers : INT;
-	stInfo : stStationInfo;
 	_HasMover : BOOL;
 	ProductCounter : R_TRIG;
-	Products : DINT;
-	LastStation : BOOL;
 	MyMover : I_XtsMover;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
+    <Folder Name="Status" Id="{134213be-8709-40df-be5d-e58c074f6e63}" />
     <Method Name="Cycle" Id="{718bc2ed-83e9-4df0-b688-ff0112cf7157}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Cyclic info
-stInfo.StationPosition := _Positions[1];
-stInfo.StationStatus.Empty := _Empty;
-stInfo.StationStatus.Complete := _Complete;
-stInfo.StationStatus.HasMover := _HasMover;
-stInfo.StationStatus.Operating := _Operating;
-stInfo.StationStatus.Ready := _Ready;
-
-IF LastStation THEN
-	ProductCounter(CLK := _Complete);
-	IF ProductCounter.Q THEN
-		Products := Products + 1;
-	END_IF
-END_IF
-
-Cycle := S_OK;]]></ST>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="HasMover" Id="{cfa7f397-450b-4982-8373-384ee5df1767}">
-      <Declaration><![CDATA[METHOD HasMover : BOOL
+    <Method Name="FB_Init" Id="{65a20629-1237-49a2-826d-db1ec64ff183}">
+      <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
+//The return value is not evaluated. For a specific influence, you can also declare the
+//methods explicitly and provide additional code there with the standard initialization
+//code. You can evaluate the return value.
+METHOD FB_Init: BOOL
+VAR_INPUT
+    bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
+    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)   
+	Position : LREAL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_Position := Position;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsClear" Id="{5a1d616a-dcb0-4a56-9caf-0526ba7a4fac}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsClear : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsClear := _Empty;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="isComplete" Id="{5a7054f2-4dbb-4c61-9bd3-b1648c0eccb5}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD isComplete : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[isComplete := _Complete;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsOperating" Id="{5d80dcb3-b05c-443a-91b8-3bed25c3df07}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsOperating : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsOperating := _Operating;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsReady" Id="{030f67f6-2ceb-4b14-bbf0-d64116218e04}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsReady : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsReady := _Ready;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverArriving" Id="{cfa7f397-450b-4982-8373-384ee5df1767}">
+      <Declaration><![CDATA[METHOD MoverArriving : BOOL
 VAR_INPUT
 	mover : I_XtsMover;
 END_VAR]]></Declaration>
@@ -61,93 +87,19 @@ IF StationMovers = NumberOfPositions THEN
 	_HasMover := TRUE;
 END_IF
 MyMover := mover;
-HasMover := TRUE;]]></ST>
+MoverArriving := TRUE;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsClear" Id="{5a1d616a-dcb0-4a56-9caf-0526ba7a4fac}">
-      <Declaration><![CDATA[METHOD IsClear : BOOL
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IsClear := _Empty;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="isComplete" Id="{5a7054f2-4dbb-4c61-9bd3-b1648c0eccb5}">
-      <Declaration><![CDATA[METHOD isComplete : BOOL
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[isComplete := _Complete;]]></ST>
-      </Implementation>
-    </Method>
-    <Property Name="IsLastStation" Id="{bd96d050-990a-4fff-89e6-b506df6988f2}">
-      <Declaration><![CDATA[PROPERTY PUBLIC IsLastStation : BOOL]]></Declaration>
-      <Get Name="Get" Id="{6a265c68-4fa4-453c-a40c-d846a57c2b37}">
+    <Property Name="MyPosition" Id="{b89449d8-a019-4273-b99d-e422998e5fce}">
+      <Declaration><![CDATA[PROPERTY MyPosition : lreal]]></Declaration>
+      <Get Name="Get" Id="{a533d869-853f-4701-aa82-723055982996}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[IsLastStation := LastStation;]]></ST>
+          <ST><![CDATA[MyPosition := _Position;]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{4793574b-7d23-4a86-a240-9dc35ed22c28}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[LastStation := IsLastStation;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Method Name="IsOperating" Id="{5d80dcb3-b05c-443a-91b8-3bed25c3df07}">
-      <Declaration><![CDATA[METHOD IsOperating : BOOL
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IsOperating := _Operating;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="IsReady" Id="{030f67f6-2ceb-4b14-bbf0-d64116218e04}">
-      <Declaration><![CDATA[METHOD IsReady : BOOL
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IsReady := _Ready;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="MoverAway" Id="{6941b853-93be-47e5-be62-9ae205bb30c2}">
-      <Declaration><![CDATA[METHOD MoverAway : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[StationMovers := StationMovers - 1;
-MyMover := 0;
-MoverAway := TRUE;]]></ST>
-      </Implementation>
-    </Method>
-    <Property Name="Position" Id="{e826f73c-3eb0-49b1-8a82-785d3b45b5a4}">
-      <Declaration><![CDATA[PROPERTY Position : MC_LREAL
-]]></Declaration>
-      <Get Name="Get" Id="{28648367-e6e3-4e2f-bc66-080beef37026}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[Position := _Positions[AssignedPositions];
-AssignedPositions := AssignedPositions + 1;
-IF AssignedPositions > NumberOfPositions THEN
-	AssignedPositions := 1;
-END_IF]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{c5e3a131-a10c-4d0d-ac13-bde814ce94ed}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[IF NumberOfPositions < 5 THEN
-	NumberOfPositions := NumberOfPositions + 1;
-	_Positions[NumberOfPositions] := Position;
-END_IF]]></ST>
-        </Implementation>
-      </Set>
     </Property>
     <Method Name="RegisterWithParent" Id="{d8402b41-2440-40c0-90f4-c70380862930}">
       <Declaration><![CDATA[METHOD RegisterWithParent
@@ -169,57 +121,8 @@ END_VAR
 _Empty := TRUE;
 _Operating := FALSE;
 _Ready := TRUE;
-Reset := 1;
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="Station">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.Cycle">
-      <LineId Id="3" Count="14" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.HasMover">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.IsClear">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.isComplete">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.IsLastStation.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.IsLastStation.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.IsOperating">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.IsReady">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.MoverAway">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.Position.Get">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.Position.Set">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.RegisterWithParent">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="Station.Reset">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

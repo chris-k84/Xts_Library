@@ -3,13 +3,6 @@
   <Itf Name="IStation" Id="{67c9d406-11c9-44e2-83e4-d307b4e3d366}">
     <Declaration><![CDATA[INTERFACE IStation
 ]]></Declaration>
-    <Method Name="HasMover" Id="{e0d36098-8d65-476a-990c-e6fc9c4a3a40}">
-      <Declaration><![CDATA[METHOD HasMover : BOOL
-VAR_INPUT
-	mover : I_XtsMover;
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="IsClear" Id="{3b338444-496f-4b57-aaf3-4efffa633361}">
       <Declaration><![CDATA[METHOD IsClear : BOOL
 VAR_INPUT
@@ -40,6 +33,13 @@ END_VAR
     <Method Name="IsReady" Id="{1429945e-e662-41b3-82dc-271da72170fa}">
       <Declaration><![CDATA[METHOD IsReady : BOOL
 VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoverArriving" Id="{e0d36098-8d65-476a-990c-e6fc9c4a3a40}">
+      <Declaration><![CDATA[METHOD MoverArriving : BOOL
+VAR_INPUT
+	mover : I_XtsMover;
 END_VAR
 ]]></Declaration>
     </Method>

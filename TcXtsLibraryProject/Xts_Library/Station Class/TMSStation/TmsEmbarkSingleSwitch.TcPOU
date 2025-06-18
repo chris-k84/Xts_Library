@@ -156,8 +156,8 @@ END_VAR
         <ST><![CDATA[SwitchAxis.EnableAxis(FALSE,FALSE);]]></ST>
       </Implementation>
     </Method>
-    <Method Name="HasMover" Id="{3dfbfe5d-88fb-42cd-8ef4-33bfd88b9fd1}">
-      <Declaration><![CDATA[METHOD HasMover : BOOL
+    <Method Name="MoverArriving" Id="{3dfbfe5d-88fb-42cd-8ef4-33bfd88b9fd1}">
+      <Declaration><![CDATA[METHOD MoverArriving : BOOL
 VAR_INPUT
 	mover : I_XtsMover;
 END_VAR]]></Declaration>
@@ -167,7 +167,7 @@ END_VAR]]></Declaration>
 	DepartMover := mover;
 	_HasMover := TRUE;
 END_IF
-HasMover := TRUE;]]></ST>
+MoverArriving := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoverAway" Id="{e0f828f0-4af6-4c6b-903d-ca5a359a945a}">
