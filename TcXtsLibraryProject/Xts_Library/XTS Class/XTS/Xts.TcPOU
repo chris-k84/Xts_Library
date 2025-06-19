@@ -5,7 +5,6 @@
 VAR
 	MyName : STRING;
 	_MyXts : INT;
-	_MyCAGroup : STRING;
 	_XtsEnabled : BOOL;
 	_XPU : I_TcIoXtsProcessingUnit;
 	_MoverArray : ARRAY[0..MaxMovers] OF I_XtsMover;
@@ -14,9 +13,7 @@ VAR
 	_MyXtsHardware : I_XtsHardware;
 	XtsHwState : XtsSystemInitialisation;
 	EnableSequence : XtsEnableSequence;
-	DisableSequence : XtsDisableSequence;
-	State : UINT;	
-	AtHome: BOOL;
+	DisableSequence : XtsDisableSequence;	
 	Initialised : BOOL;
 	EnabledTrigger : R_TRIG;
 	DisabledTrigger : R_TRIG;
@@ -60,23 +57,24 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[EnableResult := EnableSequence.Cycle();
-DisableResult := DisableSequence.Cycle();
-EnabledTrigger(CLK := EnableSequence.Done);
-DisabledTrigger(CLK := DisableSequence.Done);
-IF EnabledTrigger.Q THEN
-	_XtsEnabled := TRUE;
-END_IF
-IF DisabledTrigger.Q THEN
-	_XtsEnabled := false;
-END_IF
-IF EnableResult = E_FAIL OR
-	DisableResult = E_FAIL OR
-	GrpStopResult = E_FAIL OR
-	CollisionResult = E_FAIL THEN
-	Cycle := E_FAIL;
-END_IF
-]]></ST>
+        <ST><![CDATA[IF Initialised THEN	
+	EnableResult := EnableSequence.Cycle();
+	DisableResult := DisableSequence.Cycle();
+	EnabledTrigger(CLK := EnableSequence.Done);
+	DisabledTrigger(CLK := DisableSequence.Done);
+	IF EnabledTrigger.Q THEN
+		_XtsEnabled := TRUE;
+	END_IF
+	IF DisabledTrigger.Q THEN
+		_XtsEnabled := false;
+	END_IF
+	IF EnableResult = E_FAIL OR
+		DisableResult = E_FAIL OR
+		GrpStopResult = E_FAIL OR
+		CollisionResult = E_FAIL THEN
+		Cycle := E_FAIL;
+	END_IF
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="DisableXTS" Id="{e2a85e5a-c7bf-481d-be4f-81acebc29fb7}" FolderPath="Operations\">
@@ -174,7 +172,8 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[CASE XtsHwState OF
+        <ST><![CDATA[Initialise := -1;
+CASE XtsHwState OF
 	XtsSystemInitialisation.Init:
 		IF _XtsIoEnvVar.IsInitialised() THEN
 			_XPU := _XtsIoEnvVar.GetXPUInterface(_MyXts);
@@ -183,7 +182,6 @@ END_VAR
 		END_IF
 		
 	XtsSystemInitialisation.PassGroupReference:
-		_MyCAGroup := ICollisionGroup.MyName;
 		ICollisionGroup.CAGroupXtsIoEnvInterface := _XtsIoEnvVar.GetCaGroupInterface(_MyXts);
 		XtsHwState := XtsSystemInitialisation.InitialiseHardware;
 	
@@ -229,11 +227,10 @@ END_VAR
 	XtsSystemInitialisation.MoverIdDetection:
 		IF _MyXtsHardware.TriggerMoverID() THEN
 			XtsHwState := XtsSystemInitialisation.HWReady;
-// 			GetTMSMoverInterface();
 		END_IF
 	
 	XtsSystemInitialisation.HWReady:
-		Initialise := 2;
+		Initialise := 0;
 		Initialised := TRUE;	
 END_CASE]]></ST>
       </Implementation>
