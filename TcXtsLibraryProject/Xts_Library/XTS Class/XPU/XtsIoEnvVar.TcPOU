@@ -55,8 +55,9 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF XtsIoEnvironment.Init(TRUE) THEN
 	XtsIoEnvironment.Init(FALSE);
-	Initialise := 2;
 	Initialised := TRUE;
+ELSE
+	Initialise := -1;
 END_IF]]></ST>
       </Implementation>
     </Method>

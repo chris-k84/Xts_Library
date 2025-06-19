@@ -41,14 +41,6 @@
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
-    <PlaceholderReference Include="Base Library">
-      <DefaultResolution>Base Library, * (Beckhoff UK)</DefaultResolution>
-      <Namespace>Base_Library</Namespace>
-    </PlaceholderReference>
-    <PlaceholderReference Include="Pack ML Library">
-      <DefaultResolution>Pack ML Library, * (Beckhoff UK)</DefaultResolution>
-      <Namespace>Pack_ML_Library</Namespace>
-    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>

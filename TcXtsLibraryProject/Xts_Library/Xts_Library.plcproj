@@ -80,15 +80,19 @@
     </Compile>
     <Compile Include="Station Class\TMSStation\ITF_SwitchStation.TcIO">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="Station Class\TMSStation\TmsEmbarkSingleSwitch.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="Station Class\TMSStation\TmsEmbarkStation.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="Station Class\TMSStation\TmsHoldStation.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="SystemParameters.TcGVL">
       <SubType>Code</SubType>

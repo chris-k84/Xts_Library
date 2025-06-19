@@ -78,22 +78,6 @@ IF CycleResult = E_FAIL THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoverArriving" Id="{a266c45f-308b-42ff-85d6-9dbbc61ca57d}">
-      <Declaration><![CDATA[METHOD MoverArriving : BOOL
-VAR_INPUT
-	mover : I_XtsMover;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF StationMovers <= 2 THEN
-	StationMovers := StationMovers + 1;
-	HoldMover := mover;
-	_HasMover := TRUE;
-	MoverArriving := TRUE;
-ELSE
-	MoverArriving := FALSE;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="MoverAway" Id="{1b3a1907-f964-494a-b05a-ec8239679c36}">
       <Declaration><![CDATA[METHOD PUBLIC MoverAway : BOOL
 VAR_INPUT
@@ -127,6 +111,22 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="MyMover" Id="{a266c45f-308b-42ff-85d6-9dbbc61ca57d}">
+      <Declaration><![CDATA[METHOD MyMover : BOOL
+VAR_INPUT
+	mover : I_XtsMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF StationMovers <= 2 THEN
+	StationMovers := StationMovers + 1;
+	HoldMover := mover;
+	_HasMover := TRUE;
+	super^.MyMover := TRUE;
+ELSE
+	super^.MyMover := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="StartStation" Id="{5f526a3c-65d4-46bd-9113-03a24816f81e}">
       <Declaration><![CDATA[METHOD StartStation : BOOL
 VAR_INPUT

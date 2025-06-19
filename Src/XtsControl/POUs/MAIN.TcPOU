@@ -4,38 +4,39 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	fbMachine : Machine;
-	State : INT;
 	Reset : BOOL;
 	Start : BOOL;
-	Clear : BOOL;
-	Abort : BOOL;
+	Stop : BOOL;
+	Disable : BOOL;
+	Init : BOOL;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[CASE State OF
-	0:
-		IF fbMachine.Initialise() THEN
-			State := 1;
-		END_IF
-	1:
-		fbMachine.Cycle();
-END_CASE
-
+      <ST><![CDATA[IF NOT Init AND_THEN fbMachine.Initialise() THEN
+	Init := TRUE;
+END_IF
+fbMachine.Cycle();
 
 IF Reset THEN
-	fbMachine.SetPackML(state := E_PMLCommand.ePMLCommand_Reset);
-	Reset := FALSE;
+	IF fbMachine.Reset() THEN
+		Reset := FALSE;
+	END_IF
 END_IF
-IF Abort THEN
-	fbMachine.SetPackML(state := E_PMLCommand.ePMLCommand_Abort);
-	Abort := FALSE;
+
+IF Disable THEN
+	IF fbMachine.Disable() THEN
+		Disable := FALSE;
+	END_IF
 END_IF
-IF Clear THEN
-	fbMachine.SetPackML(state := E_PMLCommand.ePMLCommand_Clear);
-	Clear := FALSE;
+
+IF Stop THEN
+	IF fbMachine.Stop() THEN 
+		Stop := FALSE;
+	END_IF
 END_IF
 IF Start THEN
-	fbMachine.SetPackML(state := E_PMLCommand.ePMLCommand_Start);
-	Start := FALSE;
+	IF fbMachine.Start() THEN
+		Start := FALSE;
+	END_IF
 END_IF]]></ST>
     </Implementation>
   </POU>

@@ -1,122 +1,117 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.12">
   <POU Name="Machine" Id="{e8d4edde-6e68-4e80-9f5b-2e9346044142}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Machine EXTENDS PML_Method_Base
+    <Declaration><![CDATA[FUNCTION_BLOCK Machine
 VAR
-	XtsModuleRunner : ObjectRunner;
-	xtsStateMachine : PMLStateMachine;
-	Movers : ARRAY[0..7] OF XtsMover;
-	iMovers : ARRAY[0..7] OF I_XtsMover := [Movers[0],Movers[1],
+	Movers : ARRAY[0..NumberOFSystemMovers] OF XtsMover;
+	iMovers : ARRAY[0..NumberOFSystemMovers] OF I_XtsMover := [Movers[0],Movers[1],
 											Movers[2],Movers[3],
 											Movers[4],Movers[5],
 											Movers[6],Movers[7]];
-	Station1 : StationSample := (Position := 850.0, 
-									TempPropTime := T#1500MS);
-	Station2 : StationSample := (Position := 1200.0, 
-									TempPropTime := T#1500MS);
-	Station3 : StationSample := (Position := 1450.0, 
-									TempPropTime := T#500MS);
-	Station4 : StationSample := (Position := 2100.0, 
-									TempPropTime := T#1500MS);
-	Station5 : StationSample := (Position := 2400.0, 
-									TempPropTime := T#1500MS);
-	iStationArray : ARRAY[0..SystemParameters.NumberOfStations] OF IProcess := [Station1,Station2,
-																					Station3,Station4,
-																					Station5];//,Station6];
+	Station1 : StationSample(Position := 850.0, 
+									DummyOperationTime := T#1500MS);
+	Station2 : StationSample(Position := 1200.0, 
+									DummyOperationTime := T#1500MS);
+	Station3 : StationSample(Position := 1450.0, 
+									DummyOperationTime := T#500MS);
+	Station4 : StationSample(Position := 2100.0, 
+									DummyOperationTime := T#1500MS);
+	Station5 : StationSample(Position := 2400.0, 
+									DummyOperationTime := T#1500MS);
 	systemXtsioEnvVar : XtsIoEnvVar;	
 	systemXtsHardware : XTSHardware;				
 	systemCAGroup : CollisionGroup;															
 	MyXts : ThisXTS(systemXtsioEnvVar,systemXtsHardware,systemCAGroup) := (MyXts := 1, ExpectedNumberOfParts := 1, ExpectedNumberOfTracks := 1);
-	MoverSequences : ARRAY[0..7] OF IndexMoverSequence := [8((MyStations := iStationArray,
-																				MyStartPosition := 600.0))];	
-	i : INT;
-	RegisterationComplete : BOOL;
-	Mover1ActiveTrack: INT;
+	MoverSequences : ARRAY[0..NumberOFSystemMovers] OF IndexMoverSequence := [8((MyStartPosition := 600.0))];	
+	initSequence : INT;
+	InitComplete : BOOL;
 END_VAR
 VAR CONSTANT
-	NumberOFSystemMovers : INT := 8;
+	NumberOFSystemMovers : INT := 7;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="Aborting" Id="{5e47e9ec-af05-4f55-a014-ec50066f7440}">
-      <Declaration><![CDATA[METHOD PROTECTED Aborting : BOOL
+    <Method Name="Cycle" Id="{800ade8f-bb7c-4681-a005-35c2c0ff3879}">
+      <Declaration><![CDATA[METHOD Cycle : HRESULT
+VAR
+	i : INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[systemXtsHardware.Cycle();
+systemCAGroup.Cycle();
+MyXts.Cycle();
+FOR i := 0 TO NumberOFSystemMovers DO
+	Movers[i].Cycle();
+	MoverSequences[i].Cycle();
+END_FOR
+Station1.Cycle();
+Station2.Cycle();
+Station3.Cycle();
+Station4.Cycle();
+Station5.Cycle();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Disable" Id="{5e47e9ec-af05-4f55-a014-ec50066f7440}">
+      <Declaration><![CDATA[METHOD Disable : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF MyXts.DisableXTS() THEN
-	ipackml.SetStateComplete();
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Clearing" Id="{29611cf3-b33d-4081-8744-6b6cb57a9ba1}">
-      <Declaration><![CDATA[METHOD PROTECTED Clearing : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[MyXts.ActivateTracksInMovers();
-ipackml.SetStateComplete();]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Cycle" Id="{800ade8f-bb7c-4681-a005-35c2c0ff3879}">
-      <Declaration><![CDATA[METHOD Cycle : HRESULT
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[SUPER^.Cycle();
-xtsStateMachine.Cycle();
-XtsModuleRunner.Cycle();]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GetPackML" Id="{f4fa13f0-e9c7-4904-acb1-6e313a496be6}">
-      <Declaration><![CDATA[METHOD GetPackML : E_PMLState;
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetPackML := xtsStateMachine.GetCurrentState();]]></ST>
+	Disable := TRUE;
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{4069299b-b0bd-441e-b636-7c39202b14ad}">
       <Declaration><![CDATA[METHOD Initialise : BOOL
-VAR_INPUT
+VAR
+	i : INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT RegisterationComplete THEN
-	FOR i := 0 TO 7 DO
-		XtsModuleRunner.RegisterModule(Movers[i]);
-		XtsModuleRunner.RegisterModule(MoverSequences[i]);
-		MoverSequences[i].MyMover := Movers[i]; 
-	END_FOR
-	XtsModuleRunner.RegisterModule(systemXtsioEnvVar);
-	XtsModuleRunner.RegisterModule(systemXtsHardware);
-	XtsModuleRunner.RegisterModule(systemCAGroup);
-	XtsModuleRunner.RegisterModule(MyXts);
-	XtsModuleRunner.RegisterModule(Station1);
-	XtsModuleRunner.RegisterModule(Station2);
-	XtsModuleRunner.RegisterModule(Station3);
-	XtsModuleRunner.RegisterModule(Station4);
-	XtsModuleRunner.RegisterModule(Station5);
-	THIS^.PackMLStateMachine := xtsStateMachine;
-	xtsStateMachine.PmlModeCommand(Mode := E_PMLProtectedUnitMode.ePMLProtUnitMode_Production);
-	xtsStateMachine.PmlStateCommand(Command := E_PMLCommand.ePMLCommand_Abort);
-	RegisterationComplete := TRUE;
-END_IF
-
-IF XtsModuleRunner.Initialise() = 1 THEN
-	Initialise := TRUE;
-	FOR i := 0 TO 7 DO
-		MyXts.RegisterMovers(MyMover := iMovers[i]);
-	END_FOR
-END_IF
-
-]]></ST>
+        <ST><![CDATA[CASE initSequence OF
+	0:
+		FOR i := 0 TO NumberOFSystemMovers DO
+			MoverSequences[i].MyMover := Movers[i]; 
+		END_FOR
+		initSequence := 1;
+	1:
+		IF SUCCEEDED(systemXtsioEnvVar.Initialise()) THEN
+			initSequence := 2;
+		END_IF
+	2:
+		IF SUCCEEDED(systemXtsHardware.Initialise()) AND SUCCEEDED(MyXts.Initialise()) THEN
+			initSequence := 3;
+		END_IF
+	3:
+		FOR i := 0 TO NumberOFSystemMovers DO
+			MyXts.RegisterMovers(MyMover := iMovers[i]);
+		END_FOR
+		initSequence := 4;
+	4:
+		FOR i := 0 TO NumberOFSystemMovers DO
+			MoverSequences[i].RegisterAStation(Station := Station1);
+			MoverSequences[i].RegisterAStation(Station := Station2);
+			MoverSequences[i].RegisterAStation(Station := Station3);
+			MoverSequences[i].RegisterAStation(Station := Station4);
+			MoverSequences[i].RegisterAStation(Station := Station5);
+		END_FOR
+		initSequence := 5;
+	5:
+		FOR i := 0 TO NumberOFSystemMovers DO
+			Movers[i].Initialise();
+		END_FOR
+		initSequence := 6;
+	6:
+		InitComplete := TRUE;
+		Initialise := TRUE;
+END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Resetting" Id="{9f1f9d34-e777-4487-9353-8daf70debb65}">
-      <Declaration><![CDATA[METHOD PROTECTED Resetting : BOOL
+    <Method Name="Reset" Id="{9f1f9d34-e777-4487-9353-8daf70debb65}">
+      <Declaration><![CDATA[METHOD Reset : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -125,42 +120,34 @@ END_VAR
 	MyXts.EnableXTS();
 ELSE
 	MyXts.MoverHomeSequence();
-	ipackml.SetStateComplete();
+	Reset := TRUE;
 END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetPackML" Id="{53c56351-61ed-4063-8940-94e0a76b1fed}">
-      <Declaration><![CDATA[{attribute 'TcRpcEnable':='1'}
-METHOD SetPackML : BOOL
-VAR_INPUT
-	state : E_PMLCommand;
+    <Method Name="Start" Id="{6289f1df-c8c2-4a24-9238-0ac10992d955}">
+      <Declaration><![CDATA[METHOD Start : BOOL
+VAR
+	i : INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[xtsStateMachine.PmlStateCommand(Command := state);]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Starting" Id="{6289f1df-c8c2-4a24-9238-0ac10992d955}">
-      <Declaration><![CDATA[METHOD PROTECTED Starting : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[FOR i := 0 TO 7 DO
+        <ST><![CDATA[FOR i := 0 TO NumberOFSystemMovers DO
 	MoverSequences[i].StartIndexing();
 END_FOR
-ipackml.SetStateComplete();]]></ST>
+Start := TRUE;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Stopping" Id="{02b1b8bd-0341-4ecb-af0a-a89be5d6c7e8}">
-      <Declaration><![CDATA[METHOD PROTECTED Stopping : BOOL
-]]></Declaration>
+    <Method Name="Stop" Id="{02b1b8bd-0341-4ecb-af0a-a89be5d6c7e8}">
+      <Declaration><![CDATA[METHOD Stop : BOOL
+VAR
+	i : INT;
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[FOR i := 0 TO 7 DO
+        <ST><![CDATA[FOR i := 0 TO NumberOFSystemMovers DO
 	MoverSequences[i].StopIndexing();
 END_FOR
-ipackml.SetStateComplete();]]></ST>
+Stop := TRUE;]]></ST>
       </Implementation>
     </Method>
   </POU>

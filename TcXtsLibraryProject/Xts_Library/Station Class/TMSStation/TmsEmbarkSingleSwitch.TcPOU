@@ -156,20 +156,6 @@ END_VAR
         <ST><![CDATA[SwitchAxis.EnableAxis(FALSE,FALSE);]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoverArriving" Id="{3dfbfe5d-88fb-42cd-8ef4-33bfd88b9fd1}">
-      <Declaration><![CDATA[METHOD MoverArriving : BOOL
-VAR_INPUT
-	mover : I_XtsMover;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF StationMovers <= 2 THEN
-	StationMovers := StationMovers + 1;
-	DepartMover := mover;
-	_HasMover := TRUE;
-END_IF
-MoverArriving := TRUE;]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="MoverAway" Id="{e0f828f0-4af6-4c6b-903d-ca5a359a945a}">
       <Declaration><![CDATA[METHOD PUBLIC MoverAway : BOOL
 VAR_INPUT
@@ -183,6 +169,20 @@ END_IF
 DepartMover := 0;
 MoverAway := TRUE;
 ]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MyMover" Id="{3dfbfe5d-88fb-42cd-8ef4-33bfd88b9fd1}">
+      <Declaration><![CDATA[METHOD MyMover : BOOL
+VAR_INPUT
+	mover : I_XtsMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF StationMovers <= 2 THEN
+	StationMovers := StationMovers + 1;
+	DepartMover := mover;
+	_HasMover := TRUE;
+END_IF
+super^.MyMover := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="ResetLift" Id="{e01d8d04-17e3-496e-b671-f1b1ca8fff28}">
