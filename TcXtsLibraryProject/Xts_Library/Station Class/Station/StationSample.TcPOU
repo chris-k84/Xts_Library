@@ -48,12 +48,14 @@ END_VAR
         <ST><![CDATA[CASE State OF
 	0:
 		IF _Operating THEN
+			DummyOperation.IN := TRUE;
 			State := 1;
 		END_IF
 	1:
 		IF DummyOperation.Q THEN
 			_Operating := FALSE;
 			_Complete := TRUE;
+			DummyOperation.IN := FALSE;
 			State := 0;
 		END_IF
 END_CASE	
