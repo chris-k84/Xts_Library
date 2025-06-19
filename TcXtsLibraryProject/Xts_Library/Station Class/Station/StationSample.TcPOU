@@ -21,15 +21,26 @@ END_VAR
           <ST><![CDATA[DummyOperationTime := _OperationTime;]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{2b0a9403-c0bf-4baf-becb-7504692464bc}">
-        <Declaration><![CDATA[VAR
+    </Property>
+    <Method Name="FB_Init" Id="{06260142-37e8-49c5-a73e-e2ccaee43aa5}">
+      <Declaration><![CDATA[(*FB_Init is always available implicitly and it is used primarily for initialization.
+The return value is not evaluated. For a specific influence, you can also declare the
+methods explicitly and provide additional code there with the standard initialization
+code. You can evaluate the return value.*)
+METHOD FB_Init : BOOL
+VAR_INPUT
+	(* TRUE: the retain variables are initialized (reset warm / reset cold)*)
+	bInitRetains	: BOOL;
+	(* TRUE: the instance will be copied to the copy code afterward (online change)   *)
+	bInCopyCode	: BOOL;
+	Position	: LREAL;
+	DummyOperationTime : TIME;
 END_VAR
 ]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_OperationTime := DummyOperationTime;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
+      <Implementation>
+        <ST><![CDATA[_OperationTime := DummyOperationTime;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Operation" Id="{dc0de173-6f92-4f66-81c6-c7765929009e}">
       <Declaration><![CDATA[METHOD PROTECTED Operation : BOOL
 ]]></Declaration>
