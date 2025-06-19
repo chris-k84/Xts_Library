@@ -183,7 +183,8 @@ VAR
 	i: INT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[CASE XtsIoEnvInitialiseState OF
+        <ST><![CDATA[Initialise := -1;
+CASE XtsIoEnvInitialiseState OF
 	0:
 		IF _MyXpu = 0 THEN
 			Initialise := -1;
@@ -234,7 +235,7 @@ END_VAR]]></Declaration>
 		END_FOR
 	6:
 		_isInitialised := TRUE;
-		Initialise := 2;
+		Initialise := 0;
 END_CASE
 ]]></ST>
       </Implementation>
