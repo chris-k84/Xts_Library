@@ -3,6 +3,12 @@
   <Itf Name="IStation" Id="{67c9d406-11c9-44e2-83e4-d307b4e3d366}">
     <Declaration><![CDATA[INTERFACE IStation
 ]]></Declaration>
+    <Method Name="HasMover" Id="{5b7781a3-78e4-4116-9d74-37fb48cc3c12}">
+      <Declaration><![CDATA[METHOD HasMover : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="IsClear" Id="{3b338444-496f-4b57-aaf3-4efffa633361}">
       <Declaration><![CDATA[METHOD IsClear : BOOL
 VAR_INPUT
@@ -15,15 +21,6 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Property Name="IsLastStation" Id="{6231a717-7ec5-41ad-8990-53e820013576}">
-      <Declaration><![CDATA[PROPERTY IsLastStation : BOOL]]></Declaration>
-      <Get Name="Get" Id="{03ec0cfe-94f6-4334-a48e-1072be5444e1}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-      <Set Name="Set" Id="{e1b7f99f-c592-4137-88d8-04039efda9f7}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
-    </Property>
     <Method Name="IsOperating" Id="{e04f481b-64f7-4cd5-aead-d2162ca18486}">
       <Declaration><![CDATA[METHOD IsOperating : BOOL
 VAR_INPUT
@@ -36,16 +33,10 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="MoverArriving" Id="{e0d36098-8d65-476a-990c-e6fc9c4a3a40}">
-      <Declaration><![CDATA[METHOD MoverArriving : BOOL
+    <Method Name="MyMover" Id="{e0d36098-8d65-476a-990c-e6fc9c4a3a40}">
+      <Declaration><![CDATA[METHOD MyMover : BOOL
 VAR_INPUT
 	mover : I_XtsMover;
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="MoverAway" Id="{43aea14a-53e1-4086-b039-8fa0c0d92e18}">
-      <Declaration><![CDATA[METHOD MoverAway : BOOL
-VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
@@ -54,9 +45,6 @@ END_VAR
       <Get Name="Get" Id="{40b27931-ded2-47cf-b322-02daf2127a18}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
-      <Set Name="Set" Id="{c0932127-7aeb-4193-b22c-26da04b41bf5}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
     </Property>
     <Method Name="Reset" Id="{951f5a5d-5d46-44f3-aea0-884233e0c15b}">
       <Declaration><![CDATA[METHOD Reset : hresult

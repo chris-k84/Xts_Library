@@ -1,78 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="StationSample" Id="{5d12cef2-4f81-4470-ba05-8f124fe21580}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK StationSample EXTENDS Process
+    <Declaration><![CDATA[FUNCTION_BLOCK StationSample EXTENDS Station
 VAR
 	_OperationTime : TIME := T#1S;
-	Operation : TON;
+	DummyOperation : TON;
 	State: INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
-    <Method Name="Cycle" Id="{b831bddf-8042-4785-99f9-40cdea1773f4}">
-      <Declaration><![CDATA[METHOD Cycle : HRESULT
-VAR
-	CycleResult : HRESULT;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-IF _isProcess THEN
-	Operation.IN := _HasMover;
-	IF NOT Operation.IN THEN
-		_TimeInProcess := Operation.ET;
-	END_IF
-ELSE
-	CASE State OF
-		0:
-			_Ready := TRUE;
-			IF _HasMover THEN
-				_Operating := TRUE;
-				_IsClear := FALSE;
-				_Ready := FALSE;
-				Operation.IN := TRUE;
-				State := 1;
-			END_IF
-		1:
-			IF Operation.Q THEN
-				_Complete := TRUE;
-				IF StationMovers = 0 THEN
-					_HasMover := FALSE;
-					Operation.IN := FALSE;
-				END_IF
-				State := 2;
-			END_IF
-		2:
-			_Complete := FALSE;
-			_IsClear := TRUE;
-			_Operating := FALSE;
-			_Ready := TRUE;
-			State := 0;
-		ELSE
-			Cycle := E_FAIL;
-	END_CASE	
-END_IF
-
-Operation(PT := _OperationTime);
-
-CycleResult := SUPER^.Cycle();
-stInfo.StationProcessTime := _OperationTime;
-
-IF CycleResult = E_FAIL THEN
-	Cycle := E_FAIL;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Property Name="TempPropTime" Id="{4928f043-1047-466d-92d5-fb5212ce41c4}">
-      <Declaration><![CDATA[PROPERTY TempPropTime : time]]></Declaration>
+    <Property Name="DummyOperationTime" Id="{4928f043-1047-466d-92d5-fb5212ce41c4}">
+      <Declaration><![CDATA[PROPERTY DummyOperationTime : time]]></Declaration>
       <Get Name="Get" Id="{73c0c3b5-10dd-44f7-bbc4-d091c37d6ab8}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[TempPropTime := _OperationTime;]]></ST>
+          <ST><![CDATA[DummyOperationTime := _OperationTime;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{2b0a9403-c0bf-4baf-becb-7504692464bc}">
@@ -80,9 +26,29 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_OperationTime := TempPropTime;]]></ST>
+          <ST><![CDATA[_OperationTime := DummyOperationTime;]]></ST>
         </Implementation>
       </Set>
     </Property>
+    <Method Name="Operation" Id="{dc0de173-6f92-4f66-81c6-c7765929009e}">
+      <Declaration><![CDATA[METHOD PROTECTED Operation : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE State OF
+	0:
+		IF _Operating THEN
+			State := 1;
+		END_IF
+	1:
+		IF DummyOperation.Q THEN
+			_Operating := FALSE;
+			_Complete := TRUE;
+			State := 0;
+		END_IF
+END_CASE	
+
+DummyOperation(PT := _OperationTime);]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

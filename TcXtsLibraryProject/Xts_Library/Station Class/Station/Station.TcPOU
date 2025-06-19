@@ -7,14 +7,13 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	_IsClear : BOOL;
+	_IsClear : BOOL := TRUE;
 	_Complete : BOOL;
 	_Operating : BOOL;
-	_Ready : BOOL;
+	_Ready : BOOL := TRUE;
 	_Position : LREAL := 0.0;
-	StationMovers : INT;
 	_HasMover : BOOL;
-	ProductCounter : R_TRIG;
+	MoverArrive : R_TRIG;
 	MyMover : I_XtsMover;
 END_VAR
 ]]></Declaration>
@@ -28,11 +27,22 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _HasMover THEN
-	IF MyMover.getTrackPosition() = MyPosition THEN
-		//isclear = false
-	END_IF
-END_IF]]></ST>
+        <ST><![CDATA[MoverArrive(CLK := _HasMover);
+Operation();
+IF MoverArrive.Q THEN
+	_IsClear := FALSE;
+	_Ready := FALSE;
+	_Operating := TRUE;
+	_Complete := FALSE;
+END_IF
+
+IF _Complete AND _HasMover AND_THEN MyMover.getTrackPosition > _Position + 50  THEN
+	_Ready := TRUE;
+	_HasMover := FALSE;
+	_IsClear := TRUE;
+	MyMover := 0;
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="FB_Init" Id="{65a20629-1237-49a2-826d-db1ec64ff183}">
@@ -48,6 +58,15 @@ VAR_INPUT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[_Position := Position;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HasMover" Id="{1855cd52-e0ae-4354-8e0a-b89d5647c2a8}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD HasMover : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[HasMover := _HasMover;]]></ST>
       </Implementation>
     </Method>
     <Method Name="IsClear" Id="{5a1d616a-dcb0-4a56-9caf-0526ba7a4fac}" FolderPath="Status\">
@@ -78,15 +97,18 @@ END_VAR]]></Declaration>
         <ST><![CDATA[IsReady := _Ready;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoverArriving" Id="{cfa7f397-450b-4982-8373-384ee5df1767}">
-      <Declaration><![CDATA[METHOD MoverArriving : BOOL
+    <Method Name="MyMover" Id="{cfa7f397-450b-4982-8373-384ee5df1767}">
+      <Declaration><![CDATA[METHOD MyMover : HRESULT
 VAR_INPUT
 	mover : I_XtsMover;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_HasMover := true;
-MyMover := mover;
-MoverArriving := TRUE;]]></ST>
+        <ST><![CDATA[IF mover = 0 THEN
+	MyMover := -1;
+	RETURN;
+END_IF
+_HasMover := TRUE;
+MyMover := mover;]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyPosition" Id="{b89449d8-a019-4273-b99d-e422998e5fce}">
@@ -100,6 +122,15 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="Operation" Id="{8b2af481-b3e4-47db-b897-3814deb87d2d}">
+      <Declaration><![CDATA[METHOD PROTECTED ABSTRACT Operation : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="RegisterWithParent" Id="{d8402b41-2440-40c0-90f4-c70380862930}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
@@ -120,6 +151,8 @@ END_VAR
 _IsClear := TRUE;
 _Operating := FALSE;
 _Ready := TRUE;
+_HasMover := FALSE;
+
 ]]></ST>
       </Implementation>
     </Method>
