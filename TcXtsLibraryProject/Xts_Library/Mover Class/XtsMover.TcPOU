@@ -126,7 +126,6 @@ END_VAR
 	Cycle := 1;
 ELSE
 	Cycle := -1;
-	Initialise();
 END_IF
 MyAxisRef.ReadStatus();
 _MyNCData := MyAxisRef.NcToPlc;
