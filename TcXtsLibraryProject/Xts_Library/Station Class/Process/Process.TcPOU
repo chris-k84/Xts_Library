@@ -2,30 +2,14 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Process" Id="{5bb3084c-8dc2-4985-92e4-194b505a9bed}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Process EXTENDS Station IMPLEMENTS IProcess
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
 VAR
-	_isProcess : BOOL;
-	_startPos : MC_LREAL;
 	_endPos : MC_LREAL;
 	_processVelo : MC_LREAL;
-	_TimeInProcess : TIME;
-END_VAR
-]]></Declaration>
+	State : INT;
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
-    <Method Name="Cycle" Id="{848fd251-b5bb-419f-acc7-8914b22a5c9a}">
-      <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[Cycle := SUPER^.Cycle();]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="EndPosition" Id="{7f4a20d7-f0db-4d2e-987f-1dcaac0ba263}">
       <Declaration><![CDATA[PROPERTY EndPosition : MC_LREAL]]></Declaration>
       <Get Name="Get" Id="{87faf885-3d96-408c-9e10-b4693bedb554}">
@@ -36,35 +20,50 @@ END_VAR
           <ST><![CDATA[EndPosition := _endPos;]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{03f350b3-edfc-4efc-9080-be45df8aab88}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_endPos := EndPosition;]]></ST>
-        </Implementation>
-      </Set>
     </Property>
-    <Property Name="IsProcess" Id="{a052c27a-6963-4165-8ce7-0bc042c34c8d}">
-      <Declaration><![CDATA[PROPERTY IsProcess : BOOL
-]]></Declaration>
-      <Get Name="Get" Id="{f4164ad2-69a7-4e7d-937b-ab9c4f869817}">
-        <Declaration><![CDATA[VAR
+    <Method Name="FB_Init" Id="{5e3199be-9a54-4a76-84c3-07069d45f332}">
+      <Declaration><![CDATA[(*FB_Init is always available implicitly and it is used primarily for initialization.
+The return value is not evaluated. For a specific influence, you can also declare the
+methods explicitly and provide additional code there with the standard initialization
+code. You can evaluate the return value.*)
+METHOD FB_Init : BOOL
+VAR_INPUT
+	(* TRUE: the retain variables are initialized (reset warm / reset cold)*)
+	bInitRetains	: BOOL;
+	(* TRUE: the instance will be copied to the copy code afterward (online change)   *)
+	bInCopyCode	: BOOL;
+	Position	: LREAL;
+	EndPosition : LREAL;
+	ProcessVelocity : LREAL;
 END_VAR
 ]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[IsProcess := _isProcess;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{0dae4abf-34d8-44d5-8e71-ec94152bad0d}">
-        <Declaration><![CDATA[VAR
-END_VAR
+      <Implementation>
+        <ST><![CDATA[_endPos := EndPosition;
+_processVelo := ProcessVelocity;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operation" Id="{4496305a-dcfe-4c87-9747-73150426f565}">
+      <Declaration><![CDATA[METHOD PROTECTED Operation : BOOL
 ]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_isProcess := IsProcess;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
+      <Implementation>
+        <ST><![CDATA[CASE State OF
+	0:
+		IF _Operating THEN
+			IF Succeeded(MyMover.MoveTo(RequiredPosition := _endPos,
+							MoveVelocity := _processVelo,
+							NonModuloMove := FALSE)) THEN
+				State := 1;
+			END_IF
+		END_IF
+	1:
+		IF MyMover.getTrackPosition() = _endPos THEN
+			_Operating := FALSE;
+			_Complete := TRUE;
+			State := 0;
+		END_IF
+END_CASE	]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="ProcessVelocity" Id="{2b95ecf7-a866-474e-93f5-19b6d8e1320a}">
       <Declaration><![CDATA[PROPERTY ProcessVelocity : MC_LREAL]]></Declaration>
       <Get Name="Get" Id="{25f5b52c-e44e-4bf2-b54e-ddc8a6dd0b98}">
@@ -75,63 +74,6 @@ END_VAR
           <ST><![CDATA[ProcessVelocity := _processVelo;]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{6d051eea-51d7-48c9-b4ba-ec2df3b6b6c5}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_processVelo := ProcessVelocity;]]></ST>
-        </Implementation>
-      </Set>
     </Property>
-    <Property Name="StartPosition" Id="{1d4656dd-6887-469c-a588-d1b0b2352c88}">
-      <Declaration><![CDATA[PROPERTY StartPosition : MC_LREAL]]></Declaration>
-      <Get Name="Get" Id="{0aa9c050-e945-4a8f-8702-495f128d5c57}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[StartPosition := _startPos;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{edfae567-ed6f-497e-adb7-c03f78ecc2d6}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_startPos := StartPosition;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <LineIds Name="Process">
-      <LineId Id="22" Count="0" />
-    </LineIds>
-    <LineIds Name="Process.Cycle">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="Process.EndPosition.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Process.EndPosition.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Process.IsProcess.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Process.IsProcess.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Process.ProcessVelocity.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Process.ProcessVelocity.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Process.StartPosition.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Process.StartPosition.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

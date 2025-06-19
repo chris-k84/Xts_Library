@@ -8,36 +8,12 @@
       <Get Name="Get" Id="{31f9cf28-dd57-4d20-ace6-7cac7fc9bf57}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
-      <Set Name="Set" Id="{b3f53b23-605e-4691-b489-df326d97e83e}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
-    </Property>
-    <Property Name="IsProcess" Id="{715b1fa2-b476-4fb4-a0e0-f20bf4d903ee}">
-      <Declaration><![CDATA[PROPERTY IsProcess : booL]]></Declaration>
-      <Get Name="Get" Id="{755e0674-f78a-4a37-8b52-990c4b63efad}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-      <Set Name="Set" Id="{c6802322-6194-46c4-a3cb-ca06cc0cd717}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
     </Property>
     <Property Name="ProcessVelocity" Id="{4148105b-d9b1-443c-b3c0-196030eb7c2f}">
       <Declaration><![CDATA[PROPERTY ProcessVelocity : mc_lreal]]></Declaration>
       <Get Name="Get" Id="{4f40390c-f906-437a-882e-04f737dbad29}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
-      <Set Name="Set" Id="{f38d7b69-5b1f-4bd3-9e08-ad34bc533051}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
-    </Property>
-    <Property Name="StartPosition" Id="{98da2cda-f61a-4ce0-b8d5-531a68fd5332}">
-      <Declaration><![CDATA[PROPERTY StartPosition : MC_LREAL]]></Declaration>
-      <Get Name="Get" Id="{fcc845e3-1036-4df4-a77e-62ba44d37e6e}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-      <Set Name="Set" Id="{b37b04b9-b5ec-4bb3-8455-6bb9205981a2}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
     </Property>
   </Itf>
 </TcPlcObject>
