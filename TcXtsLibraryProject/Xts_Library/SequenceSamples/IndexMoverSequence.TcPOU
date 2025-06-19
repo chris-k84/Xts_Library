@@ -8,26 +8,27 @@ VAR
 	TargetStationPosition : MC_LREAL;
 	_MoverVelocity : MC_LREAL := 1000.0;
 	stSequenceInfo : MoverSequenceInfo;
-	StationArray : ARRAY[0..SystemParameters.NumberOfStations] OF IProcess;
+	StationNumber : INT;
+	StationArray : ARRAY[0..19] OF IStation;
+	Process : IProcess;
 	ThisMover : I_XtsMover;
 	ExecuteSequence : BOOL;
 	_startPosition : MC_LREAL;
 	_XtsNoHome : BOOL;
-	_NonModuloMoves : BOOL := false;
+	_NonModuloMoves : BOOL := FALSE;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
     <Method Name="Cycle" Id="{0bc270b2-0e7a-4545-b872-87f2d15ca3f5}">
-      <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
+      <Declaration><![CDATA[METHOD PUBLIC Cycle : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-CASE State OF
+        <ST><![CDATA[CASE State OF
 	IndexSequenceState.Init:
-		IF ThisMover.isMoverDetected() THEN
+		IF ThisMover.isMoverEnabled() THEN
 			State := IndexSequenceState.Available;
 		END_IF
 		
@@ -42,19 +43,19 @@ CASE State OF
 		END_IF
 			
 	IndexSequenceState.AtStart:
-		IF StationArray[0].IsReady() THEN
+		IF StationArray[CurrentStation] <> 0 AND_THEN StationArray[CurrentStation].IsReady() THEN
 			State := IndexSequenceState.GetNextMove;
 		END_IF
 
 	IndexSequenceState.MovingToStation:
 		IF ThisMover.isMoverStationary() THEN 
 			IF ThisMover.isMoverAtPosition(TargetStationPosition) THEN
-				IF StationArray[CurrentStation].IsProcess THEN
+				IF __QUERYINTERFACE(StationArray[CurrentStation],Process) THEN
 					State := IndexSequenceState.AtProcess;
 				ELSE
 					State := IndexSequenceState.AtStation;
 				END_IF
-				StationArray[CurrentStation].MoverArriving(ThisMover);
+				StationArray[CurrentStation].MyMover(ThisMover);
 			ELSE
 				State := IndexSequenceState.QueuedAtStation;
 			END_IF
@@ -71,25 +72,24 @@ CASE State OF
 		END_IF
 
 	IndexSequenceState.AtProcess:
-		ThisMover.MoveTo(RequiredPosition := StationArray[CurrentStation].EndPosition,
-								MoveVelocity := StationArray[CurrentStation].ProcessVelocity,
+		ThisMover.MoveTo(RequiredPosition := Process.EndPosition,
+								MoveVelocity := Process.ProcessVelocity,
 								NonModuloMove := _NonModuloMoves);
 		State := IndexSequenceState.InProcess;
 								
 	IndexSequenceState.InProcess:
 		IF ThisMover.isMoverStationary() THEN 
-			IF ThisMover.isMoverAtPosition(StationArray[CurrentStation].EndPosition) THEN
+			IF ThisMover.isMoverAtPosition(Process.EndPosition) THEN
 				State := IndexSequenceState.GetNextMove;
 			END_IF
 		END_IF
 	
 	IndexSequenceState.GetNextMove:
-		IF CurrentStation = SystemParameters.NumberOfStations - 1 THEN
+		IF CurrentStation = StationNumber - 1 THEN
 			IF ThisMover.MoveTo(RequiredPosition := _startPosition,
 							MoveVelocity := _MoverVelocity,
 							NonModuloMove := _NonModuloMoves) = 1 THEN
 				State := IndexSequenceState.MovingToStart;
-				StationArray[CurrentStation].MoverAway();
 				CurrentStation := 0; 
 			END_IF
 		ELSE
@@ -97,17 +97,10 @@ CASE State OF
 		END_IF
 		
 	IndexSequenceState.GoToNextStation:
-		IF StationArray[CurrentStation + 1].IsProcess THEN
-			TargetStationPosition := StationArray[CurrentStation + 1].StartPosition;
-		ELSE
-			TargetStationPosition := StationArray[CurrentStation + 1].Position;
-		END_IF
+		TargetStationPosition := StationArray[CurrentStation + 1].Position;
 		IF 	ThisMover.MoveTo(RequiredPosition := TargetStationPosition,
 							MoveVelocity := _MoverVelocity,
-							NonModuloMove := _NonModuloMoves) = 1 THEN
-			IF CurrentStation <> 0 THEN
-				StationArray[CurrentStation].MoverAway();	
-			END_IF		
+							NonModuloMove := _NonModuloMoves) = 1 THEN	
 			CurrentStation := CurrentStation + 1;
 			State := IndexSequenceState.MovingToStation;
 		END_IF	
@@ -184,25 +177,21 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Property Name="MyStations" Id="{d7be010f-02ed-44eb-9206-f5e1204f6ead}">
-      <Declaration><![CDATA[PROPERTY MyStations : ARRAY[0..SystemParameters.NumberOfStations] OF IProcess]]></Declaration>
-      <Get Name="Get" Id="{b9858861-0750-4c3d-b2e9-7dc3a973373a}">
-        <Declaration><![CDATA[VAR
+    <Method Name="RegisterAStation" Id="{14d9a1a8-6162-46e7-9803-61945cdf77e8}">
+      <Declaration><![CDATA[METHOD RegisterAStation : HRESULT
+VAR_INPUT
+	Station : IStation;
 END_VAR
 ]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyStations := StationArray;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{7371b464-f457-4be2-b93c-2c3bb66d5175}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[StationArray := MyStations;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
+      <Implementation>
+        <ST><![CDATA[IF Station = 0 THEN
+	RegisterAStation  := -1;
+	RETURN;
+END_IF
+StationArray[StationNumber] := Station;
+StationNumber := StationNumber + 1;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="RegisterWithParent" Id="{4ad7e011-f71b-4cbe-b657-57f840858ed2}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
@@ -235,7 +224,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[ExecuteSequence := true;]]></ST>
+        <ST><![CDATA[ExecuteSequence := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="StopIndexing" Id="{900759f2-3678-4971-bb8e-5ef12e59dcf0}">
@@ -244,7 +233,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[ExecuteSequence := false;]]></ST>
+        <ST><![CDATA[ExecuteSequence := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="XtsNoHome" Id="{7aad9af3-71dc-4b8d-9a2b-19016c2a644b}">
