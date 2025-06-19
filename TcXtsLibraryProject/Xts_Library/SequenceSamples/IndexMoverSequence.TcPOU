@@ -44,7 +44,10 @@ END_VAR
 			
 	IndexSequenceState.AtStart:
 		IF StationArray[CurrentStation] <> 0 AND_THEN StationArray[CurrentStation].IsReady() THEN
-			State := IndexSequenceState.GetNextMove;
+			ThisMover.MoveTo(RequiredPosition := StationArray[CurrentStation].Position,
+								MoveVelocity := _MoverVelocity,
+								NonModuloMove := _NonModuloMoves);
+			State := IndexSequenceState.MovingToStation;
 		END_IF
 
 	IndexSequenceState.MovingToStation:
