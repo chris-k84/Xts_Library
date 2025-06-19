@@ -44,10 +44,13 @@ END_VAR
 			
 	IndexSequenceState.AtStart:
 		IF StationArray[CurrentStation] <> 0 AND_THEN StationArray[CurrentStation].IsReady() THEN
-			ThisMover.MoveTo(RequiredPosition := StationArray[CurrentStation].Position,
+			IF SUCCEEDED(ThisMover.MoveTo(RequiredPosition := StationArray[CurrentStation].Position,
 								MoveVelocity := _MoverVelocity,
-								NonModuloMove := _NonModuloMoves);
-			State := IndexSequenceState.MovingToStation;
+								NonModuloMove := _NonModuloMoves)) THEN
+								
+				TargetStationPosition := StationArray[CurrentStation].Position;
+				State := IndexSequenceState.MovingToStation;
+			END_IF
 		END_IF
 
 	IndexSequenceState.MovingToStation:
@@ -89,11 +92,12 @@ END_VAR
 	
 	IndexSequenceState.GetNextMove:
 		IF CurrentStation = StationNumber - 1 THEN
-			IF ThisMover.MoveTo(RequiredPosition := _startPosition,
+			CurrentStation := 0; 
+			IF SUCCEEDED(ThisMover.MoveTo(RequiredPosition := StationArray[CurrentStation].Position,
 							MoveVelocity := _MoverVelocity,
-							NonModuloMove := _NonModuloMoves) = 1 THEN
-				State := IndexSequenceState.MovingToStart;
-				CurrentStation := 0; 
+							NonModuloMove := _NonModuloMoves)) THEN
+				State := IndexSequenceState.MovingToStation;
+				TargetStationPosition := StationArray[CurrentStation].Position;
 			END_IF
 		ELSE
 			State := IndexSequenceState.GoToNextStation;
@@ -101,9 +105,9 @@ END_VAR
 		
 	IndexSequenceState.GoToNextStation:
 		TargetStationPosition := StationArray[CurrentStation + 1].Position;
-		IF 	ThisMover.MoveTo(RequiredPosition := TargetStationPosition,
+		IF 	SUCCEEDED(ThisMover.MoveTo(RequiredPosition := TargetStationPosition,
 							MoveVelocity := _MoverVelocity,
-							NonModuloMove := _NonModuloMoves) = 1 THEN	
+							NonModuloMove := _NonModuloMoves)) THEN	
 			CurrentStation := CurrentStation + 1;
 			State := IndexSequenceState.MovingToStation;
 		END_IF	
