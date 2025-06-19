@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <Itf Name="IProcess" Id="{35f38492-ddb4-43cb-90ed-57490b1c2a0f}">
-    <Declaration><![CDATA[INTERFACE IProcess EXTENDS IStation
+    <Declaration><![CDATA[INTERFACE IProcess
 ]]></Declaration>
     <Property Name="EndPosition" Id="{dd6f2210-a4af-4fbc-a10a-6e02b45480ee}">
       <Declaration><![CDATA[PROPERTY EndPosition : MC_LREAL]]></Declaration>

@@ -49,14 +49,14 @@ _processVelo := ProcessVelocity;]]></ST>
         <ST><![CDATA[CASE State OF
 	0:
 		IF _Operating THEN
-			IF Succeeded(MyMover.MoveTo(RequiredPosition := _endPos,
+			IF Succeeded(_MyMover.MoveTo(RequiredPosition := _endPos,
 							MoveVelocity := _processVelo,
 							NonModuloMove := FALSE)) THEN
 				State := 1;
 			END_IF
 		END_IF
 	1:
-		IF MyMover.getTrackPosition() = _endPos THEN
+		IF _MyMover.getTrackPosition() = _endPos THEN
 			_Operating := FALSE;
 			_Complete := TRUE;
 			State := 0;
