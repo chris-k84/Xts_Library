@@ -48,13 +48,13 @@
     <Compile Include="Mover Class\XtsMover.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SequenceSamples\IndexMoverSequence.TcPOU">
+    <Compile Include="SequenceSamples\StationSequence.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SequenceSamples\IndexSequenceState.TcDUT">
+    <Compile Include="SequenceSamples\StationSequenceState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SequenceSamples\MoverSequenceInfo.TcDUT">
+    <Compile Include="SequenceSamples\SequenceInfo.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Station Class\Process\IProcess.TcIO">
