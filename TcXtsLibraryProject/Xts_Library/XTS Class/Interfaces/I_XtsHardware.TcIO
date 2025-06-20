@@ -3,13 +3,16 @@
   <Itf Name="I_XtsHardware" Id="{9afac880-0754-4de0-b157-657ea2ab2f5c}">
     <Declaration><![CDATA[INTERFACE I_XtsHardware
 ]]></Declaration>
-    <Property Name="DetectedNumberOfTracks" Id="{1f7b777e-4e84-4e05-a960-b4258ee4a093}">
+    <Folder Name="Commands" Id="{27c9da71-387e-4094-ae9a-f077ff9b1b1e}" />
+    <Folder Name="Settings" Id="{e3948c37-e7d1-40e0-b3aa-465d52d19205}" />
+    <Folder Name="Status" Id="{f56f8332-a404-49a0-b1fa-c3796e00575d}" />
+    <Property Name="DetectedNumberOfTracks" Id="{1f7b777e-4e84-4e05-a960-b4258ee4a093}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY DetectedNumberOfTracks : UINT]]></Declaration>
       <Get Name="Get" Id="{b975fd9f-07a4-422f-a5dd-e3785eb793b3}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="ExpectedNumberOfParts" Id="{8baf703f-4030-43b9-bdf8-f6888d62a51a}">
+    <Property Name="ExpectedNumberOfParts" Id="{8baf703f-4030-43b9-bdf8-f6888d62a51a}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY ExpectedNumberOfParts : int]]></Declaration>
       <Get Name="Get" Id="{0b7c22e3-40c5-447c-8669-8bda14b6c107}">
         <Declaration><![CDATA[]]></Declaration>
@@ -18,7 +21,7 @@
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Property Name="ExpectedNumberOfTracks" Id="{060a46c5-290c-4bcd-90e6-de762c9e2c08}">
+    <Property Name="ExpectedNumberOfTracks" Id="{060a46c5-290c-4bcd-90e6-de762c9e2c08}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY ExpectedNumberOfTracks : int]]></Declaration>
       <Get Name="Get" Id="{32b0bf5c-9771-495a-89d6-3032bdd0b8c3}">
         <Declaration><![CDATA[]]></Declaration>
@@ -27,81 +30,81 @@
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="getAllMoversValid" Id="{3d107ad0-1a72-4602-abbb-1177fad35523}">
+    <Method Name="getAllMoversValid" Id="{3d107ad0-1a72-4602-abbb-1177fad35523}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getAllMoversValid : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GetConfigMoverNumber" Id="{840a6c17-fbef-4810-9acd-02a47aa8f2b0}">
+    <Method Name="GetConfigMoverNumber" Id="{840a6c17-fbef-4810-9acd-02a47aa8f2b0}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetConfigMoverNumber : UDINT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GetDetectionState" Id="{fa37bb06-5333-4945-837b-ed2607a0f10b}">
+    <Method Name="GetDetectionState" Id="{fa37bb06-5333-4945-837b-ed2607a0f10b}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetDetectionState : DetectionStateEnum
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="getNumberMoversDetected" Id="{f24c38ad-dbfa-488d-af77-9f21cd2a2d34}">
+    <Method Name="getNumberMoversDetected" Id="{f24c38ad-dbfa-488d-af77-9f21cd2a2d34}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getNumberMoversDetected : UDINT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GetTrackByNumber" Id="{fdddf6a5-daa4-4b5f-bc28-556a31f03729}">
+    <Method Name="GetTrackByNumber" Id="{fdddf6a5-daa4-4b5f-bc28-556a31f03729}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetTrackByNumber : I_XtsTrack
 VAR_INPUT
 	TrackNumber : UINT;
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GetTrackByOTCID" Id="{32320bf3-efb9-473d-bca7-a0ced8f8657b}">
+    <Method Name="GetTrackByOTCID" Id="{32320bf3-efb9-473d-bca7-a0ced8f8657b}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetTrackByOTCID : I_XtsTrack
 VAR_INPUT
 	trackOTCID : OTCID;
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="HasXPU" Id="{4bb0c294-1f51-4661-82c9-c8d7d52811fe}">
+    <Method Name="HasXPU" Id="{4bb0c294-1f51-4661-82c9-c8d7d52811fe}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD HasXPU : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="Is24VdcOK" Id="{d84db133-10f1-4c84-aee2-357bd38938fd}">
+    <Method Name="Is24VdcOK" Id="{d84db133-10f1-4c84-aee2-357bd38938fd}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD Is24VdcOK : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="Is48VdcOK" Id="{df545d44-305d-4b7a-922f-4b561f83d56a}">
+    <Method Name="Is48VdcOK" Id="{df545d44-305d-4b7a-922f-4b561f83d56a}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD Is48VdcOK : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="isExpectedMoversFound" Id="{aa48d66d-e689-4a24-808d-2ead7682c5a9}">
+    <Method Name="isExpectedMoversFound" Id="{aa48d66d-e689-4a24-808d-2ead7682c5a9}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD isExpectedMoversFound : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="IsInitialised" Id="{eb3371dd-7907-4a18-ba2b-9ef954004075}">
+    <Method Name="IsInitialised" Id="{eb3371dd-7907-4a18-ba2b-9ef954004075}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsInitialised : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="IsInSim" Id="{5eeeddd9-9ad7-4819-b9a4-994a910fffac}">
+    <Method Name="IsInSim" Id="{5eeeddd9-9ad7-4819-b9a4-994a910fffac}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsInSim : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Property Name="MyName" Id="{b43d0e80-e621-46e0-af70-0a677800dc98}">
+    <Property Name="MyName" Id="{b43d0e80-e621-46e0-af70-0a677800dc98}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
       <Get Name="Get" Id="{494ebcb6-a0a6-498f-a4fa-49193344e0b2}">
         <Declaration><![CDATA[]]></Declaration>
@@ -116,7 +119,7 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Property Name="MyXts" Id="{53462daf-bea5-4a22-960f-7d5bfcc2ce3c}">
+    <Property Name="MyXts" Id="{53462daf-bea5-4a22-960f-7d5bfcc2ce3c}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyXts : INT]]></Declaration>
       <Get Name="Get" Id="{0d7e989b-6c34-4c03-ad75-2a4dfad812ae}">
         <Declaration><![CDATA[]]></Declaration>
@@ -125,39 +128,39 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="RemoveTrackFromDetection" Id="{6b996083-6718-40f8-8385-c5509d71f04d}">
+    <Method Name="RemoveTrackFromDetection" Id="{6b996083-6718-40f8-8385-c5509d71f04d}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD RemoveTrackFromDetection : HRESULT
 VAR_INPUT
-	TrackToRemove : INT;
+	TrackToRemove : UINT;
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="SetMoverNumbers" Id="{7821c5af-a98b-4e00-bdec-978858c91986}">
+    <Method Name="SetMoverNumbers" Id="{7821c5af-a98b-4e00-bdec-978858c91986}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetMoverNumbers : HRESULT
 VAR_INPUT
 	NumberOfMovers : INT;
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="SetTrackForDetection" Id="{e5174e94-1d43-416d-9cf0-82b8810737fe}">
+    <Method Name="SetTrackForDetection" Id="{e5174e94-1d43-416d-9cf0-82b8810737fe}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetTrackForDetection : HRESULT
 VAR_INPUT
-	TrackToDetect : INT;
+	TrackToDetect : UINT;
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="TriggerMoverDetection" Id="{3ca79f9d-8f1a-40ef-9b71-3df667743234}">
+    <Method Name="TriggerMoverDetection" Id="{3ca79f9d-8f1a-40ef-9b71-3df667743234}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD TriggerMoverDetection : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="TriggerMoverID" Id="{94d400e7-7631-41b8-b1e4-2b7514685c32}">
+    <Method Name="TriggerMoverID" Id="{94d400e7-7631-41b8-b1e4-2b7514685c32}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD TriggerMoverID : BOOL
 VAR_INPUT
 END_VAR]]></Declaration>
     </Method>
-    <Method Name="TriggerRedetection" Id="{02f3159c-a37c-4b20-ae4e-7c65bf1966cb}">
+    <Method Name="TriggerRedetection" Id="{02f3159c-a37c-4b20-ae4e-7c65bf1966cb}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD TriggerRedetection : HRESULT
 VAR_INPUT
 END_VAR
