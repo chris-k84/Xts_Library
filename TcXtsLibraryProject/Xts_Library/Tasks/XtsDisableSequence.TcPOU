@@ -77,7 +77,7 @@ CASE State OF
 		
 	10:
 		IF _caGroup.GroupState = CAGroupStatus.mcGroupStateStandby THEN
-			IF _caGroup.RemoveAllMovers() = 2 THEN
+			IF SUCCEEDED(_caGroup.RemoveAllMovers()) THEN
 				State := 20;
 			END_IF
 		END_IF
