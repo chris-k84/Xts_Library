@@ -42,19 +42,22 @@
     <VirtualLibrary>true</VirtualLibrary>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Mover Behaviours\ExtControl\ExtControlBehaviour.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mover Behaviours\Station Behaviour\StationBehaviour.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mover Behaviours\Station Behaviour\StationBehaviourInfo.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mover Behaviours\Station Behaviour\StationBehaviourState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mover Class\I_XtsMover.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mover Class\XtsMover.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SequenceSamples\StationSequence.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SequenceSamples\StationSequenceState.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SequenceSamples\SequenceInfo.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Station Class\Process\IProcess.TcIO">
@@ -184,8 +187,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Mover Behaviours\ExtControl" />
+    <Folder Include="Mover Behaviours\Station Behaviour" />
     <Folder Include="Mover Class" />
-    <Folder Include="SequenceSamples" />
+    <Folder Include="Mover Behaviours" />
     <Folder Include="Station Class" />
     <Folder Include="Station Class\Process" />
     <Folder Include="Station Class\Station" />

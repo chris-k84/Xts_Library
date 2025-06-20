@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="StationSequenceState" Id="{ce85cd05-6efc-434a-9ea4-df6144a01750}">
+  <DUT Name="StationBehaviourState" Id="{ce85cd05-6efc-434a-9ea4-df6144a01750}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}
-TYPE StationSequenceState :
+TYPE StationBehaviourState :
 (
 	Init := 0,                                               
 	Available := 1,

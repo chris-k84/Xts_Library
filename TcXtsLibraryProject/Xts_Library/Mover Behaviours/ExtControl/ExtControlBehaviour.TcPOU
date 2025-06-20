@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="ExtControlBehaviour" Id="{d3f2ac87-b8f7-4911-b9c2-b9baff5eb1c4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ExtControlBehaviour IMPLEMENTS I_Cyclic
+VAR
+	ThisMover : I_XtsMover;
+	LeaveTest: BOOL;
+	ArriveTest: BOOL;
+	TestMove: BOOL;
+	Position: MC_LREAL;
+	Velocity: MC_LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Cycle" Id="{8888b623-da21-4226-add6-1f1bd1a51781}">
+      <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF LeaveTest THEN
+	ThisMover.TriggerMoverLeave();
+END_IF
+
+IF ArriveTest THEN
+	ThisMover.TriggerMoverArrive();
+END_IF
+
+IF TestMove THEN
+	ThisMover.MoveTo(RequiredPosition := Position, MoveVelocity := Velocity, NonModuloMove := FALSE);
+	TestMove := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="MyMover" Id="{a5c868b0-cac0-4f55-bd66-8ef755b79feb}">
+      <Declaration><![CDATA[PROPERTY MyMover : I_XtsMover]]></Declaration>
+      <Get Name="Get" Id="{587907ca-a173-4213-9ae5-405c4a27d931}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyMover := ThisMover;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{61ecbb90-d62b-4e06-b9a5-e3c58bf4d7f4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ThisMover := MyMover;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

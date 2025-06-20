@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="SequenceInfo" Id="{e31e4eaf-6c71-46bd-8e49-86316a781b98}">
-    <Declaration><![CDATA[TYPE SequenceInfo :
+  <DUT Name="StationBehaviourInfo" Id="{e31e4eaf-6c71-46bd-8e49-86316a781b98}">
+    <Declaration><![CDATA[TYPE StationBehaviourInfo :
 STRUCT
 	MoverId : UDINT;
 	CurrentStation : INT;
 	Velocity : MC_LREAL;
-	State : StationSequenceState;
+	State : StationBehaviourState;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
