@@ -1305,7 +1305,7 @@ and will return to Group State Standby when the situation permits.
 		</DataType>
 	</DataTypes>
 	<Project GUID="{6CE98D97-B85B-476D-91E3-37ABB0FAE03C}" Name="XtsControl" PrjFilePath="..\..\XtsControl\XtsControl.plcproj" TmcFilePath="..\..\XtsControl\XtsControl.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x0000" FileArchiveSettings="#x0000">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="1" TmcHash="{8D450333-CC0B-EDF1-B51B-1495472E437E}" TmcPath="XtsControl\XtsControl.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="1" TmcHash="{F9217EB7-65F2-AD61-EC88-062803536808}" TmcPath="XtsControl\XtsControl.tmc">
 			<Name>XtsControl Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="2" AreaNo="1">

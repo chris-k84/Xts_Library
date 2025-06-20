@@ -2906,6 +2906,7 @@
 			<Licenses>
 				<Target>
 					<ManualSelect>{8C57D0A8-BD63-4554-BAE1-E9C797EF0D0E}</ManualSelect>
+					<ManualSelect>{6BCAF065-32F5-44AC-A233-31D91205AB5B}</ManualSelect>
 				</Target>
 			</Licenses>
 			<Tasks>

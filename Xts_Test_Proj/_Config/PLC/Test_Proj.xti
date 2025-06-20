@@ -1305,7 +1305,7 @@ and will return to Group State Standby when the situation permits.
 		</DataType>
 	</DataTypes>
 	<Project GUID="{9D834261-4541-48F3-87B7-1F0DD96DA306}" Name="Test_Proj" PrjFilePath="..\..\Test_Proj\Test_Proj.plcproj" TmcFilePath="..\..\Test_Proj\Test_Proj.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{04611B62-119F-F914-44FC-7925BB4E611A}" TmcPath="Test_Proj\Test_Proj.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{5F55D098-CAAD-165A-A92D-7BAFDA0FA4EC}" TmcPath="Test_Proj\Test_Proj.tmc">
 			<Name>Test_Proj Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="2" AreaNo="1">
