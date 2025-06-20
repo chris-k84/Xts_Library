@@ -53,18 +53,6 @@ Station4.Cycle();
 Station5.Cycle();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Disable" Id="{5e47e9ec-af05-4f55-a014-ec50066f7440}">
-      <Declaration><![CDATA[METHOD Disable : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF MyXts.DisableXTS() THEN
-	Disable := TRUE;
-END_IF
-]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="Initialise" Id="{4069299b-b0bd-441e-b636-7c39202b14ad}">
       <Declaration><![CDATA[METHOD Initialise : BOOL
 VAR
@@ -139,16 +127,20 @@ END_FOR
 Start := TRUE;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Stop" Id="{02b1b8bd-0341-4ecb-af0a-a89be5d6c7e8}">
+    <Method Name="Stop" Id="{5e47e9ec-af05-4f55-a014-ec50066f7440}">
       <Declaration><![CDATA[METHOD Stop : BOOL
 VAR
 	i : INT;
-END_VAR]]></Declaration>
+END_VAR
+]]></Declaration>
       <Implementation>
-        <ST><![CDATA[FOR i := 0 TO NumberOFSystemMovers DO
-	MoverSequences[i].StopIndexing();
-END_FOR
-Stop := TRUE;]]></ST>
+        <ST><![CDATA[IF MyXts.DisableXTS() THEN
+	Stop := TRUE;
+	FOR i := 0 TO NumberOFSystemMovers DO
+		MoverSequences[i].Reset();
+	END_FOR
+END_IF
+]]></ST>
       </Implementation>
     </Method>
   </POU>
