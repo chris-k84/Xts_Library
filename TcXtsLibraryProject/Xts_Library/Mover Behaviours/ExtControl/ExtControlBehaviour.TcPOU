@@ -4,11 +4,6 @@
     <Declaration><![CDATA[FUNCTION_BLOCK ExtControlBehaviour IMPLEMENTS I_Cyclic
 VAR
 	ThisMover : I_XtsMover;
-	LeaveTest: BOOL;
-	ArriveTest: BOOL;
-	TestMove: BOOL;
-	Position: MC_LREAL;
-	Velocity: MC_LREAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -20,18 +15,37 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF LeaveTest THEN
-	ThisMover.TriggerMoverLeave();
-END_IF
-
-IF ArriveTest THEN
-	ThisMover.TriggerMoverArrive();
-END_IF
-
-IF TestMove THEN
-	ThisMover.MoveTo(RequiredPosition := Position, MoveVelocity := Velocity, NonModuloMove := FALSE);
-	TestMove := FALSE;
-END_IF]]></ST>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Disable" Id="{de056d5c-7619-4cd3-985e-6a0d3f8440cf}">
+      <Declaration><![CDATA[METHOD Disable : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Disable := SUCCEEDED(ThisMover.DisableMover());]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Enable" Id="{fc9ca77d-9c21-42b3-a164-3c3fa5410e23}">
+      <Declaration><![CDATA[METHOD Enable : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Enable := SUCCEEDED(ThisMover.EnableMover());]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoveTo" Id="{468f93df-df4c-4d07-b983-c9e7bb93f621}">
+      <Declaration><![CDATA[METHOD MoveTo : BOOL
+VAR_INPUT
+	Position : LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MoveTo := SUCCEEDED(ThisMover.MoveTo(RequiredPosition := Position,
+									MoveVelocity := 1000.0,
+									NonModuloMove := FALSE));]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyMover" Id="{a5c868b0-cac0-4f55-bd66-8ef755b79feb}">
@@ -53,5 +67,14 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="Reset" Id="{bd85c3c4-76d3-46ae-9b7a-d256e0218e53}">
+      <Declaration><![CDATA[METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Reset := SUCCEEDED(ThisMover.Reset());]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

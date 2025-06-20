@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_ExtControlBehaviour" Id="{02584864-ccb0-48f5-9975-cc5d7d94305f}">
+    <Declaration><![CDATA[INTERFACE I_ExtControlBehaviour
+]]></Declaration>
+    <Method Name="Disable" Id="{68c21db7-82da-4ec2-8bdc-a480ca71eaf6}">
+      <Declaration><![CDATA[METHOD Disable : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Enable" Id="{ce8db8c4-12fb-4719-b2b1-6aa2f966bc42}">
+      <Declaration><![CDATA[METHOD Enable : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MoveTo" Id="{9a2108ae-f3b8-40fa-a5d9-5fcbe39ba384}">
+      <Declaration><![CDATA[METHOD MoveTo : BOOL
+VAR_INPUT
+	Position : LREAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Reset" Id="{18fc1c32-99ec-47dd-ad23-fcbe7293aacb}">
+      <Declaration><![CDATA[METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>
