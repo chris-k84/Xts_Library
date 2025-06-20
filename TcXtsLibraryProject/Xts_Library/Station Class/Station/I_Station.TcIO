@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_Station" Id="{d8773b48-8571-4ecd-8cbd-ba8942597bd4}">
+    <Declaration><![CDATA[INTERFACE I_Station EXTENDS __SYSTEM.IQueryInterface
+]]></Declaration>
+    <Method Name="isComplete" Id="{60ede7f6-c745-40a4-bf92-f3a03a7a1452}">
+      <Declaration><![CDATA[METHOD isComplete : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="MyMover" Id="{e0d36098-8d65-476a-990c-e6fc9c4a3a40}">
+      <Declaration><![CDATA[METHOD MyMover : HRESULT
+VAR_INPUT
+	mover : I_XtsMover;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="Position" Id="{382268c5-e001-4500-92a7-4729d1276a58}">
+      <Declaration><![CDATA[PROPERTY Position : MC_LREAL]]></Declaration>
+      <Get Name="Get" Id="{419af852-7c98-4df9-a521-739afc5b0cdd}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

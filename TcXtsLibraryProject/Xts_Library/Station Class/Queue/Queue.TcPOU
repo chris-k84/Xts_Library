@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="Queue" Id="{8254c78a-3a7c-4581-9f3c-a41ac2249f11}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Queue IMPLEMENTS I_Station, I_Cyclic, I_Resettable, I_Object
+VAR
+	_Complete : BOOL;
+	_Position : LREAL := 0.0;
+	_MyMover : I_XtsMover;
+	_MyStation : I_Station;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Cycle" Id="{b03e5178-a63f-46c3-93a2-0179449aa637}">
+      <Declaration><![CDATA[METHOD Cycle : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_Init" Id="{4a31526b-83cb-4557-8684-f1f086ebc0fe}">
+      <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
+//The return value is not evaluated. For a specific influence, you can also declare the
+//methods explicitly and provide additional code there with the standard initialization
+//code. You can evaluate the return value.
+METHOD FB_Init: BOOL
+VAR_INPUT
+    bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
+    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)  
+	Position : LREAL; 
+	Station : I_Station;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_Position := Position;
+_MyStation := Station;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="isComplete" Id="{e755abc1-1f3a-493a-ad81-ab0e742a23ce}">
+      <Declaration><![CDATA[METHOD isComplete : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[isComplete := _Complete;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MyMover" Id="{0c3e317f-08a9-475b-b84d-7ac86f2701cd}">
+      <Declaration><![CDATA[METHOD MyMover : HRESULT
+VAR_INPUT
+	mover	: I_XtsMover;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF mover = 0 THEN
+	MyMover := -1;
+	RETURN;
+END_IF
+_MyMover := mover;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Position" Id="{0fc938c1-886d-4378-832a-c7a96a3aba48}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Position : MC_LREAL
+]]></Declaration>
+      <Get Name="Get" Id="{f1f2b796-050a-4f8f-ab96-64accc9dc6d5}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Position := _Position;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="RegisterWithParent" Id="{e4dbf09d-b223-4b91-aece-dfac327a7503}">
+      <Declaration><![CDATA[METHOD RegisterWithParent
+VAR_INPUT
+	Runner	: I_HostObjects;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Reset" Id="{145e41f3-13a0-4491-94e4-c131fa0d6b67}">
+      <Declaration><![CDATA[METHOD Reset : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

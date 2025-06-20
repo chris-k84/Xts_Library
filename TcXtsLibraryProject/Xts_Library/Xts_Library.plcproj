@@ -72,7 +72,13 @@
     <Compile Include="Station Class\Process\Process.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\Station\IStation.TcIO">
+    <Compile Include="Station Class\Queue\Queue.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Station Class\Station\I_StationControl.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Station Class\Station\I_Station.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Station Class\Station\Station.TcPOU">
@@ -198,6 +204,7 @@
     <Folder Include="Mover Class" />
     <Folder Include="Mover Behaviours" />
     <Folder Include="Station Class" />
+    <Folder Include="Station Class\Queue" />
     <Folder Include="Station Class\Process" />
     <Folder Include="Station Class\Station" />
     <Folder Include="Station Class\TMSStation">

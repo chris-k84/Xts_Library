@@ -9,7 +9,7 @@ VAR
 	_MoverVelocity : MC_LREAL := 1000.0;
 	stSequenceInfo : StationBehaviourInfo;
 	StationNumber : INT;
-	StationArray : ARRAY[0..19] OF IStation;
+	StationArray : ARRAY[0..19] OF I_StationControl;
 	Process : IProcess;
 	ThisMover : I_XtsMover;
 	ExecuteSequence : BOOL;
@@ -43,7 +43,7 @@ END_VAR
 		END_IF
 			
 	StationBehaviourState.AtStart:
-		IF StationArray[CurrentStation] <> 0 AND_THEN StationArray[CurrentStation].IsReady() THEN
+		IF StationArray[CurrentStation] <> 0 THEN
 			IF SUCCEEDED(ThisMover.MoveTo(RequiredPosition := StationArray[CurrentStation].Position,
 								MoveVelocity := _MoverVelocity,
 								NonModuloMove := _NonModuloMoves)) THEN
@@ -187,7 +187,7 @@ END_VAR
     <Method Name="RegisterAStation" Id="{14d9a1a8-6162-46e7-9803-61945cdf77e8}">
       <Declaration><![CDATA[METHOD RegisterAStation : HRESULT
 VAR_INPUT
-	Station : IStation;
+	Station : I_StationControl;
 END_VAR
 ]]></Declaration>
       <Implementation>

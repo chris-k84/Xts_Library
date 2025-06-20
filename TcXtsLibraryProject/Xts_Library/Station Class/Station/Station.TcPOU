@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Station" Id="{506a1b5f-d283-4b99-9adf-318a9c36fdac}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Station IMPLEMENTS IStation, I_Cyclic, I_Resettable, I_Object
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Station IMPLEMENTS I_StationControl, I_Cyclic, I_Resettable, I_Object
 VAR
 	_IsClear : BOOL := TRUE;
 	_Complete : BOOL;
