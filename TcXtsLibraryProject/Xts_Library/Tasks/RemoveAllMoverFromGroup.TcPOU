@@ -5,6 +5,9 @@
 VAR
 	RemoveAllFromGrp			: MC_UngroupAllAxes;
 	_caGroup			: I_CollisionGroup;
+	_Done 				: BOOL;
+	_Error				: BOOL;
+	_ErrorID			: UDINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -40,6 +43,11 @@ END_VAR
 	Cycle := -1;
 	RETURN;
 END_IF
+_Done := RemoveAllFromGrp.Done OR _Done;
+_Error := RemoveAllFromGrp.Error OR _Error;
+IF RemoveAllFromGrp.ErrorId <> 0 THEN
+	_ErrorId := RemoveAllFromGrp.ErrorId;
+END_IF
 RemoveAllFromGrp(AxesGroup := _caGroup.GroupRef);
 RemoveAllFromGrp.Execute := FALSE;]]></ST>
       </Implementation>
@@ -52,7 +60,7 @@ RemoveAllFromGrp.Execute := FALSE;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := RemoveAllFromGrp.Done;]]></ST>
+          <ST><![CDATA[Done := _Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -64,7 +72,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := RemoveAllFromGrp.Error;]]></ST>
+          <ST><![CDATA[Error := _Error;]]></ST>
         </Implementation>
       </Get>
     </Property>

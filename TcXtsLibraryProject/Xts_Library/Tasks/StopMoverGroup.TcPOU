@@ -5,6 +5,9 @@
 VAR
 	groupStop			: MC_GroupStop;
 	_caGroup			: I_CollisionGroup;
+	_Done 				: BOOL;
+	_Error				: BOOL;
+	_ErrorID			: UDINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -40,6 +43,11 @@ END_VAR
 	cycle := -1;
 	RETURN;
 END_IF
+_Done := groupStop.Done OR _Done;
+_Error := groupStop.Error OR _Error;
+IF groupStop.ErrorId <> 0 THEN
+	_ErrorId := groupStop.ErrorId;
+END_IF
 groupStop(AxesGroup := _caGroup.GroupRef);
 groupStop.Execute := FALSE;]]></ST>
       </Implementation>
@@ -73,7 +81,7 @@ END_IF]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := groupStop.Done;]]></ST>
+          <ST><![CDATA[Done := _Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -85,7 +93,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := groupStop.Error;]]></ST>
+          <ST><![CDATA[Error := _Error;]]></ST>
         </Implementation>
       </Get>
     </Property>

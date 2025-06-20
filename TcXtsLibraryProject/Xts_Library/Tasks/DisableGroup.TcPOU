@@ -2,13 +2,12 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="DisableGroup" Id="{e309beac-a8f6-4753-8ed9-d8f37883f7b3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK DisableGroup  IMPLEMENTS I_Task
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
 VAR
 	groupDisable		: MC_GroupDisable;
 	_caGroup			: I_CollisionGroup;
+	_Done 				: BOOL;
+	_Error				: BOOL;
+	_ErrorID			: UDINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -44,6 +43,11 @@ END_VAR
 	cycle := -1;
 	RETURN;
 END_IF
+_Done := groupDisable.Done OR _Done;
+_Error := groupDisable.Error OR _Error;
+IF groupDisable.ErrorId <> 0 THEN
+	_ErrorId := groupDisable.ErrorId;
+END_IF
 groupDisable(AxesGroup := _caGroup.GroupRef);
 groupDisable.Execute := false;]]></ST>
       </Implementation>
@@ -56,7 +60,7 @@ groupDisable.Execute := false;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := groupDisable.Done;]]></ST>
+          <ST><![CDATA[Done := _Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -68,7 +72,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := groupDisable.Error;]]></ST>
+          <ST><![CDATA[Error := _Error;]]></ST>
         </Implementation>
       </Get>
     </Property>

@@ -5,6 +5,9 @@
 VAR
 	groupReset			: MC_GroupReset;
 	_caGroup			: I_CollisionGroup;
+	_Done 				: BOOL;
+	_Error				: BOOL;
+	_ErrorID			: UDINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -40,8 +43,13 @@ END_VAR
 	cycle := -1;
 	RETURN;
 END_IF
+_Done := groupReset.Done OR _Done;
+_Error := groupReset.Error OR _Error;
+IF groupReset.ErrorId <> 0 THEN
+	_ErrorId := groupReset.ErrorId;
+END_IF
 groupReset(AxesGroup := _caGroup.GroupRef);
-groupReset.Execute := false;]]></ST>
+groupReset.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{c50ed748-a155-44f3-a4e5-da3ebbeffcb4}">
@@ -52,7 +60,7 @@ groupReset.Execute := false;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Done := groupReset.Done;]]></ST>
+          <ST><![CDATA[Done := _Done;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -64,7 +72,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Error := groupReset.Error;]]></ST>
+          <ST><![CDATA[Error := _Error;]]></ST>
         </Implementation>
       </Get>
     </Property>
