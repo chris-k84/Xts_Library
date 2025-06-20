@@ -222,6 +222,7 @@ stSequenceInfo.CurrentStation := UINT_TO_INT(CurrentStation);
 stSequenceInfo.MoverId := ThisMover.AxisRef.NcToPlc.AxisId;
 stSequenceInfo.State := State;
 stSequenceInfo.Velocity := ThisMover.AxisRef.NcToPlc.ActVelo;
+ExecuteSequence := FALSE;
 Reset := 1;]]></ST>
       </Implementation>
     </Method>
@@ -232,15 +233,6 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[ExecuteSequence := TRUE;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="StopIndexing" Id="{900759f2-3678-4971-bb8e-5ef12e59dcf0}">
-      <Declaration><![CDATA[METHOD StopIndexing : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[ExecuteSequence := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="XtsNoHome" Id="{7aad9af3-71dc-4b8d-9a2b-19016c2a644b}">
