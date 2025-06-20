@@ -48,6 +48,9 @@
     <Compile Include="Mover Behaviours\ExtControl\I_ExtControlBehaviour.TcIO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Mover Behaviours\Station Behaviour\I_StationBehaviour.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mover Behaviours\Station Behaviour\StationBehaviour.TcPOU">
       <SubType>Code</SubType>
     </Compile>

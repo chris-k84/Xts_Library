@@ -23,7 +23,7 @@ VAR
 	systemXtsHardware : XTSHardware;				
 	systemCAGroup : CollisionGroup;															
 	MyXts : ThisXTS(systemXtsioEnvVar,systemXtsHardware,systemCAGroup) := (MyXts := 1, ExpectedNumberOfParts := 1, ExpectedNumberOfTracks := 1);
-	MoverSequences : ARRAY[0..NumberOFSystemMovers] OF StationSequence := [8((MyStartPosition := 600.0))];	
+	MoverSequences : ARRAY[0..NumberOFSystemMovers] OF StationBehaviour := [8((MyStartPosition := 600.0))];	
 	initSequence : INT;
 	InitComplete : BOOL;
 END_VAR

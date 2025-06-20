@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_StationBehaviour" Id="{c83df270-a09e-429e-ad85-91c05aa15849}">
+    <Declaration><![CDATA[INTERFACE I_StationBehaviour
+]]></Declaration>
+    <Property Name="MoverVelocity" Id="{5317f276-6413-492d-9d21-d374946fdc4f}">
+      <Declaration><![CDATA[PROPERTY MoverVelocity : mc_lreal]]></Declaration>
+      <Get Name="Get" Id="{21401961-8bae-4b54-8143-993acfe2699e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{d4e38f48-028a-4774-a1cb-ef0b28a48b61}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Method Name="Reset" Id="{ed2e6068-85fb-4db3-9ead-09d65d3faecc}">
+      <Declaration><![CDATA[METHOD Reset : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="StartIndexing" Id="{9d162004-44cf-4117-bb96-7d190fd73fab}">
+      <Declaration><![CDATA[METHOD StartIndexing : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>
