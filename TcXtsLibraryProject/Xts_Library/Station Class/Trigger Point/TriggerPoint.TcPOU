@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="TriggerPoint" Id="{3b207e24-d75e-4621-b3ed-6508fa0edd6b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TriggerPoint IMPLEMENTS I_Cyclic, I_Resettable, I_Object
+VAR
+	_TriggerPointMovers : ARRAY[0..MaxMovers] OF I_XtsMover;
+	_position : LREAL;
+END_VAR
+VAR CONSTANT
+	MaxMovers : INT := 10;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="TriggerPoint">
+      <LineId Id="1" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
