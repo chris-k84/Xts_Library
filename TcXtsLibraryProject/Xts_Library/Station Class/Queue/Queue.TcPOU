@@ -16,7 +16,11 @@ END_VAR
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[IF _MyStation.isComplete() THEN
+	_Complete := TRUE;
+ELSE
+	_Complete := FALSE;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="FB_Init" Id="{4a31526b-83cb-4557-8684-f1f086ebc0fe}">
@@ -84,8 +88,36 @@ END_VAR
       <Declaration><![CDATA[METHOD Reset : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[_Complete := FALSE;]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="Queue">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Queue.Cycle">
+      <LineId Id="2" Count="1" />
+      <LineId Id="5" Count="1" />
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="Queue.FB_Init">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Queue.isComplete">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Queue.MyMover">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Queue.Position.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Queue.RegisterWithParent">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Queue.Reset">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
