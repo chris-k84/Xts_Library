@@ -4,16 +4,123 @@
     <Declaration><![CDATA[FUNCTION_BLOCK TriggerPoint IMPLEMENTS I_Cyclic, I_Resettable, I_Object
 VAR
 	_TriggerPointMovers : ARRAY[0..MaxMovers] OF I_XtsMover;
+	SystemMovers : ARRAY[0..MaxMovers] OF I_XtsMover;
+	NumberOfMovers : INT;
 	_position : LREAL;
+	_range : LREAL;
 END_VAR
 VAR CONSTANT
 	MaxMovers : INT := 10;
-END_VAR]]></Declaration>
+END_VAR ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <LineIds Name="TriggerPoint">
-      <LineId Id="1" Count="0" />
-    </LineIds>
+    <Method Name="Cycle" Id="{d6eab57b-cfae-4645-975e-c4c454010bba}">
+      <Declaration><![CDATA[METHOD Cycle : HRESULT
+VAR 
+	i : INT;
+	arrivingMover : I_XtsMover;
+	detected : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i := 0 TO MaxMovers DO
+	IF SystemMovers[i] <> 0 THEN
+		IF SystemMovers[i].AxisRef.NcToPlc.ModuloActPos < _position + 10.0 AND
+			SystemMovers[i].AxisRef.NcToPlc.ModuloActPos > _position - 10.0 THEN
+			arrivingMover := SystemMovers[i];
+		END_IF
+	END_IF
+END_FOR
+IF arrivingMover <> 0 THEN
+	FOR i := 0 TO MaxMovers DO
+		IF arrivingMover = _TriggerPointMovers[i] THEN
+			detected := TRUE;
+		END_IF
+	END_FOR
+	IF NOT detected THEN
+		FOR i := 0 TO MaxMovers DO
+			IF _TriggerPointMovers[i] = 0 THEN
+				_TriggerPointMovers[i] := arrivingMover;
+				EXIT;
+			END_IF
+		END_FOR
+	END_IF
+END_IF
+FOR i := 0 TO MaxMovers DO
+	IF _TriggerPointMovers[i] <> 0 AND_THEN 
+		_TriggerPointMovers[i].AxisRef.NcToPlc.ModuloActPos > _position + _range THEN
+		_TriggerPointMovers[i] := 0;
+	END_IF
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_Init" Id="{e845fedb-d2ed-4b96-bd3d-fedfbc78ddd6}">
+      <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
+//The return value is not evaluated. For a specific influence, you can also declare the
+//methods explicitly and provide additional code there with the standard initialization
+//code. You can evaluate the return value.
+METHOD FB_Init: BOOL
+VAR_INPUT
+    bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
+    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)   
+	Position : LREAL;
+	Range : LREAL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_range := Range;
+_position := Position;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Position" Id="{c71cd478-609b-4fc2-8d05-30d780bf9546}">
+      <Declaration><![CDATA[PROPERTY Position : lreal]]></Declaration>
+      <Get Name="Get" Id="{451cf0fe-6fca-4a29-afbe-d1677f0ae1dd}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Position := _Position;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="RegisterMovers" Id="{44c86865-f914-40c8-9d7f-ebabcc61d481}">
+      <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
+VAR_INPUT
+	MyMover : I_XtsMover;
+END_VAR
+VAR
+	i : uINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF MyMover <> 0 THEN
+	SystemMovers[NumberOfMovers] := MyMover;
+	NumberOfMovers := NumberOfMovers + 1;
+ELSE
+	RegisterMovers := -1;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RegisterWithParent" Id="{37f95e6a-9c59-4bc9-8631-6fedca7eef6e}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD RegisterWithParent
+VAR_INPUT
+	Runner	: Base_Library.I_HostObjects;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Reset" Id="{8a4824d9-717e-48ab-a44e-c26909b89697}">
+      <Declaration><![CDATA[METHOD Reset : HRESULT
+VAR
+	i : INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i := 0 TO MaxMovers DO
+	_TriggerPointMovers[i] := 0;
+END_FOR
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
