@@ -2,7 +2,7 @@
 
 ## Contents
 
-1. [Background](#Background})
+1. [Background](#Background)
 2. [Project Description](#Description)
 3. [System Design](#System-Design)
 4. [Tests](#Tests)
@@ -35,7 +35,7 @@ This allows functionality like resetting parts, activating tracks for movers, se
 
 ## Tests
 
-Tests will be performed using a testing framework **[Tc3_UnitTest](https://github.com/PeterZerlauth/Tc3_UnitTest)** by Peter Zerlauth. Being Honest testing was not done at the start, but at least Unit Tests will be rolled out to the older components. Refactoring components will allow TDD to be used on some elements. To keep it clean any additions must now have a test.
+Tests will be performed using a testing framework. Being Honest testing was not done at the start, but at least Unit Tests will be rolled out to the older components. Refactoring components will allow TDD to be used on some elements. To keep it clean any additions must now have a test.
 
 ## Support
 
