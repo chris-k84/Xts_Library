@@ -26,6 +26,8 @@ VAR
 	MoverSequences : ARRAY[0..NumberOFSystemMovers] OF StationBehaviour := [8((MyStartPosition := 600.0))];	
 	initSequence : INT;
 	InitComplete : BOOL;
+	Trigger1 : TriggerPoint(Position := 100.0, Range := 200);
+	Trigger2 : TriggerPoint(Position := 1500.0, Range := 200);
 END_VAR
 VAR CONSTANT
 	NumberOFSystemMovers : INT := 7;
@@ -50,7 +52,9 @@ Station1.Cycle();
 Station2.Cycle();
 Station3.Cycle();
 Station4.Cycle();
-Station5.Cycle();]]></ST>
+Station5.Cycle();
+Trigger1.Cycle();
+Trigger2.Cycle();]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{4069299b-b0bd-441e-b636-7c39202b14ad}">
@@ -77,6 +81,8 @@ END_VAR
 	3:
 		FOR i := 0 TO NumberOFSystemMovers DO
 			MyXts.RegisterMovers(MyMover := iMovers[i]);
+			Trigger1.RegisterMovers(MyMover := iMovers[i]);
+			Trigger2.RegisterMovers(MyMover := iMovers[i]);
 		END_FOR
 		initSequence := 4;
 	4:
