@@ -15,19 +15,19 @@ END_VAR]]></Declaration>
 END_IF
 fbMachine.Cycle();
 
-IF Reset THEN
+IF Init AND Reset THEN
 	IF fbMachine.Reset() THEN
 		Reset := FALSE;
 	END_IF
 END_IF
 
-IF Stop THEN
+IF Init AND Stop THEN
 	IF fbMachine.Stop() THEN
 		Stop := FALSE;
 	END_IF
 END_IF
 
-IF Start THEN
+IF Init AND Start THEN
 	IF fbMachine.Start() THEN
 		Start := FALSE;
 	END_IF
