@@ -53,13 +53,13 @@ GearCATestSuite();
 MoveMoverTestSuite();
 AddMoverTestSuite();
 RemoveAllTestSuite();
-RemoveAllTestSuite();
+RemoveAMoverTestSuite();
 CaGroupTestSuite();
 GroupStopTestSuite();
 EnableSequenceTestSuite();
 DisableSequenceTestSuite();
 IF ReRun THEN
-	FOR i := 0 TO 15 DO
+	FOR i := 0 TO 16 DO
 		TestSuites[i].ReRunTests();
 	END_FOR
 	ReRun := FALSE;
