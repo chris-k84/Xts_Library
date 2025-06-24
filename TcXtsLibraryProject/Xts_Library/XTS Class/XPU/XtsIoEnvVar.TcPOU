@@ -42,9 +42,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetXPUInterface := XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts));
-
-]]></ST>
+        <ST><![CDATA[GetXPUInterface := XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts));]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{f0d17991-21f7-403c-899a-0fcccbff041e}">
