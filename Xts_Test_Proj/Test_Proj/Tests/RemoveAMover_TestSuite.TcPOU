@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="RemoveAMover_TestSuite" Id="{073eca12-f7a7-4609-978a-c4fbddc5e48d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK RemoveAMover_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+VAR
+	stubGroup : CollisionGroup;
+	testRemoveAMover : RemoveMoverFromGroup(GroupRef := stubGroup);
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TaskAcceptsRemoveCommand();]]></ST>
+    </Implementation>
+    <Method Name="TaskAcceptsRemoveCommand" Id="{9701816a-7347-4094-8354-4a80b2556129}">
+      <Declaration><![CDATA[METHOD TaskAcceptsRemoveCommand
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(testRemoveAMover.Execute(AxisID := 2));
+	testRemoveAMover.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

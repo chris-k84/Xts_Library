@@ -15,6 +15,7 @@ VAR
 	MoveMoverTestSuite : MoveMoverTask_TestSuite := (TestSuiteName := 'MoveMoverTestSuite');
 	AddMoverTestSuite : AddMover_TestSuite := (TestSuiteName := 'AddMoverTestSuite');
 	RemoveAllTestSuite : RemoveAllMover_TestSuite := (TestSuiteName := 'RemoveAllTestSuite');
+	RemoveAMoverTestSuite : RemoveAMover_TestSuite := (TestSuiteName := 'RemoveAMoverTestSuite');
 	CaGroupTestSuite : XtsCaGroupTestSuite := (TestSuiteName := 'CAGroupTestSuite');
 	GroupStopTestSuite : StopGroupTask_TestSuite := (TestSuiteName := 'StopGroupTestSuite');
 	EnableSequenceTestSuite : EnableSequence_TestSuite := (TestSuiteName := 'EnableSequenceTestSuite');
@@ -51,6 +52,7 @@ ResetGroupTestSuite();
 GearCATestSuite();
 MoveMoverTestSuite();
 AddMoverTestSuite();
+RemoveAllTestSuite();
 RemoveAllTestSuite();
 CaGroupTestSuite();
 GroupStopTestSuite();
