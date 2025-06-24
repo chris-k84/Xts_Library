@@ -101,17 +101,17 @@ END_VAR
       </Get>
     </Property>
     <Method Name="Execute" Id="{efa5d448-3299-4d10-a02c-919548e37d2d}">
-      <Declaration><![CDATA[METHOD Execute : BOOL
+      <Declaration><![CDATA[METHOD Execute : HRESULT
 VAR_INPUT
 	AxisID : IDENT_IN_GROUP_REF;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT _Leave THEN
-	Execute := _Leave := TRUE;
+	_Leave := TRUE;
 	mcRemoveAxisFromGroup.IdentInGroup := AxisID;
 ELSE
-	Execute := false;
+	Execute := -1;
 END_IF]]></ST>
       </Implementation>
     </Method>
