@@ -312,20 +312,24 @@ END_VAR
       </Get>
     </Property>
     <Method Name="Initialise" Id="{158eaadb-7779-40c3-b4d7-ef64750e6b36}" FolderPath="Administration\">
-      <Declaration><![CDATA[METHOD Initialise : BOOL
+      <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR_INPUT
 END_VAR
 VAR
 	i : INT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _ipTcIoXtsMover <> 0 AND isMoverDetected() AND MyTrackCount <> 0 THEN
-	myControllerOid := _ipTcIoXtsMover.P_MoverControllerOid;
-	MyId := _ipTcIoXtsMover.GetAxisId();
-	_CurrentTrack := MyTracks[MoversActiveTrack - 1];
-	Initialised := Initialise:= TRUE;
+        <ST><![CDATA[IF Initialised THEN
+	RETURN;
 END_IF
-]]></ST>
+IF _ipTcIoXtsMover = 0 OR NOT isMoverDetected() OR MyTrackCount = 0 THEN
+	Initialise := -1;
+	RETURN;
+END_IF
+myControllerOid := _ipTcIoXtsMover.P_MoverControllerOid;
+MyId := _ipTcIoXtsMover.GetAxisId();
+_CurrentTrack := MyTracks[MoversActiveTrack - 1];
+Initialised := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="IsActive" Id="{4093fe18-48a9-45f2-9701-210b5183f8f4}" FolderPath="Status\">
