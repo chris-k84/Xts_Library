@@ -372,7 +372,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[isMoverDetected := _MyNCData.AxisId <> 0;]]></ST>
+        <ST><![CDATA[isMoverDetected := MyAxisRef.NcToPlc.AxisId <> 0;]]></ST>
       </Implementation>
     </Method>
     <Method Name="isMoverEnabled" Id="{7f5530a3-9bf6-4669-8c7b-76814da68801}" FolderPath="Status\">
