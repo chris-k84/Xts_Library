@@ -15,6 +15,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="HasError" Id="{af275816-6e74-427c-9fdf-440990004afa}">
+      <Declaration><![CDATA[METHOD HasError : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="IsInitialised" Id="{e1565fab-ac95-48ac-ae78-e46b6110b4fc}">
       <Declaration><![CDATA[METHOD IsInitialised : BOOL
 ]]></Declaration>
