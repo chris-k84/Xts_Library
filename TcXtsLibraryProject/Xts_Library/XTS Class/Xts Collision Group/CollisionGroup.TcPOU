@@ -196,8 +196,9 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT grpStop.Busy THEN
-	GroupStop := 2;
 	grpStop.Execute();
+ELSE
+	GroupStop := -1;
 END_IF]]></ST>
       </Implementation>
     </Method>
