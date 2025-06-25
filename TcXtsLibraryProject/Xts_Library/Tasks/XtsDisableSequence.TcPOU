@@ -64,11 +64,11 @@ CASE State OF
 			_Done := FALSE;
 			_Error := FALSE;
 			IF _caGroup.GroupState = CAGroupStatus.mcGroupStateMoving THEN
-				IF _caGroup.GroupStop() = 2 THEN
+				IF SUCCEEDED(_caGroup.GroupStop()) THEN
 					State := 10;
 				END_IF
 			ELSE
-				IF _caGroup.RemoveAllMovers() = 2 THEN
+				IF SUCCEEDED(_caGroup.RemoveAllMovers()) THEN
 					State := 20;
 				END_IF
 				
