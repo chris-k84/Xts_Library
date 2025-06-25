@@ -19,7 +19,6 @@ VAR
 	DisabledTrigger : R_TRIG;
 	_registeredNumberOfMovers: INT;
 	DetectedMoverCount : UDINT;
-	MoverRegistered: BOOL;
 END_VAR
 VAR CONSTANT
 	MaxMovers : INT := 255;
@@ -294,36 +293,36 @@ VAR_INPUT
 	MyMover : I_XtsMover;
 END_VAR
 VAR
-	i : uINT;
+	i : UINT;
+	MoverRegistered: BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyMover <> 0 AND Initialised THEN
-	MoverRegistered := FALSE;
-	FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
-		IF _MoverArray[i] = MyMover THEN
-			MoverRegistered := TRUE;
-			RegisterMovers := -2;
-		END_IF
-	END_FOR
-	IF NOT MoverRegistered AND_THEN _registeredNumberOfMovers <= MaxMovers THEN
-		_MoverArray[_registeredNumberOfMovers] := MyMover;
-		_registeredNumberOfMovers := _registeredNumberOfMovers + 1;
-		EnableSequence.RegisterMovers(MyMover);
-		DisableSequence.RegisterMovers(MyMover);
-		FOR i := 1 TO _MyXtsHardware.DetectedNumberOfTracks DO
-			MyMover.RegisterTracks(Track := _MyXtsHardware.GetTrackByNumber(i));
-		END_FOR
-		FOR i := 1 TO TO_UINT(_XPU.GetDetectedMoverCount()) DO
-			IF MyMover.AxisRef.NcToPlc.AxisId = _XPU.MoverTcIo(i).GetAxisId() THEN
-				MyMover.MoverXtsIoEnvInterface := _XPU.MoverTcIo(i);
-			END_IF
-		END_FOR
-		RegisterMovers := 1;
-	END_IF
-ELSE
+        <ST><![CDATA[IF MyMover = 0 OR NOT Initialised OR _registeredNumberOfMovers >= MaxMovers THEN
 	RegisterMovers := -1;
+	RETURN;
 END_IF
-]]></ST>
+FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
+	IF _MoverArray[i] = MyMover THEN
+		MoverRegistered := TRUE;
+		EXIT;
+	END_IF
+END_FOR
+IF MoverRegistered THEN
+	RegisterMovers := -1;
+	RETURN;
+END_IF
+_MoverArray[_registeredNumberOfMovers] := MyMover;
+_registeredNumberOfMovers := _registeredNumberOfMovers + 1;
+EnableSequence.RegisterMovers(MyMover);
+DisableSequence.RegisterMovers(MyMover);
+FOR i := 1 TO _MyXtsHardware.DetectedNumberOfTracks DO
+	MyMover.RegisterTracks(Track := _MyXtsHardware.GetTrackByNumber(i));
+END_FOR
+FOR i := 1 TO TO_UINT(_XPU.GetDetectedMoverCount()) DO
+	IF MyMover.AxisRef.NcToPlc.AxisId = _XPU.MoverTcIo(i).GetAxisId() THEN
+		MyMover.MoverXtsIoEnvInterface := _XPU.MoverTcIo(i);
+	END_IF
+END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="RegisterWithParent" Id="{5a27c335-0022-4ddf-98ff-1436953bbdbd}">
