@@ -55,6 +55,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="HasError" Id="{aa92935b-8bf7-4f59-b6a9-3d39ad26e8d4}">
+      <Declaration><![CDATA[METHOD HasError : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Property Name="MyName" Id="{989d2fa8-4a9f-4077-ad60-57e1e6700080}">
       <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
       <Get Name="Get" Id="{962bda42-6307-4da5-99e1-648fbb7790b1}">

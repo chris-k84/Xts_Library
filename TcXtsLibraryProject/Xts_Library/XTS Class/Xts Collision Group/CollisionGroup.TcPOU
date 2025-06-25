@@ -99,9 +99,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF _ICaGroup <> 0 THEN
-	ReadGroupStatus(
-	AxesGroup:= _caGroup, 
-	Enable:= TRUE );
+	ReadGroupStatus(AxesGroup:= _caGroup, Enable:= TRUE );
 	ResetCaGroupResult := resetCAGroup.Cycle();
 	EnableCaGroupResult := enableCAGroup.Cycle();
 	DisableCaGroupResult := disableCAGroup.Cycle();
@@ -201,6 +199,15 @@ END_VAR
 	GroupStop := 2;
 	grpStop.Execute();
 END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HasError" Id="{e1aaf2e2-0632-43ae-a244-955414f48a72}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD HasError : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[HasError := ReadGroupStatus.GroupErrorStop;]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyName" Id="{e6811d98-40d4-4440-8374-6ce3386e7963}" FolderPath="Status\">
