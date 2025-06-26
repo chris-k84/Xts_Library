@@ -29,23 +29,6 @@ END_VAR]]></Declaration>
     <Folder Name="Operations" Id="{0e8598c4-3d58-4c14-a12f-6fd3f3ea02bf}" />
     <Folder Name="Settings" Id="{cec05bdb-9232-4b5d-b91e-848bd7bc55d9}" />
     <Folder Name="Status" Id="{c34f5481-c408-4671-a299-9c4a6e31956c}" />
-    <Method Name="ActivateTracksInMovers" Id="{682f2d4e-bf73-44bf-93e3-716a6d45755c}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD PUBLIC ActivateTracksInMovers : BOOL
-VAR
-	ActivateTrackResult : BOOL;
-	i : INT;
-	track : OTCID;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[ActivateTracksInMovers := TRUE;
-FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
-// 	track := _MoverArray[i].MoversActiveTrack;
-	IF _MoverArray[i].ActivateTrack(Track := 1) = -1 THEN
-		ActivateTracksInMovers := FALSE;
-	END_IF
-END_FOR]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="Cycle" Id="{da42838e-fb00-40a5-96f4-b787aa883566}">
       <Declaration><![CDATA[METHOD PUBLIC Cycle : HRESULT
 VAR
@@ -157,17 +140,6 @@ EnableSequence.MyCollisionGroup := ICollisionGroup;
 DisableSequence.MyCollisionGroup := ICollisionGroup;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetTMSMoverInterface" Id="{0e64eced-3444-47ea-9660-c818e7a9dea9}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD PROTECTED GetTMSMoverInterface : BOOL
-VAR
-	i : INT;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
-	_MoverArray[i].MoverXtsIoEnvInterface := _XPU.MoverTcIo(TO_UINT(i + 1));
-END_FOR]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="HasError" Id="{deaa9733-0676-46c6-9e2e-c283006fe443}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD HasError : BOOL
 VAR_INPUT
@@ -177,7 +149,7 @@ END_VAR
         <ST><![CDATA[HasError := ICollisionGroup.HasError();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}" FolderPath="Operations\">
+    <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR
 	i : INT;
