@@ -29,17 +29,23 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="StubXts">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StubXts.Cycle">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StubXts.Initialise">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="StubXts.MoverHomeSequence">
-      <LineId Id="2" Count="0" />
-    </LineIds>
+    <Method Name="SetDisabled" Id="{ffa0c583-2569-4ebd-98eb-9a7b4dc88c53}">
+      <Declaration><![CDATA[METHOD SetDisabled : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_XtsEnabled := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setEnabled" Id="{626722de-9774-4f59-8220-0e027083d3f9}">
+      <Declaration><![CDATA[METHOD setEnabled : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_XtsEnabled := TRUE;]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

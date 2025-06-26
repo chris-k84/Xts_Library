@@ -82,7 +82,9 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[DisableXTS := SUCCEEDED(DisableSequence.Disable());]]></ST>
+        <ST><![CDATA[IF _XtsEnabled THEN
+	DisableXTS := SUCCEEDED(DisableSequence.Disable());
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="EnableXTS" Id="{e800781e-1435-4747-9cb4-9b9fab34ca22}" FolderPath="Operations\">
@@ -91,7 +93,9 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[EnableSequence.Enable();]]></ST>
+        <ST><![CDATA[IF NOT _XtsEnabled THEN
+	EnableXts := SUCCEEDED(EnableSequence.Enable());
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Property Name="ExpectedNumberOfParts" Id="{33632734-2180-4c77-982d-f6997ead5bb5}" FolderPath="Settings\">

@@ -14,10 +14,57 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[XtsRejectsDuplicateRegistrations_Test();
-XtsRejectsEmptyMoverInterface_Test();]]></ST>
+XtsRejectsEmptyMoverInterface_Test();
+XtsAcceptsDisableCommand_Test();
+XtsAcceptsEnableCommand_Test();
+XtsRejectsDisableWhenDisabled_Test();
+XtsRejectsEnableWhenEnabled_Test();]]></ST>
     </Implementation>
+    <Method Name="XtsAcceptsDisableCommand_Test" Id="{f8ea2a77-94f0-4c09-a5a9-d20e2ad17dfc}">
+      <Declaration><![CDATA[METHOD XtsAcceptsDisableCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setEnabled();
+	Actual := testXts.DisableXTS();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsAcceptsEnableCommand_Test" Id="{f5da7832-8339-4541-a917-31e129a60357}">
+      <Declaration><![CDATA[METHOD XtsAcceptsEnableCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testXts.SetDisabled();
+	Actual := testXts.EnableXTS();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsDisableWhenDisabled_Test" Id="{65525f81-11d3-467d-8594-1727392c33c6}">
+      <Declaration><![CDATA[METHOD XtsRejectsDisableWhenDisabled_Test
+VAR_INST
+	Expected : BOOL := FALSE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testXts.SetDisabled();
+	Actual := testXts.DisableXTS();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="XtsRejectsDuplicateRegistrations_Test" Id="{2abcd70d-a448-49f3-9d1e-d845a3867de7}">
-      <Declaration><![CDATA[METHOD XtsRejectsDuplicateRegistrations_Test : BOOL
+      <Declaration><![CDATA[METHOD XtsRejectsDuplicateRegistrations_Test
 VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -45,17 +92,21 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="Xts_TestSuite">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts_TestSuite.XtsRejectsDuplicateRegistrations_Test">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts_TestSuite.XtsRejectsEmptyMoverInterface_Test">
-      <LineId Id="3" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
+    <Method Name="XtsRejectsEnableWhenEnabled_Test" Id="{0d306c58-1eca-439d-a25b-472acf610587}">
+      <Declaration><![CDATA[METHOD XtsRejectsEnableWhenEnabled_Test
+VAR_INST
+	Expected : BOOL := FALSE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setEnabled();
+	Actual := testXts.EnableXTS();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
