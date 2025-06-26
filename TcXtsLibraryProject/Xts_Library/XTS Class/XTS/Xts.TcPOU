@@ -327,7 +327,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[ICollisionGroup.Reset();]]></ST>
+        <ST><![CDATA[Reset := SUCCEEDED(ICollisionGroup.Reset());]]></ST>
       </Implementation>
     </Method>
     <Method Name="StopXts" Id="{4b648283-f5f4-4d47-a58f-be53e519365d}" FolderPath="Operations\">
@@ -336,7 +336,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[ICollisionGroup.GroupStop();]]></ST>
+        <ST><![CDATA[StopXTS := SUCCEEDED(ICollisionGroup.GroupStop());]]></ST>
       </Implementation>
     </Method>
   </POU>
