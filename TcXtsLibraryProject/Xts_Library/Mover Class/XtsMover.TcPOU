@@ -176,7 +176,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF (NOT EnableBehaviour.Busy) AND NOT THIS^.isMoverEnabled() THEN // AND _CurrentTrack <> 0 THEN
+        <ST><![CDATA[IF (NOT EnableBehaviour.Busy) AND NOT THIS^.isMoverEnabled() THEN
 	EnableBehaviour.Enable();
 	EnableMover := 1;
 ELSE
