@@ -282,9 +282,14 @@ VAR
 	MoverRegistered: BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyMover = 0 OR NOT Initialised OR _registeredNumberOfMovers >= MaxMovers THEN
+        <ST><![CDATA[IF MyMover = 0 THEN
 	RegisterMovers := -1;
-	RETURN;
+END_IF
+IF NOT Initialised THEN
+	RegisterMovers := -2;
+END_IF
+IF _registeredNumberOfMovers >= MaxMovers THEN
+	RegisterMovers := -3;
 END_IF
 FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
 	IF _MoverArray[i] = MyMover THEN
@@ -293,9 +298,12 @@ FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
 	END_IF
 END_FOR
 IF MoverRegistered THEN
-	RegisterMovers := -1;
+	RegisterMovers := -4;
+END_IF
+IF FAILED(RegisterMovers) THEN
 	RETURN;
 END_IF
+
 _MoverArray[_registeredNumberOfMovers] := MyMover;
 _registeredNumberOfMovers := _registeredNumberOfMovers + 1;
 EnableSequence.RegisterMovers(MyMover);
