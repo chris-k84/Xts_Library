@@ -39,8 +39,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="MoverHomeSequence_1" Id="{80de9bd3-37be-4579-86bc-1293deec4463}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD PUBLIC Abstract MoverHomeSequence_1 : BOOL
+    <Method Name="MoverHomeSequence" Id="{80de9bd3-37be-4579-86bc-1293deec4463}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD PUBLIC Abstract MoverHomeSequence : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
