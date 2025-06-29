@@ -47,5 +47,41 @@ END_VAR
         <ST><![CDATA[_XtsEnabled := TRUE;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="setInitialised" Id="{2528f3aa-d996-4ef3-863b-9b23baf28b1f}">
+      <Declaration><![CDATA[METHOD setInitialised : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Initialised := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setMoverNumberMax" Id="{5d9d367e-74e6-410a-9121-5a46c3dda01c}">
+      <Declaration><![CDATA[METHOD setMoverNumberMax : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_registeredNumberOfMovers := 255;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setMoverNumberZero" Id="{8cc461ce-7c43-4e66-86ca-dfa650521876}">
+      <Declaration><![CDATA[METHOD setMoverNumberZero : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_registeredNumberOfMovers := 0;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setNotInitialised" Id="{fabc083b-0f7d-43b1-ade2-afd02e1ebe1b}">
+      <Declaration><![CDATA[METHOD setNotInitialised : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Initialised := FALSE;]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
