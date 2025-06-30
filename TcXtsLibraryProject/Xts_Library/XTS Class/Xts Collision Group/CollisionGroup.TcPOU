@@ -43,25 +43,27 @@ END_VAR]]></Declaration>
 	AddMoverToThisGroup := -1;
 	RETURN;
 END_IF
-
 FOR i := 0 TO MaxMovers DO
 	IF GroupMovers[i] = MoverToAdd THEN
 		registered := TRUE;
 	END_IF
 END_FOR
-IF NOT registered AND NOT addMover.Busy THEN
-	addMover.AddMover(MoverToAdd := MoverToAdd);
-	MoverToAdd.MyCAGroup  := THIS^;
-	FOR i := 0 TO MaxMovers DO
-		IF GroupMovers[i] = 0 THEN
-			GroupMovers[i] := MoverToAdd;
-			EXIT;
-		END_IF
-	END_FOR
-ELSE
-	AddMoverToThisGroup := -1;
+IF registered THEN
+	AddMoverToThisGroup := -2;
+	RETURN;
 END_IF
-]]></ST>
+IF addMover.Busy THEN
+	AddMoverToThisGroup := -3;
+	RETURN;
+END_IF
+addMover.AddMover(MoverToAdd := MoverToAdd);
+MoverToAdd.MyCAGroup  := THIS^;
+FOR i := 0 TO MaxMovers DO
+	IF GroupMovers[i] = 0 THEN
+		GroupMovers[i] := MoverToAdd;
+		EXIT;
+	END_IF
+END_FOR]]></ST>
       </Implementation>
     </Method>
     <Property Name="CAGroupXtsIoEnvInterface" Id="{212be6c7-141f-4d0f-8757-6216cdee75b6}">
