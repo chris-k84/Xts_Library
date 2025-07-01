@@ -65,7 +65,7 @@ END_VAR]]></Declaration>
 		State := 20;
 		
 	20:
-		IF _caGroup.GroupState = CAGroupStatus.mcGroupStateErrorStop THEN
+		IF _caGroup.IsInErrorStop THEN
 			_caGroup.Reset();
 		END_IF
 		State := 30;
@@ -103,7 +103,7 @@ END_VAR]]></Declaration>
 		END_IF
 		
 	70:
-		IF _caGroup.GroupState = 2 THEN
+		IF _caGroup.IsInStandBy THEN
 			State := 0;
 			_Busy := FALSE;
 			_Done := TRUE;

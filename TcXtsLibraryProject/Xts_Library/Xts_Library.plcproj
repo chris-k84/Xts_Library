@@ -176,9 +176,6 @@
     <Compile Include="XTS Class\Xts Collision Group\CAGroupInfo.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Xts Collision Group\CAGroupStatus.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="XTS Class\Xts Collision Group\CollisionGroup.TcPOU">
       <SubType>Code</SubType>
     </Compile>

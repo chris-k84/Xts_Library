@@ -63,7 +63,7 @@ CASE State OF
 			_Busy := TRUE;
 			_Done := FALSE;
 			_Error := FALSE;
-			IF _caGroup.GroupState = CAGroupStatus.mcGroupStateMoving THEN
+			IF _caGroup.IsMoving THEN
 				IF SUCCEEDED(_caGroup.GroupStop()) THEN
 					State := 10;
 				END_IF
@@ -76,7 +76,7 @@ CASE State OF
 		END_IF
 		
 	10:
-		IF _caGroup.GroupState = CAGroupStatus.mcGroupStateStandby THEN
+		IF _caGroup.IsInStandBy THEN
 			IF SUCCEEDED(_caGroup.RemoveAllMovers()) THEN
 				State := 20;
 			END_IF
@@ -100,13 +100,13 @@ CASE State OF
 			CaGroupDisableResult := _caGroup.Disable();
 		END_IF
 	40:
-		IF _caGroup.GroupState = CAGroupStatus.mcGroupStateErrorStop THEN
+		IF _caGroup.IsInErrorStop THEN
 			CaGroupResetResult := SUCCEEDED(_caGroup.Reset());
 		END_IF	
 		State := 50;
 		
 	50:
-		IF _caGroup.GroupState = 1 THEN
+		IF _caGroup.IsDisabled THEN
 			State := 0;
 			Cycle := S_OK;
 			_Busy := FALSE;
