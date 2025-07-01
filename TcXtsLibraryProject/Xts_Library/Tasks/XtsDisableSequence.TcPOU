@@ -116,8 +116,6 @@ CASE State OF
 		Cycle := E_FAIL;
 END_CASE
 
-
-
 IF RemoveAllCycleResult = E_FAIL OR GrpStopCycleResult = E_FAIL THEN
 	Cycle := E_FAIL;
 END_IF]]></ST>
