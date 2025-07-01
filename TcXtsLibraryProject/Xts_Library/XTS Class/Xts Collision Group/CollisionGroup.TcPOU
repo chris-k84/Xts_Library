@@ -17,7 +17,7 @@ VAR
 	addMover : AddMoverToGroupTask := (MyCollisionGroup := THIS^);
 	removeAllAxes : RemoveAllMoverFromGroup := (MyCollisionGroup := THIS^);
 	grpStop : StopMoverGroup := (MyCollisionGroup := THIS^);
-	removeMover : RemoveMoverFromGroup(THIS^);
+	removeMover : RemoveMoverFromGroup := (MyCollisionGroup := THIS^);
 	_MyName: STRING;
 	GroupMovers : ARRAY[0..MaxMovers] OF I_XtsMover;
 END_VAR
