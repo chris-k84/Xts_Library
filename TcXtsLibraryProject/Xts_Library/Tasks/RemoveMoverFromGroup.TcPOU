@@ -4,9 +4,9 @@
     <Declaration><![CDATA[FUNCTION_BLOCK RemoveMoverFromGroup  IMPLEMENTS I_Task
 VAR
 	mcRemoveAxisFromGroup : MC_RemoveAxisFromGroup;
-	_GroupRef : I_CollisionGroup;
+	_caGroup : I_CollisionGroup;
 	_Leave: BOOL;
-		State: INT;
+	State: INT;
 	_Done: BOOL;
 	_Error: BOOL;
 	_Busy: BOOL;
@@ -74,7 +74,7 @@ CASE State OF
 		Cycle := E_FAIL;
 END_CASE
 
-mcRemoveAxisFromGroup(AxesGroup := _GroupRef.GroupRef);]]></ST>
+mcRemoveAxisFromGroup(AxesGroup := _caGroup.GroupRef);]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{df5f6adc-b19a-43ee-9c29-ce0366089b3b}">
@@ -117,18 +117,24 @@ _Leave := TRUE;
 mcRemoveAxisFromGroup.IdentInGroup := AxisID;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="FB_init" Id="{603a2033-f770-4d8a-b85b-8ffc6acb4bdf}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
-VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	GroupRef : I_CollisionGroup;
+    <Property Name="MyCollisionGroup" Id="{f47e6921-e615-4f7a-b716-f9c7b5078fd6}">
+      <Declaration><![CDATA[PROPERTY MyCollisionGroup : I_CollisionGroup]]></Declaration>
+      <Get Name="Get" Id="{f0470e42-6eeb-4eb6-90b1-c6a9786719dd}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_GroupRef := GroupRef;
-]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[MyCollisionGroup := _caGroup;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{f1fd62e0-9180-4b79-858e-6bf0b96aa520}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_caGroup := MyCollisionGroup;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
   </POU>
 </TcPlcObject>
