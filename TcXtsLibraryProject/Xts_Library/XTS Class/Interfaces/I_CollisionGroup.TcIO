@@ -3,7 +3,9 @@
   <Itf Name="I_CollisionGroup" Id="{3fc566cf-3f15-4187-97a8-f8d156c2ea05}">
     <Declaration><![CDATA[INTERFACE I_CollisionGroup
 ]]></Declaration>
-    <Method Name="AddMoverToThisGroup" Id="{e0521e35-3414-4dd6-b2e7-4ac92ca8a051}">
+    <Folder Name="Commands" Id="{8beee7c9-6c57-495f-8157-bb3d16e9e090}" />
+    <Folder Name="Status" Id="{c894277c-e5b7-477b-b238-fbc580fc1f1e}" />
+    <Method Name="AddMoverToThisGroup" Id="{e0521e35-3414-4dd6-b2e7-4ac92ca8a051}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD AddMoverToThisGroup : HRESULT
 VAR_INPUT
 	MoverToAdd : I_XtsMover;
@@ -19,19 +21,19 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="Disable" Id="{716927af-8c3f-479d-962f-20b060f08214}">
+    <Method Name="Disable" Id="{716927af-8c3f-479d-962f-20b060f08214}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Disable : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="Enable" Id="{7961c446-8ffb-4a93-bee2-efac793ad03b}">
+    <Method Name="Enable" Id="{7961c446-8ffb-4a93-bee2-efac793ad03b}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Enable : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GetAxisCount" Id="{c1a4af34-8409-44b5-8d2c-3faa797a2cef}">
+    <Method Name="GetAxisCount" Id="{c1a4af34-8409-44b5-8d2c-3faa797a2cef}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD GetAxisCount : udint
 VAR_INPUT
 END_VAR
@@ -43,43 +45,67 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="GroupState" Id="{ccaa4875-e7b8-4aad-9434-8ae988f5aafa}">
-      <Declaration><![CDATA[PROPERTY GroupState : CAGroupStatus]]></Declaration>
-      <Get Name="Get" Id="{6ce504cb-b674-4e50-8b81-3854a9614761}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-    </Property>
-    <Method Name="GroupStop" Id="{da0fa42b-dbcd-4e72-85b3-93d42f55308f}">
+    <Method Name="GroupStop" Id="{da0fa42b-dbcd-4e72-85b3-93d42f55308f}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GroupStop : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="HasError" Id="{aa92935b-8bf7-4f59-b6a9-3d39ad26e8d4}">
+    <Method Name="HasError" Id="{aa92935b-8bf7-4f59-b6a9-3d39ad26e8d4}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD HasError : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="IsDisabled" Id="{d615efc1-92df-43ae-9bd1-e7a398601ddf}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsDisabled : BOOL]]></Declaration>
+      <Get Name="Get" Id="{bc9ef1c8-c7b5-444d-ae03-89d190539ae0}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="IsInErrorStop" Id="{5023391e-44dd-406b-b3b5-f9ea9ac32b34}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsInErrorStop : BOOL]]></Declaration>
+      <Get Name="Get" Id="{3e12ed68-1f99-4bf5-b7b0-15da1afa0b14}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="IsInStandBy" Id="{c30e3728-c4be-4b2b-8e19-f5d930f52e82}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsInStandBy : BOOL]]></Declaration>
+      <Get Name="Get" Id="{18e6e8d8-2be4-4163-ab4e-ba882d459ce9}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="IsMoving" Id="{ab17e853-c3bd-4d23-afdc-251dc4495b75}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsMoving : BOOL]]></Declaration>
+      <Get Name="Get" Id="{5039bbf0-2360-4c71-8dd2-01ca1383f74d}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="IsStopping" Id="{1421d697-4b12-474e-9928-b9a704264869}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsStopping : BOOL]]></Declaration>
+      <Get Name="Get" Id="{22fd8dae-d519-4985-b0ce-cc050c1bc3e4}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="MyName" Id="{989d2fa8-4a9f-4077-ad60-57e1e6700080}">
       <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
       <Get Name="Get" Id="{962bda42-6307-4da5-99e1-648fbb7790b1}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="RemoveAllMovers" Id="{ef3d94da-4e03-448c-b177-7286a6d747e3}">
+    <Method Name="RemoveAllMovers" Id="{ef3d94da-4e03-448c-b177-7286a6d747e3}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD RemoveAllMovers : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="RemoveAMover" Id="{ef48cf2e-8bac-48d4-bde6-7be9e9dfb88f}">
+    <Method Name="RemoveAMover" Id="{ef48cf2e-8bac-48d4-bde6-7be9e9dfb88f}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD RemoveAMover : HRESULT
 VAR_INPUT
 	Mover : I_XtsMover;
 END_VAR]]></Declaration>
     </Method>
-    <Method Name="Reset" Id="{52cfbceb-29c1-48af-b76e-6022383fab33}">
+    <Method Name="Reset" Id="{52cfbceb-29c1-48af-b76e-6022383fab33}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
 END_VAR

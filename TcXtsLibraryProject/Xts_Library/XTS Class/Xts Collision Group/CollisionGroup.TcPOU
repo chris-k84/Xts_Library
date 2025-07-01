@@ -144,7 +144,7 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetAxisCount" Id="{45b9081d-ba05-41c5-b1b6-c67859faca98}" FolderPath="Commands\">
+    <Method Name="GetAxisCount" Id="{45b9081d-ba05-41c5-b1b6-c67859faca98}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD GetAxisCount : udint
 VAR_INPUT
 END_VAR
@@ -153,7 +153,7 @@ END_VAR
         <ST><![CDATA[GetAxisCount := _caGroup.NcToPlc.Common.GroupAxesCount;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="GroupRef" Id="{05d388ea-a899-4954-b35a-8298ecb26dd6}" FolderPath="Status\">
+    <Property Name="GroupRef" Id="{05d388ea-a899-4954-b35a-8298ecb26dd6}">
       <Declaration><![CDATA[PROPERTY GroupRef : reference to AXES_GROUP_REF]]></Declaration>
       <Get Name="Get" Id="{9960c5ab-7079-4a22-9f43-e4d1a1a5992b}">
         <Declaration><![CDATA[VAR
@@ -161,33 +161,6 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[GroupRef REF= _caGroup;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Property Name="GroupState" Id="{a7850ad8-4f08-4a22-bf4c-efbfd8c96cf5}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY GroupState : CAGroupStatus]]></Declaration>
-      <Get Name="Get" Id="{51b877d1-f5c7-479f-9b28-cdb51e8876b7}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[IF ReadGroupStatus.GroupDisabled THEN
-	GroupState := CAGroupStatus.mcGroupStateDisabled;
-ELSIF ReadGroupStatus.GroupErrorStop THEN
-	GroupState := CAGroupStatus.mcGroupStateErrorStop;
-ELSIF ReadGroupStatus.GroupHoming THEN
-	GroupState := CAGroupStatus.mcGroupStateHoming;
-ELSIF ReadGroupStatus.GroupMoving THEN
-	GroupState := CAGroupStatus.mcGroupStateMoving;
-ELSIF ReadGroupStatus.GroupNotReady THEN
-	GroupState := CAGroupStatus.mcGroupStateNotReady;
-ELSIF ReadGroupStatus.GroupStandby THEN
-	GroupState := CAGroupStatus.mcGroupStateStandby;
-ELSIF ReadGroupStatus.GroupStopping THEN
-	GroupState := CAGroupStatus.mcGroupStateStopping;
-ELSIF ReadGroupStatus.Error THEN
-	GroupState := CAGroupStatus.mcGroupError;
-END_IF]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -213,7 +186,62 @@ END_VAR
         <ST><![CDATA[HasError := ReadGroupStatus.GroupErrorStop;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MyName" Id="{e6811d98-40d4-4440-8374-6ce3386e7963}" FolderPath="Status\">
+    <Property Name="IsDisabled" Id="{424ba43e-5002-4522-bd9e-84372637a5ce}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsDisabled : BOOL]]></Declaration>
+      <Get Name="Get" Id="{be766286-f53f-468f-9efd-009a74b6d9d7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsDisabled := ReadGroupStatus.GroupDisabled;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="IsInErrorStop" Id="{797bd075-931c-4132-8262-c07ca523a6de}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsInErrorStop : BOOL]]></Declaration>
+      <Get Name="Get" Id="{fe3739ff-184b-44ae-a8a4-d5835be534ee}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsInErrorStop := ReadGroupStatus.GroupErrorStop;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="IsInStandBy" Id="{d604aabe-599b-4a43-a1c7-efd60e8e3039}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsInStandBy : BOOL]]></Declaration>
+      <Get Name="Get" Id="{fedab88e-07c1-4230-a4c6-88d93706834c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsInStandBy := ReadGroupStatus.GroupStandby;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="IsMoving" Id="{b3157892-4e81-4592-a823-fc31ce608269}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsMoving : BOOL]]></Declaration>
+      <Get Name="Get" Id="{63db598a-d2fd-41ae-a9a8-f4b34cc85c3e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsMoving := ReadGroupStatus.GroupMoving;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="IsStopping" Id="{5962f4b9-4447-41f5-bc99-0b620d735be6}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsStopping : BOOL]]></Declaration>
+      <Get Name="Get" Id="{88e53af2-ab20-4dcb-b253-98f15b312093}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsStopping := ReadGroupStatus.GroupStopping;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="MyName" Id="{e6811d98-40d4-4440-8374-6ce3386e7963}">
       <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
       <Get Name="Get" Id="{e4b2e201-13a7-44e4-888f-38c692b30d08}">
         <Declaration><![CDATA[VAR
