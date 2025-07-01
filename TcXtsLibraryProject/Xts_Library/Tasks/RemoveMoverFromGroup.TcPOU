@@ -20,6 +20,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[mcRemoveAxisFromGroup.Execute := FALSE;
+_Leave := FALSE;
 Abort := true;
 State := 0;]]></ST>
       </Implementation>
@@ -107,12 +108,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _Leave THEN
-	_Leave := TRUE;
-	mcRemoveAxisFromGroup.IdentInGroup := AxisID;
-ELSE
+        <ST><![CDATA[IF _Leave THEN
 	Execute := -1;
-END_IF]]></ST>
+	RETURN;
+END_IF
+
+_Leave := TRUE;
+mcRemoveAxisFromGroup.IdentInGroup := AxisID;]]></ST>
       </Implementation>
     </Method>
     <Method Name="FB_init" Id="{603a2033-f770-4d8a-b85b-8ffc6acb4bdf}">

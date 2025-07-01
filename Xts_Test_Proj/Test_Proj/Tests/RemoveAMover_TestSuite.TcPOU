@@ -7,7 +7,9 @@ VAR
 	testRemoveAMover : RemoveMoverFromGroup(GroupRef := stubGroup);
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[TaskAcceptsRemoveCommand();]]></ST>
+      <ST><![CDATA[TaskAcceptsRemoveCommand();
+TaskRejectsDuplicatecommand_Test();
+TaskRejectsNullId_Test();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsRemoveCommand" Id="{9701816a-7347-4094-8354-4a80b2556129}">
       <Declaration><![CDATA[METHOD TaskAcceptsRemoveCommand
@@ -21,6 +23,38 @@ END_VAR]]></Declaration>
 	testRemoveAMover.Abort();
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsDuplicatecommand_Test" Id="{b24cbb70-1da5-46eb-b97d-f92f9948b290}">
+      <Declaration><![CDATA[METHOD TaskRejectsDuplicatecommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testRemoveAMover.Execute(AxisID := UDINT_TO_IDENTINGROUP(2));
+	Actual := FAILED(testRemoveAMover.Execute(AxisID := UDINT_TO_IDENTINGROUP(2)));
+	testRemoveAMover.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsNullId_Test" Id="{23111b36-4c44-4f8f-8541-3b561ab5ddd1}">
+      <Declaration><![CDATA[METHOD TaskRejectsNullId_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// IF Test(__POUNAME()).ExecuteTest() THEN
+// 	Actual := FAILED(testRemoveAMover.Execute(AxisID := UDINT_TO_IDENTINGROUP(0)));
+// 	testRemoveAMover.Abort();
+// 	Test(__POUNAME()).AssertEqual(Expected, Actual);
+// END_IF
+////////////CANNOT DO THIS TEST As CANNOT COMPARE THE IDENT_IN_GROUP data type//////////////////]]></ST>
       </Implementation>
     </Method>
   </POU>
