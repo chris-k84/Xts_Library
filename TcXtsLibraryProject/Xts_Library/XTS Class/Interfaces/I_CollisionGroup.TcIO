@@ -106,7 +106,7 @@ VAR_INPUT
 END_VAR]]></Declaration>
     </Method>
     <Method Name="Reset" Id="{52cfbceb-29c1-48af-b76e-6022383fab33}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD Reset : HRESULT
+      <Declaration><![CDATA[METHOD Reset : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>

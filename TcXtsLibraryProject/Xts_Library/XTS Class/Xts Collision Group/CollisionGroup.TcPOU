@@ -129,7 +129,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT disableCAGroup.Busy THEN
-	disableCAGroup.Execute();
+	Disable := SUCCEEDED(disableCAGroup.Execute());
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -141,7 +141,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF NOT enableCAGroup.Busy THEN
 	Enable := SUCCEEDED(enableCAGroup.Execute());
-	
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -307,11 +306,11 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{109a65fd-df03-46ac-84a7-fd0107d964ee}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD Reset : HRESULT
+      <Declaration><![CDATA[METHOD Reset : BOOL
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT resetCAGroup.Busy THEN
-	resetCAGroup.Execute();
+	Reset := SUCCEEDED(resetCAGroup.Execute());
 END_IF]]></ST>
       </Implementation>
     </Method>
