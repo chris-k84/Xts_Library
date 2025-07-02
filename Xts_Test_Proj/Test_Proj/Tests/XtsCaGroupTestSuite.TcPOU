@@ -5,14 +5,17 @@
 VAR
 	stubRef : I_Mc2CaGroup;
 	stubMover : XtsMover;
+	iNullMover : I_XtsMover;
 	caGroup : CollisionGroup;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[TaskRejectsAddingSameMover_Test();]]></ST>
+      <ST><![CDATA[CAGroupRejectsAddingSameMover_Test();
+CAGroupRejectsNullMover_Test();
+CAGroupRejectsRemoveAllWithNoMovers_Test();]]></ST>
     </Implementation>
-    <Method Name="TaskRejectsAddingSameMover_Test" Id="{d3aa7857-c4a4-46bc-a9ac-fdcae634440c}">
-      <Declaration><![CDATA[METHOD TaskRejectsAddingSameMover_Test
+    <Method Name="CAGroupRejectsAddingSameMover_Test" Id="{d3aa7857-c4a4-46bc-a9ac-fdcae634440c}">
+      <Declaration><![CDATA[METHOD CAGroupRejectsAddingSameMover_Test
 VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -22,6 +25,35 @@ END_VAR
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	caGroup.AddMoverToThisGroup(stubMover);
 	Actual := FAILED(caGroup.AddMoverToThisGroup(stubMover));
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupRejectsNullMover_Test" Id="{3e1e7479-795e-4628-a844-4a6271b5314c}">
+      <Declaration><![CDATA[METHOD CAGroupRejectsNullMover_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(caGroup.AddMoverToThisGroup(iNullMover));
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupRejectsRemoveAllWithNoMovers_Test" Id="{9d39e76d-4fb2-4760-ad1d-7af21332f7ae}">
+      <Declaration><![CDATA[METHOD CAGroupRejectsRemoveAllWithNoMovers_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	caGroup.RemoveAllMovers();
+	Actual := FAILED(caGroup.RemoveAllMovers());
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

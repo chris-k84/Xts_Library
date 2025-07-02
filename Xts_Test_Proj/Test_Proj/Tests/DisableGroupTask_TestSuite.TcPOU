@@ -8,9 +8,24 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[TestAcceptsCommand_Test();
+      <ST><![CDATA[TaskAcceptsCommand_Test();
 TaskRejectsDuplicateCommand_test();]]></ST>
     </Implementation>
+    <Method Name="TaskAcceptsCommand_Test" Id="{2f19c452-382f-4f73-9347-4d3d1fb24efb}">
+      <Declaration><![CDATA[METHOD TaskAcceptsCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(testDisableGrp.Execute());
+	testDisableGrp.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="TaskRejectsDuplicateCommand_test" Id="{e16752d3-6aa1-4e8c-94cf-e7f91998e657}">
       <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_test
 VAR_INST
@@ -22,21 +37,6 @@ END_VAR
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testDisableGrp.Execute();
 	Actual := FAILED(testDisableGrp.Execute());
-	testDisableGrp.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="TestAcceptsCommand_Test" Id="{2f19c452-382f-4f73-9347-4d3d1fb24efb}">
-      <Declaration><![CDATA[METHOD TestAcceptsCommand_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	Actual := SUCCEEDED(testDisableGrp.Execute());
 	testDisableGrp.Abort();
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
