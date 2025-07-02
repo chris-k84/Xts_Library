@@ -46,7 +46,7 @@ END_VAR
       </Get>
     </Property>
     <Method Name="GroupStop" Id="{da0fa42b-dbcd-4e72-85b3-93d42f55308f}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GroupStop : HRESULT
+      <Declaration><![CDATA[METHOD GroupStop : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -106,7 +106,7 @@ VAR_INPUT
 END_VAR]]></Declaration>
     </Method>
     <Method Name="Reset" Id="{52cfbceb-29c1-48af-b76e-6022383fab33}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD Reset : BOOL
+      <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>

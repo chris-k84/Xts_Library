@@ -165,15 +165,13 @@ END_VAR
       </Get>
     </Property>
     <Method Name="GroupStop" Id="{96e619f0-ba68-4e46-ba5e-bd7a0dcefde6}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GroupStop : HRESULT
+      <Declaration><![CDATA[METHOD GroupStop : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT grpStop.Busy THEN
-	grpStop.Execute();
-ELSE
-	GroupStop := -1;
+	GroupStop := SUCCEEDED(grpStop.Execute());
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -305,12 +303,12 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Reset" Id="{109a65fd-df03-46ac-84a7-fd0107d964ee}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD Reset : BOOL
+    <Method Name="Reset" Id="{261470fc-03e1-4de0-831a-fe53e2e9126b}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD PUBLIC Reset : HRESULT
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT resetCAGroup.Busy THEN
-	Reset := SUCCEEDED(resetCAGroup.Execute());
+	Reset := resetCAGroup.Execute();
 END_IF]]></ST>
       </Implementation>
     </Method>
