@@ -46,16 +46,9 @@ END_VAR
     <Method Name="Cycle" Id="{981b7190-eb15-4a0a-8875-0afb334ed36e}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR
-	RemoveAllCycleResult : HRESULT;
-	GrpStopCycleResult : HRESULT;
-	LoggerResult : BOOL;
-	CaGroupDisableResult: BOOL;
-	DisbleAxisResult: BOOL;
-END_VAR
-]]></Declaration>
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-CASE State OF
+        <ST><![CDATA[CASE State OF
 	0:
 		IF DisableTrigger THEN
 			Cycle := S_PENDING;
@@ -64,7 +57,7 @@ CASE State OF
 			_Done := FALSE;
 			_Error := FALSE;
 			IF _caGroup.IsMoving THEN
-				IF SUCCEEDED(_caGroup.GroupStop()) THEN
+				IF _caGroup.GroupStop() THEN
 					State := 10;
 				END_IF
 			ELSE
@@ -97,11 +90,11 @@ CASE State OF
 		END_FOR
 		IF AllMoversDisabled THEN
 			State := 40;
-			CaGroupDisableResult := _caGroup.Disable();
+			_caGroup.Disable();
 		END_IF
 	40:
 		IF _caGroup.IsInErrorStop THEN
-			CaGroupResetResult := SUCCEEDED(_caGroup.Reset());
+			_caGroup.Reset();
 		END_IF	
 		State := 50;
 		
@@ -114,11 +107,7 @@ CASE State OF
 		END_IF
 	ELSE
 		Cycle := E_FAIL;
-END_CASE
-
-IF RemoveAllCycleResult = E_FAIL OR GrpStopCycleResult = E_FAIL THEN
-	Cycle := E_FAIL;
-END_IF]]></ST>
+END_CASE]]></ST>
       </Implementation>
     </Method>
     <Method Name="Disable" Id="{024bbd18-8e3c-4aa1-9d04-45454423df20}">
