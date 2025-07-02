@@ -140,7 +140,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT enableCAGroup.Busy THEN
-	enableCAGroup.Execute();
+	Enable := SUCCEEDED(enableCAGroup.Execute());
+	
 END_IF]]></ST>
       </Implementation>
     </Method>
