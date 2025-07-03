@@ -431,40 +431,30 @@ _MyXpu.TriggerDetection();
       </Implementation>
     </Method>
     <Method Name="TriggerMoverID" Id="{23436421-ecb3-466c-b86b-5fefe5c7904c}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD TriggerMoverID : BOOL
+      <Declaration><![CDATA[METHOD TriggerMoverID : HRESULT
 VAR_INPUT
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[// Mover1 Functionality		
-// Check if "MoverIdDetectionMode" has been activated under the XtsProcessingUnit object.
-IF _MyXpu.GetMoverIdDetectionMode() <> MoverIdDetectionMode.Standard THEN
+        <ST><![CDATA[bMoverIdDetectionError 	:= _MyXpu.GetHasMoverIdDetectionError();
+bMoverIdDetected 	:= _MyXpu.GetIsMoverIdDetectionValid();
+bMoverIdDetectionActive	:= _MyXpu.GetIsMoverIdDetectionActive();
 
-	// Check if the "MoverIdDetection" has already been started or the Mover1 was found.
-	IF NOT (bMoverIdDetectionActive OR bMoverIdDetected OR bTriggerDetect) THEN
-		
-		// Trigger the "MoverIdDetection".
-		_MyXpu.TriggerMoverIdDetection();
-		bTriggerDetect := TRUE;
-	END_IF
+IF _MyXpu.GetMoverIdDetectionMode() = MoverIdDetectionMode.Standard THEN
+	TriggerMoverID := -1;
+	RETURN;
+END_IF
 
-	// Check for error or success of "MoverIdDetection".
-	bMoverIdDetectionError 	:= _MyXpu.GetHasMoverIdDetectionError();
-	bMoverIdDetected 	:= _MyXpu.GetIsMoverIdDetectionValid();
-	bMoverIdDetectionActive	:= _MyXpu.GetIsMoverIdDetectionActive();
-	
-	// If the detection has an error, check for errors in output and try again.
-	IF bMoverIdDetectionError THEN
-		RETURN; 
-	END_IF
+IF bMoverIdDetectionActive OR bTriggerDetect THEN
+	TriggerMoverID := -2;
+	RETURN;
+END_IF
 
-	// Do not process any further until the "MoverId" was deteced.
-	IF NOT bMoverIdDetected THEN
-		RETURN;
-	END_IF	
-	TriggerMoverID := TRUE;	
-ELSE
-	TriggerMoverID := TRUE;
-END_IF]]></ST>
+IF bMoverIdDetected THEN
+	TriggerMoverID := -3;
+	RETURN;
+END_IF
+_MyXpu.TriggerMoverIdDetection();
+bTriggerDetect := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="TriggerRedetection" Id="{0183a3e0-45ff-4ec4-b868-d12cfe75fb77}" FolderPath="Commands\">
