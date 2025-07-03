@@ -145,6 +145,15 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="ResetNct" Id="{ada2aac2-9e86-42a2-81c2-fb2391256788}">
+      <Declaration><![CDATA[METHOD ResetNct : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ResetNct := _MyInterface.TriggerNctReset();]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="ResetPart" Id="{a2c1bf74-a00f-4e37-abd0-e53201644a52}">
       <Declaration><![CDATA[METHOD ResetPart : BOOL
 VAR_INPUT
