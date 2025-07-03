@@ -294,22 +294,20 @@ VAR
 	i : INT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Mover = 0 THEN
+        <ST><![CDATA[IF removeMover.Busy THEN
 	RemoveAMover := -1;
+END_IF
+IF Mover = 0 THEN
+	RemoveAMover := -2;
 	RETURN;
 END_IF
-
-IF NOT removeMover.Busy THEN
-	removeMover.Execute(Mover.IdentInGroup);
-	FOR i := 0 TO MaxMovers DO
-		IF GroupMovers[i] = Mover THEN
-			GroupMovers[i] := 0;
-			RegisteredMovers := RegisteredMovers -1;
-		END_IF
-	END_FOR
-ELSE
-	RemoveAMover := -1;
-END_IF]]></ST>
+removeMover.Execute(Mover.IdentInGroup);
+FOR i := 0 TO MaxMovers DO
+	IF GroupMovers[i] = Mover THEN
+		GroupMovers[i] := 0;
+		RegisteredMovers := RegisteredMovers -1;
+	END_IF
+END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{261470fc-03e1-4de0-831a-fe53e2e9126b}" FolderPath="Commands\">
