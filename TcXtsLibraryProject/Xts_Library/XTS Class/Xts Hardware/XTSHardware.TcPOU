@@ -374,6 +374,19 @@ END_IF
 XtsTracks[TrackToRemove - 1].RemoveFromDetection();]]></ST>
       </Implementation>
     </Method>
+    <Method Name="ResetParts" Id="{62a3421b-7f58-4518-b99a-efef3044ec5b}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD ResetParts : BOOL
+VAR
+	i : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i := 0 TO TO_INT(MyPartCount) DO
+	XtsParts[i].ResetPart();
+	XtsParts[i].ResetNct();
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SetMoverNumbers" Id="{fda2cbfb-05d3-433d-b308-26404cfa0e4a}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetMoverNumbers : HRESULT
 VAR_INPUT
