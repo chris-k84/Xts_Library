@@ -4,7 +4,8 @@
 
 1. [Background](#Background)
 2. [Project Description](#Description)
-3. [System Design](#System-Design)
+3. [Project Explanation](#Project-Explanation)
+4. [Running the Demo](#Running-the-Demo)
 4. [Tests](#Tests)
 5. [Support](#Support)
 6. [Requirements](#Requirements)
@@ -20,18 +21,28 @@ The library is created solely to implement XTS functionality, other functions ha
 This change means that you are not forced to use the XTS library with any of my structural systems. However you are required to instance the components
 and run them via a cycle call to a cyclic method. All functionality are then implemented through method calls.
 
-## System Design
+## Project Explanation
 
-The repo is split into 3 projects, the library, unit testing project and a demo project for s simple system.
-The library project contains all functionality, it is referenced in the test project and actually installed and included in the demo one.
-The library is brokem into 3 elements, Mover, Station and XTS.
+The repo is split into 3 projects:
+1) the library
+    - the library contains all the elements required to run an XTS, the loosly coupled elements allow you top arrange a project to you own designs.
+2) unit testing project
+    - unit testing is done with an internal unit test framework at this time
+3) demo project for a simple closed XTS track.
+    - the demo is a simple 8 mover, 3m closed loop of XTS, simple stations using timers to simulate operation are used to make it realistic.
 
-1) The XTS elements deal with all things system, this includes communication to the XTS driver (XPU), the tracks, parts and mover commands avaialable there.
-This allows functionality like resetting parts, activating tracks for movers, selecting tracks for detection and many other functions. It contains a hardware object which handles all the functions associated with the actual motor modules of the XTS, operations include monitoring voltage, errors and more.
+## Running the Demo
 
-2) The Mover element deals with all things mover, it recieves its interface to the XTS driver mover elements from the XTS class. As such it contains a full command suite for everything a mover can do. This includes activating onto a track, moving, resetting, detection, triggering leave and arrive and more. 
+The demo project is a very simple implemnentation of an XTS, the abstract XTS class is extended in the project, to add the abstract functionality of a home sequence.
+This is then instanced in the machine class, which contains all the XTS elements, these are injected as required to allow the machine to run. There is a simple init sequence to register all elements as required and set the linkages up. Finally once initialised the system will cycle and respond to 3 bools, reset, start and stop. 
+The steps to run:
+1) actiavte the configuration
+2) login to the PLC
+3) wait for init to be true
+4) toggle the reset (movers will home according to the logic in the homesequence that you can edit)
+5) toggle the start (the movers will then begin stationing operations)
 
-3) Station and Sequence, these 2 units combine to achieve a common application fiunction of XTS. the majority of implementations of the XTS are indexing devices, movers go from station to station with product and wait for a process to occur. As such the library includes a basic implementation for a station, the intention is that this be used in projects by extending this class and adding your own functionality to the cyclic method. If this is done then the index sequnece can be used. This is essentially prewritten statemachine for an XTS mover, pass your station array and mover to the index sequence, and on a run signal it will simply step the mover through each station, stopping at each and waiting for the station to report done.
+Station positions and timings can be changed easily whilst the system is running, although I recommend you stop the movers to change positions.
 
 ## Tests
 
