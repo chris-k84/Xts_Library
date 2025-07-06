@@ -23,38 +23,18 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[PartDriveState := _MyInterface.GetDriveState();
 
-CASE PartDriveState OF
-	DriveState.Unknown:
-		_ReadyToEnable := FALSE;
-
-	DriveState.FaultReactionActive:
-		_ReadyToEnable := FALSE;
-
-	DriveState.Fault:
-		_ReadyToEnable := FALSE;
-
-	DriveState.NotReadyToSwitchOn:
-		_ReadyToEnable := FALSE;
-
-	DriveState.SwitchOnDisabled:
-		_ReadyToEnable := FALSE;
-
-	DriveState.ReadyToSwitchOn:
-		_ReadyToEnable := TRUE;
-
-	DriveState.SwitchedOn:
-		_ReadyToEnable := TRUE;
-
-	DriveState.OperationEnabled:
-		_ReadyToEnable := TRUE;
-
-ELSE
-	_ReadyToEnable := FALSE;
-END_CASE
-
 FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 	MyModules[i].Cycle();
 END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HasError" Id="{1ff560a3-4b5c-4bd0-a848-6c6a900a7eef}">
+      <Declaration><![CDATA[METHOD HasError : BOOL
+VAR_INPUT
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[HasError := PartDriveState = DriveState.Fault OR PartDriveState = DriveState.FaultReactionActive;
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{f7bcb601-a320-4f3f-bcf3-5ec4e45a7245}">
