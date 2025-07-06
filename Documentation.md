@@ -34,6 +34,12 @@ A lot of XTS operations end up with stations, locations on the track where a mov
 
 The advantage here is the user of the framework only needs to code the station operation and use the inbuilt fields of the class, Done, Ready, Busy etc. The sample Index Sequence responds to stations being done, the mover will move on at that point. 
 
+## Process Class
+
+## Queue Class
+
+## Trigger Point Class
+
 ## XTS Part Class
 
 The XTS part represents the 'parts' of the XTS track, each track is made of 250mm modules, these modules are grouped into parts, which themselves are grouped into tracks. The XTS part class holds the detail of the individual part as defined in the XtsIoDrv, this is not hardware dependant. The Part class creates a set of objects to represent each module, it is responsible for checking the health and status of all modules within its defined part.
@@ -43,3 +49,13 @@ The Part Class will check the modules for the correct voltage levels across the 
 ## XTS Track Class
 
 The track class represents the summation of the individual parts of the XTS track, in stnadard closed tracks there will likely be only a single part and track. however in TMS track systems there will be multiple parts and the tracks are of significant importance as these are the references for the modulo motion of the movers.
+
+## XTS Module Class
+
+The module class is the representation of the physical motor modules, its the access point for the information at the module level of the XTS. You can get the CoE data, NCT information, voltage, current information etc. Modules are created by the Part Class and are contained wihtin them as arrays of modules.
+
+## XTS Hardware Class
+
+
+
+## CA Group Class

@@ -27,9 +27,7 @@ END_VAR
 	MaxCurrent:=  MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
 	Module24Vdc := MyModuleIoInterface.GetAuxiliaryVoltage24V();
 	Module48Vdc := MyModuleIoInterface.GetDCLinkVoltage();
-END_IF
-
-]]></ST>
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{0d230f78-299f-458d-bcac-a537a1290197}">
