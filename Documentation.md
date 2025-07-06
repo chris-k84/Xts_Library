@@ -42,13 +42,13 @@ The advantage here is the user of the framework only needs to code the station o
 
 ## XTS Part Class
 
-The XTS part represents the 'parts' of the XTS track, each track is made of 250mm modules, these modules are grouped into parts, which themselves are grouped into tracks. The XTS part class holds the detail of the individual part as defined in the XtsIoDrv, this is not hardware dependant. The Part class creates a set of objects to represent each module, it is responsible for checking the health and status of all modules within its defined part.
+The XTS part represents the 'parts' of the XTS track, XTS modules are grouped into parts. The XTS part class holds the detail of the individual part as defined in the XtsIoDrv, this is not hardware dependant. The Part class creates a set of objects of XTS Modules class, it is responsible for checking the health and status of all modules within its defined part. IT also allows the reset of the Part or NCT part.
 
 The Part Class will check the modules for the correct voltage levels across the 24 and 48v networks, it also has the ability to export the diag history and other useful information.
 
 ## XTS Track Class
 
-The track class represents the summation of the individual parts of the XTS track, in stnadard closed tracks there will likely be only a single part and track. however in TMS track systems there will be multiple parts and the tracks are of significant importance as these are the references for the modulo motion of the movers.
+The track class represents the summation of the individual parts of the XTS track, in stnadard closed tracks there will likely be only a single part and track. However in TMS track systems there will be multiple parts and the tracks are of significant importance as these are the references for the modulo motion of the movers.
 
 ## XTS Module Class
 
@@ -56,6 +56,6 @@ The module class is the representation of the physical motor modules, its the ac
 
 ## XTS Hardware Class
 
-
+The XTS Hardware class is a logical grouping of the Tracks, Parts and Modules that encapsulate the functionality of all the hardware, allowing you to enable and disabled tracks for detection, trigger mover searches, mover id detection. The hardware is injected into the XTS class at the initialisaiton stage of the setup, it is then cyclically called where ever you choose to do this, this cyclic call will update all the internal components.
 
 ## CA Group Class
