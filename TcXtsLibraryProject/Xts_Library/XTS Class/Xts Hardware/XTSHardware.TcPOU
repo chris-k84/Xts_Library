@@ -191,7 +191,7 @@ END_VAR
         <ST><![CDATA[HasXPU := _hasXPU;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Initialise" Id="{95822be7-e433-46ff-bfc3-e4b3c51e2a74}" FolderPath="Commands\">
+    <Method Name="Initialise" Id="{95822be7-e433-46ff-bfc3-e4b3c51e2a74}">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR
 	i: INT;
@@ -291,6 +291,15 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[isExpectedMoversFound := _MyXpu.GetExpectedMoverCount() = _MyXpu.GetDetectedMoverCount();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsIDDetectionStandard" Id="{aa7a18ac-0236-4a73-a20e-a9a08158b988}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsIDDetectionStandard : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsIDDetectionStandard := _MyXpu.GetMoverIdDetectionMode() = MoverIdDetectionMode.Standard;]]></ST>
       </Implementation>
     </Method>
     <Method Name="IsInitialised" Id="{550c07cc-fb09-419f-9cfc-c551f12c3cb9}" FolderPath="Status\">
