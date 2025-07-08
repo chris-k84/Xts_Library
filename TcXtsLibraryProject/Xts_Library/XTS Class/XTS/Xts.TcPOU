@@ -209,7 +209,7 @@ CASE XtsHwState OF
 		END_IF
 	
 	XtsSystemInitialisation.MoverIdDetection:
-		IF SUCCEEDED(_MyXtsHardware.TriggerMoverID()) THEN
+		IF _MyXtsHardware.IsIDDetectionStandard() OR SUCCEEDED(_MyXtsHardware.TriggerMoverID()) THEN
 			XtsHwState := XtsSystemInitialisation.HWReady;
 		END_IF
 	
