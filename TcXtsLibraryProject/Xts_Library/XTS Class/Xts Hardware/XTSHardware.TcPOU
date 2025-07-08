@@ -31,6 +31,26 @@ END_VAR]]></Declaration>
     <Folder Name="Commands" Id="{fac9eba9-c7de-4a76-a05e-49072f1b1bf8}" />
     <Folder Name="Settings" Id="{977db0ee-8b4c-4e4e-adde-487140886b9b}" />
     <Folder Name="Status" Id="{1e7de418-5187-4871-82b8-ce216901bd03}" />
+    <Method Name="AreAllMoversValid" Id="{61902ec7-4049-4544-9a8e-27dabf1b61be}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD AreAllMoversValid : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ IF _MyXpu.GetAreAllPositionsValid() THEN
+	 AreAllMoversValid := TRUE;
+ END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="AreExpectedMoversFound" Id="{642f39f7-45fb-4e7e-95d2-cca7f46c73a6}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD AreExpectedMoversFound : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AreExpectedMoversFound := _MyXpu.GetExpectedMoverCount() = _MyXpu.GetDetectedMoverCount();]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Cycle" Id="{907368a2-7640-4dfa-a8a9-6f1d20861921}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR
@@ -100,17 +120,6 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="getAllMoversValid" Id="{61902ec7-4049-4544-9a8e-27dabf1b61be}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getAllMoversValid : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[ IF _MyXpu.GetAreAllPositionsValid() THEN
-	 getAllMoversValid := TRUE;
- END_IF]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="GetConfigMoverNumber" Id="{43f766d9-966d-4623-a223-676c73e2281d}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetConfigMoverNumber : UDINT
 VAR_INPUT
@@ -120,7 +129,7 @@ END_VAR
         <ST><![CDATA[GetConfigMoverNumber := _MyXpu.GetConfiguredDetectionCount();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetDetectionState" Id="{5c04b4df-babc-44c4-8315-87ac6e89bad7}" FolderPath="Status\">
+    <Method Name="GetDetectionState" Id="{5c04b4df-babc-44c4-8315-87ac6e89bad7}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetDetectionState : DetectionStateEnum
 VAR_INPUT
 END_VAR
@@ -130,7 +139,7 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="getNumberMoversDetected" Id="{6134912a-11cc-419f-9366-ca4c2c2c2f9f}" FolderPath="Status\">
+    <Method Name="getNumberMoversDetected" Id="{6134912a-11cc-419f-9366-ca4c2c2c2f9f}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD getNumberMoversDetected : UDINT
 VAR_INPUT
 END_VAR
@@ -282,15 +291,6 @@ FOR i := 0 TO (_MyXpu.GetPartCount() - 1) DO
 		Is48VdcOK := -1;
 	END_IF
 END_FOR]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="isExpectedMoversFound" Id="{642f39f7-45fb-4e7e-95d2-cca7f46c73a6}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD isExpectedMoversFound : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[isExpectedMoversFound := _MyXpu.GetExpectedMoverCount() = _MyXpu.GetDetectedMoverCount();]]></ST>
       </Implementation>
     </Method>
     <Method Name="IsIDDetectionStandard" Id="{aa7a18ac-0236-4a73-a20e-a9a08158b988}" FolderPath="Status\">

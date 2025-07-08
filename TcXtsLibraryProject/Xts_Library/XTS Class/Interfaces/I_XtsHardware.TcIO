@@ -6,6 +6,18 @@
     <Folder Name="Commands" Id="{27c9da71-387e-4094-ae9a-f077ff9b1b1e}" />
     <Folder Name="Settings" Id="{e3948c37-e7d1-40e0-b3aa-465d52d19205}" />
     <Folder Name="Status" Id="{f56f8332-a404-49a0-b1fa-c3796e00575d}" />
+    <Method Name="AreAllMoversValid" Id="{3d107ad0-1a72-4602-abbb-1177fad35523}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD AreAllMoversValid : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="AreExpectedMoversFound" Id="{aa48d66d-e689-4a24-808d-2ead7682c5a9}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD AreExpectedMoversFound : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Property Name="DetectedNumberOfTracks" Id="{1f7b777e-4e84-4e05-a960-b4258ee4a093}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY DetectedNumberOfTracks : UINT]]></Declaration>
       <Get Name="Get" Id="{b975fd9f-07a4-422f-a5dd-e3785eb793b3}">
@@ -30,12 +42,6 @@
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="getAllMoversValid" Id="{3d107ad0-1a72-4602-abbb-1177fad35523}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getAllMoversValid : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="GetConfigMoverNumber" Id="{840a6c17-fbef-4810-9acd-02a47aa8f2b0}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetConfigMoverNumber : UDINT
 VAR_INPUT
@@ -82,12 +88,6 @@ END_VAR
     </Method>
     <Method Name="Is48VdcOK" Id="{df545d44-305d-4b7a-922f-4b561f83d56a}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD Is48VdcOK : HRESULT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="isExpectedMoversFound" Id="{aa48d66d-e689-4a24-808d-2ead7682c5a9}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD isExpectedMoversFound : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>

@@ -186,12 +186,12 @@ CASE XtsHwState OF
 		END_IF
 		
 	XtsSystemInitialisation.MoversValid:
-		IF _MyXtsHardware.getAllMoversValid() THEN
+		IF _MyXtsHardware.AreAllMoversValid() THEN
 			XtsHwState := XtsSystemInitialisation.AllMoversFound;
 		END_IF
 	
 	XtsSystemInitialisation.AllMoversFound:
-		IF _MyXtsHardware.isExpectedMoversFound() THEN
+		IF _MyXtsHardware.AreExpectedMoversFound() THEN
 			DetectedMoverCount := _MyXtsHardware.getNumberMoversDetected();
 			XtsHwState := XtsSystemInitialisation.XTSMode;
 		END_IF
