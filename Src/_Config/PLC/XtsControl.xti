@@ -1305,7 +1305,7 @@ and will return to Group State Standby when the situation permits.
 		</DataType>
 	</DataTypes>
 	<Project GUID="{6CE98D97-B85B-476D-91E3-37ABB0FAE03C}" Name="XtsControl" PrjFilePath="..\..\XtsControl\XtsControl.plcproj" TmcFilePath="..\..\XtsControl\XtsControl.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x0000" FileArchiveSettings="#x0000">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="1" TmcHash="{7DFFFC3D-4F89-5CA9-912E-1218FFE4E579}" TmcPath="XtsControl\XtsControl.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="1" TmcHash="{58BD0C41-C95D-E2C9-A261-50E3CAB45304}" TmcPath="XtsControl\XtsControl.tmc">
 			<Name>XtsControl Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="2" AreaNo="1">
@@ -1345,6 +1345,10 @@ and will return to Group State Standby when the situation permits.
 				<Var>
 					<Name>MAIN.fbMachine.systemCAGroup._caGroup.PlcToNc</Name>
 					<Type GUID="{0E2E3852-A98C-4AF3-81E2-209EE128940C}" Namespace="MC">CDT_PLCTOMC_GROUP</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.Init</Name>
+					<Type>BOOL</Type>
 				</Var>
 			</Vars>
 			<Vars VarGrpType="1">
@@ -1633,6 +1637,9 @@ and will return to Group State Standby when the situation permits.
 	</Project>
 	<Mappings>
 		<OwnerA Name="XtsControl Instance">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL2004)">
+				<Link VarA="PlcTask Outputs^MAIN.Init" VarB="Channel 1^Output" Size="1"/>
+			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1^Axes^Mover Axis 1">
 				<Link VarA="PlcTask Inputs^MAIN.fbMachine.Movers[0].MyAxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
 				<Link VarA="PlcTask Outputs^MAIN.fbMachine.Movers[0].MyAxisRef.PlcToNc" VarB="Inputs^FromPlc"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.15" ClassName="CNcAxisDef" SubType="1">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.16" ClassName="CNcAxisDef" SubType="1">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-000000000035}" TcBaseType="true" HideType="true">UINTARR2</Name>
@@ -1791,381 +1791,386 @@ External Setpoint Generation:
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{A71F63B9-26EB-745D-9EAA-B1298B965BC2}">MoverControllerEventClass</Name>
+			<Name GUID="{5E0D60E9-A8BD-DF95-609D-CEBD7BC29328}">MoverControllerEventClass</Name>
 			<DisplayName TxtId=""><![CDATA[MoverControllerEventClass]]></DisplayName>
 			<EventId>
 				<Name Id="0">Mover1FoundInfo</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Mover 1 found]]></DisplayName>
+				<DisplayName TxtId="0"><![CDATA[{0}: Mover 1 found]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="1">StandardMoverFoundInfo</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Standard mover found]]></DisplayName>
+				<DisplayName TxtId="1"><![CDATA[{0}: Standard mover found]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="2">ProcessingLineInitializedInfo</Name>
-				<DisplayName TxtId=""><![CDATA[Initialized {0} XTS Controller(s) on {1} (CPU {2}, {3} μs).]]></DisplayName>
+				<DisplayName TxtId="2"><![CDATA[Initialized {0} XTS Controller(s) on {1} (CPU {2}, {3} μs).]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="3">ParameterSetsInitializedInfo</Name>
-				<DisplayName TxtId=""><![CDATA[Initialized {0} XTS Controller Parameter Set(s).]]></DisplayName>
+				<DisplayName TxtId="3"><![CDATA[Initialized {0} XTS Controller Parameter Set(s).]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="4">NoManagerFoundInfo</Name>
-				<DisplayName TxtId=""><![CDATA[No XTS Controller Manager in configuration detected. Initialize default Manager...]]></DisplayName>
+				<DisplayName TxtId="4"><![CDATA[No XTS Controller Manager in configuration detected. Initialize default Manager...]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5">ForceCouplingActiveInfo</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Force coupling with {1} is active.]]></DisplayName>
+				<DisplayName TxtId="5"><![CDATA[{0}: Force coupling with {1} is active.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="6">TuningAssistNumberOfMaximaInfo</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Number of maxima found in the current spectrum = {1}]]></DisplayName>
+				<DisplayName TxtId="6"><![CDATA[{0}: Number of maxima found in the current spectrum = {1}]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="7">TuningAssistRuleInfo</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Calculate with rule {1}]]></DisplayName>
+				<DisplayName TxtId="7"><![CDATA[{0}: Calculate with rule {1}]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="8">BodePlotIsStoppedInfo</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Bode plot is stopped.]]></DisplayName>
+				<DisplayName TxtId="8"><![CDATA[{0}: Bode plot is stopped.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5000">InvalidParameterValue_MinMax_UInt32Warning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Invalid {1} parameter value (min={2}/max={3})]]></DisplayName>
+				<DisplayName TxtId="5000"><![CDATA[{0}: Invalid {1} parameter value (min={2}/max={3})]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5001">InvalidParameterValue_MinMax_FloatWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Invalid {1} parameter value (min={2}/max={3})]]></DisplayName>
+				<DisplayName TxtId="5001"><![CDATA[{0}: Invalid {1} parameter value (min={2}/max={3})]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5002">InvalidParameterValue_Min_UInt32Warning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Invalid {1} parameter value (min={2})]]></DisplayName>
+				<DisplayName TxtId="5002"><![CDATA[{0}: Invalid {1} parameter value (min={2})]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5003">Mover1DetectionWhileAxisEnabledSingleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1002): New Mover 1 detection while axis is enabled.]]></DisplayName>
+				<DisplayName TxtId="5003"><![CDATA[{0} (0x1002): New Mover 1 detection while axis is enabled.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5004">Mover1DetectionWhileAxisEnabledMultipleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1002): New Mover 1 detection while axis is enabled. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<DisplayName TxtId="5004"><![CDATA[{0} (0x1002): New Mover 1 detection while axis is enabled. {1} more XTS Mover Controllers with this error...]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5005">Mover1HWErrorSingleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1003): Hardware error occur after Mover 1 detection is started.]]></DisplayName>
+				<DisplayName TxtId="5005"><![CDATA[{0} (0x1003): Hardware error occur after Mover 1 detection is started.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5006">Mover1HWErrorMultipleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1003): Hardware error occur after Mover 1 detection is started. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<DisplayName TxtId="5006"><![CDATA[{0} (0x1003): Hardware error occur after Mover 1 detection is started. {1} more XTS Mover Controllers with this error...]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5007">Mover1MovementErrorSingleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1005): Movements of Mover while Mover 1 detection do not fit together.]]></DisplayName>
+				<DisplayName TxtId="5007"><![CDATA[{0} (0x1005): Movements of Mover while Mover 1 detection do not fit together.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5008">Mover1MovementErrorMultipleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1005): Movements of Mover while Mover 1 detection do not fit together. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<DisplayName TxtId="5008"><![CDATA[{0} (0x1005): Movements of Mover while Mover 1 detection do not fit together. {1} more XTS Mover Controllers with this error...]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5009">Mover1HwNotReadySingleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1004): Hardware is not ready for Mover 1 detection - e.g. power is missing or HW has an error.]]></DisplayName>
+				<DisplayName TxtId="5009"><![CDATA[{0} (0x1004): Hardware is not ready for Mover 1 detection - e.g. power is missing or HW has an error.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5010">Mover1HwNotReadyMultipleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1004): Hardware is not ready for Mover 1 detection - e.g. power is missing or HW has an error. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<DisplayName TxtId="5010"><![CDATA[{0} (0x1004): Hardware is not ready for Mover 1 detection - e.g. power is missing or HW has an error. {1} more XTS Mover Controllers with this error...]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5011">Mover1VeloErrorSingleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1007): Min velocity could not be reached long enough.]]></DisplayName>
+				<DisplayName TxtId="5011"><![CDATA[{0} (0x1007): Min velocity could not be reached long enough.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5012">Mover1VeloErrorMultipleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1007): Min velocity could not be reached long enough. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<DisplayName TxtId="5012"><![CDATA[{0} (0x1007): Min velocity could not be reached long enough. {1} more XTS Mover Controllers with this error...]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5013">Mover1MinMovementErrorSingleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1006): Min movement could not be reached with the actual current.]]></DisplayName>
+				<DisplayName TxtId="5013"><![CDATA[{0} (0x1006): Min movement could not be reached with the actual current.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5014">Mover1MinMovementErrorMultipleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1006): Min movement could not be reached with the actual current. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<DisplayName TxtId="5014"><![CDATA[{0} (0x1006): Min movement could not be reached with the actual current. {1} more XTS Mover Controllers with this error...]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5015">NoWriteAccessInOPWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: No write access in TCom state OP for {1}.]]></DisplayName>
+				<DisplayName TxtId="5015"><![CDATA[{0}: No write access in TCom state OP for {1}.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5016">BandwidthIsLimitedWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} Observer: Bandwidth is limited by cycle time (limited Bandwidth = {1})]]></DisplayName>
+				<DisplayName TxtId="5016"><![CDATA[{0} Observer: Bandwidth is limited by cycle time (limited Bandwidth = {1})]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5017">VeloDiffTooBigForEmergencyRampSingleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1101): Velocity difference too big for emergency ramp down.]]></DisplayName>
+				<DisplayName TxtId="5017"><![CDATA[{0} (0x1101): Velocity difference too big for emergency ramp down.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5018">VeloDiffTooBigForEmergencyRampMultipleWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1101): Velocity difference too big for emergency ramp down. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<DisplayName TxtId="5018"><![CDATA[{0} (0x1101): Velocity difference too big for emergency ramp down. {1} more XTS Mover Controllers with this error...]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5019">AreaStartPositionMustSmallerWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: AreaStartPosition[{1}] must be smaller then AreaEndPosition.]]></DisplayName>
+				<DisplayName TxtId="5019"><![CDATA[{0}: AreaStartPosition[{1}] must be smaller then AreaEndPosition.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5020">AreaStartPositionMustGreaterWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: AreaStartPosition[{1}] must be greater or equal then Zero.]]></DisplayName>
+				<DisplayName TxtId="5020"><![CDATA[{0}: AreaStartPosition[{1}] must be greater or equal then Zero.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5021">AreaStartPositionMustSmallerHardwareModuloWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: AreaStartPosition[{1}] must be smaller or equal then HardwareModulo.]]></DisplayName>
+				<DisplayName TxtId="5021"><![CDATA[{0}: AreaStartPosition[{1}] must be smaller or equal then HardwareModulo.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5022">GetAxisInterfaceFailedWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Failed to get interface of NC/MC3 axis.]]></DisplayName>
+				<DisplayName TxtId="5022"><![CDATA[{0}: Failed to get interface of NC/MC3 axis.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5023">InvalidParameterValue_Min_FloatWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Invalid {1} parameter value (min={2})]]></DisplayName>
+				<DisplayName TxtId="5023"><![CDATA[{0}: Invalid {1} parameter value (min={2})]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5024">TuningAssistMovementWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Probably no enough movement during spectrum measure]]></DisplayName>
+				<DisplayName TxtId="5024"><![CDATA[{0}: Probably no enough movement during spectrum measure]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5025">TuningAssistNoFilterSuggestionWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: No filter suggestion could be calculated - please evaluate the spectrum manually]]></DisplayName>
+				<DisplayName TxtId="5025"><![CDATA[{0}: No filter suggestion could be calculated - please evaluate the spectrum manually]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5026">TuningAssistInvalidMaximaWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Invalid number of maxima found in the current spectrum]]></DisplayName>
+				<DisplayName TxtId="5026"><![CDATA[{0}: Invalid number of maxima found in the current spectrum]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5027">TuningAssistNoMaximaFoundWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: No maxima found in the current spectrum]]></DisplayName>
+				<DisplayName TxtId="5027"><![CDATA[{0}: No maxima found in the current spectrum]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5028">TuningAssistTooManyMaximaWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Too many maxima found in the current spectrum]]></DisplayName>
+				<DisplayName TxtId="5028"><![CDATA[{0}: Too many maxima found in the current spectrum]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5029">TuningAssistErrorInBiquadLowPassWarning</Name>
-				<DisplayName TxtId=""><![CDATA[TuningAssist: Error in Bi_Quad calc with LowPassfreqeuncy = {0}]]></DisplayName>
+				<DisplayName TxtId="5029"><![CDATA[TuningAssist: Error in Bi_Quad calc with LowPassfreqeuncy = {0}]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5030">TuningAssistErrorInBiquadHighPassWarning</Name>
-				<DisplayName TxtId=""><![CDATA[TuningAssist: Error in Bi_Quad calc with HighPassfreqeuncy = {0}]]></DisplayName>
+				<DisplayName TxtId="5030"><![CDATA[TuningAssist: Error in Bi_Quad calc with HighPassfreqeuncy = {0}]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5031">TuningAssistErrorInLowPassWarning</Name>
-				<DisplayName TxtId=""><![CDATA[TuningAssist: Error in LowPass2 calc with LowPassfreqeuncy = {0}]]></DisplayName>
+				<DisplayName TxtId="5031"><![CDATA[TuningAssist: Error in LowPass2 calc with LowPassfreqeuncy = {0}]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5032">TuningAssistNoFrictionCompensationSuggestionParaWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: No friction compensation suggestion could be calculated - due to wrong parameter {1}]]></DisplayName>
+				<DisplayName TxtId="5032"><![CDATA[{0}: No friction compensation suggestion could be calculated - due to wrong parameter {1}]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5033">TuningAssistNoParameterSetWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}:Can't download values. Please select a valid ParameterSet!]]></DisplayName>
+				<DisplayName TxtId="5033"><![CDATA[{0}:Can't download values. Please select a valid ParameterSet!]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="5034">CantStartBodePlotWhileForceCouplingWarning</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Can't start bode plot while force coupling is enabled.]]></DisplayName>
+				<DisplayName TxtId="5034"><![CDATA[{0}: Can't start bode plot while force coupling is enabled.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9000">InputPointerNotSetError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Input pointer not set.]]></DisplayName>
+				<DisplayName TxtId="9000"><![CDATA[{0}: Input pointer not set.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9001">OutputPointerNotSetError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Output pointer to not set.]]></DisplayName>
+				<DisplayName TxtId="9001"><![CDATA[{0}: Output pointer to not set.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9002">InputPointerInitFailedError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Failed to initialize input pointer.]]></DisplayName>
+				<DisplayName TxtId="9002"><![CDATA[{0}: Failed to initialize input pointer.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9003">OutputPointerInitFailedError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Failed to initialize output pointer.]]></DisplayName>
+				<DisplayName TxtId="9003"><![CDATA[{0}: Failed to initialize output pointer.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9004">InputOutputPointerDifferentError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Input and output pointer have different targets.]]></DisplayName>
+				<DisplayName TxtId="9004"><![CDATA[{0}: Input and output pointer have different targets.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9005">GetMoverFailedError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Can't get interface of linked mover.]]></DisplayName>
+				<DisplayName TxtId="9005"><![CDATA[{0}: Can't get interface of linked mover.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9006">GetTaskFailedError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Failed to get task context of {1}. Check if context of {1} is set.]]></DisplayName>
+				<DisplayName TxtId="9006"><![CDATA[{0}: Failed to get task context of {1}. Check if context of {1} is set.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9007">GetCoupledMoverFailedError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Failed to get interface of coupled XTS Mover Controller with OTCID {1}.]]></DisplayName>
+				<DisplayName TxtId="9007"><![CDATA[{0}: Failed to get interface of coupled XTS Mover Controller with OTCID {1}.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9008">CoupledMoverOnDifferentTasksError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: The coupled controller ({1}) is on a different task. Make sure that both Mover has the same task context.]]></DisplayName>
+				<DisplayName TxtId="9008"><![CDATA[{0}: The coupled controller ({1}) is on a different task. Make sure that both Mover has the same task context.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9009">NoParameterSetConfiguredError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: No parameter set is configured.]]></DisplayName>
+				<DisplayName TxtId="9009"><![CDATA[{0}: No parameter set is configured.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9010">GetParameterSetFailedError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Failed to get parameter set with OTCID {1}. Please make sure the object {1} is a XTS Controller Parameter Set.]]></DisplayName>
+				<DisplayName TxtId="9010"><![CDATA[{0}: Failed to get parameter set with OTCID {1}. Please make sure the object {1} is a XTS Controller Parameter Set.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9011">CouldNotRegisterByError</Name>
-				<DisplayName TxtId=""><![CDATA[Could not register {0} ('{1}') by {2}.]]></DisplayName>
+				<DisplayName TxtId="9011"><![CDATA[Could not register {0} ('{1}') by {2}.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9012">CouldNotGetInterfaceOfTaskError</Name>
-				<DisplayName TxtId=""><![CDATA[Could not get interface of task (Object ID = {0}, Error = {1}).]]></DisplayName>
+				<DisplayName TxtId="9012"><![CDATA[Could not get interface of task (Object ID = {0}, Error = {1}).]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9013">CouldNotGetRTInterfaceOfTaskError</Name>
-				<DisplayName TxtId=""><![CDATA[Could not get RT-interface of task (Object ID = {0}, Error = {1}).]]></DisplayName>
+				<DisplayName TxtId="9013"><![CDATA[Could not get RT-interface of task (Object ID = {0}, Error = {1}).]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9014">DifferentObjectVersionsError</Name>
-				<DisplayName TxtId=""><![CDATA[Different versions of {0} ({1}) and {2} ({3}) detected.]]></DisplayName>
+				<DisplayName TxtId="9014"><![CDATA[Different versions of {0} ({1}) and {2} ({3}) detected.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9015">VelocityFollowingErrorSingleError</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1201): Velocity following error - check setpoint generation & commutation (actual velocity != command velocity).]]></DisplayName>
+				<DisplayName TxtId="9015"><![CDATA[{0} (0x1201): Velocity following error - check setpoint generation & commutation (actual velocity != command velocity).]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9016">VelocityFollowingErrorMultipleError</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1201): Velocity following error - check setpoint generation & commutation (actual velocity != command velocity). {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<DisplayName TxtId="9016"><![CDATA[{0} (0x1201): Velocity following error - check setpoint generation & commutation (actual velocity != command velocity). {1} more XTS Mover Controllers with this error...]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9017">ResortWhileAxisEnabledSingleError</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1001): New mover resort while axis is enabled.]]></DisplayName>
+				<DisplayName TxtId="9017"><![CDATA[{0} (0x1001): New mover resort while axis is enabled.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9018">ResortWhileAxisEnabledMultipleError</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1001): New mover resort while axis is enabled. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<DisplayName TxtId="9018"><![CDATA[{0} (0x1001): New mover resort while axis is enabled. {1} more XTS Mover Controllers with this error...]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9019">EmergencyRampTooLongSingleError</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1102): Emergency ramp take too long.]]></DisplayName>
+				<DisplayName TxtId="9019"><![CDATA[{0} (0x1102): Emergency ramp take too long.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9020">EmergencyRampTooLongMultipleError</Name>
-				<DisplayName TxtId=""><![CDATA[{0} (0x1102): Emergency ramp take too long. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<DisplayName TxtId="9020"><![CDATA[{0} (0x1102): Emergency ramp take too long. {1} more XTS Mover Controllers with this error...]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9021">GetExternalPositionFailedError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Failed to get interface (IXtsExternalPosition) of interface with OTCID {1}.]]></DisplayName>
+				<DisplayName TxtId="9021"><![CDATA[{0}: Failed to get interface (IXtsExternalPosition) of interface with OTCID {1}.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9022">GetExternalForceFailedError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Failed to get interface (IXtsExternalForce) of external force object with OTCID {1}.]]></DisplayName>
+				<DisplayName TxtId="9022"><![CDATA[{0}: Failed to get interface (IXtsExternalForce) of external force object with OTCID {1}.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9023">CantChangeControllerWhileTuningError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Can't change the controller while tuning process is active ({1}).]]></DisplayName>
+				<DisplayName TxtId="9023"><![CDATA[{0}: Can't change the controller while tuning process is active ({1}).]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9024">GetMoverControllerFailedError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Failed to get mover controller with OTCID {1}. Please make sure the object {1} is a XTS Controller Parameter Set.]]></DisplayName>
+				<DisplayName TxtId="9024"><![CDATA[{0}: Failed to get mover controller with OTCID {1}. Please make sure the object {1} is a XTS Controller Parameter Set.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9025">CantStartTuningAssistantError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Can't start tuning, tuning process is already running.]]></DisplayName>
+				<DisplayName TxtId="9025"><![CDATA[{0}: Can't start tuning, tuning process is already running.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9026">TuningAssistantJobTaskMissingError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Please select a Job Task for Tuning Assistant calculations.]]></DisplayName>
+				<DisplayName TxtId="9026"><![CDATA[{0}: Please select a Job Task for Tuning Assistant calculations.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9027">CouldNotGetInterfaceObJobTaskError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Could not get interface of Job task (Object ID = {1}, Error = {2}).]]></DisplayName>
+				<DisplayName TxtId="9027"><![CDATA[{0}: Could not get interface of Job task (Object ID = {1}, Error = {2}).]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9028">MissingMoverLinkError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: Missing link to XTS mover.]]></DisplayName>
+				<DisplayName TxtId="9028"><![CDATA[{0}: Missing link to XTS mover.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="9029">MissingParameterSetError</Name>
-				<DisplayName TxtId=""><![CDATA[{0}: {1} is missing. At least one {1} is required.]]></DisplayName>
+				<DisplayName TxtId="9029"><![CDATA[{0}: {1} is missing. At least one {1} is required.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9030">TuningAssistantMoverControllerMissingError</Name>
+				<DisplayName TxtId="9030"><![CDATA[{0}: Please select a mover controller to perform the tuning assist.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="15000">MessageDebug</Name>
-				<DisplayName TxtId=""><![CDATA[DEBUG-MSG: '{0}', '{1}', '{2}', '{3}']]></DisplayName>
+				<DisplayName TxtId="15000"><![CDATA[DEBUG-MSG: '{0}', '{1}', '{2}', '{3}']]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 		</DataType>
@@ -2318,10 +2323,10 @@ External Setpoint Generation:
 				<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 			</Var>
 		</Vars>
-		<Module Id="#x01010240" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.2.44.0">
+		<Module Id="#x01010240" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
 			<Name>Mover Controller 8</Name>
 			<ImageId>1000</ImageId>
-			<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.2.44.0">
+			<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
 				<Name>XtsMoverController</Name>
 				<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 				<Info>
@@ -2685,783 +2690,303 @@ External Setpoint Generation:
 				<EventMessages>
 					<EventMessage>
 						<Id>0</Id>
-						<Message><![CDATA[Version {0} Build date: {1} Build time: {2}]]></Message>
+						<Message><![CDATA[{0}: Mover 1 found]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>1</Id>
-						<Message><![CDATA[{0} XTS module(s) are loaded.]]></Message>
+						<Message><![CDATA[{0}: Standard mover found]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>2</Id>
-						<Message><![CDATA[{0} XTS mover(s) are loaded.]]></Message>
+						<Message><![CDATA[Initialized {0} XTS Controller(s) on {1} (CPU {2}, {3} μs).]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>3</Id>
-						<Message><![CDATA[All XTS mover(s) are detected.]]></Message>
+						<Message><![CDATA[Initialized {0} XTS Controller Parameter Set(s).]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>4</Id>
-						<Message><![CDATA[Path length is {0} mm.]]></Message>
+						<Message><![CDATA[No XTS Controller Manager in configuration detected. Initialize default Manager...]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5</Id>
-						<Message><![CDATA[Path is closed.]]></Message>
+						<Message><![CDATA[{0}: Force coupling with {1} is active.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>6</Id>
-						<Message><![CDATA[Path is open.]]></Message>
+						<Message><![CDATA[{0}: Number of maxima found in the current spectrum = {1}]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>7</Id>
-						<Message><![CDATA[Searching of XTS mover(s) is started.]]></Message>
+						<Message><![CDATA[{0}: Calculate with rule {1}]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>8</Id>
-						<Message><![CDATA[Teaching is complete.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9</Id>
-						<Message><![CDATA[Teaching is started on {0} modules.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>10</Id>
-						<Message><![CDATA[Teaching is stopped on {0} modules.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>11</Id>
-						<Message><![CDATA[Teaching data is created at {0}.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>12</Id>
-						<Message><![CDATA[Teaching '{0}' is loaded.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>13</Id>
-						<Message><![CDATA[Teaching data {0} is saved.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>14</Id>
-						<Message><![CDATA[Teaching data {0} is valid.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>15</Id>
-						<Message><![CDATA[All XTS modules are enabled for teaching.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>16</Id>
-						<Message><![CDATA[XTS module {0} is enabled for teaching.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>17</Id>
-						<Message><![CDATA[XTS module {0} is disabled for teaching.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>18</Id>
-						<Message><![CDATA[IO Processing Unit (ID = {0}): EtherCAT is ready now ({1} device(s) are checked).]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>19</Id>
-						<Message><![CDATA[Writing dump file {0}...]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>20</Id>
-						<Message><![CDATA[Start up of {0} ({1}) is monitored.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>21</Id>
-						<Message><![CDATA[No default teaching data is supplied by the hardware. Please teach the system using the TcIoXts driver.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>22</Id>
-						<Message><![CDATA[Mover ID is detected.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>23</Id>
-						<Message><![CDATA[Mover ID is detected. {0} mover(s) with ID '1' and {1} mover(s) with ID '-' are detected.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>24</Id>
-						<Message><![CDATA[Mover ID detection mode '{0}' is activated.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>25</Id>
-						<Message><![CDATA[The Mover ID Detection has been triggered.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>26</Id>
-						<Message><![CDATA[Synchonization object is created for {0} tasks.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>27</Id>
-						<Message><![CDATA[Task ({0}) is added to barrier.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>28</Id>
-						<Message><![CDATA[Is registered by all tasks as IO driver.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>29</Id>
-						<Message><![CDATA[Enable time is set.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>30</Id>
-						<Message><![CDATA[Disable time is elapsed.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>31</Id>
-						<Message><![CDATA[{0} DataPointers are initialized.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>32</Id>
-						<Message><![CDATA[{0} modules will be initialized...]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>33</Id>
-						<Message><![CDATA[Record will be written. File: {0}]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>34</Id>
-						<Message><![CDATA[Index range = [{0}, {1}].]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>35</Id>
-						<Message><![CDATA[Module identity check for teaching is passed successfully.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>36</Id>
-						<Message><![CDATA[Teaching plausibility check is passed successfully.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>37</Id>
-						<Message><![CDATA[Teaching checksum check is passed successfully.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>38</Id>
-						<Message><![CDATA[Redetection is triggered.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>39</Id>
-						<Message><![CDATA[Mover ID is detected. {0} mover(s) with ID '{1}' and {2} mover(s) with ID '{3}' are detected.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>40</Id>
-						<Message><![CDATA[Inputs check is valid.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>41</Id>
-						<Message><![CDATA[Teaching file format can be updated. To do so, trigger corresponding XPU parameter.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>42</Id>
-						<Message><![CDATA[DumpWriter entering fallback mode, using router memory.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>43</Id>
-						<Message><![CDATA[Teaching '{0}' is loaded with {1} warnings.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>44</Id>
-						<Message><![CDATA[Teaching plausibility check is passed for {0} module(s). {0} warning(s) are ignored.]]></Message>
+						<Message><![CDATA[{0}: Bode plot is stopped.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5000</Id>
-						<Message><![CDATA[The XTS is designed to run with a cycle time of 250 us. Other cycle times may be used with care.]]></Message>
+						<Message><![CDATA[{0}: Invalid {1} parameter value (min={2}/max={3})]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5001</Id>
-						<Message><![CDATA[Too few movers are detected. Expected = {0}, Detected = {1}]]></Message>
+						<Message><![CDATA[{0}: Invalid {1} parameter value (min={2}/max={3})]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5002</Id>
-						<Message><![CDATA[Too many movers are detected. Expected = {0}, Detected = {1}]]></Message>
+						<Message><![CDATA[{0}: Invalid {1} parameter value (min={2})]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5003</Id>
-						<Message><![CDATA[Teaching data {0} is missing.]]></Message>
+						<Message><![CDATA[{0} (0x1002): New Mover 1 detection while axis is enabled.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5004</Id>
-						<Message><![CDATA[Teaching data of XTS module {0} is invalid.]]></Message>
+						<Message><![CDATA[{0} (0x1002): New Mover 1 detection while axis is enabled. {1} more XTS Mover Controllers with this error...]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5005</Id>
-						<Message><![CDATA[All teaching values of XTS module {0} are zero.]]></Message>
+						<Message><![CDATA[{0} (0x1003): Hardware error occur after Mover 1 detection is started.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5006</Id>
-						<Message><![CDATA[All teaching values of XTS module {0} are negative.]]></Message>
+						<Message><![CDATA[{0} (0x1003): Hardware error occur after Mover 1 detection is started. {1} more XTS Mover Controllers with this error...]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5007</Id>
-						<Message><![CDATA[All teaching values of XTS module {0} are positive.]]></Message>
+						<Message><![CDATA[{0} (0x1005): Movements of Mover while Mover 1 detection do not fit together.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5008</Id>
-						<Message><![CDATA[Some teaching values of XTS module {0} are not in the expected range ({1}, {2}).]]></Message>
+						<Message><![CDATA[{0} (0x1005): Movements of Mover while Mover 1 detection do not fit together. {1} more XTS Mover Controllers with this error...]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5009</Id>
-						<Message><![CDATA[IO Processing Unit (ID = {0}) is waiting for {1} ({2}) to start up.]]></Message>
+						<Message><![CDATA[{0} (0x1004): Hardware is not ready for Mover 1 detection - e.g. power is missing or HW has an error.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5010</Id>
-						<Message><![CDATA[Mover {0} is frozen at position {1} mm.]]></Message>
+						<Message><![CDATA[{0} (0x1004): Hardware is not ready for Mover 1 detection - e.g. power is missing or HW has an error. {1} more XTS Mover Controllers with this error...]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5011</Id>
-						<Message><![CDATA[The Mover ID Detection has already been started. Do not start it again.]]></Message>
+						<Message><![CDATA[{0} (0x1007): Min velocity could not be reached long enough.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5012</Id>
-						<Message><![CDATA[Wait until the mover detection is finished before starting the mover ID detection.]]></Message>
+						<Message><![CDATA[{0} (0x1007): Min velocity could not be reached long enough. {1} more XTS Mover Controllers with this error...]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5013</Id>
-						<Message><![CDATA[The system is waiting for triggering the Mover ID Detection (via PLC or manually).]]></Message>
+						<Message><![CDATA[{0} (0x1006): Min movement could not be reached with the actual current.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5014</Id>
-						<Message><![CDATA[The parameter 'DelayBetweenMoverPacks' should be between 0.001s and 1s.]]></Message>
+						<Message><![CDATA[{0} (0x1006): Min movement could not be reached with the actual current. {1} more XTS Mover Controllers with this error...]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5015</Id>
-						<Message><![CDATA[Changes to parameter 'DelayBetweenMoverPacks' are ignored because the detection is running.]]></Message>
+						<Message><![CDATA[{0}: No write access in TCom state OP for {1}.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5016</Id>
-						<Message><![CDATA[The parameter 'DelayBetweenMoversInPack' should be between 0.005s and 1s.]]></Message>
+						<Message><![CDATA[{0} Observer: Bandwidth is limited by cycle time (limited Bandwidth = {1})]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5017</Id>
-						<Message><![CDATA[Changes to parameter 'DelayBetweenMoversInPack' are ignored because the detection is running.]]></Message>
+						<Message><![CDATA[{0} (0x1101): Velocity difference too big for emergency ramp down.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5018</Id>
-						<Message><![CDATA[The parameter 'GapToDefineMoverPack' should be between 49mm and 1000mm dependend on your mechanical tool.]]></Message>
+						<Message><![CDATA[{0} (0x1101): Velocity difference too big for emergency ramp down. {1} more XTS Mover Controllers with this error...]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5019</Id>
-						<Message><![CDATA[Changes to parameter 'GapToDefineMoverPack' are ignored because the detection is running.]]></Message>
+						<Message><![CDATA[{0}: AreaStartPosition[{1}] must be smaller then AreaEndPosition.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5020</Id>
-						<Message><![CDATA[Changes to parameter 'MoverIdPositionAssignment' are ignored because the detection is running.]]></Message>
+						<Message><![CDATA[{0}: AreaStartPosition[{1}] must be greater or equal then Zero.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5021</Id>
-						<Message><![CDATA[The Mover ID Detection is valid. Do not trigger the Mover ID Detection once again.]]></Message>
+						<Message><![CDATA[{0}: AreaStartPosition[{1}] must be smaller or equal then HardwareModulo.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5022</Id>
-						<Message><![CDATA[Teaching data for module '{0}' is skipped because it is not found in the current teaching file.]]></Message>
+						<Message><![CDATA[{0}: Failed to get interface of NC/MC3 axis.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5023</Id>
-						<Message><![CDATA[File access service could not be intiailized. ({0} / Error = {1}).]]></Message>
+						<Message><![CDATA[{0}: Invalid {1} parameter value (min={2})]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5024</Id>
-						<Message><![CDATA[Module count of part is zero.]]></Message>
+						<Message><![CDATA[{0}: Probably no enough movement during spectrum measure]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5025</Id>
-						<Message><![CDATA[StandStillTeaching is not appropriate for hygienic XTS.]]></Message>
+						<Message><![CDATA[{0}: No filter suggestion could be calculated - please evaluate the spectrum manually]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5026</Id>
-						<Message><![CDATA[MovementTeaching is only appropriate for hygienic XTS.]]></Message>
+						<Message><![CDATA[{0}: Invalid number of maxima found in the current spectrum]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5027</Id>
-						<Message><![CDATA[The check sum does not match with the given teaching file! File is ignored and defaults will be used.]]></Message>
+						<Message><![CDATA[{0}: No maxima found in the current spectrum]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5028</Id>
-						<Message><![CDATA[Online identities of teaching file do not match with online identities of modules.]]></Message>
+						<Message><![CDATA[{0}: Too many maxima found in the current spectrum]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5029</Id>
-						<Message><![CDATA[Teaching file will be ignored because of inconsistencies. Default teaching is used instead.]]></Message>
+						<Message><![CDATA[TuningAssist: Error in Bi_Quad calc with LowPassfreqeuncy = {0}]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5030</Id>
-						<Message><![CDATA[All teaching values of XTS module {0} are one.]]></Message>
+						<Message><![CDATA[TuningAssist: Error in Bi_Quad calc with HighPassfreqeuncy = {0}]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5031</Id>
-						<Message><![CDATA[No teaching data is found for module with object ID '{0}'.]]></Message>
+						<Message><![CDATA[TuningAssist: Error in LowPass2 calc with LowPassfreqeuncy = {0}]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5032</Id>
-						<Message><![CDATA[The XTS is designed to run with a cycle time of 250 us but task '{0}' has a cycle time of {1} us. Use other cycle times with care.]]></Message>
+						<Message><![CDATA[{0}: No friction compensation suggestion could be calculated - due to wrong parameter {1}]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5033</Id>
-						<Message><![CDATA[Mover '{0}' is frozen at position {1} mm (Default Track = {2}).]]></Message>
+						<Message><![CDATA[{0}:Can't download values. Please select a valid ParameterSet!]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>5034</Id>
-						<Message><![CDATA[On '{0}' the input channel(s) '{1}' exceed the min/max limit! Please check a hardware fault and make sure that there is no movement during mover detection process.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5035</Id>
-						<Message><![CDATA[No tracks are included in detection. Include track to be able to start detection.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5036</Id>
-						<Message><![CDATA[On '{0}' the input channel(s) '{1}' exceed the noise limit! Please check a hardware fault and make sure that there is no movement during mover detection process.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5037</Id>
-						<Message><![CDATA[The parameter 'MountingOffset' is greater than the max supported value of 3.0mm. Please adapt this value!]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5038</Id>
-						<Message><![CDATA[The parameter 'UserLength' is greater than 3.0mm of hardware length. Please adapt this value!]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5039</Id>
-						<Message><![CDATA[On '{0}' the input Channel(s) '{1}' are frozen! Please check a hardware fault.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5040</Id>
-						<Message><![CDATA[No teaching data is found for module with btn '{0}'.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5041</Id>
-						<Message><![CDATA[Dump writing failed due to insufficient buffer memory. Trying to enter DumpWriterFallbackMode, if enabled...]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5042</Id>
-						<Message><![CDATA[Teaching file contains data for module with btn '{0}' but module cound not be found.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5043</Id>
-						<Message><![CDATA[Teaching file contains data for module with object ID '0x{0}' but module cound not be found.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5044</Id>
-						<Message><![CDATA[Drive identity mismatch for module '{0} ({1})' is detected. Teaching data has identity '{2}' whereas module has '{3}'.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5045</Id>
-						<Message><![CDATA[Encoder identity mismatch for module '{0} ({1})' is detected. Teaching data has identity '{2}' whereas module has '{3}'.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5046</Id>
-						<Message><![CDATA[Module type for module '{0} ({1})' is detected. Teaching data has module type '{2}' whereas module has '{3}'.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5047</Id>
-						<Message><![CDATA[{0} module(s) have no teaching data available. Please teach them in order to start up.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5048</Id>
-						<Message><![CDATA[No teaching data is found for module '{0} ({1})'.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5049</Id>
-						<Message><![CDATA[No teaching data is found for module '{0} ({1})' with btn '{0}'.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5050</Id>
-						<Message><![CDATA[Teaching data for module '{0} ({1})' is old. The teaching does not contain a btn but the module defines one.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5051</Id>
-						<Message><![CDATA[Performance is decreased. Tasks of movers should be assigned in order.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5052</Id>
-						<Message><![CDATA[{0} and {1} have the same detection priority.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5053</Id>
-						<Message><![CDATA[{0}: Current is limited by IO.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5054</Id>
-						<Message><![CDATA[Preview feature '{0}' is loaded.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5055</Id>
-						<Message><![CDATA[A preview feature is intended to be used for testing. Feedback is highly appreciated!]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5056</Id>
-						<Message><![CDATA[But keep in mind that TcCOM modules, parameters, functions or behavior could be changed/removed in future.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>5057</Id>
-						<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
+						<Message><![CDATA[{0}: Can't start bode plot while force coupling is enabled.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>9000</Id>
-						<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
+						<Message><![CDATA[{0}: Input pointer not set.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>9001</Id>
-						<Message><![CDATA[Cycle time {0} us of XTS task is not supported! Set cycle time to 250 us.]]></Message>
+						<Message><![CDATA[{0}: Output pointer to not set.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>9002</Id>
-						<Message><![CDATA[A XTS mover is lost at {0} mm. Please perform a new detection.]]></Message>
+						<Message><![CDATA[{0}: Failed to initialize input pointer.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>9003</Id>
-						<Message><![CDATA[The module '{0}' with drive terminal '{1}' has an error.]]></Message>
+						<Message><![CDATA[{0}: Failed to initialize output pointer.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>9004</Id>
-						<Message><![CDATA[Out of memory. XTS mover count is not supported.]]></Message>
+						<Message><![CDATA[{0}: Input and output pointer have different targets.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>9005</Id>
-						<Message><![CDATA[TcIoXts driver has failed to start up. Please check the configuration and bootdata files!]]></Message>
+						<Message><![CDATA[{0}: Can't get interface of linked mover.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>9006</Id>
-						<Message><![CDATA[Teaching data is invalid. {0}]]></Message>
+						<Message><![CDATA[{0}: Failed to get task context of {1}. Check if context of {1} is set.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>9007</Id>
-						<Message><![CDATA[Teaching file '{0}' is corrupted.]]></Message>
+						<Message><![CDATA[{0}: Failed to get interface of coupled XTS Mover Controller with OTCID {1}.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>9008</Id>
-						<Message><![CDATA[Teaching data of XTS module {0} is invalid.]]></Message>
+						<Message><![CDATA[{0}: The coupled controller ({1}) is on a different task. Make sure that both Mover has the same task context.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>9009</Id>
-						<Message><![CDATA[Saving of teaching data {0} has failed.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9010</Id>
-						<Message><![CDATA[Mover {0} is frozen at position {1} mm.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9011</Id>
-						<Message><![CDATA[File '{0}' cannot be loaded. Please check that the installation is correct and restart TwinCAT.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9012</Id>
-						<Message><![CDATA[Mover ID Detection failed. A general error occurs on '{0}' with the global number '{1}'.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9013</Id>
-						<Message><![CDATA[The SoftDrive '{0}' of the mover '{1}' is not responding. Please check the axis configuration and the SoftDrive version.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9014</Id>
-						<Message><![CDATA[No Mover ID has been detected! Check if there is a mover with a special magnet plate set on the system and restart the ID Detection.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9015</Id>
-						<Message><![CDATA[Too many ({0}) mover IDs has been detected! Make sure that there is only one Mover 1 - with special magnet plate - installed on the system.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9016</Id>
-						<Message><![CDATA[The mover {0} gets an enable command before Mover ID Detection is processed. If there is no Mover 1 - with special magnet plate - installed then set 'MoverIdDetectionMode' to 'Standard'.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9017</Id>
-						<Message><![CDATA[Mover ID Detection was interrupted by changing the 'MoverIdDetectionMode'.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9018</Id>
-						<Message><![CDATA[Mover ID detection cannot start because no track is defined to run the detection.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9019</Id>
-						<Message><![CDATA[Mover ID detection is disabled in 'Standard' mode.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9020</Id>
-						<Message><![CDATA[Start teaching command is invalid. Please check the selection string if it contains only valid numbers and/or ranges (Example: 1, 2, 5 - 10).]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9021</Id>
-						<Message><![CDATA[Mover ID detection mode 'Mover1' is only supported for systems consisting of one track.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9022</Id>
-						<Message><![CDATA[Too many Mover 1 are detected. Expected = {0}, Detected = {1}.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9023</Id>
-						<Message><![CDATA[Version of teaching data file '{0}' is not supported. Please create a new teaching file with the current driver.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9024</Id>
-						<Message><![CDATA[Too few Mover 1 are detected. Expected = {0}, Detected = {1}.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9025</Id>
-						<Message><![CDATA[Too many Mover 1 expected. Expected = {0}, Total mover count = {1}.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9026</Id>
-						<Message><![CDATA[Configuration of expected mover IDs does not match the count of included movers.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9027</Id>
-						<Message><![CDATA[ID detection has failed - expected ID '{0}' count is {1} but {2} have been detected.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9028</Id>
-						<Message><![CDATA[Configuration of expected mover IDs has invalid notation.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9029</Id>
-						<Message><![CDATA[Could not register by {0}.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9030</Id>
-						<Message><![CDATA[Could not initialize {0}.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9031</Id>
-						<Message><![CDATA[Could not set '{0}' in PRE-OP state.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9032</Id>
-						<Message><![CDATA[Could not set '{0}' in SAFE-OP state.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9033</Id>
-						<Message><![CDATA[Could not set '{0}' in OP state.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9034</Id>
-						<Message><![CDATA[Registration of {0} has failed. Error = {1}.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9035</Id>
-						<Message><![CDATA[List of modules in part {0} are not consistent regarding the module's PositionIndex parameters.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9036</Id>
-						<Message><![CDATA[Could not register as IO driver by Task ({0}).]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9037</Id>
-						<Message><![CDATA[Task ({0}) could not be added to barrier.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9038</Id>
-						<Message><![CDATA[No license server available. Start up is aborted.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9039</Id>
-						<Message><![CDATA[Not all modules of part could be added! (Added {0} from {1}).]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9040</Id>
-						<Message><![CDATA[Could not load current table.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9041</Id>
-						<Message><![CDATA[Could not get interface of task (Object ID = {0}, Error = {1}).]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9042</Id>
-						<Message><![CDATA[Could not get RT-interface of task (Object ID = {0}, Error = {1}).]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9043</Id>
-						<Message><![CDATA[EtherCAT info service could not be initialized. ERROR = {0}.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9044</Id>
-						<Message><![CDATA[Could not initialize {0} DataPointers.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9045</Id>
-						<Message><![CDATA[No modules have been registered.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9046</Id>
-						<Message><![CDATA[Cannot access part with object ID {0}.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9047</Id>
-						<Message><![CDATA[The cylce time of {0} us of task '{1}' does not match the cylce time of task '{2}' which uses {3} us. Ensure that each task used by the processing unit executes with the same cycle time.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9048</Id>
-						<Message><![CDATA[The CPU with ID {0} is used by {1} tasks. Ensure that each task used by the processing unit has its own cpu.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9049</Id>
-						<Message><![CDATA[Mover '{0}' is frozen at track position {1} mm (Track = {2}).]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9050</Id>
-						<Message><![CDATA[The teaching file number '{0}' is already used by '{1}'. Please choose a different one for either instance.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9051</Id>
-						<Message><![CDATA[The part '{0}' ({1}) has no modules. Please add modules to the part or delete/deactivate the part itself.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9052</Id>
-						<Message><![CDATA[The parameter '{0}' is not set to a valid value ({1}).]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9053</Id>
-						<Message><![CDATA[Cannot start up, because required data pointers of '{0}' are not valid. Please check Data Pointer links and IO Devices.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9054</Id>
-						<Message><![CDATA[DumpWriter could not enter fallback mode, so dump could not be written. Please enable DumpWriterFallbackMode.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9055</Id>
-						<Message><![CDATA[The needed buffer size of dumpWriter was greater than worst case estimation used for initialization! Estimation was {0} bytes, buffer had a size of {1} bytes (10 percent extra safety margin to estimation) and dumpWriter needed {2} bytes.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9056</Id>
-						<Message><![CDATA[Teaching data cannot be loaded. It contains data for {0} modules but the current system has {1} modules.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9057</Id>
-						<Message><![CDATA[Teaching '{0}' is not loaded through {1} error(s). Start up process is aborted. Deactivate your custom teaching or reteach your system.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9058</Id>
-						<Message><![CDATA[Teaching '{0}' is not loaded through {1} warning(s). Start up process is aborted. If warnings are ok then disable the 'IsAbortOnTeachingWarningsEnabled' parameter. Otherwise deactivate your custom teaching or reteach your system.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9059</Id>
-						<Message><![CDATA['{0}' teaching is not supported by module '{1} ({2})'.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9060</Id>
-						<Message><![CDATA[Startup is aborted. Checksum of the teaching file does not match with the project. Please check your teaching.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9061</Id>
-						<Message><![CDATA[Teaching plausibility check has failed for {0} out of {1} modules. Start up process is aborted. If warnings are ok then disable the 'IsAbortOnTeachingWarningsEnabled' parameter. Otherwise deactivate your custom teaching or reteach your system.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9062</Id>
-						<Message><![CDATA[Detection is aborted due to {0} enabled movers.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9063</Id>
-						<Message><![CDATA[Detection on {0} included tracks is aborted because there are not enough movers available. Total available are {1} where {2} are already on included tracks but {3} are configured to be detected.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9064</Id>
-						<Message><![CDATA[Detection on {0} included tracks is aborted because there are already too many included movers ({1}) on track but only {2} are configured to be detected.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9065</Id>
-						<Message><![CDATA[Could not initialize {0} (Error = {1}).]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9066</Id>
-						<Message><![CDATA[Aux task cannot be used to calculate the update of modules or movers but it has been used for {0} module(s) and {1} mover(s).]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9067</Id>
-						<Message><![CDATA[Part reset is not done. Activate part based handling on the Prcoessing Unit first in order to use it.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9068</Id>
-						<Message><![CDATA[Mover detection is aborted. No tracks are included in detection.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9069</Id>
-						<Message><![CDATA[Mover detection is aborted after {0} cycles. {1} movers are detected but {2} are expected.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9070</Id>
-						<Message><![CDATA[Mover arrive is aborted. Track ({0}) is invalid - configure the track for arrive on the mover.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9071</Id>
-						<Message><![CDATA[Additional module(s) with a drive error have been detected.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9072</Id>
-						<Message><![CDATA[Mover '{0}' ({1}) of '{2}' ({3}) is lost at part '{4}' ({5}) - {6} mm. Please perform a new detection.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9073</Id>
-						<Message><![CDATA[The used task '{0}' is not used by any mover or module. Ensure that the task is used by at least one mover or module.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9074</Id>
-						<Message><![CDATA[Different versions of {0} ({1}) and {2} ({3}) detected.]]></Message>
-					</EventMessage>
-					<EventMessage>
-						<Id>9075</Id>
 						<Message><![CDATA[{0}: No parameter set is configured.]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9076</Id>
+						<Id>9010</Id>
 						<Message><![CDATA[{0}: Failed to get parameter set with OTCID {1}. Please make sure the object {1} is a XTS Controller Parameter Set.]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9077</Id>
-						<Message><![CDATA[{0}: Failed to get Mover Controller interface with OTCID {1}.]]></Message>
+						<Id>9011</Id>
+						<Message><![CDATA[Could not register {0} ('{1}') by {2}.]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9078</Id>
-						<Message><![CDATA[{0}: Can't use '{1}' ({2}) with negative polarity and '{3}' ({4}) with SoftDrive. Please use a positive polarity or a Mover ontroller.]]></Message>
+						<Id>9012</Id>
+						<Message><![CDATA[Could not get interface of task (Object ID = {0}, Error = {1}).]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9079</Id>
-						<Message><![CDATA[{0}: Negative offset ({1}) is only allowed if the Track is closed.]]></Message>
+						<Id>9013</Id>
+						<Message><![CDATA[Could not get RT-interface of task (Object ID = {0}, Error = {1}).]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9080</Id>
-						<Message><![CDATA[{0}: Can't initialize swap. Swap is already pending on {1}.]]></Message>
+						<Id>9014</Id>
+						<Message><![CDATA[Different versions of {0} ({1}) and {2} ({3}) detected.]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9081</Id>
-						<Message><![CDATA[{0}: Can't get interface of Mover with object ID {1}.]]></Message>
+						<Id>9015</Id>
+						<Message><![CDATA[{0} (0x1201): Velocity following error - check setpoint generation & commutation (actual velocity != command velocity).]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9082</Id>
-						<Message><![CDATA[{0}: Can't swap mover with {1} because at least one mover has drive status OperationEnabled.]]></Message>
+						<Id>9016</Id>
+						<Message><![CDATA[{0} (0x1201): Velocity following error - check setpoint generation & commutation (actual velocity != command velocity). {1} more XTS Mover Controllers with this error...]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9083</Id>
-						<Message><![CDATA[{0}: Can't set {1} while mover detection is running.]]></Message>
+						<Id>9017</Id>
+						<Message><![CDATA[{0} (0x1001): New mover resort while axis is enabled.]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9084</Id>
-						<Message><![CDATA[{0}: Parameter '{1}' has an invalid value '{2}'. The allowed range is [{3}, {4}].]]></Message>
+						<Id>9018</Id>
+						<Message><![CDATA[{0} (0x1001): New mover resort while axis is enabled. {1} more XTS Mover Controllers with this error...]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9085</Id>
-						<Message><![CDATA[{0}: Parameter '{1}' has an invalid value '{2}'. The value must be positive.]]></Message>
+						<Id>9019</Id>
+						<Message><![CDATA[{0} (0x1102): Emergency ramp take too long.]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9086</Id>
-						<Message><![CDATA[{0}: Can't use SoftDrive with AT22xx modules. Please use the MoverController.]]></Message>
+						<Id>9020</Id>
+						<Message><![CDATA[{0} (0x1102): Emergency ramp take too long. {1} more XTS Mover Controllers with this error...]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9087</Id>
-						<Message><![CDATA[{0}: Mover exceeds track limits of {1}.]]></Message>
+						<Id>9021</Id>
+						<Message><![CDATA[{0}: Failed to get interface (IXtsExternalPosition) of interface with OTCID {1}.]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9088</Id>
-						<Message><![CDATA[{0}: Can't get MC track info from {1}.]]></Message>
+						<Id>9022</Id>
+						<Message><![CDATA[{0}: Failed to get interface (IXtsExternalForce) of external force object with OTCID {1}.]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9089</Id>
-						<Message><![CDATA[Length of {0} does not fit to {1}. The MC track must be the same length or max. 0.01 mm longer than {2}!]]></Message>
+						<Id>9023</Id>
+						<Message><![CDATA[{0}: Can't change the controller while tuning process is active ({1}).]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9091</Id>
-						<Message><![CDATA[{0}: Can't activate Track, ObjectId {1} is invalid.]]></Message>
+						<Id>9024</Id>
+						<Message><![CDATA[{0}: Failed to get mover controller with OTCID {1}. Please make sure the object {1} is a XTS Controller Parameter Set.]]></Message>
 					</EventMessage>
 					<EventMessage>
-						<Id>9092</Id>
-						<Message><![CDATA[{0} (0x{1}): Track configuration is invalid - the track cannot be closed.]]></Message>
+						<Id>9025</Id>
+						<Message><![CDATA[{0}: Can't start tuning, tuning process is already running.]]></Message>
+					</EventMessage>
+					<EventMessage>
+						<Id>9026</Id>
+						<Message><![CDATA[{0}: Please select a Job Task for Tuning Assistant calculations.]]></Message>
+					</EventMessage>
+					<EventMessage>
+						<Id>9027</Id>
+						<Message><![CDATA[{0}: Could not get interface of Job task (Object ID = {1}, Error = {2}).]]></Message>
+					</EventMessage>
+					<EventMessage>
+						<Id>9028</Id>
+						<Message><![CDATA[{0}: Missing link to XTS mover.]]></Message>
+					</EventMessage>
+					<EventMessage>
+						<Id>9029</Id>
+						<Message><![CDATA[{0}: {1} is missing. At least one {1} is required.]]></Message>
+					</EventMessage>
+					<EventMessage>
+						<Id>9030</Id>
+						<Message><![CDATA[{0}: Please select a mover controller to perform the tuning assist.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>15000</Id>
@@ -3470,7 +2995,7 @@ External Setpoint Generation:
 				</EventMessages>
 				<EventClasses>
 					<EventClass>
-						<Type GUID="{A71F63B9-26EB-745D-9EAA-B1298B965BC2}">MoverControllerEventClass</Type>
+						<Type GUID="{5E0D60E9-A8BD-DF95-609D-CEBD7BC29328}">MoverControllerEventClass</Type>
 					</EventClass>
 				</EventClasses>
 				<Properties>

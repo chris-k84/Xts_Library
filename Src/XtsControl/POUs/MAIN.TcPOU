@@ -7,7 +7,7 @@ VAR
 	Reset : BOOL;
 	Start : BOOL;
 	Stop : BOOL;
-	Init : BOOL;
+	Init AT%Q* : BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT Init AND_THEN fbMachine.Initialise() THEN
