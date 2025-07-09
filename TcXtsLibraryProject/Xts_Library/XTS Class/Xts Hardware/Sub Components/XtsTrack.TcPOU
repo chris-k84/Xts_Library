@@ -11,6 +11,9 @@ VAR
 	_TrackLength: LREAL;
 	_TrackIsClosed: BOOL;
 	_OTCID : OTCID;
+	_IsTrackIncludedForDetection : BOOL;
+	_NumberOfPartsInTrack : INT;
+	_TrackPolarity : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -21,8 +24,12 @@ END_VAR
 VAR_INPUT
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := 2;
-]]></ST>
+        <ST><![CDATA[IF _MyInterface = 0 THEN
+	Cycle := -1;
+	RETURN;
+END_IF
+
+_IsTrackIncludedForDetection := _MyInterface.GetIsIncludedInDetection();]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{b15a1974-ae41-45a0-b8ce-e38654aa0808}">
@@ -49,6 +56,8 @@ END_VAR
 		IF _MyInterface.P_IsInitialized THEN
 			_TrackLength := _MyInterface.GetLength();
 			_TrackIsClosed := _MyInterface.GetIsClosed();
+			_TrackPolarity := _MyInterface.GetPolarity();
+			_NumberOfPartsInTrack := TO_INT(_MyInterface.GetPartCount());
 			XtsIoEnvInitialiseState := 4;
 		END_IF
 	4:
@@ -94,6 +103,17 @@ END_VAR
           <ST><![CDATA[_MyInterface := MyXtsIoEnvInterface;]]></ST>
         </Implementation>
       </Set>
+    </Property>
+    <Property Name="NumberOfPartsInTrack" Id="{4227d870-553b-4fcb-8516-6ae7f6500149}">
+      <Declaration><![CDATA[PROPERTY NumberOfPartsInTrack : INT]]></Declaration>
+      <Get Name="Get" Id="{47e7e73c-f2f4-4613-aa92-016379f2eda9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[NumberOfPartsInTrack := _NumberOfPartsInTrack;]]></ST>
+        </Implementation>
+      </Get>
     </Property>
     <Method Name="RemoveFromDetection" Id="{19fc9c17-6e83-4583-8661-ca0f3d7fbe00}">
       <Declaration><![CDATA[METHOD RemoveFromDetection : BOOL
