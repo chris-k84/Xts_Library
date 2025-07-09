@@ -60,15 +60,15 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GetTrackByNumber" Id="{fdddf6a5-daa4-4b5f-bc28-556a31f03729}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetTrackByNumber : I_XtsTrack
+    <Method Name="GetTrackInterfaceByNumber" Id="{fdddf6a5-daa4-4b5f-bc28-556a31f03729}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetTrackInterfaceByNumber : I_XtsTrack
 VAR_INPUT
 	TrackNumber : UINT;
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GetTrackByOTCID" Id="{32320bf3-efb9-473d-bca7-a0ced8f8657b}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetTrackByOTCID : I_XtsTrack
+    <Method Name="GetTrackInterfaceByOTCID" Id="{32320bf3-efb9-473d-bca7-a0ced8f8657b}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetTrackInterfaceByOTCID : I_XtsTrack
 VAR_INPUT
 	trackOTCID : OTCID;
 END_VAR
@@ -134,8 +134,8 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="RemoveTrackFromDetection" Id="{6b996083-6718-40f8-8385-c5509d71f04d}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD RemoveTrackFromDetection : HRESULT
+    <Method Name="RemoveATrackFromDetection" Id="{6b996083-6718-40f8-8385-c5509d71f04d}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD RemoveATrackFromDetection : HRESULT
 VAR_INPUT
 	TrackToRemove : UINT;
 END_VAR

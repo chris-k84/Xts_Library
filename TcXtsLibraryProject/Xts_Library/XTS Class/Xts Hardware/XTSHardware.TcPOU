@@ -139,8 +139,8 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="getNumberMoversDetected" Id="{6134912a-11cc-419f-9366-ca4c2c2c2f9f}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD getNumberMoversDetected : UDINT
+    <Method Name="GetNumberMoversDetected" Id="{6134912a-11cc-419f-9366-ca4c2c2c2f9f}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetNumberMoversDetected : UDINT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -149,19 +149,19 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetTrackByNumber" Id="{f2581b5d-dcdf-4c20-8ad6-39f08544aef0}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetTrackByNumber : I_XtsTrack
+    <Method Name="GetTrackInterfaceByNumber" Id="{f2581b5d-dcdf-4c20-8ad6-39f08544aef0}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetTrackInterfaceByNumber : I_XtsTrack
 VAR_INPUT
 	TrackNumber : UINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetTrackByNumber := XtsTracks[TrackNumber - 1];
+        <ST><![CDATA[GetTrackInterfaceByNumber := XtsTracks[TrackNumber - 1];
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetTrackByOTCID" Id="{d55b1037-e87a-4176-a531-719c46a289ea}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetTrackByOTCID : I_XtsTrack
+    <Method Name="GetTrackInterfaceByOTCID" Id="{d55b1037-e87a-4176-a531-719c46a289ea}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetTrackInterfaceByOTCID : I_XtsTrack
 VAR_INPUT
 	trackOTCID : OTCID;
 END_VAR
@@ -172,7 +172,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[FOR i := 0 TO _MyNumberTracks - 1 DO
 	IF trackOTCID = XtsTracks[i].MyOTCID THEN
-		GetTrackByOTCID := XtsTracks[i];
+		GetTrackInterfaceByOTCID := XtsTracks[i];
 	END_IF
 END_FOR]]></ST>
       </Implementation>
@@ -383,15 +383,15 @@ END_VAR
 Runner.RegisterInitialisable(THIS^);]]></ST>
       </Implementation>
     </Method>
-    <Method Name="RemoveTrackFromDetection" Id="{1e31681d-3ada-48de-80fd-ab8c9694949c}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD RemoveTrackFromDetection : HRESULT
+    <Method Name="RemoveATrackFromDetection" Id="{1e31681d-3ada-48de-80fd-ab8c9694949c}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD RemoveATrackFromDetection : HRESULT
 VAR_INPUT
 	TrackToRemove : UINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TrackToRemove > MyTrackCount OR MyTrackCount = 1 THEN
-	RemoveTrackFromDetection := -1;
+	RemoveATrackFromDetection := -1;
 	RETURN;
 END_IF
 XtsTracks[TrackToRemove - 1].RemoveFromDetection();]]></ST>

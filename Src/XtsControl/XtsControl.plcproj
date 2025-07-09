@@ -17,6 +17,9 @@
     <Implicit_Jitter_Distribution>{00f1c187-ce26-4c8d-a045-194473879630}</Implicit_Jitter_Distribution>
     <LibraryReferences>{3f6e0c75-4a9c-4b5f-8039-17a6f22e412c}</LibraryReferences>
     <Released>false</Released>
+    <AllowChecksForLibrary>false</AllowChecksForLibrary>
+    <POUsForPropertyAccessIncluded>false</POUsForPropertyAccessIncluded>
+    <GlobalVersionStructureIncluded>false</GlobalVersionStructureIncluded>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Machine Class\Machine.TcPOU">
