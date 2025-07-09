@@ -6,8 +6,8 @@
     <Folder Name="Commands" Id="{27c9da71-387e-4094-ae9a-f077ff9b1b1e}" />
     <Folder Name="Settings" Id="{e3948c37-e7d1-40e0-b3aa-465d52d19205}" />
     <Folder Name="Status" Id="{f56f8332-a404-49a0-b1fa-c3796e00575d}" />
-    <Method Name="AreAllMoversValid" Id="{3d107ad0-1a72-4602-abbb-1177fad35523}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD AreAllMoversValid : BOOL
+    <Method Name="AreAllMoverPositionsValid" Id="{3d107ad0-1a72-4602-abbb-1177fad35523}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD AreAllMoverPositionsValid : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -18,6 +18,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="DetectedNumberOfParts" Id="{26f59286-1828-426d-8401-9c022372b2b3}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY DetectedNumberOfParts : INT]]></Declaration>
+      <Get Name="Get" Id="{be1603c2-e62c-4ec9-9bc8-45b0c3dfbaa1}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="DetectedNumberOfTracks" Id="{1f7b777e-4e84-4e05-a960-b4258ee4a093}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY DetectedNumberOfTracks : UINT]]></Declaration>
       <Get Name="Get" Id="{b975fd9f-07a4-422f-a5dd-e3785eb793b3}">
@@ -74,20 +80,26 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="HasXPU" Id="{4bb0c294-1f51-4661-82c9-c8d7d52811fe}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD HasXPU : BOOL
+    <Method Name="HasValidXPUReference" Id="{4bb0c294-1f51-4661-82c9-c8d7d52811fe}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD HasValidXPUReference : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="Is24VdcOK" Id="{d84db133-10f1-4c84-aee2-357bd38938fd}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD Is24VdcOK : HRESULT
+    <Method Name="IsHardware24VdcOK" Id="{d84db133-10f1-4c84-aee2-357bd38938fd}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsHardware24VdcOK : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="Is48VdcOK" Id="{df545d44-305d-4b7a-922f-4b561f83d56a}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD Is48VdcOK : HRESULT
+    <Method Name="IsHardware48VdcOK" Id="{df545d44-305d-4b7a-922f-4b561f83d56a}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsHardware48VdcOK : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="IsHardwareInitialised" Id="{eb3371dd-7907-4a18-ba2b-9ef954004075}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsHardwareInitialised : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -98,14 +110,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="IsInitialised" Id="{eb3371dd-7907-4a18-ba2b-9ef954004075}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInitialised : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="IsInSim" Id="{5eeeddd9-9ad7-4819-b9a4-994a910fffac}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInSim : BOOL
+    <Method Name="IsXtsInSim" Id="{5eeeddd9-9ad7-4819-b9a4-994a910fffac}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsXtsInSim : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>

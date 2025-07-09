@@ -170,7 +170,7 @@ CASE XtsHwState OF
 		XtsHwState := XtsSystemInitialisation.InitialiseHardware;
 	
 	XtsSystemInitialisation.InitialiseHardware:
-		IF _MyXtsHardware.IsInitialised() THEN
+		IF _MyXtsHardware.IsHardwareInitialised() THEN
 			MyName := _MyXtsHardware.MyName;
 			XtsHwState := XtsSystemInitialisation.SetDetection;
 		END_IF
@@ -186,7 +186,7 @@ CASE XtsHwState OF
 		END_IF
 		
 	XtsSystemInitialisation.MoversValid:
-		IF _MyXtsHardware.AreAllMoversValid() THEN
+		IF _MyXtsHardware.AreAllMoverPositionsValid() THEN
 			XtsHwState := XtsSystemInitialisation.AllMoversFound;
 		END_IF
 	
@@ -197,14 +197,14 @@ CASE XtsHwState OF
 		END_IF
 		
 	XtsSystemInitialisation.XTSMode:
-		IF _MyXtsHardware.IsInSim() THEN
+		IF _MyXtsHardware.IsXtsInSim() THEN
 			XtsHwState := XtsSystemInitialisation.MoverIdDetection;
 		ELSE
 			XtsHwState := XtsSystemInitialisation.CheckModuleVoltages;
 		END_IF
 		
 	XtsSystemInitialisation.CheckModuleVoltages:
-		IF _MyXtsHardware.Is24VdcOK() = 2 AND _MyXtsHardware.Is48VdcOK() = 2 THEN
+		IF _MyXtsHardware.IsHardware24VdcOK() = 2 AND _MyXtsHardware.IsHardware48VdcOK() = 2 THEN
 			XtsHwState := XtsSystemInitialisation.MoverIdDetection;
 		END_IF
 	

@@ -31,14 +31,14 @@ END_VAR]]></Declaration>
     <Folder Name="Commands" Id="{fac9eba9-c7de-4a76-a05e-49072f1b1bf8}" />
     <Folder Name="Settings" Id="{977db0ee-8b4c-4e4e-adde-487140886b9b}" />
     <Folder Name="Status" Id="{1e7de418-5187-4871-82b8-ce216901bd03}" />
-    <Method Name="AreAllMoversValid" Id="{61902ec7-4049-4544-9a8e-27dabf1b61be}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD AreAllMoversValid : BOOL
+    <Method Name="AreAllMoverPositionsValid" Id="{61902ec7-4049-4544-9a8e-27dabf1b61be}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD AreAllMoverPositionsValid : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[ IF _MyXpu.GetAreAllPositionsValid() THEN
-	 AreAllMoversValid := TRUE;
+	 AreAllMoverPositionsValid := TRUE;
  END_IF]]></ST>
       </Implementation>
     </Method>
@@ -49,6 +49,20 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[AreExpectedMoversFound := _MyXpu.GetExpectedMoverCount() = _MyXpu.GetDetectedMoverCount();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ArePartsInError" Id="{699ab4e2-69ca-4162-ab63-9b7de63fc2c4}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD ArePartsInError : BOOL
+VAR
+	i : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i := 0 TO TO_INT(MyPartCount - 1) DO
+	IF XtsParts[i].HasError() THEN
+		ArePartsInError := TRUE;
+	END_IF
+END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="Cycle" Id="{907368a2-7640-4dfa-a8a9-6f1d20861921}">
@@ -71,6 +85,17 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Property Name="DetectedNumberOfParts" Id="{0cb9ae9e-f39b-4029-894a-e6620c4ecf6f}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY DetectedNumberOfParts : INT]]></Declaration>
+      <Get Name="Get" Id="{c6657b2f-e5c5-4f83-9cec-2457aaa61cb5}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[DetectedNumberOfParts := TO_INT(_MyNumberParts);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="DetectedNumberOfTracks" Id="{1aee3abf-438c-401a-96dd-e5d65d11e759}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY DetectedNumberOfTracks : UINT]]></Declaration>
       <Get Name="Get" Id="{6b1c17e2-83ee-47f8-b12c-999752617527}">
@@ -176,27 +201,13 @@ END_VAR
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="HasError" Id="{699ab4e2-69ca-4162-ab63-9b7de63fc2c4}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD HasError : BOOL
-VAR
-	i : INT;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[FOR i := 0 TO TO_INT(MyPartCount - 1) DO
-	IF XtsParts[i].HasError() THEN
-		HasError := TRUE;
-	END_IF
-END_FOR]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="HasXPU" Id="{6ea3239f-d8a6-4ea4-a8cf-a5b51d9c01b2}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD HasXPU : BOOL
+    <Method Name="HasValidXPUReference" Id="{6ea3239f-d8a6-4ea4-a8cf-a5b51d9c01b2}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD HasValidXPUReference : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[HasXPU := _hasXPU;]]></ST>
+        <ST><![CDATA[HasValidXPUReference := _hasXPU;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{95822be7-e433-46ff-bfc3-e4b3c51e2a74}">
@@ -220,7 +231,7 @@ CASE XtsIoEnvInitialiseState OF
 		IF TO_INT(MyPartCount) = _MyNumberParts THEN
 			FOR i := 0 TO (TO_INT(MyPartCount) - 1) DO
 				XtsParts[i].MyXtsIoEnvInterface := _MyXpu.PartTcIo(TO_UINT(i + 1));
-				IF THIS^.IsInSim() THEN
+				IF THIS^.IsXtsInSim() THEN
 					XtsParts[i].SetInSim();
 				END_IF
 			END_FOR
@@ -262,34 +273,43 @@ END_CASE
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Is24VdcOK" Id="{16c30a69-c544-4706-ba78-c8aed5346201}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD Is24VdcOK : HRESULT
+    <Method Name="IsHardware24VdcOK" Id="{16c30a69-c544-4706-ba78-c8aed5346201}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsHardware24VdcOK : HRESULT
 VAR
 	i : UDINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Is24VdcOK := 2;
+        <ST><![CDATA[IsHardware24VdcOK := 2;
 FOR i := 0 TO (_MyXpu.GetPartCount() -1) DO
 	IF NOT XtsParts[i].Is24VBusOK() THEN
-		Is24VdcOK := -1;
+		IsHardware24VdcOK := -1;
 	END_IF
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Is48VdcOK" Id="{ff4a117c-24f4-4466-b159-c15d29dc7330}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD Is48VdcOK : HRESULT
+    <Method Name="IsHardware48VdcOK" Id="{ff4a117c-24f4-4466-b159-c15d29dc7330}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsHardware48VdcOK : HRESULT
 VAR
 	i : UDINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Is48VdcOK := 2;
+        <ST><![CDATA[IsHardware48VdcOK := 2;
 FOR i := 0 TO (_MyXpu.GetPartCount() - 1) DO
 	IF NOT XtsParts[i].Is48VBusOK() THEN
-		Is48VdcOK := -1;
+		IsHardware48VdcOK := -1;
 	END_IF
 END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsHardwareInitialised" Id="{550c07cc-fb09-419f-9cfc-c551f12c3cb9}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsHardwareInitialised : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsHardwareInitialised := _isInitialised;]]></ST>
       </Implementation>
     </Method>
     <Method Name="IsIDDetectionStandard" Id="{aa7a18ac-0236-4a73-a20e-a9a08158b988}" FolderPath="Status\">
@@ -301,23 +321,14 @@ END_VAR
         <ST><![CDATA[IsIDDetectionStandard := _MyXpu.GetMoverIdDetectionMode() = MoverIdDetectionMode.Standard;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsInitialised" Id="{550c07cc-fb09-419f-9cfc-c551f12c3cb9}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInitialised : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[isInitialised := _isInitialised;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="IsInSim" Id="{c26b05e6-e2eb-40cc-bea5-adcd4dafa0e7}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInSim : BOOL
+    <Method Name="IsXtsInSim" Id="{c26b05e6-e2eb-40cc-bea5-adcd4dafa0e7}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsXtsInSim : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF  _MyXpu.GetOperationMode() = OperationMode.Simulation  THEN
-	IsInSim := TRUE;
+	IsXtsInSim := TRUE;
 END_IF]]></ST>
       </Implementation>
     </Method>
