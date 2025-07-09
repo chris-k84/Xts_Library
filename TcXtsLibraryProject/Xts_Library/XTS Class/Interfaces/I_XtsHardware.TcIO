@@ -48,8 +48,8 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="GetConfiguredMoverNumber" Id="{840a6c17-fbef-4810-9acd-02a47aa8f2b0}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetConfiguredMoverNumber : UDINT
+    <Method Name="GetConfiguredDetectionMoverNumber" Id="{840a6c17-fbef-4810-9acd-02a47aa8f2b0}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetConfiguredDetectionMoverNumber : UDINT
 VAR_INPUT
 END_VAR
 ]]></Declaration>

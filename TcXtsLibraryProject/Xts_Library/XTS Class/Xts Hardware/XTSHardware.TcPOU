@@ -145,13 +145,13 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="GetConfiguredMoverNumber" Id="{43f766d9-966d-4623-a223-676c73e2281d}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetConfiguredMoverNumber : UDINT
+    <Method Name="GetConfiguredDetectionMoverNumber" Id="{43f766d9-966d-4623-a223-676c73e2281d}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetConfiguredDetectionMoverNumber : UDINT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetConfiguredMoverNumber := _MyXpu.GetConfiguredDetectionCount();]]></ST>
+        <ST><![CDATA[GetConfiguredDetectionMoverNumber := _MyXpu.GetConfiguredDetectionCount();]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetMoverDetectionState" Id="{5c04b4df-babc-44c4-8315-87ac6e89bad7}" FolderPath="Commands\">
@@ -180,7 +180,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetTrackInterfaceByNumber := XtsTracks[TrackNumber - 1];
+        <ST><![CDATA[IF TrackNumber = 0 OR TrackNumber > MyTrackCount THEN
+	GetTrackInterfaceByNumber := 0;
+	RETURN;
+END_IF
+GetTrackInterfaceByNumber := XtsTracks[TrackNumber - 1];
 ]]></ST>
       </Implementation>
     </Method>
@@ -400,7 +404,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TrackToRemove > MyTrackCount OR MyTrackCount = 1 THEN
+        <ST><![CDATA[IF TrackToRemove = 0 OR TrackToRemove > MyTrackCount OR MyTrackCount = 1 THEN
 	RemoveATrackFromDetection := -1;
 	RETURN;
 END_IF

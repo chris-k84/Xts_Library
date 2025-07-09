@@ -13,7 +13,7 @@ VAR
 	_OTCID : OTCID;
 	_IsTrackIncludedForDetection : BOOL;
 	_NumberOfPartsInTrack : INT;
-	_TrackPolarity : BOOL;
+	_TrackPolarity: Tc3_XTS_Utility.Polarity;
 END_VAR
 ]]></Declaration>
     <Implementation>
