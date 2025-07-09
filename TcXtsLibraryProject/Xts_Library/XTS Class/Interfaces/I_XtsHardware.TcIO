@@ -98,14 +98,14 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="IsHardwareInitialised" Id="{eb3371dd-7907-4a18-ba2b-9ef954004075}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsHardwareInitialised : BOOL
+    <Method Name="IsIDDetectionStandard" Id="{812f54c9-547b-4e7f-8855-88380dcaf23c}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsIDDetectionStandard : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="IsIDDetectionStandard" Id="{812f54c9-547b-4e7f-8855-88380dcaf23c}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsIDDetectionStandard : BOOL
+    <Method Name="IsInitialised" Id="{eb3371dd-7907-4a18-ba2b-9ef954004075}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsInitialised : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>

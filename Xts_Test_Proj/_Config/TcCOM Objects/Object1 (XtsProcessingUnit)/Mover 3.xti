@@ -1,0 +1,1236 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.16" ClassName="CTComObjDef">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{4BC4DABB-09B3-4A22-9E37-65ED6818A460}">IXtsMover</Name>
+			<BitSize X64="64">32</BitSize>
+			<BaseType GUID="{00000001-0000-0000-E000-000000000064}">ITcUnknown</BaseType>
+			<Method>
+				<Name>GetAdapterObject</Name>
+				<ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
+				<ReturnBitSize>32</ReturnBitSize>
+				<Parameter>
+					<Name>ppObject</Name>
+					<Type GUID="{18071995-0000-0000-0000-000000000018}" PointerTo="1">PVOID</Type>
+					<BitSize X64="64">32</BitSize>
+				</Parameter>
+			</Method>
+			<Method>
+				<Name>GetDistanceDriven</Name>
+				<ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
+				<ReturnBitSize>32</ReturnBitSize>
+				<Parameter>
+					<Name>pDistance</Name>
+					<Type GUID="{18071995-0000-0000-0000-00000000000E}" PointerTo="1">LREAL</Type>
+					<BitSize X64="64">32</BitSize>
+				</Parameter>
+			</Method>
+			<Method>
+				<Name>GetPosition</Name>
+				<ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
+				<ReturnBitSize>32</ReturnBitSize>
+				<Parameter>
+					<Name>pPosition</Name>
+					<Type GUID="{18071995-0000-0000-0000-00000000000E}" PointerTo="1">LREAL</Type>
+					<BitSize X64="64">32</BitSize>
+				</Parameter>
+			</Method>
+		</DataType>
+		<DataType>
+			<Name GUID="{01E5C78E-D451-4377-9F02-F3812CC92C14}" Namespace="XTS" CName="OTCID">XtsMoverControllerOTCID</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+			<Properties>
+				<Property>
+					<Name>OTCID</Name>
+				</Property>
+				<Property>
+					<Name>TcCategoryOID</Name>
+					<Value>XtsMoverController</Value>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{B16E550F-5F13-4667-A43A-46F3A817D5FF}" Namespace="XTS" CName="OTCID">MoverOTCID</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+			<Properties>
+				<Property>
+					<Name>OTCID</Name>
+				</Property>
+				<Property>
+					<Name>TcCategoryOID</Name>
+					<Value>XtsMover</Value>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{D72EC4CD-3838-4FF1-8755-3F97B266CAF2}">MoverPositionInfo</Name>
+			<BitSize>192</BitSize>
+			<SubItem>
+				<Name>partPosition</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>trackPosition</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>partObjectId</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>trackObjectId</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>160</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{A2251E89-6A6C-4593-B737-B65F4E6CB869}" Namespace="XTS">MoverSwapStateEnum</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Off]]></Text>
+				<Enum>0</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[SwapPending]]></Text>
+				<Enum>1</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[SwapDone]]></Text>
+				<Enum>2</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Error]]></Text>
+				<Enum>3</Enum>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+			<Format>
+				<Printf>%d.%d.%d.%d.%d.%d</Printf>
+				<Parameter>[0]</Parameter>
+				<Parameter>[1]</Parameter>
+				<Parameter>[2]</Parameter>
+				<Parameter>[3]</Parameter>
+				<Parameter>[4]</Parameter>
+				<Parameter>[5]</Parameter>
+			</Format>
+		</DataType>
+		<DataType>
+			<Name GUID="{C3ADB195-DDF2-437F-AF8E-FB07C2F42281}" Namespace="XTS">DriveState</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Unknown]]></Text>
+				<Enum>0</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[FaultReactionActive]]></Text>
+				<Enum>1</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Fault]]></Text>
+				<Enum>2</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[NotReadyToSwitchOn]]></Text>
+				<Enum>3</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[SwitchOnDisabled]]></Text>
+				<Enum>4</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[ReadyToSwitchOn]]></Text>
+				<Enum>5</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[SwitchedOn]]></Text>
+				<Enum>6</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[OperationEnabled]]></Text>
+				<Enum>7</Enum>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+			<Hides>
+				<Hide GUID="{3E44F19E-945D-43E7-BC3A-30F4A192CF1B}"/>
+			</Hides>
+			<Relations>
+				<Relation>
+					<Type GUID="{3E44F19E-945D-43E7-BC3A-30F4A192CF1B}"></Type>
+				</Relation>
+			</Relations>
+		</DataType>
+		<DataType>
+			<Name GUID="{6275F951-035F-4CD8-B5C4-043E68841D59}" Namespace="XTS">CoeStatusInfo</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>ReadyToSwitchOn</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SwitchedOn</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>OperationEnabled</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Fault</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>VoltageEnabled</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>QuickStop</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[Inverse]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>5</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SwitchOnDisabled</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>6</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Warning</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>7</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>InternalLimitActive</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>11</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>FollowsCommandValues</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>12</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{5DBFA0FB-2F23-4B84-B10B-68CF489C3FB8}" Namespace="XTS">CoeControlInfo</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>SwitchOn</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>EnableVoltage</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>QuickStop</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[Inverse]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>EnableOperation</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>FaultReset</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>7</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Halt</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</Name>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>Major</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Minor</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Build</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Revision</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{C24B0647-3B21-49BD-B2D0-DEA43DE68F78}">SoftDriveInput</Name>
+			<BitSize>832</BitSize>
+			<SubItem>
+				<Name>actPosition</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>0</BitOffs>
+				<Unit><![CDATA[mm]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>actAmplitude</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>64</BitOffs>
+				<Unit><![CDATA[mm]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>actVelocity</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>128</BitOffs>
+				<Unit><![CDATA[mm/s]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>actCurrent</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>192</BitOffs>
+				<Unit><![CDATA[A]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>actPosition2</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>256</BitOffs>
+				<Unit><![CDATA[mm]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>actAmplitude2</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>320</BitOffs>
+				<Unit><![CDATA[mm]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>actVoltage</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>384</BitOffs>
+				<Unit><![CDATA[V]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>dReserve1</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>448</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>actTrackPosition</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>512</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>actTrackObjectId</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>576</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>reserve2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>608</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>actPartLength</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>640</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>actPartObjectId</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>704</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>actPartIsClosed</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>736</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bReserve1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>744</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bReserve2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>752</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bReserve3</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>760</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>status</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>768</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>status2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>784</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>reserve5</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>800</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>reserve6</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000006}">INT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>816</BitOffs>
+			</SubItem>
+			<Hides>
+				<Hide GUID="{F297B4C1-43E0-4E02-B523-600D3AD36D68}"/>
+				<Hide GUID="{04D79919-5FE5-42A7-9054-C5F7909BD261}"/>
+				<Hide GUID="{6FBD6597-43C6-4B86-A530-72F2EE90AC17}"/>
+				<Hide GUID="{FD635E4F-CF13-475E-88A9-6BC0F9945648}"/>
+				<Hide GUID="{9906E8FC-40B8-4B63-817C-A6D649DF15E7}"/>
+			</Hides>
+			<Relations>
+				<Relation>
+					<Type GUID="{F297B4C1-43E0-4E02-B523-600D3AD36D68}"></Type>
+				</Relation>
+				<Relation>
+					<Type GUID="{04D79919-5FE5-42A7-9054-C5F7909BD261}"></Type>
+				</Relation>
+				<Relation>
+					<Type GUID="{6FBD6597-43C6-4B86-A530-72F2EE90AC17}"></Type>
+				</Relation>
+				<Relation>
+					<Type GUID="{FD635E4F-CF13-475E-88A9-6BC0F9945648}"></Type>
+				</Relation>
+				<Relation>
+					<Type GUID="{9906E8FC-40B8-4B63-817C-A6D649DF15E7}"></Type>
+				</Relation>
+			</Relations>
+		</DataType>
+		<DataType>
+			<Name GUID="{9A1133A5-A1B4-42CA-A470-0B744A5D182F}">SoftDriveOutput</Name>
+			<BitSize>768</BitSize>
+			<SubItem>
+				<Name>setPosition</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>0</BitOffs>
+				<Unit><![CDATA[mm]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>setVelocity</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>64</BitOffs>
+				<Unit><![CDATA[mm/s]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>setVelocityLimit</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>128</BitOffs>
+				<Unit><![CDATA[mm/s]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>setCurrent</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>192</BitOffs>
+				<Unit><![CDATA[A]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>setCurrentD</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>256</BitOffs>
+				<Unit><![CDATA[A]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>setCurrentLimit</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>320</BitOffs>
+				<Unit><![CDATA[A]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>setComPosition</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>384</BitOffs>
+				<Unit><![CDATA[mm]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>setVoltageQ</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>448</BitOffs>
+				<Unit><![CDATA[V]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>setVoltageD</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>512</BitOffs>
+				<Unit><![CDATA[V]]></Unit>
+			</SubItem>
+			<SubItem>
+				<Name>setMultiplex1</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>576</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>setMultiplex2</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>640</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>control</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>704</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>control2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>720</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>setOperationmode</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>736</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>setMultiplex3</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000006}">INT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>752</BitOffs>
+			</SubItem>
+			<Hides>
+				<Hide GUID="{672D32D2-51B8-4C43-AE92-7109808CF9E3}"/>
+			</Hides>
+			<Relations>
+				<Relation>
+					<Type GUID="{672D32D2-51B8-4C43-AE92-7109808CF9E3}"></Type>
+				</Relation>
+			</Relations>
+		</DataType>
+	</DataTypes>
+	<ImageDatas>
+		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000c3c3c300c0c0c000bcbcbc00b9b9b900b5b5b500b2b2b200aeaeae00ababab00a8a8a800a4a4a400a1a1a1009d9d9d009a9a9a00979797004040400040404000c9c9c900c5c5c500c2c2c200bebebe00bbbbbb00b8b8b800b4b4b400b1b1b100adadad00aaaaaa0040404000a3a3a300a0a0a0009c9c9c004040400040404000cecece00cbcbcb00c8c8c800c4c4c400c1c1c100bdbdbd00bababa00b7b7b700b3b3b300b0b0b00040404000a9a9a900a6a6a600a2a2a2004040400040404000d4d4d400d1d1d100cdcdcd00cacaca00c7c7c700c3c3c300c0c0c000bcbcbc00b9b9b900b5b5b50040404000afafaf00ababab00a8a8a8004040400040404000dadada00d7d7d700d3d3d300d0d0d000cccccc00c9c9c900c5c5c500c2c2c200bfbfbf00bbbbbb0040404000b4b4b400b1b1b100aeaeae004040400040404000e0e0e000dcdcdc00d9d9d90085858500d2d2d200cfcfcf00cbcbcb00c8c8c800c4c4c400c1c1c1007f7f7f0079797900b7b7b700b3b3b3004040400040404000e5e5e500e2e2e200dfdfdf0040404000d5d5d500d4d4d400d1d1d100cecece00cacaca00c7c7c700c0c0c00040404000bdbdbd00b9b9b9004040400040404000ebebeb00e8e8e800e4e4e4004040400071717100d7d7d700d7d7d700d3d3d300d0d0d000cacaca006a6a6a0040404000c2c2c200bfbfbf004040400040404000f1f1f100eeeeee00eaeaea00404040007272720082828200dddddd00d9d9d900d6d6d6007c7c7c006c6c6c0040404000c8c8c800c5c5c5004040400040404000f7f7f700f3f3f300f0f0f00040404000e6e6e600d6d6d600e2e2e200dfdfdf00dbdbdb00c9c9c900d2d2d20040404000cecece00cacaca004040400040404000fbfbfb00f9f9f900f6f6f60046464600a2a2a2009c9c9c00e8e8e800e5e5e500e1e1e100959595009696960045454500d4d4d400d0d0d0004040400040404000fbfbfb00fbfbfb00fbfbfb00cccccc0048484800a3a3a300eeeeee00eaeaea00e7e7e7009e9e9e0047474700b5b5b500d9d9d900d6d6d6004040400040404000fbfbfb00fbfbfb00fbfbfb00fbfbfb00cbcbcb004747470040404000404040004040400046464600bcbcbc00e2e2e200dfdfdf00dcdcdc004040400040404000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f9f9f900f6f6f600f2f2f200efefef00ececec00e8e8e800e5e5e500e1e1e1004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000</ImageData>
+	</ImageDatas>
+	<Module Id="#x010100b0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+		<Name>__FILENAME__</Name>
+		<ImageId>1000</ImageId>
+		<TmcDesc GUID="{0DA6877C-6A68-48EE-8003-C0A2209CEB78}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+			<Name>XtsMover</Name>
+			<CLSID ClassFactory="TcIoXts">{0DA6877C-6A68-48EE-8003-C0A2209CEB78}</CLSID>
+			<Info>
+				<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000c3c3c300c0c0c000bcbcbc00b9b9b900b5b5b500b2b2b200aeaeae00ababab00a8a8a800a4a4a400a1a1a1009d9d9d009a9a9a00979797004040400040404000c9c9c900c5c5c500c2c2c200bebebe00bbbbbb00b8b8b800b4b4b400b1b1b100adadad00aaaaaa0040404000a3a3a300a0a0a0009c9c9c004040400040404000cecece00cbcbcb00c8c8c800c4c4c400c1c1c100bdbdbd00bababa00b7b7b700b3b3b300b0b0b00040404000a9a9a900a6a6a600a2a2a2004040400040404000d4d4d400d1d1d100cdcdcd00cacaca00c7c7c700c3c3c300c0c0c000bcbcbc00b9b9b900b5b5b50040404000afafaf00ababab00a8a8a8004040400040404000dadada00d7d7d700d3d3d300d0d0d000cccccc00c9c9c900c5c5c500c2c2c200bfbfbf00bbbbbb0040404000b4b4b400b1b1b100aeaeae004040400040404000e0e0e000dcdcdc00d9d9d90085858500d2d2d200cfcfcf00cbcbcb00c8c8c800c4c4c400c1c1c1007f7f7f0079797900b7b7b700b3b3b3004040400040404000e5e5e500e2e2e200dfdfdf0040404000d5d5d500d4d4d400d1d1d100cecece00cacaca00c7c7c700c0c0c00040404000bdbdbd00b9b9b9004040400040404000ebebeb00e8e8e800e4e4e4004040400071717100d7d7d700d7d7d700d3d3d300d0d0d000cacaca006a6a6a0040404000c2c2c200bfbfbf004040400040404000f1f1f100eeeeee00eaeaea00404040007272720082828200dddddd00d9d9d900d6d6d6007c7c7c006c6c6c0040404000c8c8c800c5c5c5004040400040404000f7f7f700f3f3f300f0f0f00040404000e6e6e600d6d6d600e2e2e200dfdfdf00dbdbdb00c9c9c900d2d2d20040404000cecece00cacaca004040400040404000fbfbfb00f9f9f900f6f6f60046464600a2a2a2009c9c9c00e8e8e800e5e5e500e1e1e100959595009696960045454500d4d4d400d0d0d0004040400040404000fbfbfb00fbfbfb00fbfbfb00cccccc0048484800a3a3a300eeeeee00eaeaea00e7e7e7009e9e9e0047474700b5b5b500d9d9d900d6d6d6004040400040404000fbfbfb00fbfbfb00fbfbfb00fbfbfb00cbcbcb004747470040404000404040004040400046464600bcbcbc00e2e2e200dfdfdf00dcdcdc004040400040404000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f9f9f900f6f6f600f2f2f200efefef00ececec00e8e8e800e5e5e500e1e1e1004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000</ImageData>
+			</Info>
+			<InitSequence>PSO</InitSequence>
+			<Contexts>
+				<Context>
+					<Id>1</Id>
+					<ManualConfig>
+						<OTCID>#x02010040</OTCID>
+					</ManualConfig>
+					<Priority>1</Priority>
+					<CycleTime>250000</CycleTime>
+				</Context>
+			</Contexts>
+			<Interfaces>
+				<Interface>
+					<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+				</Interface>
+				<Interface>
+					<Type GUID="{03000012-0000-0000-E000-000000000064}">ITcADI</Type>
+				</Interface>
+				<Interface>
+					<Type GUID="{03000018-0000-0000-E000-000000000064}">ITcWatchSource</Type>
+				</Interface>
+				<Interface>
+					<Type GUID="{4BC4DABB-09B3-4A22-9E37-65ED6818A460}">IXtsMover</Type>
+				</Interface>
+			</Interfaces>
+			<Parameters>
+				<Group><![CDATA[General]]></Group>
+				<Group><![CDATA[Mover Detection]]></Group>
+				<Group><![CDATA[Simulation]]></Group>
+				<Group><![CDATA[Mover Swap]]></Group>
+				<Group><![CDATA[Movement Info]]></Group>
+				<Group><![CDATA[Mover ID Detection]]></Group>
+				<Group><![CDATA[Info]]></Group>
+				<Group><![CDATA[Drive Info]]></Group>
+				<Group><![CDATA[NCT Communication]]></Group>
+				<Parameter HideParameter="true" Group="General">
+					<Name>AdsPort</Name>
+					<Comment><![CDATA[Gets/sets the ads port. The port should be used to read/write parameters via ADS.]]></Comment>
+					<BitSize>16</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType>
+					<Default>
+						<Value>0</Value>
+					</Default>
+					<PTCID>#x03002090</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter HideParameter="true" Group="General">
+					<Name>TaskOID</Name>
+					<Comment><![CDATA[Gets/Sets the XTS Task that is used for calculations for the XtsMover.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<Default>
+						<Value>#x00000000</Value>
+					</Default>
+					<PTCID>#x03002060</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>ActiveTrackObjectId</Name>
+					<Comment><![CDATA[Gets/Sets the Track object Id that is currently active /should be activated for the Mover.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<PTCID>#x03080209</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter HideParameter="true" Group="General">
+					<Name>IsCommutationInverted</Name>
+					<Comment><![CDATA[Attention! Parameter is only for tests - if the commutation is inverted and the magnet plate set does not match, the mover cannot be safely controlled!]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+					<PTCID>#x03080200</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>MoverController</Name>
+					<Comment><![CDATA[Get/set the the mover controller.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{01E5C78E-D451-4377-9F02-F3812CC92C14}" Namespace="XTS">XtsMoverControllerOTCID</BaseType>
+					<PTCID>#x0308050f</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Mover Detection">
+					<Name>ConfiguredDetectionTrackObjectId</Name>
+					<Comment><![CDATA[Gets/Sets the Track object Id on which the detection is executed when the arrive is triggered.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<PTCID>#x030802f0</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Mover Detection">
+					<Name>TriggerArrive</Name>
+					<Comment><![CDATA[If downloaded then a detection for one mover on the configured track is executed if successful the mover is activated.]]></Comment>
+					<BitSize>0</BitSize>
+					<BaseType GUID="{FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF}"/>
+					<PTCID>#x030802ee</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Mover Detection">
+					<Name>TriggerLeave</Name>
+					<Comment><![CDATA[If downloaded then the active is set to passive. The mover cannot be used anymore - it is ready to leave the system without any error.]]></Comment>
+					<BitSize>0</BitSize>
+					<BaseType GUID="{FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF}"/>
+					<PTCID>#x030802ef</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Simulation">
+					<Name>SimulatedStartUpPart</Name>
+					<Comment><![CDATA[Gets/sets the part on which the mover is detected during simulation.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<PTCID>#x03080278</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Simulation">
+					<Name>SimulatedStartUpPosition</Name>
+					<Comment><![CDATA[Gets/sets the part on which the mover is detected during simulation.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm]]></Unit>
+					<PTCID>#x03080279</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter HideParameter="true" Group="Simulation">
+					<Name>SimulatedStartUpId</Name>
+					<Comment><![CDATA[Gets/sets the ID of the mover on which is used in simulation.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000100000003}">STRING(3)</BaseType>
+					<PTCID>#x0308027e</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Simulation">
+					<Name>HasMover1MagnetPlateInSimulation</Name>
+					<Comment><![CDATA[Gets/sets if the mover has a Mover 1 magnet plate in simulation.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<PTCID>#x03080559</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter HideParameter="true" Group="Mover Swap">
+					<Name>SwapMover</Name>
+					<Comment><![CDATA[Set mover object ID to swap the hardware mover.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{B16E550F-5F13-4667-A43A-46F3A817D5FF}" Namespace="XTS">MoverOTCID</BaseType>
+					<PTCID>#x0308053d</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
+					<Name>IsActive</Name>
+					<Comment><![CDATA[Gets value which indicates if the mover is actively used or is currently passive. An active mover may be deactivated if one plans to remove it from the system.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+					<PTCID>#x030802b6</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
+					<Name>PositionInfo</Name>
+					<Comment><![CDATA[Returns the part and track position as well as their object IDs.]]></Comment>
+					<BitSize>192</BitSize>
+					<BaseType GUID="{D72EC4CD-3838-4FF1-8755-3F97B266CAF2}">MoverPositionInfo</BaseType>
+					<PTCID>#x03080286</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
+					<Name>ActPosition</Name>
+					<Comment><![CDATA[Get the actual position for the mover.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm/s]]></Unit>
+					<PTCID>#x030805d0</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
+					<Name>ActVelocity</Name>
+					<Comment><![CDATA[Get the actual velocity for the mover.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm/s]]></Unit>
+					<PTCID>#x030805d1</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
+					<Name>ActPositionError</Name>
+					<Comment><![CDATA[Get the actual position error for the mover.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm]]></Unit>
+					<PTCID>#x030805d2</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
+					<Name>ActVelocityError</Name>
+					<Comment><![CDATA[Get the actual velocity error for the mover.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm/s]]></Unit>
+					<PTCID>#x030805d3</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
+					<Name>SetPosition</Name>
+					<Comment><![CDATA[Get the interpolated setpoint position for the mover.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm]]></Unit>
+					<PTCID>#x030805d4</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
+					<Name>SetVelocity</Name>
+					<Comment><![CDATA[Get the interpolated setpoint velocity for the mover.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm/s]]></Unit>
+					<PTCID>#x030805d5</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
+					<Name>SetAcceleration</Name>
+					<Comment><![CDATA[Get the interpolated setpoint acceleration for the mover.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm/s²]]></Unit>
+					<PTCID>#x030805d6</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
+					<Name>SetForce</Name>
+					<Comment><![CDATA[Get the setpoint force output for the mover.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[N]]></Unit>
+					<PTCID>#x030805d7</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
+					<Name>SetCurrent</Name>
+					<Comment><![CDATA[Get the setpoint current output for the mover.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[A]]></Unit>
+					<PTCID>#x030805d8</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Mover ID Detection">
+					<Name>Id</Name>
+					<Comment><![CDATA[Returns the ID of the mover.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000100000003}">STRING(3)</BaseType>
+					<PTCID>#x03080266</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Mover Detection">
+					<Name>IsDetectedWithInvertedMagnetPlate</Name>
+					<Comment><![CDATA[Gets if the mover was found with an inverted magnet plate.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+					<PTCID>#x03080572</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Mover Swap">
+					<Name>MoverSwapStatus</Name>
+					<Comment><![CDATA[Get status for a pending mover swap.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{A2251E89-6A6C-4593-B737-B65F4E6CB869}" Namespace="XTS">MoverSwapStateEnum</BaseType>
+					<PTCID>#x0308053e</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>IsFrozen</Name>
+					<Comment><![CDATA[Returns if the mover is frozen.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<PTCID>#x030805c1</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>IsLost</Name>
+					<Comment><![CDATA[Returns if the mover is lost.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<PTCID>#x030805c4</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>AxisId</Name>
+					<Comment><![CDATA[Gets the ID of the associated axis.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+					<PTCID>#x03080288</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>AxisObjectId</Name>
+					<Comment><![CDATA[Gets the object ID of the associated axis.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<PTCID>#x0308028a</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>DistanceDriven</Name>
+					<Comment><![CDATA[Returns the value of the absolute distance driven by the mover in mm.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm]]></Unit>
+					<PTCID>#x00000050</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>DistanceDrivenInKm</Name>
+					<Comment><![CDATA[Returns the value of the absolute distance driven by the mover in km.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[km]]></Unit>
+					<PTCID>#x00000051</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>DriveAddress</Name>
+					<Comment><![CDATA[Returns the address of the drive (motor) terminal on which the mover is currently on.]]></Comment>
+					<BitSize>16</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+					<PTCID>#x00000087</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>DriveModuleNumber</Name>
+					<Comment><![CDATA[If HasDriveError is true then the drive number is set to the first module number which signals an error.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+					<PTCID>#x00000066</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>DriveTerminalOid</Name>
+					<Comment><![CDATA[If HasDriveError is true then the object ID of the drive terminal is set.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<PTCID>#x00000070</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>EncoderAddress</Name>
+					<Comment><![CDATA[Returns the address of the encoder (sensor) terminal on which the mover is currently on.]]></Comment>
+					<BitSize>16</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+					<PTCID>#x00000088</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>EncoderModuleNumber</Name>
+					<Comment><![CDATA[If HasEncoderError is true then the encoder number is set to the first module number which signals an error.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+					<PTCID>#x00000067</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>EncoderTerminalOid</Name>
+					<Comment><![CDATA[If HasEncoderError is true then the object ID of the encoder is set.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<PTCID>#x00000071</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>HasDriveError</Name>
+					<Comment><![CDATA[Returns true if the motor module which is used by a mover signals an error.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{9060AE9D-214D-4685-A4C0-CD1082626764}">BOOL32</BaseType>
+					<PTCID>#x00000068</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>HasEncoderError</Name>
+					<Comment><![CDATA[Returns true if the encoder module which is used by a mover signals an error.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{9060AE9D-214D-4685-A4C0-CD1082626764}">BOOL32</BaseType>
+					<PTCID>#x00000069</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>MoverControllerError</Name>
+					<Comment><![CDATA[Returns the error code of the linked XTS Mover Controller.]]></Comment>
+					<BitSize>16</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+					<PTCID>#x03080408</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>LinkedNctBaseUnitInterfaceObjectId</Name>
+					<Comment><![CDATA[Gets the object ID of the currently linked NCT base unit interface.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<PTCID>#x03080550</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>MasterNetId</Name>
+					<Comment><![CDATA[Returns the NetId of the EtherCAT master to which the drive/encoder belong to.]]></Comment>
+					<BitSize>48</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</BaseType>
+					<PTCID>#x00000089</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>SoftDriveOid</Name>
+					<Comment><![CDATA[Gets the object ID of the soft drive.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<PTCID>#x03080289</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
+					<Name>CurrentModuleCount</Name>
+					<Comment><![CDATA[Returns the number of modules.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
+					<PTCID>#x03080207</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Drive Info">
+					<Name>IsReadyForPositioning</Name>
+					<Comment><![CDATA[Returns if the mover is ready for positioning.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<PTCID>#x030805c7</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Drive Info">
+					<Name>DriveStatus</Name>
+					<Comment><![CDATA[Returns the drive status of the mover.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{C3ADB195-DDF2-437F-AF8E-FB07C2F42281}" Namespace="XTS">DriveState</BaseType>
+					<PTCID>#x03080452</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Drive Info">
+					<Name>DriveStatusValue</Name>
+					<Comment><![CDATA[Returns the drive status value of the mover.]]></Comment>
+					<BitSize>16</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+					<PTCID>#x03080453</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Drive Info">
+					<Name>DriveStatusInfo</Name>
+					<Comment><![CDATA[Returns the drive status info of the mover.]]></Comment>
+					<BitSize>16</BitSize>
+					<BaseType GUID="{6275F951-035F-4CD8-B5C4-043E68841D59}" Namespace="XTS">CoeStatusInfo</BaseType>
+					<PTCID>#x030805c5</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Drive Info">
+					<Name>DriveControlValue</Name>
+					<Comment><![CDATA[Returns the drive control value of the mover.]]></Comment>
+					<BitSize>16</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+					<PTCID>#x03080454</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Drive Info">
+					<Name>DriveControlInfo</Name>
+					<Comment><![CDATA[Returns the drive control info of the mover.]]></Comment>
+					<BitSize>16</BitSize>
+					<BaseType GUID="{5DBFA0FB-2F23-4B84-B10B-68CF489C3FB8}" Namespace="XTS">CoeControlInfo</BaseType>
+					<PTCID>#x030805c6</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="NCT Communication">
+					<Name>ManualLocalInitAddress</Name>
+					<Comment><![CDATA[Gets/sets the local address which will be used in manual mode to initialize the base unit.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
+					<Default>
+						<Value>255</Value>
+					</Default>
+					<PTCID>#x03080567</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="NCT Communication">
+					<Name>AutomaticLocalInitAddress</Name>
+					<Comment><![CDATA[Gets the automatically generated local address which will be used in automatic mode to initialize the base unit.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
+					<Default>
+						<Value>255</Value>
+					</Default>
+					<PTCID>#x030805aa</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>VersionString</Name>
+					<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
+					<BitSize>384</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00010000002F}">STRING(47)</BaseType>
+					<PTCID>#x03080287</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>Version</Name>
+					<Comment><![CDATA[Returns the version of the driver.]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</BaseType>
+					<PTCID>#x03080510</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+			</Parameters>
+			<DataAreas>
+				<DataArea>
+					<AreaNo AreaType="OutputSrc" CreateSymbols="true" OptionalArea="true" Disabled="true">1</AreaNo>
+					<Name>Inputs</Name>
+					<ContextId>-1</ContextId>
+					<ByteSize>104</ByteSize>
+					<Symbol>
+						<Name>SoftDriveInput</Name>
+						<BitSize>832</BitSize>
+						<BaseType GUID="{C24B0647-3B21-49BD-B2D0-DEA43DE68F78}">SoftDriveInput</BaseType>
+						<PTCID>#x00001001</PTCID>
+						<BitOffs>0</BitOffs>
+					</Symbol>
+				</DataArea>
+				<DataArea>
+					<AreaNo AreaType="InputDst" CreateSymbols="true" OptionalArea="true" Disabled="true">2</AreaNo>
+					<Name>Outputs</Name>
+					<ContextId>-1</ContextId>
+					<ByteSize>96</ByteSize>
+					<Symbol>
+						<Name>SoftDriveOutput</Name>
+						<BitSize>768</BitSize>
+						<BaseType GUID="{9A1133A5-A1B4-42CA-A470-0B744A5D182F}">SoftDriveOutput</BaseType>
+						<PTCID>#x00002001</PTCID>
+						<BitOffs>0</BitOffs>
+					</Symbol>
+				</DataArea>
+			</DataAreas>
+			<Properties>
+				<Property>
+					<Name>Category</Name>
+					<Value>XTS</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>TcIoXts</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsMover</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsIoDriverChild</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsProcessingUnitChild</Value>
+				</Property>
+				<Property>
+					<Name>ChildCategory</Name>
+					<Value>XtsMoverChild</Value>
+				</Property>
+				<Property>
+					<Name>McAxisObject</Name>
+					<Value>TcCom_XtsMoverController</Value>
+				</Property>
+			</Properties>
+			<ParentOTCID>#x01010010</ParentOTCID>
+			<ParameterValues>
+				<Value>
+					<Name>AdsPort</Name>
+					<Value>351</Value>
+				</Value>
+				<Value>
+					<Name>TaskOID</Name>
+					<Value>33620032</Value>
+				</Value>
+				<Value>
+					<Name>ActiveTrackObjectId</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>IsCommutationInverted</Name>
+					<EnumText>FALSE</EnumText>
+				</Value>
+				<Value>
+					<Name>MoverController</Name>
+					<Value>16843200</Value>
+				</Value>
+				<Value>
+					<Name>ConfiguredDetectionTrackObjectId</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>SimulatedStartUpPart</Name>
+					<Value>16842992</Value>
+				</Value>
+				<Value>
+					<Name>SimulatedStartUpPosition</Name>
+					<Value>220</Value>
+				</Value>
+				<Value>
+					<Name>SimulatedStartUpId</Name>
+					<String></String>
+				</Value>
+				<Value>
+					<Name>HasMover1MagnetPlateInSimulation</Name>
+					<EnumText>FALSE</EnumText>
+				</Value>
+				<Value>
+					<Name>SwapMover</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>ManualLocalInitAddress</Name>
+					<Value>255</Value>
+				</Value>
+			</ParameterValues>
+		</TmcDesc>
+	</Module>
+</TcSmItem>

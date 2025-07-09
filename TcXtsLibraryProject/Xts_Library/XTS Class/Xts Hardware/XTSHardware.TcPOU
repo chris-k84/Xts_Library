@@ -303,15 +303,6 @@ FOR i := 0 TO (_MyXpu.GetPartCount() - 1) DO
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsHardwareInitialised" Id="{550c07cc-fb09-419f-9cfc-c551f12c3cb9}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsHardwareInitialised : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IsHardwareInitialised := _isInitialised;]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="IsIDDetectionStandard" Id="{aa7a18ac-0236-4a73-a20e-a9a08158b988}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsIDDetectionStandard : BOOL
 VAR_INPUT
@@ -319,6 +310,15 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IsIDDetectionStandard := _MyXpu.GetMoverIdDetectionMode() = MoverIdDetectionMode.Standard;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsInitialised" Id="{550c07cc-fb09-419f-9cfc-c551f12c3cb9}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsInitialised : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsInitialised := _isInitialised;]]></ST>
       </Implementation>
     </Method>
     <Method Name="IsXtsInSim" Id="{c26b05e6-e2eb-40cc-bea5-adcd4dafa0e7}" FolderPath="Status\">

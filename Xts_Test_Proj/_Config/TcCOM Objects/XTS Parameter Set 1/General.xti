@@ -1,0 +1,394 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.16" ClassName="CTComObjDef">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{0898D61D-6948-4A74-AE61-D590D99DCC07}" Namespace="XTS">MoverControllerOperationMode</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[CyclicSynchronousPosition]]></Text>
+				<Enum>8</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[CyclicSynchronousVelocity]]></Text>
+				<Enum>9</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[CyclicSynchronousForce]]></Text>
+				<Enum>10</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[CyclicSynchronousForceWithCommutationAngle]]></Text>
+				<Enum>11</Enum>
+			</EnumInfo>
+			<Default>
+				<EnumText>CyclicSynchronousPosition</EnumText>
+			</Default>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{7A8EDB9D-0FE8-4975-92A6-25A84E704173}" Namespace="XTS">StandStillSwitchMode</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[DIRECT_AT_SWITCHTIME]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[No blending switch immediately into standstill parameter when standstill switch time is reached.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[BLENDING_BEFORE_SWITCHTIME]]></Text>
+				<Enum>1</Enum>
+				<Comment><![CDATA[Linear blending into standstill parameter between motion profile end and standstill switch time is reached.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[BLENDING_AFTER_SWITCHTIME]]></Text>
+				<Enum>2</Enum>
+				<Comment><![CDATA[Linear blending into standstill parameter after standstill switch time is reached over the same time.]]></Comment>
+			</EnumInfo>
+			<Default>
+				<EnumText>BLENDING_AFTER_SWITCHTIME</EnumText>
+			</Default>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{89F7A8E4-221A-4C31-96DB-9973A936D8AD}" Namespace="XTS">InterpolatorType</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[INTERPOLATION_OFF]]></Text>
+				<Enum>0</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[INTERPOLATION_LINEAR]]></Text>
+				<Enum>1</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[INTERPOLATION_POLYNOM3]]></Text>
+				<Enum>2</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[EXTRAPOLATION_POLYNOM3]]></Text>
+				<Enum>3</Enum>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+			<Hides>
+				<Hide GUID="{0E55A533-3842-45A8-971D-89A7A75B3148}"/>
+			</Hides>
+			<Relations>
+				<Relation>
+					<Type GUID="{0E55A533-3842-45A8-971D-89A7A75B3148}"></Type>
+				</Relation>
+			</Relations>
+		</DataType>
+		<DataType>
+			<Name GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</Name>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>Major</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Minor</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Build</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Revision</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+		</DataType>
+	</DataTypes>
+	<ImageDatas>
+		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000900000009000000ababab00a6a6a600000000000000000000000000000000000000000000000000000000000000000000000000000000006a6a6a00646464000900000009000000b4b4b400afafaf0000000000a4a4a4009e9e9e0099999900949494008e8e8e0089898900838383007e7e7e0000000000737373006e6e6e000900000009000000bdbdbd00b8b8b80000000000adadad0000000000a2a2a2000000000000000000000000000000000087878700000000007c7c7c00777777000900000009000000c6c6c600c1c1c10000000000b6b6b600b1b1b100ababab00a6a6a600a0a0a0009b9b9b0096969600909090000000000085858500808080000900000009000000d0d0d000cacaca0000000000bfbfbf0000000000b4b4b4000000000000000000000000000000000099999900000000008e8e8e00898989000900000009000000d9d9d900d3d3d30000000000c8c8c800c3c3c300bebebe00b8b8b800b3b3b300adadad00a8a8a800a3a3a3000000000098989800929292000900000009000000e2e2e200dcdcdc0000000000d2d2d20000000000c7c7c70000000000000000000000000000000000acacac0000000000a1a1a1009b9b9b000900000009000000ebebeb00e6e6e60000000000dbdbdb00d5d5d500d0d0d000cbcbcb00c5c5c500c0c0c000bababa00b5b5b50000000000aaaaaa00a5a5a5000900000009000000f4f4f400efefef0000000000e4e4e400dfdfdf00d9d9d900d4d4d400cecece0000000000000000000000000000000000b3b3b300aeaeae000900000009000000fbfbfb00f8f8f80000000000ededed00e8e8e800e2e2e200dddddd00d7d7d70000000000c8c8c8003e3e3e003c3c3c00bcbcbc00b7b7b7000900000009000000fbfbfb00fbfbfb0000000000f6f6f600f1f1f100ebebeb00e6e6e600e1e1e10000000000434343003c3c3c00c5c5c500c5c5c500c0c0c0000900000009000000fbfbfb00fbfbfb000000000000000000000000000000000000000000000000000000000045454500d4d4d400d4d4d400cfcfcf00c9c9c9000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
+	</ImageDatas>
+	<Module Id="#x01010070" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+		<Name>__FILENAME__</Name>
+		<ImageId>1000</ImageId>
+		<TmcDesc GUID="{98BEC76D-D436-4208-9F8B-486BE57865BD}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+			<Name>XtsMoverGeneralParameterSet</Name>
+			<CLSID ClassFactory="TcIoXts">{98BEC76D-D436-4208-9F8B-486BE57865BD}</CLSID>
+			<Info>
+				<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000900000009000000ababab00a6a6a600000000000000000000000000000000000000000000000000000000000000000000000000000000006a6a6a00646464000900000009000000b4b4b400afafaf0000000000a4a4a4009e9e9e0099999900949494008e8e8e0089898900838383007e7e7e0000000000737373006e6e6e000900000009000000bdbdbd00b8b8b80000000000adadad0000000000a2a2a2000000000000000000000000000000000087878700000000007c7c7c00777777000900000009000000c6c6c600c1c1c10000000000b6b6b600b1b1b100ababab00a6a6a600a0a0a0009b9b9b0096969600909090000000000085858500808080000900000009000000d0d0d000cacaca0000000000bfbfbf0000000000b4b4b4000000000000000000000000000000000099999900000000008e8e8e00898989000900000009000000d9d9d900d3d3d30000000000c8c8c800c3c3c300bebebe00b8b8b800b3b3b300adadad00a8a8a800a3a3a3000000000098989800929292000900000009000000e2e2e200dcdcdc0000000000d2d2d20000000000c7c7c70000000000000000000000000000000000acacac0000000000a1a1a1009b9b9b000900000009000000ebebeb00e6e6e60000000000dbdbdb00d5d5d500d0d0d000cbcbcb00c5c5c500c0c0c000bababa00b5b5b50000000000aaaaaa00a5a5a5000900000009000000f4f4f400efefef0000000000e4e4e400dfdfdf00d9d9d900d4d4d400cecece0000000000000000000000000000000000b3b3b300aeaeae000900000009000000fbfbfb00f8f8f80000000000ededed00e8e8e800e2e2e200dddddd00d7d7d70000000000c8c8c8003e3e3e003c3c3c00bcbcbc00b7b7b7000900000009000000fbfbfb00fbfbfb0000000000f6f6f600f1f1f100ebebeb00e6e6e600e1e1e10000000000434343003c3c3c00c5c5c500c5c5c500c0c0c0000900000009000000fbfbfb00fbfbfb000000000000000000000000000000000000000000000000000000000045454500d4d4d400d4d4d400cfcfcf00c9c9c9000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
+			</Info>
+			<InitSequence>PSO</InitSequence>
+			<Contexts>
+				<Context>
+					<Id>1</Id>
+				</Context>
+			</Contexts>
+			<Interfaces>
+				<Interface>
+					<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+				</Interface>
+			</Interfaces>
+			<Parameters>
+				<Group><![CDATA[General]]></Group>
+				<Group><![CDATA[ForceLimitation]]></Group>
+				<Group><![CDATA[Interpolator]]></Group>
+				<Group><![CDATA[Advanced]]></Group>
+				<Group><![CDATA[Info]]></Group>
+				<Parameter Group="General">
+					<Name>OperationMode</Name>
+					<Comment><![CDATA[Operation mode of SoftDrive and Hardware.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{0898D61D-6948-4A74-AE61-D590D99DCC07}" Namespace="XTS">MoverControllerOperationMode</BaseType>
+					<Default>
+						<EnumText>CSP</EnumText>
+					</Default>
+					<PTCID>#x03080419</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>EmergencyRamp</Name>
+					<Comment><![CDATA[Emergency deceleration ramp used e.g. in case of an error.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm/s²]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>150000.0</Max>
+						<Value>10000.0</Value>
+					</Default>
+					<PTCID>#x0308041b</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>EmergencyTimeOut</Name>
+					<Comment><![CDATA[Overall emergency time out time the Controller will be diasbeld.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[s]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>10</Max>
+						<Value>0.5</Value>
+					</Default>
+					<PTCID>#x0308041c</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>StandstillSwitchTime</Name>
+					<Comment><![CDATA[Time after SetVeloItp is zero before standstill parameter are used.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[s]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>10.0</Max>
+						<Value>0.1</Value>
+					</Default>
+					<PTCID>#x0308041d</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>StandstillSwitchMode</Name>
+					<Comment><![CDATA[Mode for blending normal standard parameter into standstill parameter.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{7A8EDB9D-0FE8-4975-92A6-25A84E704173}" Namespace="XTS">StandStillSwitchMode</BaseType>
+					<Default>
+						<EnumText>BLENDING_AFTER_SWITCHTIME</EnumText>
+					</Default>
+					<PTCID>#x0308041e</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="ForceLimitation">
+					<Name>EnableForceLimit</Name>
+					<Comment><![CDATA[If true force limitation is enabled.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+					<PTCID>#x03080421</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="ForceLimitation">
+					<Name>ForceLimit</Name>
+					<Comment><![CDATA[Maximum force that the mover provides.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[N]]></Unit>
+					<Default>
+						<Value>0</Value>
+					</Default>
+					<PTCID>#x0308041a</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="ForceLimitation">
+					<Name>EnableForceLimitBeforeFeedForward</Name>
+					<Comment><![CDATA[If true force limitation before feed forward is enabled.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+					<PTCID>#x03080460</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="ForceLimitation">
+					<Name>ForceLimitBeforeFeedForward</Name>
+					<Comment><![CDATA[Limitation applied on mover force before feed forward is applied.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[N]]></Unit>
+					<Default>
+						<Value>0</Value>
+					</Default>
+					<PTCID>#x03080461</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Interpolator">
+					<Name>InterpolatorType</Name>
+					<Comment><![CDATA[Set the type of the interpolator calculation.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{89F7A8E4-221A-4C31-96DB-9973A936D8AD}" Namespace="XTS">InterpolatorType</BaseType>
+					<Default>
+						<EnumText>INTERPOLATION_POLYNOM3</EnumText>
+					</Default>
+					<PTCID>#x0308041f</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter HideParameter="true" Group="Advanced">
+					<Name>CurrentChangeLimit</Name>
+					<Comment><![CDATA[di/dt limit per cycle in position mode.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[A/Cycle]]></Unit>
+					<Default>
+						<Min>0.01</Min>
+						<Max>2.0</Max>
+						<Value>2.0</Value>
+					</Default>
+					<PTCID>#x0308044e</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter HideParameter="true" Group="Advanced">
+					<Name>PhaseAdvance</Name>
+					<Comment><![CDATA[Number of cycles for the phase advance.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[Cycles]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>4.0</Max>
+						<Value>3.0</Value>
+					</Default>
+					<PTCID>#x03080450</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>VersionString</Name>
+					<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
+					<BitSize>384</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00010000002F}">STRING(47)</BaseType>
+					<PTCID>#x03080287</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>Version</Name>
+					<Comment><![CDATA[Returns the version of the driver.]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</BaseType>
+					<PTCID>#x03080510</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+			</Parameters>
+			<Properties>
+				<Property>
+					<Name>Category</Name>
+					<Value>XTS</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>TcIoXts</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsMoverGeneralParameterSet</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsMoverParameterSetChild</Value>
+				</Property>
+				<Property>
+					<Name>ChildCategory</Name>
+					<Value>XtsMoverGeneralParameterSetChild</Value>
+				</Property>
+			</Properties>
+			<ParentOTCID>#x01010020</ParentOTCID>
+			<ParameterValues>
+				<Value>
+					<Name>OperationMode</Name>
+					<EnumText>CyclicSynchronousPosition</EnumText>
+				</Value>
+				<Value>
+					<Name>EmergencyRamp</Name>
+					<Value>10000</Value>
+				</Value>
+				<Value>
+					<Name>EmergencyTimeOut</Name>
+					<Value>0.5</Value>
+				</Value>
+				<Value>
+					<Name>StandstillSwitchTime</Name>
+					<Value>0.1</Value>
+				</Value>
+				<Value>
+					<Name>StandstillSwitchMode</Name>
+					<EnumText>BLENDING_AFTER_SWITCHTIME</EnumText>
+				</Value>
+				<Value>
+					<Name>EnableForceLimit</Name>
+					<EnumText>FALSE</EnumText>
+				</Value>
+				<Value>
+					<Name>ForceLimit</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>EnableForceLimitBeforeFeedForward</Name>
+					<EnumText>FALSE</EnumText>
+				</Value>
+				<Value>
+					<Name>ForceLimitBeforeFeedForward</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>InterpolatorType</Name>
+					<EnumText>INTERPOLATION_POLYNOM3</EnumText>
+				</Value>
+				<Value>
+					<Name>CurrentChangeLimit</Name>
+					<Value>2</Value>
+				</Value>
+				<Value>
+					<Name>PhaseAdvance</Name>
+					<Value>3</Value>
+				</Value>
+			</ParameterValues>
+		</TmcDesc>
+	</Module>
+</TcSmItem>

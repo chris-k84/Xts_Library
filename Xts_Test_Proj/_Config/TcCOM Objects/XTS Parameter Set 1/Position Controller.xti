@@ -1,0 +1,294 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.16" ClassName="CTComObjDef">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{220B9FE7-5CA9-46DC-88F2-111343D52170}" Namespace="XTS">PositionLoopType</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[OFF]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[Position loop is switched off.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[P_POSITION]]></Text>
+				<Enum>1</Enum>
+				<Comment><![CDATA[P position loop standard.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[P_POSITION_STANDSTILL]]></Text>
+				<Enum>2</Enum>
+				<Comment><![CDATA[P position loop with extra standstill kp.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[P_POSITION_PRECISE_STANDSTILL]]></Text>
+				<Enum>4</Enum>
+				<Comment><![CDATA[P position loop with precise standstill control.]]></Comment>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</Name>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>Major</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Minor</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Build</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Revision</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+		</DataType>
+	</DataTypes>
+	<ImageDatas>
+		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000900000009000000ababab00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000646464000900000009000000b4b4b400000000009aa1b100a3a3a3006767670049494900515151008585850089898900838383007e7e7e0078787800737373006e6e6e000900000009000000bdbdbd00000000008498c600a8a8a80065656500969696007e7e7e0037373700929292008c8c8c0087878700828282007c7c7c00777777000900000009000000c6c6c600000000006488db00b6b6b600b0b0b000898989005c5c5c00393939009b9b9b0096969600909090008b8b8b0085858500808080000900000009000000d0d0d000000000003f74ed00bfbfbf0037373700585858007e7e7e00a9a9a900a4a4a4009f9f9f0099999900949494008e8e8e00898989000900000009000000d9d9d900000000001459fa00c8c8c80035353500b6b6b600afafaf008c8c8c00adadad00a8a8a800a3a3a3009d9d9d0098989800929292000900000009000000e2e2e20000000000185dfb00b3bed900a2a2a20053535300525252008e8e8e009ba7c2006284d4008999bd00a6a6a600a1a1a1009b9b9b000900000009000000ebebeb00000000005a88f3007b9deb00d5d5d500d0d0d000cbcbcb00a8b3ce001258f900527de0001257f7008497c300aaaaaa00a5a5a5000900000009000000f4f4f40000000000a6bcef00316df900dfdfdf00d9d9d900d4d4d4004377ef006e91e200c3c3c300869dd1001c5df400afb1b400aeaeae000900000009000000fbfbfb0000000000525355000a4eea00425277005353530041527800094deb00505359005353530053535300184fce002e51a100b7b7b7000900000009000000fbfbfb0000000000fbfbfb009ab7f900316efc00d2daed00336ff9008ba8ec00dbdbdb00d6d6d600d0d0d000afbad2002060f500c0c0c0000900000009000000fbfbfb0000000000fbfbfb00fbfbfb006a96fd00165cfe006893f800e8e9ea00e4e4e400dfdfdf00d9d9d900d4d4d400cfcfcf00c9c9c9000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
+	</ImageDatas>
+	<Module Id="#x01010040" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+		<Name>__FILENAME__</Name>
+		<ImageId>1000</ImageId>
+		<TmcDesc GUID="{57584E44-D085-4D23-86E4-3BE2859F4EC5}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+			<Name>XtsMoverPositionControllerParameterSet</Name>
+			<CLSID ClassFactory="TcIoXts">{57584E44-D085-4D23-86E4-3BE2859F4EC5}</CLSID>
+			<Info>
+				<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000900000009000000ababab00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000646464000900000009000000b4b4b400000000009aa1b100a3a3a3006767670049494900515151008585850089898900838383007e7e7e0078787800737373006e6e6e000900000009000000bdbdbd00000000008498c600a8a8a80065656500969696007e7e7e0037373700929292008c8c8c0087878700828282007c7c7c00777777000900000009000000c6c6c600000000006488db00b6b6b600b0b0b000898989005c5c5c00393939009b9b9b0096969600909090008b8b8b0085858500808080000900000009000000d0d0d000000000003f74ed00bfbfbf0037373700585858007e7e7e00a9a9a900a4a4a4009f9f9f0099999900949494008e8e8e00898989000900000009000000d9d9d900000000001459fa00c8c8c80035353500b6b6b600afafaf008c8c8c00adadad00a8a8a800a3a3a3009d9d9d0098989800929292000900000009000000e2e2e20000000000185dfb00b3bed900a2a2a20053535300525252008e8e8e009ba7c2006284d4008999bd00a6a6a600a1a1a1009b9b9b000900000009000000ebebeb00000000005a88f3007b9deb00d5d5d500d0d0d000cbcbcb00a8b3ce001258f900527de0001257f7008497c300aaaaaa00a5a5a5000900000009000000f4f4f40000000000a6bcef00316df900dfdfdf00d9d9d900d4d4d4004377ef006e91e200c3c3c300869dd1001c5df400afb1b400aeaeae000900000009000000fbfbfb0000000000525355000a4eea00425277005353530041527800094deb00505359005353530053535300184fce002e51a100b7b7b7000900000009000000fbfbfb0000000000fbfbfb009ab7f900316efc00d2daed00336ff9008ba8ec00dbdbdb00d6d6d600d0d0d000afbad2002060f500c0c0c0000900000009000000fbfbfb0000000000fbfbfb00fbfbfb006a96fd00165cfe006893f800e8e9ea00e4e4e400dfdfdf00d9d9d900d4d4d400cfcfcf00c9c9c9000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
+			</Info>
+			<InitSequence>PSO</InitSequence>
+			<Contexts>
+				<Context>
+					<Id>1</Id>
+				</Context>
+			</Contexts>
+			<Interfaces>
+				<Interface>
+					<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+				</Interface>
+			</Interfaces>
+			<Parameters>
+				<Group><![CDATA[General]]></Group>
+				<Group><![CDATA[Precise Standstill]]></Group>
+				<Group Collapsed="true"><![CDATA[Advanced]]></Group>
+				<Group><![CDATA[Info]]></Group>
+				<Parameter Group="General">
+					<Name>PositionLoopType</Name>
+					<Comment><![CDATA[Define the type of the position control.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{220B9FE7-5CA9-46DC-88F2-111343D52170}" Namespace="XTS">PositionLoopType</BaseType>
+					<Default>
+						<EnumText>P_POSITION_STANDSTILL</EnumText>
+					</Default>
+					<PTCID>#x03080428</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>Kp</Name>
+					<Comment><![CDATA[Proportional gain of position control.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[1/s]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>2.0</Max>
+						<Value>0.03</Value>
+					</Default>
+					<PTCID>#x03080429</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>Kp_standstill</Name>
+					<Comment><![CDATA[Proportional gain at standstill of position control.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[1/s]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>2.0</Max>
+						<Value>0.02</Value>
+					</Default>
+					<PTCID>#x0308042a</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Precise Standstill">
+					<Name>Kp_precise_standstill</Name>
+					<Comment><![CDATA[Integral gain of the precise standstill control.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[1/s²]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>1.0</Max>
+						<Value>0.006</Value>
+					</Default>
+					<PTCID>#x0308042b</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Precise Standstill">
+					<Name>Kd_precise_standstill</Name>
+					<Comment><![CDATA[Differential gain of the precise standstill control.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[1/s]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>2.0</Max>
+						<Value>0.4</Value>
+					</Default>
+					<PTCID>#x0308042c</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Precise Standstill">
+					<Name>Km_precise_standstill</Name>
+					<Comment><![CDATA[Proportional overall gain of the precise standstill control.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[s]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>8.0</Max>
+						<Value>0.07</Value>
+					</Default>
+					<PTCID>#x0308042d</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter HideParameter="true" Group="Precise Standstill">
+					<Name>SwitchingBoundary</Name>
+					<Comment><![CDATA[Velocity boundary in which the precise standstill control is active.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm/s]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>50.0</Max>
+						<Value>0.0</Value>
+					</Default>
+					<PTCID>#x0308042e</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Advanced">
+					<Name>PositionLoopFilter</Name>
+					<Comment><![CDATA[First order filter at position loop input.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[Hz]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>5000.0</Max>
+						<Value>75.0</Value>
+					</Default>
+					<PTCID>#x0308042f</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Advanced">
+					<Name>InpositionTn</Name>
+					<Comment><![CDATA[Small inposition integral time constant of position control for faster settling into standstill setpoint position.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[s]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>10.0</Max>
+						<Value>0.05</Value>
+					</Default>
+					<PTCID>#x03080430</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>VersionString</Name>
+					<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
+					<BitSize>384</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00010000002F}">STRING(47)</BaseType>
+					<PTCID>#x03080287</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>Version</Name>
+					<Comment><![CDATA[Returns the version of the driver.]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</BaseType>
+					<PTCID>#x03080510</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+			</Parameters>
+			<Properties>
+				<Property>
+					<Name>Category</Name>
+					<Value>XTS</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>TcIoXts</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsMoverPositionControllerParameterSet</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsMoverParameterSetChild</Value>
+				</Property>
+				<Property>
+					<Name>ChildCategory</Name>
+					<Value>XtsMoverPositionControllerParameterSetChild</Value>
+				</Property>
+			</Properties>
+			<ParentOTCID>#x01010020</ParentOTCID>
+			<ParameterValues>
+				<Value>
+					<Name>PositionLoopType</Name>
+					<EnumText>P_POSITION_STANDSTILL</EnumText>
+				</Value>
+				<Value>
+					<Name>Kp</Name>
+					<Value>0.03</Value>
+				</Value>
+				<Value>
+					<Name>Kp_standstill</Name>
+					<Value>0.02</Value>
+				</Value>
+				<Value>
+					<Name>Kp_precise_standstill</Name>
+					<Value>0.006</Value>
+				</Value>
+				<Value>
+					<Name>Kd_precise_standstill</Name>
+					<Value>0.4</Value>
+				</Value>
+				<Value>
+					<Name>Km_precise_standstill</Name>
+					<Value>0.07</Value>
+				</Value>
+				<Value>
+					<Name>SwitchingBoundary</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>PositionLoopFilter</Name>
+					<Value>75</Value>
+				</Value>
+				<Value>
+					<Name>InpositionTn</Name>
+					<Value>0.05</Value>
+				</Value>
+			</ParameterValues>
+		</TmcDesc>
+	</Module>
+</TcSmItem>

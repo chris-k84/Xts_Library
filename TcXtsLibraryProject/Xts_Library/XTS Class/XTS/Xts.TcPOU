@@ -170,7 +170,7 @@ CASE XtsHwState OF
 		XtsHwState := XtsSystemInitialisation.InitialiseHardware;
 	
 	XtsSystemInitialisation.InitialiseHardware:
-		IF _MyXtsHardware.IsHardwareInitialised() THEN
+		IF _MyXtsHardware.IsInitialised() THEN
 			MyName := _MyXtsHardware.MyName;
 			XtsHwState := XtsSystemInitialisation.SetDetection;
 		END_IF

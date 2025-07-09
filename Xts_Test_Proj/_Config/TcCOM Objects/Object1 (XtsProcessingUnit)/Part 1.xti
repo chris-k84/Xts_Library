@@ -1,0 +1,482 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.16" ClassName="CTComObjDef">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{3A8397B3-4D69-47E4-98C8-3484E09F0265}" Namespace="XTS">ModuleSide</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Back]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[Feed-In is orientated to the right side when one looks at the module.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Front]]></Text>
+				<Enum>1</Enum>
+				<Comment><![CDATA[Feed-In is orientated to the left side when one looks at the module.]]></Comment>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{E0B22A9F-54C2-4B0C-86B3-A8BB45899BF4}" Namespace="XTS">Transform2D</Name>
+			<BitSize>96</BitSize>
+			<SubItem>
+				<Name>X</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000D}">REAL</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+				<Default>
+					<Value>0.0</Value>
+				</Default>
+			</SubItem>
+			<SubItem>
+				<Name>Y</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000D}">REAL</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+				<Default>
+					<Value>0.0</Value>
+				</Default>
+			</SubItem>
+			<SubItem>
+				<Name>Alpha</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000D}">REAL</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>64</BitOffs>
+				<Default>
+					<Value>0.0</Value>
+				</Default>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{C3ADB195-DDF2-437F-AF8E-FB07C2F42281}" Namespace="XTS">DriveState</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Unknown]]></Text>
+				<Enum>0</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[FaultReactionActive]]></Text>
+				<Enum>1</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Fault]]></Text>
+				<Enum>2</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[NotReadyToSwitchOn]]></Text>
+				<Enum>3</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[SwitchOnDisabled]]></Text>
+				<Enum>4</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[ReadyToSwitchOn]]></Text>
+				<Enum>5</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[SwitchedOn]]></Text>
+				<Enum>6</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[OperationEnabled]]></Text>
+				<Enum>7</Enum>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+			<Hides>
+				<Hide GUID="{3E44F19E-945D-43E7-BC3A-30F4A192CF1B}"/>
+			</Hides>
+			<Relations>
+				<Relation>
+					<Type GUID="{3E44F19E-945D-43E7-BC3A-30F4A192CF1B}"></Type>
+				</Relation>
+			</Relations>
+		</DataType>
+		<DataType>
+			<Name GUID="{C357B260-699D-4F19-8116-CEA37514B255}" Namespace="XTS">NctCombinedModuleStatus</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>areAllModulesReady</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>hasAnyWarning</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>hasAnyError</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>hasAnyReceiveToggleSet</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>hasAnyI2tWarningOnCoil1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>hasAnyI2tWarningOnCoil2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>5</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>hasAnyInvalidData</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>13</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>hasAnyReceiveError</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>14</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>hasAnyTimeout</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>15</BitOffs>
+			</SubItem>
+			<Hides>
+				<Hide GUID="{7D0D2087-508F-43AC-8A12-BBAE2D83194D}"/>
+			</Hides>
+			<Relations>
+				<Relation>
+					<Type GUID="{7D0D2087-508F-43AC-8A12-BBAE2D83194D}"></Type>
+				</Relation>
+			</Relations>
+		</DataType>
+		<DataType>
+			<Name GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</Name>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>Major</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Minor</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Build</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Revision</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+		</DataType>
+	</DataTypes>
+	<ImageDatas>
+		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c40e0000c40e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000000000000000000ababab00a6a6a600a0a0a0009b9b9b0095959500909090008a8a8a0085858500808080007a7a7a00757575006f6f6f006a6a6a00646464000000000000000000000000000000000000000000a4a4a4009e9e9e0099999900060606000606060089898900838383007e7e7e000000000000000000000000000000000000000000000000000000000000000000adadad00a8a8a800a2a2a2001212120012121200929292008c8c8c00878787000000000000000000000000000000000000000000c6c6c600c1c1c100bcbcbc00b6b6b600b1b1b100ababab0021212100202020009b9b9b0096969600909090008b8b8b0085858500808080000000000000000000d0d0d000cacaca00c5c5c500bfbfbf00bababa00b4b4b400313131002f2f2f00a4a4a4009f9f9f0099999900949494008e8e8e00898989000000000000000000d9d9d900d3d3d300cecece00f4931b00f4931b00f4931b00f4931b00f4931b00f4931b00f4931b00f4931b009d9d9d0098989800929292000000000000000000e2e2e200dcdcdc00d7d7d700f4931b00f4931b00f4931b00f4931b00f4931b00f4931b00f4931b00f4931b00a6a6a600a1a1a1009b9b9b000000000000000000ebebeb00e6e6e600e0e0e000dbdbdb00d5d5d500d0d0d0003939390037373700c0c0c000bababa00b5b5b500afafaf00aaaaaa00a5a5a5000000000000000000f4f4f400efefef00e9e9e900e4e4e400dfdfdf00d9d9d9002a2a2a0029292900c9c9c900c3c3c300bebebe00b9b9b900b3b3b300aeaeae000000000000000000000000000000000000000000ededed00e8e8e800e2e2e2001a1a1a0019191900d2d2d200cdcdcd00c7c7c7000000000000000000000000000000000000000000000000000000000000000000f6f6f600f1f1f100ebebeb000909090009090900dbdbdb00d6d6d600d0d0d0000000000000000000000000000000000000000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fafafa00f5f5f500efefef00eaeaea00e4e4e400dfdfdf00d9d9d900d4d4d400cfcfcf00c9c9c9000000000000000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</ImageData>
+	</ImageDatas>
+	<Module Id="#x010100f0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+		<Name>__FILENAME__</Name>
+		<ImageId>1000</ImageId>
+		<TmcDesc GUID="{43BE0432-F7C6-4CEA-BE37-0C69D38D97C1}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+			<Name>XtsPart</Name>
+			<CLSID ClassFactory="TcIoXts">{4B52C4EC-39EA-4401-8F36-6D5F1E88E04E}</CLSID>
+			<Info>
+				<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c40e0000c40e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000000000000000000ababab00a6a6a600a0a0a0009b9b9b0095959500909090008a8a8a0085858500808080007a7a7a00757575006f6f6f006a6a6a00646464000000000000000000000000000000000000000000a4a4a4009e9e9e0099999900060606000606060089898900838383007e7e7e000000000000000000000000000000000000000000000000000000000000000000adadad00a8a8a800a2a2a2001212120012121200929292008c8c8c00878787000000000000000000000000000000000000000000c6c6c600c1c1c100bcbcbc00b6b6b600b1b1b100ababab0021212100202020009b9b9b0096969600909090008b8b8b0085858500808080000000000000000000d0d0d000cacaca00c5c5c500bfbfbf00bababa00b4b4b400313131002f2f2f00a4a4a4009f9f9f0099999900949494008e8e8e00898989000000000000000000d9d9d900d3d3d300cecece00f4931b00f4931b00f4931b00f4931b00f4931b00f4931b00f4931b00f4931b009d9d9d0098989800929292000000000000000000e2e2e200dcdcdc00d7d7d700f4931b00f4931b00f4931b00f4931b00f4931b00f4931b00f4931b00f4931b00a6a6a600a1a1a1009b9b9b000000000000000000ebebeb00e6e6e600e0e0e000dbdbdb00d5d5d500d0d0d0003939390037373700c0c0c000bababa00b5b5b500afafaf00aaaaaa00a5a5a5000000000000000000f4f4f400efefef00e9e9e900e4e4e400dfdfdf00d9d9d9002a2a2a0029292900c9c9c900c3c3c300bebebe00b9b9b900b3b3b300aeaeae000000000000000000000000000000000000000000ededed00e8e8e800e2e2e2001a1a1a0019191900d2d2d200cdcdcd00c7c7c7000000000000000000000000000000000000000000000000000000000000000000f6f6f600f1f1f100ebebeb000909090009090900dbdbdb00d6d6d600d0d0d0000000000000000000000000000000000000000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fafafa00f5f5f500efefef00eaeaea00e4e4e400dfdfdf00d9d9d900d4d4d400cfcfcf00c9c9c9000000000000000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</ImageData>
+			</Info>
+			<InitSequence>PSO</InitSequence>
+			<Contexts>
+				<Context>
+					<Id>1</Id>
+				</Context>
+			</Contexts>
+			<Interfaces>
+				<Interface>
+					<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+				</Interface>
+				<Interface>
+					<Type GUID="{03000018-0000-0000-E000-000000000064}">ITcWatchSource</Type>
+				</Interface>
+			</Interfaces>
+			<Parameters>
+				<Group><![CDATA[General]]></Group>
+				<Group><![CDATA[Commands]]></Group>
+				<Group><![CDATA[Mover Detection]]></Group>
+				<Group><![CDATA[Drive Info]]></Group>
+				<Group><![CDATA[EtherCAT Slave Info]]></Group>
+				<Group><![CDATA[Info]]></Group>
+				<Group><![CDATA[NCT Inputs]]></Group>
+				<Group><![CDATA[Structure]]></Group>
+				<Parameter HideParameter="true" Group="General">
+					<Name>TaskOID</Name>
+					<Comment><![CDATA[Gets/Sets the XTS Task that is used for calculations for the XtsPart.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<Default>
+						<Value>#x00000000</Value>
+					</Default>
+					<PTCID>#x03002060</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>ModuleSide</Name>
+					<Comment><![CDATA[Module side of the Part shown in the Tool Window and XTS Viewer.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{3A8397B3-4D69-47E4-98C8-3484E09F0265}" Namespace="XTS">ModuleSide</BaseType>
+					<Default>
+						<EnumText>Front</EnumText>
+					</Default>
+					<PTCID>#x03080262</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>Offset</Name>
+					<Comment><![CDATA[Configure the offset for the Part.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<PTCID>#x03080202</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>OriginTransform</Name>
+					<Comment><![CDATA[Origin transformation for the Part shown in the Tool Window and XTS Viewer.]]></Comment>
+					<BitSize>96</BitSize>
+					<BaseType GUID="{E0B22A9F-54C2-4B0C-86B3-A8BB45899BF4}" Namespace="XTS">Transform2D</BaseType>
+					<PTCID>#x03080260</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Commands">
+					<Name>TriggerReset</Name>
+					<Comment><![CDATA[If downloaded then all faulty modules will be resetted.]]></Comment>
+					<BitSize>0</BitSize>
+					<BaseType GUID="{FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF}"/>
+					<PTCID>#x030802eb</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Commands">
+					<Name>TriggerNctReset</Name>
+					<Comment><![CDATA[If downloaded then all faulty nct modules belonging to the part will be resetted.]]></Comment>
+					<BitSize>0</BitSize>
+					<BaseType GUID="{FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF}"/>
+					<PTCID>#x03080547</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Drive Info">
+					<Name>DriveState</Name>
+					<Comment><![CDATA[Returns the state of the drive system.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{C3ADB195-DDF2-437F-AF8E-FB07C2F42281}" Namespace="XTS">DriveState</BaseType>
+					<PTCID>#x000000a0</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Drive Info">
+					<Name>IsDcLinkVoltageReady</Name>
+					<Comment><![CDATA[Returns true if the DC Link voltage of all modules is ready (requires PartBasedHandling).]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<PTCID>#x0308054f</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="EtherCAT Slave Info">
+					<Name>AreAllModulesInOp</Name>
+					<Comment><![CDATA[Returns true if all modules of the part in EtherCAT state OP (requires PartBasedHandling).]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<PTCID>#x030805c3</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="EtherCAT Slave Info">
+					<Name>IsSlaveCommunicationInterrupted</Name>
+					<Comment><![CDATA[Returns true when at least one module of the part has an interrupted communication to it's EtherCAT Slave (requires PartBasedHandling).]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<PTCID>#x030805c2</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>GlobalNumber</Name>
+					<Comment><![CDATA[The global number is used to distinguish all parts which are manged by one XPU.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+					<PTCID>#x03080227</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="NCT Inputs">
+					<Name>NctCombinedModuleStatus</Name>
+					<Comment><![CDATA[Returns the combined status of all NCT modules which belong to the part.]]></Comment>
+					<BitSize>16</BitSize>
+					<BaseType GUID="{C357B260-699D-4F19-8116-CEA37514B255}" Namespace="XTS">NctCombinedModuleStatus</BaseType>
+					<PTCID>#x030805b7</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="NCT Inputs">
+					<Name>NctModuleCount</Name>
+					<Comment><![CDATA[Returns the number of NCT modules which belong to the part.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+					<PTCID>#x030805b8</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>Length</Name>
+					<Comment><![CDATA[Returns the length of the Part.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm]]></Unit>
+					<PTCID>#x03080206</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Structure">
+					<Name>AreaCount</Name>
+					<Comment><![CDATA[Returns the number of areas.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+					<PTCID>#x03080234</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Structure">
+					<Name>AreaObjectIDs</Name>
+					<Comment><![CDATA[Returns an array containing the object IDs of all areas.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<ArrayInfo>
+						<LBound>0</LBound>
+						<Elements Min="1" Max="100">1</Elements>
+					</ArrayInfo>
+					<PTCID>#x03080235</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Structure">
+					<Name>ModuleCount</Name>
+					<Comment><![CDATA[Returns the number of modules.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+					<PTCID>#x03080207</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Structure">
+					<Name>ModuleObjectIDs</Name>
+					<Comment><![CDATA[Returns an array containing the object IDs of all modules.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<ArrayInfo>
+						<LBound>0</LBound>
+						<Elements Min="1" Max="500">1</Elements>
+					</ArrayInfo>
+					<PTCID>#x03080208</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>VersionString</Name>
+					<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
+					<BitSize>384</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00010000002F}">STRING(47)</BaseType>
+					<PTCID>#x03080287</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Name>Version</Name>
+					<Comment><![CDATA[Returns the version of the driver.]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</BaseType>
+					<PTCID>#x03080510</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+			</Parameters>
+			<EventMessages>
+				<EventMessage>
+					<Id>9029</Id>
+					<Message><![CDATA[Could not register by {0}.]]></Message>
+				</EventMessage>
+			</EventMessages>
+			<Properties>
+				<Property>
+					<Name>Category</Name>
+					<Value>XTS</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>TcIoXts</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsPart</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsProcessingUnitChild</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsPartBlockChild</Value>
+				</Property>
+				<Property>
+					<Name>ChildCategory</Name>
+					<Value>XtsPartChild</Value>
+				</Property>
+			</Properties>
+			<ParentOTCID>#x01010010</ParentOTCID>
+			<ParameterValues>
+				<Value>
+					<Name>TaskOID</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>ModuleSide</Name>
+					<EnumText>Front</EnumText>
+				</Value>
+				<Value>
+					<Name>Offset</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>OriginTransform.X</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>OriginTransform.Y</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>OriginTransform.Alpha</Name>
+					<Value>0</Value>
+				</Value>
+			</ParameterValues>
+		</TmcDesc>
+		<Module File="Module 1.xti"/>
+		<Module File="Module 2.xti"/>
+		<Module File="Module 3.xti"/>
+		<Module File="Module 4.xti"/>
+		<Module File="Module 5.xti"/>
+		<Module File="Module 6.xti"/>
+		<Module File="Module 7.xti"/>
+		<Module File="Module 8.xti"/>
+		<Module File="Module 9.xti"/>
+		<Module File="Module 10.xti"/>
+	</Module>
+</TcSmItem>
