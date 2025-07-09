@@ -42,14 +42,14 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="GetConfigMoverNumber" Id="{840a6c17-fbef-4810-9acd-02a47aa8f2b0}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetConfigMoverNumber : UDINT
+    <Method Name="GetConfiguredMoverNumber" Id="{840a6c17-fbef-4810-9acd-02a47aa8f2b0}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetConfiguredMoverNumber : UDINT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GetDetectionState" Id="{fa37bb06-5333-4945-837b-ed2607a0f10b}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetDetectionState : DetectionStateEnum
+    <Method Name="GetMoverDetectionState" Id="{fa37bb06-5333-4945-837b-ed2607a0f10b}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetMoverDetectionState : DetectionStateEnum
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -144,17 +144,17 @@ END_VAR
     <Method Name="ResetParts" Id="{1ef4fc6a-84af-4fb3-a74e-14a888b66822}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ResetParts : BOOL]]></Declaration>
     </Method>
-    <Method Name="SetMoverNumbers" Id="{7821c5af-a98b-4e00-bdec-978858c91986}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD SetMoverNumbers : HRESULT
+    <Method Name="SetATrackForDetection" Id="{e5174e94-1d43-416d-9cf0-82b8810737fe}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD SetATrackForDetection : HRESULT
 VAR_INPUT
-	NumberOfMovers : INT;
+	TrackToDetect : UINT;
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="SetTrackForDetection" Id="{e5174e94-1d43-416d-9cf0-82b8810737fe}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD SetTrackForDetection : HRESULT
+    <Method Name="SetMoverNumberForDetection" Id="{7821c5af-a98b-4e00-bdec-978858c91986}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD SetMoverNumberForDetection : HRESULT
 VAR_INPUT
-	TrackToDetect : UINT;
+	NumberOfMovers : INT;
 END_VAR
 ]]></Declaration>
     </Method>
@@ -164,13 +164,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="TriggerMoverID" Id="{94d400e7-7631-41b8-b1e4-2b7514685c32}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD TriggerMoverID : HRESULT
+    <Method Name="TriggerMoverIDDetection" Id="{94d400e7-7631-41b8-b1e4-2b7514685c32}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD TriggerMoverIDDetection : HRESULT
 VAR_INPUT
 END_VAR]]></Declaration>
     </Method>
-    <Method Name="TriggerRedetection" Id="{02f3159c-a37c-4b20-ae4e-7c65bf1966cb}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD TriggerRedetection : HRESULT
+    <Method Name="TriggerMoverRedetection" Id="{02f3159c-a37c-4b20-ae4e-7c65bf1966cb}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD TriggerMoverRedetection : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>

@@ -176,12 +176,12 @@ CASE XtsHwState OF
 		END_IF
 	
 	XtsSystemInitialisation.SetDetection:
-		IF SUCCEEDED(_MyXtsHardware.SetTrackForDetection(1)) THEN
+		IF SUCCEEDED(_MyXtsHardware.SetATrackForDetection(1)) THEN
 			XtsHwState := XtsSystemInitialisation.Redetect;
 		END_IF
 		
 	XtsSystemInitialisation.Redetect:
-		IF SUCCEEDED(_MyXtsHardware.TriggerRedetection()) THEN
+		IF SUCCEEDED(_MyXtsHardware.TriggerMoverRedetection()) THEN
 			XtsHwState := XtsSystemInitialisation.MoversValid;
 		END_IF
 		
@@ -209,7 +209,7 @@ CASE XtsHwState OF
 		END_IF
 	
 	XtsSystemInitialisation.MoverIdDetection:
-		IF _MyXtsHardware.IsIDDetectionStandard() OR SUCCEEDED(_MyXtsHardware.TriggerMoverID()) THEN
+		IF _MyXtsHardware.IsIDDetectionStandard() OR SUCCEEDED(_MyXtsHardware.TriggerMoverIDDetection()) THEN
 			XtsHwState := XtsSystemInitialisation.HWReady;
 		END_IF
 	

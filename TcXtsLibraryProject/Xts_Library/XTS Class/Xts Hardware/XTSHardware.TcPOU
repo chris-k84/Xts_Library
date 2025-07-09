@@ -120,23 +120,22 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="GetConfigMoverNumber" Id="{43f766d9-966d-4623-a223-676c73e2281d}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetConfigMoverNumber : UDINT
+    <Method Name="GetConfiguredMoverNumber" Id="{43f766d9-966d-4623-a223-676c73e2281d}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetConfiguredMoverNumber : UDINT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetConfigMoverNumber := _MyXpu.GetConfiguredDetectionCount();]]></ST>
+        <ST><![CDATA[GetConfiguredMoverNumber := _MyXpu.GetConfiguredDetectionCount();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetDetectionState" Id="{5c04b4df-babc-44c4-8315-87ac6e89bad7}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetDetectionState : DetectionStateEnum
+    <Method Name="GetMoverDetectionState" Id="{5c04b4df-babc-44c4-8315-87ac6e89bad7}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetMoverDetectionState : DetectionStateEnum
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetDetectionState := _MyXpu.GetDetectionState();
-]]></ST>
+        <ST><![CDATA[GetMoverDetectionState := _MyXpu.GetDetectionState(); ]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetNumberMoversDetected" Id="{6134912a-11cc-419f-9366-ca4c2c2c2f9f}" FolderPath="Commands\">
@@ -410,32 +409,32 @@ END_VAR
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetMoverNumbers" Id="{fda2cbfb-05d3-433d-b308-26404cfa0e4a}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD SetMoverNumbers : HRESULT
-VAR_INPUT
-	NumberOfMovers : INT;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF _MyXpu.SetConfiguredDetectionCount(nConfiguredMoverDetectionCount := TO_UDINT(NumberOfMovers)) THEN
-	SetMoverNumbers := 1;
-END_IF
-
-]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="SetTrackForDetection" Id="{33a6fd5d-a8a8-4e54-be38-eeae850dd3e9}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD SetTrackForDetection : HRESULT
+    <Method Name="SetATrackForDetection" Id="{33a6fd5d-a8a8-4e54-be38-eeae850dd3e9}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD SetATrackForDetection : HRESULT
 VAR_INPUT
 	TrackToDetect : UINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TrackToDetect > MyTrackCount THEN
-	SetTrackForDetection := -1;
+	SetATrackForDetection := -1;
 	RETURN;
 END_IF
 XtsTracks[TrackToDetect - 1].SetForDetection();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetMoverNumberForDetection" Id="{fda2cbfb-05d3-433d-b308-26404cfa0e4a}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD SetMoverNumberForDetection : HRESULT
+VAR_INPUT
+	NumberOfMovers : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF _MyXpu.SetConfiguredDetectionCount(nConfiguredMoverDetectionCount := TO_UDINT(NumberOfMovers)) THEN
+	SetMoverNumberForDetection := 1;
+END_IF
+
 ]]></ST>
       </Implementation>
     </Method>
@@ -453,8 +452,8 @@ _MyXpu.TriggerDetection();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TriggerMoverID" Id="{23436421-ecb3-466c-b86b-5fefe5c7904c}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD TriggerMoverID : HRESULT
+    <Method Name="TriggerMoverIDDetection" Id="{23436421-ecb3-466c-b86b-5fefe5c7904c}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD TriggerMoverIDDetection : HRESULT
 VAR_INPUT
 END_VAR]]></Declaration>
       <Implementation>
@@ -463,31 +462,31 @@ bMoverIdDetected 	:= _MyXpu.GetIsMoverIdDetectionValid();
 bMoverIdDetectionActive	:= _MyXpu.GetIsMoverIdDetectionActive();
 
 IF _MyXpu.GetMoverIdDetectionMode() = MoverIdDetectionMode.Standard THEN
-	TriggerMoverID := -1;
+	TriggerMoverIDDetection := -1;
 	RETURN;
 END_IF
 
 IF bMoverIdDetectionActive OR bTriggerDetect THEN
-	TriggerMoverID := -2;
+	TriggerMoverIDDetection := -2;
 	RETURN;
 END_IF
 
 IF bMoverIdDetected THEN
-	TriggerMoverID := -3;
+	TriggerMoverIDDetection := -3;
 	RETURN;
 END_IF
 _MyXpu.TriggerMoverIdDetection();
 bTriggerDetect := TRUE;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TriggerRedetection" Id="{0183a3e0-45ff-4ec4-b868-d12cfe75fb77}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD TriggerRedetection : HRESULT
+    <Method Name="TriggerMoverRedetection" Id="{0183a3e0-45ff-4ec4-b868-d12cfe75fb77}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD TriggerMoverRedetection : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF _MyXpu = 0 THEN
-	TriggerRedetection := -1;
+	TriggerMoverRedetection := -1;
 	RETURN;
 END_IF
 
