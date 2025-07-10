@@ -32,7 +32,7 @@ IF MoverArrive.Q THEN
 	_Complete := FALSE;
 END_IF
 
-IF _Complete AND _HasMover AND_THEN _MyMover.getTrackPosition() > _Position + 50  THEN
+IF _Complete AND _HasMover AND_THEN _MyMover.AxisRef.NcToPlc.SetPos > _Position + 50  THEN
 	_Ready := TRUE;
 	_HasMover := FALSE;
 	_IsClear := TRUE;
