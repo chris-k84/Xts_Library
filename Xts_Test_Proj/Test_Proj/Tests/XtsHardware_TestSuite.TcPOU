@@ -6,12 +6,14 @@ VAR
 	TestXtsIoEnvVar : XtsIoEnvVar;
 	nullHardware : XTSHardware;
 	MyXtsHardware : XTSHardware := (ExpectedNumberOfParts := 1, ExpectedNumberOfTracks := 1);
+	localXpu: Xts_Library.I_TcIoXtsProcessingUnit;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT TestXtsIoEnvVar.IsInitialised() THEN
 	IF SUCCEEDED(TestXtsIoEnvVar.Initialise()) THEN
 		MyXtsHardware.MyXpu :=  TestXtsIoEnvVar.GetXPUInterface(1);
+		localXpu := TestXtsIoEnvVar.GetXPUInterface(1);
 	END_IF
 	RETURN;
 END_IF
@@ -21,18 +23,83 @@ IF NOT MyXtsHardware.IsInitialised() THEN
 	RETURN;
 END_IF
 
-HardwareRejectsCallsWithNoXPU_Test();
+HardwareAcceptsTrackForDetection_Test();
+HardwareAcceptsValidGetTrack_Test();
+HardwareRejectsOnlyTrackRemove_Test();
 HardwareIdentifiesNoXpu_Test();
-RegisterXPU_Test();
-HardwareWontCycleWithoutInit_Test();
-HardwareReturnsCorrectMoverNumber_Test();
+HardwareRejectsCallsWithNoXPU_Test();
 HardwareRejectsGetTrackWithHighTrackNum_Test();
 HardwareRejectsGetTrackWithNull_Test();
-HardwareAcceptsValidGetTrack_Test();
-HardwareRejectsRemoveNullTrack_Test();
-HardwareRejectsRemoveTrackWithHighNum_Test();
-HardwareAcceptsValidRemove_Test();	]]></ST>
+HardwareRejectsHighIndexTrackRemoval_Test();
+HardwareRejectsHighIndexTrackSet_Test();
+HardwareRejectsNullTrackRemoval_Test();
+HardwareRejectsNullTrackSet_Test();
+HardwareReturnsCorrectMoverNumber_Test();
+HardwareAcceptsValidMoverDetectionNumber_Test();
+HardwareRejectsTooManyMoversForDetection_Test();
+HardwareRejectsSetNegativeMoverNumber_Test();
+HardwareWontCycleWithoutInit_Test();
+RegisterXPU_Test();
+HardwareAcceptsTriggerDetectionCommand_Test();
+HardwareRejectsTriggerDetectionWithNoRef_Test();
+HardwareAcceptsTriggerRedetectionCommand_Test();
+HardwareRejectsTriggerRedetectionWithNoRef_Test();
+HArdwareAcceptsMover1DetectionCommand_Test();
+HardwareRejectsMover1DetectionInStandardMode_Test();]]></ST>
     </Implementation>
+    <Method Name="HArdwareAcceptsMover1DetectionCommand_Test" Id="{1eb9d286-88a2-4ceb-9442-caa77ceb3e4f}">
+      <Declaration><![CDATA[METHOD HArdwareAcceptsMover1DetectionCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	localXpu.SetMoverIdDetectionMode(eMoverIdDetectionMode := MoverIdDetectionMode.Mover1);
+	Actual := SUCCEEDED(MyXtsHardware.TriggerMoverIDDetection());
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HardwareAcceptsTrackForDetection_Test" Id="{fd2cec04-03de-4f58-93af-2288cf05eda1}">
+      <Declaration><![CDATA[METHOD HardwareAcceptsTrackForDetection_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(MyXtsHardware.SetATrackForDetection(1));
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HardwareAcceptsTriggerDetectionCommand_Test" Id="{276c3e31-43f0-4f0a-ade3-22794a6bf2f4}">
+      <Declaration><![CDATA[METHOD HardwareAcceptsTriggerDetectionCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(MyXtsHardware.TriggerMoverDetection());
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HardwareAcceptsTriggerRedetectionCommand_Test" Id="{4f7e235b-ae8d-420d-a721-1d686ea177fd}">
+      <Declaration><![CDATA[METHOD HardwareAcceptsTriggerRedetectionCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(MyXtsHardware.TriggerMoverRedetection());
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="HardwareAcceptsValidGetTrack_Test" Id="{0e46542d-c604-4447-8a3e-3ec02c688573}">
       <Declaration><![CDATA[METHOD HardwareAcceptsValidGetTrack_Test
 VAR_INST
@@ -50,19 +117,15 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="HardwareAcceptsValidRemove_Test" Id="{3c4edcdb-2ae4-4b9c-bfd7-ab42758989a3}">
-      <Declaration><![CDATA[METHOD HardwareAcceptsValidRemove_Test
+    <Method Name="HardwareAcceptsValidMoverDetectionNumber_Test" Id="{4c9fdbf0-8ba2-4715-a173-05b8e3911cd5}">
+      <Declaration><![CDATA[METHOD HardwareAcceptsValidMoverDetectionNumber_Test
 VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
-END_VAR
-VAR
-	temp: Xts_Library.I_XtsTrack;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	temp := MyXtsHardware.GetTrackInterfaceByNumber(1);
-	Actual := temp <> 0;
+	Actual := SUCCEEDED(MyXtsHardware.SetMoverNumberForDetection(2));
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -128,13 +191,52 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="HardwareRejectsRemoveNullTrack_Test" Id="{e9f07742-6b64-49aa-af5c-d71a7b23b9ed}">
-      <Declaration><![CDATA[METHOD HardwareRejectsRemoveNullTrack_Test
+    <Method Name="HardwareRejectsHighIndexTrackRemoval_Test" Id="{37d87a5b-ee31-480d-aa9a-95e920fc471d}">
+      <Declaration><![CDATA[METHOD HardwareRejectsHighIndexTrackRemoval_Test
 VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
-END_VAR
-]]></Declaration>
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(MyXtsHardware.RemoveATrackFromDetection(3));
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HardwareRejectsHighIndexTrackSet_Test" Id="{853c738b-2619-467e-9ed0-169bb122a5bc}">
+      <Declaration><![CDATA[METHOD HardwareRejectsHighIndexTrackSet_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(MyXtsHardware.RemoveATrackFromDetection(3));
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HardwareRejectsMover1DetectionInStandardMode_Test" Id="{7262a4cd-1e5d-4acb-8d51-66ab87154709}">
+      <Declaration><![CDATA[METHOD HardwareRejectsMover1DetectionInStandardMode_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	localXpu.SetMoverIdDetectionMode(eMoverIdDetectionMode := MoverIdDetectionMode.Standard);
+	Actual := FAILED(MyXtsHardware.TriggerMoverIDDetection());
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HardwareRejectsNullTrackRemoval_Test" Id="{372f9c0b-9be7-4c16-90ad-79978c12fc6c}">
+      <Declaration><![CDATA[METHOD HardwareRejectsNullTrackRemoval_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(MyXtsHardware.RemoveATrackFromDetection(0));
@@ -142,8 +244,34 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="HardwareRejectsRemoveTrackWithHighNum_Test" Id="{c4e147df-4ae3-476f-b6b9-6c1284b9dcb6}">
-      <Declaration><![CDATA[METHOD HardwareRejectsRemoveTrackWithHighNum_Test
+    <Method Name="HardwareRejectsNullTrackSet_Test" Id="{27465936-dd7b-4282-8d76-6b5f2d21fe9b}">
+      <Declaration><![CDATA[METHOD HardwareRejectsNullTrackSet_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(MyXtsHardware.SetATrackForDetection(0));
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HardwareRejectsOnlyTrackRemove_Test" Id="{3c4edcdb-2ae4-4b9c-bfd7-ab42758989a3}">
+      <Declaration><![CDATA[METHOD HardwareRejectsOnlyTrackRemove_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(MyXtsHardware.RemoveATrackFromDetection(1));
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HardwareRejectsSetNegativeMoverNumber_Test" Id="{1b71a8a8-e8c5-44e1-9189-d9e60ce551cf}">
+      <Declaration><![CDATA[METHOD HardwareRejectsSetNegativeMoverNumber_Test
 VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -151,7 +279,46 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED(MyXtsHardware.RemoveATrackFromDetection(10));
+	Actual := FAILED(MyXtsHardware.SetMoverNumberForDetection(-1));
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HardwareRejectsTooManyMoversForDetection_Test" Id="{2e4a8332-8580-4d8c-aa0e-f65bc25da910}">
+      <Declaration><![CDATA[METHOD HardwareRejectsTooManyMoversForDetection_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(MyXtsHardware.SetMoverNumberForDetection(20));
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HardwareRejectsTriggerDetectionWithNoRef_Test" Id="{9ed3090f-a74b-4abf-aa18-8a65a899d503}">
+      <Declaration><![CDATA[METHOD HardwareRejectsTriggerDetectionWithNoRef_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(nullHardware.TriggerMoverDetection());
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HardwareRejectsTriggerRedetectionWithNoRef_Test" Id="{51d9dbf1-3bde-4d89-94eb-76b62afc1775}">
+      <Declaration><![CDATA[METHOD HardwareRejectsTriggerRedetectionWithNoRef_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(nullHardware.TriggerMoverRedetection());
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
