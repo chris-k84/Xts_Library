@@ -404,8 +404,16 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TrackToRemove = 0 OR TrackToRemove > MyTrackCount OR MyTrackCount = 1 THEN
+        <ST><![CDATA[IF TrackToRemove = 0 THEN
 	RemoveATrackFromDetection := -1;
+	RETURN;
+END_IF
+IF TrackToRemove > MyTrackCount THEN
+	RemoveATrackFromDetection := -2;
+	RETURN;
+END_IF
+IF MyTrackCount = 1 THEN
+	RemoveATrackFromDetection := -3;
 	RETURN;
 END_IF
 XtsTracks[TrackToRemove - 1].RemoveFromDetection();]]></ST>
@@ -431,10 +439,15 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TrackToDetect > MyTrackCount THEN
+        <ST><![CDATA[IF TrackToDetect = 0 THEN
 	SetATrackForDetection := -1;
 	RETURN;
 END_IF
+IF TrackToDetect > MyTrackCount THEN
+	SetATrackForDetection := -2;
+	RETURN;
+END_IF
+
 XtsTracks[TrackToDetect - 1].SetForDetection();
 ]]></ST>
       </Implementation>
@@ -446,11 +459,16 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _MyXpu.SetConfiguredDetectionCount(nConfiguredMoverDetectionCount := TO_UDINT(NumberOfMovers)) THEN
-	SetMoverNumberForDetection := 1;
+        <ST><![CDATA[IF NumberOfMovers < 0 THEN
+	SetMoverNumberForDetection := -1;
+	RETURN;
 END_IF
-
-]]></ST>
+IF NumberOfMovers > _MyXpu.GetMoverCount() THEN
+	SetMoverNumberForDetection := -2;
+	RETURN;
+END_IF
+ 
+_MyXpu.SetConfiguredDetectionCount(nConfiguredMoverDetectionCount := TO_UDINT(NumberOfMovers));]]></ST>
       </Implementation>
     </Method>
     <Method Name="TriggerMoverDetection" Id="{15e78533-ebfe-46e6-bd25-18e4044d6883}" FolderPath="Commands\">
