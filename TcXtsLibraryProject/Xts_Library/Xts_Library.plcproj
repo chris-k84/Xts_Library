@@ -18,7 +18,7 @@
     <Released>false</Released>
     <Title>Xts Library</Title>
     <Company>BeckhoffUK</Company>
-    <ProjectVersion>9.2.0</ProjectVersion>
+    <ProjectVersion>10.0.0</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory>
         <Id>{4c30be10-0c29-4796-921e-62ecfda40191}</Id>
@@ -93,21 +93,9 @@
     <Compile Include="Station Class\Station\stStationStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\TMSStation\ITF_SwitchStation.TcIO">
-      <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
-    <Compile Include="Station Class\TMSStation\TmsEmbarkSingleSwitch.TcPOU">
-      <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
     <Compile Include="Station Class\TMSStation\TmsEmbarkStation.TcPOU">
       <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
-    <Compile Include="Station Class\TMSStation\TmsHoldStation.TcPOU">
-      <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="Station Class\Trigger Point\TriggerPoint.TcPOU">
       <SubType>Code</SubType>
