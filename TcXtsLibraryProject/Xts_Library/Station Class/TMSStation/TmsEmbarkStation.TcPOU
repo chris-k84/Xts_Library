@@ -3,8 +3,8 @@
   <POU Name="TmsEmbarkStation" Id="{4d15a973-29cb-4ffe-934a-8f072d992ec0}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TmsEmbarkStation EXTENDS Station
 VAR
-	Axis : AXIS_REF;
-	SwitchAxis : Axis_Base(Axis);
+	SwitchAxisCtrl : I_Axis;
+	SwitchAxisPosCtrl : I_Position;
 	_Track1SwitchPosition : MC_LREAL;
 	_Track2SwitchPosition : MC_LREAL;
 	ExecuteSequence : BOOL;
@@ -48,6 +48,25 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="FB_Init" Id="{c56e5d7e-44de-4ea5-9429-5a143178668d}">
+      <Declaration><![CDATA[(*FB_Init is always available implicitly and it is used primarily for initialization.
+The return value is not evaluated. For a specific influence, you can also declare the
+methods explicitly and provide additional code there with the standard initialization
+code. You can evaluate the return value.*)
+METHOD FB_Init : BOOL
+VAR_INPUT
+	(* TRUE: the retain variables are initialized (reset warm / reset cold)*)
+	bInitRetains	: BOOL;
+	(* TRUE: the instance will be copied to the copy code afterward (online change)   *)
+	bInCopyCode	: BOOL;
+	Position	: LREAL;
+	SwitchAxis : I_Position;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SwitchAxisPosCtrl := SwitchAxis;]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="MyTrackNumber" Id="{3cbcc021-27ff-4251-b3d2-761cf34c192e}">
       <Declaration><![CDATA[PROPERTY MyTrackNumber : INT
 ]]></Declaration>
@@ -56,7 +75,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MyTrackNumber := _TrackLevel;]]></ST>
+          <ST><![CDATA[MyTrackNumber := _MyTrackNumber;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{4b1478e4-977e-454a-a0bf-fe888f795dfb}">
@@ -64,7 +83,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_TrackLevel := MyTrackNumber;]]></ST>
+          <ST><![CDATA[_MyTrackNumber := MyTrackNumber;]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -94,19 +113,19 @@ END_VAR
 		END_IF
 	
 	HasSwitch:
-		IF (_MyTrackNumber = 1 AND (SwitchAxis.isAtPosition(_Track1SwitchPosition) ))
-			OR (_MyTrackNumber = 2 AND (SwitchAxis.isAtPosition(_Track2SwitchPosition))) THEN
+		IF (_MyTrackNumber = 1 AND (SwitchAxisPosCtrl.isAtPosition(_Track1SwitchPosition) ))
+			OR (_MyTrackNumber = 2 AND (SwitchAxisPosCtrl.isAtPosition(_Track2SwitchPosition))) THEN
 					State := Boarding;
 		ELSE
 			State := Call;
 		END_IF	
 		
 	Call:
-		IF SwitchAxis.IsStationary() THEN
+		IF SwitchAxisPosCtrl.IsStationary() THEN
 			IF _MyTrackNumber = 1 THEN
-				SwitchAxis.MoveToPosition(Position := _Track1SwitchPosition, Velocity := _SwitchVelocity);
+				SwitchAxisPosCtrl.MoveToPosition(Position := _Track1SwitchPosition, Velocity := _SwitchVelocity);
 			ELSE
-				SwitchAxis.MoveToPosition(Position := _Track2SwitchPosition, Velocity := _SwitchVelocity);
+				SwitchAxisPosCtrl.MoveToPosition(Position := _Track2SwitchPosition, Velocity := _SwitchVelocity);
 			END_IF
 		ELSE
 			State := Waiting;
@@ -120,15 +139,15 @@ END_VAR
 		
 	BoardingComplete:
 		IF _MyTrackNumber = 1 THEN
-			SwitchAxis.MoveToPosition(Position := _Track2SwitchPosition, Velocity := _SwitchVelocity);
+			SwitchAxisPosCtrl.MoveToPosition(Position := _Track2SwitchPosition, Velocity := _SwitchVelocity);
 		ELSE
-			SwitchAxis.MoveToPosition(Position := _Track1SwitchPosition, Velocity := _SwitchVelocity);
+			SwitchAxisPosCtrl.MoveToPosition(Position := _Track1SwitchPosition, Velocity := _SwitchVelocity);
 		END_IF
 		State := BoardingComplete;
 		
 	Moving:
-		IF (_MyTrackNumber = 1 AND SwitchAxis.isAtPosition(position := _Track2SwitchPosition)) OR
-			(_MyTrackNumber = 2 AND SwitchAxis.isAtPosition(position := _Track1SwitchPosition)) THEN
+		IF (_MyTrackNumber = 1 AND SwitchAxisPosCtrl.isAtPosition(position := _Track2SwitchPosition)) OR
+			(_MyTrackNumber = 2 AND SwitchAxisPosCtrl.isAtPosition(position := _Track1SwitchPosition)) THEN
 			State := ActivateTrackForMover;
 		END_IF
 		
@@ -148,9 +167,7 @@ END_VAR
 			_Ready := TRUE;
 			State := Waiting;
 		END_IF	
-END_CASE
-
-SwitchAxis.Cycle();]]></ST>
+END_CASE]]></ST>
       </Implementation>
     </Method>
     <Method Name="StartSwitch" Id="{c29e9395-8979-4e9a-90a8-1d97909d0ac9}">
@@ -168,8 +185,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[ExecuteSequence := FALSE;
-State := Aborting;]]></ST>
+        <ST><![CDATA[ExecuteSequence := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="SwitchTravelPosition" Id="{506615ae-e584-4b6b-8c90-23702c945ca0}">
