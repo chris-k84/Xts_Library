@@ -70,16 +70,29 @@ END_VAR
 	ActivateTrack := -1;
 	RETURN;
 END_IF
-IF NOT MoverActivateTrackBehaviour.Busy AND THIS^.isMoverStationary() AND MyTracks[Track - 1].MyOTCID <> 0  THEN
-	IF Succeeded(MoverActivateTrackBehaviour.Execute(Track := MyTracks[Track - 1])) THEN
-		_CurrentTrack := MyTracks[Track - 1];
-		ActivateTrack := 1;
-	ELSE
-		ActivateTrack := -1;
-	END_IF
-ELSE
-	ActivateTrack := -1;
-END_IF]]></ST>
+IF MoverActivateTrackBehaviour.Busy THEN
+	ActivateTrack := -2;
+	RETURN;
+END_IF
+
+IF NOT THIS^.isMoverStationary() THEN
+	ActivateTrack := -3;
+	RETURN;
+END_IF
+
+IF Track > MyTrackCount THEN
+	ActivateTrack := -4;
+	RETURN;
+END_IF
+
+IF MyTracks[Track - 1].MyOTCID = 0  THEN
+	ActivateTrack := -5;
+	RETURN;
+END_IF
+	
+MoverActivateTrackBehaviour.Execute(Track := MyTracks[Track - 1]);
+_CurrentTrack := MyTracks[Track - 1];
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="ActivateZeroReferenceSystem" Id="{f593e12a-c440-483d-8309-49c5dc48d5f1}" FolderPath="Commands\">
@@ -178,7 +191,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF (NOT EnableBehaviour.Busy) AND NOT THIS^.isMoverEnabled() THEN
 	EnableBehaviour.Enable();
-	EnableMover := 1;
 ELSE
 	EnableMover := -1;
 END_IF]]></ST>
