@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="stubMover" Id="{706dd25a-c636-4171-8a04-61e8c6b6cc8b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK stubMover EXTENDS XtsMover
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="setDisabled" Id="{3b4d37b1-2aff-4bc5-8d73-849300142d9c}">
+      <Declaration><![CDATA[METHOD setDisabled : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_MyAxisStatus.Disabled := true;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setEnabled" Id="{233db24b-81bf-4843-8554-24f39941731b}">
+      <Declaration><![CDATA[METHOD setEnabled : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_MyAxisStatus.Disabled := false;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setMoving" Id="{f76bd115-0fd7-43ee-a648-6fc15f420b4b}">
+      <Declaration><![CDATA[METHOD setMoving
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_MyAxisStatus.NotMoving := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setStationary" Id="{58cf9c7d-1727-4a74-b8f3-b9dc5225f246}">
+      <Declaration><![CDATA[METHOD setStationary
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_MyAxisStatus.NotMoving := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

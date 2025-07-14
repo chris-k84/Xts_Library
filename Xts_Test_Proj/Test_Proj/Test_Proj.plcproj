@@ -28,6 +28,9 @@
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\stubMover.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\StubXts.TcPOU">
       <SubType>Code</SubType>
     </Compile>

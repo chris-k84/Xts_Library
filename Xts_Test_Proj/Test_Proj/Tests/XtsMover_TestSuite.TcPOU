@@ -3,9 +3,6 @@
   <POU Name="XtsMover_TestSuite" Id="{35b3f83a-ddd6-49c7-a80a-724734d90825}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsMover_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
-	testMover : XtsMover;
-	stubTrack : XtsTrack;
-	stubITrack: Xts_Library.I_XtsTrack := stubTrack;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -17,17 +14,41 @@ MoverAcceptsGoodGap_Test();
 MoverRejectsHighVeloCommand_Test();
 MoverRejectsNegVeloCommand_Test();
 MoverRejectsResetWithNoError_Test();
-MoverRejectsActiavteTrackWithInvalidInterface_Test();]]></ST>
+MoverRejectsActivateZeroTrack_Test();
+MoverRejectsUnusedHighIndexTrack_Test();
+MoverRejectsActivateTrackWhileMoving_Test();
+MoverAcceptsEnableCommand_Test();
+MoverRejectsEnableCommand_Test();]]></ST>
     </Implementation>
+    <Method Name="MoverAcceptsDisableCommand_Test" Id="{f74263e1-f8f8-472b-b7d9-77e272f7e657}">
+      <Declaration><![CDATA[METHOD MoverAcceptsDisableCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setEnabled();
+	Actual := SUCCEEDED( testMover.EnableMover());
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="MoverAcceptsEnableCommand_Test" Id="{716146c2-e85b-4cfe-8ba6-0d5e0d358526}">
       <Declaration><![CDATA[METHOD MoverAcceptsEnableCommand_Test : BOOL
 VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
-]]></Declaration>
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setDisabled();
 	Actual := SUCCEEDED( testMover.EnableMover());
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -39,7 +60,9 @@ VAR_INST
 	Expected : mc_lreal := 120.0;
 	Actual	 : mc_lreal;
 END_VAR
-]]></Declaration>
+VAR
+	testMover : XtsMover;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testMover.Gap := 120.0;
@@ -48,15 +71,37 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoverRejectsActiavteTrackWithInvalidInterface_Test" Id="{63f382c0-31c1-4b25-adcd-c20a2309c7b9}">
-      <Declaration><![CDATA[METHOD MoverRejectsActiavteTrackWithInvalidInterface_Test : BOOL
+    <Method Name="MoverRejectsActivateTrackWhileMoving_Test" Id="{68602ec7-eeb2-48cd-a3a7-de01a20ff851}">
+      <Declaration><![CDATA[METHOD MoverRejectsActivateTrackWhileMoving_Test
 VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
+END_VAR
+VAR
+	teststubMover : stubMover;
+	stubTrack : XtsTrack;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED( testMover.ActivateTrack(Track := 0));
+	teststubMover.RegisterTracks(stubTrack);
+	teststubMover.setMoving();
+	Actual := teststubMover.ActivateTrack(Track := 1) = -3;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsActivateZeroTrack_Test" Id="{63f382c0-31c1-4b25-adcd-c20a2309c7b9}">
+      <Declaration><![CDATA[METHOD MoverRejectsActivateZeroTrack_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : XtsMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := testMover.ActivateTrack(Track := 0) = -1;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -67,7 +112,9 @@ VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
-]]></Declaration>
+VAR
+	testMover : XtsMover;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.Cycle());
@@ -81,10 +128,31 @@ VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setDisabled();
+	Actual := FAILED( testMover.DisableMover());
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsEnableCommand_Test" Id="{27df6825-6795-4e10-9d4e-f3f97002c790}">
+      <Declaration><![CDATA[METHOD MoverRejectsEnableCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED( testMover.DisableMover());
+	testMover.setEnabled();
+	Actual := FAILED( testMover.EnableMover());
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -95,7 +163,9 @@ VAR_INST
 	Expected : mc_lreal := 100.0;
 	Actual	 : mc_lreal;
 END_VAR
-]]></Declaration>
+VAR
+	testMover : XtsMover;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testMover.Gap := 25.0;
@@ -109,6 +179,9 @@ END_IF]]></ST>
 VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : XtsMover;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
@@ -123,7 +196,9 @@ VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
-]]></Declaration>
+VAR
+	testMover : XtsMover;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.MoveTo(100.0,-1.0,TRUE));
@@ -136,10 +211,30 @@ END_IF]]></ST>
 VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : XtsMover;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.Reset());
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsUnusedHighIndexTrack_Test" Id="{aa50061a-5df7-4dfa-887e-ad5a41146b98}">
+      <Declaration><![CDATA[METHOD MoverRejectsUnusedHighIndexTrack_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setStationary();
+	Actual := testMover.ActivateTrack(Track := 5) = -4;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
