@@ -98,16 +98,17 @@ _CurrentTrack := MyTracks[Track - 1];
     <Method Name="ActivateZeroReferenceSystem" Id="{f593e12a-c440-483d-8309-49c5dc48d5f1}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ActivateZeroReferenceSystem : HRESULT]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT MoverActivateTrackBehaviour.Busy AND THIS^.isMoverStationary() THEN // AND NewTrack <> 0  THEN
-	IF SUCCEEDED(MoverActivateTrackBehaviour.Execute(Track := NullTrack)) THEN
-		_CurrentTrack := 0;
-		ActivateZeroReferenceSystem := 1;
-	ELSE
-		ActivateZeroReferenceSystem := -1;
-	END_IF
-ELSE
+        <ST><![CDATA[IF MoverActivateTrackBehaviour.Busy THEN
 	ActivateZeroReferenceSystem := -1;
-END_IF]]></ST>
+	RETURN;
+END_IF
+IF NOT THIS^.isMoverStationary() THEN
+	ActivateZeroReferenceSystem := -2;
+	RETURN;
+END_IF 
+
+MoverActivateTrackBehaviour.Execute(Track := NullTrack);
+_CurrentTrack := 0;]]></ST>
       </Implementation>
     </Method>
     <Property Name="AxisRef" Id="{a7d5ea1d-51bb-4c87-90b3-db66fd196d20}" FolderPath="Administration\">

@@ -18,7 +18,9 @@ MoverRejectsActivateZeroTrack_Test();
 MoverRejectsUnusedHighIndexTrack_Test();
 MoverRejectsActivateTrackWhileMoving_Test();
 MoverAcceptsEnableCommand_Test();
-MoverRejectsEnableCommand_Test();]]></ST>
+MoverRejectsEnableCommand_Test();
+MoverRejectsActivateTrackWhileMoving_Test();
+MoverAcceptsZeroRefSysSet_Test();]]></ST>
     </Implementation>
     <Method Name="MoverAcceptsDisableCommand_Test" Id="{f74263e1-f8f8-472b-b7d9-77e272f7e657}">
       <Declaration><![CDATA[METHOD MoverAcceptsDisableCommand_Test
@@ -67,6 +69,24 @@ END_VAR]]></Declaration>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testMover.Gap := 120.0;
 	Actual := testMover.Gap;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverAcceptsZeroRefSysSet_Test" Id="{df519fe2-b659-439f-acdf-e643f50ea61d}">
+      <Declaration><![CDATA[METHOD MoverAcceptsZeroRefSysSet_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setEnabled();
+	testMover.setStationary();
+	Actual := SUCCEEDED( testMover.ActivateZeroReferenceSystem());
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -235,6 +255,24 @@ END_VAR]]></Declaration>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testMover.setStationary();
 	Actual := testMover.ActivateTrack(Track := 5) = -4;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsZeroRefSysWhenMoving_Test" Id="{bb153479-b73c-47fe-b92e-239b0e5bd0d4}">
+      <Declaration><![CDATA[METHOD MoverRejectsZeroRefSysWhenMoving_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setEnabled();
+	testMover.setMoving();
+	Actual := testMover.ActivateZeroReferenceSystem() = -2;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
