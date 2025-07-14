@@ -6,21 +6,25 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[MoverRejectsCycleCallWithNoAxisRef_Test();
-MoverAcceptsEnableCommand_Test();
-MoverRejectsDisableCommand_Test();
-MoverRejectsGapLow_Test();
+      <ST><![CDATA[MoverAcceptsEnableCommand_Test();
+MoverAcceptsDisableCommand_Test();
 MoverAcceptsGoodGap_Test();
+MoverAcceptsModuloBackwardMove_Test();
+MoverAcceptsModuloForwardMove_Test();
+MoverAcceptsModuloForwardOnlyCommand_Test();
+MoverAcceptsNonModuloMoveCommand_Test();
+MoverRejectsDisableCommand_Test();
+MoverRejectsEnableCommand_Test();
+MoverRejectsGapLow_Test();
 MoverRejectsHighVeloCommand_Test();
 MoverRejectsNegVeloCommand_Test();
 MoverRejectsResetWithNoError_Test();
 MoverRejectsActivateZeroTrack_Test();
 MoverRejectsUnusedHighIndexTrack_Test();
 MoverRejectsActivateTrackWhileMoving_Test();
-MoverAcceptsEnableCommand_Test();
-MoverRejectsEnableCommand_Test();
-MoverRejectsActivateTrackWhileMoving_Test();
-MoverAcceptsZeroRefSysSet_Test();]]></ST>
+MoverRejectsZeroRefSysWhenMoving_Test();
+MoverAcceptsZeroRefSysSet_Test();
+MoverRejectsCycleCallWithNoAxisRef_Test();]]></ST>
     </Implementation>
     <Method Name="MoverAcceptsDisableCommand_Test" Id="{f74263e1-f8f8-472b-b7d9-77e272f7e657}">
       <Declaration><![CDATA[METHOD MoverAcceptsDisableCommand_Test
@@ -34,7 +38,7 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testMover.setEnabled();
-	Actual := SUCCEEDED( testMover.EnableMover());
+	Actual := SUCCEEDED( testMover.DisableMover());
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -69,6 +73,82 @@ END_VAR]]></Declaration>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testMover.Gap := 120.0;
 	Actual := testMover.Gap;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverAcceptsModuloBackwardMove_Test" Id="{f01ead45-02a1-4332-9b35-9dc1d8e90aa5}">
+      <Declaration><![CDATA[METHOD MoverAcceptsModuloBackwardMove_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.PositiveDirectionOnly := FALSE;
+	Actual := testMover.MoveTo(RequiredPosition := - 100.0,
+											MoveVelocity := 10.0,
+											NonModuloMove := FALSE) = 4;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverAcceptsModuloForwardMove_Test" Id="{07afab8a-841c-4fbe-b344-5bbfa5b521c6}">
+      <Declaration><![CDATA[METHOD MoverAcceptsModuloForwardMove_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.PositiveDirectionOnly := FALSE;
+	Actual := testMover.MoveTo(RequiredPosition := 100.0,
+											MoveVelocity := 10.0,
+											NonModuloMove := FALSE) = 3;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverAcceptsModuloForwardOnlyCommand_Test" Id="{a64dceeb-4c24-4d38-9111-5e79894157e6}">
+      <Declaration><![CDATA[METHOD MoverAcceptsModuloForwardOnlyCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.PositiveDirectionOnly := TRUE;
+	Actual := testMover.MoveTo(RequiredPosition := 100.0,
+											MoveVelocity := 10.0,
+											NonModuloMove := FALSE) = 2;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	testMover.PositiveDirectionOnly := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverAcceptsNonModuloMoveCommand_Test" Id="{2b00f225-8b8d-421c-b2e9-7d3989986ec2}">
+      <Declaration><![CDATA[METHOD MoverAcceptsNonModuloMoveCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := testMover.MoveTo(RequiredPosition := 100.0,
+											MoveVelocity := 10.0,
+											NonModuloMove := TRUE) = 1;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

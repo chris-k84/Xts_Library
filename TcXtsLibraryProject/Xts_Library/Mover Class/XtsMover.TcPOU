@@ -298,15 +298,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT HaltBehaviour.Busy THEN
-	IF SUCCEEDED(HaltBehaviour.Execute()) THEN
-		HaltAxis := 1;
-	ELSE
-		HaltAxis := -1;
-	END_IF
-ELSE
+        <ST><![CDATA[IF HaltBehaviour.Busy THEN
 	HaltAxis := -1;
-END_IF]]></ST>
+	RETURN;
+END_IF
+	
+HaltBehaviour.Execute();]]></ST>
       </Implementation>
     </Method>
     <Method Name="hasError" Id="{6d2c5795-b984-4bf0-9ad4-9c8de694c1dd}" FolderPath="Status\">
@@ -487,45 +484,55 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT MoveBehaviour.Busy AND MoveVelocity < _MaxMoverVelocity AND MoveVelocity > 0.0 AND Gap >= 50.0 THEN
-	IF NonModuloMove THEN
-		IF SUCCEEDED(THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
-										Velocity := MoveVelocity, 
-										Direction := Tc3_Mc3Definitions.MC_DIRECTION.mcDirectionNonModulo, 
-										Turns := 0)) THEN
-										
-			MoveTo := 1;
-		END_IF
-	ELSE
-		IF _ForwardOnly THEN
-			THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
-										Velocity := MoveVelocity, 
-										Direction := Tc3_Mc3Definitions.MC_DIRECTION.mcDirectionPositive, 
-										Turns := 0);
-			MoveTo := 1;
-		ELSE
-			IF RequiredPosition > MyAxisRef.NcToPlc.ModuloActPos THEN
-				IF SUCCEEDED( THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
-											Velocity := MoveVelocity, 
-											Direction := Tc3_Mc3Definitions.MC_DIRECTION.mcDirectionPositive, 
-											Turns := 0)) THEN
-											
-					MoveTo := 1;
-				END_IF
-			ELSE
-				IF SUCCEEDED(THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
-											Velocity := MoveVelocity, 
-											Direction := Tc3_Mc3Definitions.MC_DIRECTION.mcDirectionNegative, 
-											Turns := 0)) THEN
-											
-					MoveTo := 1;
-				END_IF	
-			END_IF
-		END_IF
-	END_IF
-ELSE
+        <ST><![CDATA[IF MoveBehaviour.Busy THEN
 	MoveTo := -1;
-END_IF]]></ST>
+	RETURN;
+END_IF
+IF MoveVelocity > _MaxMoverVelocity THEN
+	MoveTo := -2;
+	RETURN;
+END_IF
+IF MoveVelocity <= 0.0 THEN
+	MoveTo := -3;
+	RETURN;
+END_IF
+IF Gap <= 50.0 THEN
+	MoveTo := -4;
+	RETURN;
+END_IF
+
+IF NonModuloMove THEN
+	THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
+									Velocity := MoveVelocity, 
+									Direction := Tc3_Mc3Definitions.MC_DIRECTION.mcDirectionNonModulo, 
+									Turns := 0);
+	MoveTo := 1;
+END_IF
+
+IF NOT NonModuloMove AND _ForwardOnly THEN
+	MoveTo := THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
+									Velocity := MoveVelocity, 
+									Direction := Tc3_Mc3Definitions.MC_DIRECTION.mcDirectionPositive, 
+									Turns := 0);
+	MoveTo := 2;
+END_IF
+
+IF NOT NonModuloMove AND NOT _ForwardOnly THEN
+	IF RequiredPosition > MyAxisRef.NcToPlc.ModuloActPos THEN
+		MoveTo := THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
+									Velocity := MoveVelocity, 
+									Direction := Tc3_Mc3Definitions.MC_DIRECTION.mcDirectionPositive, 
+									Turns := 0);
+		MoveTo := 3;
+	ELSE
+		MoveTo := THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
+									Velocity := MoveVelocity, 
+									Direction := Tc3_Mc3Definitions.MC_DIRECTION.mcDirectionNegative, 
+									Turns := 0);
+		MoveTo := 4;
+	END_IF
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyCAGroup" Id="{ef4ebc28-e3bd-4e4a-8472-4104ad14ebae}" FolderPath="Administration\">
