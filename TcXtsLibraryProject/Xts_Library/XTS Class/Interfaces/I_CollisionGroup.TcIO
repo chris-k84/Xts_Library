@@ -102,7 +102,7 @@ END_VAR
     <Method Name="RemoveAMover" Id="{ef48cf2e-8bac-48d4-bde6-7be9e9dfb88f}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD RemoveAMover : HRESULT
 VAR_INPUT
-	Mover : I_XtsMover;
+	MoverToRemove : I_XtsMover;
 END_VAR]]></Declaration>
     </Method>
     <Method Name="Reset" Id="{52cfbceb-29c1-48af-b76e-6022383fab33}" FolderPath="Commands\">
