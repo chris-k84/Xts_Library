@@ -175,12 +175,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF THIS^.isMoverEnabled() THEN
-	EnableBehaviour.Disable();
-	DisableMover := 1;
-ELSE
+        <ST><![CDATA[IF NOT THIS^.isMoverEnabled() THEN
 	DisableMover := -1;
-END_IF]]></ST>
+	RETURN;
+END_IF
+	
+EnableBehaviour.Disable();]]></ST>
       </Implementation>
     </Method>
     <Method Name="EnableMover" Id="{d130fe63-f34a-4455-8bb8-4dfcc482e573}" FolderPath="Commands\">
@@ -189,11 +189,16 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF (NOT EnableBehaviour.Busy) AND NOT THIS^.isMoverEnabled() THEN
-	EnableBehaviour.Enable();
-ELSE
+        <ST><![CDATA[IF EnableBehaviour.Busy THEN
 	EnableMover := -1;
-END_IF]]></ST>
+	RETURN;
+END_IF
+IF THIS^.isMoverEnabled() THEN
+	EnableMover := -2;
+	RETURN;
+END_IF
+	
+EnableBehaviour.Enable();]]></ST>
       </Implementation>
     </Method>
     <Method Name="FB_Init" Id="{e6cdc000-5fb3-42ba-8ce8-01408a72b06f}" FolderPath="Administration\">
