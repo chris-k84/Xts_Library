@@ -2,11 +2,9 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="stubMover" Id="{706dd25a-c636-4171-8a04-61e8c6b6cc8b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK stubMover EXTENDS XtsMover
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
 VAR
+	stubTrack : XtsTrack;
+	iStubTrack : I_XtsTrack := stubTrack;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -19,7 +17,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_stTmsActPositions.fTrackPosition := testPos;]]></ST>
+        <ST><![CDATA[_stTmsActPositions.fTrackPosition := testPos;
+_CurrentTrack := iStubTrack;]]></ST>
       </Implementation>
     </Method>
     <Method Name="setDisabled" Id="{3b4d37b1-2aff-4bc5-8d73-849300142d9c}">

@@ -27,7 +27,11 @@ MoverAcceptsZeroRefSysSet_Test();
 MoverRejectsCycleCallWithNoAxisRef_Test();
 MoverReportsMovingCorrectly_Test();
 MoverReportsMoverOutsidePosWindow_Test();
-MoverReportsPositionInWindow_Test();]]></ST>
+MoverReportsPositionInWindow_Test();
+MoverAcceptsTrackRegistration_Test();
+MoverRejectsNullTrackRegister_Test();
+MoverRejectsDoubleTrackRegister_Test();
+MoverRejectsPosCheckwithNoTrack_Test();]]></ST>
     </Implementation>
     <Method Name="MoverAcceptsDisableCommand_Test" Id="{f74263e1-f8f8-472b-b7d9-77e272f7e657}">
       <Declaration><![CDATA[METHOD MoverAcceptsDisableCommand_Test
@@ -156,6 +160,23 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="MoverAcceptsTrackRegistration_Test" Id="{25290b46-6231-42fb-a203-79bee776a0f7}">
+      <Declaration><![CDATA[METHOD MoverAcceptsTrackRegistration_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	teststubMover : stubMover;
+	stubTrack : XtsTrack;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(teststubMover.RegisterTracks(stubTrack));
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="MoverAcceptsZeroRefSysSet_Test" Id="{df519fe2-b659-439f-acdf-e643f50ea61d}">
       <Declaration><![CDATA[METHOD MoverAcceptsZeroRefSysSet_Test
 VAR_INST
@@ -242,6 +263,24 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="MoverRejectsDoubleTrackRegister_Test" Id="{b3316b94-62df-4481-b90b-e4fdb0a8771a}">
+      <Declaration><![CDATA[METHOD MoverRejectsDoubleTrackRegister_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	teststubMover : stubMover;
+	stubTrack : XtsTrack;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	teststubMover.RegisterTracks(stubTrack);
+	Actual := teststubMover.RegisterTracks(stubTrack) = -2;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="MoverRejectsEnableCommand_Test" Id="{27df6825-6795-4e10-9d4e-f3f97002c790}">
       <Declaration><![CDATA[METHOD MoverRejectsEnableCommand_Test
 VAR_INST
@@ -309,6 +348,40 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="MoverRejectsNullTrackRegister_Test" Id="{11ba333d-6ca9-4e64-ab8f-04293121d125}">
+      <Declaration><![CDATA[METHOD MoverRejectsNullTrackRegister_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	teststubMover : stubMover;
+	stubTrack : I_XtsTrack;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := teststubMover.RegisterTracks(stubTrack) = -1;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsPosCheckwithNoTrack_Test" Id="{8942dc59-e1b2-4a12-8224-cfcb7ed3188c}">
+      <Declaration><![CDATA[METHOD MoverRejectsPosCheckwithNoTrack_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := NOT testMover.isMoverAtPosition(0.0);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="MoverRejectsResetWithNoError_Test" Id="{f5425bf8-2274-4dca-931b-4651d9a2101b}">
       <Declaration><![CDATA[METHOD MoverRejectsResetWithNoError_Test : BOOL
 VAR_INST
@@ -372,7 +445,7 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testMover.setAPosition(301.2);
-	Actual := testMover.isMoverAtPosition(300.0);
+	Actual := NOT testMover.isMoverAtPosition(300.0);
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
