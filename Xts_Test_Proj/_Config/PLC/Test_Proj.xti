@@ -1044,79 +1044,6 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 		<DataType>
-			<Name GUID="{2DF9018F-144A-47C3-8291-E6F4AFD6BD62}" Namespace="MC" TcBaseType="true">PLCTOMC_GROUP_COMMON_PART</Name>
-			<BitSize>256</BitSize>
-			<SubItem>
-				<Name>OverrideFactor</Name>
-				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
-				<Comment><![CDATA[Desired override factor (1.0 = 100%, default value is 1.0)]]></Comment>
-				<BitSize>64</BitSize>
-				<BitOffs>0</BitOffs>
-				<Default>
-					<Value>1.0</Value>
-				</Default>
-			</SubItem>
-			<Default>
-				<SubItem>
-					<Name>OverrideFactor</Name>
-					<Value>1.0</Value>
-				</SubItem>
-			</Default>
-		</DataType>
-		<DataType>
-			<Name GUID="{BAE35DD4-8FAE-4745-9207-33776C056045}" Namespace="MC" TcBaseType="true">CDT_PLCTOMC_GROUP_CA</Name>
-			<BitSize>1024</BitSize>
-			<SubItem>
-				<Name>Common</Name>
-				<Type GUID="{2DF9018F-144A-47C3-8291-E6F4AFD6BD62}" Namespace="MC">PLCTOMC_GROUP_COMMON_PART</Type>
-				<BitSize>256</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-		</DataType>
-		<DataType>
-			<Name GUID="{762962EF-0BB3-42E3-80C3-82A3958BB33D}" Namespace="MC" TcBaseType="true">CDT_PLCTOMC_GROUP_CM</Name>
-			<BitSize>1024</BitSize>
-			<SubItem>
-				<Name>Common</Name>
-				<Type GUID="{2DF9018F-144A-47C3-8291-E6F4AFD6BD62}" Namespace="MC">PLCTOMC_GROUP_COMMON_PART</Type>
-				<BitSize>256</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-		</DataType>
-		<DataType>
-			<Name GUID="{0E2E3852-A98C-4AF3-81E2-209EE128940C}" Namespace="MC" TcBaseType="true">CDT_PLCTOMC_GROUP</Name>
-			<BitSize>1024</BitSize>
-			<SubItem>
-				<Name>Common</Name>
-				<Type GUID="{2DF9018F-144A-47C3-8291-E6F4AFD6BD62}" Namespace="MC">PLCTOMC_GROUP_COMMON_PART</Type>
-				<BitSize>256</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>CA</Name>
-				<Type GUID="{BAE35DD4-8FAE-4745-9207-33776C056045}" Namespace="MC">CDT_PLCTOMC_GROUP_CA</Type>
-				<BitSize>1024</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>CM</Name>
-				<Type GUID="{762962EF-0BB3-42E3-80C3-82A3958BB33D}" Namespace="MC">CDT_PLCTOMC_GROUP_CM</Type>
-				<BitSize>1024</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Dxd</Name>
-				<Type GUID="{762962EF-0BB3-42E3-80C3-82A3958BB33D}" Namespace="MC">CDT_PLCTOMC_GROUP_CM</Type>
-				<BitSize>1024</BitSize>
-				<BitOffs>0</BitOffs>
-				<Properties>
-					<Property>
-						<Name>plcAttribute_hide</Name>
-					</Property>
-				</Properties>
-			</SubItem>
-		</DataType>
-		<DataType>
 			<Name GUID="{875D2B22-B7EB-497E-B933-0C004593CCF3}" Namespace="MC" TcBaseType="true" HideType="true" IecDeclaration="DWORD;">PLCTONC_AXIS_REF_CTRL</Name>
 			<BitSize>32</BitSize>
 			<SubItem>
@@ -1303,17 +1230,86 @@ External Setpoint Generation:
 				</Relation>
 			</Relations>
 		</DataType>
+		<DataType>
+			<Name GUID="{2DF9018F-144A-47C3-8291-E6F4AFD6BD62}" Namespace="MC" TcBaseType="true">PLCTOMC_GROUP_COMMON_PART</Name>
+			<BitSize>256</BitSize>
+			<SubItem>
+				<Name>OverrideFactor</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[Desired override factor (1.0 = 100%, default value is 1.0)]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>0</BitOffs>
+				<Default>
+					<Value>1.0</Value>
+				</Default>
+			</SubItem>
+			<Default>
+				<SubItem>
+					<Name>OverrideFactor</Name>
+					<Value>1.0</Value>
+				</SubItem>
+			</Default>
+		</DataType>
+		<DataType>
+			<Name GUID="{BAE35DD4-8FAE-4745-9207-33776C056045}" Namespace="MC" TcBaseType="true">CDT_PLCTOMC_GROUP_CA</Name>
+			<BitSize>1024</BitSize>
+			<SubItem>
+				<Name>Common</Name>
+				<Type GUID="{2DF9018F-144A-47C3-8291-E6F4AFD6BD62}" Namespace="MC">PLCTOMC_GROUP_COMMON_PART</Type>
+				<BitSize>256</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{762962EF-0BB3-42E3-80C3-82A3958BB33D}" Namespace="MC" TcBaseType="true">CDT_PLCTOMC_GROUP_CM</Name>
+			<BitSize>1024</BitSize>
+			<SubItem>
+				<Name>Common</Name>
+				<Type GUID="{2DF9018F-144A-47C3-8291-E6F4AFD6BD62}" Namespace="MC">PLCTOMC_GROUP_COMMON_PART</Type>
+				<BitSize>256</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{0E2E3852-A98C-4AF3-81E2-209EE128940C}" Namespace="MC" TcBaseType="true">CDT_PLCTOMC_GROUP</Name>
+			<BitSize>1024</BitSize>
+			<SubItem>
+				<Name>Common</Name>
+				<Type GUID="{2DF9018F-144A-47C3-8291-E6F4AFD6BD62}" Namespace="MC">PLCTOMC_GROUP_COMMON_PART</Type>
+				<BitSize>256</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>CA</Name>
+				<Type GUID="{BAE35DD4-8FAE-4745-9207-33776C056045}" Namespace="MC">CDT_PLCTOMC_GROUP_CA</Type>
+				<BitSize>1024</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>CM</Name>
+				<Type GUID="{762962EF-0BB3-42E3-80C3-82A3958BB33D}" Namespace="MC">CDT_PLCTOMC_GROUP_CM</Type>
+				<BitSize>1024</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Dxd</Name>
+				<Type GUID="{762962EF-0BB3-42E3-80C3-82A3958BB33D}" Namespace="MC">CDT_PLCTOMC_GROUP_CM</Type>
+				<BitSize>1024</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>plcAttribute_hide</Name>
+					</Property>
+				</Properties>
+			</SubItem>
+		</DataType>
 	</DataTypes>
 	<Project GUID="{9D834261-4541-48F3-87B7-1F0DD96DA306}" Name="Test_Proj" PrjFilePath="..\..\Test_Proj\Test_Proj.plcproj" TmcFilePath="..\..\Test_Proj\Test_Proj.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{2854FE51-68DE-7E74-B03A-209957122DFA}" TmcPath="Test_Proj\Test_Proj.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{2B1F89AA-DDB9-1A68-BE5B-E9A9B7C64664}" TmcPath="Test_Proj\Test_Proj.tmc">
 			<Name>Test_Proj Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
-				<Var>
-					<Name>MAIN.XtsTestSuite.dummyCaGroup._caGroup.PlcToNc</Name>
-					<Type GUID="{0E2E3852-A98C-4AF3-81E2-209EE128940C}" Namespace="MC">CDT_PLCTOMC_GROUP</Type>
-				</Var>
 				<Var>
 					<Name>MAIN.XtsTestSuite.stubMover.MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
@@ -1327,15 +1323,19 @@ External Setpoint Generation:
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
+					<Name>MAIN.MoveMoverTestSuite.stubAxis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.XtsTestSuite.dummyCaGroup._caGroup.PlcToNc</Name>
+					<Type GUID="{0E2E3852-A98C-4AF3-81E2-209EE128940C}" Namespace="MC">CDT_PLCTOMC_GROUP</Type>
+				</Var>
+				<Var>
 					<Name>MAIN.GearCATestSuite.testMaster.MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>MAIN.GearCATestSuite.testAxis.MyAxisRef.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>MAIN.MoveMoverTestSuite.stubAxis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>

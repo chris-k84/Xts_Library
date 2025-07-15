@@ -12,6 +12,16 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Method Name="setAPosition" Id="{2798e35e-433b-437c-8074-09d525f98355}">
+      <Declaration><![CDATA[METHOD setAPosition : HRESULT
+VAR_INPUT
+	testPos : LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_stTmsActPositions.fTrackPosition := testPos;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="setDisabled" Id="{3b4d37b1-2aff-4bc5-8d73-849300142d9c}">
       <Declaration><![CDATA[METHOD setDisabled : HRESULT
 VAR_INPUT

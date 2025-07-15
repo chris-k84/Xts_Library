@@ -24,7 +24,10 @@ MoverRejectsUnusedHighIndexTrack_Test();
 MoverRejectsActivateTrackWhileMoving_Test();
 MoverRejectsZeroRefSysWhenMoving_Test();
 MoverAcceptsZeroRefSysSet_Test();
-MoverRejectsCycleCallWithNoAxisRef_Test();]]></ST>
+MoverRejectsCycleCallWithNoAxisRef_Test();
+MoverReportsMovingCorrectly_Test();
+MoverReportsMoverOutsidePosWindow_Test();
+MoverReportsPositionInWindow_Test();]]></ST>
     </Implementation>
     <Method Name="MoverAcceptsDisableCommand_Test" Id="{f74263e1-f8f8-472b-b7d9-77e272f7e657}">
       <Declaration><![CDATA[METHOD MoverAcceptsDisableCommand_Test
@@ -353,6 +356,60 @@ END_VAR]]></Declaration>
 	testMover.setEnabled();
 	testMover.setMoving();
 	Actual := testMover.ActivateZeroReferenceSystem() = -2;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverReportsMoverOutsidePosWindow_Test" Id="{43848fba-d9e9-410c-98a3-0bba057248aa}">
+      <Declaration><![CDATA[METHOD MoverReportsMoverOutsidePosWindow_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setAPosition(301.2);
+	Actual := testMover.isMoverAtPosition(300.0);
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverReportsMovingCorrectly_Test" Id="{2f7e6e28-944b-4700-8c41-7d154cade07a}">
+      <Declaration><![CDATA[METHOD MoverReportsMovingCorrectly_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setMoving();
+	Actual := NOT testMover.isMoverStationary();
+	testMover.setStationary();
+	Actual := Actual AND testMover.isMoverStationary();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverReportsPositionInWindow_Test" Id="{53afb953-412d-4aa5-b491-ac154905df0d}">
+      <Declaration><![CDATA[METHOD MoverReportsPositionInWindow_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setAPosition(301.2);
+	Actual := testMover.isMoverAtPosition(302.0);
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
