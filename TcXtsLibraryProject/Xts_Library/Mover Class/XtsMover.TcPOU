@@ -334,12 +334,22 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Initialised THEN
-	RETURN;
-END_IF
-IF _ipTcIoXtsMover = 0 OR NOT isMoverDetected() OR MyTrackCount = 0 THEN
 	Initialise := -1;
 	RETURN;
 END_IF
+IF _ipTcIoXtsMover = 0 THEN
+	Initialise := -2;
+	RETURN;
+END_IF
+IF NOT isMoverDetected() THEN
+	Initialise := -3;
+	RETURN;
+END_IF
+IF MyTrackCount = 0 THEN
+	Initialise := -4;
+	RETURN;
+END_IF
+
 myControllerOid := _ipTcIoXtsMover.P_MoverControllerOid;
 MyId := _ipTcIoXtsMover.GetAxisId();
 _CurrentTrack := MyTracks[MoversActiveTrack - 1];
