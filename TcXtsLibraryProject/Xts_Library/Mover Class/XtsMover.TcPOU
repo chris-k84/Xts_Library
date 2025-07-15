@@ -141,7 +141,6 @@ END_VAR
 		_SetForce := _ipTcIoXtsMover.GetSetForce();
 		_SetCurrent := _ipTcIoXtsMover.GetSetCurrent();
 	END_IF
-	Cycle := 1;
 ELSE
 	Cycle := -1;
 END_IF
