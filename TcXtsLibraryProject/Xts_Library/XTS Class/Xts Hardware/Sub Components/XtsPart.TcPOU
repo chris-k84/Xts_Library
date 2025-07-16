@@ -14,13 +14,14 @@ VAR
 	CurrentErrorId : UDINT;
 	InSim : BOOL;
 	i : UINT;
+	PartName: STRING;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
     <Method Name="Cycle" Id="{6aa26807-846b-4168-ab87-fb4c66b138eb}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
-VAR_INPUT
+VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[PartDriveState := _MyInterface.GetDriveState();
@@ -82,8 +83,8 @@ END_VAR
 			END_IF
 		END_FOR
 	3:
+		PartName := _MyInterface.P_ObjectName;
 		Initialise := 2;
-
 END_CASE]]></ST>
       </Implementation>
     </Method>
@@ -149,7 +150,10 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[ResetPart := _MyInterface.TriggerReset();]]></ST>
+        <ST><![CDATA[ResetPart := _MyInterface.TriggerReset();
+FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
+	MyModules[i].AckDiagMsgs();
+END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetInSim" Id="{273102d0-bbf8-41a5-af45-2632119808d5}">
