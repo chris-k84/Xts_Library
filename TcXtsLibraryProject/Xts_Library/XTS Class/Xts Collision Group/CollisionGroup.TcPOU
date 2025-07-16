@@ -11,6 +11,7 @@ VAR
 	_caGroup : Tc3_McCoordinatedMotion.AXES_GROUP_REF;
 	_ICaGroup : I_Mc2CaGroup;
 	ReadGroupStatus : Tc3_McCoordinatedMotion.MC_GroupReadStatus;
+	ReadErrorCode : Tc3_McCoordinatedMotion.MC_GroupReadError;
 	resetCAGroup : ResetGroup := (MyCollisionGroup := THIS^);
 	enableCAGroup : EnableGroup := (MyCollisionGroup := THIS^);
 	disableCAGroup : DisableGroup := (MyCollisionGroup := THIS^);
@@ -21,6 +22,7 @@ VAR
 	_MyName: STRING;
 	GroupMovers : ARRAY[0..MaxMovers] OF I_XtsMover;
 	RegisteredMovers : INT;
+	GroupErrorCode: UDINT;
 END_VAR
 VAR CONSTANT
 	MaxMovers : INT := 49;
@@ -104,6 +106,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF _ICaGroup <> 0 THEN
 	ReadGroupStatus(AxesGroup:= _caGroup, Enable:= TRUE );
+	ReadErrorCode(AxesGroup := _caGroup, Enable := TRUE, GroupErrorId => GroupErrorCode);
 	ResetCaGroupResult := resetCAGroup.Cycle();
 	EnableCaGroupResult := enableCAGroup.Cycle();
 	DisableCaGroupResult := disableCAGroup.Cycle();
@@ -152,6 +155,15 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[GetAxisCount := _caGroup.NcToPlc.Common.GroupAxesCount;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetErrorCode" Id="{008b6478-046b-4ac6-91ea-576d7ad92091}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD GetErrorCode : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetErrorCode := GroupErrorCode;]]></ST>
       </Implementation>
     </Method>
     <Property Name="GroupRef" Id="{05d388ea-a899-4954-b35a-8298ecb26dd6}">
