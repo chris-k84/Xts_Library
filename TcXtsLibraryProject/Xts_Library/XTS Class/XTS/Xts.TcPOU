@@ -146,7 +146,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[HasError := ICollisionGroup.HasError();]]></ST>
+        <ST><![CDATA[HasError := ICollisionGroup.HasError() OR _MyXtsHardware.ArePartsInError();]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}">
