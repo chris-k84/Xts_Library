@@ -18,6 +18,9 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="ArePartsInError" Id="{1337c77b-50df-4a18-babf-bbac8fc49a55}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD ArePartsInError : BOOL]]></Declaration>
+    </Method>
     <Property Name="DetectedNumberOfParts" Id="{26f59286-1828-426d-8401-9c022372b2b3}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY DetectedNumberOfParts : INT]]></Declaration>
       <Get Name="Get" Id="{be1603c2-e62c-4ec9-9bc8-45b0c3dfbaa1}">

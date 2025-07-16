@@ -11,6 +11,8 @@ VAR
 	InSim : BOOL;
 	Module24Vdc: REAL;
 	Module48Vdc: REAL;
+	ModuleState: Tc3_XTS_Utility.DriveState;
+	ModuleStatus: Tc3_XTS_Utility.CoeStatusInfo;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -27,6 +29,8 @@ END_VAR
 	MaxCurrent:=  MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
 	Module24Vdc := MyModuleIoInterface.GetAuxiliaryVoltage24V();
 	Module48Vdc := MyModuleIoInterface.GetDCLinkVoltage();
+	ModuleState := MyModuleIoInterface.GetDriveState();
+	ModuleStatus := MyModuleIoInterface.GetDriveStatusInfo();
 END_IF]]></ST>
       </Implementation>
     </Method>
