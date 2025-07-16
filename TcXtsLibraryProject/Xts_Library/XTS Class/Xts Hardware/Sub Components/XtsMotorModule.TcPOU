@@ -3,7 +3,7 @@
   <POU Name="XtsMotorModule" Id="{447db564-ab24-433c-b078-4cedd1c7411e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsMotorModule EXTENDS CyclicBase
 VAR
-	MyModuleIoInterface : I_TcIoXtsPartModule;
+	_MyModuleIoInterface : I_TcIoXtsPartModule;
 	CurrentLive: LREAL;
 	MaxCurrent: LREAL;
 	Nominal24Vdc : REAL := 24.0;
@@ -13,6 +13,10 @@ VAR
 	Module48Vdc: REAL;
 	ModuleState: Tc3_XTS_Utility.DriveState;
 	ModuleStatus: Tc3_XTS_Utility.CoeStatusInfo;
+	ErrorTrigger : R_TRIG;
+	ModuleError: Tc3_XTS_Utility.I_AT2xxxDiagHistory;
+	ReadDiagHistory: BOOL;
+	ModuleDiagMessages: ARRAY [1..25] OF Tc3_XTS_Utility.ST_DiagHistoryMsg;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -24,14 +28,31 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyModuleIoInterface <> 0 AND NOT InSim THEN
-	CurrentLive:= MyModuleIoInterface.GetOverallCurrent();
-	MaxCurrent:=  MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
-	Module24Vdc := MyModuleIoInterface.GetAuxiliaryVoltage24V();
-	Module48Vdc := MyModuleIoInterface.GetDCLinkVoltage();
-	ModuleState := MyModuleIoInterface.GetDriveState();
-	ModuleStatus := MyModuleIoInterface.GetDriveStatusInfo();
+        <ST><![CDATA[IF _MyModuleIoInterface <> 0 AND NOT InSim THEN
+	CurrentLive:= _MyModuleIoInterface.GetOverallCurrent();
+	MaxCurrent:=  _MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
+	Module24Vdc := _MyModuleIoInterface.GetAuxiliaryVoltage24V();
+	Module48Vdc := _MyModuleIoInterface.GetDCLinkVoltage();
+	ModuleState := _MyModuleIoInterface.GetDriveState();
+	ModuleStatus := _MyModuleIoInterface.GetDriveStatusInfo();
+	ModuleDiagMessages := ModuleError.DiagHistory.aDiagHistoryMsg;
+END_IF
+ErrorTrigger(CLK := ModuleState = DriveState.Fault OR ModuleState = DriveState.FaultReactionActive);
+IF ErrorTrigger.Q OR ReadDiagHistory THEN
+	ReadDiagHistory := TRUE;
+	if ModuleError.UpdateDiagHistory() THEN
+		ReadDiagHistory := FALSE;
+	END_IF
 END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetLatestDiagMessage" Id="{c5f72fde-7f4b-4c41-8777-bc94a2aa888f}">
+      <Declaration><![CDATA[METHOD GetLatestDiagMessage : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetLatestDiagMessage := ModuleDiagMessages[1].wDiagMessageCode;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{0d230f78-299f-458d-bcac-a537a1290197}">
@@ -40,7 +61,9 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyModuleIoInterface.P_IsInitialized THEN
+        <ST><![CDATA[IF _MyModuleIoInterface.P_IsInitialized THEN
+	ModuleError := _MyModuleIoInterface.CoE.DiagHistoryData;
+	ReadDiagHistory := TRUE;
 	Initialise := 2;
 END_IF]]></ST>
       </Implementation>
@@ -82,7 +105,7 @@ END_IF]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MyModuleInterface := MyModuleIoInterface;]]></ST>
+          <ST><![CDATA[MyModuleInterface := _MyModuleIoInterface;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{c9ca3467-a5fd-4003-89ce-a9baa660bd96}">
@@ -90,7 +113,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MyModuleIoInterface := MyModuleInterface;]]></ST>
+          <ST><![CDATA[_MyModuleIoInterface := MyModuleInterface;]]></ST>
         </Implementation>
       </Set>
     </Property>
