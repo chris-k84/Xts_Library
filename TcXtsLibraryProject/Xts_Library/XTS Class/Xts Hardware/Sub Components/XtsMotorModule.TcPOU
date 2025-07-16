@@ -17,26 +17,56 @@ VAR
 	ModuleError: Tc3_XTS_Utility.I_AT2xxxDiagHistory;
 	ReadDiagHistory: BOOL;
 	ModuleDiagMessages: ARRAY [1..25] OF Tc3_XTS_Utility.ST_DiagHistoryMsg;
+	NullMessage : ST_DiagHistoryMsg;
+	NewDiagMessageCount : UINT;
+	ModuleName: STRING;
+	DriveId: Tc3_XTS_Utility.ST_DriveOnlineIdentity;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="Cycle" Id="{1188f197-bbd0-4970-903a-af249f1ed9e0}">
-      <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
+    <Method Name="AckDiagMsgs" Id="{d8ef1bd0-5cfc-41d5-b153-4987f2146f4f}">
+      <Declaration><![CDATA[METHOD AckDiagMsgs : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _MyModuleIoInterface <> 0 AND NOT InSim THEN
-	CurrentLive:= _MyModuleIoInterface.GetOverallCurrent();
-	MaxCurrent:=  _MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
-	Module24Vdc := _MyModuleIoInterface.GetAuxiliaryVoltage24V();
-	Module48Vdc := _MyModuleIoInterface.GetDCLinkVoltage();
-	ModuleState := _MyModuleIoInterface.GetDriveState();
-	ModuleStatus := _MyModuleIoInterface.GetDriveStatusInfo();
+        <ST><![CDATA[ModuleError.AckAllMsgs := true;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Cycle" Id="{1188f197-bbd0-4970-903a-af249f1ed9e0}">
+      <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
+VAR_INPUT
+END_VAR
+VAR
+	i : INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF _MyModuleIoInterface = 0 THEN
+	Cycle := -1;
+	RETURN;
+END_IF
+
+IF InSim THEN
+	Cycle := -2;
+	RETURN;
+END_IF
+
+CurrentLive:= _MyModuleIoInterface.GetOverallCurrent();
+MaxCurrent:=  _MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
+Module24Vdc := _MyModuleIoInterface.GetAuxiliaryVoltage24V();
+Module48Vdc := _MyModuleIoInterface.GetDCLinkVoltage();
+ModuleState := _MyModuleIoInterface.GetDriveState();
+ModuleStatus := _MyModuleIoInterface.GetDriveStatusInfo();
+IF ModuleError.UnackMsgsAvailable THEN
+	NewDiagMessageCount := ModuleError.UnackMsgCount;
+	FOR i := 1 TO 25 DO
+		ModuleDiagMessages[i] := NullMessage;
+	END_FOR
 	ModuleDiagMessages := ModuleError.DiagHistory.aDiagHistoryMsg;
 END_IF
+
 ErrorTrigger(CLK := ModuleState = DriveState.Fault OR ModuleState = DriveState.FaultReactionActive);
 IF ErrorTrigger.Q OR ReadDiagHistory THEN
 	ReadDiagHistory := TRUE;
@@ -64,6 +94,8 @@ END_VAR
         <ST><![CDATA[IF _MyModuleIoInterface.P_IsInitialized THEN
 	ModuleError := _MyModuleIoInterface.CoE.DiagHistoryData;
 	ReadDiagHistory := TRUE;
+	ModuleName := _MyModuleIoInterface.P_ObjectName;
+	DriveId := _MyModuleIoInterface.GetDriveOnlineIdentity();
 	Initialise := 2;
 END_IF]]></ST>
       </Implementation>
