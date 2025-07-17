@@ -42,17 +42,8 @@ END_VAR
  END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="AreExpectedMoversFound" Id="{642f39f7-45fb-4e7e-95d2-cca7f46c73a6}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD AreExpectedMoversFound : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[AreExpectedMoversFound := _MyXpu.GetExpectedMoverCount() = _MyXpu.GetDetectedMoverCount();]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="ArePartsInError" Id="{699ab4e2-69ca-4162-ab63-9b7de63fc2c4}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD ArePartsInError : BOOL
+    <Method Name="AreAnyPartsInError" Id="{699ab4e2-69ca-4162-ab63-9b7de63fc2c4}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD AreAnyPartsInError : BOOL
 VAR
 	i : INT;
 END_VAR
@@ -60,9 +51,18 @@ END_VAR
       <Implementation>
         <ST><![CDATA[FOR i := 0 TO TO_INT(MyPartCount - 1) DO
 	IF XtsParts[i].HasError() THEN
-		ArePartsInError := TRUE;
+		AreAnyPartsInError := TRUE;
 	END_IF
 END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="AreExpectedMoversFound" Id="{642f39f7-45fb-4e7e-95d2-cca7f46c73a6}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD AreExpectedMoversFound : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AreExpectedMoversFound := _MyXpu.GetExpectedMoverCount() = _MyXpu.GetDetectedMoverCount();]]></ST>
       </Implementation>
     </Method>
     <Method Name="Cycle" Id="{907368a2-7640-4dfa-a8a9-6f1d20861921}">

@@ -12,14 +12,14 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="AreAnyPartsInError" Id="{1324ebcc-5f30-4493-b91e-0f8e2dac9022}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD AreAnyPartsInError : BOOL]]></Declaration>
+    </Method>
     <Method Name="AreExpectedMoversFound" Id="{aa48d66d-e689-4a24-808d-2ead7682c5a9}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD AreExpectedMoversFound : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
-    </Method>
-    <Method Name="ArePartsInError" Id="{1337c77b-50df-4a18-babf-bbac8fc49a55}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD ArePartsInError : BOOL]]></Declaration>
     </Method>
     <Property Name="DetectedNumberOfParts" Id="{26f59286-1828-426d-8401-9c022372b2b3}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY DetectedNumberOfParts : INT]]></Declaration>
