@@ -12,7 +12,6 @@ VAR
 	ModuleIndex: UDINT := 1;
 	CurrentErrorId : UDINT;
 	InSim : BOOL;
-	i : UINT;
 	PartName: STRING;
 	IsDCLinkReady: BOOL;
 END_VAR]]></Declaration>
@@ -22,6 +21,7 @@ END_VAR]]></Declaration>
     <Method Name="Cycle" Id="{6aa26807-846b-4168-ab87-fb4c66b138eb}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR
+	i : INT;
 	tempErrorID : UDINT;
 END_VAR]]></Declaration>
       <Implementation>
@@ -60,7 +60,8 @@ END_VAR]]></Declaration>
     </Method>
     <Method Name="Initialise" Id="{f7bcb601-a320-4f3f-bcf3-5ec4e45a7245}">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
-VAR_INPUT
+VAR
+	i : INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -101,7 +102,8 @@ END_CASE]]></ST>
     </Method>
     <Method Name="Is24VBusOK" Id="{d79d6eda-1f90-4384-9dda-ac7f4aaa7f07}">
       <Declaration><![CDATA[METHOD Is24VBusOK : BOOL
-VAR_INPUT
+VAR
+	i : INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -115,7 +117,8 @@ END_FOR]]></ST>
     </Method>
     <Method Name="Is48VBusOK" Id="{44113d88-367f-494b-87cf-4655fd94d258}">
       <Declaration><![CDATA[METHOD Is48VBusOK : BOOL
-VAR_INPUT
+VAR
+	i : INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -157,7 +160,8 @@ END_VAR
     </Method>
     <Method Name="ResetPart" Id="{a2c1bf74-a00f-4e37-abd0-e53201644a52}">
       <Declaration><![CDATA[METHOD ResetPart : BOOL
-VAR_INPUT
+VAR
+	i : INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
