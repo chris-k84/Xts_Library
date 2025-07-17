@@ -19,6 +19,9 @@ VAR
 	DisabledTrigger : R_TRIG;
 	_registeredNumberOfMovers: INT;
 	DetectedMoverCount : UDINT;
+	HardwareError : BOOL;
+	CAGroupError : BOOL;
+	ErrorID : UDINT;
 END_VAR
 VAR CONSTANT
 	MaxMovers : INT := 255;
@@ -39,23 +42,33 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Initialised THEN	
-	EnableResult := EnableSequence.Cycle();
-	DisableResult := DisableSequence.Cycle();
-	EnabledTrigger(CLK := EnableSequence.Done);
-	DisabledTrigger(CLK := DisableSequence.Done);
-	IF EnabledTrigger.Q THEN
-		_XtsEnabled := TRUE;
-	END_IF
-	IF DisabledTrigger.Q THEN
-		_XtsEnabled := false;
-	END_IF
-	IF EnableResult = E_FAIL OR
-		DisableResult = E_FAIL OR
-		GrpStopResult = E_FAIL OR
-		CollisionResult = E_FAIL THEN
-		Cycle := E_FAIL;
-	END_IF
+        <ST><![CDATA[IF NOT Initialised THEN	
+	Cycle  := -1;
+	RETURN;
+END_IF
+
+EnableResult := EnableSequence.Cycle();
+DisableResult := DisableSequence.Cycle();
+EnabledTrigger(CLK := EnableSequence.Done);
+DisabledTrigger(CLK := DisableSequence.Done);
+IF EnabledTrigger.Q THEN
+	_XtsEnabled := TRUE;
+END_IF
+IF DisabledTrigger.Q THEN
+	_XtsEnabled := false;
+END_IF
+
+HardwareError := _MyXtsHardware.AreAnyPartsInError();
+CAGroupError := ICollisionGroup.HasError();
+
+IF CAGroupError THEN
+	ErrorID := ICollisionGroup.GetErrorCode();
+END_IF
+IF HardwareError THEN
+	ErrorID := _MyXtsHardware.GetPartErrorCode();
+END_IF
+IF NOT CAGroupError AND NOT HardwareError THEN
+	ErrorID := 0;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -140,13 +153,22 @@ EnableSequence.MyCollisionGroup := ICollisionGroup;
 DisableSequence.MyCollisionGroup := ICollisionGroup;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="GetErrorCode" Id="{2f92df65-73a4-4318-ab24-df5b38aa2d66}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD GetErrorCode : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetErrorCode := ErrorID;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="HasError" Id="{deaa9733-0676-46c6-9e2e-c283006fe443}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD HasError : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[HasError := ICollisionGroup.HasError() OR _MyXtsHardware.ArePartsInError();]]></ST>
+        <ST><![CDATA[HasError := ICollisionGroup.HasError() OR _MyXtsHardware.AreAnyPartsInError();]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}">
