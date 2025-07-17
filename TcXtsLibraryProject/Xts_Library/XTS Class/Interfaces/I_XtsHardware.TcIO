@@ -69,6 +69,10 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="GetPartErrorCode" Id="{a778e153-11fc-44a4-9a30-e1a939a035d7}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD GetPartErrorCode : UDINT
+]]></Declaration>
+    </Method>
     <Method Name="GetTrackInterfaceByNumber" Id="{fdddf6a5-daa4-4b5f-bc28-556a31f03729}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetTrackInterfaceByNumber : I_XtsTrack
 VAR_INPUT

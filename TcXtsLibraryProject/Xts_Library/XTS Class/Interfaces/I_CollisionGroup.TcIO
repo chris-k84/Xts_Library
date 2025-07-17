@@ -39,6 +39,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="GetErrorCode" Id="{9ff61907-b0e7-4a62-b286-504aef382954}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD GetErrorCode : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Property Name="GroupRef" Id="{da70f768-e857-4f18-9014-1c57ab869df0}">
       <Declaration><![CDATA[PROPERTY GroupRef : reference to AXES_GROUP_REF]]></Declaration>
       <Get Name="Get" Id="{ff65d9fd-a0fb-4014-a5bd-11ea974f60f4}">

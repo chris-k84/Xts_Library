@@ -10,11 +10,11 @@ VAR
 	_ReadyToEnable: BOOL;
 	MyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF XtsMotorModule;
 	ModuleIndex: UDINT := 1;
-	tempErrorID : UDINT;
 	CurrentErrorId : UDINT;
 	InSim : BOOL;
 	i : UINT;
 	PartName: STRING;
+	IsDCLinkReady: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -22,9 +22,11 @@ END_VAR]]></Declaration>
     <Method Name="Cycle" Id="{6aa26807-846b-4168-ab87-fb4c66b138eb}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR
+	tempErrorID : UDINT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[PartDriveState := _MyInterface.GetDriveState();
+IsDCLinkReady := _MyInterface.GetIsDcLinkVoltageReady();
 IF HasError() THEN
 	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 		tempErrorID := MyModules[i].GetLatestDiagMessage();
@@ -36,6 +38,15 @@ END_IF
 FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 	MyModules[i].Cycle();
 END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetCurrentError" Id="{397b05da-5d11-4ea0-a858-00e1feeb8a6c}">
+      <Declaration><![CDATA[METHOD GetCurrentError : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetCurrentError := CurrentErrorId;]]></ST>
       </Implementation>
     </Method>
     <Method Name="HasError" Id="{1ff560a3-4b5c-4bd0-a848-6c6a900a7eef}">
@@ -153,7 +164,8 @@ END_VAR
         <ST><![CDATA[ResetPart := _MyInterface.TriggerReset();
 FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 	MyModules[i].AckDiagMsgs();
-END_FOR]]></ST>
+END_FOR
+CurrentErrorId := 0;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetInSim" Id="{273102d0-bbf8-41a5-af45-2632119808d5}">
