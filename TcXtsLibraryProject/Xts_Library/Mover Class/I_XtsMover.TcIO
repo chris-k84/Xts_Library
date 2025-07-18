@@ -212,6 +212,14 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="SetSimDetectionPartAndPosition" Id="{b203fdbc-b34c-4c13-b77e-aae6fc3e86cf}" FolderPath="Administration\">
+      <Declaration><![CDATA[METHOD SetSimDetectionPartAndPosition : BOOL
+VAR_INPUT
+	Part : OTCID;
+	Position : LREAL;
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="TriggerMoverArrive" Id="{ce200a85-cca0-47d0-8b7e-22e3d01f8c11}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD TriggerMoverArrive : BOOL
 VAR_INPUT

@@ -653,6 +653,18 @@ END_VAR
         <ST><![CDATA[_ipTcIoXtsMover.MoverController.SetForceCouple(nForceCouple := XtsMoverCtrlOTCID);]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetSimDetectionPartAndPosition" Id="{7c9e452d-fc91-446a-83ce-0915a34e15cf}" FolderPath="Administration\">
+      <Declaration><![CDATA[METHOD SetSimDetectionPartAndPosition : BOOL
+VAR_INPUT
+	Part : OTCID;
+	Position : LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_ipTcIoXtsMover.SetSimulatedStartUpPart(Part);
+_ipTcIoXtsMover.SetSimulatedStartUpPosition(Position);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SwapMover" Id="{075d081f-a4ad-470f-95aa-ced1f28cc5a8}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD SwapMover : HRESULT
 VAR_INPUT
