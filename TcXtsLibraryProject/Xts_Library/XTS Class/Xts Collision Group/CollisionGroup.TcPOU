@@ -308,6 +308,7 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF removeMover.Busy THEN
 	RemoveAMover := -1;
+	RETURN;
 END_IF
 IF MoverToRemove = 0 THEN
 	RemoveAMover := -2;
