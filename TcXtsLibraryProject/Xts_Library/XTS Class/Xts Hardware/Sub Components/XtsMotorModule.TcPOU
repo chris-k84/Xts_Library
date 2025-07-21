@@ -32,7 +32,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[ModuleError.AckAllMsgs := TRUE;
+        <ST><![CDATA[IF ModuleError = 0 THEN
+	RETURN;
+END_IF
+
+ModuleError.AckAllMsgs := TRUE;
 ]]></ST>
       </Implementation>
     </Method>
