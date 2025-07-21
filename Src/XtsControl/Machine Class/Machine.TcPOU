@@ -22,8 +22,11 @@ VAR
 	systemXtsioEnvVar : XtsIoEnvVar;	
 	systemXtsHardware : XTSHardware;				
 	systemCAGroup : CollisionGroup;															
-	MyXts : ThisXTS(systemXtsioEnvVar,systemXtsHardware,systemCAGroup) := (MyXts := 1, ExpectedNumberOfParts := 1, ExpectedNumberOfTracks := 1);
-	MoverSequences : ARRAY[0..NumberOFSystemMovers] OF StationBehaviour := [8((MyStartPosition := 600.0))];	
+	MyXts : ThisXTS(systemXtsioEnvVar,systemXtsHardware,systemCAGroup) := (MyXts := 1, 
+																			ExpectedNumberOfParts := 1, 
+																			ExpectedNumberOfTracks := 1, 
+																			HomePosition := SystemConstants.XtsHomePosition);
+	MoverSequences : ARRAY[0..NumberOFSystemMovers] OF StationBehaviour := [8((MyStartPosition := SystemConstants.XtsHomePosition))];	
 	initSequence : INT;
 	InitComplete : BOOL;
 	Trigger1 : TriggerPoint(Position := 100.0, Range := 200);

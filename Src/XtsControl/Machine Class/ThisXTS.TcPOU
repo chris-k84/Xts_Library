@@ -3,19 +3,39 @@
   <POU Name="ThisXTS" Id="{adc628a7-7a2e-4111-937d-b66eb159493c}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ThisXTS EXTENDS Xts
 VAR
+	_homePosition : LREAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Property Name="HomePosition" Id="{d602f7c2-50bd-47cc-89fa-7135c8d1eaba}">
+      <Declaration><![CDATA[PROPERTY HomePosition : LREAL]]></Declaration>
+      <Get Name="Get" Id="{86043ce9-0793-47f3-b3e8-793e99e740e9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[HomePosition := _homePosition;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{56cccc03-60ff-4ea7-9531-591ff5482e5e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_homePosition := HomePosition;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="MoverHomeSequence" Id="{dd65f3ed-d01b-4f9f-95cc-8438905256ec}">
       <Declaration><![CDATA[METHOD MoverHomeSequence : BOOL
 VAR
 	i : INT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[FOR i := 0 TO 7 DO 
-	_MoverArray[i].MoveTo(600.0,1000.0,FALSE);
+        <ST><![CDATA[FOR i := 0 TO _registeredNumberOfMovers - 1 DO 
+	_MoverArray[i].MoveTo(_homePosition,1000.0,FALSE);
 END_FOR]]></ST>
       </Implementation>
     </Method>
