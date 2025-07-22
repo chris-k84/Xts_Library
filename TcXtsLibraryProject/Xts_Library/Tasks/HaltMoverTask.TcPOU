@@ -120,14 +120,21 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT haltMoverCA.Execute AND __ISVALIDREF(_axis) THEN
-	haltMoverCA.Execute := TRUE;
-	_Error := FALSE;
-	_ErrorId := 0;
-	_Done := FALSE;
-ELSE
+        <ST><![CDATA[IF haltMoverCA.Execute THEN
 	Execute := -1;
-END_IF]]></ST>
+	RETURN;
+END_IF
+
+IF NOT __ISVALIDREF(_axis) THEN
+	Execute	 := -1;
+	RETURN;
+END_IF
+
+haltMoverCA.Execute := TRUE;
+_Error := FALSE;
+_ErrorId := 0;
+_Done := FALSE;
+]]></ST>
       </Implementation>
     </Method>
     <Property Name="Gap" Id="{a94177ce-b18c-4479-ae6f-5707566b0317}">
