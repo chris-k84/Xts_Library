@@ -189,19 +189,29 @@ VAR_INPUT
 	Turns: UDINT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT moveAbs.Execute AND __ISVALIDREF(_Axis) AND Velocity <> 0.0 THEN
-	moveAbs.Position := Position;
-	moveAbs.Velocity := Velocity;
-	moveAbs.Direction := Direction;
-	moveAbs.Options.AdditionalTurns := Turns;
-	moveAbs.Execute := TRUE;
-	_Error := FALSE;
-	_ErrorId := 0;
-	_Done := FALSE;
-	
-ELSE
+        <ST><![CDATA[IF moveAbs.Execute THEN
 	MoveTo := -1;
+	RETURN;
 END_IF
+	
+IF NOT __ISVALIDREF(_Axis) THEN
+	MoveTo := -2;
+	RETURN;
+END_IF
+
+IF Velocity <= 0.0 THEN
+	MoveTo := -3;
+	RETURN;
+END_IF
+
+moveAbs.Position := Position;
+moveAbs.Velocity := Velocity;
+moveAbs.Direction := Direction;
+moveAbs.Options.AdditionalTurns := Turns;
+moveAbs.Execute := TRUE;
+_Error := FALSE;
+_ErrorId := 0;
+_Done := FALSE;
 ]]></ST>
       </Implementation>
     </Method>
