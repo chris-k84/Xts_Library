@@ -80,12 +80,11 @@ END_VAR
       <Declaration><![CDATA[METHOD Execute : hresult
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT groupDisable.Execute THEN
-	groupDisable.Execute := TRUE;
-ELSE
+        <ST><![CDATA[IF groupDisable.Execute THEN
 	Execute := -1;
+	RETURN;
 END_IF
-]]></ST>
+groupDisable.Execute := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyCollisionGroup" Id="{374f3446-8902-46b9-be62-e00e0857d034}">
