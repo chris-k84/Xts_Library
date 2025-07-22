@@ -106,16 +106,26 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT GearInPosCA.Execute AND _SlaveAxis <> 0 AND _MasterAxis <> 0 THEN
-	GearInPosCA.MasterSyncPosition := MasterPosition;
-	GearInPosCA.SlaveSyncPosition := SlavePosition;
-	GearInPosCA.Execute := TRUE;
-	_Error := FALSE;
-	_ErrorID := 0;
-ELSE
+        <ST><![CDATA[IF GearInPosCA.Execute THEN
 	GearIn := -1;
+	RETURN;
 END_IF
-]]></ST>
+
+IF _SlaveAxis = 0 THEN
+	GearIn := -2;
+	RETURN;
+END_IF
+
+IF _MasterAxis = 0 THEN
+	GearIn := -3;
+	RETURN;
+END_IF
+
+GearInPosCA.MasterSyncPosition := MasterPosition;
+GearInPosCA.SlaveSyncPosition := SlavePosition;
+GearInPosCA.Execute := TRUE;
+_Error := FALSE;
+_ErrorID := 0;]]></ST>
       </Implementation>
     </Method>
     <Property Name="InGear" Id="{c9e803f5-cebb-4c19-b377-00252c85ab24}">
