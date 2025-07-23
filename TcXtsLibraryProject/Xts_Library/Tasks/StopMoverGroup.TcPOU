@@ -101,11 +101,11 @@ END_VAR
       <Declaration><![CDATA[METHOD Execute : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT groupStop.Execute THEN
-	groupStop.Execute := TRUE;
-ELSE
+        <ST><![CDATA[IF groupStop.Execute THEN
 	Execute := -1;
-END_IF]]></ST>
+END_IF
+
+groupStop.Execute := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Jerk" Id="{753822d2-3240-4ac1-a838-285435826cfe}">
@@ -148,5 +148,49 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <LineIds Name="StopMoverGroup">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="StopMoverGroup.Abort">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="StopMoverGroup.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="StopMoverGroup.Cycle">
+      <LineId Id="3" Count="9" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="StopMoverGroup.Deceleration.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="StopMoverGroup.Deceleration.Set">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="StopMoverGroup.Done.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="StopMoverGroup.Error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="StopMoverGroup.Execute">
+      <LineId Id="7" Count="3" />
+      <LineId Id="3" Count="0" />
+    </LineIds>
+    <LineIds Name="StopMoverGroup.Jerk.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="StopMoverGroup.Jerk.Set">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="StopMoverGroup.MyCollisionGroup.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="StopMoverGroup.MyCollisionGroup.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

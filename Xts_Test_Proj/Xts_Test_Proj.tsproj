@@ -214,7 +214,7 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{D6CDE109-AFE6-47BF-82D3-4F48E24801D5}" Target64Bit="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{D6CDE109-AFE6-47BF-82D3-4F48E24801D5}" TargetNetId="199.4.42.250.1.1" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings>
 				<Cpu BaseTime="2500"/>
