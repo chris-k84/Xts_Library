@@ -33,17 +33,22 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MoverToAdd <> 0 AND NOT AddtoGrp.Execute THEN
-	AddtoGrp.Execute := TRUE;
-	AddtoGrp.IdentInGroup := MoverToAdd.IdentInGroup;
-	_Axis REF= MoverToAdd.AxisRef;
-	_Error := FALSE;
-	_ErrorId := 0;
-	_Done := FALSE;
-ELSE
+        <ST><![CDATA[IF MoverToAdd = 0 THEN
 	AddMover := -1;
+	RETURN;
 END_IF
-]]></ST>
+
+IF AddtoGrp.Execute THEN
+	AddMover := -2;
+	RETURN;
+END_IF
+	
+AddtoGrp.Execute := TRUE;
+AddtoGrp.IdentInGroup := MoverToAdd.IdentInGroup;
+_Axis REF= MoverToAdd.AxisRef;
+_Error := FALSE;
+_ErrorId := 0;
+_Done := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{c78e23b2-93cd-417a-a8b9-63c9e9a6bdb1}">
@@ -121,5 +126,44 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <LineIds Name="AddMoverToGroupTask">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="AddMoverToGroupTask.Abort">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="AddMoverToGroupTask.AddMover">
+      <LineId Id="3" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="4" Count="5" />
+    </LineIds>
+    <LineIds Name="AddMoverToGroupTask.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="AddMoverToGroupTask.Cycle">
+      <LineId Id="3" Count="10" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="AddMoverToGroupTask.Done.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="AddMoverToGroupTask.Error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="AddMoverToGroupTask.MyCollisionGroup.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="AddMoverToGroupTask.MyCollisionGroup.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
