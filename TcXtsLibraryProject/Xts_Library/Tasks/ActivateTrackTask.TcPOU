@@ -104,15 +104,26 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT mcActivateTrack.Execute AND Track <> 0 AND __ISVALIDREF(_Axis) THEN
-	mcActivateTrack.Execute := TRUE;
-	mcActivateTrack.TrackId := Track.MyOTCID;
-	_Error := FALSE;
-	_ErrorId := 0;
-	_Done := FALSE;
-ELSE
+        <ST><![CDATA[IF mcActivateTrack.Execute THEN
 	Execute := -1;
-END_IF;]]></ST>
+	RETURN;
+END_IF
+
+IF Track = 0 THEN
+	Execute := -2;
+	RETURN;
+END_IF
+
+IF NOT __ISVALIDREF(_Axis) THEN
+	Execute := - 3;
+	RETURN;
+END_IF;
+
+mcActivateTrack.Execute := TRUE;
+mcActivateTrack.TrackId := Track.MyOTCID;
+_Error := FALSE;
+_ErrorId := 0;
+_Done := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="NewTrackId" Id="{84df412b-7c3c-4f84-98eb-ff5f562dbb1a}">
@@ -138,5 +149,56 @@ Runner.RegisterAbortable(THIS^);
 Runner.RegisterTask(THIS^);]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="ActivateTrackTask">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackTask.Abort">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackTask.AxisRef.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackTask.AxisRef.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackTask.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackTask.Cycle">
+      <LineId Id="3" Count="10" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackTask.Done.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackTask.Error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackTask.Execute">
+      <LineId Id="3" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="4" Count="4" />
+    </LineIds>
+    <LineIds Name="ActivateTrackTask.NewTrackId.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ActivateTrackTask.RegisterWithParent">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
