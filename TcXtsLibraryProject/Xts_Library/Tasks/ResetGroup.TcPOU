@@ -80,11 +80,11 @@ END_VAR
       <Declaration><![CDATA[METHOD Execute : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT groupReset.Execute THEN
-	groupReset.Execute := TRUE;
-ELSE
+        <ST><![CDATA[IF groupReset.Execute THEN
 	Execute := -1;
-END_IF]]></ST>
+END_IF
+
+groupReset.Execute := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyCollisionGroup" Id="{64ee9bfe-dcea-4ad5-aa89-cde4b64d6f35}">
@@ -106,5 +106,35 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <LineIds Name="ResetGroup">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.Abort">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.Cycle">
+      <LineId Id="3" Count="9" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.Done.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.Error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.Execute">
+      <LineId Id="7" Count="3" />
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.MyCollisionGroup.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ResetGroup.MyCollisionGroup.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
