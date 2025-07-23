@@ -183,5 +183,14 @@ END_VAR
         <ST><![CDATA[InSim := true;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetPartOriginTransform" Id="{8b2a2802-8f42-46b7-9bd8-2e1c722c9321}">
+      <Declaration><![CDATA[METHOD SetPartOriginTransform : BOOL
+VAR_INPUT
+	OriginTransform: Tc3_XTS_Utility.ST_OriginTransform;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_MyInterface.SetOriginTransform(OriginTransform);]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

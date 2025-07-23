@@ -450,6 +450,17 @@ END_VAR
 END_FOR]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetAPartOriginTransform" Id="{603deaa6-bf5d-4b68-a30f-e30620f70274}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD SetAPartOriginTransform : BOOL
+VAR_INPUT
+	Part : INT;
+	OriginTransform: Tc3_XTS_Utility.ST_OriginTransform;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[XtsParts[Part - 1].SetPartOriginTransform(OriginTransform);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SetATrackForDetection" Id="{33a6fd5d-a8a8-4e54-be38-eeae850dd3e9}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetATrackForDetection : HRESULT
 VAR_INPUT
