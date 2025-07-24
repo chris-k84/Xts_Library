@@ -221,7 +221,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="TriggerMoverArrive" Id="{ce200a85-cca0-47d0-8b7e-22e3d01f8c11}" FolderPath="Administration\">
-      <Declaration><![CDATA[METHOD TriggerMoverArrive : BOOL
+      <Declaration><![CDATA[METHOD TriggerMoverArrive : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
