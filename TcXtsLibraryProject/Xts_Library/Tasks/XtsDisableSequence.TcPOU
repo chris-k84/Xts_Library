@@ -116,12 +116,22 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _Busy AND NOT DisableTrigger AND _caGroup <> 0 THEN
-	DisableTrigger := TRUE;
-ELSE
+        <ST><![CDATA[IF _Busy THEN
 	Disable := -1;
+	RETURN;
 END_IF
-]]></ST>
+
+IF DisableTrigger THEN
+	Disable := -2;
+	RETURN;
+END_IF
+
+IF _caGroup = 0 THEN
+	Disable := -3;
+	RETURN;
+END_IF
+
+DisableTrigger := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{440a0b71-7140-4d16-8dd2-a4a4081fd61d}">

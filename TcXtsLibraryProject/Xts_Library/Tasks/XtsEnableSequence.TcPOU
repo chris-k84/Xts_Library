@@ -132,12 +132,22 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _Busy AND NOT EnableTrigger AND _caGroup <> 0 THEN
-	EnableTrigger := TRUE;
-ELSE
+        <ST><![CDATA[IF _Busy THEN
 	Enable := -1;
+	RETURN;
 END_IF
-]]></ST>
+
+IF EnableTrigger THEN
+	Enable := -2;
+	RETURN;
+END_IF
+
+IF _caGroup = 0 THEN
+	Enable := -3;
+	RETURN;
+END_IF
+
+EnableTrigger := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Error" Id="{de4172ae-7561-44d0-9211-14ccf56f7fba}">
