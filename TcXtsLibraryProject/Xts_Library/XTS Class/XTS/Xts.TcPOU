@@ -349,7 +349,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Runner.RegisterCyclic(THIS^);
-Runner.RegisterInitialise(THIS^);]]></ST>
+Runner.RegisterInitialisable(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{f4cda3e0-308c-460d-87ee-c1616441d1b6}" FolderPath="Operations\">
@@ -371,79 +371,5 @@ END_VAR
         <ST><![CDATA[StopXTS := ICollisionGroup.GroupStop();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="Xts">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.Cycle">
-      <LineId Id="3" Count="26" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.DisableXTS">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.EnableXTS">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.ExpectedNumberOfParts.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.ExpectedNumberOfParts.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.ExpectedNumberOfTracks.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.ExpectedNumberOfTracks.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.FB_Init">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.GetErrorCode">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.HasError">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.Initialise">
-      <LineId Id="3" Count="59" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.IsInitialised">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.IsXtsIdle">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.IsXtsReady">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MoverHomeSequence">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MyXts.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.MyXts.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.RegisterMovers">
-      <LineId Id="3" Count="33" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.RegisterWithParent">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.Reset">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Xts.StopXts">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
