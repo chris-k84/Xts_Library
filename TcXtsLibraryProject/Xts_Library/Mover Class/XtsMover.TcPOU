@@ -650,7 +650,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_ipTcIoXtsMover.MoverController.SetForceCouple(nForceCouple := XtsMoverCtrlOTCID);]]></ST>
+        <ST><![CDATA[IF _ipTcIoXtsMover = 0 THEN
+	SetForceCouple := - 1;
+	RETURN;
+END_IF
+
+_ipTcIoXtsMover.MoverController.SetForceCouple(nForceCouple := XtsMoverCtrlOTCID);]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetSimDetectionPartAndPosition" Id="{7c9e452d-fc91-446a-83ce-0915a34e15cf}" FolderPath="Administration\">
