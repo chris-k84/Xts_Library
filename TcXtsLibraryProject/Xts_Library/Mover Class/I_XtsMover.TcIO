@@ -227,7 +227,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="TriggerMoverLeave" Id="{fe2ebe40-b0b7-4184-8656-d9f18bf6a0ec}" FolderPath="Administration\">
-      <Declaration><![CDATA[METHOD TriggerMoverLeave : BOOL
+      <Declaration><![CDATA[METHOD TriggerMoverLeave : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
