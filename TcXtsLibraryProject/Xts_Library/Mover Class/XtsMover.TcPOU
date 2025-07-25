@@ -687,8 +687,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _ipTcIoXtsMover.GetIsActive() THEN
+        <ST><![CDATA[IF _ipTcIoXtsMover = 0 THEN
 	TriggerMoverArrive := - 1;
+	RETURN;
+END_IF
+IF _ipTcIoXtsMover.GetIsActive() THEN
+	TriggerMoverArrive := - 2;
 	RETURN;
 END_IF
 
