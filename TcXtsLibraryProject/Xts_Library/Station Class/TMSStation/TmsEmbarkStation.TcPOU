@@ -22,6 +22,7 @@ VAR
 		Moving,
 		Done); 
 	_switchPosition: MC_LREAL;
+	_MoverTravelPosition : MC_LREAL;
 	_BoardVelocity : MC_LREAL;
 	_SwitchVelocity : MC_LREAL;
 END_VAR
@@ -67,6 +68,26 @@ END_VAR
         <ST><![CDATA[SwitchAxisPosCtrl := SwitchAxis;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="MoverSwitchTravelPosition" Id="{506615ae-e584-4b6b-8c90-23702c945ca0}">
+      <Declaration><![CDATA[PROPERTY MoverSwitchTravelPosition : mc_lreal
+]]></Declaration>
+      <Get Name="Get" Id="{770e482e-e926-4e26-8349-fb06dc2d74be}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MoverSwitchTravelPosition := _MoverTravelPosition;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{2f71d79c-8b57-4fda-9b2a-e631ae1faffd}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_MoverTravelPosition := MoverSwitchTravelPosition;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Property Name="MyTrackNumber" Id="{3cbcc021-27ff-4251-b3d2-761cf34c192e}">
       <Declaration><![CDATA[PROPERTY MyTrackNumber : INT
 ]]></Declaration>
@@ -132,8 +153,8 @@ END_VAR
 		END_IF
 			
 	Boarding:
-		_MyMover.MoveTo(RequiredPosition := _switchPosition, MoveVelocity := _BoardVelocity, NonModuloMove := TRUE);
-		IF _MyMover.isMoverAtPosition(position := _switchPosition) THEN
+		_MyMover.MoveTo(RequiredPosition := _MoverTravelPosition, MoveVelocity := _BoardVelocity, NonModuloMove := TRUE);
+		IF _MyMover.isMoverAtPosition(position := _MoverTravelPosition) THEN
 			State := BoardingComplete;
 		END_IF
 		
@@ -188,26 +209,6 @@ END_VAR
         <ST><![CDATA[ExecuteSequence := FALSE;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="SwitchTravelPosition" Id="{506615ae-e584-4b6b-8c90-23702c945ca0}">
-      <Declaration><![CDATA[PROPERTY SwitchTravelPosition : mc_lreal
-]]></Declaration>
-      <Get Name="Get" Id="{770e482e-e926-4e26-8349-fb06dc2d74be}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[SwitchTravelPosition := _switchPosition;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{2f71d79c-8b57-4fda-9b2a-e631ae1faffd}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_switchPosition := SwitchTravelPosition;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Property Name="Track1SwitchPosition" Id="{190ee51d-8616-4771-bea0-4a043a7d3d59}">
       <Declaration><![CDATA[PROPERTY Track1SwitchPosition : MC_LREAL]]></Declaration>
       <Get Name="Get" Id="{2179123a-03ea-4eb3-8d32-50c09c60e6da}">
