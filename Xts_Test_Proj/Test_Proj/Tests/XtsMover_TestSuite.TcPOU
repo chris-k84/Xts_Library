@@ -31,8 +31,30 @@ MoverReportsPositionInWindow_Test();
 MoverAcceptsTrackRegistration_Test();
 MoverRejectsNullTrackRegister_Test();
 MoverRejectsDoubleTrackRegister_Test();
-MoverRejectsPosCheckwithNoTrack_Test();]]></ST>
+MoverRejectsPosCheckwithNoTrack_Test();
+MoverRejectsArriveCommandIfNotLeft_Test();
+MoverRejectsArriveCommandIfNoInterface_Test();
+MoverRejectsLeaveCommandWithNoInterface_Test();
+MoverRejectsLeaveCommandIfMoving_Test();
+MoverAcceptsMoverLeaveCommand_Test();
+MoverAcceptsArriveCommand_Test();]]></ST>
     </Implementation>
+    <Method Name="MoverAcceptsArriveCommand_Test" Id="{22e6417c-6fbd-4ac0-9667-5e84052cd4a6}">
+      <Declaration><![CDATA[METHOD MoverAcceptsArriveCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(testMover.TriggerMoverArrive());
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="MoverAcceptsDisableCommand_Test" Id="{f74263e1-f8f8-472b-b7d9-77e272f7e657}">
       <Declaration><![CDATA[METHOD MoverAcceptsDisableCommand_Test
 VAR_INST
@@ -142,6 +164,23 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="MoverAcceptsMoverLeaveCommand_Test" Id="{63a4cba1-4cae-4219-85d1-5681444a678f}">
+      <Declaration><![CDATA[METHOD MoverAcceptsMoverLeaveCommand_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(testMover.TriggerMoverLeave());
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="MoverAcceptsNonModuloMoveCommand_Test" Id="{2b00f225-8b8d-421c-b2e9-7d3989986ec2}">
       <Declaration><![CDATA[METHOD MoverAcceptsNonModuloMoveCommand_Test
 VAR_INST
@@ -226,6 +265,40 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := testMover.ActivateTrack(Track := 0) = -1;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsArriveCommandIfNoInterface_Test" Id="{f97f0d65-3de3-442e-93b9-a0e1236e2cf9}">
+      <Declaration><![CDATA[METHOD MoverRejectsArriveCommandIfNoInterface_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := testMover.TriggerMoverArrive() = -1;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsArriveCommandIfNotLeft_Test" Id="{0e69579f-6dca-4b96-be0e-fb9b4ad240f0}">
+      <Declaration><![CDATA[METHOD MoverRejectsArriveCommandIfNotLeft_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := testMover.TriggerMoverArrive() = -2;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -328,6 +401,39 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED( testMover.MoveTo(100.0,5000.0,true));
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsLeaveCommandIfMoving_Test" Id="{8be2157e-7677-4ad4-bee0-dd1b09dcf28b}">
+      <Declaration><![CDATA[METHOD MoverRejectsLeaveCommandIfMoving_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setMoving();
+	Actual := testMover.TriggerMoverLeave() = -3;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsLeaveCommandWithNoInterface_Test" Id="{c60f29b7-4527-4eb3-87bf-691b0f2f48d3}">
+      <Declaration><![CDATA[METHOD MoverRejectsLeaveCommandWithNoInterface_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := testMover.TriggerMoverLeave() = -1;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
