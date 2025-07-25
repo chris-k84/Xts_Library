@@ -10,6 +10,15 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Method Name="setActive" Id="{d7d30cb6-d4e3-4284-903b-85caced60c68}">
+      <Declaration><![CDATA[METHOD setActive : bool
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_IsActive := true;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="setAPosition" Id="{2798e35e-433b-437c-8074-09d525f98355}">
       <Declaration><![CDATA[METHOD setAPosition : HRESULT
 VAR_INPUT
@@ -46,6 +55,15 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_MyAxisStatus.NotMoving := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setNotActive" Id="{06553b99-275a-43f9-b622-c0c80754e2f5}">
+      <Declaration><![CDATA[METHOD setNotActive : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_IsActive := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="setStationary" Id="{58cf9c7d-1727-4a74-b8f3-b9dc5225f246}">

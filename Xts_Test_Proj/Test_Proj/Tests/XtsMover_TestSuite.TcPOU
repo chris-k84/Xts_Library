@@ -298,6 +298,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setActive();
 	Actual := testMover.TriggerMoverArrive() = -2;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>

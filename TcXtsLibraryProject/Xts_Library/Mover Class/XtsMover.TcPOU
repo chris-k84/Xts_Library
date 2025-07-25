@@ -27,6 +27,7 @@ VAR
 	NullTrack : XtsTrack;
 	_SetForce: LREAL;
 	_SetCurrent: LREAL;
+	_IsActive: BOOL;
 END_VAR
 VAR CONSTANT
 	_MaxMoverVelocity : MC_LREAL := 4000.0;
@@ -140,6 +141,7 @@ END_VAR
 		_stTmsActPositions := _ipTcIoXtsMover.GetPositionInfo();
 		_SetForce := _ipTcIoXtsMover.GetSetForce();
 		_SetCurrent := _ipTcIoXtsMover.GetSetCurrent();
+		_IsActive := _ipTcIoXtsMover.GetIsActive();
 	END_IF
 ELSE
 	Cycle := -1;
@@ -362,7 +364,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IsActive := _ipTcIoXtsMover.GetIsActive();]]></ST>
+        <ST><![CDATA[IsActive := _IsActive;]]></ST>
       </Implementation>
     </Method>
     <Method Name="isMoverAtPosition" Id="{f1a74560-cd92-4fa6-83a2-3bacea608337}" FolderPath="Status\">
@@ -691,7 +693,7 @@ END_VAR
 	TriggerMoverArrive := - 1;
 	RETURN;
 END_IF
-IF _ipTcIoXtsMover.GetIsActive() THEN
+IF _IsActive THEN
 	TriggerMoverArrive := - 2;
 	RETURN;
 END_IF
@@ -709,7 +711,7 @@ END_VAR
 	TriggerMoverLeave := -1;
 	RETURN;
 END_IF
-IF NOT _ipTcIoXtsMover.GetIsActive() THEN
+IF NOT _IsActive THEN
 	TriggerMoverLeave := -2;
 	RETURN;
 END_IF
