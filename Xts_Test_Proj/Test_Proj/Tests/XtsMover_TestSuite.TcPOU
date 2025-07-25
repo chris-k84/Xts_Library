@@ -3,6 +3,7 @@
   <POU Name="XtsMover_TestSuite" Id="{35b3f83a-ddd6-49c7-a80a-724734d90825}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsMover_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
+	_TestMoverInterface : I_TcIoXtsXpuMover;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -50,6 +51,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.MoverXtsIoEnvInterface := _TestMoverInterface;
 	Actual := SUCCEEDED(testMover.TriggerMoverArrive());
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -176,6 +178,9 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.MoverXtsIoEnvInterface := _TestMoverInterface;
+	testMover.setActive();
+	testMover.setStationary();
 	Actual := SUCCEEDED(testMover.TriggerMoverLeave());
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -234,6 +239,17 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Property Name="MoverInterface" Id="{f0947ece-3c35-4f88-ac1c-7aec4cecfcaa}">
+      <Declaration><![CDATA[PROPERTY MoverInterface : I_TcIoXtsXpuMover]]></Declaration>
+      <Set Name="Set" Id="{42d5a4ab-8220-4929-b77b-834b5cb51aa6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_TestMoverInterface := MoverInterface;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="MoverRejectsActivateTrackWhileMoving_Test" Id="{68602ec7-eeb2-48cd-a3a7-de01a20ff851}">
       <Declaration><![CDATA[METHOD MoverRejectsActivateTrackWhileMoving_Test
 VAR_INST
@@ -299,6 +315,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testMover.setActive();
+	testMover.MoverXtsIoEnvInterface := _TestMoverInterface;
 	Actual := testMover.TriggerMoverArrive() = -2;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -418,6 +435,8 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	testMover.setMoving();
+	testMover.setActive();
+	testMover.MoverXtsIoEnvInterface := _TestMoverInterface;
 	Actual := testMover.TriggerMoverLeave() = -3;
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>

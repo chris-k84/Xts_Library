@@ -3,22 +3,13 @@
   <POU Name="XtsHardware_TestSuite" Id="{b560ca6a-e691-471a-a25d-3f29414ba80e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsHardware_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
-	TestXtsIoEnvVar : XtsIoEnvVar;
 	nullHardware : XTSHardware;
 	MyXtsHardware : XTSHardware := (ExpectedNumberOfParts := 1, ExpectedNumberOfTracks := 1);
 	localXpu: Xts_Library.I_TcIoXtsProcessingUnit;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF NOT TestXtsIoEnvVar.IsInitialised() THEN
-	IF SUCCEEDED(TestXtsIoEnvVar.Initialise()) THEN
-		MyXtsHardware.MyXpu :=  TestXtsIoEnvVar.GetXPUInterface(1);
-		localXpu := TestXtsIoEnvVar.GetXPUInterface(1);
-	END_IF
-	RETURN;
-END_IF
-
-IF NOT MyXtsHardware.IsInitialised() THEN
+      <ST><![CDATA[IF NOT MyXtsHardware.IsInitialised() THEN
 	MyXtsHardware.Initialise();
 	RETURN;
 END_IF
@@ -360,11 +351,32 @@ VAR_INST
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
-	MyXtsHardware.MyXpu := TestXtsIoEnvVar.GetXPUInterface(1);
 	Actual := MyXtsHardware.HasValidXPUReference();
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Property Name="XPUInterface" Id="{87d6f6c6-5136-44e2-ac7b-65ad1ff46c0c}">
+      <Declaration><![CDATA[PROPERTY XPUInterface : I_TcIoXtsProcessingUnit]]></Declaration>
+      <Set Name="Set" Id="{e4d6cd76-f880-4b01-bc99-1cd1f9d86c90}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[localXpu := XPUInterface;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="XtsHWInterface" Id="{63a37f49-ad64-4614-b378-51dbfb998d3f}">
+      <Declaration><![CDATA[PROPERTY XtsHWInterface : I_TcIoXtsProcessingUnit]]></Declaration>
+      <Set Name="Set" Id="{4ea51632-817b-4a8b-8fcb-d193cdb7f393}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyXtsHardware.MyXpu :=  XtsHWInterface;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
   </POU>
 </TcPlcObject>

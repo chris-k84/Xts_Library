@@ -3,6 +3,7 @@
   <POU Name="MAIN" Id="{dc5d3262-2c75-40be-bcf4-e3452be8a2b3}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	TestXtsIoEnvVar : XtsIoEnvVar;
 	XtsHWTestSuite : XtsHardware_TestSuite := (TestSuiteName := 'XtsHWTestSuite');
 	XtsMoverTestSuite : XtsMover_TestSuite := (TestSuiteName := 'XtsMoverTestsuite');
 	XtsTestSuite : Xts_TestSuite := (TestSuiteName := 'XtsTestSuite');
@@ -41,7 +42,16 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[XtsHWTestSuite();
+      <ST><![CDATA[IF NOT TestXtsIoEnvVar.IsInitialised() THEN
+	IF SUCCEEDED(TestXtsIoEnvVar.Initialise()) THEN
+		XtsHWTestSuite.XPUInterface := TestXtsIoEnvVar.GetXPUInterface(1);
+		XtsHWTestSuite.XtsHWInterface := TestXtsIoEnvVar.GetXPUInterface(1);
+		XtsMoverTestSuite.MoverInterface := TestXtsIoEnvVar.GetXPUInterface(1).MoverTcIo(1);
+	END_IF
+	RETURN;
+END_IF
+
+XtsHWTestSuite();
 XtsMoverTestSuite();
 XtsTestSuite();
 ActivateTrackTestSuite();
