@@ -710,7 +710,7 @@ IF NOT _ipTcIoXtsMover.GetIsActive() THEN
 	RETURN;
 END_IF
 IF NOT isMoverStationary() THEN
-	TriggerMoverArrive := -3;
+	TriggerMoverLeave := -3;
 	RETURN;
 END_IF
 
