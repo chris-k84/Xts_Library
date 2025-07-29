@@ -62,52 +62,20 @@ VAR_INPUT
 	bInCopyCode	: BOOL;
 	Position	: LREAL;
 	SwitchAxis : I_Position;
+	MyTrackNumber : INT;
+	Track1SwitchPosition : LREAL;
+	Track2SwitchPsoition : LREAL;
+	MoverOnSwitchPosition : LREAL;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SwitchAxisPosCtrl := SwitchAxis;]]></ST>
+        <ST><![CDATA[SwitchAxisPosCtrl := SwitchAxis;
+_MyTrackNumber := MyTrackNumber;
+_Track1SwitchPosition := Track1SwitchPosition;
+_Track2SwitchPosition := Track2SwitchPsoition;
+_MoverTravelPosition := moverOnSwitchPosition;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MoverSwitchTravelPosition" Id="{506615ae-e584-4b6b-8c90-23702c945ca0}">
-      <Declaration><![CDATA[PROPERTY MoverSwitchTravelPosition : mc_lreal
-]]></Declaration>
-      <Get Name="Get" Id="{770e482e-e926-4e26-8349-fb06dc2d74be}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MoverSwitchTravelPosition := _MoverTravelPosition;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{2f71d79c-8b57-4fda-9b2a-e631ae1faffd}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MoverTravelPosition := MoverSwitchTravelPosition;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Property Name="MyTrackNumber" Id="{3cbcc021-27ff-4251-b3d2-761cf34c192e}">
-      <Declaration><![CDATA[PROPERTY MyTrackNumber : INT
-]]></Declaration>
-      <Get Name="Get" Id="{eac07d3d-cc95-4d94-be8d-aab0ced9fdea}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyTrackNumber := _MyTrackNumber;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{4b1478e4-977e-454a-a0bf-fe888f795dfb}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyTrackNumber := MyTrackNumber;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Method Name="Operation" Id="{5e624551-3837-4f5d-8aa6-8dbf896b2a06}">
       <Declaration><![CDATA[METHOD PROTECTED Operation : BOOL
 ]]></Declaration>
@@ -209,43 +177,5 @@ END_VAR
         <ST><![CDATA[ExecuteSequence := FALSE;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Track1SwitchPosition" Id="{190ee51d-8616-4771-bea0-4a043a7d3d59}">
-      <Declaration><![CDATA[PROPERTY Track1SwitchPosition : MC_LREAL]]></Declaration>
-      <Get Name="Get" Id="{2179123a-03ea-4eb3-8d32-50c09c60e6da}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[Track1SwitchPosition := _Track1SwitchPosition;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{98459ca6-5c5e-4646-8d93-b28fde23c27f}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_Track1SwitchPosition := Track1SwitchPosition;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Property Name="Track2SwitchPosition" Id="{5e471955-b1fa-42e8-8457-954969d80adc}">
-      <Declaration><![CDATA[PROPERTY Track2SwitchPosition : MC_LREAL]]></Declaration>
-      <Get Name="Get" Id="{6218b073-eaf9-44e9-8692-abdac10dd02b}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[Track2SwitchPosition := _Track2SwitchPosition;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{5e38ec9d-d9b7-4541-b1f9-c48e79167e2a}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_Track2SwitchPosition := Track2SwitchPosition;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
   </POU>
 </TcPlcObject>
