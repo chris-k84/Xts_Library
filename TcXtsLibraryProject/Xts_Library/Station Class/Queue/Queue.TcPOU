@@ -6,21 +6,36 @@ VAR
 	_Complete : BOOL;
 	_Position : LREAL := 0.0;
 	_MyMover : I_XtsMover;
+	_MyLeavingMover : I_XtsMover;
+	_NullMover : I_XtsMover;
 	_MyStation : I_Station;
+	QueueSequence : INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Folder Name="Status" Id="{4146ad9b-933c-4afb-a6d8-e90fa8366732}" />
     <Method Name="Cycle" Id="{b03e5178-a63f-46c3-93a2-0179449aa637}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _MyStation.isComplete() THEN
-	_Complete := TRUE;
-ELSE
-	_Complete := FALSE;
-END_IF]]></ST>
+        <ST><![CDATA[IF _MyMover = 0 THEN
+	RETURN;
+END_IF
+
+CASE QueueSequence OF
+	0:
+		IF _MyStation.IsReady() THEN
+			_MyLeavingMover := _MyMover;
+			QueueSequence := 10;
+		END_IF
+	10:
+		IF _MyStation.IsOperating() THEN
+			_MyLeavingMover := _NullMover;
+			QueueSequence := 0;
+		END_IF
+END_CASE]]></ST>
       </Implementation>
     </Method>
     <Method Name="FB_Init" Id="{4a31526b-83cb-4557-8684-f1f086ebc0fe}">
@@ -40,11 +55,40 @@ END_VAR]]></Declaration>
 _MyStation := Station;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="isComplete" Id="{e755abc1-1f3a-493a-ad81-ab0e742a23ce}">
+    <Method Name="HasMover" Id="{20126ae5-2a64-4e3a-8bf1-40f04bba8f58}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD HasMover : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[HasMover := _MyMover <> 0;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsClear" Id="{aed4f67a-12c4-44b3-89bd-dc10f74faa45}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsClear : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsClear := _MyMover = 0;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="isComplete" Id="{e755abc1-1f3a-493a-ad81-ab0e742a23ce}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD isComplete : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[isComplete := _Complete;]]></ST>
+        <ST><![CDATA[isComplete := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsOperating" Id="{f8703c69-d9e6-477e-882a-a6573d8c661c}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsOperating : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsOperating := _MyMover <> 0;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsReady" Id="{6c981551-1b51-4198-93c9-7e75e7c31277}" FolderPath="Status\">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD IsReady : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <Method Name="MyMover" Id="{0c3e317f-08a9-475b-b84d-7ac86f2701cd}">

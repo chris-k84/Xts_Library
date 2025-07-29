@@ -74,9 +74,6 @@
     <Compile Include="Station Class\Queue\Queue.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\Station\I_StationControl.TcIO">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Station Class\Station\I_Station.TcIO">
       <SubType>Code</SubType>
     </Compile>
