@@ -28,6 +28,10 @@ VAR
 	_SetForce: LREAL;
 	_SetCurrent: LREAL;
 	_IsActive: BOOL;
+	_Gap : LREAL;
+	_Acceleration : LREAL;
+	_Deceleration : LREAL;
+	_Jerk : LREAL;
 END_VAR
 VAR CONSTANT
 	_MaxMoverVelocity : MC_LREAL := 4000.0;
@@ -56,7 +60,8 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MoveBehaviour.Acceleration := Acceleration;]]></ST>
+          <ST><![CDATA[MoveBehaviour.Acceleration := Acceleration;
+_Acceleration := Acceleration;]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -167,7 +172,8 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[MoveBehaviour.Deceleration := Deceleration;
-HaltBehaviour.Deceleration := Deceleration;]]></ST>
+HaltBehaviour.Deceleration := Deceleration;
+_Deceleration := Deceleration;]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -239,6 +245,7 @@ END_VAR
           <ST><![CDATA[IF Gap >= 50.0 THEN
 	MoveBehaviour.Gap := Gap;
 	HaltBehaviour.Gap := Gap;
+	_Gap := Gap;
 ELSE
 	Gap := 100.0;
 END_IF
@@ -435,7 +442,8 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[MoveBehaviour.Jerk := Jerk;
-HaltBehaviour.Jerk := Jerk;]]></ST>
+HaltBehaviour.Jerk := Jerk;
+_Jerk := Jerk;]]></ST>
         </Implementation>
       </Set>
     </Property>
