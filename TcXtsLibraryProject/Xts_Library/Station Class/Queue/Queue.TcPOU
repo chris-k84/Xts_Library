@@ -3,13 +3,13 @@
   <POU Name="Queue" Id="{8254c78a-3a7c-4581-9f3c-a41ac2249f11}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Queue IMPLEMENTS I_Station, I_Cyclic, I_Resettable, I_Object
 VAR
-	_Complete : BOOL;
 	_Position : LREAL := 0.0;
 	_MyMover : I_XtsMover;
 	_MyLeavingMover : I_XtsMover;
 	_NullMover : I_XtsMover;
 	_MyStation : I_Station;
 	QueueSequence : INT;
+	_isComplete : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -28,9 +28,11 @@ CASE QueueSequence OF
 	0:
 		IF _MyStation.IsReady() THEN
 			_MyLeavingMover := _MyMover;
+			_isComplete := TRUE;
 			QueueSequence := 10;
 		END_IF
 	10:
+		_isComplete := FALSE;
 		IF _MyStation.IsOperating() THEN
 			_MyLeavingMover := _NullMover;
 			QueueSequence := 0;
@@ -73,7 +75,7 @@ _MyStation := Station;]]></ST>
       <Declaration><![CDATA[METHOD isComplete : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[isComplete := TRUE;]]></ST>
+        <ST><![CDATA[isComplete := _isComplete;]]></ST>
       </Implementation>
     </Method>
     <Method Name="IsOperating" Id="{f8703c69-d9e6-477e-882a-a6573d8c661c}" FolderPath="Status\">
@@ -132,7 +134,7 @@ END_VAR
       <Declaration><![CDATA[METHOD Reset : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_Complete := FALSE;]]></ST>
+        <ST><![CDATA[_isComplete := FALSE;]]></ST>
       </Implementation>
     </Method>
   </POU>
