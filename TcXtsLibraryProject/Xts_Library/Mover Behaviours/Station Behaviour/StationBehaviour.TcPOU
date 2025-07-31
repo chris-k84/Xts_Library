@@ -20,6 +20,25 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
+    <Property Name="AbsoluteMoves" Id="{17b68adf-bca0-4be6-993f-8e20810fcd58}">
+      <Declaration><![CDATA[PROPERTY AbsoluteMoves : bool]]></Declaration>
+      <Get Name="Get" Id="{9984e65c-22d5-4260-98b6-c2626c7cc30d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[AbsoluteMoves := _NonModuloMoves;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{2d9b4a71-c7c5-4acd-9b62-753da375193c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_NonModuloMoves := AbsoluteMoves;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="Cycle" Id="{0bc270b2-0e7a-4545-b872-87f2d15ca3f5}">
       <Declaration><![CDATA[METHOD PUBLIC Cycle : HRESULT
 VAR_INPUT
