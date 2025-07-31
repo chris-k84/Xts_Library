@@ -23,7 +23,7 @@ VAR
 		Done); 
 	_switchPosition: MC_LREAL;
 	_MoverTravelPosition : MC_LREAL;
-	_BoardVelocity : MC_LREAL;
+	_BoardVelocity : MC_LREAL := 100.0;
 	_SwitchVelocity : MC_LREAL;
 END_VAR
 ]]></Declaration>
