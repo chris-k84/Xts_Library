@@ -24,7 +24,7 @@ VAR
 	_switchPosition: MC_LREAL;
 	_MoverTravelPosition : MC_LREAL;
 	_BoardVelocity : MC_LREAL := 100.0;
-	_SwitchVelocity : MC_LREAL;
+	_SwitchVelocity : MC_LREAL := 200.0;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -177,5 +177,24 @@ END_VAR
         <ST><![CDATA[ExecuteSequence := FALSE;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="SwitchVelocity" Id="{2b2ab201-99a2-4b79-87da-05eb4b2bdaf0}">
+      <Declaration><![CDATA[PROPERTY SwitchVelocity : LREAL]]></Declaration>
+      <Get Name="Get" Id="{cd238776-2665-438e-8843-6901647c425c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[SwitchVelocity := _SwitchVelocity;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{3a523177-e66f-47d0-8004-3fc4fbb2e246}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_SwitchVelocity := SwitchVelocity;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
   </POU>
 </TcPlcObject>
