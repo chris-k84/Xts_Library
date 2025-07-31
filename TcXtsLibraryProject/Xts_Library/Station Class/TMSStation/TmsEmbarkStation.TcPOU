@@ -1,8 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="TmsEmbarkStation" Id="{4d15a973-29cb-4ffe-934a-8f072d992ec0}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK TmsEmbarkStation EXTENDS Station
+    <Declaration><![CDATA[FUNCTION_BLOCK TmsEmbarkStation IMPLEMENTS I_Station, I_Cyclic, I_Resettable, I_Object
 VAR
+	_IsClear : BOOL := TRUE;
+	_Complete : BOOL;
+	_Operating : BOOL;
+	_Ready : BOOL := TRUE;
+	_Position : LREAL := 0.0;
+	_HasMover : BOOL;
+	MoverArrive : R_TRIG;
+	_MyMover : I_XtsMover;
 	SwitchAxisCtrl : I_Axis;
 	SwitchAxisPosCtrl : I_Position;
 	_Track1SwitchPosition : MC_LREAL;
@@ -20,6 +28,7 @@ VAR
 		BoardingComplete,
 		ActivateTrackForMover,
 		Moving,
+		CheckActiveTrack,
 		Done); 
 	_switchPosition: MC_LREAL;
 	_MoverTravelPosition : MC_LREAL;
@@ -30,6 +39,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
+    <Folder Name="Status" Id="{fc30821c-889b-457b-acd5-7e0794e2da97}" />
     <Property Name="BoardVelocity" Id="{af5577ef-90f6-4070-9e3d-dce62d068c94}">
       <Declaration><![CDATA[PROPERTY BoardVelocity : MC_LREAL]]></Declaration>
       <Get Name="Get" Id="{442f20d9-4d5c-462e-ace0-37721614361e}">
@@ -49,36 +59,8 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="FB_Init" Id="{c56e5d7e-44de-4ea5-9429-5a143178668d}">
-      <Declaration><![CDATA[(*FB_Init is always available implicitly and it is used primarily for initialization.
-The return value is not evaluated. For a specific influence, you can also declare the
-methods explicitly and provide additional code there with the standard initialization
-code. You can evaluate the return value.*)
-METHOD FB_Init : BOOL
-VAR_INPUT
-	(* TRUE: the retain variables are initialized (reset warm / reset cold)*)
-	bInitRetains	: BOOL;
-	(* TRUE: the instance will be copied to the copy code afterward (online change)   *)
-	bInCopyCode	: BOOL;
-	Position	: LREAL;
-	SwitchAxis : I_Position;
-	MyTrackNumber : INT;
-	Track1SwitchPosition : LREAL;
-	Track2SwitchPsoition : LREAL;
-	MoverOnSwitchPosition : LREAL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[SwitchAxisPosCtrl := SwitchAxis;
-_MyTrackNumber := MyTrackNumber;
-_Track1SwitchPosition := Track1SwitchPosition;
-_Track2SwitchPosition := Track2SwitchPsoition;
-_MoverTravelPosition := moverOnSwitchPosition;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Operation" Id="{5e624551-3837-4f5d-8aa6-8dbf896b2a06}">
-      <Declaration><![CDATA[METHOD PROTECTED Operation : BOOL
-]]></Declaration>
+    <Method Name="Cycle" Id="{3f7d84b9-4220-4895-8d1f-d1319db89048}">
+      <Declaration><![CDATA[METHOD Cycle : HRESULT]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE State OF
 	Init:
@@ -132,7 +114,7 @@ _MoverTravelPosition := moverOnSwitchPosition;]]></ST>
 		ELSE
 			SwitchAxisPosCtrl.MoveToPosition(Position := _Track1SwitchPosition, Velocity := _SwitchVelocity);
 		END_IF
-		State := BoardingComplete;
+		State := Moving;
 		
 	Moving:
 		IF (_MyTrackNumber = 1 AND SwitchAxisPosCtrl.isAtPosition(position := _Track2SwitchPosition)) OR
@@ -146,8 +128,15 @@ _MoverTravelPosition := moverOnSwitchPosition;]]></ST>
 		ELSE
 			_MyMover.ActivateTrack(Track := 1);
 		END_IF
-		State := Moving;
+		State := CheckActiveTrack;
 		_Complete := TRUE;
+	
+	CheckActiveTrack:
+		IF _MyTrackNumber = 1 AND_THEN _MyMover.MoversActiveTrack = 2 THEN
+			State := Done;
+		ELSIF  _MyMover.MoversActiveTrack = 1 THEN
+			State := Done;
+		END_IF
 			
 	Done:
 		IF _Complete AND NOT _HasMover THEN
@@ -157,6 +146,112 @@ _MoverTravelPosition := moverOnSwitchPosition;]]></ST>
 			State := Waiting;
 		END_IF	
 END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_Init" Id="{c56e5d7e-44de-4ea5-9429-5a143178668d}">
+      <Declaration><![CDATA[(*FB_Init is always available implicitly and it is used primarily for initialization.
+The return value is not evaluated. For a specific influence, you can also declare the
+methods explicitly and provide additional code there with the standard initialization
+code. You can evaluate the return value.*)
+METHOD FB_Init : BOOL
+VAR_INPUT
+	(* TRUE: the retain variables are initialized (reset warm / reset cold)*)
+	bInitRetains	: BOOL;
+	(* TRUE: the instance will be copied to the copy code afterward (online change)   *)
+	bInCopyCode	: BOOL;
+	Position	: LREAL;
+	SwitchAxis : I_Position;
+	MyTrackNumber : INT;
+	Track1SwitchPosition : LREAL;
+	Track2SwitchPsoition : LREAL;
+	MoverOnSwitchPosition : LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SwitchAxisPosCtrl := SwitchAxis;
+_MyTrackNumber := MyTrackNumber;
+_Track1SwitchPosition := Track1SwitchPosition;
+_Track2SwitchPosition := Track2SwitchPsoition;
+_MoverTravelPosition := moverOnSwitchPosition;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HasMover" Id="{01ba8fbd-2454-4e68-9b4a-9db0f953212c}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD HasMover : BOOL]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[HasMover := _HasMover;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsClear" Id="{43301cfc-5dfe-497a-ba25-2baea0d242aa}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsClear : BOOL]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsClear := _IsClear;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="isComplete" Id="{44421f60-5729-4d12-9b71-06a85fd9d019}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD isComplete : BOOL]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[isComplete := _Complete;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsOperating" Id="{df31fe6f-4d2e-47a8-9a3f-cb59b84fd3a0}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsOperating : BOOL]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsOperating := _Operating;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsReady" Id="{ecaac7cf-e1f3-4b8e-82e7-477bdefe5978}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsReady : BOOL]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsReady := _Ready;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MyMover" Id="{53ce83f8-f376-4c29-a057-798a57ce6dc6}">
+      <Declaration><![CDATA[METHOD MyMover : HRESULT
+VAR_INPUT
+	mover	: I_XtsMover;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF mover = 0 THEN
+	MyMover := -1;
+	RETURN;
+END_IF
+_HasMover := TRUE;
+_MyMover := mover;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Position" Id="{57781d24-723f-4dbc-b59b-493697f347b8}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Position : MC_LREAL
+]]></Declaration>
+      <Get Name="Get" Id="{846aa0af-3762-492c-8088-91ff454623be}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="RegisterWithParent" Id="{ae1250b4-e8d3-4bd2-8110-48d016d30ba8}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD RegisterWithParent
+VAR_INPUT
+	Runner	: Base_Library.I_HostObjects;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Reset" Id="{95aecf88-84d1-40dd-83f3-696248ea5185}">
+      <Declaration><![CDATA[METHOD Reset : HRESULT]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_Complete := FALSE;
+_IsClear := TRUE;
+_Operating := FALSE;
+_Ready := TRUE;
+_HasMover := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="StartSwitch" Id="{c29e9395-8979-4e9a-90a8-1d97909d0ac9}">
