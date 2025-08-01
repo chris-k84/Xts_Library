@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="Switch" Id="{074ec01d-efeb-40bf-b31f-8bc7084e0e0c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Switch EXTENDS Axis_Base IMPLEMENTS I_Lift
+VAR
+	_Assigned : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Assigned" Id="{fe993b0e-f1e9-419b-83a4-8730860a9e18}">
+      <Declaration><![CDATA[PROPERTY Assigned : BOOL]]></Declaration>
+      <Get Name="Get" Id="{5abe71d0-8308-4f05-9fc2-3c34e26d1741}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Assigned := _Assigned;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{acc098ff-5872-48dc-b763-c9d1fb7af925}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Assigned := Assigned;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="Call" Id="{58c6f245-50e0-4e4b-a8ae-1bc1d34e6a27}">
+      <Declaration><![CDATA[METHOD Call : HRESULT
+VAR_INPUT
+	Position : LREAL;
+	Velocity : LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Assigned THEN
+	RETURN;
+	Call := -1;
+END_IF
+
+Call := (MoveToModuloPosition(Position := Position, Velocity := Velocity));]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Release" Id="{daad8677-99cd-44be-bf6a-0aa91a7d9e5d}">
+      <Declaration><![CDATA[METHOD Release : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_Assigned := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

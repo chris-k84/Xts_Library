@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_Lift" Id="{aabca9f0-6a1e-4b18-a681-bf2d8e7e4273}">
+    <Declaration><![CDATA[INTERFACE I_Lift EXTENDS I_Position
+]]></Declaration>
+    <Property Name="Assigned" Id="{5bc2abc7-8576-41cd-b6d7-7345a20b1674}">
+      <Declaration><![CDATA[PROPERTY Assigned : BOOL]]></Declaration>
+      <Get Name="Get" Id="{f36b38f8-2fd2-4947-8c11-9e282d764737}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{641fd3e2-af31-4d87-8fee-210dc813ce4a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
+    </Property>
+    <Method Name="Call" Id="{2883bae7-2d85-4d90-bea8-3c456db1f029}">
+      <Declaration><![CDATA[METHOD Call : HRESULT
+VAR_INPUT
+	Position : LREAL;
+	Velocity : LREAL;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>
