@@ -42,7 +42,7 @@ END_VAR
 	Call := -1;
 END_IF
 
-Call := (MoveToModuloPosition(Position := Position, Velocity := Velocity));]]></ST>
+Call := (MoveToPosition(Position := Position, Velocity := Velocity));]]></ST>
       </Implementation>
     </Method>
     <Method Name="Release" Id="{daad8677-99cd-44be-bf6a-0aa91a7d9e5d}">
