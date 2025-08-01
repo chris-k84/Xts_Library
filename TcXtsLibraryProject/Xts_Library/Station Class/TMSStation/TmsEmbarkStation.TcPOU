@@ -11,7 +11,7 @@ VAR
 	_HasMover : BOOL;
 	MoverArrive : R_TRIG;
 	_MyMover : I_XtsMover;
-	SwitchAxisPosCtrl : I_Position;
+	SwitchAxisPosCtrl : I_Lift;
 	_Track1SwitchPosition : MC_LREAL;
 	_Track2SwitchPosition : MC_LREAL;
 	ExecuteSequence : BOOL;
@@ -33,6 +33,7 @@ VAR
 	_BoardVelocity : MC_LREAL := 100.0;
 	_SwitchVelocity : MC_LREAL := 200.0;
 	_MoverLeavePosition : LREAL;
+	Called : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -83,7 +84,7 @@ VAR_INPUT
 	(* TRUE: the instance will be copied to the copy code afterward (online change)   *)
 	bInCopyCode	: BOOL;
 	Position	: LREAL;
-	SwitchAxis : I_Position;
+	SwitchAxis : I_Lift;
 	MyTrackNumber : INT;
 	Track1SwitchPosition : LREAL;
 	Track2SwitchPsoition : LREAL;
@@ -174,22 +175,25 @@ END_VAR
 	HasSwitch:
 		IF (_MyTrackNumber = 1 AND (SwitchAxisPosCtrl.isAtPosition(_Track1SwitchPosition) ))
 			OR (_MyTrackNumber = 2 AND (SwitchAxisPosCtrl.isAtPosition(_Track2SwitchPosition))) THEN
-					State := Boarding;
-		ELSE
+				SwitchAxisPosCtrl.Assigned := TRUE;
+				State := Boarding;
+				Called := FALSE;
+		ELSIF NOT Called THEN
 			State := Call;
 		END_IF	
 		
 	Call:
-		IF SwitchAxisPosCtrl.IsStationary() THEN
+		IF NOT SwitchAxisPosCtrl.Assigned AND_THEN SwitchAxisPosCtrl.IsStationary() THEN
 			IF _MyTrackNumber = 1 THEN
-				SwitchAxisPosCtrl.MoveToPosition(Position := _Track1SwitchPosition, Velocity := _SwitchVelocity);
+				SwitchAxisPosCtrl.Call(Position := _Track1SwitchPosition, Velocity := _SwitchVelocity);
 			ELSE
-				SwitchAxisPosCtrl.MoveToPosition(Position := _Track2SwitchPosition, Velocity := _SwitchVelocity);
+				SwitchAxisPosCtrl.Call(Position := _Track2SwitchPosition, Velocity := _SwitchVelocity);
 			END_IF
-		ELSE
+			SwitchAxisPosCtrl.Assigned := TRUE;
+			Called := TRUE;
 			State := HasSwitch;
 		END_IF
-			
+	
 	Boarding:
 		_MyMover.MoveTo(RequiredPosition := _MoverTravelPosition, MoveVelocity := _BoardVelocity, NonModuloMove := TRUE);
 		IF _MyMover.isMoverAtPosition(position := _MoverTravelPosition) THEN
@@ -231,6 +235,7 @@ END_VAR
 		IF _MyMover.AxisRef.NcToPlc.ActPos > _MoverLeavePosition + 100 THEN
 			State := Done;
 			_HasMover := FALSE;
+			SwitchAxisPosCtrl.Assigned := FALSE;
 		END_IF
 			
 	Done:

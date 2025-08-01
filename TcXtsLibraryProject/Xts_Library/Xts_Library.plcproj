@@ -89,6 +89,12 @@
     <Compile Include="Station Class\Station\stStationStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Station Class\TMSStation\I_Lift.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Station Class\TMSStation\Switch.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Station Class\TMSStation\TmsEmbarkStation.TcPOU">
       <SubType>Code</SubType>
       <ExcludeFromBuild>false</ExcludeFromBuild>
