@@ -29,10 +29,12 @@ VAR
 		ActivateTrackForMover,
 		Moving,
 		CheckActiveTrack,
+		CheckMoverLeft,
 		Done); 
 	_MoverTravelPosition : MC_LREAL;
 	_BoardVelocity : MC_LREAL := 100.0;
 	_SwitchVelocity : MC_LREAL := 200.0;
+	_MoverLeavePosition : LREAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -221,9 +223,16 @@ END_VAR
 	
 	CheckActiveTrack:
 		IF _MyTrackNumber = 1 AND_THEN _MyMover.MoversActiveTrack = 2 THEN
-			State := Done;
+			State := CheckMoverLeft;
+			_MoverLeavePosition := _MyMover.AxisRef.NcToPlc.ActPos;
 		ELSIF  _MyMover.MoversActiveTrack = 1 THEN
+			State := CheckMoverLeft;
+		END_IF
+	
+	CheckMoverLeft:
+		IF _MyMover.AxisRef.NcToPlc.ActPos > _MoverLeavePosition + 100 THEN
 			State := Done;
+			_HasMover := FALSE;
 		END_IF
 			
 	Done:
