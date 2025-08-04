@@ -103,6 +103,10 @@ END_VAR]]></Declaration>
 	MyMover := -1;
 	RETURN;
 END_IF
+IF _HasMover THEN
+	MyMover := -2;
+	RETURN;
+END_IF
 _HasMover := TRUE;
 _MyMover := mover;]]></ST>
       </Implementation>
