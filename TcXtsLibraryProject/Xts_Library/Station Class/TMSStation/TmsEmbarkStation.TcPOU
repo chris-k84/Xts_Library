@@ -196,9 +196,16 @@ END_VAR
 	
 	Boarding:
 		_MyMover.MoveTo(RequiredPosition := _MoverTravelPosition, MoveVelocity := _BoardVelocity, NonModuloMove := TRUE);
-		IF _MyMover.isMoverAtPosition(position := _MoverTravelPosition) THEN
-			State := BoardingComplete;
+		IF _MoverTravelPosition > _MyMover.GetActiveTrackLength() THEN
+			IF _MyMover.isMoverAtPosition(position := _MoverTravelPosition - _MyMover.GetActiveTrackLength()) THEN
+				State := BoardingComplete;
+			END_IF
+		ELSE
+			IF _MyMover.isMoverAtPosition(position := _MoverTravelPosition) THEN
+				State := BoardingComplete;
+			END_IF
 		END_IF
+		
 		
 	BoardingComplete:
 		IF _MyTrackNumber = 1 THEN
@@ -221,7 +228,6 @@ END_VAR
 			_MyMover.ActivateTrack(Track := 1);
 		END_IF
 		State := CheckActiveTrack;
-		_Complete := TRUE;
 	
 	CheckActiveTrack:
 		IF _MyTrackNumber = 1 AND_THEN _MyMover.MoversActiveTrack = 2 THEN
@@ -232,6 +238,7 @@ END_VAR
 		END_IF
 	
 	CheckMoverLeft:
+		_Complete := TRUE;
 		IF _MyMover.AxisRef.NcToPlc.ActPos > _MoverLeavePosition + 100 THEN
 			State := Done;
 			_HasMover := FALSE;
