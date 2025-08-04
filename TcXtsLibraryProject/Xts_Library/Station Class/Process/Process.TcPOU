@@ -1,8 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Process" Id="{5bb3084c-8dc2-4985-92e4-194b505a9bed}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Process EXTENDS Station IMPLEMENTS IProcess
+    <Declaration><![CDATA[FUNCTION_BLOCK Process IMPLEMENTS IProcess, I_Station, I_Cyclic, I_Resettable, I_Object
 VAR
+	_IsClear : BOOL := TRUE;
+	_Complete : BOOL;
+	_Operating : BOOL;
+	_Ready : BOOL := TRUE;
+	_Position : LREAL := 0.0;
+	_HasMover : BOOL;
+	MoverArrive : R_TRIG;
+	_MyMover : I_XtsMover;
 	_endPos : MC_LREAL;
 	_processVelo : MC_LREAL;
 	State : INT;
@@ -10,6 +18,23 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
+    <Folder Name="Status" Id="{f15f8ed9-caeb-47bb-9e94-747e6dea9678}" />
+    <Method Name="Cycle" Id="{898c105c-64a3-42d1-a88c-fca93bd1937e}">
+      <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MoverArrive(CLK := _HasMover);
+Operation();
+IF MoverArrive.Q THEN
+	_IsClear := FALSE;
+	_Ready := FALSE;
+	_Operating := TRUE;
+	_Complete := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="EndPosition" Id="{7f4a20d7-f0db-4d2e-987f-1dcaac0ba263}">
       <Declaration><![CDATA[PROPERTY EndPosition : MC_LREAL]]></Declaration>
       <Get Name="Get" Id="{87faf885-3d96-408c-9e10-b4693bedb554}">
@@ -42,6 +67,57 @@ END_VAR
 _processVelo := ProcessVelocity;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="HasMover" Id="{1fef3b62-3814-426f-9e0f-bdbf515d1660}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD HasMover : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[HasMover := _HasMover;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsClear" Id="{aa9c3c67-0da3-4c67-a809-ea7c4fc6f24f}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsClear : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsClear := _IsClear;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="isComplete" Id="{a9fd9f2d-508c-4ae4-8c6d-97dffcefaaa3}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD isComplete : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[isComplete := _Complete;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsOperating" Id="{0fd63629-5c93-4ec7-acca-5ba05224e9e4}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsOperating : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsOperating := _Operating;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsReady" Id="{4549fe33-4b7d-4bec-8cf4-73d1a2e48d3b}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD IsReady : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsReady := _Ready;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MyMover" Id="{d0de5754-d536-4d18-8104-0151b4b47d09}">
+      <Declaration><![CDATA[METHOD MyMover : HRESULT
+VAR_INPUT
+	mover : I_XtsMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF mover = 0 THEN
+	MyMover := -1;
+	RETURN;
+END_IF
+_HasMover := TRUE;
+_MyMover := mover;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Operation" Id="{4496305a-dcfe-4c87-9747-73150426f565}">
       <Declaration><![CDATA[METHOD PROTECTED Operation : BOOL
 ]]></Declaration>
@@ -61,9 +137,27 @@ _processVelo := ProcessVelocity;]]></ST>
 			_Complete := TRUE;
 			State := 0;
 		END_IF
-END_CASE	]]></ST>
+END_CASE	
+
+// IF _Complete AND _HasMover AND_THEN _MyMover.AxisRef.NcToPlc.SetPos > _Position + 50  THEN
+// 	_Ready := TRUE;
+// 	_HasMover := FALSE;
+// 	_IsClear := TRUE;
+// 	_MyMover := 0;
+// END_IF]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Position" Id="{27971ba4-3bc4-424c-b956-ef74dcfec010}">
+      <Declaration><![CDATA[PROPERTY Position : lreal]]></Declaration>
+      <Get Name="Get" Id="{1a26a332-bf80-4299-b36a-dae5bd47eff8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Position := _Position;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="ProcessVelocity" Id="{2b95ecf7-a866-474e-93f5-19b6d8e1320a}">
       <Declaration><![CDATA[PROPERTY ProcessVelocity : MC_LREAL]]></Declaration>
       <Get Name="Get" Id="{25f5b52c-e44e-4bf2-b54e-ddc8a6dd0b98}">
@@ -75,5 +169,30 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="RegisterWithParent" Id="{329d2fc4-da0f-4271-8758-9b1fd4d1839d}">
+      <Declaration><![CDATA[METHOD RegisterWithParent
+VAR_INPUT
+	Runner	: I_HostObjects;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Runner.RegisterCyclic(THIS^);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Reset" Id="{34928590-822e-4311-9ea9-b20de4a0cb80}">
+      <Declaration><![CDATA[METHOD Reset : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_Complete := FALSE;
+_IsClear := TRUE;
+_Operating := FALSE;
+_Ready := TRUE;
+_HasMover := FALSE;
+
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
