@@ -17,7 +17,8 @@ TYPE StationBehaviourState :
 	GetNextMove := 9,
 	GoToNextStation := 10,
 	Stopping := 11,
-	Aborting := 12
+	Aborting := 12,
+	Arrived := 13
 );
 END_TYPE
 ]]></Declaration>

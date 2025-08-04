@@ -75,14 +75,18 @@ END_VAR
 	StationBehaviourState.MovingToStation:
 		IF ThisMover.isMoverStationary() THEN 
 			IF ThisMover.isMoverAtPosition(TargetStationPosition) THEN
-				IF __QUERYINTERFACE(StationArray[CurrentStation],Process) THEN
-					State := StationBehaviourState.AtProcess;
-				ELSE
-					State := StationBehaviourState.AtStation;
-				END_IF
-				StationArray[CurrentStation].MyMover(ThisMover);
+				State := StationBehaviourState.Arrived;
 			ELSE
 				State := StationBehaviourState.QueuedAtStation;
+			END_IF
+		END_IF
+	
+	StationBehaviourState.Arrived:
+		IF SUCCEEDED(StationArray[CurrentStation].MyMover(ThisMover)) THEN
+			IF __QUERYINTERFACE(StationArray[CurrentStation],Process) THEN
+				State := StationBehaviourState.AtProcess;
+			ELSE
+				State := StationBehaviourState.AtStation;
 			END_IF
 		END_IF
 		
