@@ -63,6 +63,12 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
+    <Method Name="GetActiveTrackLength" Id="{5c2216e1-42a4-4136-9c70-0f82d23b2aef}" FolderPath="Administration\">
+      <Declaration><![CDATA[METHOD GetActiveTrackLength : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="getActPosition" Id="{cb245680-cf62-4460-9916-bd21e35bcc6b}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getActPosition : LREAL
 VAR_INPUT
