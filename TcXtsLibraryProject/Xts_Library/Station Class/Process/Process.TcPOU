@@ -63,7 +63,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_endPos := EndPosition;
+        <ST><![CDATA[_Position := Position;
+_endPos := EndPosition;
 _processVelo := ProcessVelocity;]]></ST>
       </Implementation>
     </Method>

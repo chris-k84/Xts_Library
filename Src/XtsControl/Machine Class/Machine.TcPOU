@@ -13,7 +13,7 @@ VAR
 	Station2 : StationSample(Position := 1200.0, 
 									DummyOperationTime := T#1500MS);
 	Station3 : Process(Position := 1500.0, 
-						EndPosition := 1800.0, 
+						EndPosition := 2000.0, 
 						ProcessVelocity := 80);
 	Station4 : StationSample(Position := 2100.0, 
 									DummyOperationTime := T#1500MS);
