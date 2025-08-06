@@ -32,6 +32,7 @@ VAR
 	_Acceleration : LREAL;
 	_Deceleration : LREAL;
 	_Jerk : LREAL;
+	AvoidingCollision: NCTOPLC_AXIS_REF_STATE2;
 END_VAR
 VAR CONSTANT
 	_MaxMoverVelocity : MC_LREAL := 4000.0;
@@ -131,8 +132,7 @@ END_VAR
     <Method Name="Cycle" Id="{b5956233-12ba-4cb8-805f-5693aec42bed}" FolderPath="ICyclic\">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR_INPUT
-END_VAR
-]]></Declaration>
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Initialised THEN
 	TaskCollection.Cycle();
@@ -148,6 +148,7 @@ END_VAR
 		_SetCurrent := _ipTcIoXtsMover.GetSetCurrent();
 		_IsActive := _ipTcIoXtsMover.GetIsActive();
 	END_IF
+	AvoidingCollision := MyAxisRef.NcToPlc.StateDWord2;
 ELSE
 	Cycle := -1;
 END_IF
