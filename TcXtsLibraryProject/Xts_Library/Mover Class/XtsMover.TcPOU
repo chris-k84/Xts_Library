@@ -32,7 +32,7 @@ VAR
 	_Acceleration : LREAL;
 	_Deceleration : LREAL;
 	_Jerk : LREAL;
-	AvoidingCollision: NCTOPLC_AXIS_REF_STATE2;
+	AvoidingCollision: BOOL;
 END_VAR
 VAR CONSTANT
 	_MaxMoverVelocity : MC_LREAL := 4000.0;
@@ -148,7 +148,7 @@ END_VAR]]></Declaration>
 		_SetCurrent := _ipTcIoXtsMover.GetSetCurrent();
 		_IsActive := _ipTcIoXtsMover.GetIsActive();
 	END_IF
-	AvoidingCollision := MyAxisRef.NcToPlc.StateDWord2;
+	AvoidingCollision := MyAxisRef.NcToPlc.StateDWord2.Flags.AvoidingCollision;
 ELSE
 	Cycle := -1;
 END_IF
