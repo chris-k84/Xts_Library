@@ -177,8 +177,8 @@ END_VAR
 		END_IF
 	
 	HasSwitch:
-		IF (_MyTrackNumber = 1 AND (SwitchAxisPosCtrl.isAtPosition(_Track1SwitchPosition) ))
-			OR (_MyTrackNumber = 2 AND (SwitchAxisPosCtrl.isAtPosition(_Track2SwitchPosition))) THEN
+		IF ((_MyTrackNumber = 1 AND SwitchAxisPosCtrl.isAtPosition(_Track1SwitchPosition))
+			OR (_MyTrackNumber = 2 AND SwitchAxisPosCtrl.isAtPosition(_Track2SwitchPosition))) THEN
 				SwitchAxisPosCtrl.Assigned := TRUE;
 				State := Boarding;
 				Called := FALSE;
@@ -221,23 +221,27 @@ END_VAR
 	Moving:
 		IF (_MyTrackNumber = 1 AND SwitchAxisPosCtrl.isAtPosition(position := _Track2SwitchPosition)) OR
 			(_MyTrackNumber = 2 AND SwitchAxisPosCtrl.isAtPosition(position := _Track1SwitchPosition)) THEN
-// 			State := ActivateTrackForMover;
+			State := ActivateTrackForMover;
 		END_IF
 		
 	ActivateTrackForMover:
 		IF _MyTrackNumber = 1 THEN
-			_MyMover.ActivateTrack(Track := 2);
+			IF SUCCEEDED(_MyMover.ActivateTrack(Track := 2)) THEN
+				State := CheckActiveTrack;
+			END_IF
 		ELSE
-			_MyMover.ActivateTrack(Track := 1);
+			IF SUCCEEDED(_MyMover.ActivateTrack(Track := 1)) THEN
+				State := CheckActiveTrack;
+			END_IF
 		END_IF
-		State := CheckActiveTrack;
-	
+		
 	CheckActiveTrack:
 		IF _MyTrackNumber = 1 AND_THEN _MyMover.MoversActiveTrack = 2 THEN
 			State := CheckMoverLeft;
 			_MoverLeavePosition := _MyMover.AxisRef.NcToPlc.ActPos;
 		ELSIF  _MyMover.MoversActiveTrack = 1 THEN
 			State := CheckMoverLeft;
+			_MoverLeavePosition := _MyMover.AxisRef.NcToPlc.ActPos;
 		END_IF
 	
 	CheckMoverLeft:
