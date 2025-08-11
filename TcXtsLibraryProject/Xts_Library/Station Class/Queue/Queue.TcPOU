@@ -20,14 +20,11 @@ END_VAR
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _MyMover = 0 THEN
-	RETURN;
-END_IF
-
-CASE QueueSequence OF
+        <ST><![CDATA[CASE QueueSequence OF
 	0:
-		IF _MyStation.IsReady() THEN
+		IF _MyMover <> 0 AND _MyStation.IsReady() THEN
 			_MyLeavingMover := _MyMover;
+			_MyMover := 0;
 			_isComplete := TRUE;
 			QueueSequence := 10;
 		END_IF
@@ -102,6 +99,10 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF mover = 0 THEN
 	MyMover := -1;
+	RETURN;
+END_IF
+IF _MyMover <> 0 THEN
+	MyMover := -2;
 	RETURN;
 END_IF
 _MyMover := mover;]]></ST>
