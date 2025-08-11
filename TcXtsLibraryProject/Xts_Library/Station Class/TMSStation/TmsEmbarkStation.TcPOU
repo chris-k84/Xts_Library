@@ -177,8 +177,8 @@ END_VAR
 		END_IF
 	
 	HasSwitch:
-		IF ((_MyTrackNumber = 1 AND SwitchAxisPosCtrl.isAtPosition(_Track1SwitchPosition))
-			OR (_MyTrackNumber = 2 AND SwitchAxisPosCtrl.isAtPosition(_Track2SwitchPosition))) THEN
+		IF (_MyTrackNumber = 1 AND SwitchAxisPosCtrl.isAtPosition(_Track1SwitchPosition))
+			OR (_MyTrackNumber = 2 AND SwitchAxisPosCtrl.isAtPosition(_Track2SwitchPosition)) THEN
 				SwitchAxisPosCtrl.Assigned := TRUE;
 				State := Boarding;
 				Called := FALSE;
