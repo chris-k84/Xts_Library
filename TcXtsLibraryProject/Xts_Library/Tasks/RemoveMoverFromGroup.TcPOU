@@ -10,6 +10,7 @@ VAR
 	_Done: BOOL;
 	_Error: BOOL;
 	_Busy: BOOL;
+	_ErrorId : UDINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -43,38 +44,19 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Cycle := S_OK;
-CASE State OF
-	0:
-		IF _Leave THEN
-			Cycle := S_PENDING;
-			_Done := FALSE;
-			_Error := FALSE;
-			_Busy := TRUE;
-			mcRemoveAxisFromGroup.Execute := TRUE;
-			IF mcRemoveAxisFromGroup.Busy THEN
-				State := 10;
-				_Leave := FALSE;
-			END_IF
-		END_IF
-	
-	10:
-		IF NOT mcRemoveAxisFromGroup.Busy THEN
-			IF mcRemoveAxisFromGroup.Done THEN
-				_Done := TRUE;
-			ELSIF mcRemoveAxisFromGroup.Error THEN
-				_Error := TRUE;
-			END_IF
-			_Busy := FALSE;
-			mcRemoveAxisFromGroup.Execute := FALSE;
-			State := 0;
-			Cycle := S_OK;
-		END_IF
-	ELSE
-		Cycle := E_FAIL;
-END_CASE
+        <ST><![CDATA[IF _caGroup = 0 THEN
+	Cycle := -1;
+	RETURN;
+END_IF
 
-mcRemoveAxisFromGroup(AxesGroup := _caGroup.GroupRef);]]></ST>
+_Done := mcRemoveAxisFromGroup.Done OR _Done;
+_Error := mcRemoveAxisFromGroup.Error OR _Error;
+IF mcRemoveAxisFromGroup.ErrorId <> 0 THEN
+	_ErrorId := mcRemoveAxisFromGroup.ErrorId;
+END_IF
+
+mcRemoveAxisFromGroup(AxesGroup := _caGroup.GroupRef);
+mcRemoveAxisFromGroup.Execute := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{df5f6adc-b19a-43ee-9c29-ce0366089b3b}">
@@ -113,7 +95,7 @@ END_VAR
 	RETURN;
 END_IF
 
-_Leave := TRUE;
+mcRemoveAxisFromGroup.Execute := TRUE;
 mcRemoveAxisFromGroup.IdentInGroup := AxisID;]]></ST>
       </Implementation>
     </Method>
