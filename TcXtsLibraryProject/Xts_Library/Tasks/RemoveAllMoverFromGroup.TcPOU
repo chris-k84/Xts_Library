@@ -99,11 +99,17 @@ END_VAR
       <Declaration><![CDATA[METHOD RemoveAllMover : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT RemoveAllFromGrp.Execute AND _caGroup <> 0 THEN
-	RemoveAllFromGrp.Execute := TRUE;
-ELSE
+        <ST><![CDATA[IF RemoveAllFromGrp.Execute THEN
 	RemoveAllMover := -1;
-END_IF]]></ST>
+	RETURN;
+END_IF
+	
+IF _caGroup = 0 THEN
+	RemoveAllMover := -2;
+	RETURN;
+END_IF
+
+RemoveAllFromGrp.Execute := TRUE;]]></ST>
       </Implementation>
     </Method>
   </POU>
