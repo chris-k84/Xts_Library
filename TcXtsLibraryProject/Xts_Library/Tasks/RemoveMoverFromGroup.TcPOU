@@ -90,7 +90,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _Leave THEN
+        <ST><![CDATA[IF mcRemoveAxisFromGroup.Execute THEN
 	Execute := -1;
 	RETURN;
 END_IF
