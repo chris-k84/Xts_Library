@@ -36,15 +36,25 @@ END_VAR
         <ST><![CDATA[Enable := SUCCEEDED(ThisMover.EnableMover());]]></ST>
       </Implementation>
     </Method>
+    <Method Name="Halt" Id="{e8567e91-73af-4e94-abd4-838ab80ff80a}">
+      <Declaration><![CDATA[METHOD Halt : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Halt := SUCCEEDED(thisMover.HaltAxis());]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="MoveTo" Id="{468f93df-df4c-4d07-b983-c9e7bb93f621}">
       <Declaration><![CDATA[METHOD MoveTo : BOOL
 VAR_INPUT
 	Position : LREAL;
+	Velocity : LREAL;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[MoveTo := SUCCEEDED(ThisMover.MoveTo(RequiredPosition := Position,
-									MoveVelocity := 1000.0,
+									MoveVelocity := Velocity,
 									NonModuloMove := FALSE));]]></ST>
       </Implementation>
     </Method>

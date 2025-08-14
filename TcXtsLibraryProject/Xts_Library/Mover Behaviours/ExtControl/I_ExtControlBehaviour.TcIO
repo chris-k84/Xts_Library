@@ -15,10 +15,17 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="Halt" Id="{700eb2ce-513a-4688-aeaa-e99850c58853}">
+      <Declaration><![CDATA[METHOD Halt : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="MoveTo" Id="{9a2108ae-f3b8-40fa-a5d9-5fcbe39ba384}">
       <Declaration><![CDATA[METHOD MoveTo : BOOL
 VAR_INPUT
 	Position : LREAL;
+	Velocity : LREAL;
 END_VAR
 ]]></Declaration>
     </Method>
