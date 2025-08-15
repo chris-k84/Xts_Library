@@ -273,6 +273,16 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
+    <Method Name="getActVelocity" Id="{0c1e39cc-a9a3-4a7e-885e-348eec34ac14}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD getActVelocity : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[getActVelocity := MyAxisRef.NcToPlc.ActVelo;
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="getErrorID" Id="{5ba2965f-231a-47cc-bcc5-dfd172bd6d02}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getErrorID : udint
 VAR_INPUT

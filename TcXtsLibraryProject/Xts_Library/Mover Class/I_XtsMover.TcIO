@@ -75,6 +75,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="getActVelocity" Id="{a06ff421-534b-4523-b3eb-dd28f8bb1953}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD getActVelocity : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="getErrorID" Id="{a612c5fe-d8b5-4fa8-bdd1-0b403db857b6}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getErrorID : udint
 VAR_INPUT
