@@ -5,20 +5,19 @@
 {attribute 'strict'}
 TYPE StationBehaviourState :
 (
-	Init := 0,                                               
-	Available := 1,
+	WaitForMoverEnabled := 0,                                               
+	WaitingForStart := 1,
 	MovingToStart := 2, 
-	AtStart := 3,                                 
-	MovingToStation := 4,
-	QueuedAtStation := 5,
-	AtStation := 6,
-	AtProcess := 7,
-	InProcess := 8,
-	GetNextMove := 9,
-	GoToNextStation := 10,
-	Stopping := 11,
-	Aborting := 12,
-	Arrived := 13
+	MoveToFirstStation := 3,                                 
+	MovingToCurrentStation := 4,
+	ArrivedAtStation := 5,
+	MoverQueueingAtStation := 6,
+	WaitingForStationComplete := 7,
+	StartingProcess := 8,
+	MoverInProcess := 9,
+	CheckIfFinalStation := 10,
+	MovingToNextStation := 11,
+	SequenceError := 99
 );
 END_TYPE
 ]]></Declaration>

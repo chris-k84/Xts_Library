@@ -46,100 +46,97 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE State OF
-	StationBehaviourState.Init:
+	StationBehaviourState.WaitForMoverEnabled:
 		IF ThisMover.isMoverEnabled() THEN
-			State := StationBehaviourState.Available;
+			State := StationBehaviourState.WaitingForStart;
 		END_IF
 		
-	StationBehaviourState.Available:
+	StationBehaviourState.WaitingForStart:
 		IF ExecuteSequence THEN
 			State := StationBehaviourState.MovingToStart;
 		END_IF
 		
 	StationBehaviourState.MovingToStart:
 		IF ThisMover.isMoverAtPosition(position := _startPosition) OR _XtsNoHome THEN
-			State := StationBehaviourState.AtStart;
+			State := StationBehaviourState.MoveToFirstStation;
 		END_IF
 			
-	StationBehaviourState.AtStart:
+	StationBehaviourState.MoveToFirstStation:
 		IF StationArray[CurrentStation] <> 0 THEN
 			IF SUCCEEDED(ThisMover.MoveTo(RequiredPosition := StationArray[CurrentStation].Position,
 								MoveVelocity := _MoverVelocity,
 								NonModuloMove := _NonModuloMoves)) THEN
 								
 				TargetStationPosition := StationArray[CurrentStation].Position;
-				State := StationBehaviourState.MovingToStation;
+				State := StationBehaviourState.MovingToCurrentStation;
 			END_IF
 		END_IF
 
-	StationBehaviourState.MovingToStation:
+	StationBehaviourState.MovingToCurrentStation:
 		IF ThisMover.isMoverStationary() THEN 
 			IF ThisMover.isMoverAtPosition(TargetStationPosition) THEN
-				State := StationBehaviourState.Arrived;
+				State := StationBehaviourState.ArrivedAtStation;
 			ELSE
-				State := StationBehaviourState.QueuedAtStation;
+				State := StationBehaviourState.MoverQueueingAtStation;
 			END_IF
-
 		END_IF
 	
-	StationBehaviourState.Arrived:
+	StationBehaviourState.ArrivedAtStation:
 		IF SUCCEEDED(StationArray[CurrentStation].MyMover(ThisMover)) THEN
 			IF __QUERYINTERFACE(StationArray[CurrentStation],Process) THEN
-				State := StationBehaviourState.AtProcess;
+				State := StationBehaviourState.StartingProcess;
 			ELSE
-				State := StationBehaviourState.AtStation;
+				State := StationBehaviourState.WaitingForStationComplete;
 			END_IF
 		END_IF
 		
-	StationBehaviourState.QueuedAtStation:
+	StationBehaviourState.MoverQueueingAtStation:
 		IF NOT ThisMover.isMoverStationary() THEN
-				State := StationBehaviourState.MovingToStation;
+				State := StationBehaviourState.MovingToCurrentStation;
 		END_IF
 
-	StationBehaviourState.AtStation:
+	StationBehaviourState.WaitingForStationComplete:
 		IF StationArray[CurrentStation].isComplete() THEN
-			State := StationBehaviourState.GetNextMove;
+			State := StationBehaviourState.CheckIfFinalStation;
 		END_IF
 
-	StationBehaviourState.AtProcess:
+	StationBehaviourState.StartingProcess:
 		ThisMover.MoveTo(RequiredPosition := Process.EndPosition,
 								MoveVelocity := Process.ProcessVelocity,
 								NonModuloMove := _NonModuloMoves);
-		State := StationBehaviourState.InProcess;
+		State := StationBehaviourState.MoverInProcess;
 								
-	StationBehaviourState.InProcess:
+	StationBehaviourState.MoverInProcess:
 		IF ThisMover.isMoverStationary() THEN 
 			IF ThisMover.isMoverAtPosition(Process.EndPosition) THEN
-				State := StationBehaviourState.GetNextMove;
+				State := StationBehaviourState.CheckIfFinalStation;
 			END_IF
 		END_IF
 	
-	StationBehaviourState.GetNextMove:
+	StationBehaviourState.CheckIfFinalStation:
 		IF CurrentStation = StationNumber - 1 THEN
 			CurrentStation := 0; 
 			TargetStationPosition := StationArray[CurrentStation].Position;
 			IF SUCCEEDED(ThisMover.MoveTo(RequiredPosition := TargetStationPosition,
 							MoveVelocity := _MoverVelocity,
 							NonModuloMove := _NonModuloMoves)) THEN
-				State := StationBehaviourState.MovingToStation;
+				State := StationBehaviourState.MovingToCurrentStation;
 			END_IF
 		ELSE
-			State := StationBehaviourState.GoToNextStation;
+			State := StationBehaviourState.MovingToNextStation;
 		END_IF
 		
-	StationBehaviourState.GoToNextStation:
+	StationBehaviourState.MovingToNextStation:
 		TargetStationPosition := StationArray[CurrentStation + 1].Position;
 		IF 	SUCCEEDED(ThisMover.MoveTo(RequiredPosition := TargetStationPosition,
 							MoveVelocity := _MoverVelocity,
 							NonModuloMove := _NonModuloMoves)) THEN	
 			CurrentStation := CurrentStation + 1;
-			State := StationBehaviourState.MovingToStation;
+			State := StationBehaviourState.MovingToCurrentStation;
 		END_IF	
 
-	StationBehaviourState.Stopping:
-		State := StationBehaviourState.Available;
-		CurrentStation := 0;
-		TargetStationPosition := 0.0;
+	StationBehaviourState.SequenceError:
+
 	ELSE
 		Cycle := E_FAIL;
 END_CASE
@@ -239,7 +236,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[State := StationBehaviourState.Available;
+        <ST><![CDATA[State := StationBehaviourState.WaitingForStart;
 CurrentStation := 0;
 TargetStationPosition := 0.0;
 stSequenceInfo.CurrentStation := UINT_TO_INT(CurrentStation);
