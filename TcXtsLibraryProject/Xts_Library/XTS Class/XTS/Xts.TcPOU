@@ -180,7 +180,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[Initialise := -1;
 CASE XtsHwState OF
-	XtsSystemInitialisation.Init:
+	XtsSystemInitialisation.WaitingForXtsIoEnvVar:
 		IF _XtsIoEnvVar.IsInitialised() THEN
 			_XPU := _XtsIoEnvVar.GetXPUInterface(_MyXts);
 			_MyXtsHardware.MyXpu := _XPU;
@@ -189,53 +189,53 @@ CASE XtsHwState OF
 		
 	XtsSystemInitialisation.PassGroupReference:
 		ICollisionGroup.CAGroupXtsIoEnvInterface := _XtsIoEnvVar.GetCaGroupInterface(_MyXts);
-		XtsHwState := XtsSystemInitialisation.InitialiseHardware;
+		XtsHwState := XtsSystemInitialisation.WaitingForHardwareToInitialise;
 	
-	XtsSystemInitialisation.InitialiseHardware:
+	XtsSystemInitialisation.WaitingForHardwareToInitialise:
 		IF _MyXtsHardware.IsInitialised() THEN
 			MyName := _MyXtsHardware.MyName;
-			XtsHwState := XtsSystemInitialisation.SetDetection;
+			XtsHwState := XtsSystemInitialisation.SetATrackForDetection;
 		END_IF
 	
-	XtsSystemInitialisation.SetDetection:
+	XtsSystemInitialisation.SetATrackForDetection:
 		IF SUCCEEDED(_MyXtsHardware.SetATrackForDetection(1)) THEN
-			XtsHwState := XtsSystemInitialisation.Redetect;
+			XtsHwState := XtsSystemInitialisation.TriggeringRedetection;
 		END_IF
 		
-	XtsSystemInitialisation.Redetect:
+	XtsSystemInitialisation.TriggeringRedetection:
 		IF SUCCEEDED(_MyXtsHardware.TriggerMoverRedetection()) THEN
-			XtsHwState := XtsSystemInitialisation.MoversValid;
+			XtsHwState := XtsSystemInitialisation.WaitingForAllMoversValid;
 		END_IF
 		
-	XtsSystemInitialisation.MoversValid:
+	XtsSystemInitialisation.WaitingForAllMoversValid:
 		IF _MyXtsHardware.AreAllMoverPositionsValid() THEN
-			XtsHwState := XtsSystemInitialisation.AllMoversFound;
+			XtsHwState := XtsSystemInitialisation.CheckingAllMoverFound;
 		END_IF
 	
-	XtsSystemInitialisation.AllMoversFound:
+	XtsSystemInitialisation.CheckingAllMoverFound:
 		IF _MyXtsHardware.AreExpectedMoversFound() THEN
 			DetectedMoverCount := _MyXtsHardware.getNumberMoversDetected();
-			XtsHwState := XtsSystemInitialisation.XTSMode;
+			XtsHwState := XtsSystemInitialisation.CheckIfXtsInSimMode;
 		END_IF
 		
-	XtsSystemInitialisation.XTSMode:
+	XtsSystemInitialisation.CheckIfXtsInSimMode:
 		IF _MyXtsHardware.IsXtsInSim() THEN
-			XtsHwState := XtsSystemInitialisation.MoverIdDetection;
+			XtsHwState := XtsSystemInitialisation.TriggeringMoverIdDetection;
 		ELSE
-			XtsHwState := XtsSystemInitialisation.CheckModuleVoltages;
+			XtsHwState := XtsSystemInitialisation.CheckingXts24And48Volts;
 		END_IF
 		
-	XtsSystemInitialisation.CheckModuleVoltages:
+	XtsSystemInitialisation.CheckingXts24And48Volts:
 		IF _MyXtsHardware.IsHardware24VdcOK() = 2 AND _MyXtsHardware.IsHardware48VdcOK() = 2 THEN
-			XtsHwState := XtsSystemInitialisation.MoverIdDetection;
+			XtsHwState := XtsSystemInitialisation.TriggeringMoverIdDetection;
 		END_IF
 	
-	XtsSystemInitialisation.MoverIdDetection:
+	XtsSystemInitialisation.TriggeringMoverIdDetection:
 		IF _MyXtsHardware.IsIDDetectionStandard() OR_ELSE SUCCEEDED(_MyXtsHardware.TriggerMoverIDDetection()) THEN
-			XtsHwState := XtsSystemInitialisation.HWReady;
+			XtsHwState := XtsSystemInitialisation.XtsInitialised;
 		END_IF
 	
-	XtsSystemInitialisation.HWReady:
+	XtsSystemInitialisation.XtsInitialised:
 		Initialise := 0;
 		Initialised := TRUE;	
 END_CASE]]></ST>

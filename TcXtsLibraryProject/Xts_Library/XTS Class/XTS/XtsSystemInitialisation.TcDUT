@@ -4,18 +4,18 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 TYPE XtsSystemInitialisation :
 (
-	Init := 0,
+	WaitingForXtsIoEnvVar := 0,
 	PassGroupReference := 1,
-	InitialiseHardware := 2,
-	SetDetection := 3,                                              
-	Redetect := 4,
-	MoversValid := 5,                                 
-	AllMoversFound := 6,
-	MoverIdDetection := 7,
-	XTSMode := 8,
-	CheckModuleVoltages := 9,
-	HWReady := 10,
-	HWError := 999
+	WaitingForHardwareToInitialise := 2,
+	SetATrackForDetection := 3,                                              
+	TriggeringRedetection := 4,
+	WaitingForAllMoversValid := 5,                                 
+	CheckingAllMoverFound := 6,
+	CheckIfXtsInSimMode := 7,
+	CheckingXts24And48Volts := 8,
+	TriggeringMoverIdDetection := 9,
+	XtsInitialised := 10,
+	InitialisationFault := 99
 );
 END_TYPE
 ]]></Declaration>
