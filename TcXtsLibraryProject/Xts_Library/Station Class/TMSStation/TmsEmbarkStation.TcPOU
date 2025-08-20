@@ -199,7 +199,7 @@ END_VAR
 		END_IF
 	
 	Boarding:
-		_MyMover.MoveTo(RequiredPosition := _MoverTravelPosition, MoveVelocity := _BoardVelocity, NonModuloMove := TRUE);
+		_MyMover.MoveTo(RequiredPosition := _MoverTravelPosition, MoveVelocity := _BoardVelocity, NonModuloMove := FALSE);
 		IF _MoverTravelPosition > _MyMover.GetActiveTrackLength() THEN
 			IF _MyMover.isMoverAtPosition(position := _MoverTravelPosition - _MyMover.GetActiveTrackLength()) THEN
 				State := BoardingComplete;

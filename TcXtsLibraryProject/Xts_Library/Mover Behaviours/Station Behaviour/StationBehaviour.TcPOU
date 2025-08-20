@@ -79,6 +79,7 @@ END_VAR
 			ELSE
 				State := StationBehaviourState.QueuedAtStation;
 			END_IF
+
 		END_IF
 	
 	StationBehaviourState.Arrived:
@@ -116,11 +117,11 @@ END_VAR
 	StationBehaviourState.GetNextMove:
 		IF CurrentStation = StationNumber - 1 THEN
 			CurrentStation := 0; 
-			IF SUCCEEDED(ThisMover.MoveTo(RequiredPosition := StationArray[CurrentStation].Position,
+			TargetStationPosition := StationArray[CurrentStation].Position;
+			IF SUCCEEDED(ThisMover.MoveTo(RequiredPosition := TargetStationPosition,
 							MoveVelocity := _MoverVelocity,
 							NonModuloMove := _NonModuloMoves)) THEN
 				State := StationBehaviourState.MovingToStation;
-				TargetStationPosition := StationArray[CurrentStation].Position;
 			END_IF
 		ELSE
 			State := StationBehaviourState.GoToNextStation;
