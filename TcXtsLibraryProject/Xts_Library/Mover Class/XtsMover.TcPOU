@@ -33,6 +33,7 @@ VAR
 	_Deceleration : LREAL;
 	_Jerk : LREAL;
 	AvoidingCollision: BOOL;
+	myController: Tc3_XTS_Utility.I_McXtsMoverController;
 END_VAR
 VAR CONSTANT
 	_MaxMoverVelocity : MC_LREAL := 4000.0;
@@ -378,7 +379,7 @@ IF MyTrackCount = 0 THEN
 	Initialise := -4;
 	RETURN;
 END_IF
-
+myController := _ipTcIoXtsMover.MoverController;
 myControllerOid := _ipTcIoXtsMover.P_MoverControllerOid;
 MyId := _ipTcIoXtsMover.GetAxisId();
 _CurrentTrack := MyTracks[MoversActiveTrack - 1];
@@ -686,6 +687,21 @@ END_VAR
 END_IF
 
 _ipTcIoXtsMover.MoverController.SetForceCouple(nForceCouple := XtsMoverCtrlOTCID);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetParameterSet" Id="{a2d3312c-642a-4ded-95b4-a250a99284ac}">
+      <Declaration><![CDATA[METHOD SetParameterSet : HRESULT
+VAR_INPUT
+	ParameterSet : OTCID;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ParameterSet = 0 THEN
+	RETURN;
+	SetParameterSet := -1;
+END_IF
+
+myController.SetDefaultParameterSet(ParameterSet);]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetSimDetectionPartAndPosition" Id="{7c9e452d-fc91-446a-83ce-0915a34e15cf}" FolderPath="Administration\">
