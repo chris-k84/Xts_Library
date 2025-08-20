@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="EmbarkStationStates" Id="{955ed760-fe4d-452f-958d-eae46f402075}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+TYPE EmbarkStationStates :
+(
+	Init := 0,                                               
+	Ready := 1,                                 
+	Waiting := 2,
+	HasSwitch := 3,
+	Call := 4,
+	Boarding := 5,
+	BoardingComplete := 6,
+	Moving := 7,
+	ActivateTrackForMover := 8,
+	CheckActiveTrack := 9,
+	CheckMoverLeft := 10,
+	Done := 11
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

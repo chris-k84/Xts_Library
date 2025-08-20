@@ -16,19 +16,7 @@ VAR
 	_Track2SwitchPosition : MC_LREAL;
 	ExecuteSequence : BOOL;
 	_MyTrackNumber : INT := 1;
-	State :(
-		Init,                                               
-		Ready,                                 
-        Waiting,
-		HasSwitch,
-		Call,
-		Boarding,
-		BoardingComplete,
-		Moving,
-		ActivateTrackForMover,
-		CheckActiveTrack,
-		CheckMoverLeft,
-		Done); 
+	State : EmbarkStationStates;
 	_MoverTravelPosition : MC_LREAL;
 	_BoardVelocity : MC_LREAL := 100.0;
 	_SwitchVelocity : MC_LREAL := 200.0;
@@ -156,37 +144,37 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE State OF
-	Init:
+	EmbarkStationStates.Init:
 		_Operating := _IsClear := _Complete := _Ready := _HasMover := FALSE;
-		State := Ready;
+		State := EmbarkStationStates.Ready;
 	
-	Ready:	
+	EmbarkStationStates.Ready:	
 		IF ExecuteSequence THEN
 			_Operating := _Complete := _HasMover := FALSE;
 			_IsClear := _Ready := TRUE;
-			State := Waiting;
+			State := EmbarkStationStates.Waiting;
 		END_IF
 	
-	Waiting:
+	EmbarkStationStates.Waiting:
 		IF _HasMover THEN
-			State := HasSwitch;
+			State := EmbarkStationStates.HasSwitch;
 			_Operating := TRUE;
 			_IsClear := FALSE;
 			_Ready := FALSE;
 			_Complete := FALSE;
 		END_IF
 	
-	HasSwitch:
+	EmbarkStationStates.HasSwitch:
 		IF (_MyTrackNumber = 1 AND SwitchAxisPosCtrl.isAtPosition(_Track1SwitchPosition))
 			OR (_MyTrackNumber = 2 AND SwitchAxisPosCtrl.isAtPosition(_Track2SwitchPosition)) THEN
 				SwitchAxisPosCtrl.Assigned := TRUE;
-				State := Boarding;
+				State := EmbarkStationStates.Boarding;
 				Called := FALSE;
 		ELSIF NOT Called THEN
-			State := Call;
+			State := EmbarkStationStates.Call;
 		END_IF	
 		
-	Call:
+	EmbarkStationStates.Call:
 		IF NOT SwitchAxisPosCtrl.Assigned AND_THEN SwitchAxisPosCtrl.IsStationary() THEN
 			IF _MyTrackNumber = 1 THEN
 				SwitchAxisPosCtrl.Call(Position := _Track1SwitchPosition, Velocity := _SwitchVelocity);
@@ -195,69 +183,69 @@ END_VAR
 			END_IF
 			SwitchAxisPosCtrl.Assigned := TRUE;
 			Called := TRUE;
-			State := HasSwitch;
+			State := EmbarkStationStates.HasSwitch;
 		END_IF
 	
-	Boarding:
+	EmbarkStationStates.Boarding:
 		_MyMover.MoveTo(RequiredPosition := _MoverTravelPosition, MoveVelocity := _BoardVelocity, NonModuloMove := FALSE);
 		IF _MoverTravelPosition > _MyMover.GetActiveTrackLength() THEN
 			IF _MyMover.isMoverAtPosition(position := _MoverTravelPosition - _MyMover.GetActiveTrackLength()) THEN
-				State := BoardingComplete;
+				State := EmbarkStationStates.BoardingComplete;
 			END_IF
 		ELSE
 			IF _MyMover.isMoverAtPosition(position := _MoverTravelPosition) THEN
-				State := BoardingComplete;
+				State := EmbarkStationStates.BoardingComplete;
 			END_IF
 		END_IF
 		
-	BoardingComplete:
+	EmbarkStationStates.BoardingComplete:
 		IF _MyTrackNumber = 1 THEN
 			SwitchAxisPosCtrl.MoveToPosition(Position := _Track2SwitchPosition, Velocity := _SwitchVelocity);
 		ELSE
 			SwitchAxisPosCtrl.MoveToPosition(Position := _Track1SwitchPosition, Velocity := _SwitchVelocity);
 		END_IF
-		State := Moving;
+		State := EmbarkStationStates.Moving;
 		
-	Moving:
+	EmbarkStationStates.Moving:
 		IF (_MyTrackNumber = 1 AND SwitchAxisPosCtrl.isAtPosition(position := _Track2SwitchPosition)) OR
 			(_MyTrackNumber = 2 AND SwitchAxisPosCtrl.isAtPosition(position := _Track1SwitchPosition)) THEN
-			State := ActivateTrackForMover;
+			State := EmbarkStationStates.ActivateTrackForMover;
 		END_IF
 		
-	ActivateTrackForMover:
+	EmbarkStationStates.ActivateTrackForMover:
 		IF _MyTrackNumber = 1 THEN
 			IF SUCCEEDED(_MyMover.ActivateTrack(Track := 2)) THEN
-				State := CheckActiveTrack;
+				State := EmbarkStationStates.CheckActiveTrack;
 			END_IF
 		ELSE
 			IF SUCCEEDED(_MyMover.ActivateTrack(Track := 1)) THEN
-				State := CheckActiveTrack;
+				State := EmbarkStationStates.CheckActiveTrack;
 			END_IF
 		END_IF
 		
-	CheckActiveTrack:
+	EmbarkStationStates.CheckActiveTrack:
 		IF _MyTrackNumber = 1 AND_THEN _MyMover.MoversActiveTrack = 2 THEN
-			State := CheckMoverLeft;
+			State := EmbarkStationStates.CheckMoverLeft;
 			_MoverLeavePosition := _MyMover.AxisRef.NcToPlc.ActPos;
 		ELSIF  _MyMover.MoversActiveTrack = 1 THEN
-			State := CheckMoverLeft;
+			State := EmbarkStationStates.CheckMoverLeft;
 			_MoverLeavePosition := _MyMover.AxisRef.NcToPlc.ActPos;
 		END_IF
 	
-	CheckMoverLeft:
+	EmbarkStationStates.CheckMoverLeft:
 		_Complete := TRUE;
 		IF _MyMover.AxisRef.NcToPlc.ActPos > _MoverLeavePosition + 100 THEN
-			State := Done;
+			State := EmbarkStationStates.Done;
 			_HasMover := FALSE;
 			SwitchAxisPosCtrl.Assigned := FALSE;
 		END_IF
 			
-	Done:
+	EmbarkStationStates.Done:
 		IF _Complete AND NOT _HasMover THEN
 			_Operating := FALSE;
 			_IsClear := TRUE;
 			_Ready := TRUE;
-			State := Waiting;
+			State := EmbarkStationStates.Waiting;
 		END_IF	
 END_CASE]]></ST>
       </Implementation>
