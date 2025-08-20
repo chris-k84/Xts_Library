@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="XtsHardwareInitialisation" Id="{7cad66c2-2e7c-408e-8aec-b9645f1a57db}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+TYPE XtsHardwareInitialisation :
+(
+	WaitingForXpu := 0,
+	GettingParts := 1,
+	GettingTracks := 2,
+	InitialisingXtsParts := 3,
+	InitialisingXtsTracks := 4,
+	Initialised := 5,
+	InitialisationFault := 99
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

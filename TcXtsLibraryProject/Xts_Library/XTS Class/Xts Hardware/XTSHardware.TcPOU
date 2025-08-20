@@ -9,7 +9,7 @@ VAR
 	_MyNumberTracks : INT;
 	TrackOTCIDs: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF Tc3_XTS_Utility.OTCID;
 	_MyXpu : Tc3_XTS_Utility.I_TcIoXtsProcessingUnit;
-	XtsIoEnvInitialiseState : INT;
+	XtsIoEnvInitialiseState : XtsHardwareInitialisation;
 	MyPartCount: UDINT;
 	MyTrackCount: UDINT;
 	bMoverIdDetectionActive: BOOL;
@@ -240,15 +240,15 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[Initialise := -1;
 CASE XtsIoEnvInitialiseState OF
-	0:
+	XtsHardwareInitialisation.WaitingForXpu:
 		IF _MyXpu = 0 THEN
 			Initialise := -1;
 			RETURN;
 		ELSE
 			_MyName := _MyXpu.P_ObjectName;
-			XtsIoEnvInitialiseState := 1;
+			XtsIoEnvInitialiseState := XtsHardwareInitialisation.GettingParts;
 		END_IF
-	1:
+	XtsHardwareInitialisation.GettingParts:
 		MyPartCount := _MyXpu.GetPartCount();
 		IF TO_INT(MyPartCount) = _MyNumberParts THEN
 			FOR i := 0 TO (TO_INT(MyPartCount) - 1) DO
@@ -257,11 +257,11 @@ CASE XtsIoEnvInitialiseState OF
 					XtsParts[i].SetInSim();
 				END_IF
 			END_FOR
-			XtsIoEnvInitialiseState := 3;
+			XtsIoEnvInitialiseState := XtsHardwareInitialisation.GettingTracks;
 		ELSE
-			XtsIoEnvInitialiseState := 999;
+			XtsIoEnvInitialiseState := XtsHardwareInitialisation.InitialisationFault;
 		END_IF
-	3:
+	XtsHardwareInitialisation.GettingTracks:
 		MyTrackCount := _MyXpu.GetTrackCount();
 		_MyXpu.GetTrackOids();
 		TrackOTCIDs := _MyXpu.P_TrackOids;
@@ -270,27 +270,26 @@ CASE XtsIoEnvInitialiseState OF
 				XtsTracks[i].MyXtsIoEnvInterface := _MyXpu.TrackTcIo(TO_UINT(i + 1));
 				XtsTracks[i].MyOTCID := TrackOTCIDs[i + 1];
 			END_FOR
-			XtsIoEnvInitialiseState := 4;
+			XtsIoEnvInitialiseState := XtsHardwareInitialisation.InitialisingXtsParts;
 		ELSE
-			XtsIoEnvInitialiseState := 999;
+			XtsIoEnvInitialiseState := XtsHardwareInitialisation.InitialisationFault;
 		END_IF
-	4:
-		XtsIoEnvInitialiseState := 5;
+	XtsHardwareInitialisation.InitialisingXtsParts:
+		XtsIoEnvInitialiseState := XtsHardwareInitialisation.InitialisingXtsTracks;
 		FOR i := 0 TO UDINT_TO_INT(MyPartCount - 1) DO
 			IF XtsParts[i].Initialise() <> 2 THEN
-				XtsIoEnvInitialiseState := 4;
+				XtsIoEnvInitialiseState := XtsHardwareInitialisation.InitialisingXtsParts;
 			END_IF
 		END_FOR
-	5:
-		XtsIoEnvInitialiseState := 6;
+	XtsHardwareInitialisation.InitialisingXtsTracks:
+		XtsIoEnvInitialiseState := XtsHardwareInitialisation.Initialised;
 		FOR i := 0 TO UDINT_TO_INT(MyTrackCount - 1) DO
 			IF XtsTracks[i].Initialise() <> 2 THEN
-				XtsIoEnvInitialiseState := 5;
+				XtsIoEnvInitialiseState := XtsHardwareInitialisation.InitialisingXtsTracks;
 			END_IF
 		END_FOR
-	6:
+	XtsHardwareInitialisation.Initialised:
 		_isInitialised := TRUE;
-		Initialise := 0;
 END_CASE
 ]]></ST>
       </Implementation>
