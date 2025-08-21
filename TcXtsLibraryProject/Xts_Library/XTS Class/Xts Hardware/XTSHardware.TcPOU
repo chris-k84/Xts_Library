@@ -290,6 +290,7 @@ CASE XtsIoEnvInitialiseState OF
 		END_FOR
 	XtsHardwareInitialisation.Initialised:
 		_isInitialised := TRUE;
+		Initialise := 0;
 END_CASE
 ]]></ST>
       </Implementation>
