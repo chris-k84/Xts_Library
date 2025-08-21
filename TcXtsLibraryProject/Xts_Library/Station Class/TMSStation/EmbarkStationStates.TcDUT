@@ -17,7 +17,8 @@ TYPE EmbarkStationStates :
 	ActivateTrackForMover := 8,
 	CheckActiveTrack := 9,
 	CheckMoverLeft := 10,
-	Done := 11
+	Done := 11,
+	test := 20
 );
 END_TYPE
 ]]></Declaration>
