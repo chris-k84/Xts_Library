@@ -24,5 +24,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="StopIndexing" Id="{9953e0e8-7677-458f-a571-6742b50d758e}">
+      <Declaration><![CDATA[METHOD StopIndexing : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
   </Itf>
 </TcPlcObject>

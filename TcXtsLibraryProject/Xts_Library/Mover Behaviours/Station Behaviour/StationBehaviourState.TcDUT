@@ -17,6 +17,7 @@ TYPE StationBehaviourState :
 	MoverInProcess := 9,
 	CheckIfFinalStation := 10,
 	MovingToNextStation := 11,
+	Stopped := 12,
 	SequenceError := 99
 );
 END_TYPE
