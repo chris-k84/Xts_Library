@@ -224,6 +224,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="SetParameterSet" Id="{96f05e89-0ff7-461f-963a-bf5f28b369db}" FolderPath="Administration\">
+      <Declaration><![CDATA[METHOD SetParameterSet : HRESULT
+VAR_INPUT
+	ParameterSet : OTCID;
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="SetSimDetectionPartAndPosition" Id="{b203fdbc-b34c-4c13-b77e-aae6fc3e86cf}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD SetSimDetectionPartAndPosition : BOOL
 VAR_INPUT

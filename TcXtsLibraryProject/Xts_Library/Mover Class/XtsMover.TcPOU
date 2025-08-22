@@ -689,7 +689,7 @@ END_IF
 _ipTcIoXtsMover.MoverController.SetForceCouple(nForceCouple := XtsMoverCtrlOTCID);]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetParameterSet" Id="{a2d3312c-642a-4ded-95b4-a250a99284ac}">
+    <Method Name="SetParameterSet" Id="{a2d3312c-642a-4ded-95b4-a250a99284ac}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD SetParameterSet : HRESULT
 VAR_INPUT
 	ParameterSet : OTCID;
