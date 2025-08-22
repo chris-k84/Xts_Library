@@ -662,7 +662,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT ResetBehaviour.Busy AND _MyAxisStatus.Error THEN
+        <ST><![CDATA[IF NOT ResetBehaviour.Busy AND (_MyAxisStatus.Error OR _MyAxisStatus.NotMoving) THEN
 	IF ResetBehaviour.Reset() = S_OK THEN
 		Reset := 1;
 		MoveBehaviour.Abort();
