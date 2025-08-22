@@ -5,6 +5,10 @@
 ]]></Declaration>
     <Folder Name="Operations" Id="{fcac5daf-610f-4795-a9df-a1a0b59d368f}" />
     <Folder Name="Status" Id="{e945740f-30ab-470b-b703-ee9e691fdeff}" />
+    <Method Name="AreAllMoversStationary" Id="{b214b570-8dd1-4577-80c2-923199586750}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD AreAllMoversStationary : BOOL
+]]></Declaration>
+    </Method>
     <Method Name="DisableXTS" Id="{d730e6bc-30f4-400f-83c5-0a8ef7530dc6}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD DisableXTS : BOOL
 VAR_INPUT
