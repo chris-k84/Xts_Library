@@ -57,14 +57,16 @@ END_VAR]]></Declaration>
 			_Done := FALSE;
 			_Error := FALSE;
 			IF _caGroup.IsMoving THEN
-				IF _caGroup.GroupStop() THEN
+//				IF _caGroup.GroupStop() THEN
+					 _caGroup.GroupStop();
 					State := 10;
-				END_IF
-			ELSE
-				IF SUCCEEDED(_caGroup.RemoveAllMovers()) THEN
-					State := 20;
-				END_IF
-				
+//				END_IF
+			
+ 			ELSE
+// 				IF SUCCEEDED(_caGroup.RemoveAllMovers()) THEN
+ 					State := 10;
+// 				END_IF
+// 				
 			END_IF
 		END_IF
 		
