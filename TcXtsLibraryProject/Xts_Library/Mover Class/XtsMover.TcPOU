@@ -662,16 +662,18 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT ResetBehaviour.Busy AND (_MyAxisStatus.Error OR _MyAxisStatus.NotMoving) THEN
-	IF ResetBehaviour.Reset() = S_OK THEN
-		Reset := 1;
-		MoveBehaviour.Abort();
-	ELSE
-		Reset := -1;
-	END_IF
-ELSE
+        <ST><![CDATA[IF ResetBehaviour.Busy THEN
 	Reset := -1;
-END_IF]]></ST>
+	RETURN;
+END_IF
+ 
+IF NOT (_MyAxisStatus.Error OR _MyAxisStatus.NotMoving) THEN
+	Reset := -2;
+	RETURN;
+END_IF
+
+ResetBehaviour.Reset();
+MoveBehaviour.Abort();]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetForceCouple" Id="{655fe1cd-78c7-4097-b5c7-b05e68cd5f7e}" FolderPath="Administration\">
