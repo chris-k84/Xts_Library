@@ -41,7 +41,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[AreAllMoversStationary := TRUE;
 FOR i := 0 TO _registeredNumberOfMovers - 1 DO
-	IF NOT _MoverArray[I16].isMoverStationary() THEN
+	IF NOT _MoverArray[i].isMoverStationary() THEN
 		AreAllMoversStationary := FALSE;
 		EXIT;
 	END_IF
