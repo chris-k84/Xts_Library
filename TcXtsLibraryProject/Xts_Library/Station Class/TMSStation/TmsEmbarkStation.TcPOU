@@ -288,7 +288,8 @@ _IsClear := TRUE;
 _Operating := FALSE;
 _Ready := TRUE;
 _HasMover := FALSE;
-_State := EmbarkStationStates.Init;]]></ST>
+_State := EmbarkStationStates.Init;
+SwitchAxisPosCtrl.Assigned := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="StartSwitch" Id="{c29e9395-8979-4e9a-90a8-1d97909d0ac9}">
