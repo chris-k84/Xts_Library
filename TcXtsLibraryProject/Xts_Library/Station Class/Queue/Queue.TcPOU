@@ -135,7 +135,8 @@ END_VAR
       <Declaration><![CDATA[METHOD Reset : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_isComplete := FALSE;]]></ST>
+        <ST><![CDATA[_isComplete := FALSE;
+QueueSequence := 0;]]></ST>
       </Implementation>
     </Method>
   </POU>
