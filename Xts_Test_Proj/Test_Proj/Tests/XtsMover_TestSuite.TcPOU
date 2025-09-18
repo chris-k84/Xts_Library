@@ -38,7 +38,9 @@ MoverRejectsArriveCommandIfNoInterface_Test();
 MoverRejectsLeaveCommandWithNoInterface_Test();
 MoverRejectsLeaveCommandIfMoving_Test();
 MoverAcceptsMoverLeaveCommand_Test();
-MoverAcceptsArriveCommand_Test();]]></ST>
+MoverAcceptsArriveCommand_Test();
+MoverRejectsAbsMoveToSamePosition();
+MoverRejectsModuloMoveToSamePosition();]]></ST>
     </Implementation>
     <Method Name="MoverAcceptsArriveCommand_Test" Id="{22e6417c-6fbd-4ac0-9667-5e84052cd4a6}">
       <Declaration><![CDATA[METHOD MoverAcceptsArriveCommand_Test
@@ -250,6 +252,24 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="MoverRejectsAbsMoveToSamePosition" Id="{20395d0d-bef3-4c68-ae81-09a57f71f72f}">
+      <Declaration><![CDATA[METHOD MoverRejectsAbsMoveToSamePosition
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setAAbsPosition(100.0);
+	Actual := FAILED( testMover.MoveTo(100.0,-1.0,TRUE));
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="MoverRejectsActivateTrackWhileMoving_Test" Id="{68602ec7-eeb2-48cd-a3a7-de01a20ff851}">
       <Declaration><![CDATA[METHOD MoverRejectsActivateTrackWhileMoving_Test
 VAR_INST
@@ -454,6 +474,24 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := testMover.TriggerMoverLeave() = -1;
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverRejectsModuloMoveToSamePosition" Id="{8153c6df-89da-4493-854f-55394e57a52b}">
+      <Declaration><![CDATA[METHOD MoverRejectsModuloMoveToSamePosition
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	testMover : stubMover;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	testMover.setAPosition(100.0);
+	Actual := FAILED( testMover.MoveTo(100.0,-1.0,FALSE));
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

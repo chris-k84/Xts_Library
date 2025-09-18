@@ -10,6 +10,16 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Method Name="setAAbsPosition" Id="{387a1d1f-236f-462e-ac6c-91de4bc7f376}">
+      <Declaration><![CDATA[METHOD setAAbsPosition : HRESULT
+VAR_INPUT
+	setPos : LREAL;	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_MyNCData.ActPos := setPos;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="setActive" Id="{d7d30cb6-d4e3-4284-903b-85caced60c68}">
       <Declaration><![CDATA[METHOD setActive : bool
 VAR_INPUT
