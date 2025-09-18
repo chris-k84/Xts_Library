@@ -541,6 +541,16 @@ IF Gap <= 50.0 THEN
 	RETURN;
 END_IF
 
+IF NonModuloMove AND_THEN ( RequiredPosition < _MyNCData.ActPos + 0.1 AND RequiredPosition > _MyNCData.ActPos - 0.1) THEN
+	MoveTo := -5;
+	RETURN;
+END_IF
+
+IF NOT NonModuloMove AND_THEN ( RequiredPosition < _stTmsActPositions.fTrackPosition + 0.1 AND RequiredPosition > _stTmsActPositions.fTrackPosition - 0.1) THEN
+	MoveTo := -6;
+	RETURN;
+END_IF
+
 IF NonModuloMove THEN
 	THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
 									Velocity := MoveVelocity, 
