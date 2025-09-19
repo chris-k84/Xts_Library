@@ -172,6 +172,9 @@
     <Compile Include="XTS Class\Xts Collision Group\CollisionGroup.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="XTS Class\Xts Hardware\Sub Components\NCTController.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="XTS Class\Xts Hardware\Sub Components\XtsMotorModule.TcPOU">
       <SubType>Code</SubType>
     </Compile>

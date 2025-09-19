@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="NCTController" Id="{69fac2e2-98e3-4a73-9148-7a9f4979e9be}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK NCTController EXTENDS CyclicBase
+VAR
+	_MyInterface: Tc3_XTS_Utility.I_TcIoXtsNctBaseUnitInterface;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+//_MyInterface := _MyXpu.NctControllerTcIo().BaseUnitInterfaceTcIo(1);
+]]></ST>
+    </Implementation>
+    <Property Name="MyXtsIoInterface" Id="{6c7dd504-29ec-421f-85ee-ffbaf90d2e30}">
+      <Declaration><![CDATA[PROPERTY MyXtsIoInterface : I_TcIoXtsNctBaseUnitInterface]]></Declaration>
+      <Get Name="Get" Id="{f25cbf22-78df-4612-a07b-0c830e2b4a03}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyXtsIoInterface := _MyInterface;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{f3bbd975-6c48-412c-bf19-c0d38fee92f8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_MyInterface := MyXtsIoInterface;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>
