@@ -3,16 +3,47 @@
   <POU Name="ActivateTrackTask_TestSuite" Id="{433ac03a-1058-45df-bdb1-c68a454a01bf}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ActivateTrackTask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
 VAR
+	SetVelo AT%Q* : LREAL;
+	AxisStatusFeedback AT%Q* : DWORD;
 	stubAxis : AXIS_REF;
 	stubTrack : XtsTrack;
 	testActivateTask : ActivateTrackTask := (AxisRef := stubAxis);
+	TestSequence : INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[TaskAcceptsCommand_Test();
-TaskRejectsCommandsWithNoAxis_Test();
-TaskRejectsDuplicateCommand_Test();
-TaskRejectsNullTrackCommand_Test();]]></ST>
+      <ST><![CDATA[CASE TestSequence OF
+	0: 
+		SetVelo := 1.0;
+		AxisStatusFeedback := 16#02100085;
+		IF stubAxis.NcToPlc.SetVelo = 1.0 THEN
+			TestSequence := 1;
+		END_IF
+	1:
+		TaskRejectsCommandsWithNoAxis_Test();
+		TaskRejectsDuplicateCommand_Test();
+		TaskRejectsNullTrackCommand_Test();
+		TaskRejectsCommandsIfAxisMoving_Test();
+		TestSequence := 2;
+	2:
+		SetVelo := 0.0;
+		IF stubAxis.NcToPlc.SetVelo = 0.0 THEN
+			TestSequence := 3;
+		END_IF
+	3:
+		TaskAcceptsCommand_Test();
+		TestSequence := 4;
+	4:
+		AxisStatusFeedback := 16#00;
+		IF stubAxis.Status.Disabled THEN
+			TestSequence := 5;
+		END_IF
+	5:
+		TaskRejectsCommandIfAxisDisabled_Test();
+		TestSequence := 0;
+END_CASE
+
+stubAxis.ReadStatus();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsCommand_Test" Id="{f38ea97e-61d4-4314-a23a-9dbdc22547e6}">
       <Declaration><![CDATA[METHOD TaskAcceptsCommand_Test
@@ -23,6 +54,37 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(testActivateTask.Execute(Track := stubTrack));
+	testActivateTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsCommandIfAxisDisabled_Test" Id="{674d74d7-adee-4c2c-bfe4-b0e55b152e6f}">
+      <Declaration><![CDATA[METHOD TaskRejectsCommandIfAxisDisabled_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	//stubAxis.Status.Disabled := FALSE;
+	Actual := FAILED(testActivateTask.Execute(Track := stubTrack));
+	testActivateTask.Abort();
+	Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsCommandsIfAxisMoving_Test" Id="{892b298f-17bb-47e1-aafd-7aa4cff3908c}">
+      <Declaration><![CDATA[METHOD TaskRejectsCommandsIfAxisMoving_Test
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(testActivateTask.Execute(Track := stubTrack));
 	testActivateTask.Abort();
 	Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
