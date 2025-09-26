@@ -135,6 +135,22 @@ END_VAR
 			State := StationBehaviourState.MovingToCurrentStation;
 		END_IF	
 	StationBehaviourState.Stopped;
+		IF ExecuteSequence THEN
+			TargetStationPosition := StationArray[CurrentStation].Position;
+			IF CurrentStation = 0 THEN
+				IF 	SUCCEEDED(ThisMover.MoveTo(RequiredPosition := TargetStationPosition,
+									MoveVelocity := _MoverVelocity,
+									NonModuloMove := _NonModuloMoves)) THEN	
+					State := StationBehaviourState.MovingToCurrentStation;
+				END_IF	
+			ELSE
+				IF 	SUCCEEDED(ThisMover.MoveTo(RequiredPosition := TargetStationPosition,
+									MoveVelocity := _MoverVelocity,
+									NonModuloMove := _NonModuloMoves)) THEN	
+					State := StationBehaviourState.MovingToCurrentStation;
+				END_IF	
+			END_IF
+		END_IF
 		
 	StationBehaviourState.SequenceError:
 
