@@ -395,6 +395,15 @@ END_VAR
         <ST><![CDATA[IsActive := _IsActive;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="isAvoidingCollision" Id="{d6fe9751-a759-404e-8850-fd7cabe38e27}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD isAvoidingCollision : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[isAvoidingCollision := AvoidingCollision;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="isMoverAtPosition" Id="{f1a74560-cd92-4fa6-83a2-3bacea608337}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD PUBLIC isMoverAtPosition : BOOL
 VAR_INPUT
