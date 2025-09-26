@@ -119,6 +119,16 @@ IF NOT __ISVALIDREF(_Axis) THEN
 	RETURN;
 END_IF;
 
+IF _Axis.Status.Disabled THEN
+	Execute := -4;
+	RETURN;
+END_IF
+
+IF _Axis.NcToPlc.SetVelo <> 0.0 THEN
+	Execute := -5;
+	RETURN;
+END_IF
+
 mcActivateTrack.Execute := TRUE;
 mcActivateTrack.TrackId := Track.MyOTCID;
 _Error := FALSE;
@@ -149,56 +159,5 @@ Runner.RegisterAbortable(THIS^);
 Runner.RegisterTask(THIS^);]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="ActivateTrackTask">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackTask.Abort">
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackTask.AxisRef.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackTask.AxisRef.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackTask.Busy.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackTask.Cycle">
-      <LineId Id="3" Count="10" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackTask.Done.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackTask.Error.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackTask.Execute">
-      <LineId Id="3" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="4" Count="4" />
-    </LineIds>
-    <LineIds Name="ActivateTrackTask.NewTrackId.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="ActivateTrackTask.RegisterWithParent">
-      <LineId Id="3" Count="1" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
