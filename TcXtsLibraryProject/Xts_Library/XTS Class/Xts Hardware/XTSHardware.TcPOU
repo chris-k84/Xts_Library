@@ -461,6 +461,10 @@ END_VAR
 	ResetAPart := -1;
 END_IF
 
+IF Part = 0 THEN
+	ResetAPart := -2;
+END_IF
+
 XtsParts[Part].ResetPart();
 XtsParts[Part].ResetNct();
 ]]></ST>
