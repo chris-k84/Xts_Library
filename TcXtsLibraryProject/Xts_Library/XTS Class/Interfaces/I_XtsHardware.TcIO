@@ -157,6 +157,13 @@ END_VAR
     <Method Name="ResetAllParts" Id="{1ef4fc6a-84af-4fb3-a74e-14a888b66822}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ResetAllParts : BOOL]]></Declaration>
     </Method>
+    <Method Name="ResetAPart" Id="{7685d8b6-69e4-4d21-b6d9-56ad03f5a9bf}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD ResetAPart : HRESULT
+VAR_INPUT
+	Part : INT;
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="SetATrackForDetection" Id="{e5174e94-1d43-416d-9cf0-82b8810737fe}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetATrackForDetection : HRESULT
 VAR_INPUT

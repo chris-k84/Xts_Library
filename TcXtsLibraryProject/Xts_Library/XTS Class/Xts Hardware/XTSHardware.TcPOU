@@ -457,7 +457,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[XtsParts[Part].ResetPart();
+        <ST><![CDATA[IF Part > MyPartCount THEN
+	ResetAPart := -1;
+END_IF
+
+XtsParts[Part].ResetPart();
 XtsParts[Part].ResetNct();
 ]]></ST>
       </Implementation>
