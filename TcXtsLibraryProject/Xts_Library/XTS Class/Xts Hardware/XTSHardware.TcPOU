@@ -453,7 +453,7 @@ END_FOR]]></ST>
     <Method Name="ResetAPart" Id="{917224af-ad90-4e18-bee4-fe5c99cd4d59}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ResetAPart : HRESULT
 VAR_INPUT
-	Part : INT;
+	Part : UINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
