@@ -437,8 +437,8 @@ END_IF
 XtsTracks[TrackToRemove - 1].RemoveFromDetection();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ResetParts" Id="{62a3421b-7f58-4518-b99a-efef3044ec5b}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD ResetParts : BOOL
+    <Method Name="ResetAllParts" Id="{62a3421b-7f58-4518-b99a-efef3044ec5b}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD ResetAllParts : BOOL
 VAR
 	i : INT;
 END_VAR
@@ -448,6 +448,18 @@ END_VAR
 	XtsParts[i].ResetPart();
 	XtsParts[i].ResetNct();
 END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ResetAPart" Id="{917224af-ad90-4e18-bee4-fe5c99cd4d59}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD ResetAPart : HRESULT
+VAR_INPUT
+	Part : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[XtsParts[Part].ResetPart();
+XtsParts[Part].ResetNct();
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetAPartOriginTransform" Id="{603deaa6-bf5d-4b68-a30f-e30620f70274}" FolderPath="Commands\">

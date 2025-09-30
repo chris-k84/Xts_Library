@@ -375,7 +375,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Reset := SUCCEEDED(ICollisionGroup.Reset());
-_MyXtsHardware.ResetParts();]]></ST>
+_MyXtsHardware.ResetAllParts();]]></ST>
       </Implementation>
     </Method>
     <Method Name="StopXts" Id="{4b648283-f5f4-4d47-a58f-be53e519365d}" FolderPath="Operations\">
