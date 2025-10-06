@@ -123,6 +123,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="isAvoidingCollision" Id="{9f7ab5af-1b4f-44ea-b631-5e740ef4cd88}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD isAvoidingCollision : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="isMoverAtPosition" Id="{bc703c47-0b4d-4374-b07c-1240b49b484e}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD isMoverAtPosition : BOOL
 VAR_INPUT
