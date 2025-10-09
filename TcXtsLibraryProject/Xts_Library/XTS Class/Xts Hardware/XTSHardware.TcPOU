@@ -553,12 +553,7 @@ IF bMoverIdDetectionActive THEN
 	RETURN;
 END_IF
 
-// IF bMoverIdDetected THEN
-// 	TriggerMoverIDDetection := -3;
-// 	RETURN;
-// END_IF
-_MyXpu.TriggerMoverIdDetection();
-//bTriggerDetect := TRUE;]]></ST>
+_MyXpu.TriggerMoverIdDetection();]]></ST>
       </Implementation>
     </Method>
     <Method Name="TriggerMoverRedetection" Id="{0183a3e0-45ff-4ec4-b868-d12cfe75fb77}" FolderPath="Commands\">
