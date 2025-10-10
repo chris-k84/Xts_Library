@@ -57,13 +57,14 @@ END_VAR]]></Declaration>
 			_Busy := TRUE;
 			_Done := FALSE;
 			_Error := FALSE;
-			IF _caGroup.IsMoving THEN
-				_caGroup.GroupStop();
-				State := DisableState.Remove_Movers;
- 			ELSE
- 				State := DisableState.Remove_Movers;
-			END_IF
+			State := DisableState.Group_Stop;
 		END_IF
+		
+	DisableState.Group_Stop:
+		IF _caGroup.IsMoving THEN
+			_caGroup.GroupStop();
+		END_IF
+		State := DisableState.Remove_Movers;
 		
 	DisableState.Remove_Movers:
 		IF _caGroup.IsInStandBy THEN
@@ -83,7 +84,7 @@ END_VAR]]></Declaration>
 	DisableState.Disable_Group:
 		AllMoversDisabled := TRUE;
 		FOR i := 0 TO (_registeredNumberOfMovers-1) DO
-			AllMoversDisabled := TRUE AND NOT arrMovers[i].isMoverEnabled();
+			AllMoversDisabled := AllMoversDisabled AND NOT arrMovers[i].isMoverEnabled();
 		END_FOR
 		IF AllMoversDisabled THEN
 			State := DisableState.Reset_Group;

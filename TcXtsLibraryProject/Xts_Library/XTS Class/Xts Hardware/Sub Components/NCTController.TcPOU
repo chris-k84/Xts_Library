@@ -11,6 +11,13 @@ END_VAR
 //_MyInterface := _MyXpu.NctControllerTcIo().BaseUnitInterfaceTcIo(1);
 ]]></ST>
     </Implementation>
+    <Method Name="Cycle" Id="{c1d9d427-ae1d-464a-8275-625537321bc2}">
+      <Declaration><![CDATA[METHOD Cycle : Base_Library.HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="MyXtsIoInterface" Id="{6c7dd504-29ec-421f-85ee-ffbaf90d2e30}">
       <Declaration><![CDATA[PROPERTY MyXtsIoInterface : I_TcIoXtsNctBaseUnitInterface]]></Declaration>
       <Get Name="Get" Id="{f25cbf22-78df-4612-a07b-0c830e2b4a03}">
