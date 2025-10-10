@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="EnableState" Id="{9e3b2163-4ed3-45c9-ada7-3fde7e08e450}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+TYPE EnableState :
+(
+	Idle := 0,
+    Reset_Movers := 10,
+    Reset_Group := 20,
+    Add_Mover := 30,
+    Check_Add_Mover := 40,
+    Enable_Movers := 50,
+    Enable_Group := 60,
+    Check_Standby := 70
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

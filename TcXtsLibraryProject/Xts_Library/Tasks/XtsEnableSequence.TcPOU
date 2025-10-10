@@ -9,7 +9,7 @@ VAR
 	EnableTrigger : BOOL;	
 	arrMovers : ARRAY[0..MaxMovers] OF I_XtsMover;
 	_registeredNumberOfMovers : INT;
-	State: INT;
+	State: EnableState;
 	_Done: BOOL;
 	_Error: BOOL;
 	_Busy: BOOL;
@@ -46,10 +46,10 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE State OF
-	0:
+	EnableState.Idle:
 		IF EnableTrigger THEN
 			Cycle := S_PENDING;
-			State := 10;
+			State := EnableState.Reset_Movers;
 			EnableTrigger := FALSE;
 			moverNumbers := 1;
 			_Busy := TRUE;
@@ -57,54 +57,54 @@ END_VAR]]></Declaration>
 			_Error := FALSE;
 		END_IF
 		
-	10:
+	EnableState.Reset_Movers:
 		FOR moverNumbers := 0 TO (_registeredNumberOfMovers-1) DO
 			arrMovers[moverNumbers].Reset();
 		END_FOR
 		moverNumbers := 0;
-		State := 20;
+		State := EnableState.Reset_Group;
 		
-	20:
+	EnableState.Reset_Group:
 		IF _caGroup.IsInErrorStop THEN
 			_caGroup.Reset();
 		END_IF
-		State := 30;
+		State := EnableState.Add_Mover;
 		
-	30:
+	EnableState.Add_Mover:
 		IF Succeeded( _caGroup.AddMoverToThisGroup(MoverToAdd := arrMovers[moverNumbers])) THEN
-			State := 40;
+			State := EnableState.Check_Add_Mover;
 		END_IF
 		
 		
-	40:
+	EnableState.Check_Add_Mover:
 		IF moverNumbers <> (_registeredNumberOfMovers-1) THEN
 			moverNumbers := moverNumbers + 1;
-			State := 30;
+			State := EnableState.Add_Mover;
 		ELSE
 			FOR moverNumbers := 0 TO (_registeredNumberOfMovers-1) DO
 				arrMovers[moverNumbers].EnableMover();
 			END_FOR
-			State := 50;
+			State := EnableState.Enable_Movers;
 		END_IF
 		
-	50:
+	EnableState.Enable_Movers:
 		AllMoversEnabled := TRUE;
 		FOR moverNumbers := 0 TO (_registeredNumberOfMovers-1) DO
 			AllMoversEnabled := TRUE AND arrMovers[moverNumbers].isMoverEnabled();
 		END_FOR
 		IF AllMoversEnabled THEN
 			
-			State := 60;
+			State := EnableState.Enable_Group;
 		END_IF
 
-	60:
+	EnableState.Enable_Group:
 		IF _caGroup.Enable() THEN
-			State := 70;
+			State := EnableState.Check_Standby;
 		END_IF
 		
-	70:
+	EnableState.Check_Standby:
 		IF _caGroup.IsInStandBy THEN
-			State := 0;
+			State := EnableState.Idle;
 			_Busy := FALSE;
 			_Done := TRUE;
 			Cycle := S_OK;

@@ -8,7 +8,7 @@
     <WriteProductVersion>false</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
     <Name>Xts_Library</Name>
-    <ProgramVersion>3.1.4026.18</ProgramVersion>
+    <ProgramVersion>3.1.4026.19</ProgramVersion>
     <Application>{758f83c0-e46d-44af-8cf0-a51199d56b24}</Application>
     <TypeSystem>{351448db-13f8-435a-a099-01b0f728f3d5}</TypeSystem>
     <Implicit_Task_Info>{e6af468f-c41f-4889-bef9-d83ba1759068}</Implicit_Task_Info>
@@ -18,7 +18,7 @@
     <Released>false</Released>
     <Title>Xts Library</Title>
     <Company>BeckhoffUK</Company>
-    <ProjectVersion>99.99</ProjectVersion>
+    <ProjectVersion>10.1.0.0</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory>
         <Id>{4c30be10-0c29-4796-921e-62ecfda40191}</Id>
@@ -41,6 +41,9 @@
     <VirtualLibrary>true</VirtualLibrary>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\EnableState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mover Behaviours\ExtControl\ExtControlBehaviour.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -202,6 +205,7 @@
     <Folder Include="Mover Behaviours\Station Behaviour" />
     <Folder Include="Mover Class" />
     <Folder Include="Mover Behaviours" />
+    <Folder Include="DUTs" />
     <Folder Include="Station Class" />
     <Folder Include="Station Class\Trigger Point" />
     <Folder Include="Station Class\Queue" />
@@ -433,8 +437,8 @@
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-  <Data>
-    <o xml:space="preserve" t="OptionKey">
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
@@ -2751,16 +2755,16 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-  </Data>
-  <TypeList>
-    <Type n="Boolean">System.Boolean</Type>
-    <Type n="Hashtable">System.Collections.Hashtable</Type>
-    <Type n="Int32">System.Int32</Type>
-    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-    <Type n="String">System.String</Type>
-    <Type n="UInt32">System.UInt32</Type>
-  </TypeList>
-</XmlArchive>
+        </Data>
+        <TypeList>
+          <Type n="Boolean">System.Boolean</Type>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="Int32">System.Int32</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+          <Type n="UInt32">System.UInt32</Type>
+        </TypeList>
+      </XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>
