@@ -41,6 +41,9 @@
     <VirtualLibrary>true</VirtualLibrary>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\DisableState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\EnableState.TcDUT">
       <SubType>Code</SubType>
     </Compile>

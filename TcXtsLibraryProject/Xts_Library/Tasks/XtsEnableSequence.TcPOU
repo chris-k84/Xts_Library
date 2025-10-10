@@ -111,6 +111,9 @@ END_VAR]]></Declaration>
 		END_IF
 	ELSE
 		Cycle := E_FAIL;
+		_Busy := FALSE;
+		_Done := FALSE;
+		_Error := TRUE;
 END_CASE]]></ST>
       </Implementation>
     </Method>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="DisableState" Id="{eebd2d7c-729f-4e6c-a625-d73f0c19dae1}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+TYPE DisableState : 
+(
+	Idle := 0,
+    Group_Stop := 10,
+    Remove_Movers := 20,
+    Disable_Movers := 30,
+    Disable_Group := 40,
+	Reset_Group := 50,
+    Wait_For_Disabled := 60
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
