@@ -38,7 +38,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[CASE XtsIoEnvInitialiseState OF
+        <ST><![CDATA[Initialise := -1;
+CASE XtsIoEnvInitialiseState OF
 	0:
 		IF _MyInterface <> 0 THEN
 			XtsIoEnvInitialiseState := 1;
@@ -61,7 +62,7 @@ END_VAR
 			XtsIoEnvInitialiseState := 4;
 		END_IF
 	4:
-		Initialise := 2;
+		Initialise := 0;
 
 END_CASE]]></ST>
       </Implementation>

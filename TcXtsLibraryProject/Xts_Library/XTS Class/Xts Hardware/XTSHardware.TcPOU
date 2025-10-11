@@ -20,7 +20,6 @@ VAR
 	_MyName : STRING;
 	_isInitialised: BOOL;
 	_hasXPU : BOOL;
-	allInitialised : BOOL;
 END_VAR
 VAR CONSTANT
 	MaxPartsPerTrack : INT := 9;
@@ -237,13 +236,13 @@ END_VAR
       <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR
 	i: INT;
+	allInitialised : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[Initialise := -1;
 CASE XtsIoEnvInitialiseState OF
 	XtsHardwareInitialisation.WaitingForXpu:
 		IF _MyXpu = 0 THEN
-			Initialise := -1;
 			RETURN;
 		ELSE
 			_MyName := _MyXpu.P_ObjectName;
@@ -278,7 +277,7 @@ CASE XtsIoEnvInitialiseState OF
 	XtsHardwareInitialisation.InitialisingXtsParts:
 		allInitialised := TRUE;
 		FOR i := 0 TO UDINT_TO_INT(MyPartCount - 1) DO
-			IF XtsParts[i].Initialise() <> 2 THEN
+			IF FAILED(XtsParts[i].Initialise()) THEN
 				allInitialised := FALSE;
 			END_IF
 		END_FOR
@@ -288,7 +287,7 @@ CASE XtsIoEnvInitialiseState OF
 	XtsHardwareInitialisation.InitialisingXtsTracks:
 		allInitialised := TRUE;
 		FOR i := 0 TO UDINT_TO_INT(MyTrackCount - 1) DO
-			IF XtsTracks[i].Initialise() <> 2 THEN
+			IF FAILED(XtsTracks[i].Initialise()) THEN
 				allInitialised := FALSE;
 			END_IF
 		END_FOR
