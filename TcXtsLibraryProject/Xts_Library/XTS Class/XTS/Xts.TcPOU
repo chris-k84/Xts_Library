@@ -242,7 +242,7 @@ CASE XtsHwState OF
 		END_IF
 		
 	XtsSystemInitialisation.CheckingXts24And48Volts:
-		IF _MyXtsHardware.IsHardware24VdcOK() = 2 AND _MyXtsHardware.IsHardware48VdcOK() = 2 THEN
+		IF SUCCEEDED(_MyXtsHardware.IsHardware24VdcOK()) AND SUCCEEDED(_MyXtsHardware.IsHardware48VdcOK()) THEN
 			XtsHwState := XtsSystemInitialisation.TriggeringMoverIdDetection;
 		END_IF
 	
