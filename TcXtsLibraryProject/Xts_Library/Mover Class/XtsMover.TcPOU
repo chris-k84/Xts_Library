@@ -8,7 +8,7 @@ VAR
 	_MyNCData : NCTOPLC_AXIS_REF;
 	TaskCollection : ObjectRunner;
 	EnableBehaviour : EnableDisableTask := (AxisRef := MyAxisRef);
-	MoveBehaviour : MoveToPositionTask:= (AxisRef := MyAxisRef, Gap := 100.0);
+	MoveBehaviour : MoveToPositionTask:= (AxisRef := MyAxisRef);
 	HaltBehaviour : HaltMoverTask := (AxisRef := MyAxisRef);
 	ResetBehaviour : CoEResetTask := (AxisRef := MyAxisRef);
 	MoverActivateTrackBehaviour : ActivateTrackTask:= (AxisRef := MyAxisRef);
