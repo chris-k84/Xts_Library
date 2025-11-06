@@ -230,6 +230,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="SetMoverActiveTrack" Id="{3fb3e9b5-fc2f-40d4-a659-03f62aab1916}" FolderPath="Administration\">
+      <Declaration><![CDATA[METHOD SetMoverActiveTrack : HRESULT
+VAR_INPUT
+	Track : INT;
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="SetParameterSet" Id="{96f05e89-0ff7-461f-963a-bf5f28b369db}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD SetParameterSet : HRESULT
 VAR_INPUT
