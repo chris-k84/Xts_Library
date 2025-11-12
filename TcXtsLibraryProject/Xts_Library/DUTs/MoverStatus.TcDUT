@@ -6,6 +6,7 @@ STRUCT
 	isFrozen : BOOL;
 	isLost : BOOL;
 	isReadyForPositioning : BOOL;
+	isActive : BOOL;
 	hasDriveError : BOOL32;
 	hasEncoderError : BOOL32;
 END_STRUCT

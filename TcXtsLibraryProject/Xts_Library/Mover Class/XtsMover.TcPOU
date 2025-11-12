@@ -28,7 +28,6 @@ VAR
 	NullTrack : XtsTrack;
 	_SetForce: LREAL;
 	_SetCurrent: LREAL;
-	_IsActive: BOOL;
 	_Gap : LREAL;
 	_Acceleration : LREAL;
 	_Deceleration : LREAL;
@@ -149,7 +148,7 @@ END_VAR]]></Declaration>
 		_stTmsActPositions := _ipTcIoXtsMover.GetPositionInfo();
 		_SetForce := _ipTcIoXtsMover.GetSetForce();
 		_SetCurrent := _ipTcIoXtsMover.GetSetCurrent();
-		_IsActive := _ipTcIoXtsMover.GetIsActive();
+		_myStatus.isActive := _ipTcIoXtsMover.GetIsActive();
 		_myStatus.isFrozen := _ipTcIoXtsMover.GetIsFrozen();
 		_myStatus.isLost := _ipTcIoXtsMover.GetIsLost();
 		_myStatus.isReadyForPositioning := _ipTcIoXtsMover.GetIsReadyForPositioning();
@@ -400,7 +399,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IsActive := _IsActive;]]></ST>
+        <ST><![CDATA[IsActive := _myStatus.isActive;]]></ST>
       </Implementation>
     </Method>
     <Method Name="isAvoidingCollision" Id="{d6fe9751-a759-404e-8850-fd7cabe38e27}" FolderPath="Status\">
