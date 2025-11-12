@@ -17,6 +17,7 @@ VAR
 	_MoverAbsMoveOptions : ST_MoveAbsoluteCAOptions;
 	_stTmsActPositions : ST_PositionInfo;
 	_CurrentTrack : I_XtsTrack;
+	_myStatus : MoverStatus;
 	_MyCAGroup : I_CollisionGroup;
 	_ForwardOnly : BOOL := TRUE;
 	myControllerOid: OTCID;
@@ -148,6 +149,11 @@ END_VAR]]></Declaration>
 		_SetForce := _ipTcIoXtsMover.GetSetForce();
 		_SetCurrent := _ipTcIoXtsMover.GetSetCurrent();
 		_IsActive := _ipTcIoXtsMover.GetIsActive();
+		_myStatus.isFrozen := _ipTcIoXtsMover.GetIsFrozen();
+		_myStatus.isLost := _ipTcIoXtsMover.GetIsLost();
+		_myStatus.isReadyForPositioning := _ipTcIoXtsMover.GetIsReadyForPositioning();
+		_myStatus.hasEncoderError := _ipTcIoXtsMover.GetHasEncoderError();
+		_myStatus.hasDriveError := _ipTcIoXtsMover.GetHasDriveError();
 	END_IF
 	AvoidingCollision := MyAxisRef.NcToPlc.StateDWord2.Flags.AvoidingCollision;
 ELSE
