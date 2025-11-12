@@ -33,6 +33,7 @@ VAR
 	_Acceleration : LREAL;
 	_Deceleration : LREAL;
 	_Jerk : LREAL;
+	_DistanceDrivenInMM : LREAL;
 	AvoidingCollision: BOOL;
 	myController: Tc3_XTS_Utility.I_McXtsMoverController;
 END_VAR
@@ -154,6 +155,7 @@ END_VAR]]></Declaration>
 		_myStatus.isReadyForPositioning := _ipTcIoXtsMover.GetIsReadyForPositioning();
 		_myStatus.hasEncoderError := _ipTcIoXtsMover.GetHasEncoderError();
 		_myStatus.hasDriveError := _ipTcIoXtsMover.GetHasDriveError();
+		_DistanceDrivenInMM := _ipTcIoXtsMover.GetDistanceDriven();
 	END_IF
 	AvoidingCollision := MyAxisRef.NcToPlc.StateDWord2.Flags.AvoidingCollision;
 ELSE
