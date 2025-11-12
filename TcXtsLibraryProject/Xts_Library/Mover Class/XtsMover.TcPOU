@@ -765,7 +765,7 @@ END_VAR
 	TriggerMoverArrive := - 1;
 	RETURN;
 END_IF
-IF _IsActive THEN
+IF _myStatus.isActive THEN
 	TriggerMoverArrive := - 2;
 	RETURN;
 END_IF
@@ -783,7 +783,7 @@ END_VAR
 	TriggerMoverLeave := -1;
 	RETURN;
 END_IF
-IF NOT _IsActive THEN
+IF NOT _myStatus.isActive THEN
 	TriggerMoverLeave := -2;
 	RETURN;
 END_IF
