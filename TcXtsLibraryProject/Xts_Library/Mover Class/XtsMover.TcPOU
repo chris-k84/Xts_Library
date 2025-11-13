@@ -17,6 +17,7 @@ VAR
 	_MoverAbsMoveOptions : ST_MoveAbsoluteCAOptions;
 	_stTmsActPositions : ST_PositionInfo;
 	_CurrentTrack : I_XtsTrack;
+	_myStatus : MoverStatus;
 	_MyCAGroup : I_CollisionGroup;
 	_ForwardOnly : BOOL := TRUE;
 	myControllerOid: OTCID;
@@ -27,11 +28,11 @@ VAR
 	NullTrack : XtsTrack;
 	_SetForce: LREAL;
 	_SetCurrent: LREAL;
-	_IsActive: BOOL;
 	_Gap : LREAL;
 	_Acceleration : LREAL;
 	_Deceleration : LREAL;
 	_Jerk : LREAL;
+	_DistanceDrivenInMM : LREAL;
 	AvoidingCollision: BOOL;
 	myController: Tc3_XTS_Utility.I_McXtsMoverController;
 END_VAR
@@ -148,7 +149,13 @@ END_VAR]]></Declaration>
 		_stTmsActPositions := _ipTcIoXtsMover.GetPositionInfo();
 		_SetForce := _ipTcIoXtsMover.GetSetForce();
 		_SetCurrent := _ipTcIoXtsMover.GetSetCurrent();
-		_IsActive := _ipTcIoXtsMover.GetIsActive();
+		_myStatus.isActive := _ipTcIoXtsMover.GetIsActive();
+		_myStatus.isFrozen := _ipTcIoXtsMover.GetIsFrozen();
+		_myStatus.isLost := _ipTcIoXtsMover.GetIsLost();
+		_myStatus.isReadyForPositioning := _ipTcIoXtsMover.GetIsReadyForPositioning();
+		_myStatus.hasEncoderError := _ipTcIoXtsMover.GetHasEncoderError();
+		_myStatus.hasDriveError := _ipTcIoXtsMover.GetHasDriveError();
+		_DistanceDrivenInMM := _ipTcIoXtsMover.GetDistanceDriven();
 	END_IF
 	AvoidingCollision := MyAxisRef.NcToPlc.StateDWord2.Flags.AvoidingCollision;
 ELSE
@@ -393,7 +400,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IsActive := _IsActive;]]></ST>
+        <ST><![CDATA[IsActive := _myStatus.isActive;]]></ST>
       </Implementation>
     </Method>
     <Method Name="isAvoidingCollision" Id="{d6fe9751-a759-404e-8850-fd7cabe38e27}" FolderPath="Status\">
@@ -790,7 +797,7 @@ END_VAR
 	TriggerMoverArrive := - 1;
 	RETURN;
 END_IF
-IF _IsActive THEN
+IF _myStatus.isActive THEN
 	TriggerMoverArrive := - 2;
 	RETURN;
 END_IF
@@ -808,7 +815,7 @@ END_VAR
 	TriggerMoverLeave := -1;
 	RETURN;
 END_IF
-IF NOT _IsActive THEN
+IF NOT _myStatus.isActive THEN
 	TriggerMoverLeave := -2;
 	RETURN;
 END_IF
