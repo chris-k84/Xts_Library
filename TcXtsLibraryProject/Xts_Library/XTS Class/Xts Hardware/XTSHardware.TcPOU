@@ -13,17 +13,12 @@ VAR
 	MyPartCount: UDINT;
 	MyTrackCount: UDINT;
 	bMoverIdDetectionActive: BOOL;
-	bTriggerDetect: BOOL;
 	bMoverIdDetectionError: BOOL;
 	bMoverIdDetected: BOOL;
 	_MyXts : INT := 1;
 	_MyName : STRING;
 	_isInitialised: BOOL;
 	_hasXPU : BOOL;
-END_VAR
-VAR CONSTANT
-	MaxPartsPerTrack : INT := 9;
-	MaxTracksPerXts : INT := 9;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
