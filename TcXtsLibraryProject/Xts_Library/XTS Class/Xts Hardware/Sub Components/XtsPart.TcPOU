@@ -7,7 +7,6 @@ VAR
 	XtsIoEnvInitialiseState : INT;
 	MyModuleCount : UDINT;
 	PartDriveState: Tc3_XTS_Utility.DriveState;
-	_ReadyToEnable: BOOL;
 	MyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF XtsMotorModule;
 	ModuleIndex: UDINT := 1;
 	CurrentErrorId : UDINT;
