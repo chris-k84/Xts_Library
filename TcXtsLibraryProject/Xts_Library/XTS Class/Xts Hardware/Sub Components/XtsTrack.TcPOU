@@ -7,7 +7,6 @@ VAR
 	XtsIoEnvInitialiseState : INT;
 	MyPartCount : UDINT;
 	Parts : REFERENCE TO ARRAY[1..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF ST_PartInfoItems;
-	i : INT;
 	_TrackLength: LREAL;
 	_TrackIsClosed: BOOL;
 	_OTCID : OTCID;

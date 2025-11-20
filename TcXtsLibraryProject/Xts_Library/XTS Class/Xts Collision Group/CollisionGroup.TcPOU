@@ -2,10 +2,6 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="CollisionGroup" Id="{8907fd76-d392-4030-a5c6-041188f5b990}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK CollisionGroup IMPLEMENTS I_Cyclic, I_CollisionGroup, I_Resettable, I_Object
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
 VAR
 	stGroupInformation : CAGroupInfo;
 	_caGroup : Tc3_McCoordinatedMotion.AXES_GROUP_REF;
