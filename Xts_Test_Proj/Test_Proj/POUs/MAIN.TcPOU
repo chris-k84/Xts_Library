@@ -21,7 +21,7 @@ VAR
 	GroupStopTestSuite : StopGroupTask_TestSuite := (TestSuiteName := 'StopGroupTestSuite');
 	EnableSequenceTestSuite : EnableSequence_TestSuite := (TestSuiteName := 'EnableSequenceTestSuite');
 	DisableSequenceTestSuite : DisableSequence_TestSuite := (TestSuiteName := 'DisableSequenceTestSuite');
-	TestSuites : ARRAY[0..15] OF I_TestSuite := [XtsHWTestSuite, 
+	TestSuites : ARRAY[0..NumberOfTestSuites] OF I_TestSuite := [XtsHWTestSuite, 
 												XtsMoverTestSuite, 
 												XtsTestSuite, 
 												ActivateTrackTestSuite, 
@@ -39,6 +39,9 @@ VAR
 												DisableSequenceTestSuite];
 	ReRun: BOOL;
 	i: INT;
+END_VAR
+VAR CONSTANT
+	NumberOfTestSuites : INT := 15; //Indexing from 0, so sutract 1 from actual
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -69,7 +72,7 @@ GroupStopTestSuite();
 EnableSequenceTestSuite();
 DisableSequenceTestSuite();
 IF ReRun THEN
-	FOR i := 0 TO 16 DO
+	FOR i := 0 TO NumberOfTestSuites DO
 		TestSuites[i].ReRunTests();
 	END_FOR
 	ReRun := FALSE;

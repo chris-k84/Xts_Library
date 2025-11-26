@@ -26,7 +26,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_IsActive := true;]]></ST>
+        <ST><![CDATA[_myStatus.isActive := true;]]></ST>
       </Implementation>
     </Method>
     <Method Name="setAPosition" Id="{2798e35e-433b-437c-8074-09d525f98355}">
@@ -68,12 +68,12 @@ END_VAR
       </Implementation>
     </Method>
     <Method Name="setNotActive" Id="{06553b99-275a-43f9-b622-c0c80754e2f5}">
-      <Declaration><![CDATA[METHOD setNotActive : HRESULT
+      <Declaration><![CDATA[METHOD setNotActive : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_IsActive := FALSE;]]></ST>
+        <ST><![CDATA[_myStatus.isActive := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="setStationary" Id="{58cf9c7d-1727-4a74-b8f3-b9dc5225f246}">
