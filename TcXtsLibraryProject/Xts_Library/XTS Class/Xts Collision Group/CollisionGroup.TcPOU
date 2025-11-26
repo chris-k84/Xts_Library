@@ -100,26 +100,27 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _ICaGroup <> 0 THEN
-	ReadGroupStatus(AxesGroup:= _caGroup, Enable:= TRUE );
-	ReadErrorCode(AxesGroup := _caGroup, Enable := TRUE, GroupErrorId => GroupErrorCode);
-	ResetCaGroupResult := resetCAGroup.Cycle();
-	EnableCaGroupResult := enableCAGroup.Cycle();
-	DisableCaGroupResult := disableCAGroup.Cycle();
-	AddMoverCallResult := addMover.Cycle();
-	RemoveAllCycleResult := removeAllAxes.Cycle();
-	GrpStopCycleResult := grpStop.Cycle();
-	removeMover.Cycle();
-	
-	//Cyclic get CaGroup information
-	stGroupInformation.sName := 'MainCAGroup';
-	stGroupInformation.eGroupState := _caGroup.NcToPlc.Common.GroupStatus.State;
-	stGroupInformation.nAxesCount	:= UDINT_TO_INT(_caGroup.NcToPlc.Common.GroupAxesCount);
-	stGroupInformation.nId			:= _caGroup.NcToPlc.Common.GroupOID;	
-	Cycle := 1;
-ELSE
+        <ST><![CDATA[IF _ICaGroup = 0 THEN
 	Cycle := -1;
-END_IF]]></ST>
+	RETURN;
+END_IF
+
+
+ReadGroupStatus(AxesGroup:= _caGroup, Enable:= TRUE );
+ReadErrorCode(AxesGroup := _caGroup, Enable := TRUE, GroupErrorId => GroupErrorCode);
+ResetCaGroupResult := resetCAGroup.Cycle();
+EnableCaGroupResult := enableCAGroup.Cycle();
+DisableCaGroupResult := disableCAGroup.Cycle();
+AddMoverCallResult := addMover.Cycle();
+RemoveAllCycleResult := removeAllAxes.Cycle();
+GrpStopCycleResult := grpStop.Cycle();
+removeMover.Cycle();
+
+//Cyclic get CaGroup information
+stGroupInformation.sName := 'MainCAGroup';
+stGroupInformation.eGroupState := _caGroup.NcToPlc.Common.GroupStatus.State;
+stGroupInformation.nAxesCount	:= UDINT_TO_INT(_caGroup.NcToPlc.Common.GroupAxesCount);
+stGroupInformation.nId			:= _caGroup.NcToPlc.Common.GroupOID;	]]></ST>
       </Implementation>
     </Method>
     <Method Name="Disable" Id="{236769ac-ee48-442c-86de-25258567af7c}" FolderPath="Commands\">
