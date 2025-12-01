@@ -32,7 +32,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetCaGroupInterface := XtsIoEnvironment.Mc2CaGroup(TO_UINT(CAGroupNumber));]]></ST>
+        <ST><![CDATA[IF NOT Initialised THEN
+	RETURN;
+END_IF
+
+GetCaGroupInterface := XtsIoEnvironment.Mc2CaGroup(TO_UINT(CAGroupNumber));]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetXPUInterface" Id="{a6b4198a-d372-4fc0-b700-debb44563dc0}" FolderPath="Commands\">
@@ -42,7 +46,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetXPUInterface := XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts));]]></ST>
+        <ST><![CDATA[IF NOT Initialised THEN
+	RETURN;
+END_IF
+
+GetXPUInterface := XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts));]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{f0d17991-21f7-403c-899a-0fcccbff041e}">
