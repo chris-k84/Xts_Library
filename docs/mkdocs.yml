@@ -1,0 +1,10 @@
+site_name: XTS Framework Documentation
+
+nav:
+  - Home: index.md
+  - Tasks: 
+      - Overview: Tasks/Index.md
+  - Hardware:
+      - Overview: Hardware/Index.md
+  - Test:
+      - Overview: Mover/Index.md
