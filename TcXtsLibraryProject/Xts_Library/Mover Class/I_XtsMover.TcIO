@@ -93,6 +93,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="getMoverForce" Id="{a63aecfa-9edc-4f8b-b782-badf70078dfd}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD getMoverForce : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="getTrackPosition" Id="{449a4b63-7e3e-4dcb-b1ac-b51087274561}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getTrackPosition : LREAL
 VAR_INPUT

@@ -310,6 +310,15 @@ END_VAR
         <ST><![CDATA[GetMoverCtrlOTCID := _ipTcIoXtsMover.P_MoverControllerOid;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="getMoverForce" Id="{4e4e52d4-51da-4937-a709-c8ecb1f9b707}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD getMoverForce : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[getMoverForce := _SetForce;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="GetMoverOTCID" Id="{0ee3ade7-076c-46ec-8833-0ad2fc45f400}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD GetMoverOTCID : OTCID
 VAR_INPUT
