@@ -15,6 +15,7 @@ nav:
   - Mover:
       - Overview: Mover/Mover Overview.md
       - Mover Class: Mover/Mover Class.md
+      - Mover Tasks: Mover/Mover Tasks/Index.md
   - Collision Avoidance:
       - Overview: Collision Avoidance/Collision Avoidance Overview.md
       - Collision Avoidance Class: Collision Avoidance/Collision Group Class.md
