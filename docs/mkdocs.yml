@@ -1,16 +1,20 @@
 site_name: XTS Framework Documentation
-
 nav:
-  - Home: index.md
+  - Home: Framework.md
   - XTS:
       - Overview: XTS/XTS Overview.md
       - XTS Class: XTS/XTS Class.md
       - XtsIoEnvVar Class: XTS/XtsIoEnvVar Class.md
-  - Tasks: 
-      - Overview: Tasks/Tasks.md
   - Hardware:
-      - Overview: Hardware/Hardware.md
+      - Overview: Hardware/Hardware Overview.md
+      - Hardware Class: Hardware/Hardware Class.md
+      - Module Class: Hardware/Module Class.md
+      - Part Class: Hardware/Part Class.md
+      - NCT Module Class: Hardware/NCT Module Class.md
   - Mover:
       - Overview: Mover/Mover Overview.md
       - Mover Class: Mover/Mover Class.md
+  - Collision Avoidance:
+      - Overview: Collision Avoidance/Collision Avoidance Overview.md
+      - Collision Avoidance Class: Collision Avoidance/Collision Avoidance Class.md
 
