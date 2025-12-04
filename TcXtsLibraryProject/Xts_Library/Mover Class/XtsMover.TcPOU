@@ -8,7 +8,7 @@ VAR
 	_MyNCData : NCTOPLC_AXIS_REF;
 	TaskCollection : ObjectRunner;
 	EnableBehaviour : EnableDisableTask := (AxisRef := MyAxisRef);
-	MoveBehaviour : MoveToPositionTask:= (AxisRef := MyAxisRef, Gap := 100.0);
+	MoveBehaviour : MoveToPositionTask:= (AxisRef := MyAxisRef);
 	HaltBehaviour : HaltMoverTask := (AxisRef := MyAxisRef);
 	ResetBehaviour : CoEResetTask := (AxisRef := MyAxisRef);
 	MoverActivateTrackBehaviour : ActivateTrackTask:= (AxisRef := MyAxisRef);
@@ -100,6 +100,7 @@ IF MyTracks[Track - 1].MyOTCID = 0  THEN
 END_IF
 	
 MoverActivateTrackBehaviour.Execute(Track := MyTracks[Track - 1]);
+_ipTcIoXtsMover.SetActiveTrackObjectId(nTrackObjectId := MyTracks[Track - 1].MyOTCID);
 _CurrentTrack := MyTracks[Track - 1];
 ]]></ST>
       </Implementation>
@@ -307,6 +308,15 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[GetMoverCtrlOTCID := _ipTcIoXtsMover.P_MoverControllerOid;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="getMoverForce" Id="{4e4e52d4-51da-4937-a709-c8ecb1f9b707}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD getMoverForce : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[getMoverForce := _SetForce;]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetMoverOTCID" Id="{0ee3ade7-076c-46ec-8833-0ad2fc45f400}" FolderPath="Administration\">
@@ -715,6 +725,37 @@ END_VAR
 END_IF
 
 _ipTcIoXtsMover.MoverController.SetForceCouple(nForceCouple := XtsMoverCtrlOTCID);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetMoverActiveTrack" Id="{d6a4b78b-2758-4ca3-91dd-004aef96a776}" FolderPath="Administration\">
+      <Declaration><![CDATA[METHOD SetMoverActiveTrack : HRESULT
+VAR_INPUT
+	Track : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Track = 0 THEN
+	SetMoverActiveTrack := -1;
+	RETURN;
+END_IF
+
+IF NOT THIS^.isMoverStationary() THEN
+	SetMoverActiveTrack := -3;
+	RETURN;
+END_IF
+
+IF Track > MyTrackCount THEN
+	SetMoverActiveTrack := -4;
+	RETURN;
+END_IF
+
+IF MyTracks[Track - 1].MyOTCID = 0  THEN
+	SetMoverActiveTrack := -5;
+	RETURN;
+END_IF
+	
+_ipTcIoXtsMover.SetActiveTrackObjectId(nTrackObjectId := MyTracks[Track - 1].MyOTCID);
+_CurrentTrack := MyTracks[Track - 1];]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetParameterSet" Id="{a2d3312c-642a-4ded-95b4-a250a99284ac}" FolderPath="Administration\">
