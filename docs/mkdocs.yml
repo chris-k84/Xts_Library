@@ -2,6 +2,10 @@ site_name: XTS Framework Documentation
 
 nav:
   - Home: index.md
+  - XTS:
+      - Overview: XTS/XTS Overview.md
+      - XTS Class: XTS/XTS Class.md
+      - XtsIoEnvVar Class: XTS/XtsIoEnvVar Class.md
   - Tasks: 
       - Overview: Tasks/Tasks.md
   - Hardware:
