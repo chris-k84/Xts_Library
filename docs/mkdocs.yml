@@ -3,8 +3,10 @@ site_name: XTS Framework Documentation
 nav:
   - Home: index.md
   - Tasks: 
-      - Overview: Tasks/Index.md
+      - Overview: Tasks/Tasks.md
   - Hardware:
-      - Overview: Hardware/Index.md
-  - Test:
-      - Overview: Mover/Index.md
+      - Overview: Hardware/Hardware.md
+  - Mover:
+      - Overview: Mover/Mover Overview.md
+      - Mover Class: Mover/Mover Class.md
+
