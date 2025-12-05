@@ -51,5 +51,19 @@ classDiagram
         +MyName
     }
 
-    ICollisionGroup <|-- CollisionGroup
+    class I_Cyclic{
+        +Cycle()
+    }
+
+    class I_Resettable{
+        +Reset()
+    }
+    class I_Object{
+        +RegisterWithParent()
+    }
+
+    ICollisionGroup <|-- CollisionGroup : implements
+    I_Resettable <|-- CollisionGroup : implements
+    I_Object <|-- CollisionGroup : implements
+    I_Cyclic <|-- CollisionGroup : implements
 ```
