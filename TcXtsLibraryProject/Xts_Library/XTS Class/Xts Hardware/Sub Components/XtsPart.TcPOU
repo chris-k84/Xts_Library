@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsPart" Id="{39541d00-22ec-4750-829d-4864a624597e}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsPart EXTENDS CyclicBase
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsPart EXTENDS CyclicBase IMPLEMENTS I_Initialisable
 VAR
 	_MyInterface : Tc3_XTS_Utility.I_TcIoXtsXpuPart;
 	XtsIoEnvInitialiseState : INT;
@@ -13,6 +13,7 @@ VAR
 	InSim : BOOL;
 	PartName: STRING;
 	IsDCLinkReady: BOOL;
+	_IsInitialised : BOOL := FALSE;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -102,6 +103,7 @@ CASE XtsIoEnvInitialiseState OF
 	3:
 		PartName := _MyInterface.P_ObjectName;
 		Initialise := 0;
+		_IsInitialised := TRUE;
 END_CASE]]></ST>
       </Implementation>
     </Method>
@@ -133,6 +135,13 @@ FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 		Is48VBusOK := FALSE;
 	END_IF
 END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsInitialised" Id="{52f74913-17d3-431e-bbf8-b29e491627e6}">
+      <Declaration><![CDATA[METHOD IsInitialised : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsInitialised := _IsInitialised;]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyXtsIoEnvInterface" Id="{b5f6c838-c909-4a11-9656-9e449699aee4}">
