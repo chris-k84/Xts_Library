@@ -97,14 +97,17 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _MyModuleIoInterface.P_IsInitialized THEN
-	ModuleError := _MyModuleIoInterface.CoE.DiagHistoryData;
-	ReadDiagHistory := TRUE;
-	ModuleName := _MyModuleIoInterface.P_ObjectName;
-	DriveId := _MyModuleIoInterface.GetDriveOnlineIdentity();
-	Initialise := 2;
-	_IsInitialised := TRUE;
-END_IF]]></ST>
+        <ST><![CDATA[IF NOT _MyModuleIoInterface.P_IsInitialized THEN
+	Initialise := -1;
+	RETURN;
+END_IF
+
+ModuleError := _MyModuleIoInterface.CoE.DiagHistoryData;
+ReadDiagHistory := TRUE;
+ModuleName := _MyModuleIoInterface.P_ObjectName;
+DriveId := _MyModuleIoInterface.GetDriveOnlineIdentity();
+_IsInitialised := TRUE;
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="Is24VOK" Id="{9b08696d-e0e1-46f9-950f-7b12a84e7180}">
