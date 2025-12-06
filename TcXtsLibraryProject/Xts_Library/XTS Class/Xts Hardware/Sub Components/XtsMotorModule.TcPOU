@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsMotorModule" Id="{447db564-ab24-433c-b078-4cedd1c7411e}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsMotorModule EXTENDS CyclicBase IMPLEMENTS I_XtsTrack
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsMotorModule EXTENDS CyclicBase IMPLEMENTS I_Initialisable
 VAR
 	_MyModuleIoInterface : I_TcIoXtsPartModule;
+	_IsInitialised : BOOL;
 	CurrentLive: LREAL;
 	MaxCurrent: LREAL;
 	Nominal24Vdc : REAL := 24.0;
@@ -102,6 +103,7 @@ END_VAR
 	ModuleName := _MyModuleIoInterface.P_ObjectName;
 	DriveId := _MyModuleIoInterface.GetDriveOnlineIdentity();
 	Initialise := 2;
+	_IsInitialised := TRUE;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -133,6 +135,13 @@ END_IF
 IF Module48Vdc > (Nominal48Vdc * 1.1) THEN
 	Is48VOK := -1;
 END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsInitialised" Id="{2ed8abff-cfcf-4abb-a4a9-d431bb45f223}">
+      <Declaration><![CDATA[METHOD IsInitialised : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsInitialised := _IsInitialised;]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyModuleInterface" Id="{2168d719-80a8-412e-a875-7c102bb8a0d2}">
