@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsTrack" Id="{0ed646c8-24dd-40d8-b451-d6e6a88b90d3}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsTrack EXTENDS CyclicBase IMPLEMENTS I_XtsTrack
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsTrack EXTENDS CyclicBase IMPLEMENTS I_XtsTrack, I_Initialisable
 VAR
 	_MyInterface : I_TcIoXtsXpuTrack;
 	XtsIoEnvInitialiseState : INT;
@@ -13,6 +13,7 @@ VAR
 	_IsTrackIncludedForDetection : BOOL;
 	_NumberOfPartsInTrack : INT;
 	_TrackPolarity: Tc3_XTS_Utility.Polarity;
+	_IsInitialised : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -62,8 +63,15 @@ CASE XtsIoEnvInitialiseState OF
 		END_IF
 	4:
 		Initialise := 0;
-
+		_IsInitialised := TRUE;
 END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsInitialised" Id="{200adef8-0b7c-49ea-bf44-7e62525f1e70}">
+      <Declaration><![CDATA[METHOD IsInitialised : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsInitialised := _IsInitialised;]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyOTCID" Id="{d34cfe46-c497-4e94-b74d-f99a6000b358}">
