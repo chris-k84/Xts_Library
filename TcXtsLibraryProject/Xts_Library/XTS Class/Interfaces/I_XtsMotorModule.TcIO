@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_XtsMotorModule" Id="{3515393f-36cc-43f5-8d97-3f2cabdfbcb7}">
+    <Declaration><![CDATA[INTERFACE I_XtsMotorModule
+]]></Declaration>
+    <Method Name="AckDiagMsgs" Id="{4039414c-360b-4201-9083-a896e2d638ce}">
+      <Declaration><![CDATA[METHOD AckDiagMsgs : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="GetLatestDiagMessage" Id="{0a7a5c2e-a82d-4941-99f3-30960d9b7b93}">
+      <Declaration><![CDATA[METHOD GetLatestDiagMessage : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Is24VOK" Id="{048f2f43-efbe-45dd-9bee-30927ae5c3ce}">
+      <Declaration><![CDATA[METHOD Is24VOK : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Is48VOK" Id="{53e82e2c-5da8-4c06-833c-4d51dc472eb8}">
+      <Declaration><![CDATA[METHOD Is48VOK : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SetInSim" Id="{3ed874bb-c6ca-41ec-85c6-4bc2517bd458}">
+      <Declaration><![CDATA[METHOD SetInSim : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>
