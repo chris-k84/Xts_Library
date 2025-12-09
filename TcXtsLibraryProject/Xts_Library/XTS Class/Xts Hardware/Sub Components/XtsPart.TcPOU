@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsPart" Id="{39541d00-22ec-4750-829d-4864a624597e}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsPart EXTENDS CyclicBase IMPLEMENTS I_Initialisable
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsPart EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XtsPart
 VAR
 	_MyInterface : Tc3_XTS_Utility.I_TcIoXtsXpuPart;
 	XtsIoEnvInitialiseState : INT;

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_XtsPart" Id="{79728d50-0c5c-4ced-9546-66681745df5e}">
+    <Declaration><![CDATA[INTERFACE I_XtsPart
+]]></Declaration>
+    <Method Name="GetCurrentError" Id="{7903d85b-fb75-4c9a-8606-29b5130c9d6a}">
+      <Declaration><![CDATA[METHOD GetCurrentError : UDINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="HasError" Id="{ae1c2820-dc08-4615-b8a4-fefd59f60d2b}">
+      <Declaration><![CDATA[METHOD HasError : BOOL
+VAR_INPUT
+END_VAR]]></Declaration>
+    </Method>
+    <Method Name="Is24VBusOK" Id="{500c1a0d-a9c2-44cc-a7f0-1636e31cb371}">
+      <Declaration><![CDATA[METHOD Is24VBusOK : BOOL
+VAR
+	i : INT;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Is48VBusOK" Id="{65d6ebc5-d4c7-4450-a659-11bf3882ab2b}">
+      <Declaration><![CDATA[METHOD Is48VBusOK : BOOL
+VAR
+	i : INT;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ResetNct" Id="{50d63536-a342-4d85-bc66-9ba04c9cfc49}">
+      <Declaration><![CDATA[METHOD ResetNct : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ResetPart" Id="{6cd3b4ca-ad47-4f23-a5e9-46a25492ff53}">
+      <Declaration><![CDATA[METHOD ResetPart : BOOL
+VAR
+	i : INT;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SetInSim" Id="{c9eb2856-51f9-4b2b-8bd3-e7c7234a0028}">
+      <Declaration><![CDATA[METHOD SetInSim : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SetPartOriginTransform" Id="{2de4d845-cfb8-4557-b610-ba9d0390b496}">
+      <Declaration><![CDATA[METHOD SetPartOriginTransform : BOOL
+VAR_INPUT
+	OriginTransform: Tc3_XTS_Utility.ST_OriginTransform;
+END_VAR]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>
