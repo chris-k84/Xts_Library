@@ -169,6 +169,12 @@
     <Compile Include="XTS Class\Interfaces\I_XtsIoEnvVar.TcIO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="XTS Class\Interfaces\I_XtsMotorModule.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XTS Class\Interfaces\I_XtsPart.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="XTS Class\Interfaces\I_XtsTrack.TcIO">
       <SubType>Code</SubType>
     </Compile>

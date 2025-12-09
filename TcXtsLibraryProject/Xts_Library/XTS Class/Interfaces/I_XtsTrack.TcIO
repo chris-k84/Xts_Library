@@ -12,6 +12,18 @@
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
+    <Method Name="RemoveFromDetection" Id="{9e7f91cb-3f18-4120-a764-6e1db78d984c}">
+      <Declaration><![CDATA[METHOD RemoveFromDetection : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SetForDetection" Id="{025c650b-b106-4b4a-a957-33ebeda4f9a9}">
+      <Declaration><![CDATA[METHOD SetForDetection : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Property Name="TrackLength" Id="{d09b154e-641d-4452-b45a-353375f2a798}">
       <Declaration><![CDATA[PROPERTY TrackLength : MC_Lreal]]></Declaration>
       <Get Name="Get" Id="{227be027-fd95-4a28-b451-be32068fa3af}">
