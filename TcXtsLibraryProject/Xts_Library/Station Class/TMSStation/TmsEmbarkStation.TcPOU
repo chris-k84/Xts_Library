@@ -257,8 +257,7 @@ END_CASE]]></ST>
       </Implementation>
     </Method>
     <Property Name="Position" Id="{57781d24-723f-4dbc-b59b-493697f347b8}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Position : MC_LREAL
+      <Declaration><![CDATA[PROPERTY Position : MC_LREAL
 ]]></Declaration>
       <Get Name="Get" Id="{846aa0af-3762-492c-8088-91ff454623be}">
         <Declaration><![CDATA[VAR
@@ -270,8 +269,7 @@ END_VAR
       </Get>
     </Property>
     <Method Name="RegisterWithParent" Id="{ae1250b4-e8d3-4bd2-8110-48d016d30ba8}">
-      <Declaration><![CDATA[{warning 'Add method implementation '}
-METHOD RegisterWithParent
+      <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
 	Runner	: Base_Library.I_HostObjects;
 END_VAR
