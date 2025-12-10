@@ -83,8 +83,7 @@ _MyStation := Station;]]></ST>
       </Implementation>
     </Method>
     <Method Name="IsReady" Id="{6c981551-1b51-4198-93c9-7e75e7c31277}" FolderPath="Status\">
-      <Declaration><![CDATA[{warning 'Add method implementation '}
-METHOD IsReady : BOOL
+      <Declaration><![CDATA[METHOD IsReady : BOOL
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -109,8 +108,7 @@ _MyMover := mover;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Position" Id="{0fc938c1-886d-4378-832a-c7a96a3aba48}">
-      <Declaration><![CDATA[{warning 'Add property implementation'}
-PROPERTY Position : MC_LREAL
+      <Declaration><![CDATA[PROPERTY Position : MC_LREAL
 ]]></Declaration>
       <Get Name="Get" Id="{f1f2b796-050a-4f8f-ab96-64accc9dc6d5}">
         <Declaration><![CDATA[VAR
