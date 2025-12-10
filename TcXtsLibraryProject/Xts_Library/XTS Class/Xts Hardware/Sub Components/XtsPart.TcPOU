@@ -8,6 +8,7 @@ VAR
 	MyModuleCount : UDINT;
 	PartDriveState: Tc3_XTS_Utility.DriveState;
 	MyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF XtsMotorModule;
+	IMyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF I_XtsMotorModule;
 	ModuleIndex: UDINT := 1;
 	CurrentErrorId : UDINT;
 	InSim : BOOL;
@@ -84,11 +85,13 @@ CASE XtsIoEnvInitialiseState OF
 			XtsIoEnvInitialiseState := 3;
 			FOR i := 0 TO UDINT_TO_UINT(MyModuleCount - 1) DO
 				MyModules[i].SetInSim();
+				IMyModules[i] := MyModules[i];
 			END_FOR
 			InSim := true;
 		ELSE
 			FOR i := 0 TO UDINT_TO_UINT(MyModuleCount - 1) DO
 				MyModules[i].MyModuleInterface := _MyInterface.ModuleTcIo(i + 1);
+				IMyModules[i] := MyModules[i];
 			END_FOR
 			XtsIoEnvInitialiseState := 2;
 		END_IF
