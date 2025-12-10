@@ -107,7 +107,7 @@
       <Resolution>VisuNativeControl, * (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Xts Library">
-      <Resolution>Xts Library, 10.1.0.0 (BeckhoffUK)</Resolution>
+      <Resolution>Xts Library, * (BeckhoffUK)</Resolution>
     </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>
