@@ -7,6 +7,14 @@ The module class is the basic element of any XTS system, this class is its softw
 ```mermaid
 
 classDiagram
+    class I_XtsMotorModule{
+        +SetInSim()
+        +Is24VOK()
+        +Is48VOK()
+        +GetLatestDiagMessage()
+        +AckDiagMsg()
+    }
+
     class XtsMotorModule{
         +SetInSim()
         +Is24VOK()
@@ -25,8 +33,9 @@ classDiagram
         +IsInitialised()
     }
 
+    I_XtsMotorModule <|-- XtsMotorModule : implements
     I_Initialisable <|-- XtsMotorModule : implements
-    CyclicBase <|-- XtsMotorModule
+    XtsMotorModule --|> CyclicBase
 ```
 
 ## Interface

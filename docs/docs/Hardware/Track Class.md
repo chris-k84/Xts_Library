@@ -5,16 +5,20 @@
 ```mermaid
 
 classDiagram
+    class I_XtsTrack{
+        <<interface>>
+        +RemoveFromDetection()
+        +SetForDetection()
+        +NumberOfPartsInTrack
+        +TrackLength
+    }
+
     class XtsTrack{
         +RemoveFromDetection()
         +SetForDetection()
         +NumberOfPartsInTrack
         +MyXtsIoEnvVarInterface
-    }
-
-    class I_XtsTrack{
-       +MyOTCID
-       +TrackLength
+        +TrackLength
     }
 
     class CyclicBase{
@@ -28,5 +32,5 @@ classDiagram
 
     I_XtsTrack <|-- XtsTrack : implements
     I_Initialisable <|-- XtsTrack : implements
-    CyclicBase <|-- XtsTrack
+    XtsTrack --|> CyclicBase
 ```

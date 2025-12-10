@@ -7,6 +7,18 @@ The Part class represents a group of motor modules, it is the governor for them,
 ```mermaid
 
 classDiagram
+    class I_XtsPart{
+        <<interface>>
+        +SetInSim()
+        +ResetPart()
+        +ResetNCT()
+        +Is24VBusOK()
+        +Is48VBusOK()
+        +HasError()
+        +GetCurrentError()
+        +SetPartOriginTransform()
+    }
+
     class XtsPart{
         +SetInSim()
         +ResetPart()
@@ -29,7 +41,8 @@ classDiagram
     }
 
     I_Initialisable <|-- XtsPart : implements
-    CyclicBase <|-- XtsPart
+    XtsPart --|> CyclicBase
+    I_XtsPart <|-- XtsPart : implements
 ```
 
 ### SetInSim()
