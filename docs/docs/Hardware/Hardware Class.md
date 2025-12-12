@@ -93,6 +93,7 @@ classDiagram
 ```
 
 ## Interface
+
 ### GetConfiguredDetectionMoverNumber()
 ### GetMoverDetectionState()
 ### GetNumberMoversDetected()

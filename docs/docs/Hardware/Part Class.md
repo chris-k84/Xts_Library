@@ -45,6 +45,8 @@ classDiagram
     I_XtsPart <|-- XtsPart : implements
 ```
 
+## Interface
+
 ### SetInSim()
 
 This method is invoked by the [Hardware Class](./Hardware%20Class.md) during its initialisation, its simply sets the part into simulation mode, which in turns calls the internal modules.
