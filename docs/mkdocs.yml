@@ -21,3 +21,6 @@ nav:
       - Collision Avoidance Class: Collision Avoidance/Collision Group Class.md
       - Collision Group Tasks: Collision Avoidance/Collision Group Tasks/Index.md
 
+plugins:
+    - search
+    - mermaid2
