@@ -1,0 +1,3 @@
+# XTS Overview
+
+This section covers the XTS class, this object represents the XTS SPU object, i.e the software representation of the whole XTS, Track, Parts and Movers all combined in a single location. This [document](./XTS%20Class.md) covers this implementation describing how its operated and what functions are avaialble. The interface is brought through a [handler](./XtsIoEnvVar%20Class.md) class to restrict access to relvant parts and protect against changes in implementaiton of the XPU itself.
