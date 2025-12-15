@@ -1,5 +1,7 @@
 # Part Class
 
+## Overview
+
 The Part class represents a group of motor modules, it is the governor for them, bringing together diagnostic and control data for all modules included in its set up. This class represents that function, allowing resetting and status checks on the modules within.
 
 ## Class Diagram
@@ -44,6 +46,18 @@ classDiagram
     XtsPart --|> CyclicBase
     I_XtsPart <|-- XtsPart : implements
 ```
+
+## Implementation
+
+Inside the Part class is the following:
+```
+_MyInterface : Tc3_XTS_Utility.I_TcIoXtsXpuPart;
+```
+This interface is populated in the initialise phase of the [hardware](Hardware%20Class.md). It is via this function that the Part class can perform tasks listed below. 
+
+### Cycle
+
+### Initialise
 
 ## Interface
 
