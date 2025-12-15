@@ -1,5 +1,7 @@
 # Hardware Class
 
+## Overview
+
 The module class is the basic element of any XTS system, this class is its software representation. The module uses its XtsIoEnv interfaceto pull data about each module direct from the XPU. The main function of the class is to monitor the module for issues in its electrical system. Higher level errors are pushed into the movers, part and tracks.
 
 ## Class Diagram
@@ -91,6 +93,18 @@ classDiagram
     I_Hardware <|-- Hardware : implements
     Hardware --|> CyclicBase
 ```
+
+## Implementation
+
+Inside the Part class is the following:
+```
+_MyXpu : Tc3_XTS_Utility.I_TcIoXtsProcessingUnit;
+```
+This interface is populated in the initialise phase of the [XTS](../XTS/XTS%20Class.md). It is via this function that the Hardware class can perform tasks listed below. 
+
+### Cycle
+
+### Initialise
 
 ## Interface
 
