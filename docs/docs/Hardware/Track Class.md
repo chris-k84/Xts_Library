@@ -50,7 +50,25 @@ This interface is populated in the initialise phase of the [hardware](Hardware%2
 
 ### Cycle
 
+The cyclic method simply checks cyclic maintainence parameters, in the current case this is simply the check on track being in detection or not.
+
 ### Initialise
+
+The initialise method sets up the track class, there is not a lot ot set up here, but it follows this state machine:
+
+```mermaid
+---
+title: Track Initialise
+---
+stateDiagram-v2
+    [*] --> Check_Interface
+    Check_Interface --> [*]
+
+    Check_Interface --> Check_Number_Of_Parts
+    Check_Number_Of_Parts --> Get_Part_Info
+    Get_Part_Info --> Read_In_Track_Details
+    Read_In_Track_Details --> [*]
+```
 
 ## Interface
 
