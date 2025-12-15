@@ -1,5 +1,7 @@
 # XtsMotorModule Class
 
+## Overview
+
 The module class is the basic element of any XTS system, this class is its software representation. The module uses its XtsIoEnv interfaceto pull data about each module direct from the XPU. The main function of the class is to monitor the module for issues in its electrical system. Higher level errors are pushed into the movers, part and tracks.
 
 ## Class Diagram
@@ -37,6 +39,18 @@ classDiagram
     I_Initialisable <|-- XtsMotorModule : implements
     XtsMotorModule --|> CyclicBase
 ```
+
+## Implements
+
+Inside the Part class is the following:
+```
+_MyModuleIoInterface : I_TcIoXtsPartModule;
+```
+This interface is populated in the initialise phase of the [Part](./Part%20Class.md). It is via this function that the Module Class class can perform tasks listed below. 
+
+### Cycle
+
+### Initialise
 
 ## Interface
 
