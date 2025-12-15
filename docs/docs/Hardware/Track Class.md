@@ -1,5 +1,7 @@
 # Track Class
 
+## Overview
+
 The Track class represents a group of parts, it is the governor for them, bringing together diagnostic and control data for all Parts included in its set up. This class represents that function, allowing resetting and status checks on the parts within.
 
 
@@ -37,6 +39,18 @@ classDiagram
     I_Initialisable <|-- XtsTrack : implements
     XtsTrack --|> CyclicBase
 ```
+
+## Implementation
+
+Inside the Part class is the following:
+```
+_MyInterface : I_TcIoXtsXpuTrack;
+```
+This interface is populated in the initialise phase of the [hardware](Hardware%20Class.md). It is via this function that the Track class can perform tasks listed below. 
+
+### Cycle
+
+### Initialise
 
 ## Interface
 
