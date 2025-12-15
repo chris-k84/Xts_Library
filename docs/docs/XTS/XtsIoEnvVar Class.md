@@ -46,9 +46,18 @@ XtsIoEnvironment : Tc3_XTS_Utility.FB_TcIoXtsEnvironment;
 ```
 This class is actually a pointer class to the XPU object in the RT part of TwinCAT, it connects directly to the XTS TcCOM and allows the PLC to communicate with it.
 
-### Cycle
-
 ### Initialise
+
+The initialise phase of this class simply initialises the connection form plc to XPU, this is a standard code form which will be found everywhere in XTS implementations, this code can be taken and used anywhere:
+
+```
+IF XtsIoEnvironment.Init(TRUE) THEN
+	XtsIoEnvironment.Init(FALSE);
+	Initialised := TRUE;
+ELSE
+	Initialise := -1;
+END_IF
+```
 
 ## Interface
 
