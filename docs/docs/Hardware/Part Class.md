@@ -64,7 +64,24 @@ The cycle method is relatively simple, it basically performs 2 funcitons:
 
 ### Initialise
 
+The initialise method sets up the Part class, there is not a lot ot set up here, but it follows this state machine:
 
+```mermaid
+---
+title: Track Initialise
+---
+stateDiagram-v2
+    [*] --> Check_Interface
+    Check_Interface --> [*]
+
+    Check_Interface --> Check_Is_In_Sim
+    Check_Is_In_Sim --> Set_Modules_Into_Sim
+    Set_Modules_Into_Sim --> Assign_Interfaces
+    Check_Is_In_Sim --> Assign_XPU_Interfaces
+    Assign_XPU_Interfaces --> Assign_Interfaces
+    Assign_Interfaces --> Run_Module_Initialise
+    Run_Module_Initialise --> [*]
+```
 
 ## Interface
 
