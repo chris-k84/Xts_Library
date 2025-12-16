@@ -57,7 +57,14 @@ This interface is populated in the initialise phase of the [hardware](Hardware%2
 
 ### Cycle
 
+The cycle method is relatively simple, it basically performs 2 funcitons:
+
+1. It cyclically calls the cycle methods of its modules contained in the MyModules array.
+2. It cyclically checks the status of the drive (part) and the voltage, it also loops through the MyModules array and takes the highest priority diagnostics message should there be any.
+
 ### Initialise
+
+
 
 ## Interface
 
