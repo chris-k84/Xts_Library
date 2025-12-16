@@ -86,6 +86,8 @@ This can then be pulled out by the Part class that manages the module and offere
 
 ### Initialise
 
+The initialise method only runs once the module interface has been passed in, it only runs once and its only function is to grab existing messages from the module as well as its name and drive identity.
+
 ## Interface
 
 ### SetInSim()
