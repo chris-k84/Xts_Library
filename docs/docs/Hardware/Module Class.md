@@ -50,6 +50,40 @@ This interface is populated in the initialise phase of the [Part](./Part%20Class
 
 ### Cycle
 
+The cycle method of the Module class performs 2 functions:
+
+1. it cyclically updates stauts data for the module using the following calls:
+```
+CurrentLive:= _MyModuleIoInterface.GetOverallCurrent();
+MaxCurrent:=  _MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
+Module24Vdc := _MyModuleIoInterface.GetAuxiliaryVoltage24V();
+Module48Vdc := _MyModuleIoInterface.GetDCLinkVoltage();
+ModuleState := _MyModuleIoInterface.GetDriveState();
+ModuleStatus := _MyModuleIoInterface.GetDriveStatusInfo();
+```
+with this we can look through the modules to see any hardware issues that may be present.
+
+2. it responds to any fault by reading all the diagnostic data from the physical module and storing it in an array of messages:
+
+```
+IF ModuleError.UnackMsgsAvailable THEN
+	NewDiagMessageCount := ModuleError.UnackMsgCount;
+	FOR i := 1 TO 25 DO
+		ModuleDiagMessages[i] := NullMessage;
+	END_FOR
+	ModuleDiagMessages := ModuleError.DiagHistory.aDiagHistoryMsg;
+END_IF
+
+ErrorTrigger(CLK := ModuleState = DriveState.Fault OR ModuleState = DriveState.FaultReactionActive);
+IF ErrorTrigger.Q OR ReadDiagHistory THEN
+	ReadDiagHistory := TRUE;
+	if ModuleError.UpdateDiagHistory() THEN
+		ReadDiagHistory := FALSE;
+	END_IF
+END_IF
+```
+This can then be pulled out by the Part class that manages the module and offered up to a logging system.
+
 ### Initialise
 
 ## Interface
