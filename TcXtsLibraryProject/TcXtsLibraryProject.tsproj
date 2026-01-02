@@ -214,7 +214,7 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{823D7D36-8BF7-436B-9621-3004CD8896DF}" Target64Bit="true" ShowHideConfigurations="#x106">
+	<Project ProjectGUID="{823D7D36-8BF7-436B-9621-3004CD8896DF}" Target64Bit="true" ShowHideConfigurations="#x3c7">
 		<System>
 			<Settings RouterMemory="268435456" MaxStackSize="4096"/>
 			<Tasks>

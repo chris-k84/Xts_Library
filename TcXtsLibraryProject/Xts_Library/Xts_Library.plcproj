@@ -18,7 +18,7 @@
     <Released>false</Released>
     <Title>Xts Library</Title>
     <Company>BeckhoffUK</Company>
-    <ProjectVersion>10.2.0.0</ProjectVersion>
+    <ProjectVersion>11.0.0.0</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory>
         <Id>{4c30be10-0c29-4796-921e-62ecfda40191}</Id>
@@ -41,77 +41,88 @@
     <VirtualLibrary>true</VirtualLibrary>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DUTs\DisableState.TcDUT">
+    <Compile Include="Mover Behaviours\ExtControlBehaviour.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\EnableState.TcDUT">
+    <Compile Include="Mover Behaviours\StationBehaviour.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\MoverStatus.TcDUT">
+    <Compile Include="Operations\Process.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mover Behaviours\ExtControl\ExtControlBehaviour.TcPOU">
+    <Compile Include="Operations\Queue.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mover Behaviours\ExtControl\I_ExtControlBehaviour.TcIO">
+    <Compile Include="Operations\Station.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mover Behaviours\Station Behaviour\I_StationBehaviour.TcIO">
+    <Compile Include="Operations\StationSample.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mover Behaviours\Station Behaviour\StationBehaviour.TcPOU">
+    <Compile Include="Operations\Switch.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mover Behaviours\Station Behaviour\StationBehaviourInfo.TcDUT">
+    <Compile Include="Operations\TmsEmbarkStation.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mover Behaviours\Station Behaviour\StationBehaviourState.TcDUT">
+    <Compile Include="Operations\TriggerPoint.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mover Class\I_XtsMover.TcIO">
+    <Compile Include="Types\CAGroupInfo.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mover Class\XtsMover.TcPOU">
+    <Compile Include="Types\DisableState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\Process\IProcess.TcIO">
+    <Compile Include="Types\EmbarkStationStates.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\Process\Process.TcPOU">
+    <Compile Include="Types\EnableState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\Queue\Queue.TcPOU">
+    <Compile Include="Types\MoverStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\Station\I_Station.TcIO">
+    <Compile Include="Interfaces\IProcess.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\Station\Station.TcPOU">
+    <Compile Include="Interfaces\I_CollisionGroup.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\Station\StationSample.TcPOU">
+    <Compile Include="Interfaces\I_ExtControlBehaviour.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\Station\stStationInfo.TcDUT">
+    <Compile Include="Interfaces\I_Lift.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\Station\stStationStatus.TcDUT">
+    <Compile Include="Interfaces\I_Station.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\TMSStation\EmbarkStationStates.TcDUT">
+    <Compile Include="Interfaces\I_StationBehaviour.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\TMSStation\I_Lift.TcIO">
+    <Compile Include="Interfaces\I_XTS.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\TMSStation\Switch.TcPOU">
+    <Compile Include="Interfaces\I_XtsHardware.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Station Class\TMSStation\TmsEmbarkStation.TcPOU">
+    <Compile Include="Interfaces\I_XtsIoEnvVar.TcIO">
       <SubType>Code</SubType>
-      <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
-    <Compile Include="Station Class\Trigger Point\TriggerPoint.TcPOU">
+    <Compile Include="Interfaces\I_XtsMotorModule.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\I_XtsMover.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\I_XtsPart.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\I_XtsTrack.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mover\XtsMover.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SystemParameters.TcGVL">
@@ -157,84 +168,60 @@
     <Compile Include="Tasks\XtsEnableSequence.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Interfaces\I_CollisionGroup.TcIO">
+    <Compile Include="Types\StationBehaviourInfo.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Interfaces\I_XTS.TcIO">
+    <Compile Include="Types\StationBehaviourState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Interfaces\I_XtsHardware.TcIO">
+    <Compile Include="Types\stStationInfo.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Interfaces\I_XtsIoEnvVar.TcIO">
+    <Compile Include="Types\stStationStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Interfaces\I_XtsMotorModule.TcIO">
+    <Compile Include="Types\XtsHardwareInitialisation.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Interfaces\I_XtsPart.TcIO">
+    <Compile Include="Types\XtsSystemInitialisation.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Interfaces\I_XtsTrack.TcIO">
+    <Compile Include="XPU\XtsIoEnvVar.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\XPU\XtsIoEnvVar.TcPOU">
+    <Compile Include="Collision Group\CollisionGroup.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Xts Collision Group\CAGroupInfo.TcDUT">
+    <Compile Include="Hardware\NCTController.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Xts Collision Group\CollisionGroup.TcPOU">
+    <Compile Include="Hardware\XTSHardware.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Xts Hardware\Sub Components\NCTController.TcPOU">
+    <Compile Include="Hardware\XtsMotorModule.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Xts Hardware\Sub Components\XtsMotorModule.TcPOU">
+    <Compile Include="Hardware\XtsPart.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Xts Hardware\Sub Components\XtsPart.TcPOU">
+    <Compile Include="Hardware\XtsTrack.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XTS Class\Xts Hardware\Sub Components\XtsTrack.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XTS Class\Xts Hardware\XTSHardware.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XTS Class\Xts Hardware\XtsHardwareInitialisation.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XTS Class\XTS\Xts.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XTS Class\XTS\XtsSystemInitialisation.TcDUT">
+    <Compile Include="XTS\Xts.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mover Behaviours\ExtControl" />
-    <Folder Include="Mover Behaviours\Station Behaviour" />
-    <Folder Include="Mover Class" />
+    <Folder Include="Interfaces" />
+    <Folder Include="Mover" />
     <Folder Include="Mover Behaviours" />
-    <Folder Include="DUTs" />
-    <Folder Include="Station Class" />
-    <Folder Include="Station Class\Trigger Point" />
-    <Folder Include="Station Class\Queue" />
-    <Folder Include="Station Class\Process" />
-    <Folder Include="Station Class\Station" />
-    <Folder Include="Station Class\TMSStation">
-      <ExcludeFromBuild>false</ExcludeFromBuild>
-    </Folder>
+    <Folder Include="Types" />
+    <Folder Include="Operations" />
     <Folder Include="Tasks" />
-    <Folder Include="VISUs" />
-    <Folder Include="XTS Class" />
-    <Folder Include="XTS Class\Interfaces" />
-    <Folder Include="XTS Class\XTS" />
-    <Folder Include="XTS Class\XPU" />
-    <Folder Include="XTS Class\Xts Collision Group" />
-    <Folder Include="XTS Class\Xts Hardware" />
-    <Folder Include="XTS Class\Xts Hardware\Sub Components" />
+    <Folder Include="XPU" />
+    <Folder Include="XTS" />
+    <Folder Include="Collision Group" />
+    <Folder Include="Hardware" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ExternalTypes.tmc">
@@ -449,8 +436,8 @@
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-  <Data>
-    <o xml:space="preserve" t="OptionKey">
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
@@ -2773,16 +2760,16 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-  </Data>
-  <TypeList>
-    <Type n="Boolean">System.Boolean</Type>
-    <Type n="Hashtable">System.Collections.Hashtable</Type>
-    <Type n="Int32">System.Int32</Type>
-    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-    <Type n="String">System.String</Type>
-    <Type n="UInt32">System.UInt32</Type>
-  </TypeList>
-</XmlArchive>
+        </Data>
+        <TypeList>
+          <Type n="Boolean">System.Boolean</Type>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="Int32">System.Int32</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+          <Type n="UInt32">System.UInt32</Type>
+        </TypeList>
+      </XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>
