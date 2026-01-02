@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="RemoveAMover_TestSuite" Id="{073eca12-f7a7-4609-978a-c4fbddc5e48d}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK RemoveAMover_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+    <Declaration><![CDATA[FUNCTION_BLOCK RemoveAMover_TestSuite
 VAR
 	stubGroup : CollisionGroup;
 	testRemoveAMover : RemoveMoverFromGroup :=(MyCollisionGroup := stubGroup);
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\RemoveSingle_Tests.xml') := (TestSuiteName := 'RemoveSingle Test Suite');
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[TaskAcceptsRemoveCommand();
 TaskRejectsDuplicatecommand_Test();
-TaskRejectsNullId_Test();]]></ST>
+//TaskRejectsNullId_Test();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsRemoveCommand" Id="{9701816a-7347-4094-8354-4a80b2556129}">
       <Declaration><![CDATA[METHOD TaskAcceptsRemoveCommand
@@ -18,10 +19,10 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(testRemoveAMover.Execute(AxisID := UDINT_TO_IDENTINGROUP(2)));
 	testRemoveAMover.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -33,11 +34,11 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testRemoveAMover.Execute(AxisID := UDINT_TO_IDENTINGROUP(2));
 	Actual := FAILED(testRemoveAMover.Execute(AxisID := UDINT_TO_IDENTINGROUP(2)));
 	testRemoveAMover.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -49,10 +50,10 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[// IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[// IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 // 	Actual := FAILED(testRemoveAMover.Execute(AxisID := UDINT_TO_IDENTINGROUP(0)));
 // 	testRemoveAMover.Abort();
-// 	Test(__POUNAME()).AssertEqual(Expected, Actual);
+// 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 // END_IF
 ////////////CANNOT DO THIS TEST As CANNOT COMPARE THE IDENT_IN_GROUP data type//////////////////]]></ST>
       </Implementation>

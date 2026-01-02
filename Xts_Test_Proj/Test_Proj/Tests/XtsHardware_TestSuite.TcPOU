@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsHardware_TestSuite" Id="{b560ca6a-e691-471a-a25d-3f29414ba80e}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsHardware_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsHardware_TestSuite
 VAR
 	nullHardware : XTSHardware;
 	MyXtsHardware : XTSHardware := (ExpectedNumberOfParts := 1, ExpectedNumberOfTracks := 1);
 	localXpu: Xts_Library.I_TcIoXtsProcessingUnit;
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\XtsHardware_Tests.xml') := (TestSuiteName := 'XtsHardware Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -45,10 +46,10 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	localXpu.SetMoverIdDetectionMode(eMoverIdDetectionMode := MoverIdDetectionMode.Mover1);
 	Actual := SUCCEEDED(MyXtsHardware.TriggerMoverIDDetection());
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -59,9 +60,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(MyXtsHardware.SetATrackForDetection(1));
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -72,9 +73,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(MyXtsHardware.TriggerMoverDetection());
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -85,9 +86,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(MyXtsHardware.TriggerMoverRedetection());
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -101,10 +102,10 @@ VAR
 	temp: Xts_Library.I_XtsTrack;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	temp := MyXtsHardware.GetTrackInterfaceByNumber(1);
 	Actual := temp <> 0;
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -115,9 +116,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(MyXtsHardware.SetMoverNumberForDetection(2));
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -128,9 +129,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := nullHardware.HasValidXPUReference();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -142,9 +143,9 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(nullHardware.Initialise());
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -158,10 +159,10 @@ VAR
 	temp: Xts_Library.I_XtsTrack;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	temp := MyXtsHardware.GetTrackInterfaceByNumber(3);
 	Actual := temp = 0;
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -175,10 +176,10 @@ VAR
 	temp: Xts_Library.I_XtsTrack;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	temp := MyXtsHardware.GetTrackInterfaceByNumber(0);
 	Actual := temp = 0;
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -189,9 +190,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(MyXtsHardware.RemoveATrackFromDetection(3));
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -202,9 +203,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(MyXtsHardware.RemoveATrackFromDetection(3));
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -215,10 +216,10 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	localXpu.SetMoverIdDetectionMode(eMoverIdDetectionMode := MoverIdDetectionMode.Standard);
 	Actual := FAILED(MyXtsHardware.TriggerMoverIDDetection());
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -229,9 +230,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(MyXtsHardware.RemoveATrackFromDetection(0));
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -242,9 +243,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(MyXtsHardware.SetATrackForDetection(0));
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -255,9 +256,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(MyXtsHardware.RemoveATrackFromDetection(1));
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -269,9 +270,9 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(MyXtsHardware.SetMoverNumberForDetection(-1));
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -282,9 +283,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(MyXtsHardware.SetMoverNumberForDetection(20));
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -295,9 +296,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(nullHardware.TriggerMoverDetection());
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -308,9 +309,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(nullHardware.TriggerMoverRedetection());
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -323,9 +324,9 @@ END_VAR
 
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := MyXtsHardware.GetNumberMoversDetected() = 5;
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -337,9 +338,9 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(nullHardware.Cycle());
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -350,9 +351,9 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := MyXtsHardware.HasValidXPUReference();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>

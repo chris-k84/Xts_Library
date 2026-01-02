@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="ActivateTrackTask_TestSuite" Id="{433ac03a-1058-45df-bdb1-c68a454a01bf}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ActivateTrackTask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+    <Declaration><![CDATA[FUNCTION_BLOCK ActivateTrackTask_TestSuite
 VAR
 	SetVelo AT%Q* : LREAL;
 	AxisStatusFeedback AT%Q* : DWORD;
@@ -9,6 +9,7 @@ VAR
 	stubTrack : XtsTrack;
 	testActivateTask : ActivateTrackTask := (AxisRef := stubAxis);
 	TestSequence : INT;
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\ActiveTrack_Tests.xml') := (TestSuiteName := 'ActiveTrack Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -52,10 +53,10 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(testActivateTask.Execute(Track := stubTrack));
 	testActivateTask.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -67,11 +68,11 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	//stubAxis.Status.Disabled := FALSE;
 	Actual := FAILED(testActivateTask.Execute(Track := stubTrack));
 	testActivateTask.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -83,10 +84,10 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(testActivateTask.Execute(Track := stubTrack));
 	testActivateTask.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -98,12 +99,12 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testActivateTask.AxisRef REF= 16#0;
 	Actual := FAILED(testActivateTask.Execute(Track := stubTrack));
 	testActivateTask.Abort();
 	testActivateTask.AxisRef REF= stubAxis;
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -115,11 +116,11 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testActivateTask.Execute(Track := stubTrack);
 	Actual := FAILED(testActivateTask.Execute(Track := stubTrack));
 	testActivateTask.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -131,10 +132,10 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(testActivateTask.Execute(Track := 16#0));
 	testActivateTask.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>

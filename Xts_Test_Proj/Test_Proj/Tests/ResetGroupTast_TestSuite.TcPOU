@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="ResetGroupTast_TestSuite" Id="{caff8344-0c0a-437a-977b-d74e2757ce75}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ResetGroupTast_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+    <Declaration><![CDATA[FUNCTION_BLOCK ResetGroupTast_TestSuite
 VAR
 	stubCAGroup : I_CollisionGroup;
 	testResetGrp : ResetGroup:= (MyCollisionGroup := stubCAGroup);
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\ResetGroup_Tests.xml') := (TestSuiteName := 'ResetGroup Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -19,10 +20,10 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(testResetGrp.Execute());
 	testResetGrp.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -34,11 +35,11 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testResetGrp.Execute();
 	Actual := FAILED(testResetGrp.Execute());
 	testResetGrp.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>

@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="DisableGroupTask_TestSuite" Id="{408f9e89-352c-467f-9f88-651a03342266}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK DisableGroupTask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+    <Declaration><![CDATA[FUNCTION_BLOCK DisableGroupTask_TestSuite
 VAR
 	stubCAGroup : I_CollisionGroup;
 	testDisableGrp : DisableGroup := (MyCollisionGroup := stubCAGroup);
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\DisableGroup_Tests.xml') := (TestSuiteName := 'DisableGroup Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -19,10 +20,10 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(testDisableGrp.Execute());
 	testDisableGrp.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -34,11 +35,11 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testDisableGrp.Execute();
 	Actual := FAILED(testDisableGrp.Execute());
 	testDisableGrp.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>

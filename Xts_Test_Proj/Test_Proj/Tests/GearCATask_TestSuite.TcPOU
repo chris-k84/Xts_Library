@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="GearCATask_TestSuite" Id="{061b6bca-7336-459c-b0e8-a83117c82ddd}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK GearCATask_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+    <Declaration><![CDATA[FUNCTION_BLOCK GearCATask_TestSuite
 VAR
 	testMaster : XtsMover;
 	testAxis : XtsMover;
 	testGearTask : GearCATask := (slaveAxis := testAxis, MyGearMaster := testMaster);
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\GearTask_Tests.xml') := (TestSuiteName := 'GearTask Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -23,10 +24,10 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(testGearTask.GearIn(1.0,1.0));
 	testGearTask.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -37,12 +38,12 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testGearTask.SlaveAxis := 16#0;
 	Actual := FAILED(testGearTask.Cycle());
 	testGearTask.SlaveAxis := testAxis;
 	testGearTask.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -53,12 +54,12 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testGearTask.MyGearMaster := 0;
 	Actual := FAILED(testGearTask.Cycle());
 	testGearTask.MyGearMaster := testMaster;
 	testGearTask.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -69,12 +70,12 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testGearTask.MyGearMaster := 0;
 	Actual := FAILED(testGearTask.GearIn(MasterPosition := 0, SlavePosition := 0));
 	testGearTask.MyGearMaster := testMaster;
 	testGearTask.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -85,12 +86,12 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testGearTask.SlaveAxis := 0;
 	Actual := FAILED(testGearTask.GearIn(0.0, 0.0));
 	testGearTask.SlaveAxis := testAxis;
 	testGearTask.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>

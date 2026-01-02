@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="RemoveAllMover_TestSuite" Id="{eeedca17-e20e-45f9-84f5-4809781a4cf4}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK RemoveAllMover_TestSuite EXTENDS TestSuite<TestSuiteParameter.MaxTestCount>
+    <Declaration><![CDATA[FUNCTION_BLOCK RemoveAllMover_TestSuite
 VAR
 	stubGroup : CollisionGroup;
 	testRemoveAll : RemoveAllMoverFromGroup := (MyCollisionGroup := stubGroup);
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\RemoveAll_Tests.xml') := (TestSuiteName := 'RemoveAll Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -19,10 +20,10 @@ VAR_INST
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(testRemoveAll.RemoveAllMover());
 	testRemoveAll.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -33,11 +34,11 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Test(__POUNAME()).ExecuteTest() THEN
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testRemoveAll.RemoveAllMover();
 	Actual := FAILED(testRemoveAll.RemoveAllMover());
 	testRemoveAll.Abort();
-	Test(__POUNAME()).AssertEqual(Expected, Actual);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
