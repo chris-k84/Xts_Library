@@ -257,7 +257,9 @@ END_VAR
 	HaltBehaviour.Gap := Gap;
 	_Gap := Gap;
 ELSE
-	Gap := 100.0;
+	_Gap := 100.0;
+	MoveBehaviour.Gap := 100.0;
+	HaltBehaviour.Gap := 100.0;
 END_IF
 ]]></ST>
         </Implementation>

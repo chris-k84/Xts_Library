@@ -8,7 +8,7 @@
     <WriteProductVersion>false</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
     <Name>Xts_Library</Name>
-    <ProgramVersion>3.1.4026.19</ProgramVersion>
+    <ProgramVersion>3.1.4026.20</ProgramVersion>
     <Application>{758f83c0-e46d-44af-8cf0-a51199d56b24}</Application>
     <TypeSystem>{351448db-13f8-435a-a099-01b0f728f3d5}</TypeSystem>
     <Implicit_Task_Info>{e6af468f-c41f-4889-bef9-d83ba1759068}</Implicit_Task_Info>
@@ -449,8 +449,8 @@
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-        <Data>
-          <o xml:space="preserve" t="OptionKey">
+  <Data>
+    <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
@@ -2752,8 +2752,14 @@
           <d n="SubKeys" t="Hashtable" />
           <d n="Values" t="Hashtable" ckt="String" cvt="String">
             <v>DisabledWarningIds</v>
-            <v>5410</v>
+            <v>410,5410</v>
           </d>
+        </o>
+        <v>{eeeeeeee-3909-4298-8022-501ac3238667}</v>
+        <o>
+          <v n="Name">"{eeeeeeee-3909-4298-8022-501ac3238667}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" />
         </o>
         <v>{F66C7017-BDD8-4114-926C-81D6D687E35F}</v>
         <o>
@@ -2767,16 +2773,16 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-        </Data>
-        <TypeList>
-          <Type n="Boolean">System.Boolean</Type>
-          <Type n="Hashtable">System.Collections.Hashtable</Type>
-          <Type n="Int32">System.Int32</Type>
-          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-          <Type n="String">System.String</Type>
-          <Type n="UInt32">System.UInt32</Type>
-        </TypeList>
-      </XmlArchive>
+  </Data>
+  <TypeList>
+    <Type n="Boolean">System.Boolean</Type>
+    <Type n="Hashtable">System.Collections.Hashtable</Type>
+    <Type n="Int32">System.Int32</Type>
+    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+    <Type n="String">System.String</Type>
+    <Type n="UInt32">System.UInt32</Type>
+  </TypeList>
+</XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>
