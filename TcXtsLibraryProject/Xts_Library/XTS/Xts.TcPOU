@@ -351,7 +351,7 @@ FOR i := 1 TO _MyXtsHardware.DetectedNumberOfTracks DO
 	MyMover.RegisterTracks(Track := _MyXtsHardware.GetTrackInterfaceByNumber(i));
 END_FOR
 FOR i := 1 TO TO_UINT(_XPU.GetDetectedMoverCount()) DO
-	IF MyMover.AxisRef.NcToPlc.AxisId = _XPU.MoverTcIo(i).GetAxisId() THEN
+	IF MyMover.AxisRef.NcToPlc.AxisId = _XPU.MoverTcIo(i).P_AxisId THEN
 		MyMover.MoverXtsIoEnvInterface := _XPU.MoverTcIo(i);
 	END_IF
 END_FOR]]></ST>
