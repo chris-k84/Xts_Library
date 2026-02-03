@@ -309,7 +309,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetMoverCtrlOTCID := _ipTcIoXtsMover.P_MoverControllerOid;]]></ST>
+        <ST><![CDATA[GetMoverCtrlOTCID := _ipTcIoXtsMover.GetMoverControllerOid();]]></ST>
       </Implementation>
     </Method>
     <Method Name="getMoverForce" Id="{4e4e52d4-51da-4937-a709-c8ecb1f9b707}" FolderPath="Status\">
@@ -399,8 +399,8 @@ IF MyTrackCount = 0 THEN
 	RETURN;
 END_IF
 myController := _ipTcIoXtsMover.MoverController;
-myControllerOid := _ipTcIoXtsMover.P_MoverControllerOid;
-MyId := _ipTcIoXtsMover.GetAxisId();
+myControllerOid := _ipTcIoXtsMover.GetMoverControllerOid();
+MyId := _ipTcIoXtsMover.P_AxisId;
 _CurrentTrack := MyTracks[MoversActiveTrack - 1];
 Initialised := TRUE;]]></ST>
       </Implementation>
