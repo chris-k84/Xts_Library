@@ -80,7 +80,7 @@ CASE XtsIoEnvInitialiseState OF
 			XtsIoEnvInitialiseState := 999;
 		END_IF
 	1:
-		MyModuleCount := _MyInterface.GetModuleCount();
+		MyModuleCount := _MyInterface.P_ModuleCount;
 		IF InSim THEN
 			XtsIoEnvInitialiseState := 3;
 			FOR i := 0 TO UDINT_TO_UINT(MyModuleCount - 1) DO
