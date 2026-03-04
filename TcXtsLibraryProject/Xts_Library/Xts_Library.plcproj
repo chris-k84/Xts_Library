@@ -18,7 +18,7 @@
     <Released>false</Released>
     <Title>Xts Library</Title>
     <Company>BeckhoffUK</Company>
-    <ProjectVersion>11.0.0.0</ProjectVersion>
+    <ProjectVersion>11.0.1</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory>
         <Id>{4c30be10-0c29-4796-921e-62ecfda40191}</Id>
@@ -273,6 +273,16 @@
     <PlaceholderReference Include="Tc3_XTS_Utility">
       <DefaultResolution>Tc3_XTS_Utility, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_XTS_Utility</Namespace>
+      <Parameters>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXXTSPROCESSINGUNITS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXXTSCAGROUP</Key>
+          <Value>10</Value>
+        </Parameter>
+      </Parameters>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>

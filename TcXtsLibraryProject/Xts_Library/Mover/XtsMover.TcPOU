@@ -39,6 +39,7 @@ END_VAR
 VAR CONSTANT
 	_MaxMoverVelocity : MC_LREAL := 4000.0;
 	MaxTracks : INT := 5;
+	InPositionToleranceForMoveChecks : LREAL := 0.001;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -569,12 +570,12 @@ IF Gap <= 50.0 THEN
 	RETURN;
 END_IF
 
-IF NonModuloMove AND_THEN ( RequiredPosition < _MyNCData.ActPos + 0.1 AND RequiredPosition > _MyNCData.ActPos - 0.1) THEN
+IF NonModuloMove AND_THEN ( RequiredPosition < _MyNCData.ActPos + InPositionToleranceForMoveChecks AND RequiredPosition > _MyNCData.ActPos - InPositionToleranceForMoveChecks) THEN
 	MoveTo := -5;
 	RETURN;
 END_IF
 
-IF NOT NonModuloMove AND_THEN ( RequiredPosition < _stTmsActPositions.fTrackPosition + 0.1 AND RequiredPosition > _stTmsActPositions.fTrackPosition - 0.1) THEN
+IF NOT NonModuloMove AND_THEN ( RequiredPosition < _stTmsActPositions.fTrackPosition + InPositionToleranceForMoveChecks AND RequiredPosition > _stTmsActPositions.fTrackPosition - InPositionToleranceForMoveChecks) THEN
 	MoveTo := -6;
 	RETURN;
 END_IF
