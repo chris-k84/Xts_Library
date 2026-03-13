@@ -21,12 +21,6 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD Is48VBusOK : BOOL
 ]]></Declaration>
     </Method>
-    <Method Name="ResetNct" Id="{50d63536-a342-4d85-bc66-9ba04c9cfc49}">
-      <Declaration><![CDATA[METHOD ResetNct : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="ResetPart" Id="{6cd3b4ca-ad47-4f23-a5e9-46a25492ff53}">
       <Declaration><![CDATA[METHOD ResetPart : BOOL
 ]]></Declaration>

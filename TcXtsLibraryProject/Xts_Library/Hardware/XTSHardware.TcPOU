@@ -451,7 +451,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[FOR i := 0 TO TO_INT(MyPartCount - 1) DO
 	XtsParts[i].ResetPart();
-	XtsParts[i].ResetNct();
 END_FOR]]></ST>
       </Implementation>
     </Method>
@@ -471,7 +470,6 @@ IF Part = 0 THEN
 END_IF
 
 XtsParts[Part].ResetPart();
-XtsParts[Part].ResetNct();
 ]]></ST>
       </Implementation>
     </Method>

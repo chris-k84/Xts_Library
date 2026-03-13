@@ -18,7 +18,7 @@
     <Released>false</Released>
     <Title>Xts Library</Title>
     <Company>BeckhoffUK</Company>
-    <ProjectVersion>11.0.1</ProjectVersion>
+    <ProjectVersion>11.0.2</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory>
         <Id>{4c30be10-0c29-4796-921e-62ecfda40191}</Id>
@@ -274,12 +274,12 @@
       <DefaultResolution>Tc3_XTS_Utility, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_XTS_Utility</Namespace>
       <Parameters>
-        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
-          <Key>MAXXTSPROCESSINGUNITS</Key>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST">
+          <Key>MAXXTSCAGROUP</Key>
           <Value>10</Value>
         </Parameter>
-        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
-          <Key>MAXXTSCAGROUP</Key>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST">
+          <Key>MAXXTSPROCESSINGUNITS</Key>
           <Value>10</Value>
         </Parameter>
       </Parameters>
@@ -423,6 +423,9 @@
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_EventLogger">
       <Resolution>Tc3_EventLogger, * (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc3_JsonXml">
+      <Resolution>Tc3_JsonXml, * (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_Mc3Definitions">
       <Resolution>Tc3_Mc3Definitions, * (Beckhoff Automation GmbH)</Resolution>
