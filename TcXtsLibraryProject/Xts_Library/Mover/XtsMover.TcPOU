@@ -156,7 +156,7 @@ END_VAR]]></Declaration>
 		_myStatus.isLost := _ipTcIoXtsMover.GetIsLost();
 		_myStatus.isReadyForPositioning := _ipTcIoXtsMover.GetIsReadyForPositioning();
 		_myStatus.hasControllerError := _ipTcIoXtsMover.GetMoverControllerError();
-		_myStatus.hasDriveError := _ipTcIoXtsMover.GetHasDriveError();
+		_myStatus.driveState := _ipTcIoXtsMover.GetDriveStatus();
 		_DistanceDrivenInMM := _ipTcIoXtsMover.GetDistanceDriven();
 	END_IF
 	AvoidingCollision := MyAxisRef.NcToPlc.StateDWord2.Flags.AvoidingCollision;

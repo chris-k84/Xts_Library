@@ -8,7 +8,7 @@ STRUCT
 	isLost : BOOL;
 	isReadyForPositioning : BOOL;
 	isActive : BOOL;
-	hasDriveError : BOOL32;
+	driveState : DriveState;
 	hasControllerError : BOOL32;
 END_STRUCT
 END_TYPE
