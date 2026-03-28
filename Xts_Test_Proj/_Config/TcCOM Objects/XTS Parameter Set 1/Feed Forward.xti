@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.16" ClassName="CTComObjDef">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.20" ClassName="CTComObjDef">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{43E8D294-E41F-4F92-BC27-7533144D03AF}" Namespace="XTS">FeedforwardType</Name>
@@ -59,16 +59,16 @@
 		</DataType>
 	</DataTypes>
 	<ImageDatas>
-		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000900000009000000ababab00a6a6a600a0a0a0009b9b9b0095959500909090008a8a8a0085858500808080007a7a7a00757575006f6f6f006a6a6a00646464000900000009000000b4b4b400afafaf00a9a9a900a4a4a4009e9e9e0099999900949494008e8e8e0089898900474747005353530078787800737373006e6e6e000900000009000000bdbdbd00b8b8b800b2b2b200adadad004e77d7000650fb004c74d00097979700929292007373730012121200343434007a7a7a00777777000900000009000000c6c6c600606060000000000000000000004af500004dff000048f000000000000000000000000000000000000000000044444400808080000900000009000000d0d0d000cacaca00c5c5c500bfbfbf005880de000952fb00567dd700aaaaaa00a4a4a40082828200141414003b3b3b008c8c8c00898989000900000009000000d9d9d900d3d3d300cecece00c8c8c800c0c1c300466cc300b5b6b800b3b3b300adadad005b5b5b006b6b6b009d9d9d0098989800929292000900000009000000e2e2e200dcdcdc00d7d7d700d2d2d200406aca00004dff003d67c700bcbcbc00b7b7b700b1b1b100acacac00a6a6a600a1a1a1009b9b9b000900000009000000ebebeb00e6e6e600e0e0e0007790c9000d50ec00004dff000e50ea006782bf00c0c0c000bababa00b5b5b500afafaf00aaaaaa00a5a5a5000900000009000000f4f4f400efefef00e9e9e900577acc00a1afd000004dff0099a7c8005174c600c9c9c900c3c3c300bebebe00b9b9b900b3b3b300aeaeae000900000009000000fbfbfb00f8f8f800f3f3f300ededed00e8e8e800004dff00dddddd00d7d7d700d2d2d200cdcdcd00c7c7c700c2c2c200bcbcbc00b7b7b7000900000009000000fbfbfb00fbfbfb00fbfbfb00f6f6f600f1f1f100004dff00e6e6e600e1e1e100dbdbdb00d6d6d600d0d0d000cbcbcb00c5c5c500c0c0c0000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fafafa00004dff00efefef00eaeaea00e4e4e400dfdfdf00d9d9d900d4d4d400cfcfcf00c9c9c9000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
+		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab00aaa7a7009393930093939300d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab009393930093939300dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00cccaca00c8c6c600c5c3c300c2bfbf0084838300918f8f00b8b5b500b4b2b200b1aeae009393930093939300dfdede00dcdbdb00d9d7d700d5d4d4006189e9000852fd006289e500c8c6c600c5c3c300aba9a9005050500071707000b6b3b300b4b2b2009393930093939300e3e1e1008f8f8f004040400040404000034df800004dff00044cf40040404000404040004040400040404000404040007e7d7d00b8b5b5009393930093939300e6e5e500e3e1e100dfdede00dcdbdb00678eec000b54fd00688ee800cfcdcd00cbc9c900b0aeae005151510074727200bcbaba00bbb8b8009393930093939300e9e8e800e6e5e500e3e1e100dfdede00d7d7d9004d73ca00d1d2d400d2d0d000cfcdcd008b8a8a009a989800c5c3c300c2bfbf00bebcbc009393930093939300edecec00e9e8e800e6e5e500e3e1e100436dcd00004dff00436ccc00d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf009393930093939300f0efef00edecec00e9e8e8007c94cd000d50ec00004dff000e50ea00708ac700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c3009393930093939300eeeded00f0efef00edecec00597cce00a6b3d400004dff00a1aecf005578ca00d9d7d700d5d4d400d2d0d000cfcdcd00cccaca00c8c6c6009393930093939300ecebeb00eeeded00f0efef00edecec00e9e8e800004dff00e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c9009393930093939300ebe9e900ecebeb00eeeded00f0efef00edecec00004dff00e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd009393930093939300e9e7e700ebe9e900ecebeb00eeeded00f0efef00004dff00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d0009393930093939300e7e5e500e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
 	</ImageDatas>
-	<Module Id="#x01010030" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+	<Module Id="#x01010030" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.31.0">
 		<Name>__FILENAME__</Name>
 		<ImageId>1000</ImageId>
-		<TmcDesc GUID="{7E8B155E-1E66-48E1-9D28-0607FA48FC11}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+		<TmcDesc GUID="{7E8B155E-1E66-48E1-9D28-0607FA48FC11}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.31.0">
 			<Name>XtsMoverFeedForwardParameterSet</Name>
 			<CLSID ClassFactory="TcIoXts">{7E8B155E-1E66-48E1-9D28-0607FA48FC11}</CLSID>
 			<Info>
-				<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000900000009000000ababab00a6a6a600a0a0a0009b9b9b0095959500909090008a8a8a0085858500808080007a7a7a00757575006f6f6f006a6a6a00646464000900000009000000b4b4b400afafaf00a9a9a900a4a4a4009e9e9e0099999900949494008e8e8e0089898900474747005353530078787800737373006e6e6e000900000009000000bdbdbd00b8b8b800b2b2b200adadad004e77d7000650fb004c74d00097979700929292007373730012121200343434007a7a7a00777777000900000009000000c6c6c600606060000000000000000000004af500004dff000048f000000000000000000000000000000000000000000044444400808080000900000009000000d0d0d000cacaca00c5c5c500bfbfbf005880de000952fb00567dd700aaaaaa00a4a4a40082828200141414003b3b3b008c8c8c00898989000900000009000000d9d9d900d3d3d300cecece00c8c8c800c0c1c300466cc300b5b6b800b3b3b300adadad005b5b5b006b6b6b009d9d9d0098989800929292000900000009000000e2e2e200dcdcdc00d7d7d700d2d2d200406aca00004dff003d67c700bcbcbc00b7b7b700b1b1b100acacac00a6a6a600a1a1a1009b9b9b000900000009000000ebebeb00e6e6e600e0e0e0007790c9000d50ec00004dff000e50ea006782bf00c0c0c000bababa00b5b5b500afafaf00aaaaaa00a5a5a5000900000009000000f4f4f400efefef00e9e9e900577acc00a1afd000004dff0099a7c8005174c600c9c9c900c3c3c300bebebe00b9b9b900b3b3b300aeaeae000900000009000000fbfbfb00f8f8f800f3f3f300ededed00e8e8e800004dff00dddddd00d7d7d700d2d2d200cdcdcd00c7c7c700c2c2c200bcbcbc00b7b7b7000900000009000000fbfbfb00fbfbfb00fbfbfb00f6f6f600f1f1f100004dff00e6e6e600e1e1e100dbdbdb00d6d6d600d0d0d000cbcbcb00c5c5c500c0c0c0000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fafafa00004dff00efefef00eaeaea00e4e4e400dfdfdf00d9d9d900d4d4d400cfcfcf00c9c9c9000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
+				<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab00aaa7a7009393930093939300d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab009393930093939300dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00cccaca00c8c6c600c5c3c300c2bfbf0084838300918f8f00b8b5b500b4b2b200b1aeae009393930093939300dfdede00dcdbdb00d9d7d700d5d4d4006189e9000852fd006289e500c8c6c600c5c3c300aba9a9005050500071707000b6b3b300b4b2b2009393930093939300e3e1e1008f8f8f004040400040404000034df800004dff00044cf40040404000404040004040400040404000404040007e7d7d00b8b5b5009393930093939300e6e5e500e3e1e100dfdede00dcdbdb00678eec000b54fd00688ee800cfcdcd00cbc9c900b0aeae005151510074727200bcbaba00bbb8b8009393930093939300e9e8e800e6e5e500e3e1e100dfdede00d7d7d9004d73ca00d1d2d400d2d0d000cfcdcd008b8a8a009a989800c5c3c300c2bfbf00bebcbc009393930093939300edecec00e9e8e800e6e5e500e3e1e100436dcd00004dff00436ccc00d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf009393930093939300f0efef00edecec00e9e8e8007c94cd000d50ec00004dff000e50ea00708ac700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c3009393930093939300eeeded00f0efef00edecec00597cce00a6b3d400004dff00a1aecf005578ca00d9d7d700d5d4d400d2d0d000cfcdcd00cccaca00c8c6c6009393930093939300ecebeb00eeeded00f0efef00edecec00e9e8e800004dff00e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c9009393930093939300ebe9e900ecebeb00eeeded00f0efef00edecec00004dff00e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd009393930093939300e9e7e700ebe9e900ecebeb00eeeded00f0efef00004dff00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d0009393930093939300e7e5e500e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
 			</Info>
 			<InitSequence>PSO</InitSequence>
 			<Contexts>
@@ -83,9 +83,10 @@
 			</Interfaces>
 			<Parameters>
 				<Group><![CDATA[General]]></Group>
-				<Group><![CDATA[Mover ID Detection]]></Group>
+				<Group><![CDATA[Mover Id Detection]]></Group>
 				<Group Collapsed="true"><![CDATA[Advanced]]></Group>
 				<Group><![CDATA[Info]]></Group>
+				<Group><![CDATA[Structure]]></Group>
 				<Parameter Group="General">
 					<Name>Type</Name>
 					<Comment><![CDATA[Define the type of the feed forward control.]]></Comment>
@@ -123,7 +124,7 @@
 					<PTCID>#x03080443</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter Group="Mover ID Detection">
+				<Parameter Group="Mover Id Detection">
 					<Name>DetectionMinMovement</Name>
 					<Comment><![CDATA[Min movement for the mover 1 detection phases.]]></Comment>
 					<BitSize>64</BitSize>
@@ -137,7 +138,7 @@
 					<PTCID>#x03080444</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter Group="Mover ID Detection">
+				<Parameter Group="Mover Id Detection">
 					<Name>DetectionFilter</Name>
 					<Comment><![CDATA[Low pass filter for the force ramp of mover 1 detection (0 = off).]]></Comment>
 					<BitSize>64</BitSize>
@@ -151,7 +152,7 @@
 					<PTCID>#x03080445</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter Group="Mover ID Detection">
+				<Parameter Group="Mover Id Detection">
 					<Name>DetectionForceRamp</Name>
 					<Comment><![CDATA[Force ramp to increase the used force for the mover 1 detection.]]></Comment>
 					<BitSize>64</BitSize>
@@ -165,7 +166,7 @@
 					<PTCID>#x03080446</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter Group="Mover ID Detection">
+				<Parameter Group="Mover Id Detection">
 					<Name>DetectionMaxForceLimitFactor</Name>
 					<Comment><![CDATA[Reduce max force by factor for the mover 1 detection.]]></Comment>
 					<BitSize>64</BitSize>
@@ -178,7 +179,7 @@
 					<PTCID>#x03080447</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter HideParameter="true" Group="Mover ID Detection">
+				<Parameter HideParameter="true" Group="Mover Id Detection">
 					<Name>DetectionStandstillVelocityLimit</Name>
 					<Comment><![CDATA[Maximum velocity before starting a new mover 1 detection phase.]]></Comment>
 					<BitSize>64</BitSize>
@@ -192,7 +193,7 @@
 					<PTCID>#x03080448</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter HideParameter="true" Group="Mover ID Detection">
+				<Parameter HideParameter="true" Group="Mover Id Detection">
 					<Name>DetectionStandstillSwitchTime</Name>
 					<Comment><![CDATA[Minimum time to wait between a new mover 1 detection phase.]]></Comment>
 					<BitSize>64</BitSize>
@@ -206,7 +207,7 @@
 					<PTCID>#x03080449</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter HideParameter="true" Group="Mover ID Detection">
+				<Parameter HideParameter="true" Group="Mover Id Detection">
 					<Name>DetectionTimeOut</Name>
 					<Comment><![CDATA[Time out time for a mover 1 detection.]]></Comment>
 					<BitSize>64</BitSize>
@@ -220,7 +221,7 @@
 					<PTCID>#x0308044a</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter HideParameter="true" Group="Mover ID Detection">
+				<Parameter HideParameter="true" Group="Mover Id Detection">
 					<Name>DetectionVelocityFilterFrequency</Name>
 					<Comment><![CDATA[Low pass filter frequency for Position and Velocity while Mover ID detection.]]></Comment>
 					<BitSize>64</BitSize>
@@ -232,7 +233,7 @@
 					<PTCID>#x03080571</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter HideParameter="true" Group="Mover ID Detection">
+				<Parameter HideParameter="true" Group="Mover Id Detection">
 					<Name>DetectionVelocityFilterDamping</Name>
 					<Comment><![CDATA[Low pass filter damping for Position and Velocity while Mover ID detection.]]></Comment>
 					<BitSize>64</BitSize>
@@ -243,7 +244,7 @@
 					<PTCID>#x0308057c</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter HideParameter="true" Group="Mover ID Detection">
+				<Parameter HideParameter="true" Group="Mover Id Detection">
 					<Name>DetectionInfoMessage</Name>
 					<Comment><![CDATA[Enable an info message which mover was found.]]></Comment>
 					<BitSize>8</BitSize>
@@ -265,7 +266,7 @@
 					<PTCID>#x0308044f</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>VersionString</Name>
 					<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
 					<BitSize>384</BitSize>
@@ -281,13 +282,16 @@
 					<PTCID>#x03080510</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter Group="Advanced">
-					<Name>OpenLoopMoveForce</Name>
-					<Comment><![CDATA[Set the open loop move force with the position command as commutation angle.]]></Comment>
-					<BitSize>64</BitSize>
-					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
-					<Unit><![CDATA[N]]></Unit>
-					<PTCID>#x0308044c</PTCID>
+				<Parameter HideParameter="true" ReadOnly="true" Group="Structure">
+					<Name>ModuleId</Name>
+					<Comment><![CDATA[Module ID of this TcCOM module (read only).]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000021}">GUID</BaseType>
+					<Default>
+						<Data>5e158b7e661ee1489d280607fa48fc11</Data>
+					</Default>
+					<PTCID>#x03080001</PTCID>
+					<ContextId>1</ContextId>
 				</Parameter>
 			</Parameters>
 			<Properties>
@@ -371,8 +375,8 @@
 					<Value>0</Value>
 				</Value>
 				<Value>
-					<Name>OpenLoopMoveForce</Name>
-					<Value>23</Value>
+					<Name>ModuleId</Name>
+					<Data>5e158b7e661ee1489d280607fa48fc11</Data>
 				</Value>
 			</ParameterValues>
 		</TmcDesc>

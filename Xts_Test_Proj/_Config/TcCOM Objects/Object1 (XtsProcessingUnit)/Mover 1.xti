@@ -1,41 +1,6 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.16" ClassName="CTComObjDef">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.20" ClassName="CTComObjDef">
 	<DataTypes>
-		<DataType>
-			<Name GUID="{4BC4DABB-09B3-4A22-9E37-65ED6818A460}">IXtsMover</Name>
-			<BitSize X64="64">32</BitSize>
-			<BaseType GUID="{00000001-0000-0000-E000-000000000064}">ITcUnknown</BaseType>
-			<Method>
-				<Name>GetAdapterObject</Name>
-				<ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
-				<ReturnBitSize>32</ReturnBitSize>
-				<Parameter>
-					<Name>ppObject</Name>
-					<Type GUID="{18071995-0000-0000-0000-000000000018}" PointerTo="1">PVOID</Type>
-					<BitSize X64="64">32</BitSize>
-				</Parameter>
-			</Method>
-			<Method>
-				<Name>GetDistanceDriven</Name>
-				<ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
-				<ReturnBitSize>32</ReturnBitSize>
-				<Parameter>
-					<Name>pDistance</Name>
-					<Type GUID="{18071995-0000-0000-0000-00000000000E}" PointerTo="1">LREAL</Type>
-					<BitSize X64="64">32</BitSize>
-				</Parameter>
-			</Method>
-			<Method>
-				<Name>GetPosition</Name>
-				<ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
-				<ReturnBitSize>32</ReturnBitSize>
-				<Parameter>
-					<Name>pPosition</Name>
-					<Type GUID="{18071995-0000-0000-0000-00000000000E}" PointerTo="1">LREAL</Type>
-					<BitSize X64="64">32</BitSize>
-				</Parameter>
-			</Method>
-		</DataType>
 		<DataType>
 			<Name GUID="{01E5C78E-D451-4377-9F02-F3812CC92C14}" Namespace="XTS" CName="OTCID">XtsMoverControllerOTCID</Name>
 			<BitSize>32</BitSize>
@@ -592,18 +557,407 @@
 				</Relation>
 			</Relations>
 		</DataType>
+		<DataType>
+			<Name GUID="{0DB75694-CC1E-9AC0-D1E4-657B6FF26793}">MoverControllerEventClass</Name>
+			<DisplayName TxtId=""><![CDATA[MoverControllerEventClass]]></DisplayName>
+			<EventId>
+				<Name Id="0">Mover1FoundInfo</Name>
+				<DisplayName TxtId="0"><![CDATA[{0}: Mover 1 found]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="1">StandardMoverFoundInfo</Name>
+				<DisplayName TxtId="1"><![CDATA[{0}: Standard mover found]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">ProcessingLineInitializedInfo</Name>
+				<DisplayName TxtId="2"><![CDATA[Initialized {0} XTS Controller(s) on {1} (CPU {2}, {3} μs).]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">ParameterSetsInitializedInfo</Name>
+				<DisplayName TxtId="3"><![CDATA[Initialized {0} XTS Controller Parameter Set(s).]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">NoManagerFoundInfo</Name>
+				<DisplayName TxtId="4"><![CDATA[No XTS Controller Manager in configuration detected. Initialize default Manager...]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">ForceCouplingActiveInfo</Name>
+				<DisplayName TxtId="5"><![CDATA[{0}: Force coupling with {1} is active.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">TuningAssistNumberOfMaximaInfo</Name>
+				<DisplayName TxtId="6"><![CDATA[{0}: Number of maxima found in the current spectrum = {1}]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">TuningAssistRuleInfo</Name>
+				<DisplayName TxtId="7"><![CDATA[{0}: Calculate with rule {1}]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">BodePlotIsStoppedInfo</Name>
+				<DisplayName TxtId="8"><![CDATA[{0}: Bode plot is stopped.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5000">InvalidParameterValue_MinMax_UInt32Warning</Name>
+				<DisplayName TxtId="5000"><![CDATA[{0}: Invalid {1} parameter value (min={2}/max={3})]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5001">InvalidParameterValue_MinMax_FloatWarning</Name>
+				<DisplayName TxtId="5001"><![CDATA[{0}: Invalid {1} parameter value (min={2}/max={3})]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5002">InvalidParameterValue_Min_UInt32Warning</Name>
+				<DisplayName TxtId="5002"><![CDATA[{0}: Invalid {1} parameter value (min={2})]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5003">Mover1DetectionWhileAxisEnabledSingleWarning</Name>
+				<DisplayName TxtId="5003"><![CDATA[{0} (0x1002): New Mover 1 detection while axis is enabled.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5004">Mover1DetectionWhileAxisEnabledMultipleWarning</Name>
+				<DisplayName TxtId="5004"><![CDATA[{0} (0x1002): New Mover 1 detection while axis is enabled. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5005">Mover1HWErrorSingleWarning</Name>
+				<DisplayName TxtId="5005"><![CDATA[{0} (0x1003): Hardware error occur after Mover 1 detection is started.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5006">Mover1HWErrorMultipleWarning</Name>
+				<DisplayName TxtId="5006"><![CDATA[{0} (0x1003): Hardware error occur after Mover 1 detection is started. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5007">Mover1MovementErrorSingleWarning</Name>
+				<DisplayName TxtId="5007"><![CDATA[{0} (0x1005): Movements of Mover while Mover 1 detection do not fit together.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5008">Mover1MovementErrorMultipleWarning</Name>
+				<DisplayName TxtId="5008"><![CDATA[{0} (0x1005): Movements of Mover while Mover 1 detection do not fit together. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5009">Mover1HwNotReadySingleWarning</Name>
+				<DisplayName TxtId="5009"><![CDATA[{0} (0x1004): Hardware is not ready for Mover 1 detection - e.g. power is missing or HW has an error.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5010">Mover1HwNotReadyMultipleWarning</Name>
+				<DisplayName TxtId="5010"><![CDATA[{0} (0x1004): Hardware is not ready for Mover 1 detection - e.g. power is missing or HW has an error. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5011">Mover1VeloErrorSingleWarning</Name>
+				<DisplayName TxtId="5011"><![CDATA[{0} (0x1007): Min velocity could not be reached long enough.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5012">Mover1VeloErrorMultipleWarning</Name>
+				<DisplayName TxtId="5012"><![CDATA[{0} (0x1007): Min velocity could not be reached long enough. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5013">Mover1MinMovementErrorSingleWarning</Name>
+				<DisplayName TxtId="5013"><![CDATA[{0} (0x1006): Min movement could not be reached with the actual current.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5014">Mover1MinMovementErrorMultipleWarning</Name>
+				<DisplayName TxtId="5014"><![CDATA[{0} (0x1006): Min movement could not be reached with the actual current. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5015">NoWriteAccessInOPWarning</Name>
+				<DisplayName TxtId="5015"><![CDATA[{0}: No write access in TCom state OP for {1}.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5016">BandwidthIsLimitedWarning</Name>
+				<DisplayName TxtId="5016"><![CDATA[{0} Observer: Bandwidth is limited by cycle time (limited Bandwidth = {1})]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5017">VeloDiffTooBigForEmergencyRampSingleWarning</Name>
+				<DisplayName TxtId="5017"><![CDATA[{0} (0x1101): Velocity difference too big for emergency ramp down.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5018">VeloDiffTooBigForEmergencyRampMultipleWarning</Name>
+				<DisplayName TxtId="5018"><![CDATA[{0} (0x1101): Velocity difference too big for emergency ramp down. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5019">AreaStartPositionMustSmallerWarning</Name>
+				<DisplayName TxtId="5019"><![CDATA[{0}: AreaStartPosition[{1}] must be smaller then AreaEndPosition.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5020">AreaStartPositionMustGreaterWarning</Name>
+				<DisplayName TxtId="5020"><![CDATA[{0}: AreaStartPosition[{1}] must be greater or equal then Zero.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5021">AreaStartPositionMustSmallerHardwareModuloWarning</Name>
+				<DisplayName TxtId="5021"><![CDATA[{0}: AreaStartPosition[{1}] must be smaller or equal then HardwareModulo.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5022">GetAxisInterfaceFailedWarning</Name>
+				<DisplayName TxtId="5022"><![CDATA[{0}: Failed to get interface of NC/MC3 axis.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5023">InvalidParameterValue_Min_FloatWarning</Name>
+				<DisplayName TxtId="5023"><![CDATA[{0}: Invalid {1} parameter value (min={2})]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5024">TuningAssistMovementWarning</Name>
+				<DisplayName TxtId="5024"><![CDATA[{0}: Probably no enough movement during spectrum measure]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5025">TuningAssistNoFilterSuggestionWarning</Name>
+				<DisplayName TxtId="5025"><![CDATA[{0}: No filter suggestion could be calculated - please evaluate the spectrum manually]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5026">TuningAssistInvalidMaximaWarning</Name>
+				<DisplayName TxtId="5026"><![CDATA[{0}: Invalid number of maxima found in the current spectrum]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5027">TuningAssistNoMaximaFoundWarning</Name>
+				<DisplayName TxtId="5027"><![CDATA[{0}: No maxima found in the current spectrum]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5028">TuningAssistTooManyMaximaWarning</Name>
+				<DisplayName TxtId="5028"><![CDATA[{0}: Too many maxima found in the current spectrum]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5029">TuningAssistErrorInBiquadLowPassWarning</Name>
+				<DisplayName TxtId="5029"><![CDATA[TuningAssist: Error in Bi_Quad calc with LowPassfreqeuncy = {0}]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5030">TuningAssistErrorInBiquadHighPassWarning</Name>
+				<DisplayName TxtId="5030"><![CDATA[TuningAssist: Error in Bi_Quad calc with HighPassfreqeuncy = {0}]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5031">TuningAssistErrorInLowPassWarning</Name>
+				<DisplayName TxtId="5031"><![CDATA[TuningAssist: Error in LowPass2 calc with LowPassfreqeuncy = {0}]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5032">TuningAssistNoFrictionCompensationSuggestionParaWarning</Name>
+				<DisplayName TxtId="5032"><![CDATA[{0}: No friction compensation suggestion could be calculated - due to wrong parameter {1}]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5033">TuningAssistNoParameterSetWarning</Name>
+				<DisplayName TxtId="5033"><![CDATA[{0}:Can't download values. Please select a valid ParameterSet!]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5034">CantStartBodePlotWhileForceCouplingWarning</Name>
+				<DisplayName TxtId="5034"><![CDATA[{0}: Can't start bode plot while force coupling is enabled.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5035">ForceLimitOfCoupledMoverWillBeIgnoredWarning</Name>
+				<DisplayName TxtId="5035"><![CDATA[{0}: The configured force limit of {1} (0x{2}) will be ignored because the mover is force coupled to {3}.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9000">InputPointerNotSetError</Name>
+				<DisplayName TxtId="9000"><![CDATA[{0}: Input pointer not set.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9001">OutputPointerNotSetError</Name>
+				<DisplayName TxtId="9001"><![CDATA[{0}: Output pointer to not set.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9002">InputPointerInitFailedError</Name>
+				<DisplayName TxtId="9002"><![CDATA[{0}: Failed to initialize input pointer.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9003">OutputPointerInitFailedError</Name>
+				<DisplayName TxtId="9003"><![CDATA[{0}: Failed to initialize output pointer.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9004">InputOutputPointerDifferentError</Name>
+				<DisplayName TxtId="9004"><![CDATA[{0}: Input and output pointer have different targets.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9005">GetMoverFailedError</Name>
+				<DisplayName TxtId="9005"><![CDATA[{0}: Can't get interface of linked mover.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9006">GetTaskFailedError</Name>
+				<DisplayName TxtId="9006"><![CDATA[{0}: Failed to get task context of {1}. Check if context of {1} is set.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9007">GetCoupledMoverFailedError</Name>
+				<DisplayName TxtId="9007"><![CDATA[{0}: Failed to get interface of coupled XTS Mover Controller with OTCID {1}.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9008">CoupledMoverOnDifferentTasksError</Name>
+				<DisplayName TxtId="9008"><![CDATA[{0}: The coupled controller ({1}) is on a different task. Make sure that both Mover have the same task context.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9009">NoParameterSetConfiguredError</Name>
+				<DisplayName TxtId="9009"><![CDATA[{0}: No parameter set is configured.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9010">GetParameterSetFailedError</Name>
+				<DisplayName TxtId="9010"><![CDATA[{0}: Failed to get parameter set with OTCID {1}. Please make sure the object {1} is a XTS Controller Parameter Set.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9011">CouldNotRegisterByError</Name>
+				<DisplayName TxtId="9011"><![CDATA[Could not register {0} ('{1}') by {2}.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9012">CouldNotGetInterfaceOfTaskError</Name>
+				<DisplayName TxtId="9012"><![CDATA[Could not get interface of task (Object ID = {0}, Error = {1}).]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9013">CouldNotGetRTInterfaceOfTaskError</Name>
+				<DisplayName TxtId="9013"><![CDATA[Could not get RT-interface of task (Object ID = {0}, Error = {1}).]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9014">DifferentObjectVersionsError</Name>
+				<DisplayName TxtId="9014"><![CDATA[Different versions of {0} ({1}) and {2} ({3}) detected.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9015">VelocityFollowingErrorSingleError</Name>
+				<DisplayName TxtId="9015"><![CDATA[{0} (0x1201): Velocity following error - check setpoint generation & commutation (actual velocity != command velocity).]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9016">VelocityFollowingErrorMultipleError</Name>
+				<DisplayName TxtId="9016"><![CDATA[{0} (0x1201): Velocity following error - check setpoint generation & commutation (actual velocity != command velocity). {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9017">ResortWhileAxisEnabledSingleError</Name>
+				<DisplayName TxtId="9017"><![CDATA[{0} (0x1001): New mover resort while axis is enabled.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9018">ResortWhileAxisEnabledMultipleError</Name>
+				<DisplayName TxtId="9018"><![CDATA[{0} (0x1001): New mover resort while axis is enabled. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9019">EmergencyRampTooLongSingleError</Name>
+				<DisplayName TxtId="9019"><![CDATA[{0} (0x1102): Emergency ramp take too long.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9020">EmergencyRampTooLongMultipleError</Name>
+				<DisplayName TxtId="9020"><![CDATA[{0} (0x1102): Emergency ramp take too long. {1} more XTS Mover Controllers with this error...]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9021">GetExternalPositionFailedError</Name>
+				<DisplayName TxtId="9021"><![CDATA[{0}: Failed to get interface (IXtsExternalPosition) of interface with OTCID {1}.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9022">GetExternalForceFailedError</Name>
+				<DisplayName TxtId="9022"><![CDATA[{0}: Failed to get interface (IXtsExternalForce) of external force object with OTCID {1}.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9023">CantChangeControllerWhileTuningError</Name>
+				<DisplayName TxtId="9023"><![CDATA[{0}: Can't change the controller while tuning process is active ({1}).]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9024">GetMoverControllerFailedError</Name>
+				<DisplayName TxtId="9024"><![CDATA[{0}: Failed to get mover controller with OTCID {1}. Please make sure the object {1} is a XTS Controller Parameter Set.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9025">CantStartTuningAssistantError</Name>
+				<DisplayName TxtId="9025"><![CDATA[{0}: Can't start tuning, tuning process is already running.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9026">TuningAssistantJobTaskMissingError</Name>
+				<DisplayName TxtId="9026"><![CDATA[{0}: Please select a Job Task for Tuning Assistant calculations.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9027">CouldNotGetInterfaceObJobTaskError</Name>
+				<DisplayName TxtId="9027"><![CDATA[{0}: Could not get interface of Job task (Object ID = {1}, Error = {2}).]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9028">MissingMoverLinkError</Name>
+				<DisplayName TxtId="9028"><![CDATA[{0}: Missing link to XTS mover.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9029">MissingParameterSetError</Name>
+				<DisplayName TxtId="9029"><![CDATA[{0}: {1} is missing. At least one {1} is required.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9030">TuningAssistantMoverControllerMissingError</Name>
+				<DisplayName TxtId="9030"><![CDATA[{0}: Please select a mover controller to perform the tuning assist.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="15000">MessageDebug</Name>
+				<DisplayName TxtId="15000"><![CDATA[DEBUG-MSG: '{0}', '{1}', '{2}', '{3}']]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+		</DataType>
 	</DataTypes>
 	<ImageDatas>
-		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000c3c3c300c0c0c000bcbcbc00b9b9b900b5b5b500b2b2b200aeaeae00ababab00a8a8a800a4a4a400a1a1a1009d9d9d009a9a9a00979797004040400040404000c9c9c900c5c5c500c2c2c200bebebe00bbbbbb00b8b8b800b4b4b400b1b1b100adadad00aaaaaa0040404000a3a3a300a0a0a0009c9c9c004040400040404000cecece00cbcbcb00c8c8c800c4c4c400c1c1c100bdbdbd00bababa00b7b7b700b3b3b300b0b0b00040404000a9a9a900a6a6a600a2a2a2004040400040404000d4d4d400d1d1d100cdcdcd00cacaca00c7c7c700c3c3c300c0c0c000bcbcbc00b9b9b900b5b5b50040404000afafaf00ababab00a8a8a8004040400040404000dadada00d7d7d700d3d3d300d0d0d000cccccc00c9c9c900c5c5c500c2c2c200bfbfbf00bbbbbb0040404000b4b4b400b1b1b100aeaeae004040400040404000e0e0e000dcdcdc00d9d9d90085858500d2d2d200cfcfcf00cbcbcb00c8c8c800c4c4c400c1c1c1007f7f7f0079797900b7b7b700b3b3b3004040400040404000e5e5e500e2e2e200dfdfdf0040404000d5d5d500d4d4d400d1d1d100cecece00cacaca00c7c7c700c0c0c00040404000bdbdbd00b9b9b9004040400040404000ebebeb00e8e8e800e4e4e4004040400071717100d7d7d700d7d7d700d3d3d300d0d0d000cacaca006a6a6a0040404000c2c2c200bfbfbf004040400040404000f1f1f100eeeeee00eaeaea00404040007272720082828200dddddd00d9d9d900d6d6d6007c7c7c006c6c6c0040404000c8c8c800c5c5c5004040400040404000f7f7f700f3f3f300f0f0f00040404000e6e6e600d6d6d600e2e2e200dfdfdf00dbdbdb00c9c9c900d2d2d20040404000cecece00cacaca004040400040404000fbfbfb00f9f9f900f6f6f60046464600a2a2a2009c9c9c00e8e8e800e5e5e500e1e1e100959595009696960045454500d4d4d400d0d0d0004040400040404000fbfbfb00fbfbfb00fbfbfb00cccccc0048484800a3a3a300eeeeee00eaeaea00e7e7e7009e9e9e0047474700b5b5b500d9d9d900d6d6d6004040400040404000fbfbfb00fbfbfb00fbfbfb00fbfbfb00cbcbcb004747470040404000404040004040400046464600bcbcbc00e2e2e200dfdfdf00dcdcdc004040400040404000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f9f9f900f6f6f600f2f2f200efefef00ececec00e8e8e800e5e5e500e1e1e1004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000</ImageData>
+		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300bfbdbd00c0bebe00c1bebe00c1bebe00c0bebe00c0bebe00bfbdbd00bebbbb00bcb9b900bab7b700b8b5b500b5b3b300b3b0b000b0adad009393930093939300c3c1c100c4c2c200c5c3c300c5c3c300c3c1c1005c5c5c00404040004040400059595900bcbaba00bbb9b900b8b6b600b6b3b300b3b0b0009393930093939300c8c5c500c9c7c700c9c7c700c9c7c70092919100404040004040400040404000404040008e8d8d00bebcbc00bbb9b900b8b6b600b5b3b3009393930093939300cccaca00cdcbcb00cdcccc00cecccc004a4a4a00404040004040400040404000404040004a494900c1bfbf00bebcbc00bbb9b900b8b5b5009393930093939300d0cece00d1cfcf00d2d0d000d2d0d000404040004040400040404000404040004040400040404000c4c2c200c1bfbf00bdbbbb00bab7b7009393930093939300d4d2d200d5d4d400d6d4d400d6d4d400404040004040400040404000404040004040400040404000c7c4c400c3c1c100c0bdbd00bcb9b9009393930093939300d8d6d600dad8d800dad9d900dad9d900404040004040400040404000404040004040400040404000c9c7c700c5c3c300c1bfbf00bebbbb009393930093939300dcdbdb00939393006969690093939300939393006969690093939300939393006969690093939300939393006969690093939300bfbdbd009393930093939300e0dede00939393004040400093939300939393004040400093939300939393004040400093939300939393004040400093939300c0bebe009393930093939300e3e2e200939393004040400093939300939393004040400093939300939393004040400093939300939393004040400093939300c0bebe009393930093939300e6e5e500939393006969690093939300939393006969690093939300939393006969690093939300939393006969690093939300c1bebe009393930093939300e7e6e600ecebeb00f0efef00ecebeb00e7e6e600e3e2e200dfdddd00dad9d900d6d4d400d2d0d000cdcccc00c9c7c700c5c3c300c1bebe009393930093939300e7e5e500eae9e900ecebeb00eae8e800e6e5e500e2e1e100dedcdc00dad8d800d5d4d400d1cfcf00cdcbcb00c9c7c700c4c2c200c0bebe009393930093939300e4e3e300e7e5e500e7e6e600e6e5e500e3e2e200e0dede00dcdbdb00d8d6d600d4d2d200d0cece00cccaca00c8c5c500c3c1c100bfbdbd009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
 	</ImageDatas>
-	<Module Id="#x010100d0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+	<Module Id="#x010100d0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.31.0">
 		<Name>__FILENAME__</Name>
 		<ImageId>1000</ImageId>
-		<TmcDesc GUID="{0DA6877C-6A68-48EE-8003-C0A2209CEB78}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+		<TmcDesc GUID="{0DA6877C-6A68-48EE-8003-C0A2209CEB78}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.31.0">
 			<Name>XtsMover</Name>
 			<CLSID ClassFactory="TcIoXts">{0DA6877C-6A68-48EE-8003-C0A2209CEB78}</CLSID>
 			<Info>
-				<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000c3c3c300c0c0c000bcbcbc00b9b9b900b5b5b500b2b2b200aeaeae00ababab00a8a8a800a4a4a400a1a1a1009d9d9d009a9a9a00979797004040400040404000c9c9c900c5c5c500c2c2c200bebebe00bbbbbb00b8b8b800b4b4b400b1b1b100adadad00aaaaaa0040404000a3a3a300a0a0a0009c9c9c004040400040404000cecece00cbcbcb00c8c8c800c4c4c400c1c1c100bdbdbd00bababa00b7b7b700b3b3b300b0b0b00040404000a9a9a900a6a6a600a2a2a2004040400040404000d4d4d400d1d1d100cdcdcd00cacaca00c7c7c700c3c3c300c0c0c000bcbcbc00b9b9b900b5b5b50040404000afafaf00ababab00a8a8a8004040400040404000dadada00d7d7d700d3d3d300d0d0d000cccccc00c9c9c900c5c5c500c2c2c200bfbfbf00bbbbbb0040404000b4b4b400b1b1b100aeaeae004040400040404000e0e0e000dcdcdc00d9d9d90085858500d2d2d200cfcfcf00cbcbcb00c8c8c800c4c4c400c1c1c1007f7f7f0079797900b7b7b700b3b3b3004040400040404000e5e5e500e2e2e200dfdfdf0040404000d5d5d500d4d4d400d1d1d100cecece00cacaca00c7c7c700c0c0c00040404000bdbdbd00b9b9b9004040400040404000ebebeb00e8e8e800e4e4e4004040400071717100d7d7d700d7d7d700d3d3d300d0d0d000cacaca006a6a6a0040404000c2c2c200bfbfbf004040400040404000f1f1f100eeeeee00eaeaea00404040007272720082828200dddddd00d9d9d900d6d6d6007c7c7c006c6c6c0040404000c8c8c800c5c5c5004040400040404000f7f7f700f3f3f300f0f0f00040404000e6e6e600d6d6d600e2e2e200dfdfdf00dbdbdb00c9c9c900d2d2d20040404000cecece00cacaca004040400040404000fbfbfb00f9f9f900f6f6f60046464600a2a2a2009c9c9c00e8e8e800e5e5e500e1e1e100959595009696960045454500d4d4d400d0d0d0004040400040404000fbfbfb00fbfbfb00fbfbfb00cccccc0048484800a3a3a300eeeeee00eaeaea00e7e7e7009e9e9e0047474700b5b5b500d9d9d900d6d6d6004040400040404000fbfbfb00fbfbfb00fbfbfb00fbfbfb00cbcbcb004747470040404000404040004040400046464600bcbcbc00e2e2e200dfdfdf00dcdcdc004040400040404000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f9f9f900f6f6f600f2f2f200efefef00ececec00e8e8e800e5e5e500e1e1e1004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000</ImageData>
+				<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300bfbdbd00c0bebe00c1bebe00c1bebe00c0bebe00c0bebe00bfbdbd00bebbbb00bcb9b900bab7b700b8b5b500b5b3b300b3b0b000b0adad009393930093939300c3c1c100c4c2c200c5c3c300c5c3c300c3c1c1005c5c5c00404040004040400059595900bcbaba00bbb9b900b8b6b600b6b3b300b3b0b0009393930093939300c8c5c500c9c7c700c9c7c700c9c7c70092919100404040004040400040404000404040008e8d8d00bebcbc00bbb9b900b8b6b600b5b3b3009393930093939300cccaca00cdcbcb00cdcccc00cecccc004a4a4a00404040004040400040404000404040004a494900c1bfbf00bebcbc00bbb9b900b8b5b5009393930093939300d0cece00d1cfcf00d2d0d000d2d0d000404040004040400040404000404040004040400040404000c4c2c200c1bfbf00bdbbbb00bab7b7009393930093939300d4d2d200d5d4d400d6d4d400d6d4d400404040004040400040404000404040004040400040404000c7c4c400c3c1c100c0bdbd00bcb9b9009393930093939300d8d6d600dad8d800dad9d900dad9d900404040004040400040404000404040004040400040404000c9c7c700c5c3c300c1bfbf00bebbbb009393930093939300dcdbdb00939393006969690093939300939393006969690093939300939393006969690093939300939393006969690093939300bfbdbd009393930093939300e0dede00939393004040400093939300939393004040400093939300939393004040400093939300939393004040400093939300c0bebe009393930093939300e3e2e200939393004040400093939300939393004040400093939300939393004040400093939300939393004040400093939300c0bebe009393930093939300e6e5e500939393006969690093939300939393006969690093939300939393006969690093939300939393006969690093939300c1bebe009393930093939300e7e6e600ecebeb00f0efef00ecebeb00e7e6e600e3e2e200dfdddd00dad9d900d6d4d400d2d0d000cdcccc00c9c7c700c5c3c300c1bebe009393930093939300e7e5e500eae9e900ecebeb00eae8e800e6e5e500e2e1e100dedcdc00dad8d800d5d4d400d1cfcf00cdcbcb00c9c7c700c4c2c200c0bebe009393930093939300e4e3e300e7e5e500e7e6e600e6e5e500e3e2e200e0dede00dcdbdb00d8d6d600d4d2d200d0cece00cccaca00c8c5c500c3c1c100bfbdbd009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
 			</Info>
 			<InitSequence>PSO</InitSequence>
 			<Contexts>
@@ -626,21 +980,19 @@
 				<Interface>
 					<Type GUID="{03000018-0000-0000-E000-000000000064}">ITcWatchSource</Type>
 				</Interface>
-				<Interface>
-					<Type GUID="{4BC4DABB-09B3-4A22-9E37-65ED6818A460}">IXtsMover</Type>
-				</Interface>
 			</Interfaces>
 			<Parameters>
+				<Group><![CDATA[Info]]></Group>
 				<Group><![CDATA[General]]></Group>
 				<Group><![CDATA[Mover Detection]]></Group>
 				<Group><![CDATA[Simulation]]></Group>
 				<Group><![CDATA[Mover Swap]]></Group>
 				<Group><![CDATA[Movement Info]]></Group>
-				<Group><![CDATA[Mover ID Detection]]></Group>
-				<Group><![CDATA[Info]]></Group>
+				<Group><![CDATA[Mover Id Detection]]></Group>
 				<Group><![CDATA[Drive Info]]></Group>
 				<Group><![CDATA[NCT Communication]]></Group>
-				<Parameter HideParameter="true" Group="General">
+				<Group><![CDATA[Structure]]></Group>
+				<Parameter HideParameter="true" Group="Info">
 					<Name>AdsPort</Name>
 					<Comment><![CDATA[Gets/sets the ads port. The port should be used to read/write parameters via ADS.]]></Comment>
 					<BitSize>16</BitSize>
@@ -651,7 +1003,7 @@
 					<PTCID>#x03002090</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter HideParameter="true" Group="General">
+				<Parameter HideParameter="true" Group="Info">
 					<Name>TaskOID</Name>
 					<Comment><![CDATA[Gets/Sets the XTS Task that is used for calculations for the XtsMover.]]></Comment>
 					<BitSize>32</BitSize>
@@ -660,6 +1012,17 @@
 						<Value>#x00000000</Value>
 					</Default>
 					<PTCID>#x03002060</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" ReadOnly="true" Group="General">
+					<Name>IsActive</Name>
+					<Comment><![CDATA[Gets value which indicates if the mover is actively used or is currently passive. An active mover may be deactivated if one plans to remove it from the system.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+					<PTCID>#x030802b6</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
 				<Parameter Group="General">
@@ -755,17 +1118,6 @@
 					<ContextId>1</ContextId>
 				</Parameter>
 				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
-					<Name>IsActive</Name>
-					<Comment><![CDATA[Gets value which indicates if the mover is actively used or is currently passive. An active mover may be deactivated if one plans to remove it from the system.]]></Comment>
-					<BitSize>8</BitSize>
-					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
-					<Default>
-						<EnumText>FALSE</EnumText>
-					</Default>
-					<PTCID>#x030802b6</PTCID>
-					<ContextId>1</ContextId>
-				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Movement Info">
 					<Name>PositionInfo</Name>
 					<Comment><![CDATA[Returns the part and track position as well as their object IDs.]]></Comment>
 					<BitSize>192</BitSize>
@@ -854,23 +1206,20 @@
 					<PTCID>#x030805d8</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Mover ID Detection">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Mover Id Detection">
 					<Name>Id</Name>
-					<Comment><![CDATA[Returns the ID of the mover.]]></Comment>
+					<Comment><![CDATA[(Obsolete) Returns the ID of the mover.]]></Comment>
 					<BitSize>32</BitSize>
 					<BaseType GUID="{18071995-0000-0000-0000-000100000003}">STRING(3)</BaseType>
 					<PTCID>#x03080266</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Mover Detection">
-					<Name>IsDetectedWithInvertedMagnetPlate</Name>
-					<Comment><![CDATA[Gets if the mover was found with an inverted magnet plate.]]></Comment>
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Mover Id Detection">
+					<Name>IsMover1</Name>
+					<Comment><![CDATA[Returns the true if the Mover is Mover1.]]></Comment>
 					<BitSize>8</BitSize>
 					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
-					<Default>
-						<EnumText>FALSE</EnumText>
-					</Default>
-					<PTCID>#x03080572</PTCID>
+					<PTCID>#x03080602</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
 				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Mover Swap">
@@ -897,7 +1246,7 @@
 					<PTCID>#x030805c4</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>AxisId</Name>
 					<Comment><![CDATA[Gets the ID of the associated axis.]]></Comment>
 					<BitSize>32</BitSize>
@@ -905,7 +1254,7 @@
 					<PTCID>#x03080288</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>AxisObjectId</Name>
 					<Comment><![CDATA[Gets the object ID of the associated axis.]]></Comment>
 					<BitSize>32</BitSize>
@@ -931,7 +1280,7 @@
 					<PTCID>#x00000051</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>DriveAddress</Name>
 					<Comment><![CDATA[Returns the address of the drive (motor) terminal on which the mover is currently on.]]></Comment>
 					<BitSize>16</BitSize>
@@ -939,7 +1288,7 @@
 					<PTCID>#x00000087</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>DriveModuleNumber</Name>
 					<Comment><![CDATA[If HasDriveError is true then the drive number is set to the first module number which signals an error.]]></Comment>
 					<BitSize>32</BitSize>
@@ -947,7 +1296,7 @@
 					<PTCID>#x00000066</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>DriveTerminalOid</Name>
 					<Comment><![CDATA[If HasDriveError is true then the object ID of the drive terminal is set.]]></Comment>
 					<BitSize>32</BitSize>
@@ -955,7 +1304,7 @@
 					<PTCID>#x00000070</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>EncoderAddress</Name>
 					<Comment><![CDATA[Returns the address of the encoder (sensor) terminal on which the mover is currently on.]]></Comment>
 					<BitSize>16</BitSize>
@@ -963,7 +1312,7 @@
 					<PTCID>#x00000088</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>EncoderModuleNumber</Name>
 					<Comment><![CDATA[If HasEncoderError is true then the encoder number is set to the first module number which signals an error.]]></Comment>
 					<BitSize>32</BitSize>
@@ -971,7 +1320,7 @@
 					<PTCID>#x00000067</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>EncoderTerminalOid</Name>
 					<Comment><![CDATA[If HasEncoderError is true then the object ID of the encoder is set.]]></Comment>
 					<BitSize>32</BitSize>
@@ -979,7 +1328,7 @@
 					<PTCID>#x00000071</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>HasDriveError</Name>
 					<Comment><![CDATA[Returns true if the motor module which is used by a mover signals an error.]]></Comment>
 					<BitSize>32</BitSize>
@@ -987,7 +1336,7 @@
 					<PTCID>#x00000068</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>HasEncoderError</Name>
 					<Comment><![CDATA[Returns true if the encoder module which is used by a mover signals an error.]]></Comment>
 					<BitSize>32</BitSize>
@@ -1011,7 +1360,7 @@
 					<PTCID>#x03080550</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>MasterNetId</Name>
 					<Comment><![CDATA[Returns the NetId of the EtherCAT master to which the drive/encoder belong to.]]></Comment>
 					<BitSize>48</BitSize>
@@ -1019,7 +1368,7 @@
 					<PTCID>#x00000089</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>SoftDriveOid</Name>
 					<Comment><![CDATA[Gets the object ID of the soft drive.]]></Comment>
 					<BitSize>32</BitSize>
@@ -1051,7 +1400,7 @@
 					<PTCID>#x03080452</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Drive Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Drive Info">
 					<Name>DriveStatusValue</Name>
 					<Comment><![CDATA[Returns the drive status value of the mover.]]></Comment>
 					<BitSize>16</BitSize>
@@ -1067,7 +1416,7 @@
 					<PTCID>#x030805c5</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Drive Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Drive Info">
 					<Name>DriveControlValue</Name>
 					<Comment><![CDATA[Returns the drive control value of the mover.]]></Comment>
 					<BitSize>16</BitSize>
@@ -1105,7 +1454,7 @@
 					<PTCID>#x030805aa</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 					<Name>VersionString</Name>
 					<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
 					<BitSize>384</BitSize>
@@ -1121,12 +1470,24 @@
 					<PTCID>#x03080510</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
+				<Parameter HideParameter="true" ReadOnly="true" Group="Structure">
+					<Name>ModuleId</Name>
+					<Comment><![CDATA[Module ID of this TcCOM module (read only).]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000021}">GUID</BaseType>
+					<Default>
+						<Data>7c87a60d686aee488003c0a2209ceb78</Data>
+					</Default>
+					<PTCID>#x03080001</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
 			</Parameters>
 			<DataAreas>
 				<DataArea>
 					<AreaNo AreaType="OutputSrc" CreateSymbols="true" OptionalArea="true" Disabled="true">1</AreaNo>
 					<Name>Inputs</Name>
-					<ContextId>-1</ContextId>
+					<Comment><![CDATA[Cyclic data structure for communication from Mover object to SoftDrive object of the axis.]]></Comment>
+					<ContextId>1</ContextId>
 					<ByteSize>104</ByteSize>
 					<Symbol>
 						<Name>SoftDriveInput</Name>
@@ -1139,7 +1500,8 @@
 				<DataArea>
 					<AreaNo AreaType="InputDst" CreateSymbols="true" OptionalArea="true" Disabled="true">2</AreaNo>
 					<Name>Outputs</Name>
-					<ContextId>-1</ContextId>
+					<Comment><![CDATA[Cyclic data structure for communication from SoftDrive object to Mover object.]]></Comment>
+					<ContextId>1</ContextId>
 					<ByteSize>96</ByteSize>
 					<Symbol>
 						<Name>SoftDriveOutput</Name>
@@ -1150,6 +1512,321 @@
 					</Symbol>
 				</DataArea>
 			</DataAreas>
+			<EventMessages>
+				<EventMessage>
+					<Id>0</Id>
+					<Message><![CDATA[{0}: Mover 1 found]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>1</Id>
+					<Message><![CDATA[{0}: Standard mover found]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>2</Id>
+					<Message><![CDATA[Initialized {0} XTS Controller(s) on {1} (CPU {2}, {3} μs).]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>3</Id>
+					<Message><![CDATA[Initialized {0} XTS Controller Parameter Set(s).]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>4</Id>
+					<Message><![CDATA[No XTS Controller Manager in configuration detected. Initialize default Manager...]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5</Id>
+					<Message><![CDATA[{0}: Force coupling with {1} is active.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>6</Id>
+					<Message><![CDATA[{0}: Number of maxima found in the current spectrum = {1}]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>7</Id>
+					<Message><![CDATA[{0}: Calculate with rule {1}]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>8</Id>
+					<Message><![CDATA[{0}: Bode plot is stopped.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5000</Id>
+					<Message><![CDATA[{0}: Invalid {1} parameter value (min={2}/max={3})]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5001</Id>
+					<Message><![CDATA[{0}: Invalid {1} parameter value (min={2}/max={3})]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5002</Id>
+					<Message><![CDATA[{0}: Invalid {1} parameter value (min={2})]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5003</Id>
+					<Message><![CDATA[{0} (0x1002): New Mover 1 detection while axis is enabled.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5004</Id>
+					<Message><![CDATA[{0} (0x1002): New Mover 1 detection while axis is enabled. {1} more XTS Mover Controllers with this error...]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5005</Id>
+					<Message><![CDATA[{0} (0x1003): Hardware error occur after Mover 1 detection is started.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5006</Id>
+					<Message><![CDATA[{0} (0x1003): Hardware error occur after Mover 1 detection is started. {1} more XTS Mover Controllers with this error...]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5007</Id>
+					<Message><![CDATA[{0} (0x1005): Movements of Mover while Mover 1 detection do not fit together.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5008</Id>
+					<Message><![CDATA[{0} (0x1005): Movements of Mover while Mover 1 detection do not fit together. {1} more XTS Mover Controllers with this error...]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5009</Id>
+					<Message><![CDATA[{0} (0x1004): Hardware is not ready for Mover 1 detection - e.g. power is missing or HW has an error.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5010</Id>
+					<Message><![CDATA[{0} (0x1004): Hardware is not ready for Mover 1 detection - e.g. power is missing or HW has an error. {1} more XTS Mover Controllers with this error...]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5011</Id>
+					<Message><![CDATA[{0} (0x1007): Min velocity could not be reached long enough.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5012</Id>
+					<Message><![CDATA[{0} (0x1007): Min velocity could not be reached long enough. {1} more XTS Mover Controllers with this error...]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5013</Id>
+					<Message><![CDATA[{0} (0x1006): Min movement could not be reached with the actual current.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5014</Id>
+					<Message><![CDATA[{0} (0x1006): Min movement could not be reached with the actual current. {1} more XTS Mover Controllers with this error...]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5015</Id>
+					<Message><![CDATA[{0}: No write access in TCom state OP for {1}.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5016</Id>
+					<Message><![CDATA[{0} Observer: Bandwidth is limited by cycle time (limited Bandwidth = {1})]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5017</Id>
+					<Message><![CDATA[{0} (0x1101): Velocity difference too big for emergency ramp down.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5018</Id>
+					<Message><![CDATA[{0} (0x1101): Velocity difference too big for emergency ramp down. {1} more XTS Mover Controllers with this error...]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5019</Id>
+					<Message><![CDATA[{0}: AreaStartPosition[{1}] must be smaller then AreaEndPosition.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5020</Id>
+					<Message><![CDATA[{0}: AreaStartPosition[{1}] must be greater or equal then Zero.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5021</Id>
+					<Message><![CDATA[{0}: AreaStartPosition[{1}] must be smaller or equal then HardwareModulo.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5022</Id>
+					<Message><![CDATA[{0}: Failed to get interface of NC/MC3 axis.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5023</Id>
+					<Message><![CDATA[{0}: Invalid {1} parameter value (min={2})]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5024</Id>
+					<Message><![CDATA[{0}: Probably no enough movement during spectrum measure]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5025</Id>
+					<Message><![CDATA[{0}: No filter suggestion could be calculated - please evaluate the spectrum manually]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5026</Id>
+					<Message><![CDATA[{0}: Invalid number of maxima found in the current spectrum]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5027</Id>
+					<Message><![CDATA[{0}: No maxima found in the current spectrum]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5028</Id>
+					<Message><![CDATA[{0}: Too many maxima found in the current spectrum]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5029</Id>
+					<Message><![CDATA[TuningAssist: Error in Bi_Quad calc with LowPassfreqeuncy = {0}]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5030</Id>
+					<Message><![CDATA[TuningAssist: Error in Bi_Quad calc with HighPassfreqeuncy = {0}]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5031</Id>
+					<Message><![CDATA[TuningAssist: Error in LowPass2 calc with LowPassfreqeuncy = {0}]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5032</Id>
+					<Message><![CDATA[{0}: No friction compensation suggestion could be calculated - due to wrong parameter {1}]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5033</Id>
+					<Message><![CDATA[{0}:Can't download values. Please select a valid ParameterSet!]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5034</Id>
+					<Message><![CDATA[{0}: Can't start bode plot while force coupling is enabled.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>5035</Id>
+					<Message><![CDATA[{0}: The configured force limit of {1} (0x{2}) will be ignored because the mover is force coupled to {3}.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9000</Id>
+					<Message><![CDATA[{0}: Input pointer not set.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9001</Id>
+					<Message><![CDATA[{0}: Output pointer to not set.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9002</Id>
+					<Message><![CDATA[{0}: Failed to initialize input pointer.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9003</Id>
+					<Message><![CDATA[{0}: Failed to initialize output pointer.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9004</Id>
+					<Message><![CDATA[{0}: Input and output pointer have different targets.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9005</Id>
+					<Message><![CDATA[{0}: Can't get interface of linked mover.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9006</Id>
+					<Message><![CDATA[{0}: Failed to get task context of {1}. Check if context of {1} is set.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9007</Id>
+					<Message><![CDATA[{0}: Failed to get interface of coupled XTS Mover Controller with OTCID {1}.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9008</Id>
+					<Message><![CDATA[{0}: The coupled controller ({1}) is on a different task. Make sure that both Mover have the same task context.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9009</Id>
+					<Message><![CDATA[{0}: No parameter set is configured.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9010</Id>
+					<Message><![CDATA[{0}: Failed to get parameter set with OTCID {1}. Please make sure the object {1} is a XTS Controller Parameter Set.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9011</Id>
+					<Message><![CDATA[Could not register {0} ('{1}') by {2}.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9012</Id>
+					<Message><![CDATA[Could not get interface of task (Object ID = {0}, Error = {1}).]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9013</Id>
+					<Message><![CDATA[Could not get RT-interface of task (Object ID = {0}, Error = {1}).]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9014</Id>
+					<Message><![CDATA[Different versions of {0} ({1}) and {2} ({3}) detected.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9015</Id>
+					<Message><![CDATA[{0} (0x1201): Velocity following error - check setpoint generation & commutation (actual velocity != command velocity).]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9016</Id>
+					<Message><![CDATA[{0} (0x1201): Velocity following error - check setpoint generation & commutation (actual velocity != command velocity). {1} more XTS Mover Controllers with this error...]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9017</Id>
+					<Message><![CDATA[{0} (0x1001): New mover resort while axis is enabled.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9018</Id>
+					<Message><![CDATA[{0} (0x1001): New mover resort while axis is enabled. {1} more XTS Mover Controllers with this error...]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9019</Id>
+					<Message><![CDATA[{0} (0x1102): Emergency ramp take too long.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9020</Id>
+					<Message><![CDATA[{0} (0x1102): Emergency ramp take too long. {1} more XTS Mover Controllers with this error...]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9021</Id>
+					<Message><![CDATA[{0}: Failed to get interface (IXtsExternalPosition) of interface with OTCID {1}.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9022</Id>
+					<Message><![CDATA[{0}: Failed to get interface (IXtsExternalForce) of external force object with OTCID {1}.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9023</Id>
+					<Message><![CDATA[{0}: Can't change the controller while tuning process is active ({1}).]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9024</Id>
+					<Message><![CDATA[{0}: Failed to get mover controller with OTCID {1}. Please make sure the object {1} is a XTS Controller Parameter Set.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9025</Id>
+					<Message><![CDATA[{0}: Can't start tuning, tuning process is already running.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9026</Id>
+					<Message><![CDATA[{0}: Please select a Job Task for Tuning Assistant calculations.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9027</Id>
+					<Message><![CDATA[{0}: Could not get interface of Job task (Object ID = {1}, Error = {2}).]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9028</Id>
+					<Message><![CDATA[{0}: Missing link to XTS mover.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9029</Id>
+					<Message><![CDATA[{0}: {1} is missing. At least one {1} is required.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>9030</Id>
+					<Message><![CDATA[{0}: Please select a mover controller to perform the tuning assist.]]></Message>
+				</EventMessage>
+				<EventMessage>
+					<Id>15000</Id>
+					<Message><![CDATA[DEBUG-MSG: '{0}', '{1}', '{2}', '{3}']]></Message>
+				</EventMessage>
+			</EventMessages>
+			<EventClasses>
+				<EventClass>
+					<Type GUID="{0DB75694-CC1E-9AC0-D1E4-657B6FF26793}">MoverControllerEventClass</Type>
+				</EventClass>
+			</EventClasses>
 			<Properties>
 				<Property>
 					<Name>Category</Name>
@@ -1174,10 +1851,6 @@
 				<Property>
 					<Name>ChildCategory</Name>
 					<Value>XtsMoverChild</Value>
-				</Property>
-				<Property>
-					<Name>McAxisObject</Name>
-					<Value>TcCom_XtsMoverController</Value>
 				</Property>
 			</Properties>
 			<ParentOTCID>#x01010010</ParentOTCID>
@@ -1229,6 +1902,10 @@
 				<Value>
 					<Name>ManualLocalInitAddress</Name>
 					<Value>255</Value>
+				</Value>
+				<Value>
+					<Name>ModuleId</Name>
+					<Data>7c87a60d686aee488003c0a2209ceb78</Data>
 				</Value>
 			</ParameterValues>
 		</TmcDesc>
