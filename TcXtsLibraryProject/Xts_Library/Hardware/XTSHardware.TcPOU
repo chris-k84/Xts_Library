@@ -263,7 +263,6 @@ CASE XtsIoEnvInitialiseState OF
 		END_IF
 	XtsHardwareInitialisation.GettingTracks:
 		MyTrackCount := _MyXpu.P_TrackCount;
-		_MyXpu.GetTrackOids();
 		TrackOTCIDs := _MyXpu.P_TrackOids;
 		IF TO_INT(MyTrackCount) = _MyNumberTracks THEN
 			FOR i := 0 TO UDINT_TO_INT(MyTrackCount - 1) DO
