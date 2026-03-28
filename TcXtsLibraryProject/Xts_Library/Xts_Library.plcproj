@@ -18,7 +18,7 @@
     <Released>false</Released>
     <Title>Xts Library</Title>
     <Company>BeckhoffUK</Company>
-    <ProjectVersion>11.0.1</ProjectVersion>
+    <ProjectVersion>11.1.0</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory>
         <Id>{4c30be10-0c29-4796-921e-62ecfda40191}</Id>
@@ -36,8 +36,8 @@
     </SelectedLibraryCategories>
     <Description>Xts framework implementation</Description>
     <Author>ChrisK</Author>
-    <POUsForPropertyAccessIncluded>false</POUsForPropertyAccessIncluded>
-    <GlobalVersionStructureIncluded>false</GlobalVersionStructureIncluded>
+    <POUsForPropertyAccessIncluded>true</POUsForPropertyAccessIncluded>
+    <GlobalVersionStructureIncluded>true</GlobalVersionStructureIncluded>
     <VirtualLibrary>true</VirtualLibrary>
   </PropertyGroup>
   <ItemGroup>
@@ -67,6 +67,18 @@
     </Compile>
     <Compile Include="Operations\TriggerPoint.TcPOU">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Project Information\F_GetCompany.TcPOU">
+      <SubType>Code</SubType>
+      <SystemCall>true</SystemCall>
+    </Compile>
+    <Compile Include="Project Information\F_GetTitle.TcPOU">
+      <SubType>Code</SubType>
+      <SystemCall>true</SystemCall>
+    </Compile>
+    <Compile Include="Project Information\F_GetVersion.TcPOU">
+      <SubType>Code</SubType>
+      <SystemCall>true</SystemCall>
     </Compile>
     <Compile Include="Types\CAGroupInfo.TcDUT">
       <SubType>Code</SubType>
@@ -186,6 +198,9 @@
     <Compile Include="Types\XtsSystemInitialisation.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Version\Global_Version.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="XPU\XtsIoEnvVar.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -215,9 +230,11 @@
     <Folder Include="Interfaces" />
     <Folder Include="Mover" />
     <Folder Include="Mover Behaviours" />
+    <Folder Include="Project Information" />
     <Folder Include="Types" />
     <Folder Include="Operations" />
     <Folder Include="Tasks" />
+    <Folder Include="Version" />
     <Folder Include="XPU" />
     <Folder Include="XTS" />
     <Folder Include="Collision Group" />
