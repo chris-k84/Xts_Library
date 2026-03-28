@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.16" ClassName="CNcAxisDef" SubType="1">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.20" ClassName="CNcAxisDef" SubType="1">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-000000000035}" TcBaseType="true" HideType="true">UINTARR2</Name>
@@ -1791,7 +1791,7 @@ External Setpoint Generation:
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{5E0D60E9-A8BD-DF95-609D-CEBD7BC29328}">MoverControllerEventClass</Name>
+			<Name GUID="{0DB75694-CC1E-9AC0-D1E4-657B6FF26793}">MoverControllerEventClass</Name>
 			<DisplayName TxtId=""><![CDATA[MoverControllerEventClass]]></DisplayName>
 			<EventId>
 				<Name Id="0">Mover1FoundInfo</Name>
@@ -2014,6 +2014,11 @@ External Setpoint Generation:
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
+				<Name Id="5035">ForceLimitOfCoupledMoverWillBeIgnoredWarning</Name>
+				<DisplayName TxtId="5035"><![CDATA[{0}: The configured force limit of {1} (0x{2}) will be ignored because the mover is force coupled to {3}.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
 				<Name Id="9000">InputPointerNotSetError</Name>
 				<DisplayName TxtId="9000"><![CDATA[{0}: Input pointer not set.]]></DisplayName>
 				<Severity>Verbose</Severity>
@@ -2055,7 +2060,7 @@ External Setpoint Generation:
 			</EventId>
 			<EventId>
 				<Name Id="9008">CoupledMoverOnDifferentTasksError</Name>
-				<DisplayName TxtId="9008"><![CDATA[{0}: The coupled controller ({1}) is on a different task. Make sure that both Mover has the same task context.]]></DisplayName>
+				<DisplayName TxtId="9008"><![CDATA[{0}: The coupled controller ({1}) is on a different task. Make sure that both Mover have the same task context.]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
@@ -2176,7 +2181,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<ImageDatas>
-		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000900000009000000ababab00a6a6a600a0a0a0009b9b9b0095959500909090008a8a8a0085858500808080007a7a7a00757575006f6f6f006a6a6a00646464000900000009000000b4b4b400afafaf00004dff00004dff00004dff00004dff00004dff00004dff00004dff00004dff007e7e7e0078787800737373006e6e6e000900000009000000bcbcbd00b8b8b800004dff00adadad00a7a7a800a2a2a2009d9d9d009797970092929200004dff0087878700828282007c7c7c007777770009000000090000004c7be9007f99d600004dff007892cf004473e100ababab00a6a6a600a0a0a0009b9b9b00004dff00909090008b8b8b0085858500808080000900000009000000aab8d9001157fa00004dff001056f90098a6c700b4b4b400afafaf00aaaaaa00a4a4a400004dff0099999900949494008e8e8e00898989000900000009000000d9d9d9008ba5e200014eff00849edb00c3c3c300bebebe00b8b8b800b3b3b300adadad00004dff007a7a7a004949490096969600929292000900000009000000e2e2e2006991ee000852fe00658de900cccccc00535353005353530053535300b7b7b700004dff00a0a0a0002e2e2e00282828008e8e8e000900000009000000ebebeb000b54fe00004dff000049f2000000000053535300535353005353530000000000000000000000000000000000000000002b2b2b000900000009000000f4f4f4007199f7000a54fe006d95f200dfdfdf00535353005353530053535300c9c9c900c3c3c300b1b1b100333333002c2c2c009f9f9f000900000009000000fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e2e2e200dddddd00d7d7d700d2d2d200cdcdcd00959595005a5a5a00bababa00b7b7b7000900000009000000fbfbfb00fbfbfb00fbfbfb00f6f6f600f1f1f100ebebeb00e6e6e600e1e1e100dbdbdb00d6d6d600d0d0d000cbcbcb00c5c5c500c0c0c0000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fafafa00f5f5f500efefef00eaeaea00e4e4e400dfdfdf00d9d9d900d4d4d400cfcfcf00c9c9c9000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
+		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab00aaa7a7009393930093939300d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab009393930093939300dcdbdb00d9d7d700004dff00004dff00004dff00004dff00004dff00004dff00004dff00004dff00bbb8b800b8b5b500b4b2b200b1aeae009393930093939300deddde00dcdbdb00004dff00d5d4d400d1cfd000cfcdcd00cbc9c900c8c6c600c5c3c300004dff00bebcbc00bbb8b800b8b5b500b4b2b20093939300939393005785f30093ace900004dff008fa8e5005280ee00d2d0d000cfcdcd00cccaca00c8c6c600004dff00c2bfbf00bebcbc00bbb8b800b8b5b5009393930093939300bcc9ea001459fc00004dff001359fc00b1bdde00d5d4d400d2d0d000cfcdcd00cbc9c900004dff00c5c3c300c2bfbf00bebcbc00bbb8b8009393930093939300e9e8e80098b1ee00014eff0093ace900dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00004dff00a6a4a4007d7c7c00c1bebe00bebcbc009393930093939300edecec006f97f4000852fe006d95f100dfdede00939393009393930093939300d2d0d000004dff00c2c0c0006564640061606000b7b5b5009393930093939300f0efef000b54fe00004dff00034cf500404040009393930093939300939393004040400040404000404040004040400040404000636262009292920093939300eeeded007299f7000a54fe006f97f400e6e5e500939393009393930093939300d9d7d700d5d4d400c8c6c6006766660062626200bdbbbb009393930093939300ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700b0afaf0083828200cecccc00cbc9c9009393930093939300ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd009393930093939300e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d0009393930093939300e7e5e500e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
 	</ImageDatas>
 	<Axis Id="8" CreateSymbols="true" AxisType="1">
 		<Name>__FILENAME__</Name>
@@ -2323,14 +2328,14 @@ External Setpoint Generation:
 				<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 			</Var>
 		</Vars>
-		<Module Id="#x01010240" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+		<Module Id="#x01010240" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.31.0">
 			<Name>Mover Controller 8</Name>
 			<ImageId>1000</ImageId>
-			<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.3.78.0">
+			<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.31.0">
 				<Name>XtsMoverController</Name>
 				<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 				<Info>
-					<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000900000009000000ababab00a6a6a600a0a0a0009b9b9b0095959500909090008a8a8a0085858500808080007a7a7a00757575006f6f6f006a6a6a00646464000900000009000000b4b4b400afafaf00004dff00004dff00004dff00004dff00004dff00004dff00004dff00004dff007e7e7e0078787800737373006e6e6e000900000009000000bcbcbd00b8b8b800004dff00adadad00a7a7a800a2a2a2009d9d9d009797970092929200004dff0087878700828282007c7c7c007777770009000000090000004c7be9007f99d600004dff007892cf004473e100ababab00a6a6a600a0a0a0009b9b9b00004dff00909090008b8b8b0085858500808080000900000009000000aab8d9001157fa00004dff001056f90098a6c700b4b4b400afafaf00aaaaaa00a4a4a400004dff0099999900949494008e8e8e00898989000900000009000000d9d9d9008ba5e200014eff00849edb00c3c3c300bebebe00b8b8b800b3b3b300adadad00004dff007a7a7a004949490096969600929292000900000009000000e2e2e2006991ee000852fe00658de900cccccc00535353005353530053535300b7b7b700004dff00a0a0a0002e2e2e00282828008e8e8e000900000009000000ebebeb000b54fe00004dff000049f2000000000053535300535353005353530000000000000000000000000000000000000000002b2b2b000900000009000000f4f4f4007199f7000a54fe006d95f200dfdfdf00535353005353530053535300c9c9c900c3c3c300b1b1b100333333002c2c2c009f9f9f000900000009000000fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e2e2e200dddddd00d7d7d700d2d2d200cdcdcd00959595005a5a5a00bababa00b7b7b7000900000009000000fbfbfb00fbfbfb00fbfbfb00f6f6f600f1f1f100ebebeb00e6e6e600e1e1e100dbdbdb00d6d6d600d0d0d000cbcbcb00c5c5c500c0c0c0000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fafafa00f5f5f500efefef00eaeaea00e4e4e400dfdfdf00d9d9d900d4d4d400cfcfcf00c9c9c9000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
+					<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab00aaa7a7009393930093939300d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab009393930093939300dcdbdb00d9d7d700004dff00004dff00004dff00004dff00004dff00004dff00004dff00004dff00bbb8b800b8b5b500b4b2b200b1aeae009393930093939300deddde00dcdbdb00004dff00d5d4d400d1cfd000cfcdcd00cbc9c900c8c6c600c5c3c300004dff00bebcbc00bbb8b800b8b5b500b4b2b20093939300939393005785f30093ace900004dff008fa8e5005280ee00d2d0d000cfcdcd00cccaca00c8c6c600004dff00c2bfbf00bebcbc00bbb8b800b8b5b5009393930093939300bcc9ea001459fc00004dff001359fc00b1bdde00d5d4d400d2d0d000cfcdcd00cbc9c900004dff00c5c3c300c2bfbf00bebcbc00bbb8b8009393930093939300e9e8e80098b1ee00014eff0093ace900dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00004dff00a6a4a4007d7c7c00c1bebe00bebcbc009393930093939300edecec006f97f4000852fe006d95f100dfdede00939393009393930093939300d2d0d000004dff00c2c0c0006564640061606000b7b5b5009393930093939300f0efef000b54fe00004dff00034cf500404040009393930093939300939393004040400040404000404040004040400040404000636262009292920093939300eeeded007299f7000a54fe006f97f400e6e5e500939393009393930093939300d9d7d700d5d4d400c8c6c6006766660062626200bdbbbb009393930093939300ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700b0afaf0083828200cecccc00cbc9c9009393930093939300ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd009393930093939300e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d0009393930093939300e7e5e500e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
 				</Info>
 				<InitSequence>PSO</InitSequence>
 				<Contexts>
@@ -2363,6 +2368,7 @@ External Setpoint Generation:
 					<Group><![CDATA[External IO]]></Group>
 					<Group><![CDATA[MC3]]></Group>
 					<Group><![CDATA[Info]]></Group>
+					<Group><![CDATA[Structure]]></Group>
 					<Parameter Group="General">
 						<Name>BlendInTime</Name>
 						<Comment><![CDATA[The blend in time for parameter set change.]]></Comment>
@@ -2560,7 +2566,7 @@ External Setpoint Generation:
 						<PTCID>#x03080404</PTCID>
 						<ContextId>1</ContextId>
 					</Parameter>
-					<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
 						<Name>VersionString</Name>
 						<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
 						<BitSize>384</BitSize>
@@ -2574,6 +2580,17 @@ External Setpoint Generation:
 						<BitSize>128</BitSize>
 						<BaseType GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</BaseType>
 						<PTCID>#x03080510</PTCID>
+						<ContextId>1</ContextId>
+					</Parameter>
+					<Parameter HideParameter="true" ReadOnly="true" Group="Structure">
+						<Name>ModuleId</Name>
+						<Comment><![CDATA[Module ID of this TcCOM module (read only).]]></Comment>
+						<BitSize>128</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000021}">GUID</BaseType>
+						<Default>
+							<Data>6cd98b165e1574449dad83ecb801d40d</Data>
+						</Default>
+						<PTCID>#x03080001</PTCID>
 						<ContextId>1</ContextId>
 					</Parameter>
 				</Parameters>
@@ -2865,6 +2882,10 @@ External Setpoint Generation:
 						<Message><![CDATA[{0}: Can't start bode plot while force coupling is enabled.]]></Message>
 					</EventMessage>
 					<EventMessage>
+						<Id>5035</Id>
+						<Message><![CDATA[{0}: The configured force limit of {1} (0x{2}) will be ignored because the mover is force coupled to {3}.]]></Message>
+					</EventMessage>
+					<EventMessage>
 						<Id>9000</Id>
 						<Message><![CDATA[{0}: Input pointer not set.]]></Message>
 					</EventMessage>
@@ -2898,7 +2919,7 @@ External Setpoint Generation:
 					</EventMessage>
 					<EventMessage>
 						<Id>9008</Id>
-						<Message><![CDATA[{0}: The coupled controller ({1}) is on a different task. Make sure that both Mover has the same task context.]]></Message>
+						<Message><![CDATA[{0}: The coupled controller ({1}) is on a different task. Make sure that both Mover have the same task context.]]></Message>
 					</EventMessage>
 					<EventMessage>
 						<Id>9009</Id>
@@ -2995,7 +3016,7 @@ External Setpoint Generation:
 				</EventMessages>
 				<EventClasses>
 					<EventClass>
-						<Type GUID="{5E0D60E9-A8BD-DF95-609D-CEBD7BC29328}">MoverControllerEventClass</Type>
+						<Type GUID="{0DB75694-CC1E-9AC0-D1E4-657B6FF26793}">MoverControllerEventClass</Type>
 					</EventClass>
 				</EventClasses>
 				<Properties>
@@ -3018,14 +3039,6 @@ External Setpoint Generation:
 					<Property>
 						<Name>Category</Name>
 						<Value>McAxisNoSimulation</Value>
-					</Property>
-					<Property>
-						<Name>Category</Name>
-						<Value>McAxisDrive</Value>
-					</Property>
-					<Property>
-						<Name>Category</Name>
-						<Value>McAxisEncoder</Value>
 					</Property>
 					<Property>
 						<Name>Category</Name>
@@ -3069,6 +3082,10 @@ External Setpoint Generation:
 					<Value>
 						<Name>InvertForceCouple</Name>
 						<EnumText>FALSE</EnumText>
+					</Value>
+					<Value>
+						<Name>ModuleId</Name>
+						<Data>6cd98b165e1574449dad83ecb801d40d</Data>
 					</Value>
 				</ParameterValues>
 			</TmcDesc>

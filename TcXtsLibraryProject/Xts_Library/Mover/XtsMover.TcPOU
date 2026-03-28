@@ -150,11 +150,12 @@ END_VAR]]></Declaration>
 		_stTmsActPositions := _ipTcIoXtsMover.GetPositionInfo();
 		_SetForce := _ipTcIoXtsMover.GetSetForce();
 		_SetCurrent := _ipTcIoXtsMover.GetSetCurrent();
+		_myStatus.isMover1 := _ipTcIoXtsMover.GetIsMover1();
 		_myStatus.isActive := _ipTcIoXtsMover.GetIsActive();
 		_myStatus.isFrozen := _ipTcIoXtsMover.GetIsFrozen();
 		_myStatus.isLost := _ipTcIoXtsMover.GetIsLost();
 		_myStatus.isReadyForPositioning := _ipTcIoXtsMover.GetIsReadyForPositioning();
-		_myStatus.hasEncoderError := _ipTcIoXtsMover.GetHasEncoderError();
+		_myStatus.hasControllerError := _ipTcIoXtsMover.GetMoverControllerError();
 		_myStatus.hasDriveError := _ipTcIoXtsMover.GetHasDriveError();
 		_DistanceDrivenInMM := _ipTcIoXtsMover.GetDistanceDriven();
 	END_IF

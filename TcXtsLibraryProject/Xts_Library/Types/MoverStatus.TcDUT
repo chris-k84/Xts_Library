@@ -3,12 +3,13 @@
   <DUT Name="MoverStatus" Id="{f0f005da-3569-4cce-b174-391384937d02}">
     <Declaration><![CDATA[TYPE MoverStatus :
 STRUCT
+	isMover1 : BOOL;
 	isFrozen : BOOL;
 	isLost : BOOL;
 	isReadyForPositioning : BOOL;
 	isActive : BOOL;
 	hasDriveError : BOOL32;
-	hasEncoderError : BOOL32;
+	hasControllerError : BOOL32;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

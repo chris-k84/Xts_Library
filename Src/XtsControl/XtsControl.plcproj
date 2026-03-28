@@ -62,7 +62,8 @@
       <Namespace>Tc3_PackML_V2</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Xts Library">
-      <DefaultResolution>Xts Library, * (BeckhoffUK)</DefaultResolution>
+      <DefaultResolution>[Xts Library], * (BeckhoffUK)</DefaultResolution>
+      <Namespace>Xts_Library</Namespace>
       <Parameters>
         <Parameter ListName="SYSTEMPARAMETERS" xmlns="">
           <Key>NUMBEROFMOVERS</Key>
@@ -73,7 +74,6 @@
           <Value>5</Value>
         </Parameter>
       </Parameters>
-      <Namespace>Xts_Library</Namespace>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
@@ -82,75 +82,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PlaceholderResolution Include="Base Library">
-      <Resolution>Base Library, 2.3.0.0 (Beckhoff UK)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="CAA Callback">
-      <Resolution>CAA Callback Extern, 3.5.17.0 (CAA Technical Workgroup)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="CAA FB Factory">
-      <Resolution>CAA FB Factory, 3.5.19.0 (CAA Technical Workgroup)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="CAA MemBlockMan">
-      <Resolution>CAA Memory Block Manager Extern, 3.5.18.0 (CAA Technical Workgroup)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="CAA ResMan">
-      <Resolution>CAA Ressource Manager Extern, 3.5.17.0 (CAA Technical Workgroup)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="CAA Types">
-      <Resolution>CAA Types Extern, 3.5.17.0 (CAA Technical Workgroup)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="CmpApp">
-      <Resolution>CmpApp, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="CmpBitmapPool">
-      <Resolution>CmpBitmapPool, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="CmpEventMgr">
-      <Resolution>CmpEventMgr, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="CmpEventMgr Implementation">
-      <Resolution>CmpEventMgr Implementation, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="CmpSchedule">
-      <Resolution>CmpSchedule, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Component Manager">
-      <Resolution>Component Manager, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="ElementCollections">
-      <Resolution>Element Collections, 4.0.0.0 (CODESYS)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Motion Library">
-      <Resolution>Motion Library, 2.4.2.0 (Beckhoff UK)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Standard">
-      <Resolution>Tc2_Standard, 3.4.5.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Standard64">
-      <Resolution>Tc2_Standard, 3.4.5.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="StringUtils">
-      <Resolution>StringUtils, 3.5.20.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="SysCpuHandling">
-      <Resolution>SysCpuHandling, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="SysDir">
-      <Resolution>SysDir, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="SysFile">
-      <Resolution>SysFile, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="SysMem">
-      <Resolution>SysMem, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="SysSem">
-      <Resolution>SysSem, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="SysSem Implementation">
-      <Resolution>SysSem Implementation, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
     <PlaceholderResolution Include="System_VisuElemBase">
       <Resolution>VisuElemBase, * (System)</Resolution>
     </PlaceholderResolution>
@@ -175,35 +106,8 @@
     <PlaceholderResolution Include="System_VisuNativeControl">
       <Resolution>VisuNativeControl, * (System)</Resolution>
     </PlaceholderResolution>
-    <PlaceholderResolution Include="SysTime">
-      <Resolution>SysTime, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="SysTimeCore">
-      <Resolution>SysTimeCore, 3.5.17.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="SysTimeRtc">
-      <Resolution>SysTimeRtc, 3.5.20.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc2_Drive">
-      <Resolution>Tc2_Drive, 3.3.14.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_EtherCAT">
       <Resolution>Tc2_EtherCAT, 3.7.1.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc2_IoFunctions">
-      <Resolution>Tc2_IoFunctions, 3.4.5.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc2_Math">
-      <Resolution>Tc2_Math, 3.5.1.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc2_MC2">
-      <Resolution>Tc2_MC2, 3.3.69.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc2_MC2_Drive">
-      <Resolution>Tc2_MC2_Drive, 3.3.53.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc2_NC">
-      <Resolution>Tc2_NC, 3.3.11.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_Standard">
       <Resolution>Tc2_Standard, 3.4.5.0 (Beckhoff Automation GmbH)</Resolution>
@@ -214,42 +118,18 @@
     <PlaceholderResolution Include="Tc2_Utilities">
       <Resolution>Tc2_Utilities, 3.10.1.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc3_EventLogger">
-      <Resolution>Tc3_EventLogger, 3.3.13.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc3_JsonXml">
-      <Resolution>Tc3_JsonXml, 3.4.7.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc3_Mc3Definitions">
-      <Resolution>Tc3_Mc3Definitions, 3.4.19.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc3_McCollisionAvoidance">
-      <Resolution>Tc3_McCollisionAvoidance, 3.4.19.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc3_McCoordinatedMotion">
-      <Resolution>Tc3_McCoordinatedMotion, 3.4.19.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_Module">
       <Resolution>Tc3_Module, 3.4.5.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_PackML_V2">
       <Resolution>Tc3_PackML_V2, 3.4.2.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc3_XTS_Utility">
-      <Resolution>Tc3_XTS_Utility, 4.4.13.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="VisuDialogs">
-      <Resolution>VisuDialogs, 4.8.0.0 (System)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Xts Library">
-      <Resolution>Xts Library, 10.2.0.0 (BeckhoffUK)</Resolution>
-    </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-        <Data>
-          <o xml:space="preserve" t="OptionKey">
+  <Data>
+    <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
@@ -2551,8 +2431,14 @@
           <d n="SubKeys" t="Hashtable" />
           <d n="Values" t="Hashtable" ckt="String" cvt="String">
             <v>DisabledWarningIds</v>
-            <v>5410</v>
+            <v>410,5410</v>
           </d>
+        </o>
+        <v>{eeeeeeee-3909-4298-8022-501ac3238667}</v>
+        <o>
+          <v n="Name">"{eeeeeeee-3909-4298-8022-501ac3238667}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" />
         </o>
         <v>{F66C7017-BDD8-4114-926C-81D6D687E35F}</v>
         <o>
@@ -2566,16 +2452,16 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-        </Data>
-        <TypeList>
-          <Type n="Boolean">System.Boolean</Type>
-          <Type n="Hashtable">System.Collections.Hashtable</Type>
-          <Type n="Int32">System.Int32</Type>
-          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-          <Type n="String">System.String</Type>
-          <Type n="UInt32">System.UInt32</Type>
-        </TypeList>
-      </XmlArchive>
+  </Data>
+  <TypeList>
+    <Type n="Boolean">System.Boolean</Type>
+    <Type n="Hashtable">System.Collections.Hashtable</Type>
+    <Type n="Int32">System.Int32</Type>
+    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+    <Type n="String">System.String</Type>
+    <Type n="UInt32">System.UInt32</Type>
+  </TypeList>
+</XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>
