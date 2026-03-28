@@ -150,6 +150,7 @@ END_VAR]]></Declaration>
 		_stTmsActPositions := _ipTcIoXtsMover.GetPositionInfo();
 		_SetForce := _ipTcIoXtsMover.GetSetForce();
 		_SetCurrent := _ipTcIoXtsMover.GetSetCurrent();
+		_myStatus.isMover1 := _ipTcIoXtsMover.GetIsMover1();
 		_myStatus.isActive := _ipTcIoXtsMover.GetIsActive();
 		_myStatus.isFrozen := _ipTcIoXtsMover.GetIsFrozen();
 		_myStatus.isLost := _ipTcIoXtsMover.GetIsLost();

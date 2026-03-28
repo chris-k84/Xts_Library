@@ -3,6 +3,7 @@
   <DUT Name="MoverStatus" Id="{f0f005da-3569-4cce-b174-391384937d02}">
     <Declaration><![CDATA[TYPE MoverStatus :
 STRUCT
+	isMover1 : BOOL;
 	isFrozen : BOOL;
 	isLost : BOOL;
 	isReadyForPositioning : BOOL;
