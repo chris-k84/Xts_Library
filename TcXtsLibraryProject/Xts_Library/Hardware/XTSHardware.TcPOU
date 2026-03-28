@@ -262,7 +262,7 @@ CASE XtsIoEnvInitialiseState OF
 			XtsIoEnvInitialiseState := XtsHardwareInitialisation.InitialisationFault;
 		END_IF
 	XtsHardwareInitialisation.GettingTracks:
-		MyTrackCount := _MyXpu.GetTrackCount();
+		MyTrackCount := _MyXpu.P_TrackCount;
 		_MyXpu.GetTrackOids();
 		TrackOTCIDs := _MyXpu.P_TrackOids;
 		IF TO_INT(MyTrackCount) = _MyNumberTracks THEN
