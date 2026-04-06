@@ -215,7 +215,7 @@ VAR_INST
 END_VAR
 VAR
 	teststubMover : stubMover;
-	stubTrack : XtsTrack;
+	stubTrack : XtsTrack('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -279,7 +279,7 @@ VAR_INST
 END_VAR
 VAR
 	teststubMover : stubMover;
-	stubTrack : XtsTrack;
+	stubTrack : XtsTrack('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -383,7 +383,7 @@ VAR_INST
 END_VAR
 VAR
 	teststubMover : stubMover;
-	stubTrack : XtsTrack;
+	stubTrack : XtsTrack('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN

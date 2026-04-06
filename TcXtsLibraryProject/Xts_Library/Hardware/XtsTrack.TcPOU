@@ -70,13 +70,17 @@ CASE XtsIoEnvInitialiseState OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsInitialised" Id="{200adef8-0b7c-49ea-bf44-7e62525f1e70}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInitialised : BOOL
+    <Property Name="Initialised" Id="{339e97b4-50a8-4342-a310-e8536eaede2f}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
+      <Get Name="Get" Id="{76068666-6775-4f24-bbb9-a431dc2f8a5e}">
+        <Declaration><![CDATA[VAR
+END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IsInitialised := _IsInitialised;]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[Initialised := _IsInitialised;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="MyOTCID" Id="{d34cfe46-c497-4e94-b74d-f99a6000b358}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyOTCID : OTCID]]></Declaration>
       <Get Name="Get" Id="{855c0947-7cfe-4f24-8259-2331fd728b0d}">

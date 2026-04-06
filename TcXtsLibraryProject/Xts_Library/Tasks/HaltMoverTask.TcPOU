@@ -182,13 +182,13 @@ END_IF]]></ST>
     <Method Name="RegisterWithParent" Id="{1eb21580-73b7-42fe-bf94-583ead68438b}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
-	Runner	: Base_Library.I_HostObjects;
+	Parent	: Base_Library.I_HostObjects;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Runner.RegisterCyclic(THIS^);
-Runner.RegisterAbortable(THIS^);
-Runner.RegisterTask(THIS^);]]></ST>
+        <ST><![CDATA[Parent.RegisterCyclic(THIS^);
+Parent.RegisterAbortable(THIS^);
+Parent.RegisterTask(THIS^);]]></ST>
       </Implementation>
     </Method>
   </POU>

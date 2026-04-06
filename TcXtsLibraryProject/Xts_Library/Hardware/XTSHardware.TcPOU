@@ -3,11 +3,11 @@
   <POU Name="XTSHardware" Id="{2082c175-1a19-4a3f-b920-8dbd46477756}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XTSHardware EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XtsHardware, I_Object
 VAR
-	XtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart;
-	IXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart;
+	XtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart('');
+	IXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart('');
 	_MyNumberParts : INT;
-	XtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack;
-	IXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack;
+	XtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
+	IXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
 	_MyNumberTracks : INT;
 	TrackOTCIDs: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF Tc3_XTS_Utility.OTCID;
 	_MyXpu : Tc3_XTS_Utility.I_TcIoXtsProcessingUnit;
@@ -310,6 +310,17 @@ END_CASE
 ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Initialised" Id="{6b4be8a7-5f44-40f8-984b-ed58c9c9fb29}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
+      <Get Name="Get" Id="{17adeac3-bc7c-42e9-be92-e67ca1ec1066}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Initialised := _isInitialised;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="IsHardware24VdcOK" Id="{16c30a69-c544-4706-ba78-c8aed5346201}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsHardware24VdcOK : HRESULT
 VAR
@@ -347,15 +358,6 @@ END_VAR
         <ST><![CDATA[IsIDDetectionStandard := _MyXpu.GetMoverIdDetectionMode() = MoverIdDetectionMode.Standard;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsInitialised" Id="{550c07cc-fb09-419f-9cfc-c551f12c3cb9}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInitialised : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IsInitialised := _isInitialised;]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="MyName" Id="{0d9f86cc-11b2-415a-83b4-e3fe22742bf6}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
       <Get Name="Get" Id="{05735f6c-e3fe-4ee3-a217-5178eba283c4}">
@@ -367,7 +369,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="MyXpu" Id="{9f0e6f27-b8f0-452c-b07d-d4d2a7ed1b3b}">
+    <Property Name="MyXpu" Id="{9f0e6f27-b8f0-452c-b07d-d4d2a7ed1b3b}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyXpu : I_TcIoXtsProcessingUnit]]></Declaration>
       <Get Name="Get" Id="{ef18a883-259a-46c5-ac1a-fd1d0138159b}">
         <Declaration><![CDATA[VAR
@@ -409,12 +411,12 @@ END_VAR
     <Method Name="RegisterWithParent" Id="{cc909a39-cbe3-4035-b5c9-fc3340c04e55}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
-	Runner	: I_HostObjects;
+	Parent	: I_HostObjects;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Runner.RegisterCyclic(THIS^);
-Runner.RegisterInitialisable(THIS^);]]></ST>
+        <ST><![CDATA[Parent.RegisterCyclic(THIS^);
+Parent.RegisterInitialisable(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="RemoveATrackFromDetection" Id="{1e31681d-3ada-48de-80fd-ab8c9694949c}" FolderPath="Commands\">

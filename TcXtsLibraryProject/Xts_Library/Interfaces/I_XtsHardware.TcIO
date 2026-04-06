@@ -96,6 +96,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="Initialised" Id="{f239fb15-642d-4faf-9558-f276626556b5}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
+      <Get Name="Get" Id="{9924b9ef-90c1-4085-a436-bbc9b1c7f93e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="IsHardware24VdcOK" Id="{d84db133-10f1-4c84-aee2-357bd38938fd}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsHardware24VdcOK : HRESULT
 VAR_INPUT
@@ -110,12 +116,6 @@ END_VAR
     </Method>
     <Method Name="IsIDDetectionStandard" Id="{812f54c9-547b-4e7f-8855-88380dcaf23c}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsIDDetectionStandard : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="IsInitialised" Id="{eb3371dd-7907-4a18-ba2b-9ef954004075}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInitialised : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>

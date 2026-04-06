@@ -122,7 +122,7 @@ END_VAR
     <Method Name="RegisterWithParent" Id="{e4dbf09d-b223-4b91-aece-dfac327a7503}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
-	Runner	: I_HostObjects;
+	Parent	: I_HostObjects;
 END_VAR
 ]]></Declaration>
       <Implementation>

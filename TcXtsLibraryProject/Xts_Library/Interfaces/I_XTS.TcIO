@@ -33,10 +33,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="IsInitialised" Id="{e1565fab-ac95-48ac-ae78-e46b6110b4fc}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInitialised : BOOL
-]]></Declaration>
-    </Method>
+    <Property Name="Initialised" Id="{29344615-27fb-4ea5-ad7a-fc8898059767}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
+      <Get Name="Get" Id="{57975104-c7c3-4f8a-9853-70129e27cdaf}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="IsXtsIdle" Id="{a58467b2-fd55-49b7-9538-35b2ad34103b}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsXtsIdle : BOOL
 VAR_INPUT

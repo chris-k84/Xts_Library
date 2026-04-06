@@ -53,7 +53,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Initialised := TRUE;]]></ST>
+        <ST><![CDATA[_Initialised := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="setMoverNumberMax" Id="{5d9d367e-74e6-410a-9121-5a46c3dda01c}">
@@ -80,7 +80,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Initialised := FALSE;]]></ST>
+        <ST><![CDATA[_Initialised := FALSE;]]></ST>
       </Implementation>
     </Method>
   </POU>

@@ -5,7 +5,7 @@
 VAR
 	XtsIoEnvironment : Tc3_XTS_Utility.FB_TcIoXtsEnvironment;
 	stXtsEnvironmentConfiguration	: ST_XtsEnvironmentConfiguration;
-	Initialised : BOOL;
+	_Initialised : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -61,29 +61,31 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF XtsIoEnvironment.Init(TRUE) THEN
 	XtsIoEnvironment.Init(FALSE);
-	Initialised := TRUE;
+	_Initialised := TRUE;
 ELSE
 	Initialise := -1;
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsInitialised" Id="{66e54d32-1c95-4eb4-ba62-654c54ac7108}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInitialised : BOOL
-VAR_INPUT
+    <Property Name="Initialised" Id="{0f4a9fc3-49d6-473e-a6e3-78db8cfcf818}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
+      <Get Name="Get" Id="{820b3227-250d-444d-bfaf-048041bb942e}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IsInitialised := Initialised;]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[Initialised := _Initialised;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="RegisterWithParent" Id="{37203846-0f41-471d-b37e-9d946dd0bd38}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
-	Runner	: I_HostObjects;
+	Parent	: I_HostObjects;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Runner.RegisterInitialisable(THIS^);]]></ST>
+        <ST><![CDATA[Parent.RegisterInitialisable(THIS^);]]></ST>
       </Implementation>
     </Method>
   </POU>

@@ -237,13 +237,13 @@ END_VAR
     <Method Name="RegisterWithParent" Id="{d5091b4b-bfac-4bc2-8672-2fc22997a298}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
-	Runner	: Base_Library.I_HostObjects;
+	Parent	: Base_Library.I_HostObjects;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Runner.RegisterCyclic(THIS^);
-Runner.RegisterAbortable(THIS^);
-Runner.RegisterTask(THIS^);]]></ST>
+        <ST><![CDATA[Parent.RegisterCyclic(THIS^);
+Parent.RegisterAbortable(THIS^);
+Parent.RegisterTask(THIS^);]]></ST>
       </Implementation>
     </Method>
   </POU>

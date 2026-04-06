@@ -6,7 +6,7 @@ VAR
 	SetVelo AT%Q* : LREAL;
 	AxisStatusFeedback AT%Q* : DWORD;
 	stubAxis : AXIS_REF;
-	stubTrack : XtsTrack;
+	stubTrack : XtsTrack('');
 	testActivateTask : ActivateTrackTask := (AxisRef := stubAxis);
 	TestSequence : INT;
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\ActiveTrack_Tests.xml') := (TestSuiteName := 'ActiveTrack Test Suite');

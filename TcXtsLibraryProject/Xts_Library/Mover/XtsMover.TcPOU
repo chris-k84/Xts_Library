@@ -6,7 +6,7 @@ VAR
 	MyAxisRef : AXIS_REF;
 	_MyAxisStatus : ST_AxisStatus;
 	_MyNCData : NCTOPLC_AXIS_REF;
-	TaskCollection : ObjectRunner;
+	TaskCollection : ObjectRunner<99>;
 	EnableBehaviour : EnableDisableTask := (AxisRef := MyAxisRef);
 	MoveBehaviour : MoveToPositionTask:= (AxisRef := MyAxisRef);
 	HaltBehaviour : HaltMoverTask := (AxisRef := MyAxisRef);
@@ -25,7 +25,7 @@ VAR
 	Initialised : BOOL;
 	MyTrackCount : INT;
 	MyTracks : ARRAY[0..MaxTracks] OF I_XtsTrack;
-	NullTrack : XtsTrack;
+	NullTrack : XtsTrack('');
 	_SetForce: LREAL;
 	_SetCurrent: LREAL;
 	_Gap : LREAL;
@@ -232,11 +232,11 @@ VAR_INPUT
     bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)   
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[TaskCollection.RegisterModule(EnableBehaviour);
-TaskCollection.RegisterModule(ResetBehaviour);
-TaskCollection.RegisterModule(HaltBehaviour);
-TaskCollection.RegisterModule(MoveBehaviour);
-TaskCollection.RegisterModule(MoverActivateTrackBehaviour);]]></ST>
+        <ST><![CDATA[TaskCollection.RegisterCyclic(EnableBehaviour);
+TaskCollection.RegisterCyclic(ResetBehaviour);
+TaskCollection.RegisterCyclic(HaltBehaviour);
+TaskCollection.RegisterCyclic(MoveBehaviour);
+TaskCollection.RegisterCyclic(MoverActivateTrackBehaviour);]]></ST>
       </Implementation>
     </Method>
     <Property Name="Gap" Id="{dd72da9d-fc94-421a-8ee7-a84a721dd20c}" FolderPath="Dynamics\">
@@ -689,11 +689,11 @@ END_FOR]]></ST>
     <Method Name="RegisterWithParent" Id="{0c8fc6cb-d807-4926-a588-870aa525c7f2}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
-	Runner	: I_HostObjects;
+	Parent	: I_HostObjects;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Runner.RegisterCyclic(THIS^);]]></ST>
+        <ST><![CDATA[Parent.RegisterCyclic(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{e9d8249c-2f88-4980-a483-ceda82c7ab80}" FolderPath="Commands\">

@@ -14,7 +14,7 @@ VAR
 	XtsHwState : XtsSystemInitialisation;
 	EnableSequence : XtsEnableSequence;
 	DisableSequence : XtsDisableSequence;	
-	Initialised : BOOL;
+	_Initialised : BOOL;
 	EnabledTrigger : R_TRIG;
 	DisabledTrigger : R_TRIG;
 	_registeredNumberOfMovers: INT;
@@ -58,7 +58,7 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT Initialised THEN	
+        <ST><![CDATA[IF NOT _Initialised THEN	
 	Cycle  := -1;
 	RETURN;
 END_IF
@@ -197,7 +197,7 @@ END_VAR
         <ST><![CDATA[Initialise := -1;
 CASE XtsHwState OF
 	XtsSystemInitialisation.WaitingForXtsIoEnvVar:
-		IF _XtsIoEnvVar.IsInitialised() THEN
+		IF _XtsIoEnvVar.Initialised THEN
 			_XPU := _XtsIoEnvVar.GetXPUInterface(_MyXts);
 			_MyXtsHardware.MyXpu := _XPU;
 			XtsHwState := XtsSystemInitialisation.PassGroupReference;
@@ -208,7 +208,7 @@ CASE XtsHwState OF
 		XtsHwState := XtsSystemInitialisation.WaitingForHardwareToInitialise;
 	
 	XtsSystemInitialisation.WaitingForHardwareToInitialise:
-		IF _MyXtsHardware.IsInitialised() THEN
+		IF _MyXtsHardware.Initialised THEN
 			MyName := _MyXtsHardware.MyName;
 			XtsHwState := XtsSystemInitialisation.SetATrackForDetection;
 		END_IF
@@ -253,17 +253,21 @@ CASE XtsHwState OF
 	
 	XtsSystemInitialisation.XtsInitialised:
 		Initialise := 0;
-		Initialised := TRUE;	
+		_Initialised := TRUE;	
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsInitialised" Id="{ffca4056-5f8a-485d-b64d-57c6377addfd}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInitialised : BOOL
+    <Property Name="Initialised" Id="{a78fe92f-7cf8-4747-affa-2e0853d05d4c}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
+      <Get Name="Get" Id="{8057f725-8638-4356-89d5-da5eb20cf86c}">
+        <Declaration><![CDATA[VAR
+END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IsInitialised := Initialised;]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[Initialised := _Initialised;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="IsXtsIdle" Id="{98f4e7e8-94b6-4461-9a7b-2bd1c0aafde4}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsXtsIdle : BOOL
 VAR_INPUT
@@ -324,7 +328,7 @@ END_VAR]]></Declaration>
 	RegisterMovers := -1;
 	RETURN;
 END_IF
-IF NOT Initialised THEN
+IF NOT _Initialised THEN
 	RegisterMovers := -2;
 	RETURN;
 END_IF
@@ -360,12 +364,12 @@ END_FOR]]></ST>
     <Method Name="RegisterWithParent" Id="{5a27c335-0022-4ddf-98ff-1436953bbdbd}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
-	Runner	: I_HostObjects;
+	Parent	: I_HostObjects;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Runner.RegisterCyclic(THIS^);
-Runner.RegisterInitialisable(THIS^);]]></ST>
+        <ST><![CDATA[Parent.RegisterCyclic(THIS^);
+Parent.RegisterInitialisable(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{f4cda3e0-308c-460d-87ee-c1616441d1b6}" FolderPath="Operations\">

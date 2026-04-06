@@ -263,11 +263,11 @@ END_VAR
     <Method Name="RegisterWithParent" Id="{0f4efa96-221e-4b5f-b62b-0cd9b26287ac}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
-	Runner	: I_HostObjects;
+	Parent	: I_HostObjects;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Runner.RegisterCyclic(THIS^);]]></ST>
+        <ST><![CDATA[Parent.RegisterCyclic(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="RemoveAllMovers" Id="{72daaa8f-92d0-4f12-b8f9-45742cf249d6}" FolderPath="Commands\">

@@ -3,14 +3,14 @@
   <POU Name="XtsHardware_TestSuite" Id="{b560ca6a-e691-471a-a25d-3f29414ba80e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsHardware_TestSuite
 VAR
-	nullHardware : XTSHardware;
-	MyXtsHardware : XTSHardware := (ExpectedNumberOfParts := 1, ExpectedNumberOfTracks := 1);
+	nullHardware : XTSHardware('');
+	MyXtsHardware : XTSHardware('') := (ExpectedNumberOfParts := 1, ExpectedNumberOfTracks := 1);
 	localXpu: Xts_Library.I_TcIoXtsProcessingUnit;
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\XtsHardware_Tests.xml') := (TestSuiteName := 'XtsHardware Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF NOT MyXtsHardware.IsInitialised() THEN
+      <ST><![CDATA[IF NOT MyXtsHardware.Initialised THEN
 	MyXtsHardware.Initialise();
 	RETURN;
 END_IF

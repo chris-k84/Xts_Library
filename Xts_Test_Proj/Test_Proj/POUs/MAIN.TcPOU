@@ -23,7 +23,7 @@ VAR
 	DisableSequenceTestSuite : DisableSequence_TestSuite;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF NOT TestXtsIoEnvVar.IsInitialised() THEN
+      <ST><![CDATA[IF NOT TestXtsIoEnvVar.Initialised THEN
 	IF SUCCEEDED(TestXtsIoEnvVar.Initialise()) THEN
 		XtsHWTestSuite.XPUInterface := TestXtsIoEnvVar.GetXPUInterface(1);
 		XtsHWTestSuite.XtsHWInterface := TestXtsIoEnvVar.GetXPUInterface(1);

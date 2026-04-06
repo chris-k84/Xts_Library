@@ -8,7 +8,7 @@ VAR
 	MyModuleCount : UDINT;
 	Status : XtsPartStatus;
 	PartDriveState: Tc3_XTS_Utility.DriveState;
-	MyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF XtsMotorModule;
+	MyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF XtsMotorModule('');
 	IMyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF I_XtsMotorModule;
 	ModuleIndex: UDINT := 1;
 	CurrentErrorId : UDINT;
@@ -121,6 +121,17 @@ CASE XtsIoEnvInitialiseState OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Initialised" Id="{04d33ea5-0203-4e33-90cc-f8a328055a12}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
+      <Get Name="Get" Id="{feb9aace-da91-4a57-a9c4-b03d0ed03a92}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Initialised := _IsInitialised;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Is24VBusOK" Id="{d79d6eda-1f90-4384-9dda-ac7f4aaa7f07}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD Is24VBusOK : BOOL
 VAR
@@ -149,13 +160,6 @@ FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 		Is48VBusOK := FALSE;
 	END_IF
 END_FOR]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="IsInitialised" Id="{52f74913-17d3-431e-bbf8-b29e491627e6}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInitialised : BOOL
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IsInitialised := _IsInitialised;]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyXtsIoEnvInterface" Id="{b5f6c838-c909-4a11-9656-9e449699aee4}" FolderPath="Settings\">

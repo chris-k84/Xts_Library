@@ -3,7 +3,7 @@
   <POU Name="stubMover" Id="{706dd25a-c636-4171-8a04-61e8c6b6cc8b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK stubMover EXTENDS XtsMover
 VAR
-	stubTrack : XtsTrack;
+	stubTrack : XtsTrack('');
 	iStubTrack : I_XtsTrack := stubTrack;
 END_VAR
 ]]></Declaration>

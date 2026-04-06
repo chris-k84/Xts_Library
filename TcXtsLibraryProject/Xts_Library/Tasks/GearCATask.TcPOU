@@ -180,13 +180,13 @@ END_VAR
     <Method Name="RegisterWithParent" Id="{fed5492a-b4e6-4fd8-9634-fede4c878459}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
-	Runner	: Base_Library.I_HostObjects;
+	Parent	: Base_Library.I_HostObjects;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Runner.RegisterCyclic(THIS^);
-Runner.RegisterAbortable(THIS^);
-Runner.RegisterTask(THIS^);]]></ST>
+        <ST><![CDATA[Parent.RegisterCyclic(THIS^);
+Parent.RegisterAbortable(THIS^);
+Parent.RegisterTask(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Property Name="SlaveAxis" Id="{0f68f651-c257-44ad-87dc-835c319262ab}">

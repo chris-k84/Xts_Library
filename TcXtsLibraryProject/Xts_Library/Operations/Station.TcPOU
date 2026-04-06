@@ -134,11 +134,11 @@ END_VAR
     <Method Name="RegisterWithParent" Id="{d8402b41-2440-40c0-90f4-c70380862930}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
-	Runner	: I_HostObjects;
+	Parent	: I_HostObjects;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Runner.RegisterCyclic(THIS^);]]></ST>
+        <ST><![CDATA[Parent.RegisterCyclic(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{b49ff0e5-eb8b-49bd-befd-0bab45ac01fe}">

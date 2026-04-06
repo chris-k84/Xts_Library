@@ -18,11 +18,11 @@ VAR_INPUT
 	MyXts : INT;
 END_VAR]]></Declaration>
     </Method>
-    <Method Name="IsInitialised" Id="{2cbac030-77c4-4d36-9dea-9ce3d8292980}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsInitialised : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
+    <Property Name="Initialised" Id="{6f24d56d-3c12-4d12-857a-612624baf1f9}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
+      <Get Name="Get" Id="{bb6bc13b-7f6d-4c67-9fb0-330755e668e2}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
   </Itf>
 </TcPlcObject>
