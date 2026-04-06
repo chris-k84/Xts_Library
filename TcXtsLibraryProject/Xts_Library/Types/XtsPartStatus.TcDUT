@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="XtsPartStatus" Id="{f04fb26b-0918-45b6-8a01-9856f31f58d4}">
+    <Declaration><![CDATA[TYPE XtsPartStatus :
+STRUCT
+	PartDriveState: Tc3_XTS_Utility.DriveState;
+	IsDCLinkReady: BOOL;
+	IsPartActive: BOOL;
+	PartLength: LREAL;
+	AllModuleSsInOP: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

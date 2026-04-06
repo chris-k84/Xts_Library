@@ -6,6 +6,7 @@ VAR
 	_MyInterface : Tc3_XTS_Utility.I_TcIoXtsXpuPart;
 	XtsIoEnvInitialiseState : INT;
 	MyModuleCount : UDINT;
+	Status : XtsPartStatus;
 	PartDriveState: Tc3_XTS_Utility.DriveState;
 	MyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF XtsMotorModule;
 	IMyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF I_XtsMotorModule;
@@ -13,12 +14,14 @@ VAR
 	CurrentErrorId : UDINT;
 	InSim : BOOL;
 	PartName: STRING;
-	IsDCLinkReady: BOOL;
 	_IsInitialised : BOOL := FALSE;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Folder Name="Commands" Id="{96cca420-4049-45e9-b3ee-b3f2b2740148}" />
+    <Folder Name="Settings" Id="{69a5ccb4-8b3d-4fa1-b2f7-542c5c4d49f1}" />
+    <Folder Name="Status" Id="{6a88af9c-5ee8-475f-986e-7995dd992559}" />
     <Method Name="Cycle" Id="{6aa26807-846b-4168-ab87-fb4c66b138eb}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR
@@ -31,9 +34,13 @@ END_VAR]]></Declaration>
 	RETURN;
 END_IF
 
-PartDriveState := _MyInterface.GetDriveState();
-IsDCLinkReady := _MyInterface.GetIsDcLinkVoltageReady();
-IF HasError() THEN
+Status.PartDriveState := _MyInterface.GetDriveState();
+Status.IsDCLinkReady := _MyInterface.GetIsDcLinkVoltageReady();
+Status.IsPartActive := _MyInterface.GetIsActive();
+Status.PartLength := _MyInterface.GetLength();
+Status.AllModuleSsInOP := _MyInterface.GetAreAllModulesInOp();
+
+IF HasError THEN
 	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 		tempErrorID := MyModules[i].GetLatestDiagMessage();
 		IF tempErrorID > CurrentErrorId THEN
@@ -41,12 +48,13 @@ IF HasError() THEN
 		END_IF
 	END_FOR
 END_IF
+
 FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 	MyModules[i].Cycle();
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetCurrentError" Id="{397b05da-5d11-4ea0-a858-00e1feeb8a6c}">
+    <Method Name="GetCurrentError" Id="{397b05da-5d11-4ea0-a858-00e1feeb8a6c}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD GetCurrentError : UDINT
 VAR_INPUT
 END_VAR
@@ -55,15 +63,18 @@ END_VAR
         <ST><![CDATA[GetCurrentError := CurrentErrorId;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="HasError" Id="{1ff560a3-4b5c-4bd0-a848-6c6a900a7eef}">
-      <Declaration><![CDATA[METHOD HasError : BOOL
-VAR_INPUT
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[HasError := PartDriveState = DriveState.Fault OR PartDriveState = DriveState.FaultReactionActive OR NOT _MyInterface.GetIsDcLinkVoltageReady();
+    <Property Name="HasError" Id="{9f27faee-7288-49b0-b8b5-9209e3993178}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
+      <Get Name="Get" Id="{24f72123-333a-4c51-8f13-0cc8f2466b17}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[HasError := Status.PartDriveState = DriveState.Fault OR Status.PartDriveState = DriveState.FaultReactionActive OR NOT _MyInterface.GetIsDcLinkVoltageReady();
 ]]></ST>
-      </Implementation>
-    </Method>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Initialise" Id="{f7bcb601-a320-4f3f-bcf3-5ec4e45a7245}">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR
@@ -110,7 +121,7 @@ CASE XtsIoEnvInitialiseState OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Is24VBusOK" Id="{d79d6eda-1f90-4384-9dda-ac7f4aaa7f07}">
+    <Method Name="Is24VBusOK" Id="{d79d6eda-1f90-4384-9dda-ac7f4aaa7f07}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD Is24VBusOK : BOOL
 VAR
 	i : INT;
@@ -125,7 +136,7 @@ FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Is48VBusOK" Id="{44113d88-367f-494b-87cf-4655fd94d258}">
+    <Method Name="Is48VBusOK" Id="{44113d88-367f-494b-87cf-4655fd94d258}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD Is48VBusOK : BOOL
 VAR
 	i : INT;
@@ -140,14 +151,14 @@ FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsInitialised" Id="{52f74913-17d3-431e-bbf8-b29e491627e6}">
+    <Method Name="IsInitialised" Id="{52f74913-17d3-431e-bbf8-b29e491627e6}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsInitialised : BOOL
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IsInitialised := _IsInitialised;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MyXtsIoEnvInterface" Id="{b5f6c838-c909-4a11-9656-9e449699aee4}">
+    <Property Name="MyXtsIoEnvInterface" Id="{b5f6c838-c909-4a11-9656-9e449699aee4}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyXtsIoEnvInterface : I_TcIoXtsXpuPart]]></Declaration>
       <Get Name="Get" Id="{249dae7e-fa2b-4c2d-a421-a33d92e9b50d}">
         <Declaration><![CDATA[VAR
@@ -166,7 +177,7 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="ResetPart" Id="{a2c1bf74-a00f-4e37-abd0-e53201644a52}">
+    <Method Name="ResetPart" Id="{a2c1bf74-a00f-4e37-abd0-e53201644a52}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ResetPart : BOOL
 VAR
 	i : INT;
@@ -182,7 +193,7 @@ END_IF
 CurrentErrorId := 0;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetInSim" Id="{273102d0-bbf8-41a5-af45-2632119808d5}">
+    <Method Name="SetInSim" Id="{273102d0-bbf8-41a5-af45-2632119808d5}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetInSim : HRESULT
 VAR_INPUT
 END_VAR
@@ -191,7 +202,7 @@ END_VAR
         <ST><![CDATA[InSim := true;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetPartOriginTransform" Id="{8b2a2802-8f42-46b7-9bd8-2e1c722c9321}">
+    <Method Name="SetPartOriginTransform" Id="{8b2a2802-8f42-46b7-9bd8-2e1c722c9321}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetPartOriginTransform : BOOL
 VAR_INPUT
 	OriginTransform: Tc3_XTS_Utility.ST_OriginTransform;

@@ -9,11 +9,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="HasError" Id="{ae1c2820-dc08-4615-b8a4-fefd59f60d2b}">
-      <Declaration><![CDATA[METHOD HasError : BOOL
-VAR_INPUT
-END_VAR]]></Declaration>
-    </Method>
+    <Property Name="HasError" Id="{3ffc12c8-866b-44c4-898c-7d9325cf0ff0}">
+      <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
+      <Get Name="Get" Id="{70faffad-0039-4f70-9833-ebc8c15c9c40}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="Is24VBusOK" Id="{500c1a0d-a9c2-44cc-a7f0-1636e31cb371}">
       <Declaration><![CDATA[METHOD Is24VBusOK : BOOL]]></Declaration>
     </Method>
