@@ -19,6 +19,9 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Folder Name="Commands" Id="{32cad632-fbd4-445a-b2c2-d8eaa1f5efa0}" />
+    <Folder Name="Settings" Id="{b0f2811b-01c3-4263-ae13-de05f982e5bb}" />
+    <Folder Name="Status" Id="{574d2b11-115b-44b2-972f-d3d465c1b172}" />
     <Method Name="Cycle" Id="{753f4845-bb32-46bd-9afe-0c535a6bb9c5}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR_INPUT
@@ -67,14 +70,14 @@ CASE XtsIoEnvInitialiseState OF
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsInitialised" Id="{200adef8-0b7c-49ea-bf44-7e62525f1e70}">
+    <Method Name="IsInitialised" Id="{200adef8-0b7c-49ea-bf44-7e62525f1e70}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD IsInitialised : BOOL
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IsInitialised := _IsInitialised;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MyOTCID" Id="{d34cfe46-c497-4e94-b74d-f99a6000b358}">
+    <Property Name="MyOTCID" Id="{d34cfe46-c497-4e94-b74d-f99a6000b358}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyOTCID : OTCID]]></Declaration>
       <Get Name="Get" Id="{855c0947-7cfe-4f24-8259-2331fd728b0d}">
         <Declaration><![CDATA[VAR
@@ -93,7 +96,7 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Property Name="MyXtsIoEnvInterface" Id="{de406d6a-fb33-4758-a1bb-071b44e09534}">
+    <Property Name="MyXtsIoEnvInterface" Id="{de406d6a-fb33-4758-a1bb-071b44e09534}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyXtsIoEnvInterface : I_TcIoXtsXpuTrack]]></Declaration>
       <Get Name="Get" Id="{29c07896-dd74-4eb2-b4f6-620c540248e5}">
         <Declaration><![CDATA[VAR
@@ -112,7 +115,7 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Property Name="NumberOfPartsInTrack" Id="{4227d870-553b-4fcb-8516-6ae7f6500149}">
+    <Property Name="NumberOfPartsInTrack" Id="{4227d870-553b-4fcb-8516-6ae7f6500149}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY NumberOfPartsInTrack : INT]]></Declaration>
       <Get Name="Get" Id="{47e7e73c-f2f4-4613-aa92-016379f2eda9}">
         <Declaration><![CDATA[VAR
@@ -123,7 +126,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="RemoveFromDetection" Id="{19fc9c17-6e83-4583-8661-ca0f3d7fbe00}">
+    <Method Name="RemoveFromDetection" Id="{19fc9c17-6e83-4583-8661-ca0f3d7fbe00}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD RemoveFromDetection : BOOL
 VAR_INPUT
 END_VAR
@@ -132,7 +135,7 @@ END_VAR
         <ST><![CDATA[RemoveFromDetection := _MyInterface.SetIsIncludedInDetection(False);]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetForDetection" Id="{2a4c4b2d-af72-4d4f-81aa-5409f825db3c}">
+    <Method Name="SetForDetection" Id="{2a4c4b2d-af72-4d4f-81aa-5409f825db3c}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetForDetection : BOOL
 VAR_INPUT
 END_VAR
@@ -141,7 +144,7 @@ END_VAR
         <ST><![CDATA[SetForDetection := _MyInterface.SetIsIncludedInDetection(TRUE);]]></ST>
       </Implementation>
     </Method>
-    <Property Name="TrackLength" Id="{f63b8800-afc4-4a64-a819-7bbd5ce82fd4}">
+    <Property Name="TrackLength" Id="{f63b8800-afc4-4a64-a819-7bbd5ce82fd4}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY TrackLength : MC_Lreal]]></Declaration>
       <Get Name="Get" Id="{8c76ee9b-64b1-4933-b3fe-20fbe5dcfddc}">
         <Declaration><![CDATA[VAR
