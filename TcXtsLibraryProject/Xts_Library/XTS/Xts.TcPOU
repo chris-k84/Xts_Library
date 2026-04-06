@@ -74,7 +74,7 @@ IF DisabledTrigger.Q THEN
 	_XtsEnabled := false;
 END_IF
 
-HardwareError := _MyXtsHardware.AreAnyPartsInError();
+HardwareError := _MyXtsHardware.AnyPartsInError;
 CAGroupError := ICollisionGroup.HasError();
 
 IF CAGroupError THEN
@@ -184,7 +184,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[HasError := ICollisionGroup.HasError() OR _MyXtsHardware.AreAnyPartsInError();]]></ST>
+        <ST><![CDATA[HasError := ICollisionGroup.HasError() OR _MyXtsHardware.AnyPartsInError;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}">
@@ -224,7 +224,7 @@ CASE XtsHwState OF
 		END_IF
 		
 	XtsSystemInitialisation.WaitingForAllMoversValid:
-		IF _MyXtsHardware.AreAllMoverPositionsValid() THEN
+		IF _MyXtsHardware.AllMoverPositionsValid THEN
 			XtsHwState := XtsSystemInitialisation.CheckingAllMoverFound;
 		END_IF
 	
@@ -235,7 +235,7 @@ CASE XtsHwState OF
 		END_IF
 		
 	XtsSystemInitialisation.CheckIfXtsInSimMode:
-		IF _MyXtsHardware.IsXtsInSim() THEN
+		IF _MyXtsHardware.XtsInSim THEN
 			XtsHwState := XtsSystemInitialisation.TriggeringMoverIdDetection;
 		ELSE
 			XtsHwState := XtsSystemInitialisation.CheckingXts24And48Volts;

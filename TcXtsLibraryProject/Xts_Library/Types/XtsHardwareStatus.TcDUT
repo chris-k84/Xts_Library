@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="XtsHardwareStatus" Id="{94d3bf57-c2e0-40a2-beee-79ed0cbfb04f}">
+    <Declaration><![CDATA[TYPE XtsHardwareStatus :
+STRUCT
+	AllMoversValid : BOOL;
+	IsInSim : BOOL;
+	ActiveMoverCount : UDINT;
+	AreAllModulesInOp : BOOL;
+	IsDCLinkVoltageReady : BOOL;
+	AreAnyPartsInError : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

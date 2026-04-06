@@ -6,15 +6,18 @@
     <Folder Name="Commands" Id="{27c9da71-387e-4094-ae9a-f077ff9b1b1e}" />
     <Folder Name="Settings" Id="{e3948c37-e7d1-40e0-b3aa-465d52d19205}" />
     <Folder Name="Status" Id="{f56f8332-a404-49a0-b1fa-c3796e00575d}" />
-    <Method Name="AreAllMoverPositionsValid" Id="{3d107ad0-1a72-4602-abbb-1177fad35523}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD AreAllMoverPositionsValid : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="AreAnyPartsInError" Id="{1324ebcc-5f30-4493-b91e-0f8e2dac9022}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD AreAnyPartsInError : BOOL]]></Declaration>
-    </Method>
+    <Property Name="AllMoverPositionsValid" Id="{e2e91fe2-3894-447f-80d4-305bc049477e}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY AllMoverPositionsValid : BOOL]]></Declaration>
+      <Get Name="Get" Id="{e30d4cf5-dc43-4863-88ad-102cf2d59f9a}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="AnyPartsInError" Id="{422c42a2-256b-4d64-8b66-743786694e0c}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY AnyPartsInError : BOOL]]></Declaration>
+      <Get Name="Get" Id="{aca19c6b-382e-43b6-92f3-3dd92a1a8736}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="AreExpectedMoversFound" Id="{aa48d66d-e689-4a24-808d-2ead7682c5a9}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD AreExpectedMoversFound : BOOL
 VAR_INPUT
@@ -117,12 +120,6 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="IsXtsInSim" Id="{5eeeddd9-9ad7-4819-b9a4-994a910fffac}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsXtsInSim : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Property Name="MyName" Id="{b43d0e80-e621-46e0-af70-0a677800dc98}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
       <Get Name="Get" Id="{494ebcb6-a0a6-498f-a4fa-49193344e0b2}">
@@ -194,5 +191,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="XtsInSim" Id="{e7984951-80bc-4277-8802-61a242b4487d}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY XtsInSim : BOOL]]></Declaration>
+      <Get Name="Get" Id="{68f8f64f-28c5-45c5-818b-d199ab177846}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
   </Itf>
 </TcPlcObject>

@@ -21,6 +21,7 @@ VAR
 	_MyName : STRING;
 	_isInitialised: BOOL;
 	_hasXPU : BOOL;
+	Status : XtsHardwareStatus;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -28,31 +29,28 @@ END_VAR]]></Declaration>
     <Folder Name="Commands" Id="{fac9eba9-c7de-4a76-a05e-49072f1b1bf8}" />
     <Folder Name="Settings" Id="{977db0ee-8b4c-4e4e-adde-487140886b9b}" />
     <Folder Name="Status" Id="{1e7de418-5187-4871-82b8-ce216901bd03}" />
-    <Method Name="AreAllMoverPositionsValid" Id="{61902ec7-4049-4544-9a8e-27dabf1b61be}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD AreAllMoverPositionsValid : BOOL
-VAR_INPUT
+    <Property Name="AllMoverPositionsValid" Id="{0b627a01-6503-4798-897d-4352e39ec531}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY AllMoverPositionsValid : BOOL]]></Declaration>
+      <Get Name="Get" Id="{064c9f31-d3b7-4fa2-84c2-51e0db247333}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[ IF _MyXpu.GetAreAllPositionsValid() THEN
-	 AreAllMoverPositionsValid := TRUE;
- END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="AreAnyPartsInError" Id="{699ab4e2-69ca-4162-ab63-9b7de63fc2c4}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD AreAnyPartsInError : BOOL
-VAR
-	i : INT;
+        <Implementation>
+          <ST><![CDATA[AllMoverPositionsValid := Status.AllMoversValid;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="AnyPartsInError" Id="{9a66ab05-b693-4af4-a93d-c7eca2142813}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY AnyPartsInError : BOOL]]></Declaration>
+      <Get Name="Get" Id="{ffaac491-440c-4542-bb0d-78af862ec81b}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[FOR i := 0 TO TO_INT(MyPartCount - 1) DO
-	IF XtsParts[i].HasError() THEN
-		AreAnyPartsInError := TRUE;
-	END_IF
-END_FOR]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[AnyPartsInError := Status.AreAnyPartsInError;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="AreExpectedMoversFound" Id="{642f39f7-45fb-4e7e-95d2-cca7f46c73a6}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD AreExpectedMoversFound : BOOL
 VAR_INPUT
@@ -74,6 +72,17 @@ END_VAR
 	RETURN;
 END_IF
 
+Status.AllMoversValid := _MyXpu.GetAreAllPositionsValid();
+Status.IsInSim :=  _MyXpu.GetOperationMode() = OperationMode.Simulation;
+Status.ActiveMoverCount := _MyXpu.GetActiveMoverCount();
+Status.AreAllModulesInOp := _MyXpu.GetAreAllModulesInOp();
+Status.IsDCLinkVoltageReady := _MyXpu.GetIsDcLinkVoltageReady();
+
+FOR i := 0 TO TO_INT(MyPartCount - 1) DO
+	IF XtsParts[i].HasError THEN
+		Status.AreAnyPartsInError := TRUE;
+	END_IF
+END_FOR
 
 FOR i := 0 TO (MyPartCount - 1) DO
 	XtsParts[i].Cycle();
@@ -253,7 +262,7 @@ CASE XtsIoEnvInitialiseState OF
 			FOR i := 0 TO (TO_INT(MyPartCount) - 1) DO
 				XtsParts[i].MyXtsIoEnvInterface := _MyXpu.PartTcIo(TO_UINT(i + 1));
 				IXtsParts[i] := XtsParts[i];
-				IF THIS^.IsXtsInSim() THEN
+				IF THIS^.XtsInSim THEN
 					XtsParts[i].SetInSim();
 				END_IF
 			END_FOR
@@ -345,17 +354,6 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IsInitialised := _isInitialised;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="IsXtsInSim" Id="{c26b05e6-e2eb-40cc-bea5-adcd4dafa0e7}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsXtsInSim : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF  _MyXpu.GetOperationMode() = OperationMode.Simulation  THEN
-	IsXtsInSim := TRUE;
-END_IF]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyName" Id="{0d9f86cc-11b2-415a-83b4-e3fe22742bf6}" FolderPath="Status\">
@@ -573,5 +571,16 @@ _MyXpu.TriggerRedetection();
 ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="XtsInSim" Id="{eb134bf8-bffd-47f0-96e0-c0f906695ca7}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY XtsInSim : BOOL]]></Declaration>
+      <Get Name="Get" Id="{2d355749-594c-4dac-b937-4db80ff9aec3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[XtsInSim := Status.IsInSim;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
   </POU>
 </TcPlcObject>
