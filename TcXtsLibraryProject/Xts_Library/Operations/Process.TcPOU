@@ -133,7 +133,7 @@ _MyMover := mover;]]></ST>
 			END_IF
 		END_IF
 	1:
-		IF _MyMover.getTrackPosition() = _endPos THEN
+		IF _MyMover.ActualTrackPosition = _endPos THEN
 			_Operating := FALSE;
 			_Complete := TRUE;
 			State := 0;

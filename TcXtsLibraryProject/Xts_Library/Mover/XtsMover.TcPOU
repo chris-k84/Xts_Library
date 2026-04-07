@@ -85,7 +85,7 @@ IF MoverActivateTrackBehaviour.Busy THEN
 	RETURN;
 END_IF
 
-IF NOT THIS^.isMoverStationary() THEN
+IF NOT THIS^.IsStationary THEN
 	ActivateTrack := -3;
 	RETURN;
 END_IF
@@ -113,7 +113,7 @@ _CurrentTrack := MyTracks[Track - 1];
 	ActivateZeroReferenceSystem := -1;
 	RETURN;
 END_IF
-IF NOT THIS^.isMoverStationary() THEN
+IF NOT THIS^.IsStationary THEN
 	ActivateZeroReferenceSystem := -2;
 	RETURN;
 END_IF 
@@ -239,7 +239,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT THIS^.isMoverEnabled() THEN
+        <ST><![CDATA[IF NOT THIS^.IsEnabled THEN
 	DisableMover := -1;
 	RETURN;
 END_IF
@@ -257,7 +257,7 @@ END_VAR
 	EnableMover := -1;
 	RETURN;
 END_IF
-IF THIS^.isMoverEnabled() THEN
+IF THIS^.IsEnabled THEN
 	EnableMover := -2;
 	RETURN;
 END_IF
@@ -402,7 +402,7 @@ IF _ipTcIoXtsMover = 0 THEN
 	Initialise := -2;
 	RETURN;
 END_IF
-IF NOT isMoverDetected() THEN
+IF NOT IsDetected THEN
 	Initialise := -3;
 	RETURN;
 END_IF
@@ -752,7 +752,7 @@ END_VAR
 	RETURN;
 END_IF
 
-IF NOT THIS^.isMoverStationary() THEN
+IF NOT THIS^.IsStationary THEN
 	SetMoverActiveTrack := -3;
 	RETURN;
 END_IF
@@ -841,7 +841,7 @@ IF NOT _myStatus.isActive THEN
 	TriggerMoverLeave := -2;
 	RETURN;
 END_IF
-IF NOT isMoverStationary() THEN
+IF NOT IsStationary THEN
 	TriggerMoverLeave := -3;
 	RETURN;
 END_IF

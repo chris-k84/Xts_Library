@@ -627,9 +627,9 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testMover.setMoving();
-	Actual := NOT testMover.isMoverStationary();
+	Actual := NOT testMover.IsStationary;
 	testMover.setStationary();
-	Actual := Actual AND testMover.isMoverStationary();
+	Actual := Actual AND testMover.IsStationary;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

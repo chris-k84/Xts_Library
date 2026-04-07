@@ -27,6 +27,30 @@ END_VAR
       <Declaration><![CDATA[METHOD ActivateZeroReferenceSystem : HRESULT
 ]]></Declaration>
     </Method>
+    <Property Name="ActualForce" Id="{00e4b1c4-c6de-437f-8c1d-7314c009badc}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ActualForce : LREAL]]></Declaration>
+      <Get Name="Get" Id="{ae9db5cd-10af-4e87-b4a2-e547ec5c553c}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ActualPosition" Id="{28cc63bc-e59d-4da9-a15c-a10a220bddfe}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ActualPosition : LREAL]]></Declaration>
+      <Get Name="Get" Id="{9cdf084e-f593-4336-8f01-56fe49195bb3}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ActualTrackPosition" Id="{e9f1d418-aa47-422b-9743-bf025f0e00db}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ActualTrackPosition : LREAL]]></Declaration>
+      <Get Name="Get" Id="{5f8e75a9-0ebf-4529-928e-062c555b8cba}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ActualVelocity" Id="{4743bebc-3e65-4ae0-ae76-394e50299433}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ActualVelocity : LREAL]]></Declaration>
+      <Get Name="Get" Id="{c9377cd8-6623-42ce-ab9c-71b02227228b}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="AxisRef" Id="{b9459322-2642-4758-9d1a-f140abbed4b3}" FolderPath="Administration\">
       <Declaration><![CDATA[PROPERTY AxisRef : Reference to Axis_ref]]></Declaration>
       <Get Name="Get" Id="{fca9e840-ce68-48f6-aaf7-b30da4df166b}">
@@ -54,6 +78,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="ErrorID" Id="{b04c2e44-101b-40a1-bb51-ba2468016913}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ErrorID : UDINT]]></Declaration>
+      <Get Name="Get" Id="{4e6c86e3-a90a-4b81-8f9a-ac29a4c9cc2b}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="Gap" Id="{fb9a5121-dbab-42c7-b05b-e0e4367182c8}" FolderPath="Dynamics\">
       <Declaration><![CDATA[PROPERTY Gap : MC_LREAL]]></Declaration>
       <Get Name="Get" Id="{0b18224e-8e16-4474-96e3-0906bc0c9a81}">
@@ -69,38 +99,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="getActPosition" Id="{cb245680-cf62-4460-9916-bd21e35bcc6b}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getActPosition : LREAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="getActVelocity" Id="{a06ff421-534b-4523-b3eb-dd28f8bb1953}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getActVelocity : LREAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="getErrorID" Id="{a612c5fe-d8b5-4fa8-bdd1-0b403db857b6}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getErrorID : udint
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="GetMoverCtrlOTCID" Id="{863e8ade-d7f2-439e-8b15-5f1837c580a0}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD GetMoverCtrlOTCID : XtsMoverControllerOTCID
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="getMoverForce" Id="{a63aecfa-9edc-4f8b-b782-badf70078dfd}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getMoverForce : LREAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="getTrackPosition" Id="{449a4b63-7e3e-4dcb-b1ac-b51087274561}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getTrackPosition : LREAL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -111,30 +111,42 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="hasError" Id="{7ce66a5e-0e33-4ba6-a4f9-8dfd3f947bf4}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD hasError : bool
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
+    <Property Name="HasError" Id="{90e38746-64a9-412e-b69f-e80f2d788cc6}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
+      <Get Name="Get" Id="{5d936f5b-33ae-4901-8b9f-50eb63a5b11c}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="IdentInGroup" Id="{892b953d-abf1-49a8-bf89-421385c1791d}" FolderPath="Administration\">
       <Declaration><![CDATA[PROPERTY PUBLIC IdentInGroup : IDENT_IN_GROUP_REF]]></Declaration>
       <Get Name="Get" Id="{b023befb-8f40-468b-ada4-daaf368f7d24}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="IsActive" Id="{9fd93deb-ce14-4220-ace9-86cd93c7a80c}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsActive : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="isAvoidingCollision" Id="{9f7ab5af-1b4f-44ea-b631-5e740ef4cd88}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD isAvoidingCollision : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
+    <Property Name="IsActive" Id="{43095e03-0781-4c14-aea8-4bb8d9b5c9a9}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsActive : BOOL]]></Declaration>
+      <Get Name="Get" Id="{5c30f132-658c-45bd-986b-b41d82b1ab82}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="IsAvoidingCollision" Id="{5943782e-d40c-4ea0-9ddf-8fe8e953cf52}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsAvoidingCollision : BOOL]]></Declaration>
+      <Get Name="Get" Id="{a0bd6fb0-24f5-415f-851e-6efe2481bd7c}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="IsDetected" Id="{93c73707-2737-4a0d-b791-8a8c892ba285}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsDetected : BOOL]]></Declaration>
+      <Get Name="Get" Id="{5a7d46d0-a531-4a2d-8d8f-a2055343f49b}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="IsEnabled" Id="{1dc642f1-9317-4da4-80d2-54b08fffd57c}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsEnabled : BOOL]]></Declaration>
+      <Get Name="Get" Id="{0b3bdbce-a4ec-4a95-bc52-fef9dadad358}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="isMoverAtPosition" Id="{bc703c47-0b4d-4374-b07c-1240b49b484e}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD isMoverAtPosition : BOOL
 VAR_INPUT
@@ -142,24 +154,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="isMoverDetected" Id="{bebf9077-4fa3-41f0-a58b-68e771a6d3a7}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD isMoverDetected : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="isMoverEnabled" Id="{2ad921d2-fe23-4c3a-8e9a-22becef3f18a}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD isMoverEnabled : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="isMoverStationary" Id="{7e7da463-610e-4ddb-b6e7-ef0925f02451}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD isMoverStationary : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
+    <Property Name="IsStationary" Id="{08154e2f-b533-419e-9633-c8866a41fb11}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsStationary : BOOL]]></Declaration>
+      <Get Name="Get" Id="{4afa1b23-4ee3-47ce-9d91-4217690a4938}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="Jerk" Id="{8063437d-ace9-4769-bdaf-bbbe2e6cdcb8}" FolderPath="Dynamics\">
       <Declaration><![CDATA[PROPERTY Jerk : mc_lreal]]></Declaration>
       <Get Name="Get" Id="{7a71a7bc-503a-407e-bd5c-807dc27f8a07}">
@@ -168,12 +168,6 @@ END_VAR
       <Set Name="Set" Id="{943274ff-ff90-4228-a079-22863adf0d58}">
         <Declaration><![CDATA[]]></Declaration>
       </Set>
-    </Property>
-    <Property Name="MoverErrorID" Id="{b22f6e77-1f1b-46fd-9beb-24cd7598be7b}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY PUBLIC MoverErrorID : DWORD]]></Declaration>
-      <Get Name="Get" Id="{a8d82d04-fa66-4bdd-839c-2ee85269a247}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
     </Property>
     <Property Name="MoversActiveTrack" Id="{f033ba71-1699-4f66-8762-38178a524724}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY PUBLIC MoversActiveTrack : INT]]></Declaration>

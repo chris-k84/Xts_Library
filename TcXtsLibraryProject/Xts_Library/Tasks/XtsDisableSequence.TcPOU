@@ -84,7 +84,7 @@ END_VAR]]></Declaration>
 	DisableState.Disable_Group:
 		AllMoversDisabled := TRUE;
 		FOR i := 0 TO (_registeredNumberOfMovers-1) DO
-			AllMoversDisabled := AllMoversDisabled AND NOT arrMovers[i].isMoverEnabled();
+			AllMoversDisabled := AllMoversDisabled AND NOT arrMovers[i].IsEnabled;
 		END_FOR
 		IF AllMoversDisabled THEN
 			State := DisableState.Reset_Group;

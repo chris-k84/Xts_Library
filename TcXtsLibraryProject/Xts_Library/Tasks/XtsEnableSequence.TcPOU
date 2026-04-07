@@ -90,7 +90,7 @@ END_VAR]]></Declaration>
 	EnableState.Enable_Movers:
 		AllMoversEnabled := TRUE;
 		FOR i := 0 TO (_registeredNumberOfMovers-1) DO
-			AllMoversEnabled := TRUE AND arrMovers[i].isMoverEnabled();
+			AllMoversEnabled := TRUE AND arrMovers[i].IsEnabled;
 		END_FOR
 		IF AllMoversEnabled THEN
 			

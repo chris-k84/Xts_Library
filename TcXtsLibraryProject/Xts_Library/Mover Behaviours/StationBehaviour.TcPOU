@@ -47,7 +47,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[CASE State OF
 	StationBehaviourState.WaitForMoverEnabled:
-		IF ThisMover.isMoverEnabled() THEN
+		IF ThisMover.IsEnabled THEN
 			State := StationBehaviourState.WaitingForStart;
 		END_IF
 		
@@ -73,7 +73,7 @@ END_VAR
 		END_IF
 
 	StationBehaviourState.MovingToCurrentStation:
-		IF ThisMover.isMoverStationary() THEN 
+		IF ThisMover.IsStationary THEN 
 			IF ThisMover.isMoverAtPosition(TargetStationPosition) THEN
 				State := StationBehaviourState.ArrivedAtStation;
 			ELSE
@@ -91,7 +91,7 @@ END_VAR
 		END_IF
 		
 	StationBehaviourState.MoverQueueingAtStation:
-		IF NOT ThisMover.isMoverStationary() THEN
+		IF NOT ThisMover.IsStationary THEN
 				State := StationBehaviourState.MovingToCurrentStation;
 		END_IF
 
@@ -107,7 +107,7 @@ END_VAR
 		State := StationBehaviourState.MoverInProcess;
 								
 	StationBehaviourState.MoverInProcess:
-		IF ThisMover.isMoverStationary() THEN 
+		IF ThisMover.IsStationary THEN 
 			IF ThisMover.isMoverAtPosition(Process.EndPosition) THEN
 				State := StationBehaviourState.CheckIfFinalStation;
 			END_IF
