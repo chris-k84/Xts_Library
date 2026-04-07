@@ -439,6 +439,28 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="IsDetected" Id="{be1fef7b-c667-4190-a068-7a115721883c}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsDetected : BOOL]]></Declaration>
+      <Get Name="Get" Id="{48fddea6-2ee5-46a7-89af-2a78eb812316}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsDetected := MyAxisRef.NcToPlc.AxisId <> 0;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="IsEnabled" Id="{8e71c4a3-2ef0-42bd-bfd7-77e344d1bd40}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsEnabled : BOOL]]></Declaration>
+      <Get Name="Get" Id="{5b5f088a-6649-46f8-bd13-7cd57e7cee10}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsEnabled :=  NOT _MyAxisStatus.Disabled;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="isMoverAtPosition" Id="{f1a74560-cd92-4fa6-83a2-3bacea608337}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD PUBLIC isMoverAtPosition : BOOL
 VAR_INPUT
@@ -464,33 +486,17 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="isMoverDetected" Id="{c1a5811f-71c0-458a-bf03-7bfa946db86b}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD PUBLIC isMoverDetected : BOOL
-VAR_INPUT
+    <Property Name="IsStationary" Id="{7f9079b5-4633-4e28-a842-9024cc33e246}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsStationary : BOOL]]></Declaration>
+      <Get Name="Get" Id="{f4fdfa27-6cb9-47cc-bbad-29d2dbcc8306}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[isMoverDetected := MyAxisRef.NcToPlc.AxisId <> 0;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="isMoverEnabled" Id="{7f5530a3-9bf6-4669-8c7b-76814da68801}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD PUBLIC isMoverEnabled : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[isMoverEnabled :=  NOT _MyAxisStatus.Disabled;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="isMoverStationary" Id="{64b09804-b6c0-46e5-9180-be650a88cf77}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD PUBLIC isMoverStationary : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[isMoverStationary := _MyAxisStatus.NotMoving;]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[IsStationary := _MyAxisStatus.NotMoving;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="Jerk" Id="{fbc5f504-aa6b-48f8-8a62-bbde3b74b20e}" FolderPath="Dynamics\">
       <Declaration><![CDATA[PROPERTY PUBLIC Jerk : MC_LREAL]]></Declaration>
       <Get Name="Get" Id="{98c0c9db-aae6-4788-a223-2bf5fa007418}">
