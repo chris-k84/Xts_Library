@@ -506,17 +506,6 @@ _Jerk := Jerk;]]></ST>
         </Implementation>
       </Set>
     </Property>
-    <Property Name="MoverErrorID" Id="{9a24b894-1b02-4293-95b1-831b38fd5fad}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY PUBLIC MoverErrorID : DWORD]]></Declaration>
-      <Get Name="Get" Id="{01f9b7c9-0e41-48f0-a5f9-8a7a495677b0}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MoverErrorID := _MyAxisStatus.ErrorID;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
     <Property Name="MoversActiveTrack" Id="{15471ba0-8341-48c7-a2d0-01ca6286078a}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY PUBLIC MoversActiveTrack : INT]]></Declaration>
       <Get Name="Get" Id="{2721855b-e1d8-4f74-a352-28794ee4ae69}">
