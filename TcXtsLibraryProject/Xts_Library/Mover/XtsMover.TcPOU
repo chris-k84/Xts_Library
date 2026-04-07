@@ -122,6 +122,50 @@ MoverActivateTrackBehaviour.Execute(Track := NullTrack);
 _CurrentTrack := 0;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="ActualForce" Id="{1098aa35-8fe0-43b3-b10d-2dbf741e0cc6}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ActualForce : LREAL]]></Declaration>
+      <Get Name="Get" Id="{10e9735a-f2ce-4d5a-ac32-880505647b0c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ActualForce := _SetForce;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ActualPosition" Id="{97d35bbc-7d79-4ab6-acbe-efd9e040cf7e}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ActualPosition : LREAL]]></Declaration>
+      <Get Name="Get" Id="{e195bcb1-e534-4753-a471-130b7260a030}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ActualPosition := MyAxisRef.NcToPlc.ActPos;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ActualTrackPosition" Id="{f0eba487-b575-4c34-b1c8-92f6f0d4e9ff}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ActualTrackPosition : LREAL]]></Declaration>
+      <Get Name="Get" Id="{12465534-ac82-4003-9fc9-808736ed6478}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ActualTrackPosition := _stTmsActPositions.fTrackPosition;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ActualVelocity" Id="{464c1699-07a2-4876-88f8-424d8c881d6d}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ActualVelocity : LREAL]]></Declaration>
+      <Get Name="Get" Id="{cf005a5e-7c46-4435-9144-c308d46bca18}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ActualVelocity := MyAxisRef.NcToPlc.ActVelo;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="AxisRef" Id="{a7d5ea1d-51bb-4c87-90b3-db66fd196d20}" FolderPath="Administration\">
       <Declaration><![CDATA[PROPERTY AxisRef : Reference to Axis_ref]]></Declaration>
       <Get Name="Get" Id="{8c3b00e4-86fb-42e3-b0e0-5789e5045419}">
@@ -221,6 +265,17 @@ END_IF
 EnableBehaviour.Enable();]]></ST>
       </Implementation>
     </Method>
+    <Property Name="ErrorID" Id="{b75590a2-f278-4019-b919-db0f4a472676}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ErrorID : UDINT]]></Declaration>
+      <Get Name="Get" Id="{b4aa86dd-bc0f-49f0-ac26-dce353b288a4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ErrorID := _MyAxisStatus.ErrorID;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="FB_Init" Id="{e6cdc000-5fb3-42ba-8ce8-01408a72b06f}" FolderPath="Administration\">
       <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
 //The return value is not evaluated. For a specific influence, you can also declare the
@@ -276,35 +331,6 @@ END_VAR
         <ST><![CDATA[GetActiveTrackLength := _CurrentTrack.TrackLength;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="getActPosition" Id="{4178e4b5-2100-4520-ae0f-21e86c6aadb1}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getActPosition : LREAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[getActPosition := MyAxisRef.NcToPlc.ActPos;
-]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="getActVelocity" Id="{0c1e39cc-a9a3-4a7e-885e-348eec34ac14}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getActVelocity : LREAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[getActVelocity := MyAxisRef.NcToPlc.ActVelo;
-]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="getErrorID" Id="{5ba2965f-231a-47cc-bcc5-dfd172bd6d02}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getErrorID : udint
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[getErrorID := _MyAxisStatus.ErrorID;]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="GetMoverCtrlOTCID" Id="{6852d0c0-13fb-4a6d-9e8b-5d538e770d2f}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD GetMoverCtrlOTCID : XtsMoverControllerOTCID
 VAR_INPUT
@@ -312,15 +338,6 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[GetMoverCtrlOTCID := _ipTcIoXtsMover.GetMoverControllerOid();]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="getMoverForce" Id="{4e4e52d4-51da-4937-a709-c8ecb1f9b707}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getMoverForce : LREAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[getMoverForce := _SetForce;]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetMoverOTCID" Id="{0ee3ade7-076c-46ec-8833-0ad2fc45f400}" FolderPath="Administration\">
@@ -331,15 +348,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[//GetMoverCtrlOTCID := _ipTcIoXtsMover.P_AxisOid;
 ]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="getTrackPosition" Id="{7d5a975d-08c0-41e2-b667-ea0e7fe80524}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getTrackPosition : LREAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[getTrackPosition := _stTmsActPositions.fTrackPosition;]]></ST>
       </Implementation>
     </Method>
     <Method Name="HaltAxis" Id="{b177db81-8e99-498a-a7a2-cd0938dd7a2c}" FolderPath="Commands\">
