@@ -33,7 +33,7 @@ VAR
 	_Deceleration : LREAL;
 	_Jerk : LREAL;
 	_DistanceDrivenInMM : LREAL;
-	AvoidingCollision: BOOL;
+	_AvoidingCollision: BOOL;
 	myController: Tc3_XTS_Utility.I_McXtsMoverController;
 END_VAR
 VAR CONSTANT
@@ -203,7 +203,7 @@ END_VAR]]></Declaration>
 		_myStatus.driveState := _ipTcIoXtsMover.GetDriveStatus();
 		_DistanceDrivenInMM := _ipTcIoXtsMover.GetDistanceDriven();
 	END_IF
-	AvoidingCollision := MyAxisRef.NcToPlc.StateDWord2.Flags.AvoidingCollision;
+	_AvoidingCollision := MyAxisRef.NcToPlc.StateDWord2.Flags.AvoidingCollision;
 ELSE
 	Cycle := -1;
 END_IF
@@ -364,15 +364,17 @@ END_IF
 HaltBehaviour.Execute();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="hasError" Id="{6d2c5795-b984-4bf0-9ad4-9c8de694c1dd}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD hasError : bool
-VAR_INPUT
+    <Property Name="HasError" Id="{20bfb091-3a51-46b6-b1c3-86998c1edac5}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
+      <Get Name="Get" Id="{d8e26ea2-dd1a-4fc5-8d5e-87f1bef9cf9c}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[hasError := _MyAxisStatus.Error;]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[HasError := _MyAxisStatus.Error;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="IdentInGroup" Id="{4d5563a0-634a-4074-a0e4-612875dd790c}" FolderPath="Administration\">
       <Declaration><![CDATA[PROPERTY PUBLIC IdentInGroup : IDENT_IN_GROUP_REF]]></Declaration>
       <Get Name="Get" Id="{6419a53d-e416-464a-881c-e300db0a9add}">
@@ -415,24 +417,28 @@ _CurrentTrack := MyTracks[MoversActiveTrack - 1];
 Initialised := TRUE;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="IsActive" Id="{4093fe18-48a9-45f2-9701-210b5183f8f4}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsActive : BOOL
-VAR_INPUT
+    <Property Name="IsActive" Id="{382be57c-1eca-4414-86e7-197f5c6f4f45}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsActive : BOOL]]></Declaration>
+      <Get Name="Get" Id="{ea8b86db-8f1a-4f2a-bfa5-c492ca87a414}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IsActive := _myStatus.isActive;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="isAvoidingCollision" Id="{d6fe9751-a759-404e-8850-fd7cabe38e27}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD isAvoidingCollision : BOOL
-VAR_INPUT
+        <Implementation>
+          <ST><![CDATA[IsActive := _myStatus.isActive;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="IsAvoidingCollision" Id="{da7886a8-9c9c-4ae2-bbae-548351ceb9d3}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsAvoidingCollision : BOOL]]></Declaration>
+      <Get Name="Get" Id="{07cfba67-3f84-4db0-a72d-fbe6f6b78e00}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[isAvoidingCollision := AvoidingCollision;]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[isAvoidingCollision := _AvoidingCollision;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="isMoverAtPosition" Id="{f1a74560-cd92-4fa6-83a2-3bacea608337}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD PUBLIC isMoverAtPosition : BOOL
 VAR_INPUT
