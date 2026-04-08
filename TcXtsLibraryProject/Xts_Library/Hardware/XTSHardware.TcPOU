@@ -60,6 +60,16 @@ END_VAR
         <ST><![CDATA[AreExpectedMoversFound := _MyXpu.GetExpectedMoverCount() = _MyXpu.GetDetectedMoverCount();]]></ST>
       </Implementation>
     </Method>
+    <Method Name="CheckTrackSetForDetection" Id="{a157743a-c92b-46ae-8e12-711e16f43734}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD CheckTrackSetForDetection : BOOL
+VAR_INPUT
+	Track : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CheckTrackSetForDetection := XtsTracks[Track - 1].IsTrackSetForDetection;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Cycle" Id="{907368a2-7640-4dfa-a8a9-6f1d20861921}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR
@@ -499,8 +509,7 @@ IF TrackToDetect > MyTrackCount THEN
 	RETURN;
 END_IF
 
-XtsTracks[TrackToDetect - 1].SetForDetection();
-]]></ST>
+XtsTracks[TrackToDetect - 1].SetForDetection();]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetMoverNumberForDetection" Id="{fda2cbfb-05d3-433d-b308-26404cfa0e4a}" FolderPath="Commands\">

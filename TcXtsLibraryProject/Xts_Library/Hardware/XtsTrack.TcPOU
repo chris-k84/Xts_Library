@@ -81,6 +81,17 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="IsTrackSetForDetection" Id="{6d41100e-3e9f-436d-ac19-0ea590bc8b77}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsTrackSetForDetection : BOOL]]></Declaration>
+      <Get Name="Get" Id="{7a14784a-3e20-4412-b81b-078373782f42}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsTrackSetForDetection := _IsTrackIncludedForDetection;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="MyOTCID" Id="{d34cfe46-c497-4e94-b74d-f99a6000b358}" FolderPath="Settings\">
       <Declaration><![CDATA[PROPERTY MyOTCID : OTCID]]></Declaration>
       <Get Name="Get" Id="{855c0947-7cfe-4f24-8259-2331fd728b0d}">

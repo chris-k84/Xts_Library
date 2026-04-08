@@ -24,6 +24,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="CheckTrackSetForDetection" Id="{bd76a378-5fcc-4d04-942c-c4ac64e77d3f}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD CheckTrackSetForDetection : BOOL
+VAR_INPUT
+	Track : INT;
+END_VAR
+]]></Declaration>
+    </Method>
     <Property Name="DetectedNumberOfParts" Id="{26f59286-1828-426d-8401-9c022372b2b3}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY DetectedNumberOfParts : INT]]></Declaration>
       <Get Name="Get" Id="{be1603c2-e62c-4ec9-9bc8-45b0c3dfbaa1}">
