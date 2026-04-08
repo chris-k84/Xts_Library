@@ -31,6 +31,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="ConfiguredDetectionMoverCount" Id="{fb91ea49-ff54-4604-a38b-d0f68951e9c8}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ConfiguredDetectionMoverCount : UDINT]]></Declaration>
+      <Get Name="Get" Id="{7fd9b73b-0f1f-40e7-9506-b50f55ce20d1}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="DetectedNumberOfParts" Id="{26f59286-1828-426d-8401-9c022372b2b3}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY DetectedNumberOfParts : INT]]></Declaration>
       <Get Name="Get" Id="{be1603c2-e62c-4ec9-9bc8-45b0c3dfbaa1}">
@@ -61,24 +67,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="GetConfiguredDetectionMoverNumber" Id="{840a6c17-fbef-4810-9acd-02a47aa8f2b0}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetConfiguredDetectionMoverNumber : UDINT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="GetMover1DetectionState" Id="{468606a5-0f09-4c41-8d7f-ae73ed8373ae}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetMover1DetectionState : MoverIdDetectionStateEnum
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="GetMoverDetectionState" Id="{fa37bb06-5333-4945-837b-ed2607a0f10b}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetMoverDetectionState : DetectionStateEnum
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="getNumberMoversDetected" Id="{f24c38ad-dbfa-488d-af77-9f21cd2a2d34}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD getNumberMoversDetected : UDINT
 VAR_INPUT
@@ -133,6 +121,18 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="Mover1DetectionState" Id="{132a2dae-ca23-4e67-a5bb-0d8058d945f2}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Mover1DetectionState : MoverIdDetectionStateEnum]]></Declaration>
+      <Get Name="Get" Id="{c05f137c-3292-4411-b2b3-a1fb8ed4cd83}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="MoverDetectionState" Id="{715c8a7a-e70f-4d3f-b9f0-30380863ce20}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY MoverDetectionState : DetectionStateEnum]]></Declaration>
+      <Get Name="Get" Id="{89b55f7f-17a6-47dc-833b-f24b4ae7e522}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="MyName" Id="{b43d0e80-e621-46e0-af70-0a677800dc98}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
       <Get Name="Get" Id="{494ebcb6-a0a6-498f-a4fa-49193344e0b2}">
@@ -156,6 +156,12 @@ END_VAR
       <Set Name="Set" Id="{09a1cb2a-649a-43ca-b93f-1edc829a7cd1}">
         <Declaration><![CDATA[]]></Declaration>
       </Set>
+    </Property>
+    <Property Name="NumberOfMoversDetected" Id="{b758eab7-9c53-4b72-8edf-4e7b7ef86514}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY NumberOfMoversDetected : UDINT]]></Declaration>
+      <Get Name="Get" Id="{65047fd1-8f3b-4ed4-adc5-f0a3650f7e5e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
     </Property>
     <Method Name="RemoveATrackFromDetection" Id="{6b996083-6718-40f8-8385-c5509d71f04d}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD RemoveATrackFromDetection : HRESULT

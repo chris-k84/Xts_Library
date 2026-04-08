@@ -70,6 +70,17 @@ END_VAR
         <ST><![CDATA[CheckTrackSetForDetection := XtsTracks[Track - 1].IsTrackSetForDetection;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="ConfiguredDetectionMoverCount" Id="{c6b8f282-fa8d-4a89-ac1c-48611d7ab9bd}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ConfiguredDetectionMoverCount : UDINT]]></Declaration>
+      <Get Name="Get" Id="{239802d6-c316-4d23-8a05-becb25340cee}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ConfiguredDetectionMoverCount := _MyXpu.GetConfiguredDetectionCount();]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Cycle" Id="{907368a2-7640-4dfa-a8a9-6f1d20861921}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR
@@ -163,43 +174,6 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="GetConfiguredDetectionMoverNumber" Id="{43f766d9-966d-4623-a223-676c73e2281d}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetConfiguredDetectionMoverNumber : UDINT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetConfiguredDetectionMoverNumber := _MyXpu.GetConfiguredDetectionCount();]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GetMover1DetectionState" Id="{573a33b5-b6be-4708-a76b-49e2fa8c00de}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetMover1DetectionState : MoverIdDetectionStateEnum
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetMover1DetectionState := _MyXpu.GetMoverIdDetectionState();]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GetMoverDetectionState" Id="{5c04b4df-babc-44c4-8315-87ac6e89bad7}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetMoverDetectionState : DetectionStateEnum
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetMoverDetectionState := _MyXpu.GetDetectionState(); ]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GetNumberMoversDetected" Id="{6134912a-11cc-419f-9366-ca4c2c2c2f9f}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD GetNumberMoversDetected : UDINT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[getNumberMoversDetected := _MyXpu.GetDetectedMoverCount();
-]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="GetPartErrorCode" Id="{1db9bad9-9f3a-4db0-b023-7e6033e80429}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD GetPartErrorCode : UDINT
 VAR
@@ -377,6 +351,28 @@ END_VAR
         <ST><![CDATA[IsIDDetectionStandard := _MyXpu.GetMoverIdDetectionMode() = MoverIdDetectionMode.Standard;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Mover1DetectionState" Id="{8a52b869-4466-4956-80c9-fe5d0e074dd3}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Mover1DetectionState : MoverIdDetectionStateEnum]]></Declaration>
+      <Get Name="Get" Id="{f6ebda47-6ebe-42ac-835f-d0ebdd7ed973}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Mover1DetectionState := _MyXpu.GetMoverIdDetectionState();]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="MoverDetectionState" Id="{edb36a2f-c73f-4dcc-8e56-bac4b189b34c}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY MoverDetectionState : DetectionStateEnum]]></Declaration>
+      <Get Name="Get" Id="{c252fafa-96b0-4ca0-b09c-cb4bd1a9148d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MoverDetectionState := _MyXpu.GetDetectionState(); ]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="MyName" Id="{0d9f86cc-11b2-415a-83b4-e3fe22742bf6}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
       <Get Name="Get" Id="{05735f6c-e3fe-4ee3-a217-5178eba283c4}">
@@ -426,6 +422,17 @@ END_VAR
           <ST><![CDATA[_MyXts := MyXts;]]></ST>
         </Implementation>
       </Set>
+    </Property>
+    <Property Name="NumberOfMoversDetected" Id="{ac86d504-4cb7-46bd-99b0-bbd1779550be}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY NumberOfMoversDetected : UDINT]]></Declaration>
+      <Get Name="Get" Id="{b93c4286-a911-43e6-beae-19612516fb92}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[NumberOfMoversDetected := _MyXpu.GetDetectedMoverCount();]]></ST>
+        </Implementation>
+      </Get>
     </Property>
     <Method Name="RegisterWithParent" Id="{cc909a39-cbe3-4035-b5c9-fc3340c04e55}">
       <Declaration><![CDATA[METHOD RegisterWithParent
