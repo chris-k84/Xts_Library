@@ -60,7 +60,7 @@ END_VAR
         <ST><![CDATA[AreExpectedMoversFound := _MyXpu.GetExpectedMoverCount() = _MyXpu.GetDetectedMoverCount();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="CheckTrackSetForDetection" Id="{a157743a-c92b-46ae-8e12-711e16f43734}" FolderPath="Status\">
+    <Method Name="CheckTrackSetForDetection" Id="{a157743a-c92b-46ae-8e12-711e16f43734}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD CheckTrackSetForDetection : BOOL
 VAR_INPUT
 	Track : INT;
@@ -170,6 +170,15 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[GetConfiguredDetectionMoverNumber := _MyXpu.GetConfiguredDetectionCount();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMover1DetectionState" Id="{573a33b5-b6be-4708-a76b-49e2fa8c00de}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetMover1DetectionState : MoverIdDetectionStateEnum
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetMoverDetectionState := _MyXpu.GetMoverIdDetectionState();]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetMoverDetectionState" Id="{5c04b4df-babc-44c4-8315-87ac6e89bad7}" FolderPath="Commands\">

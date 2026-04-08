@@ -67,6 +67,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="GetMover1DetectionState" Id="{468606a5-0f09-4c41-8d7f-ae73ed8373ae}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetMover1DetectionState : MoverIdDetectionStateEnum
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="GetMoverDetectionState" Id="{fa37bb06-5333-4945-837b-ed2607a0f10b}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetMoverDetectionState : DetectionStateEnum
 VAR_INPUT
