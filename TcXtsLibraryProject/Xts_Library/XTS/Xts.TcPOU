@@ -230,7 +230,7 @@ CASE XtsHwState OF
 	
 	XtsSystemInitialisation.CheckingAllMoverFound:
 		IF _MyXtsHardware.AreExpectedMoversFound() THEN
-			DetectedMoverCount := _MyXtsHardware.getNumberMoversDetected();
+			DetectedMoverCount := _MyXtsHardware.NumberOfMoversDetected;
 			XtsHwState := XtsSystemInitialisation.CheckIfXtsInSimMode;
 		END_IF
 		

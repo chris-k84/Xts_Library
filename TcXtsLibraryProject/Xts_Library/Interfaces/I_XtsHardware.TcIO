@@ -67,12 +67,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="getNumberMoversDetected" Id="{f24c38ad-dbfa-488d-af77-9f21cd2a2d34}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD getNumberMoversDetected : UDINT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="GetPartErrorCode" Id="{a778e153-11fc-44a4-9a30-e1a939a035d7}" FolderPath="Status\">
       <Declaration><![CDATA[METHOD GetPartErrorCode : UDINT
 ]]></Declaration>
