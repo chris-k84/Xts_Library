@@ -98,6 +98,7 @@ Status.IsInSim :=  _MyXpu.GetOperationMode() = OperationMode.Simulation;
 Status.ActiveMoverCount := _MyXpu.GetActiveMoverCount();
 Status.AreAllModulesInOp := _MyXpu.GetAreAllModulesInOp();
 Status.IsDCLinkVoltageReady := _MyXpu.GetIsDcLinkVoltageReady();
+Status.State := _MyXpu.GetDriveState();
 
 Status.AreAnyPartsInError := FALSE;
 FOR i := 0 TO TO_INT(MyPartCount - 1) DO

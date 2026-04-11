@@ -9,6 +9,7 @@ STRUCT
 	AreAllModulesInOp : BOOL;
 	IsDCLinkVoltageReady : BOOL;
 	AreAnyPartsInError : BOOL;
+	State : DriveState;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
