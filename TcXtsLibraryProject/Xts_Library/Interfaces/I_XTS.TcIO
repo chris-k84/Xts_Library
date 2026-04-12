@@ -21,36 +21,36 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GetErrorCode" Id="{8d18bfb1-883b-4192-b6c9-acf73a59bec9}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD GetErrorCode : UDINT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="HasError" Id="{af275816-6e74-427c-9fdf-440990004afa}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD HasError : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
+    <Property Name="ErrorId" Id="{85f1ad19-b8b0-4d53-a942-7149fb2f1efa}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ErrorId : UDINT]]></Declaration>
+      <Get Name="Get" Id="{cae48157-131e-4ac8-ae16-4163dc733069}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="HasError" Id="{a76186d7-f25a-4e47-b556-421092bb4e8d}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
+      <Get Name="Get" Id="{3ff785fc-785f-4d63-848a-2916e403262b}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="Initialised" Id="{29344615-27fb-4ea5-ad7a-fc8898059767}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
       <Get Name="Get" Id="{57975104-c7c3-4f8a-9853-70129e27cdaf}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="IsXtsIdle" Id="{a58467b2-fd55-49b7-9538-35b2ad34103b}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsXtsIdle : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="IsXtsReady" Id="{88e988d8-b3fd-4023-a27f-e2263614dcbf}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD IsXtsReady : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
+    <Property Name="IsIdle" Id="{3d807905-f20e-485e-ad56-f26ffe7b0c98}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsIdle : BOOL]]></Declaration>
+      <Get Name="Get" Id="{a5a22db1-22e5-48c9-ab7b-421717a7ccbd}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="IsReady" Id="{19895c70-7b9f-45b6-8ec3-b3d30ea37247}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsReady : BOOL]]></Declaration>
+      <Get Name="Get" Id="{df02b5ad-0914-47de-939c-37cf284a999e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="MoverHomeSequence" Id="{80de9bd3-37be-4579-86bc-1293deec4463}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD PUBLIC Abstract MoverHomeSequence : BOOL
 VAR_INPUT
