@@ -325,7 +325,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	Actual := MyXtsHardware.GetNumberMoversDetected() = 5;
+	Actual := MyXtsHardware.NumberOfMoversDetected = 5;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
