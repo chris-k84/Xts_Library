@@ -414,9 +414,6 @@ myController := _ipTcIoXtsMover.MoverController;
 myControllerOid := _ipTcIoXtsMover.GetMoverControllerOid();
 MyId := _ipTcIoXtsMover.P_AxisId;
 _CurrentTrack := MyTracks[MoversActiveTrack - 1];
-_MoverAbsMoveOptions.PositionReferenceSystem :=  MyTracks[MoversActiveTrack - 1].MyOTCID;
-_MoverAbsMoveOptions.DynamicsReferenceSystem := MyTracks[MoversActiveTrack - 1].MyOTCID;
-MoveBehaviour.Options := _MoverAbsMoveOptions;
 Initialised := TRUE;]]></ST>
       </Implementation>
     </Method>
