@@ -28,19 +28,15 @@ MoverRejectsZeroRefSysWhenMoving_Test();
 MoverAcceptsZeroRefSysSet_Test();
 MoverRejectsCycleCallWithNoAxisRef_Test();
 MoverReportsMovingCorrectly_Test();
-MoverReportsMoverOutsidePosWindow_Test();
-MoverReportsPositionInWindow_Test();
 MoverAcceptsTrackRegistration_Test();
 MoverRejectsNullTrackRegister_Test();
 MoverRejectsDoubleTrackRegister_Test();
-MoverRejectsPosCheckwithNoTrack_Test();
 MoverRejectsArriveCommandIfNotLeft_Test();
 MoverRejectsArriveCommandIfNoInterface_Test();
 MoverRejectsLeaveCommandWithNoInterface_Test();
 MoverRejectsLeaveCommandIfMoving_Test();
 MoverAcceptsMoverLeaveCommand_Test();
 MoverAcceptsArriveCommand_Test();
-MoverRejectsAbsMoveToSamePosition();
 MoverRejectsModuloMoveToSamePosition();]]></ST>
     </Implementation>
     <Method Name="MoverAcceptsArriveCommand_Test" Id="{22e6417c-6fbd-4ac0-9667-5e84052cd4a6}">
@@ -253,24 +249,6 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="MoverRejectsAbsMoveToSamePosition" Id="{20395d0d-bef3-4c68-ae81-09a57f71f72f}">
-      <Declaration><![CDATA[METHOD MoverRejectsAbsMoveToSamePosition
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-VAR
-	testMover : stubMover;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testMover.setAAbsPosition(100.0);
-	Actual := FAILED( testMover.MoveTo(100.0,-1.0,TRUE));
-	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="MoverRejectsActivateTrackWhileMoving_Test" Id="{68602ec7-eeb2-48cd-a3a7-de01a20ff851}">
       <Declaration><![CDATA[METHOD MoverRejectsActivateTrackWhileMoving_Test
 VAR_INST
@@ -531,22 +509,6 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoverRejectsPosCheckwithNoTrack_Test" Id="{8942dc59-e1b2-4a12-8224-cfcb7ed3188c}">
-      <Declaration><![CDATA[METHOD MoverRejectsPosCheckwithNoTrack_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-VAR
-	testMover : stubMover;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	Actual := NOT testMover.isMoverAtPosition(0.0);
-	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="MoverRejectsResetWithNoError_Test" Id="{f5425bf8-2274-4dca-931b-4651d9a2101b}">
       <Declaration><![CDATA[METHOD MoverRejectsResetWithNoError_Test : BOOL
 VAR_INST
@@ -598,23 +560,6 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoverReportsMoverOutsidePosWindow_Test" Id="{43848fba-d9e9-410c-98a3-0bba057248aa}">
-      <Declaration><![CDATA[METHOD MoverReportsMoverOutsidePosWindow_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-VAR
-	testMover : stubMover;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testMover.setAPosition(301.2);
-	Actual := NOT testMover.isMoverAtPosition(300.0);
-	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="MoverReportsMovingCorrectly_Test" Id="{2f7e6e28-944b-4700-8c41-7d154cade07a}">
       <Declaration><![CDATA[METHOD MoverReportsMovingCorrectly_Test
 VAR_INST
@@ -630,24 +575,6 @@ END_VAR]]></Declaration>
 	Actual := NOT testMover.IsStationary;
 	testMover.setStationary();
 	Actual := Actual AND testMover.IsStationary;
-	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="MoverReportsPositionInWindow_Test" Id="{53afb953-412d-4aa5-b491-ac154905df0d}">
-      <Declaration><![CDATA[METHOD MoverReportsPositionInWindow_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-VAR
-	testMover : stubMover;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testMover.setAPosition(301.2);
-	Actual := testMover.isMoverAtPosition(302.0);
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

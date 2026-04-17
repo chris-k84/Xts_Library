@@ -152,7 +152,9 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[ActualTrackPosition := _stTmsActPositions.fTrackPosition;]]></ST>
+          <ST><![CDATA[IF _CurrentTrack <> 0 THEN
+	ActualTrackPosition := _stTmsActPositions.fTrackPosition;
+END_IF]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -463,31 +465,6 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="isMoverAtPosition" Id="{f1a74560-cd92-4fa6-83a2-3bacea608337}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD PUBLIC isMoverAtPosition : BOOL
-VAR_INPUT
-	Position : MC_LREAL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF _CurrentTrack <> 0 THEN
-	IF Position > 1 THEN
-		IF _stTmsActPositions.fTrackPosition < position + 0.25 AND _stTmsActPositions.fTrackPosition > position - 0.25 THEN
-			isMoverAtPosition := TRUE;
-		ELSE
-			isMoverAtPosition := FALSE;
-		END_IF  
-	ELSE
-		IF _stTmsActPositions.fTrackPosition < position + 0.25 AND _stTmsActPositions.fTrackPosition > 0.0  
-			OR _stTmsActPositions.fTrackPosition < _CurrentTrack.TrackLength AND _stTmsActPositions.fTrackPosition > _CurrentTrack.TrackLength - 1 THEN
-			isMoverAtPosition := TRUE;
-		ELSE
-			isMoverAtPosition := FALSE;
-		END_IF
-	END_IF
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="IsStationary" Id="{7f9079b5-4633-4e28-a842-9024cc33e246}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY IsStationary : BOOL]]></Declaration>
       <Get Name="Get" Id="{f4fdfa27-6cb9-47cc-bbad-29d2dbcc8306}">

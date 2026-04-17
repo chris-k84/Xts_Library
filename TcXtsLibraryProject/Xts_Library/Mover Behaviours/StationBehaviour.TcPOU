@@ -57,7 +57,7 @@ END_VAR
 		END_IF
 		
 	StationBehaviourState.MovingToStart:
-		IF ThisMover.isMoverAtPosition(position := _startPosition) OR _XtsNoHome THEN
+		IF (ThisMover.ActualTrackPosition > _startPosition - 0.3 AND ThisMover.ActualTrackPosition < _startPosition + 0.3) OR _XtsNoHome THEN
 			State := StationBehaviourState.MoveToFirstStation;
 		END_IF
 			
@@ -74,7 +74,7 @@ END_VAR
 
 	StationBehaviourState.MovingToCurrentStation:
 		IF ThisMover.IsStationary THEN 
-			IF ThisMover.isMoverAtPosition(TargetStationPosition) THEN
+			IF (ThisMover.ActualTrackPosition > TargetStationPosition - 0.3 AND ThisMover.ActualTrackPosition < TargetStationPosition + 0.3) THEN
 				State := StationBehaviourState.ArrivedAtStation;
 			ELSE
 				State := StationBehaviourState.MoverQueueingAtStation;
@@ -108,7 +108,7 @@ END_VAR
 								
 	StationBehaviourState.MoverInProcess:
 		IF ThisMover.IsStationary THEN 
-			IF ThisMover.isMoverAtPosition(Process.EndPosition) THEN
+			IF (ThisMover.ActualTrackPosition > Process.EndPosition - 0.3 AND ThisMover.ActualTrackPosition < Process.EndPosition + 0.3) THEN
 				State := StationBehaviourState.CheckIfFinalStation;
 			END_IF
 		END_IF

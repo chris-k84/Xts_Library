@@ -147,13 +147,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="isMoverAtPosition" Id="{bc703c47-0b4d-4374-b07c-1240b49b484e}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD isMoverAtPosition : BOOL
-VAR_INPUT
-	Position : MC_LREAL;
-END_VAR
-]]></Declaration>
-    </Method>
     <Property Name="IsStationary" Id="{08154e2f-b533-419e-9633-c8866a41fb11}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY IsStationary : BOOL]]></Declaration>
       <Get Name="Get" Id="{4afa1b23-4ee3-47ce-9d91-4217690a4938}">

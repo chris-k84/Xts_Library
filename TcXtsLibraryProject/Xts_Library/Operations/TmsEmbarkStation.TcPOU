@@ -195,11 +195,12 @@ END_VAR
 	EmbarkStationStates.Boarding:
 		_MyMover.MoveTo(RequiredPosition := _MoverTravelPosition, MoveVelocity := _BoardVelocity, NonModuloMove := FALSE);
 		IF _MoverTravelPosition > _MyMover.GetActiveTrackLength() THEN
-			IF _MyMover.isMoverAtPosition(position := _MoverTravelPosition - _MyMover.GetActiveTrackLength()) THEN
+			IF (_MyMover.ActualTrackPosition > (_MoverTravelPosition - _MyMover.GetActiveTrackLength()) - 0.3 
+				AND _MyMover.ActualTrackPosition < (_MoverTravelPosition - _MyMover.GetActiveTrackLength()) + 0.3) THEN
 				_State := EmbarkStationStates.BoardingComplete;
 			END_IF
 		ELSE
-			IF _MyMover.isMoverAtPosition(position := _MoverTravelPosition) THEN
+			IF (_MyMover.ActualTrackPosition > _MoverTravelPosition - 0.3 AND _MyMover.ActualTrackPosition < _MoverTravelPosition + 0.3) THEN
 				_State := EmbarkStationStates.BoardingComplete;
 			END_IF
 		END_IF
