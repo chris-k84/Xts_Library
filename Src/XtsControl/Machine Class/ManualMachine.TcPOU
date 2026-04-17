@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
+  <POU Name="ManualMachine" Id="{01bc7f0f-8a11-4b18-bb7f-35e7e0af063e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ManualMachine
+VAR
+		Movers : ARRAY[0..NumberOFSystemMovers] OF XtsMover;
+	iMovers : ARRAY[0..NumberOFSystemMovers] OF I_XtsMover := [Movers[0],Movers[1],
+											Movers[2],Movers[3],
+											Movers[4],Movers[5],
+											Movers[6],Movers[7]];
+	systemXtsioEnvVar : XtsIoEnvVar;	
+	systemXtsHardware : XTSHardware('MyXTS');				
+	systemCAGroup : CollisionGroup;															
+	MyXts : ThisXTS(systemXtsioEnvVar,systemXtsHardware,systemCAGroup) := (MyXts := 1, 
+																			ExpectedNumberOfParts := 1, 
+																			ExpectedNumberOfTracks := 1, 
+																			HomePosition := SystemConstants.XtsHomePosition);
+	initSequence : INT;
+	InitComplete : BOOL;
+END_VAR
+VAR CONSTANT
+	NumberOFSystemMovers : INT := 7;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Cycle" Id="{1681b264-7edf-4ae1-9044-9c4a2173eaf4}">
+      <Declaration><![CDATA[METHOD Cycle : HRESULT
+VAR
+	i : INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[systemXtsHardware.Cycle();
+systemCAGroup.Cycle();
+MyXts.Cycle();
+FOR i := 0 TO NumberOFSystemMovers DO
+	Movers[i].Cycle();
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Initialise" Id="{6b8163d9-bce6-4337-9033-0358a8ecc516}">
+      <Declaration><![CDATA[METHOD Initialise : BOOL
+VAR
+	i : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE initSequence OF
+	0:
+		IF SUCCEEDED(systemXtsioEnvVar.Initialise()) THEN
+			initSequence := 1;
+		END_IF
+	1:
+		IF SUCCEEDED(systemXtsHardware.Initialise()) AND SUCCEEDED(MyXts.Initialise()) THEN
+			initSequence := 2;
+		END_IF
+	2:
+		FOR i := 0 TO NumberOFSystemMovers DO
+			MyXts.RegisterMovers(MyMover := iMovers[i]);
+		END_FOR
+		initSequence := 3;
+	3:
+		FOR i := 0 TO NumberOFSystemMovers DO
+			Movers[i].Initialise();
+		END_FOR
+		initSequence := 4;
+	4:
+		InitComplete := TRUE;
+		Initialise := TRUE;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RequestAMoveFromMover" Id="{327d02cb-bbd3-4551-844b-8d68ff55b11c}">
+      <Declaration><![CDATA[METHOD RequestAMoveFromMover : BOOL
+VAR_INPUT
+	MoverNumber : INT;
+	Position : LREAL;
+	Velocity : LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Movers[MoverNumber].MoveTo(Position, Velocity, TRUE);
+RequestAMoveFromMover := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Start" Id="{02461f05-6499-4d09-bb40-4c0779bf05a4}">
+      <Declaration><![CDATA[METHOD Start : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT MyXts.IsReady THEN
+	MyXts.EnableXTS();
+ELSE
+	MyXts.MoverHomeSequence();
+	Start := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Stop" Id="{fbb70648-c073-41fc-bad0-78d07ae8f95d}">
+      <Declaration><![CDATA[METHOD Stop : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF MyXts.DisableXTS() THEN
+	Stop := TRUE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

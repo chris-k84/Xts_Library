@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
+  <POU Name="ManualMotion" Id="{a5adb654-adc6-4a54-b4ae-db744f224e8e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM ManualMotion
+VAR
+	fbMachine : ManualMachine;
+	Reset : BOOL;
+	Start : BOOL;
+	Stop : BOOL;
+	Init AT%Q* : BOOL;
+	Mover : INT;
+	Pos : LREAL;
+	Velo : LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT Init AND_THEN fbMachine.Initialise() THEN
+	Init := TRUE;
+END_IF
+fbMachine.Cycle();
+
+IF Init AND Stop THEN
+	IF fbMachine.Stop() THEN
+		Stop := FALSE;
+	END_IF
+END_IF
+
+IF Init AND Start THEN
+	IF fbMachine.Start() THEN
+		Start := FALSE;
+	END_IF
+END_IF
+
+IF Reset THEN
+	IF fbMachine.RequestAMoveFromMover(Mover, Pos, Velo) THEN
+		Reset := FALSE;
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

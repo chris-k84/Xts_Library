@@ -1,37 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <POU Name="MAIN" Id="{c3798e48-78cc-4657-a79b-2d5c7d932da8}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	fbMachine : Machine;
-	Reset : BOOL;
-	Start : BOOL;
-	Stop : BOOL;
-	Init AT%Q* : BOOL;
+// 	fbMachine : Machine;
+// 	Reset : BOOL;
+// 	Start : BOOL;
+// 	Stop : BOOL;
+// 	Init AT%Q* : BOOL;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF NOT Init AND_THEN fbMachine.Initialise() THEN
-	Init := TRUE;
-END_IF
-fbMachine.Cycle();
+      <ST><![CDATA[// IF NOT Init AND_THEN fbMachine.Initialise() THEN
+// 	Init := TRUE;
+// END_IF
+// fbMachine.Cycle();
+// 
+// IF Init AND Reset THEN
+// 	IF fbMachine.Reset() THEN
+// 		Reset := FALSE;
+// 	END_IF
+// END_IF
+// 
+// IF Init AND Stop THEN
+// 	IF fbMachine.Stop() THEN
+// 		Stop := FALSE;
+// 	END_IF
+// END_IF
+// 
+// IF Init AND Start THEN
+// 	IF fbMachine.Start() THEN
+// 		Start := FALSE;
+// 	END_IF
+// END_IF
 
-IF Init AND Reset THEN
-	IF fbMachine.Reset() THEN
-		Reset := FALSE;
-	END_IF
-END_IF
-
-IF Init AND Stop THEN
-	IF fbMachine.Stop() THEN
-		Stop := FALSE;
-	END_IF
-END_IF
-
-IF Init AND Start THEN
-	IF fbMachine.Start() THEN
-		Start := FALSE;
-	END_IF
-END_IF]]></ST>
+ManualMotion();]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
