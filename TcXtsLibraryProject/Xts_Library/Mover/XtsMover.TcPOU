@@ -34,6 +34,7 @@ VAR
 	_Jerk : LREAL;
 	_DistanceDrivenInMM : LREAL;
 	_AvoidingCollision: BOOL;
+	_Mover1 : BOOL;
 	myController: Tc3_XTS_Utility.I_McXtsMoverController;
 END_VAR
 VAR CONSTANT
@@ -413,6 +414,7 @@ END_IF
 myController := _ipTcIoXtsMover.MoverController;
 myControllerOid := _ipTcIoXtsMover.GetMoverControllerOid();
 MyId := _ipTcIoXtsMover.P_AxisId;
+_Mover1 := _ipTcIoXtsMover.GetIsMover1();
 _CurrentTrack := MyTracks[MoversActiveTrack - 1];
 Initialised := TRUE;]]></ST>
       </Implementation>
@@ -577,16 +579,6 @@ IF MoveVelocity <= 0.0 THEN
 END_IF
 IF Gap <= 50.0 THEN
 	MoveTo := -4;
-	RETURN;
-END_IF
-
-IF NonModuloMove AND_THEN ( RequiredPosition < _MyNCData.ActPos + InPositionToleranceForMoveChecks AND RequiredPosition > _MyNCData.ActPos - InPositionToleranceForMoveChecks) THEN
-	MoveTo := -5;
-	RETURN;
-END_IF
-
-IF NOT NonModuloMove AND_THEN ( RequiredPosition < _stTmsActPositions.fTrackPosition + InPositionToleranceForMoveChecks AND RequiredPosition > _stTmsActPositions.fTrackPosition - InPositionToleranceForMoveChecks) THEN
-	MoveTo := -6;
 	RETURN;
 END_IF
 
