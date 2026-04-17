@@ -14,9 +14,9 @@ VAR
 	XtsIoEnvInitialiseState : XtsHardwareInitialisation;
 	MyPartCount: UDINT;
 	MyTrackCount: UDINT;
-	bMoverIdDetectionActive: BOOL;
-	bMoverIdDetectionError: BOOL;
-	bMoverIdDetected: BOOL;
+	MoverIdDetectionState: MoverIdDetectionStateEnum;
+	MoverIdDetectionError: BOOL;
+	MoverIdDetected: BOOL;
 	_MyXts : INT := 1;
 	_MyName : STRING;
 	_isInitialised: BOOL;
@@ -541,7 +541,7 @@ END_VAR
 	SetMoverNumberForDetection := -1;
 	RETURN;
 END_IF
-IF NumberOfMovers > _MyXpu.GetMoverCount() THEN
+IF NumberOfMovers > _MyXpu.P_MoverCount THEN
 	SetMoverNumberForDetection := -2;
 	RETURN;
 END_IF
@@ -568,16 +568,16 @@ _MyXpu.TriggerDetection();
 VAR_INPUT
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[bMoverIdDetectionError 	:= _MyXpu.GetHasMoverIdDetectionError();
-bMoverIdDetected 	:= _MyXpu.GetIsMoverIdDetectionValid();
-bMoverIdDetectionActive	:= _MyXpu.GetIsMoverIdDetectionActive();
+        <ST><![CDATA[MoverIdDetectionError 	:= MoverIdDetectionState = MoverIdDetectionStateEnum.Error;
+MoverIdDetected 	:= MoverIdDetectionState = MoverIdDetectionStateEnum.Valid;
+MoverIdDetectionState	:= _MyXpu.GetMoverIdDetectionState();
 
 IF _MyXpu.GetMoverIdDetectionMode() = MoverIdDetectionMode.Standard THEN
 	TriggerMoverIDDetection := -1;
 	RETURN;
 END_IF
 // 
-IF bMoverIdDetectionActive THEN
+IF MoverIdDetectionState = MoverIdDetectionStateEnum.Running THEN
 	TriggerMoverIDDetection := -2;
 	RETURN;
 END_IF
