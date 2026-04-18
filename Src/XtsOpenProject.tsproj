@@ -7908,7 +7908,7 @@
 										<Name>Control</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>1</AreaNo>
-										<ByteOffs>72</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -7916,91 +7916,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>74</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>76</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>78</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>80</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>82</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>84</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>86</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>88</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>90</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>92</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>94</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>96</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>98</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>100</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>102</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -8008,7 +8008,7 @@
 										<Name>Status</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>0</AreaNo>
-										<ByteOffs>72</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -8016,91 +8016,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>74</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>76</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>78</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>80</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>82</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>84</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>86</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>88</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>90</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>92</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>94</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>96</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>98</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>100</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>102</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -8109,193 +8109,193 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>106</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>108</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>110</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>112</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>114</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>116</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>118</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>120</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>122</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>124</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>126</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>128</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>130</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>132</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>134</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="15">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>136</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="16">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>138</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="17">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>140</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="18">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>142</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="19">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>144</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="20">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>146</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="21">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>148</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="22">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>150</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="23">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>152</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="24">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>154</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="25">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>156</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="26">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>158</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="27">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>160</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="28">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>162</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="29">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>164</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="30">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>166</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="31">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>168</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -9177,7 +9177,7 @@
 										<Name>Control</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>1</AreaNo>
-										<ByteOffs>170</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -9185,91 +9185,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>172</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>174</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>176</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>178</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>180</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>182</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>184</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>186</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>188</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>190</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>192</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>194</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>196</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>198</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>200</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -9277,7 +9277,7 @@
 										<Name>Status</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>0</AreaNo>
-										<ByteOffs>170</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -9285,91 +9285,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>172</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>174</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>176</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>178</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>180</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>182</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>184</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>186</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>188</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>190</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>192</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>194</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>196</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>198</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>200</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -9378,193 +9378,193 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>204</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>206</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>208</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>210</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>212</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>214</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>216</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>218</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>220</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>222</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>224</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>226</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>228</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>230</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>232</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="15">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>234</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="16">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>236</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="17">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>238</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="18">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>240</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="19">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>242</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="20">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>244</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="21">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>246</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="22">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>248</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="23">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>250</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="24">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>252</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="25">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>254</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="26">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>256</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="27">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>258</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="28">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>260</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="29">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>262</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="30">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>264</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="31">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>266</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -10446,7 +10446,7 @@
 										<Name>Control</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>1</AreaNo>
-										<ByteOffs>268</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -10454,91 +10454,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>270</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>272</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>274</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>276</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>278</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>280</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>282</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>284</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>286</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>288</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>290</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>292</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>294</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>296</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>298</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -10546,7 +10546,7 @@
 										<Name>Status</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>0</AreaNo>
-										<ByteOffs>268</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -10554,91 +10554,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>270</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>272</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>274</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>276</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>278</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>280</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>282</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>284</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>286</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>288</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>290</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>292</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>294</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>296</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>298</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -10647,193 +10647,193 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>302</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>304</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>306</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>308</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>310</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>312</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>314</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>316</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>318</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>320</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>322</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>324</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>326</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>328</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>330</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="15">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>332</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="16">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>334</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="17">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>336</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="18">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>338</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="19">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>340</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="20">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>342</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="21">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>344</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="22">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>346</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="23">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>348</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="24">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>350</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="25">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>352</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="26">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>354</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="27">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>356</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="28">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>358</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="29">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>360</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="30">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>362</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="31">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>364</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -11715,7 +11715,7 @@
 										<Name>Control</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>1</AreaNo>
-										<ByteOffs>366</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -11723,91 +11723,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>368</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>370</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>372</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>374</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>376</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>378</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>380</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>382</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>384</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>386</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>388</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>390</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>392</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>394</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>396</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -11815,7 +11815,7 @@
 										<Name>Status</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>0</AreaNo>
-										<ByteOffs>366</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -11823,91 +11823,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>368</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>370</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>372</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>374</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>376</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>378</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>380</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>382</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>384</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>386</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>388</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>390</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>392</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>394</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>396</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -11916,193 +11916,193 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>400</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>402</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>404</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>406</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>408</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>410</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>412</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>414</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>416</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>418</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>420</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>422</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>424</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>426</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>428</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="15">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>430</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="16">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>432</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="17">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>434</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="18">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>436</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="19">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>438</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="20">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>440</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="21">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>442</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="22">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>444</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="23">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>446</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="24">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>448</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="25">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>450</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="26">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>452</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="27">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>454</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="28">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>456</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="29">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>458</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="30">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>460</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="31">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>462</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -12984,7 +12984,7 @@
 										<Name>Control</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>1</AreaNo>
-										<ByteOffs>464</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -12992,91 +12992,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>466</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>468</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>470</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>472</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>474</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>476</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>478</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>480</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>482</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>484</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>486</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>488</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>490</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>492</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>494</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -13084,7 +13084,7 @@
 										<Name>Status</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>0</AreaNo>
-										<ByteOffs>464</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -13092,91 +13092,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>466</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>468</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>470</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>472</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>474</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>476</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>478</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>480</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>482</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>484</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>486</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>488</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>490</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>492</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>494</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -13185,193 +13185,193 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>498</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>500</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>502</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>504</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>506</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>508</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>510</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>512</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>514</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>516</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>518</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>520</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>522</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>524</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>526</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="15">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>528</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="16">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>530</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="17">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>532</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="18">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>534</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="19">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>536</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="20">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>538</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="21">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>540</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="22">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>542</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="23">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>544</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="24">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>546</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="25">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>548</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="26">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>550</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="27">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>552</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="28">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>554</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="29">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>556</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="30">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>558</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="31">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>560</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -14253,7 +14253,7 @@
 										<Name>Control</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>1</AreaNo>
-										<ByteOffs>562</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -14261,91 +14261,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>564</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>566</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>568</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>570</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>572</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>574</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>576</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>578</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>580</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>582</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>584</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>586</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>588</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>590</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>592</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -14353,7 +14353,7 @@
 										<Name>Status</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>0</AreaNo>
-										<ByteOffs>562</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -14361,91 +14361,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>564</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>566</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>568</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>570</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>572</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>574</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>576</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>578</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>580</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>582</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>584</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>586</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>588</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>590</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>592</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -14454,193 +14454,193 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>596</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>598</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>600</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>602</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>604</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>606</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>608</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>610</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>612</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>614</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>616</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>618</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>620</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>622</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>624</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="15">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>626</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="16">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>628</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="17">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>630</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="18">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>632</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="19">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>634</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="20">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>636</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="21">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>638</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="22">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>640</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="23">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>642</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="24">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>644</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="25">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>646</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="26">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>648</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="27">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>650</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="28">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>652</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="29">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>654</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="30">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>656</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="31">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>658</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -15522,7 +15522,7 @@
 										<Name>Control</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>1</AreaNo>
-										<ByteOffs>660</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -15530,91 +15530,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>662</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>664</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>666</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>668</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>670</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>672</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>674</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>676</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>678</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>680</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>682</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>684</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>686</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>688</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>690</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -15622,7 +15622,7 @@
 										<Name>Status</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>0</AreaNo>
-										<ByteOffs>660</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -15630,91 +15630,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>662</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>664</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>666</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>668</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>670</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>672</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>674</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>676</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>678</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>680</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>682</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>684</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>686</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>688</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>690</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -15723,193 +15723,193 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>694</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>696</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>698</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>700</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>702</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>704</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>706</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>708</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>710</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>712</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>714</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>716</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>718</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>720</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>722</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="15">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>724</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="16">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>726</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="17">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>728</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="18">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>730</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="19">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>732</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="20">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>734</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="21">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>736</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="22">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>738</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="23">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>740</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="24">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>742</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="25">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>744</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="26">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>746</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="27">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>748</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="28">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>750</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="29">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>752</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="30">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>754</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="31">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>756</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -16791,7 +16791,7 @@
 										<Name>Control</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>1</AreaNo>
-										<ByteOffs>758</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -16799,91 +16799,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>760</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>762</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>764</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>766</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>768</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>770</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>772</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>774</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>776</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>778</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>780</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>782</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>784</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>786</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>788</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -16891,7 +16891,7 @@
 										<Name>Status</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>0</AreaNo>
-										<ByteOffs>758</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -16899,91 +16899,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>760</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>762</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>764</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>766</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>768</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>770</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>772</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>774</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>776</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>778</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>780</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>782</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>784</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>786</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>788</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -16992,193 +16992,193 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>792</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>794</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>796</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>798</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>800</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>802</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>804</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>806</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>808</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>810</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>812</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>814</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>816</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>818</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>820</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="15">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>822</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="16">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>824</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="17">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>826</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="18">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>828</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="19">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>830</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="20">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>832</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="21">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>834</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="22">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>836</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="23">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>838</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="24">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>840</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="25">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>842</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="26">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>844</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="27">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>846</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="28">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>848</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="29">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>850</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="30">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>852</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="31">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>854</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -18060,7 +18060,7 @@
 										<Name>Control</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>1</AreaNo>
-										<ByteOffs>856</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -18068,91 +18068,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>858</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>860</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>862</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>864</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>866</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>868</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>870</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>872</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>874</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>876</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>878</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>880</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>882</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>884</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>886</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -18160,7 +18160,7 @@
 										<Name>Status</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>0</AreaNo>
-										<ByteOffs>856</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -18168,91 +18168,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>858</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>860</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>862</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>864</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>866</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>868</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>870</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>872</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>874</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>876</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>878</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>880</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>882</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>884</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>886</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -18261,193 +18261,193 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>890</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>892</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>894</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>896</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>898</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>900</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>902</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>904</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>906</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>908</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>910</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>912</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>914</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>916</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>918</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="15">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>920</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="16">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>922</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="17">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>924</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="18">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>926</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="19">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>928</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="20">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>930</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="21">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>932</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="22">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>934</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="23">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>936</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="24">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>938</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="25">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>940</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="26">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>942</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="27">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>944</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="28">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>946</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="29">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>948</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="30">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>950</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="31">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>952</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -19329,7 +19329,7 @@
 										<Name>Control</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>1</AreaNo>
-										<ByteOffs>954</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -19337,91 +19337,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>956</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>958</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>960</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>962</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>964</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>966</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>968</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>970</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>972</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>974</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>976</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>978</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>980</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>982</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>1</AreaNo>
-											<ByteOffs>984</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -19429,7 +19429,7 @@
 										<Name>Status</Name>
 										<OTCID>#x03040040</OTCID>
 										<AreaNo>0</AreaNo>
-										<ByteOffs>954</ByteOffs>
+										<ByteOffs>0</ByteOffs>
 										<ByteSize>2</ByteSize>
 									</Value>
 									<Value>
@@ -19437,91 +19437,91 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>956</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>958</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>960</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>962</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>964</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>966</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>968</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>970</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>972</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>974</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>976</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>978</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>980</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>982</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>984</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>
@@ -19530,193 +19530,193 @@
 										<Data ArrayIndex="0">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>988</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="1">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>990</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="2">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>992</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="3">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>994</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="4">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>996</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="5">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>998</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="6">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1000</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="7">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1002</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="8">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1004</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="9">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1006</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="10">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1008</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="11">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1010</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="12">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1012</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="13">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1014</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="14">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1016</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="15">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1018</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="16">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1020</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="17">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1022</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="18">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1024</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="19">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1026</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="20">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1028</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="21">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1030</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="22">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1032</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="23">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1034</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="24">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1036</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="25">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1038</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="26">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1040</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="27">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1042</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="28">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1044</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="29">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1046</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="30">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1048</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 										<Data ArrayIndex="31">
 											<OTCID>#x03040040</OTCID>
 											<AreaNo>0</AreaNo>
-											<ByteOffs>1050</ByteOffs>
+											<ByteOffs>0</ByteOffs>
 											<ByteSize>2</ByteSize>
 										</Data>
 									</Value>

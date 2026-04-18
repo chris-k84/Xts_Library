@@ -40,14 +40,6 @@ Status.IsPartActive := _MyInterface.GetIsActive();
 Status.PartLength := _MyInterface.GetLength();
 Status.AllModuleSsInOP := _MyInterface.GetAreAllModulesInOp();
 
-IF HasError THEN
-	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-		tempErrorID := MyModules[i].GetLatestDiagMessage();
-		IF tempErrorID > CurrentErrorId THEN
-			CurrentErrorId := tempErrorID;
-		END_IF
-	END_FOR
-END_IF
 
 FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 	MyModules[i].Cycle();
@@ -191,7 +183,7 @@ END_VAR
         <ST><![CDATA[ResetPart := _MyInterface.TriggerReset();
 IF NOT InSim THEN
 	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-		MyModules[i].AckDiagMsgs();
+		MyModules[i].AcknowledgeMessages();
 	END_FOR
 END_IF	
 CurrentErrorId := 0;]]></ST>

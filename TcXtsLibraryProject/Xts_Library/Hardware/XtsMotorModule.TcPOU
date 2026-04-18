@@ -14,33 +14,30 @@ VAR
 	Module48Vdc: REAL;
 	ModuleState: Tc3_XTS_Utility.DriveState;
 	ModuleStatus: Tc3_XTS_Utility.CoeStatusInfo;
-	ErrorTrigger : R_TRIG;
-	ModuleError: Tc3_XTS_Utility.I_AT2xxxDiagHistory;
-	ReadDiagHistory: BOOL;
-	ModuleDiagMessages: ARRAY [1..25] OF Tc3_XTS_Utility.ST_DiagHistoryMsg;
-	NullMessage : ST_DiagHistoryMsg;
-	NewDiagMessageCount : UINT;
 	ModuleName: STRING;
 	MotorOid: OTCID;
 	SensorOid: OTCID;
 	_BTN: BTN;
+	_Infeed : BOOL;
+	DiagHistory: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxDiagMessagesPerModule] OF Tc3_XTS_Utility.DiagHistoryEntry;
+	EtherCATState: Tc3_XTS_Utility.EtherCatSlaveStateInfo;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="AckDiagMsgs" Id="{d8ef1bd0-5cfc-41d5-b153-4987f2146f4f}">
-      <Declaration><![CDATA[METHOD AckDiagMsgs : BOOL
+    <Method Name="AcknowledgeMessages" Id="{22451bbb-5ae0-42af-9e4d-a9e5962b9f38}">
+      <Declaration><![CDATA[METHOD AcknowledgeMessages : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF ModuleError = 0 THEN
+        <ST><![CDATA[IF _MyModuleIoInterface = 0 THEN
 	RETURN;
 END_IF
 
-ModuleError.AckAllMsgs := TRUE;
-]]></ST>
+AcknowledgeMessages := TRUE;
+_MyModuleIoInterface.TriggerAcknowledgeMessages();]]></ST>
       </Implementation>
     </Method>
     <Method Name="Cycle" Id="{1188f197-bbd0-4970-903a-af249f1ed9e0}">
@@ -67,31 +64,11 @@ Module24Vdc := _MyModuleIoInterface.GetAuxiliaryVoltage24V();
 Module48Vdc := _MyModuleIoInterface.GetDCLinkVoltage();
 ModuleState := _MyModuleIoInterface.GetDriveState();
 ModuleStatus := _MyModuleIoInterface.GetDriveStatusInfo();
+EtherCATState := _MyModuleIoInterface.GetDriveEtherCatSlaveStateInfo();
 
-IF ModuleError.UnackMsgsAvailable THEN
-	NewDiagMessageCount := ModuleError.UnackMsgCount;
-	FOR i := 1 TO 25 DO
-		ModuleDiagMessages[i] := NullMessage;
-	END_FOR
-	ModuleDiagMessages := ModuleError.DiagHistory.aDiagHistoryMsg;
-END_IF
-
-ErrorTrigger(CLK := ModuleState = DriveState.Fault OR ModuleState = DriveState.FaultReactionActive);
-IF ErrorTrigger.Q OR ReadDiagHistory THEN
-	ReadDiagHistory := TRUE;
-	if ModuleError.UpdateDiagHistory() THEN
-		ReadDiagHistory := FALSE;
-	END_IF
+IF _MyModuleIoInterface.GetHasActiveError() THEN
+	DiagHistory := _MyModuleIoInterface.GetLatestMessages();
 END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GetLatestDiagMessage" Id="{c5f72fde-7f4b-4c41-8777-bc94a2aa888f}">
-      <Declaration><![CDATA[METHOD GetLatestDiagMessage : UDINT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetLatestDiagMessage := ModuleDiagMessages[1].wDiagMessageCode;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{0d230f78-299f-458d-bcac-a537a1290197}">
@@ -107,9 +84,9 @@ END_IF
 
 MotorOid := _MyModuleIoInterface.GetMotorTerminalOid();
 SensorOid := _MyModuleIoInterface.GetSensorTerminalOid();
-ReadDiagHistory := TRUE;
 ModuleName := _MyModuleIoInterface.P_ObjectName;
 _BTN := _MyModuleIoInterface.GetDriveBTN();
+_Infeed := _MyModuleIoInterface.GetIsInfeed();
 _IsInitialised := TRUE;
 ]]></ST>
       </Implementation>

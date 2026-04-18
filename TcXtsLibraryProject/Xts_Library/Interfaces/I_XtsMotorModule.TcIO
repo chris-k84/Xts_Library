@@ -3,14 +3,8 @@
   <Itf Name="I_XtsMotorModule" Id="{3515393f-36cc-43f5-8d97-3f2cabdfbcb7}">
     <Declaration><![CDATA[INTERFACE I_XtsMotorModule
 ]]></Declaration>
-    <Method Name="AckDiagMsgs" Id="{4039414c-360b-4201-9083-a896e2d638ce}">
-      <Declaration><![CDATA[METHOD AckDiagMsgs : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="GetLatestDiagMessage" Id="{0a7a5c2e-a82d-4941-99f3-30960d9b7b93}">
-      <Declaration><![CDATA[METHOD GetLatestDiagMessage : UDINT
+    <Method Name="AcknowledgeMessages" Id="{e3c3ebb1-217b-47ed-9437-e65258d0035f}">
+      <Declaration><![CDATA[METHOD AcknowledgeMessages : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
