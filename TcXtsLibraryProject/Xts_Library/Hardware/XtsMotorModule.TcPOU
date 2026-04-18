@@ -21,7 +21,9 @@ VAR
 	NullMessage : ST_DiagHistoryMsg;
 	NewDiagMessageCount : UINT;
 	ModuleName: STRING;
-	DriveId: Tc3_XTS_Utility.ST_DriveOnlineIdentity;
+	MotorOid: OTCID;
+	SensorOid: OTCID;
+	_BTN: BTN;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -65,6 +67,7 @@ Module24Vdc := _MyModuleIoInterface.GetAuxiliaryVoltage24V();
 Module48Vdc := _MyModuleIoInterface.GetDCLinkVoltage();
 ModuleState := _MyModuleIoInterface.GetDriveState();
 ModuleStatus := _MyModuleIoInterface.GetDriveStatusInfo();
+
 IF ModuleError.UnackMsgsAvailable THEN
 	NewDiagMessageCount := ModuleError.UnackMsgCount;
 	FOR i := 1 TO 25 DO
@@ -102,10 +105,11 @@ END_VAR
 	RETURN;
 END_IF
 
-ModuleError := _MyModuleIoInterface.CoE.DiagHistoryData;
+MotorOid := _MyModuleIoInterface.GetMotorTerminalOid();
+SensorOid := _MyModuleIoInterface.GetSensorTerminalOid();
 ReadDiagHistory := TRUE;
 ModuleName := _MyModuleIoInterface.P_ObjectName;
-DriveId := _MyModuleIoInterface.GetDriveOnlineIdentity();
+_BTN := _MyModuleIoInterface.GetDriveBTN();
 _IsInitialised := TRUE;
 ]]></ST>
       </Implementation>

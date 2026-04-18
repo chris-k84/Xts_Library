@@ -29461,7 +29461,7 @@
 			<Project File="XtsControl.xti"/>
 		</Plc>
 		<Io>
-			<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="5.61.93.182.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="3" SimulationMode="true">
+			<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="5.61.93.182.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="3">
 				<Name>Device 1 (EtherCAT)</Name>
 				<AddressInfo>
 					<Ccat>
