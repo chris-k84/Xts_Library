@@ -432,6 +432,17 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="IsAMover1" Id="{028ba926-1842-41e8-aa1c-c4ef6eef97c2}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsAMover1 : BOOL]]></Declaration>
+      <Get Name="Get" Id="{4143db0b-f9d6-45f3-9ff5-3b331e0fc8b8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsAMover1 := _Mover1;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="IsAvoidingCollision" Id="{da7886a8-9c9c-4ae2-bbae-548351ceb9d3}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY IsAvoidingCollision : BOOL]]></Declaration>
       <Get Name="Get" Id="{07cfba67-3f84-4db0-a72d-fbe6f6b78e00}">
