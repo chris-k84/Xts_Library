@@ -75,10 +75,10 @@ IF DisabledTrigger.Q THEN
 END_IF
 
 HardwareError := _MyXtsHardware.AnyPartsInError;
-CAGroupError := ICollisionGroup.HasError();
+CAGroupError := ICollisionGroup.HasError;
 
 IF CAGroupError THEN
-	_ErrorID := ICollisionGroup.GetErrorCode();
+	_ErrorID := ICollisionGroup.ErrorCode;
 END_IF
 IF HardwareError THEN
 	_ErrorID := _MyXtsHardware.GetPartErrorCode();
@@ -187,7 +187,7 @@ DisableSequence.MyCollisionGroup := ICollisionGroup;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[HasError := ICollisionGroup.HasError() OR _MyXtsHardware.AnyPartsInError;]]></ST>
+          <ST><![CDATA[HasError := ICollisionGroup.HasError OR _MyXtsHardware.AnyPartsInError;]]></ST>
         </Implementation>
       </Get>
     </Property>

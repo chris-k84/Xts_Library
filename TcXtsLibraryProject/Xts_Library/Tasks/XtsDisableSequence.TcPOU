@@ -74,7 +74,7 @@ END_VAR]]></Declaration>
 		END_IF
 	
 	DisableState.Disable_Movers:
-		IF _caGroup.GetAxisCount() = 0 THEN
+		IF _caGroup.AxisCount = 0 THEN
 			FOR i := 0 TO (_registeredNumberOfMovers-1) DO
 				arrMovers[i].DisableMover();
 			END_FOR
