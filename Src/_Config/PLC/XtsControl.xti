@@ -1315,7 +1315,7 @@ and will return to Group State Standby when the situation permits.
 		</DataType>
 	</DataTypes>
 	<Project GUID="{6CE98D97-B85B-476D-91E3-37ABB0FAE03C}" Name="XtsControl" PrjFilePath="..\..\XtsControl\XtsControl.plcproj" TmcFilePath="..\..\XtsControl\XtsControl.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x0000" FileArchiveSettings="#x0000">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="1" TmcHash="{AA8A86C9-B75B-86A9-EE68-B699343F0527}" TmcPath="XtsControl\XtsControl.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="1" TmcHash="{3E1C0C9E-9AD3-52D2-3CC9-1E8864616C08}" TmcPath="XtsControl\XtsControl.tmc">
 			<Name>XtsControl Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="2" AreaNo="1">
@@ -1741,6 +1741,10 @@ and will return to Group State Standby when the situation permits.
 			<OwnerB Name="TINC^NC-Task 1^Axes^Mover Axis 8">
 				<Link VarA="PlcTask Inputs^ManualMotion.fbMachine.Movers[7].MyAxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
 				<Link VarA="PlcTask Outputs^ManualMotion.fbMachine.Movers[7].MyAxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1^Objects^Group1 (CA Group)">
+				<Link VarA="PlcTask Inputs^ManualMotion.fbMachine.systemCAGroup._caGroup.NcToPlc" VarB="Group Outputs^ToPLC"/>
+				<Link VarA="PlcTask Outputs^ManualMotion.fbMachine.systemCAGroup._caGroup.PlcToNc" VarB="Group Inputs^FromPLC"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>
