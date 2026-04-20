@@ -12,6 +12,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="AxisCount" Id="{a5c90290-77cc-4f48-9b6f-5a9162b91e28}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY AxisCount : UDINT]]></Declaration>
+      <Get Name="Get" Id="{ea8e9e75-8d55-40e9-a8b8-94e9484ee31a}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="CAGroupXtsIoEnvInterface" Id="{cd5d9462-f9cf-4d35-b22c-6eae8c9cec38}">
       <Declaration><![CDATA[PROPERTY CAGroupXtsIoEnvInterface : I_Mc2CaGroup]]></Declaration>
       <Get Name="Get" Id="{4b7a5dbd-2b80-4c96-b418-833e5507e708}">
@@ -33,18 +39,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="GetAxisCount" Id="{c1a4af34-8409-44b5-8d2c-3faa797a2cef}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD GetAxisCount : udint
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="GetErrorCode" Id="{9ff61907-b0e7-4a62-b286-504aef382954}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD GetErrorCode : UDINT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
+    <Property Name="ErrorCode" Id="{45e0d2f7-1cdd-4165-ae7f-f50369fa11b7}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ErrorCode : UDINT]]></Declaration>
+      <Get Name="Get" Id="{e1e19d43-f378-460b-b455-9c54804e6dfd}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="GroupRef" Id="{da70f768-e857-4f18-9014-1c57ab869df0}">
       <Declaration><![CDATA[PROPERTY GroupRef : reference to AXES_GROUP_REF]]></Declaration>
       <Get Name="Get" Id="{ff65d9fd-a0fb-4014-a5bd-11ea974f60f4}">
@@ -57,12 +57,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="HasError" Id="{aa92935b-8bf7-4f59-b6a9-3d39ad26e8d4}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD HasError : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
+    <Property Name="HasError" Id="{557f11a2-aaf0-4723-830e-c7d87858b60f}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
+      <Get Name="Get" Id="{ba4be547-d47a-41bc-9b1a-df5c5f0deff3}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="IsDisabled" Id="{d615efc1-92df-43ae-9bd1-e7a398601ddf}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY IsDisabled : BOOL]]></Declaration>
       <Get Name="Get" Id="{bc9ef1c8-c7b5-444d-ae03-89d190539ae0}">

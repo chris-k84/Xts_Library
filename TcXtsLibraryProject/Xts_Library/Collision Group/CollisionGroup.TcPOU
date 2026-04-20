@@ -66,6 +66,17 @@ FOR i := 0 TO MaxMovers DO
 END_FOR]]></ST>
       </Implementation>
     </Method>
+    <Property Name="AxisCount" Id="{b3e2bb0a-a069-4fe7-9ef2-930a2335fa2d}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY AxisCount : UDINT]]></Declaration>
+      <Get Name="Get" Id="{8a83eac8-ebc4-4ad4-a321-ce4de2a62c2a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[AxisCount := _caGroup.NcToPlc.Common.GroupAxesCount;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="CAGroupXtsIoEnvInterface" Id="{212be6c7-141f-4d0f-8757-6216cdee75b6}">
       <Declaration><![CDATA[PROPERTY CAGroupXtsIoEnvInterface : I_Mc2CaGroup]]></Declaration>
       <Get Name="Get" Id="{58823424-db7c-4e8e-8355-ea0d3f334737}">
@@ -145,24 +156,17 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetAxisCount" Id="{45b9081d-ba05-41c5-b1b6-c67859faca98}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD GetAxisCount : udint
-VAR_INPUT
+    <Property Name="ErrorCode" Id="{0223acc2-4094-4ae7-ad44-9e49d1f10cb6}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ErrorCode : UDINT]]></Declaration>
+      <Get Name="Get" Id="{d01acf5f-5766-4d06-b034-a3a6626d2977}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetAxisCount := _caGroup.NcToPlc.Common.GroupAxesCount;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GetErrorCode" Id="{008b6478-046b-4ac6-91ea-576d7ad92091}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD GetErrorCode : UDINT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetErrorCode := GroupErrorCode;]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[ErrorCode := GroupErrorCode;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="GroupRef" Id="{05d388ea-a899-4954-b35a-8298ecb26dd6}">
       <Declaration><![CDATA[PROPERTY GroupRef : reference to AXES_GROUP_REF]]></Declaration>
       <Get Name="Get" Id="{9960c5ab-7079-4a22-9f43-e4d1a1a5992b}">
@@ -185,15 +189,17 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="HasError" Id="{e1aaf2e2-0632-43ae-a244-955414f48a72}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD HasError : BOOL
-VAR_INPUT
+    <Property Name="HasError" Id="{75b1333d-dd26-4f58-89b1-cf0451e8e0c2}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
+      <Get Name="Get" Id="{faa780fa-6ea0-4c20-937a-c759ac59f530}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[HasError := ReadGroupStatus.GroupErrorStop;]]></ST>
-      </Implementation>
-    </Method>
+        <Implementation>
+          <ST><![CDATA[HasError := ReadGroupStatus.GroupErrorStop OR ReadGroupStatus.GroupNotReady;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="IsDisabled" Id="{424ba43e-5002-4522-bd9e-84372637a5ce}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY IsDisabled : BOOL]]></Declaration>
       <Get Name="Get" Id="{be766286-f53f-468f-9efd-009a74b6d9d7}">
