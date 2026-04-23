@@ -25,7 +25,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(testDisableGrp.Execute());
-	testDisableGrp.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -61,7 +60,6 @@ END_VAR
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testDisableGrp.Execute();
 	Actual := FAILED(testDisableGrp.Execute());
-	testDisableGrp.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -77,7 +75,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(testDisableGrp.Execute());
-	testDisableGrp.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
