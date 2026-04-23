@@ -32,6 +32,16 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="ClearAxes" Id="{d0b8cf69-4f60-412b-a5c0-b6581608c611}">
+      <Declaration><![CDATA[METHOD ClearAxes : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_MasterAxis := 0;
+_SlaveAxis := 0;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Cycle" Id="{63d39597-d1df-4364-9e4b-a587d0a782e8}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR_INPUT
@@ -139,14 +149,14 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="MyGearMaster" Id="{a46ef8fb-4e90-4897-9dcd-a04c2dd2e88d}">
-      <Declaration><![CDATA[PROPERTY MyGearMaster : I_XtsMover]]></Declaration>
+    <Property Name="MasterAxis" Id="{a46ef8fb-4e90-4897-9dcd-a04c2dd2e88d}">
+      <Declaration><![CDATA[PROPERTY MasterAxis : I_XtsMover]]></Declaration>
       <Get Name="Get" Id="{e800e4fe-3c89-421e-9396-ebf9ce3426e8}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MyGearMaster := _MasterAxis;]]></ST>
+          <ST><![CDATA[MasterAxis := _MasterAxis;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{8696c54d-0b3c-4ca7-832b-6895b239a418}">
@@ -154,7 +164,10 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_MasterAxis := MyGearMaster;]]></ST>
+          <ST><![CDATA[IF MasterAxis <> 0 THEN
+	_MasterAxis := MasterAxis;
+END_IF
+]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -204,7 +217,10 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_SlaveAxis := SlaveAxis;]]></ST>
+          <ST><![CDATA[IF SlaveAxis <> 0 THEN
+	_SlaveAxis := SlaveAxis;
+END_IF
+]]></ST>
         </Implementation>
       </Set>
     </Property>
