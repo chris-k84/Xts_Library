@@ -80,11 +80,17 @@ END_VAR
       <Declaration><![CDATA[METHOD Execute : HRESULT
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT groupEnable.Execute THEN
-	groupEnable.Execute := TRUE;
-ELSE
+        <ST><![CDATA[IF groupEnable.Execute THEN
 	Execute := -1;
-END_IF]]></ST>
+	RETURN;
+END_IF
+
+IF _caGroup = 0 THEN
+	Execute := -2;
+	RETURN;
+END_IF
+
+groupEnable.Execute := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyCollisionGroup" Id="{4ec7cc23-7094-408b-87af-591e7c9596ca}">
@@ -102,7 +108,10 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_caGroup := MyCollisionGroup;]]></ST>
+          <ST><![CDATA[IF MyCollisionGroup <> 0 THEN
+	_caGroup := MyCollisionGroup;
+END_IF
+]]></ST>
         </Implementation>
       </Set>
     </Property>
