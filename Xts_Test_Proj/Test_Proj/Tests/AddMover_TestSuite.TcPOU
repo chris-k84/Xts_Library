@@ -3,22 +3,24 @@
   <POU Name="AddMover_TestSuite" Id="{e6d2eae2-d6b8-40f3-b93b-ee6358707c5b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK AddMover_TestSuite
 VAR
-	stubCAGroup : I_CollisionGroup;
-	stubAxis : XtsMover;
-	stubAxis1 : XtsMover;
-	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\AddMover_Tests.xml') := (TestSuiteName := 'AddMOver Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[TaskAcceptsMover_Test();
+TaskAcceptsValidCAGroup();
 TaskRejectsCyclewithNoCAGroup_Test();
 TaskRejectsInvalidMover_Test();
-TaskRejectsDuplicateCommand_Test();]]></ST>
+TaskRejectsDuplicateCommand_Test();
+TaskRejectsInvalidCAGroup();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsMover_Test" Id="{76d622a8-3592-402c-963b-8fe6effd36e5}">
       <Declaration><![CDATA[METHOD TaskAcceptsMover_Test
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	stubAxis : XtsMover;
+	stubAxis1 : XtsMover;
+	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -26,28 +28,52 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(testMoverToGrp.AddMover(stubAxis));
-	testMoverToGrp.Abort();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskAcceptsValidCAGroup" Id="{3c10fd1e-0467-4752-98d7-57c24a691c09}">
+      <Declaration><![CDATA[METHOD TaskAcceptsValidCAGroup
+VAR
+	stubCAGroup : CollisionGroup;
+	istuibCAGroup : I_CollisionGroup := stubCAGroup;
+	testMoverToGrp : AddMoverToGroupTask;
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testMoverToGrp.MyCollisionGroup := stubCAGroup;
+	Actual := testMoverToGrp.MyCollisionGroup = istuibCAGroup;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="TaskRejectsCyclewithNoCAGroup_Test" Id="{67079034-a882-4395-b22e-5f8c5fbf43fc}">
       <Declaration><![CDATA[METHOD TaskRejectsCyclewithNoCAGroup_Test
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	stubAxis : XtsMover;
+	stubAxis1 : XtsMover;
+	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(testMoverToGrp.Cycle());
-	testMoverToGrp.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="TaskRejectsDuplicateCommand_Test" Id="{caf75f25-819a-48cc-a5c7-cd789f30bab6}">
       <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Test
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	stubAxis : XtsMover;
+	stubAxis1 : XtsMover;
+	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
@@ -55,14 +81,35 @@ END_VAR]]></Declaration>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testMoverToGrp.AddMover(stubAxis);
 	Actual := FAILED(testMoverToGrp.AddMover(stubAxis1));
-	testMoverToGrp.Abort();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsInvalidCAGroup" Id="{416b9f46-b726-406d-ae68-ebe97a7a40e7}">
+      <Declaration><![CDATA[METHOD TaskRejectsInvalidCAGroup
+VAR
+	stubCAGroup : CollisionGroup;
+	iStubCAGroup : I_CollisionGroup := stubCAGroup;
+	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testMoverToGrp.MyCollisionGroup := 16#0;
+	Actual := testMoverToGrp.MyCollisionGroup = iStubCAGroup;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="TaskRejectsInvalidMover_Test" Id="{e3b9e3da-2293-4563-b5f0-6f0df1b14381}">
       <Declaration><![CDATA[METHOD TaskRejectsInvalidMover_Test
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	stubAxis : XtsMover;
+	stubAxis1 : XtsMover;
+	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -70,7 +117,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(testMoverToGrp.AddMover(16#0));
-	testMoverToGrp.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
