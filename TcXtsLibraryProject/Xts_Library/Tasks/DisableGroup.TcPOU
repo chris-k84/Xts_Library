@@ -84,6 +84,11 @@ END_VAR
 	Execute := -1;
 	RETURN;
 END_IF
+
+IF _caGroup = 0 THEN
+	Execute := -2;
+	RETURN;
+END_IF
 groupDisable.Execute := TRUE;]]></ST>
       </Implementation>
     </Method>
@@ -102,7 +107,9 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_caGroup := MyCollisionGroup;]]></ST>
+          <ST><![CDATA[IF MyCollisionGroup <> 0 THEN
+	_caGroup := MyCollisionGroup;
+END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>
