@@ -3,18 +3,21 @@
   <POU Name="DisableGroupTask_TestSuite" Id="{408f9e89-352c-467f-9f88-651a03342266}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK DisableGroupTask_TestSuite
 VAR
-	stubCAGroup : I_CollisionGroup;
-	testDisableGrp : DisableGroup := (MyCollisionGroup := stubCAGroup);
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\DisableGroup_Tests.xml') := (TestSuiteName := 'DisableGroup Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[TaskAcceptsCommand_Test();
-TaskRejectsDuplicateCommand_test();]]></ST>
+TaskRejectsDuplicateCommand_test();
+TaskAcceptsValidCAGroup();
+TaskRejectsExecuteWithNoCAGroup_Test();
+TaskRejectsInvalidCAGroup();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsCommand_Test" Id="{2f19c452-382f-4f73-9347-4d3d1fb24efb}">
       <Declaration><![CDATA[METHOD TaskAcceptsCommand_Test
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	testDisableGrp : DisableGroup := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -27,9 +30,29 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="TaskAcceptsValidCAGroup" Id="{87defde3-5349-43fa-9862-fb8563ea554f}">
+      <Declaration><![CDATA[METHOD TaskAcceptsValidCAGroup
+VAR
+	stubCAGroup : CollisionGroup;
+	istuibCAGroup : I_CollisionGroup := stubCAGroup;
+	testDisableGrp : DisableGroup := (MyCollisionGroup := stubCAGroup);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testDisableGrp.MyCollisionGroup := stubCAGroup;
+	Actual := testDisableGrp.MyCollisionGroup = istuibCAGroup;
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="TaskRejectsDuplicateCommand_test" Id="{e16752d3-6aa1-4e8c-94cf-e7f91998e657}">
       <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_test
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	testDisableGrp : DisableGroup := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -39,6 +62,40 @@ END_VAR
 	testDisableGrp.Execute();
 	Actual := FAILED(testDisableGrp.Execute());
 	testDisableGrp.Abort();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsExecuteWithNoCAGroup_Test" Id="{074498f0-77cd-499c-8ca0-4825d67d5d2b}">
+      <Declaration><![CDATA[METHOD TaskRejectsExecuteWithNoCAGroup_Test
+VAR
+	testDisableGrp : DisableGroup ;
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(testDisableGrp.Execute());
+	testDisableGrp.Abort();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsInvalidCAGroup" Id="{b660fc48-6430-4c51-a2cb-f51c29cee9b7}">
+      <Declaration><![CDATA[METHOD TaskRejectsInvalidCAGroup
+VAR
+	stubCAGroup : CollisionGroup;
+	iStubCAGroup : I_CollisionGroup := stubCAGroup;
+	testDisableGrp : DisableGroup := (MyCollisionGroup := stubCAGroup);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testDisableGrp.MyCollisionGroup := 16#0;
+	Actual := testDisableGrp.MyCollisionGroup = iStubCAGroup;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
