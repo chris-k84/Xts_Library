@@ -164,7 +164,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[IF MasterAxis <> 0 THEN
+          <ST><![CDATA[IF (MasterAxis <> 0) AND (MasterAxis <> _SlaveAxis)  THEN
 	_MasterAxis := MasterAxis;
 END_IF
 ]]></ST>
@@ -217,7 +217,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[IF SlaveAxis <> 0 THEN
+          <ST><![CDATA[IF (SlaveAxis <> 0) AND (SlaveAxis <> _MasterAxis) THEN
 	_SlaveAxis := SlaveAxis;
 END_IF
 ]]></ST>
