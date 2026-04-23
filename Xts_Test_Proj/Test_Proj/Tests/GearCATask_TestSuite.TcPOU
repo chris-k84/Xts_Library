@@ -17,7 +17,9 @@ TaskRejectGearwithNoMasterRefs_Test();
 TaskRejectsDuplicateGearIn_Test();
 TaskRejectsNullMasterAxis_Test();
 TaskRejectsNullSlaveAxis_Test();
-TaskCorrectlyClearsAxes_Test();]]></ST>
+TaskCorrectlyClearsAxes_Test();
+TaskRejectsMasterSameAsSlave_Test();
+TaskRejectsSlaveSameAsMaster_Test();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsGearCommand_Test" Id="{acd9c547-0c6e-4db9-bf91-fa3e2f9bc389}">
       <Declaration><![CDATA[METHOD TaskAcceptsGearCommand_Test
@@ -169,6 +171,24 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="TaskRejectsMasterSameAsSlave_Test" Id="{30593857-c161-4d9d-8a66-202bfd14e491}">
+      <Declaration><![CDATA[METHOD TaskRejectsMasterSameAsSlave_Test
+VAR
+	testAxis : XtsMover;
+	iTestSlave : I_XtsMover := testAxis;
+	testGearTask : GearCATask := (slaveAxis := testAxis);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testGearTask.MasterAxis := testAxis;
+	Actual := testGearTask.MasterAxis = 0;
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="TaskRejectsNullMasterAxis_Test" Id="{594104a9-e481-4ea4-a346-7e2881409eed}">
       <Declaration><![CDATA[METHOD TaskRejectsNullMasterAxis_Test
 VAR
@@ -201,6 +221,24 @@ END_VAR
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testGearTask.SlaveAxis := 0;
 	Actual := testGearTask.SlaveAxis = iTestSlave;
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsSlaveSameAsMaster_Test" Id="{e89b6cb1-bd72-4a2c-8070-36d5c3b2ebe1}">
+      <Declaration><![CDATA[METHOD TaskRejectsSlaveSameAsMaster_Test
+VAR
+	testAxis : XtsMover;
+	iTestAxis : I_XtsMover := testAxis;
+	testGearTask : GearCATask := (MasterAxis := testAxis);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testGearTask.SlaveAxis := testAxis;
+	Actual := testGearTask.SlaveAxis = 0;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
