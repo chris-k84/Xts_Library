@@ -1315,7 +1315,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{9D834261-4541-48F3-87B7-1F0DD96DA306}" Name="Test_Proj" PrjFilePath="..\..\Test_Proj\Test_Proj.plcproj" TmcFilePath="..\..\Test_Proj\Test_Proj.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{0541B3D9-2D97-8931-C37E-B8EA324FE9BE}" TmcPath="Test_Proj\Test_Proj.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{D135ACEC-3EC1-A016-4A7D-8148654C72C1}" TmcPath="Test_Proj\Test_Proj.tmc">
 			<Name>Test_Proj Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="2" AreaNo="1">
@@ -1342,14 +1342,6 @@ External Setpoint Generation:
 				</Var>
 				<Var>
 					<Name>MAIN.HaltMoverTestSuite.stubAxis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>MAIN.GearCATestSuite.testMaster.MyAxisRef.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>MAIN.GearCATestSuite.testAxis.MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
@@ -1389,14 +1381,6 @@ External Setpoint Generation:
 				</Var>
 				<Var>
 					<Name>MAIN.HaltMoverTestSuite.stubAxis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>MAIN.GearCATestSuite.testMaster.MyAxisRef.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>MAIN.GearCATestSuite.testAxis.MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
