@@ -60,6 +60,7 @@ END_VAR
 	Cycle := -1;
 	RETURN;
 END_IF
+
 haltMoverCA(Axis := _Axis);
 _Done := haltMoverCA.Done OR _Done;
 _Error := haltMoverCA.Error OR _Error;

@@ -203,6 +203,7 @@ IF Velocity <= 0.0 THEN
 	MoveTo := -3;
 	RETURN;
 END_IF
+
 moveAbs.Position := Position;
 moveAbs.Velocity := Velocity;
 moveAbs.Direction := Direction;

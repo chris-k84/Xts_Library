@@ -9,7 +9,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[TaskRejectsCommandWithNoAxisRef_Testy();
+      <ST><![CDATA[TaskRejectsCommandWithNoAxisRef_Test();
 TaskRejectsDuplicateCommand_Test();
 TaskWontCycleWithoutAxisRef_Test();
 TaskAcceptsCommand_Test();
@@ -31,8 +31,8 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TaskRejectsCommandWithNoAxisRef_Testy" Id="{78fc3f65-b7dc-45a5-8cf9-915543da9eb3}">
-      <Declaration><![CDATA[METHOD TaskRejectsCommandWithNoAxisRef_Testy
+    <Method Name="TaskRejectsCommandWithNoAxisRef_Test" Id="{78fc3f65-b7dc-45a5-8cf9-915543da9eb3}">
+      <Declaration><![CDATA[METHOD TaskRejectsCommandWithNoAxisRef_Test
 VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;

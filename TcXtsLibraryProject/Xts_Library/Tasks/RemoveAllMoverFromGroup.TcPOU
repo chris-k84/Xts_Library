@@ -43,6 +43,7 @@ END_VAR
 	Cycle := -1;
 	RETURN;
 END_IF
+
 _Done := RemoveAllFromGrp.Done OR _Done;
 _Error := RemoveAllFromGrp.Error OR _Error;
 IF RemoveAllFromGrp.ErrorId <> 0 THEN
