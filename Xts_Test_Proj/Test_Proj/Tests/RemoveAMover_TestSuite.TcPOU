@@ -3,32 +3,51 @@
   <POU Name="RemoveAMover_TestSuite" Id="{073eca12-f7a7-4609-978a-c4fbddc5e48d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK RemoveAMover_TestSuite
 VAR
-	stubGroup : CollisionGroup;
-	testRemoveAMover : RemoveMoverFromGroup :=(MyCollisionGroup := stubGroup);
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\RemoveSingle_Tests.xml') := (TestSuiteName := 'RemoveSingle Test Suite');
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[TaskAcceptsRemoveCommand();
 TaskRejectsDuplicatecommand_Test();
-//TaskRejectsNullId_Test();]]></ST>
+TaskRejectsCycleWithNoGroup_Test();
+TaskRejectsExecuteWithNoGroup_Test();
+TaskRejectsInvalidCAGroup();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsRemoveCommand" Id="{9701816a-7347-4094-8354-4a80b2556129}">
       <Declaration><![CDATA[METHOD TaskAcceptsRemoveCommand
-VAR_INST
+VAR
+	stubGroup : CollisionGroup;
+	testRemoveAMover : RemoveMoverFromGroup :=(MyCollisionGroup := stubGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(testRemoveAMover.Execute(AxisID := UDINT_TO_IDENTINGROUP(2)));
-	testRemoveAMover.Abort();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsCycleWithNoGroup_Test" Id="{65ff5eec-b310-4399-b6c7-df2c2d9aab4b}">
+      <Declaration><![CDATA[METHOD TaskRejectsCycleWithNoGroup_Test
+VAR
+	stubGroup : CollisionGroup;
+	testRemoveAMover : RemoveMoverFromGroup :=(MyCollisionGroup := stubGroup);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := failed(testRemoveAMover.Cycle());
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="TaskRejectsDuplicatecommand_Test" Id="{b24cbb70-1da5-46eb-b97d-f92f9948b290}">
       <Declaration><![CDATA[METHOD TaskRejectsDuplicatecommand_Test
-VAR_INST
+VAR
+	stubGroup : CollisionGroup;
+	testRemoveAMover : RemoveMoverFromGroup :=(MyCollisionGroup := stubGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -37,25 +56,41 @@ END_VAR
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testRemoveAMover.Execute(AxisID := UDINT_TO_IDENTINGROUP(2));
 	Actual := FAILED(testRemoveAMover.Execute(AxisID := UDINT_TO_IDENTINGROUP(2)));
-	testRemoveAMover.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TaskRejectsNullId_Test" Id="{23111b36-4c44-4f8f-8541-3b561ab5ddd1}">
-      <Declaration><![CDATA[METHOD TaskRejectsNullId_Test
-VAR_INST
+    <Method Name="TaskRejectsExecuteWithNoGroup_Test" Id="{2bc3b776-9613-4a5b-bf0e-583ff32a2592}">
+      <Declaration><![CDATA[METHOD TaskRejectsExecuteWithNoGroup_Test
+VAR
+	testRemoveAMover : RemoveMoverFromGroup;
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[// IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-// 	Actual := FAILED(testRemoveAMover.Execute(AxisID := UDINT_TO_IDENTINGROUP(0)));
-// 	testRemoveAMover.Abort();
-// 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
-// END_IF
-////////////CANNOT DO THIS TEST As CANNOT COMPARE THE IDENT_IN_GROUP data type//////////////////]]></ST>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := failed(testRemoveAMover.Execute(AxisID := UDINT_TO_IDENTINGROUP(2)));
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsInvalidCAGroup" Id="{a95a7c96-c991-4b11-9d40-aa3626e3c936}">
+      <Declaration><![CDATA[METHOD TaskRejectsInvalidCAGroup
+VAR
+	stubGroup : CollisionGroup;
+	iStubCAGRoup : I_CollisionGroup := stubGroup;
+	testRemoveAMover : RemoveMoverFromGroup :=(MyCollisionGroup := stubGroup);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testRemoveAMover.MyCollisionGroup := 16#0;
+	Actual := testRemoveAMover.MyCollisionGroup = iStubCAGroup;
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
       </Implementation>
     </Method>
   </POU>
