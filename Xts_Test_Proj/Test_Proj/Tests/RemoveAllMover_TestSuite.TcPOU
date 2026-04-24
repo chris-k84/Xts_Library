@@ -32,8 +32,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsCyclicWithNoGroup_Test" Id="{eb085bbf-96a4-47f3-90b3-c371a73f522c}">
       <Declaration><![CDATA[METHOD TaskRejectsCyclicWithNoGroup_Test : BOOL
 VAR
-	stubGroup : CollisionGroup;
-	testRemoveAll : RemoveAllMoverFromGroup := (MyCollisionGroup := stubGroup);
+	testRemoveAll : RemoveAllMoverFromGroup;
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
