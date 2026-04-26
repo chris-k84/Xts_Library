@@ -3,18 +3,21 @@
   <POU Name="ResetGroupTast_TestSuite" Id="{caff8344-0c0a-437a-977b-d74e2757ce75}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ResetGroupTast_TestSuite
 VAR
-	stubCAGroup : I_CollisionGroup;
-	testResetGrp : ResetGroup:= (MyCollisionGroup := stubCAGroup);
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\ResetGroup_Tests.xml') := (TestSuiteName := 'ResetGroup Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[TaskAcceptsCommand_test();
-TaskRejectsDuplicateCommand_Test();]]></ST>
+TaskRejectsDuplicateCommand_Test();
+TaskRejectsCycleWithNoCAGroup_Test();
+TaskRejectsExecuteWithNoCAGroup_Test();
+TaskRejectsInvalidCAGroup();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsCommand_test" Id="{33819b9d-d6e9-4a11-93aa-6faaa56f06d1}">
       <Declaration><![CDATA[METHOD TaskAcceptsCommand_test
-VAR_INST
+VAR
+	stubCAGroup : I_CollisionGroup;
+	testResetGrp : ResetGroup:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -22,14 +25,30 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(testResetGrp.Execute());
-	testResetGrp.Abort();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsCycleWithNoCAGroup_Test" Id="{307f6efe-a2d1-491c-875e-9176bb018c1d}">
+      <Declaration><![CDATA[METHOD TaskRejectsCycleWithNoCAGroup_Test
+VAR
+	testResetGrp : ResetGroup;
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(testResetGrp.Cycle());
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="TaskRejectsDuplicateCommand_Test" Id="{1cbfb6a6-8030-48b4-9845-d88e05778f2a}">
       <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Test
-VAR_INST
+VAR
+	stubCAGroup : I_CollisionGroup;
+	testResetGrp : ResetGroup:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -38,7 +57,39 @@ END_VAR
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testResetGrp.Execute();
 	Actual := FAILED(testResetGrp.Execute());
-	testResetGrp.Abort();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsExecuteWithNoCAGroup_Test" Id="{accd8031-353c-49b0-baaa-c98a8143dead}">
+      <Declaration><![CDATA[METHOD TaskRejectsExecuteWithNoCAGroup_Test
+VAR
+	testResetGrp : ResetGroup;
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(testResetGrp.Execute());
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsInvalidCAGroup" Id="{412a97d1-c198-4a08-b6c9-0b185fbef295}">
+      <Declaration><![CDATA[METHOD TaskRejectsInvalidCAGroup
+VAR
+	stubGroup : CollisionGroup;
+	iStubCAGRoup : I_CollisionGroup := stubGroup;
+	testResetGrp : ResetGroup:= (MyCollisionGroup := stubGroup);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testResetGrp.MyCollisionGroup := 16#0;
+	Actual := testResetGrp.MyCollisionGroup = iStubCAGroup;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
