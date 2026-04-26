@@ -3,8 +3,6 @@
   <POU Name="StopGroupTask_TestSuite" Id="{99aef4ad-4fc7-41c6-a957-800e5b929308}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK StopGroupTask_TestSuite
 VAR
-	stubCAGroup : I_CollisionGroup;
-	testStopGrp : StopMoverGroup:= (MyCollisionGroup := stubCAGroup);
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\StopGroup_Tests.xml') := (TestSuiteName := 'StopGroup Test Suite');
 END_VAR
 ]]></Declaration>
@@ -14,11 +12,14 @@ TaskRejectsCommandWithNoRef_Test();
 TaskRejectsCycleWithNoRef_Test();
 TaskRejectsDuplicateCommand_Test();
 TaskRejectsZeroDecel_Test();
-TaskRejectsZeroJerk_Test();]]></ST>
+TaskRejectsZeroJerk_Test();
+TaskRejectsInvalidCAGroup();]]></ST>
     </Implementation>
     <Method Name="TaskAcceptsValidCommand_Test" Id="{bbbd6c90-0584-49fd-9b9a-b03e6807aed2}">
       <Declaration><![CDATA[METHOD TaskAcceptsValidCommand_Test
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	testStopGrp : StopMoverGroup:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -26,48 +27,45 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := SUCCEEDED(testStopGrp.Execute());
-	testStopGrp.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="TaskRejectsCommandWithNoRef_Test" Id="{d1ce67c8-b8c6-45a7-99fc-4bf33acd3be8}">
       <Declaration><![CDATA[METHOD TaskRejectsCommandWithNoRef_Test
-VAR_INST
+VAR
+	testStopGrp : StopMoverGroup;
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testStopGrp.MyCollisionGroup := 0;
-	Actual := SUCCEEDED(testStopGrp.Execute());
-	testStopGrp.MyCollisionGroup := stubCAGroup;
-	testStopGrp.Abort();
+	Actual := FAILED(testStopGrp.Execute());
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="TaskRejectsCycleWithNoRef_Test" Id="{ef2644e4-091e-4487-8a64-1b9096d6b7d5}">
       <Declaration><![CDATA[METHOD TaskRejectsCycleWithNoRef_Test
-VAR_INST
+VAR
+	testStopGrp : StopMoverGroup;
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testStopGrp.MyCollisionGroup := 0;
 	Actual := FAILED(testStopGrp.Cycle());
-	testStopGrp.MyCollisionGroup := stubCAGroup;
-	testStopGrp.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="TaskRejectsDuplicateCommand_Test" Id="{bffcdbff-9e58-4f9c-b472-3c027ffeccec}">
       <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Test
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	testStopGrp : StopMoverGroup:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -76,14 +74,33 @@ END_VAR
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testStopGrp.Execute();
 	Actual := FAILED(testStopGrp.Execute());
-	testStopGrp.Abort();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaskRejectsInvalidCAGroup" Id="{18fb45de-e16e-44a2-89fb-912d3460aea0}">
+      <Declaration><![CDATA[METHOD TaskRejectsInvalidCAGroup
+VAR
+	stubGroup : CollisionGroup;
+	iStubCAGRoup : I_CollisionGroup := stubGroup;
+	testStopGrp : StopMoverGroup:= (MyCollisionGroup := stubGroup);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testStopGrp.MyCollisionGroup := 16#0;
+	Actual := testStopGrp.MyCollisionGroup = iStubCAGroup;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="TaskRejectsZeroDecel_Test" Id="{2ad511e9-12d7-4d9d-9f2e-89b206f19ab8}">
       <Declaration><![CDATA[METHOD TaskRejectsZeroDecel_Test
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	testStopGrp : StopMoverGroup:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -100,7 +117,9 @@ END_IF]]></ST>
     </Method>
     <Method Name="TaskRejectsZeroJerk_Test" Id="{0cdab2f7-a911-4354-b921-151032733675}">
       <Declaration><![CDATA[METHOD TaskRejectsZeroJerk_Test
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	testStopGrp : StopMoverGroup:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
