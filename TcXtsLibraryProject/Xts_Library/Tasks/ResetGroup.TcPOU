@@ -82,10 +82,12 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF groupReset.Execute THEN
 	Execute := -1;
+	RETURN;
 END_IF
 
 IF _caGroup = 0 THEN
 	Execute := -2;
+	RETURN;
 END_IF
 
 groupReset.Execute := TRUE;]]></ST>
