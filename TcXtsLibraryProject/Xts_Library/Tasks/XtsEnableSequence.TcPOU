@@ -135,7 +135,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _Busy THEN
+        <ST><![CDATA[IF _registeredNumberOfMovers = 0 THEN
 	Enable := -1;
 	RETURN;
 END_IF
@@ -180,9 +180,22 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_caGroup := MyCollisionGroup;]]></ST>
+          <ST><![CDATA[IF MyCollisionGroup <> 0 THEN
+	_caGroup := MyCollisionGroup;
+END_IF]]></ST>
         </Implementation>
       </Set>
+    </Property>
+    <Property Name="RegisteredMoverNumber" Id="{c8bee2ee-ca4a-4835-99be-311639b86acb}">
+      <Declaration><![CDATA[PROPERTY RegisteredMoverNumber : INT]]></Declaration>
+      <Get Name="Get" Id="{a58b5109-c013-43aa-a8d9-172f8459e56c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[RegisteredMoverNumber := _registeredNumberOfMovers;]]></ST>
+        </Implementation>
+      </Get>
     </Property>
     <Method Name="RegisterMovers" Id="{330a136c-c434-49ce-bb82-6de99c18307c}">
       <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
@@ -190,7 +203,12 @@ VAR_INPUT
 	MyMover : I_XtsMover;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[arrMovers[_registeredNumberOfMovers] := MyMover;
+        <ST><![CDATA[IF MyMover = 0 THEN
+	RegisterMovers := -1;
+	RETURN;
+END_IF
+
+arrMovers[_registeredNumberOfMovers] := MyMover;
 _registeredNumberOfMovers := _registeredNumberOfMovers + 1;]]></ST>
       </Implementation>
     </Method>

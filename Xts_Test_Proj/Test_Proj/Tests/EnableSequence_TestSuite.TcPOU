@@ -3,20 +3,24 @@
   <POU Name="EnableSequence_TestSuite" Id="{0a7c423d-1ec1-40a1-84cd-1f7627cf2709}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK EnableSequence_TestSuite
 VAR
-	stubCAGroup : CollisionGroup;
-	EnableSequence : XtsEnableSequence := (MyCollisionGroup := stubCAGroup);
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\EnableSequence_Tests.xml') := (TestSuiteName := 'EnableSequence Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[SequenceAcceptsDiableCommand_Test();
-//SequenceRejectsCommandWithNoAxes_Test();
+      <ST><![CDATA[SequenceAcceptsEnableCommand_Test();
+SequenceRejectsCommandWithNoAxes_Test();
 SequenceRejectsCommandWithNoCAGroup_Test();
-SequenceRejectsDuplicateCommand_Test();]]></ST>
+SequenceRejectsDuplicateCommand_Test();
+SequenceAcceptsMover_Test();
+SequenceRejectsNullMoverRegister_Test();
+SequenceReportsCorrectMoverNumber_Test();]]></ST>
     </Implementation>
-    <Method Name="SequenceAcceptsDiableCommand_Test" Id="{d8f7a973-bbd5-4c8b-b462-c79ceb666984}">
-      <Declaration><![CDATA[METHOD SequenceAcceptsDiableCommand_Test : BOOL
-VAR_INST
+    <Method Name="SequenceAcceptsEnableCommand_Test" Id="{d8f7a973-bbd5-4c8b-b462-c79ceb666984}">
+      <Declaration><![CDATA[METHOD SequenceAcceptsEnableCommand_Test : BOOL
+VAR
+	stubCAGroup : CollisionGroup;
+	stubMover : XtsMover;
+	EnableSequence : XtsEnableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -24,15 +28,36 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	EnableSequence.RegisterMovers(stubMover);
 	Actual := SUCCEEDED(EnableSequence.Enable());
-	EnableSequence.Abort();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SequenceAcceptsMover_Test" Id="{e91a3164-80ca-4533-820c-a6b0c8f9e00c}">
+      <Declaration><![CDATA[METHOD SequenceAcceptsMover_Test : BOOL
+VAR
+	stubCAGroup : CollisionGroup;
+	stub_Mover : XtsMover;
+	EnableSequence : XtsEnableSequence := (MyCollisionGroup := stubCAGroup);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	EnableSequence.RegisterMovers(stub_Mover);
+	Actual := SUCCEEDED(EnableSequence.Enable());
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="SequenceRejectsCommandWithNoAxes_Test" Id="{9fde4aaf-da0d-421e-9b7a-9666ee182b4f}">
       <Declaration><![CDATA[METHOD SequenceRejectsCommandWithNoAxes_Test : BOOL
-VAR_INST
+VAR
+		stubCAGroup : CollisionGroup;
+	EnableSequence : XtsEnableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -40,31 +65,30 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	Actual := FAILED(EnableSequence.Enable());
-	EnableSequence.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="SequenceRejectsCommandWithNoCAGroup_Test" Id="{bb0bce4d-8922-4996-9551-55aafd4891a1}">
       <Declaration><![CDATA[METHOD SequenceRejectsCommandWithNoCAGroup_Test : BOOL
-VAR_INST
+VAR
+	EnableSequence : XtsEnableSequence;
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	EnableSequence.MyCollisionGroup := 0;
 	Actual := FAILED(EnableSequence.Enable());
-	EnableSequence.MyCollisionGroup := stubCAGroup;
-	EnableSequence.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="SequenceRejectsDuplicateCommand_Test" Id="{dfff0d2b-4c84-4d2f-bcd5-ddbfacfc030e}">
       <Declaration><![CDATA[METHOD SequenceRejectsDuplicateCommand_Test : BOOL
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	EnableSequence : XtsEnableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -74,7 +98,45 @@ END_VAR
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	EnableSequence.Enable();
 	Actual := FAILED(EnableSequence.Enable());
-	EnableSequence.Abort();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SequenceRejectsNullMoverRegister_Test" Id="{8a9fa3df-ea12-4bf8-957f-b81e6275d244}">
+      <Declaration><![CDATA[METHOD SequenceRejectsNullMoverRegister_Test
+VAR
+	stub_Mover : I_XtsMover;
+	EnableSequence : XtsEnableSequence;
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(EnableSequence.RegisterMovers(stub_Mover));
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SequenceReportsCorrectMoverNumber_Test" Id="{98aae470-b0db-41b9-8128-0a32e5302399}">
+      <Declaration><![CDATA[METHOD SequenceReportsCorrectMoverNumber_Test : BOOL
+VAR
+	stubCAGroup : CollisionGroup;
+	stub_Mover1 : stubMover;
+	stub_Mover2 : stubMover;
+	stub_Mover3 : stubMover;
+	EnableSequence : XtsEnableSequence := (MyCollisionGroup := stubCAGroup);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	EnableSequence.RegisterMovers(stub_Mover1);
+	EnableSequence.RegisterMovers(stub_Mover2);
+	EnableSequence.RegisterMovers(stub_Mover3);
+	Actual := EnableSequence.RegisteredMoverNumber = 3;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
