@@ -3,20 +3,24 @@
   <POU Name="DisableSequence_TestSuite" Id="{f559856d-01d4-4848-9917-85e528e26102}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK DisableSequence_TestSuite
 VAR
-	stubCAGroup : CollisionGroup;
-	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\DisableSeq_Tests.xml') := (TestSuiteName := 'DisableSequence Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[SequenceAcceptsDiableCommand_Test();
-//SequenceRejectsCommandWithNoAxes_Test();
+      <ST><![CDATA[SequenceAcceptsDisableCommand_Test();
+SequenceRejectsCommandWithNoAxes_Test();
 SequenceRejectsCommandWithNoCAGroup_Test();
-SequenceRejectsDuplicateCommand_Test();]]></ST>
+SequenceRejectsDuplicateCommand_Test();
+SequenceAcceptsMover_Test();
+SequenceRejectsNullMoverRegister_Test();
+SequenceReportsCorrectMoverNumber_Test();]]></ST>
     </Implementation>
-    <Method Name="SequenceAcceptsDiableCommand_Test" Id="{9968cbcb-1e07-4776-8222-2487796f2d34}">
-      <Declaration><![CDATA[METHOD SequenceAcceptsDiableCommand_Test : BOOL
-VAR_INST
+    <Method Name="SequenceAcceptsDisableCommand_Test" Id="{9968cbcb-1e07-4776-8222-2487796f2d34}">
+      <Declaration><![CDATA[METHOD SequenceAcceptsDisableCommand_Test : BOOL
+VAR
+	stubCAGroup : CollisionGroup;
+	stub_Mover : stubMover;
+	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -24,48 +28,68 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := SUCCEEDED(DisableSequence.RegisterMovers(stub_Mover));
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SequenceAcceptsMover_Test" Id="{b4618248-f0d0-4c5f-875c-2296c561c8f6}">
+      <Declaration><![CDATA[METHOD SequenceAcceptsMover_Test : BOOL
+VAR
+	stubCAGroup : CollisionGroup;
+	stub_Mover : stubMover;
+	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	DisableSequence.RegisterMovers(stub_Mover);
 	Actual := SUCCEEDED(DisableSequence.Disable());
-	DisableSequence.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="SequenceRejectsCommandWithNoAxes_Test" Id="{23a2eea3-b5fb-4474-bc7a-20d66dc6a2ed}">
       <Declaration><![CDATA[METHOD SequenceRejectsCommandWithNoAxes_Test : BOOL
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	DisableSequence.Disable();
 	Actual := FAILED(DisableSequence.Disable());
-	DisableSequence.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="SequenceRejectsCommandWithNoCAGroup_Test" Id="{d0d31a4d-e07f-4a4c-9dd5-b75eb64a2cab}">
       <Declaration><![CDATA[METHOD SequenceRejectsCommandWithNoCAGroup_Test : BOOL
-VAR_INST
+VAR
+	stub_Mover : stubMover;
+	DisableSequence : XtsDisableSequence;
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	DisableSequence.MyCollisionGroup := 0;
+	DisableSequence.RegisterMovers(stub_Mover);
 	Actual := FAILED(DisableSequence.Disable());
-	DisableSequence.MyCollisionGroup := stubCAGroup;
-	DisableSequence.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="SequenceRejectsDuplicateCommand_Test" Id="{8dc243ec-fddf-46dc-ad15-142d6952e617}">
       <Declaration><![CDATA[METHOD SequenceRejectsDuplicateCommand_Test : BOOL
-VAR_INST
+VAR
+	stubCAGroup : CollisionGroup;
+	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
@@ -75,7 +99,45 @@ END_VAR
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	DisableSequence.Disable();
 	Actual := FAILED(DisableSequence.Disable());
-	DisableSequence.Abort();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SequenceRejectsNullMoverRegister_Test" Id="{68970958-d2f6-4e5b-b69b-d3ab6e330d4c}">
+      <Declaration><![CDATA[METHOD SequenceRejectsNullMoverRegister_Test
+VAR
+	stub_Mover : I_XtsMover;
+	DisableSequence : XtsDisableSequence;
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(DisableSequence.RegisterMovers(stub_Mover));
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SequenceReportsCorrectMoverNumber_Test" Id="{038270fa-a665-4122-9a47-fc495276d17e}">
+      <Declaration><![CDATA[METHOD SequenceReportsCorrectMoverNumber_Test : BOOL
+VAR
+	stubCAGroup : CollisionGroup;
+	stub_Mover1 : stubMover;
+	stub_Mover2 : stubMover;
+	stub_Mover3 : stubMover;
+	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	DisableSequence.RegisterMovers(stub_Mover1);
+	DisableSequence.RegisterMovers(stub_Mover2);
+	DisableSequence.RegisterMovers(stub_Mover3);
+	Actual := DisableSequence.RegisteredMoverNumber = 3;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

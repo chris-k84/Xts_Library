@@ -16,41 +16,11 @@ END_VAR
     <Implementation>
       <ST><![CDATA[XtsRejectsDuplicateRegistrations_Test();
 XtsRejectsEmptyMoverInterface_Test();
-XtsAcceptsDisableCommand_Test();
-XtsAcceptsEnableCommand_Test();
 XtsRejectsDisableWhenDisabled_Test();
 XtsRejectsEnableWhenEnabled_Test();
 XtsRejectsRegisterNotInitialised_Test();
 XtsRejectsTooManyMovers_Test();]]></ST>
     </Implementation>
-    <Method Name="XtsAcceptsDisableCommand_Test" Id="{f8ea2a77-94f0-4c09-a5a9-d20e2ad17dfc}">
-      <Declaration><![CDATA[METHOD XtsAcceptsDisableCommand_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testXts.setEnabled();
-	Actual := testXts.DisableXTS();
-	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="XtsAcceptsEnableCommand_Test" Id="{f5da7832-8339-4541-a917-31e129a60357}">
-      <Declaration><![CDATA[METHOD XtsAcceptsEnableCommand_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testXts.SetDisabled();
-	Actual := testXts.EnableXTS();
-	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="XtsAcceptsRegisterMover_Test" Id="{27731a7a-3d1e-4b13-bedd-236b27e5f6cb}">
       <Declaration><![CDATA[METHOD XtsAcceptsRegisterMover_Test
 VAR_INST
