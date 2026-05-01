@@ -26,7 +26,9 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="AcknowledgeMessages" Id="{22451bbb-5ae0-42af-9e4d-a9e5962b9f38}">
+    <Folder Name="Commands" Id="{2c57c3e7-9e33-442c-b661-553dd998e7e1}" />
+    <Folder Name="Status" Id="{068e24b8-ffac-477a-847b-d306caa5617e}" />
+    <Method Name="AcknowledgeMessages" Id="{22451bbb-5ae0-42af-9e4d-a9e5962b9f38}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD AcknowledgeMessages : BOOL
 VAR_INPUT
 END_VAR
@@ -40,6 +42,46 @@ AcknowledgeMessages := TRUE;
 _MyModuleIoInterface.TriggerAcknowledgeMessages();]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Act24Vdc" Id="{f6c86bec-4292-4235-b61e-7c9d80a41ad3}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Act24Vdc : LREAL]]></Declaration>
+      <Get Name="Get" Id="{eba3fda3-f091-4c73-8154-7af21351cd1f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IF NOT InSim THEN
+	Act24Vdc := TO_LREAL(Module24Vdc);
+END_IF]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Act48Vdc" Id="{47f71546-4c7d-414d-8c93-4cd2c4d0b2af}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Act48Vdc : LREAL]]></Declaration>
+      <Get Name="Get" Id="{0b052b59-11b8-4a64-9d85-41c4c123b87d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IF NOT InSim THEN
+	Act48Vdc := Module48Vdc;
+END_IF]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ControlVdcOK" Id="{2528651b-d48c-4c45-aa23-04cc6babc183}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ControlVdcOK : BOOL]]></Declaration>
+      <Get Name="Get" Id="{c497a289-f203-435a-9fe1-0c3e338da054}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ControlVdcOK := TRUE;
+IF (Module24Vdc < (Nominal24Vdc * 0.8)) OR (Module24Vdc > (Nominal24Vdc * 1.2)) THEN
+	ControlVdcOK := FALSE;
+END_IF]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Cycle" Id="{1188f197-bbd0-4970-903a-af249f1ed9e0}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR_INPUT
@@ -91,7 +133,7 @@ _IsInitialised := TRUE;
 ]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Initialised" Id="{5149f147-92a6-4662-be65-a10eccccf631}">
+    <Property Name="Initialised" Id="{5149f147-92a6-4662-be65-a10eccccf631}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
       <Get Name="Get" Id="{7ce6f34a-06d5-4124-9539-f315dce97e7b}">
         <Declaration><![CDATA[VAR
@@ -102,36 +144,20 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Is24VOK" Id="{9b08696d-e0e1-46f9-950f-7b12a84e7180}">
-      <Declaration><![CDATA[METHOD Is24VOK : HRESULT
-VAR_INPUT
+    <Property Name="MotorVdcOK" Id="{7e0a9c2a-7b16-4c93-896b-922544ce7154}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY MotorVdcOK : BOOL]]></Declaration>
+      <Get Name="Get" Id="{cc82d0c3-e4a9-4072-a811-8d3f6ad007d9}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[Is24VOK := 1;
-IF Module24Vdc < (Nominal24Vdc * 0.8) THEN
-	Is24VOK := -1;
-END_IF
-IF Module24Vdc > (Nominal24Vdc * 1.2) THEN
-	Is24VOK := -1;
+        <Implementation>
+          <ST><![CDATA[MotorVdcOK := TRUE;
+IF (Module48Vdc < (Nominal48Vdc * 0.8)) OR (Module48Vdc > (Nominal48Vdc * 1.2)) THEN
+	MotorVdcOK := FALSE;
 END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Is48VOK" Id="{f76f25e2-8796-412c-b16e-72d1b643b91d}">
-      <Declaration><![CDATA[METHOD Is48VOK : HRESULT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[Is48VOK := 1;
-IF Module48Vdc < (Nominal48Vdc * 0.9) THEN
-	Is48VOK := -1;
-END_IF
-IF Module48Vdc > (Nominal48Vdc * 1.1) THEN
-	Is48VOK := -1;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="MyModuleInterface" Id="{2168d719-80a8-412e-a875-7c102bb8a0d2}">
       <Declaration><![CDATA[PROPERTY MyModuleInterface : I_TcIoXtsPartModule]]></Declaration>
       <Get Name="Get" Id="{89cf633f-414b-41a7-b6da-6e0666d662cd}">
@@ -151,7 +177,7 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="SetInSim" Id="{13eee03f-0b41-4595-95d5-55a5ef2b6f3f}">
+    <Method Name="SetInSim" Id="{13eee03f-0b41-4595-95d5-55a5ef2b6f3f}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD SetInSim : HRESULT
 VAR_INPUT
 END_VAR
