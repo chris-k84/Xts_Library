@@ -9,18 +9,30 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="Is24VOK" Id="{048f2f43-efbe-45dd-9bee-30927ae5c3ce}">
-      <Declaration><![CDATA[METHOD Is24VOK : HRESULT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="Is48VOK" Id="{53e82e2c-5da8-4c06-833c-4d51dc472eb8}">
-      <Declaration><![CDATA[METHOD Is48VOK : HRESULT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
+    <Property Name="Act24Vdc" Id="{0d259e55-9237-482e-8220-086e0fe799d4}">
+      <Declaration><![CDATA[PROPERTY Act24Vdc : LREAL]]></Declaration>
+      <Get Name="Get" Id="{c8e0d2e3-2bd9-41e7-8c8b-c44d749a0de0}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="Act48Vdc" Id="{c9d87ad5-8f23-40fc-a640-b1a3a1673b37}">
+      <Declaration><![CDATA[PROPERTY Act48Vdc : LREAL]]></Declaration>
+      <Get Name="Get" Id="{c4d7bdad-76e1-411d-b065-0aefa174222e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ControlVdcOK" Id="{6dfe739d-2bd0-478b-954e-24f485d24353}">
+      <Declaration><![CDATA[PROPERTY ControlVdcOK : BOOL]]></Declaration>
+      <Get Name="Get" Id="{b35844c4-1383-4886-b58f-1632ab1bd8b9}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="MotorVdcOK" Id="{09e96d28-cf5a-4f0f-9803-ebb77f99ab92}">
+      <Declaration><![CDATA[PROPERTY MotorVdcOK : BOOL]]></Declaration>
+      <Get Name="Get" Id="{c580371c-cfa3-490c-912e-33dc7d2b2cc9}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="SetInSim" Id="{3ed874bb-c6ca-41ec-85c6-4bc2517bd458}">
       <Declaration><![CDATA[METHOD SetInSim : HRESULT
 VAR_INPUT
