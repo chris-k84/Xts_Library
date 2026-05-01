@@ -131,11 +131,14 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Is24VBusOK := TRUE;
-FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-	IF MyModules[i].Is24VOK() = -1 THEN
-		Is24VBusOK := FALSE;
-	END_IF
-END_FOR]]></ST>
+IF NOT InSim THEN
+	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
+		IF NOT MyModules[i].ControlVdcOK THEN
+			Is24VBusOK := FALSE;
+		END_IF
+	END_FOR
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="Is48VBusOK" Id="{44113d88-367f-494b-87cf-4655fd94d258}" FolderPath="Status\">
@@ -146,11 +149,14 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Is48VBusOK := TRUE;
-FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-	IF MyModules[i].Is48VOK() = -1 THEN
-		Is48VBusOK := FALSE;
-	END_IF
-END_FOR]]></ST>
+IF NOT InSim THEN
+	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
+		IF NOT MyModules[i].MotorVdcOK THEN
+			Is48VBusOK := FALSE;
+		END_IF
+	END_FOR
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Property Name="MyXtsIoEnvInterface" Id="{b5f6c838-c909-4a11-9656-9e449699aee4}" FolderPath="Settings\">
