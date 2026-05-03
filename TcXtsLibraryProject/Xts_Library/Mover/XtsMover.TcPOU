@@ -22,6 +22,7 @@ VAR
 	_ForwardOnly : BOOL := TRUE;
 	myControllerOid: OTCID;
 	MyId: UDINT;
+	MoverID : T_MaxString;
 	Initialised : BOOL;
 	MyTrackCount : INT;
 	MyTracks : ARRAY[0..MaxTracks] OF I_XtsTrack;
@@ -415,6 +416,7 @@ END_IF
 myController := _ipTcIoXtsMover.MoverController;
 myControllerOid := _ipTcIoXtsMover.GetMoverControllerOid();
 MyId := _ipTcIoXtsMover.P_AxisId;
+MoverID := CONCAT('Mover ', TO_STRING(MyId));
 _Mover1 := _ipTcIoXtsMover.GetIsMover1();
 _CurrentTrack := MyTracks[MoversActiveTrack - 1];
 Initialised := TRUE;]]></ST>
@@ -553,18 +555,22 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF MoveBehaviour.Busy THEN
+	Base_Library.Tracing.Trace.Warning(MoverID, 'Mover Called While Busy');
 	MoveTo := -1;
 	RETURN;
 END_IF
 IF MoveVelocity > _MaxMoverVelocity THEN
+	Base_Library.Tracing.Trace.Warning(MoverID, 'Move Velo Too High');
 	MoveTo := -2;
 	RETURN;
 END_IF
 IF MoveVelocity <= 0.0 THEN
+	Base_Library.Tracing.Trace.Warning(MoverID, 'Move Velo Less Than Zero');
 	MoveTo := -3;
 	RETURN;
 END_IF
 IF Gap <= 50.0 THEN
+	Base_Library.Tracing.Trace.Warning(MoverID, 'Move Gasp Too Small');
 	MoveTo := -4;
 	RETURN;
 END_IF
