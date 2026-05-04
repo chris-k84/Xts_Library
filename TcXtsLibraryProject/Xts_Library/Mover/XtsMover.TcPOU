@@ -258,13 +258,16 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF EnableBehaviour.Busy THEN
 	EnableMover := -1;
+	Base_Library.Tracing.Trace.Warning(MoverID, 'Enable Request Failed - Enabling');
 	RETURN;
 END_IF
 IF THIS^.IsEnabled THEN
 	EnableMover := -2;
+	Base_Library.Tracing.Trace.Warning(MoverID, 'Enable Request Failed - Enabled');
 	RETURN;
 END_IF
 	
+Base_Library.Tracing.Trace.Verbose(MoverID, 'Enable Request Accepted');
 EnableBehaviour.Enable();]]></ST>
       </Implementation>
     </Method>
