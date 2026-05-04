@@ -575,6 +575,8 @@ IF Gap <= 50.0 THEN
 	RETURN;
 END_IF
 
+Base_Library.Tracing.Trace.Info(moverID, concat('Move Accepted to : ',TO_STRING(RequiredPosition)));
+
 IF NonModuloMove THEN
 	THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
 									Velocity := MoveVelocity, 
