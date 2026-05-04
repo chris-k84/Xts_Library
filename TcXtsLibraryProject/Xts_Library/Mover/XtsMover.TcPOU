@@ -80,28 +80,34 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF Track = 0 THEN
 	ActivateTrack := -1;
+	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateTrack Fail - Null Track');
 	RETURN;
 END_IF
 IF MoverActivateTrackBehaviour.Busy THEN
 	ActivateTrack := -2;
+	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateTrack Fail - Activating');
 	RETURN;
 END_IF
 
 IF NOT THIS^.IsStationary THEN
 	ActivateTrack := -3;
+	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateTrack Fail - Moving');
 	RETURN;
 END_IF
 
 IF Track > MyTrackCount THEN
 	ActivateTrack := -4;
+	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateTrack Fail - Track not Registered');
 	RETURN;
 END_IF
 
 IF MyTracks[Track - 1].MyOTCID = 0  THEN
 	ActivateTrack := -5;
+	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateTrack Fail - No Track');
 	RETURN;
 END_IF
 	
+Base_Library.Tracing.Trace.Verbose(MoverID, 'ActivateTrack Request Accepted');
 MoverActivateTrackBehaviour.Execute(Track := MyTracks[Track - 1]);
 _ipTcIoXtsMover.SetActiveTrackObjectId(nTrackObjectId := MyTracks[Track - 1].MyOTCID);
 _CurrentTrack := MyTracks[Track - 1];
@@ -113,13 +119,16 @@ _CurrentTrack := MyTracks[Track - 1];
       <Implementation>
         <ST><![CDATA[IF MoverActivateTrackBehaviour.Busy THEN
 	ActivateZeroReferenceSystem := -1;
+	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateZeroTrack Fail - Activating');
 	RETURN;
 END_IF
 IF NOT THIS^.IsStationary THEN
 	ActivateZeroReferenceSystem := -2;
+	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateZeroTrack Fail - Moving');
 	RETURN;
 END_IF 
 
+Base_Library.Tracing.Trace.Verbose(MoverID, 'ActivateTrack Request Accpeted');
 MoverActivateTrackBehaviour.Execute(Track := NullTrack);
 _CurrentTrack := 0;]]></ST>
       </Implementation>
@@ -244,9 +253,11 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF NOT THIS^.IsEnabled THEN
 	DisableMover := -1;
+	Base_Library.Tracing.Trace.Warning(MoverID, 'Disable request Fail - Disabled'); 
 	RETURN;
 END_IF
 	
+Base_Library.Tracing.Trace.Verbose(MoverID, 'Disable Request Accepted');
 EnableBehaviour.Disable();]]></ST>
       </Implementation>
     </Method>
@@ -364,9 +375,11 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF HaltBehaviour.Busy THEN
 	HaltAxis := -1;
+	Base_Library.Tracing.Trace.Warning(MoverID, 'Halt Request Fail - Halting');
 	RETURN;
 END_IF
 	
+Base_Library.Tracing.Trace.Verbose(MoverID, 'Halt Request Accepted');
 HaltBehaviour.Execute();]]></ST>
       </Implementation>
     </Method>
@@ -578,7 +591,7 @@ IF Gap <= 50.0 THEN
 	RETURN;
 END_IF
 
-Base_Library.Tracing.Trace.Info(moverID, concat('Move Accepted to : ',TO_STRING(RequiredPosition)));
+Base_Library.Tracing.Trace.Verbose(moverID, concat('Move Accepted to : ',TO_STRING(RequiredPosition)));
 
 IF NonModuloMove THEN
 	THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
@@ -702,15 +715,18 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ResetBehaviour.Busy THEN
+	Base_Library.Tracing.Trace.Warning(MoverID, 'Reset Request Failed - Reseting');
 	Reset := -1;
 	RETURN;
 END_IF
  
 IF NOT (_MyAxisStatus.Error OR _MyAxisStatus.NotMoving) THEN
+	Base_Library.Tracing.Trace.Warning(MoverID, 'Reset Request Failed - Not Allowed');
 	Reset := -2;
 	RETURN;
 END_IF
 
+Base_Library.Tracing.Trace.Verbose(MoverID, 'Reset Request Accepted');
 ResetBehaviour.Reset();
 MoveBehaviour.Abort();]]></ST>
       </Implementation>
