@@ -95,6 +95,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF _XtsEnabled THEN
+	Base_Library.Tracing.Trace.Verbose(MyName, 'Disable Accepted');
 	DisableXTS := SUCCEEDED(DisableSequence.Disable());
 END_IF]]></ST>
       </Implementation>
@@ -106,6 +107,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT _XtsEnabled THEN
+	Base_Library.Tracing.Trace.Verbose(MyName, 'Enable Accepted');
 	EnableXts := SUCCEEDED(EnableSequence.Enable());
 END_IF]]></ST>
       </Implementation>
@@ -333,14 +335,17 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF MyMover = 0 THEN
+	Base_Library.Tracing.Trace.Warning(MyName, 'Register Mover Fail - null ptr');
 	RegisterMovers := -1;
 	RETURN;
 END_IF
 IF NOT _Initialised THEN
+	Base_Library.Tracing.Trace.Warning(MyName, 'Register Mover Fail - not ready');
 	RegisterMovers := -2;
 	RETURN;
 END_IF
 IF _registeredNumberOfMovers >= MaxMovers THEN
+	Base_Library.Tracing.Trace.Warning(MyName, 'Register Mover Fail - max movers reached');
 	RegisterMovers := -3;
 	RETURN;
 END_IF
@@ -351,10 +356,12 @@ FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
 	END_IF
 END_FOR
 IF MoverRegistered THEN
+	Base_Library.Tracing.Trace.Warning(MyName, 'Register Mover Fail - registered');
 	RegisterMovers := -4;
 	RETURN;
 END_IF
 
+Base_Library.Tracing.Trace.Verbose(MyName, 'Register Mover Accepted');
 _MoverArray[_registeredNumberOfMovers] := MyMover;
 _registeredNumberOfMovers := _registeredNumberOfMovers + 1;
 EnableSequence.RegisterMovers(MyMover);
@@ -387,7 +394,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Reset := SUCCEEDED(ICollisionGroup.Reset());
-_MyXtsHardware.ResetAllParts();]]></ST>
+_MyXtsHardware.ResetAllParts();
+Base_Library.Tracing.Trace.Verbose(MyName, 'Reset Accepted');]]></ST>
       </Implementation>
     </Method>
     <Method Name="StopXts" Id="{4b648283-f5f4-4d47-a58f-be53e519365d}" FolderPath="Operations\">
@@ -396,7 +404,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[StopXTS := ICollisionGroup.GroupStop();]]></ST>
+        <ST><![CDATA[StopXTS := ICollisionGroup.GroupStop();
+Base_Library.Tracing.Trace.Verbose(MyName, 'Stop Accepted');]]></ST>
       </Implementation>
     </Method>
   </POU>
