@@ -39,6 +39,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF MoverToAdd = 0 THEN
+	Base_Library.Tracing.Trace.Warning(_MyName, 'Register Mover Fail - null ptr');
 	AddMoverToThisGroup := -1;
 	RETURN;
 END_IF
@@ -48,13 +49,17 @@ FOR i := 0 TO MaxMovers DO
 	END_IF
 END_FOR
 IF registered THEN
+	Base_Library.Tracing.Trace.Warning(_MyName, 'Register Mover Fail - registered');
 	AddMoverToThisGroup := -2;
 	RETURN;
 END_IF
 IF addMover.Busy THEN
+	Base_Library.Tracing.Trace.Warning(_MyName, 'Register Mover Fail - busy');
 	AddMoverToThisGroup := -3;
 	RETURN;
 END_IF
+
+Base_Library.Tracing.Trace.Verbose(_MyName, 'Register Mover Accepted');
 addMover.AddMover(MoverToAdd := MoverToAdd);
 MoverToAdd.MyCAGroup  := THIS^;
 FOR i := 0 TO MaxMovers DO
@@ -141,6 +146,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT disableCAGroup.Busy THEN
+	Base_Library.Tracing.Trace.Verbose(_MyName, 'Group Disable Accepted');
 	Disable := SUCCEEDED(disableCAGroup.Execute());
 END_IF]]></ST>
       </Implementation>
@@ -152,6 +158,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT enableCAGroup.Busy THEN
+	Base_Library.Tracing.Trace.Verbose(_MyName, 'Group Enable Accepted');
 	Enable := SUCCEEDED(enableCAGroup.Execute());
 END_IF]]></ST>
       </Implementation>
@@ -185,6 +192,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT grpStop.Busy THEN
+	Base_Library.Tracing.Trace.Verbose(_MyName, 'GroupStop accepted');
 	GroupStop := SUCCEEDED(grpStop.Execute());
 END_IF]]></ST>
       </Implementation>
@@ -284,13 +292,17 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF removeAllAxes.Busy THEN
+	Base_Library.Tracing.Trace.Warning(_MyName, 'Remove All Failed - busy');
 	RemoveAllMovers := -1;
 	RETURN;
 END_IF
 IF RegisteredMovers = 0 THEN
+	Base_Library.Tracing.Trace.Warning(_MyName, 'Remove All Failed - No Movers');
 	RemoveAllMovers := -2;
 	RETURN;
 END_IF
+
+Base_Library.Tracing.Trace.Verbose(_MyName, 'Remove All Movers Accepted');
 removeAllAxes.RemoveAllMover();
 RegisteredMovers := 0;
 FOR i := 0 TO MaxMovers DO
@@ -310,10 +322,12 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF removeMover.Busy THEN
+	Base_Library.Tracing.Trace.Warning(MyName, 'Remove Fail - busy');
 	RemoveAMover := -1;
 	RETURN;
 END_IF
 IF MoverToRemove = 0 THEN
+	Base_Library.Tracing.Trace.Warning(MyName, 'Remove Fail - null ptr');
 	RemoveAMover := -2;
 	RETURN;
 END_IF
@@ -323,9 +337,12 @@ FOR i := 0 TO MaxMovers DO
 	END_IF
 END_FOR
 IF NOT registered THEN
+	Base_Library.Tracing.Trace.Warning(MyName, 'Remove Fail - not registered');
 	RemoveAMover := -2;
 	RETURN;
 END_IF
+
+Base_Library.Tracing.Trace.Verbose(MyName, 'Remove a Mover Accepted');
 removeMover.Execute(MoverToRemove.IdentInGroup);
 FOR i := 0 TO MaxMovers DO
 	IF GroupMovers[i] = MoverToRemove THEN
@@ -340,6 +357,7 @@ END_FOR]]></ST>
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT resetCAGroup.Busy THEN
+	Base_Library.Tracing.Trace.Verbose(MyName, 'Group Reset Accepted');
 	Reset := resetCAGroup.Execute();
 END_IF]]></ST>
       </Implementation>
