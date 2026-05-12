@@ -572,8 +572,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF MoveBehaviour.Busy THEN
 	Base_Library.Tracing.Trace.Warning(MoverID, 'Mover Called While Busy');
-	MoveTo := -1;
-	RETURN;
 END_IF
 IF MoveVelocity > _MaxMoverVelocity THEN
 	Base_Library.Tracing.Trace.Warning(MoverID, 'Move Velo Too High');
