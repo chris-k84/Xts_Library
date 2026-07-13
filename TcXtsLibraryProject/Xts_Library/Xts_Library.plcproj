@@ -15,7 +15,7 @@
     <Implicit_KindOfTask>{92f8e863-7ad7-43b9-a442-5e301b595df3}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{8e519945-2452-401e-b582-4dbb4d52b097}</Implicit_Jitter_Distribution>
     <LibraryReferences>{97c810ff-bbba-42d2-a0e7-45dbf1112fdb}</LibraryReferences>
-    <Released>false</Released>
+    <Released>true</Released>
     <Title>Xts Library</Title>
     <Company>BeckhoffUK</Company>
     <ProjectVersion>16.0.2</ProjectVersion>
@@ -39,6 +39,7 @@
     <POUsForPropertyAccessIncluded>true</POUsForPropertyAccessIncluded>
     <GlobalVersionStructureIncluded>true</GlobalVersionStructureIncluded>
     <VirtualLibrary>true</VirtualLibrary>
+    <DefaultNamespace>Xts_Library</DefaultNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Mover Behaviours\ExtControlBehaviour.TcPOU">
@@ -309,68 +310,74 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderResolution Include="Base Library">
+      <Resolution>Base Library, 3.1.0.0 (Beckhoff UK)</Resolution>
+    </PlaceholderResolution>
     <PlaceholderResolution Include="CAA Callback">
-      <Resolution>CAA Callback Extern, * (CAA Technical Workgroup)</Resolution>
+      <Resolution>CAA Callback Extern, 3.5.17.0 (CAA Technical Workgroup)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="CAA FB Factory">
-      <Resolution>CAA FB Factory, * (CAA Technical Workgroup)</Resolution>
+      <Resolution>CAA FB Factory, 3.5.19.0 (CAA Technical Workgroup)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="CAA MemBlockMan">
-      <Resolution>CAA Memory Block Manager Extern, * (CAA Technical Workgroup)</Resolution>
+      <Resolution>CAA Memory Block Manager Extern, 3.5.18.0 (CAA Technical Workgroup)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="CAA ResMan">
-      <Resolution>CAA Ressource Manager Extern, * (CAA Technical Workgroup)</Resolution>
+      <Resolution>CAA Ressource Manager Extern, 3.5.17.0 (CAA Technical Workgroup)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="CAA Types">
-      <Resolution>CAA Types Extern, * (CAA Technical Workgroup)</Resolution>
+      <Resolution>CAA Types Extern, 3.5.17.0 (CAA Technical Workgroup)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="CmpApp">
-      <Resolution>CmpApp, * (System)</Resolution>
+      <Resolution>CmpApp, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="CmpBitmapPool">
-      <Resolution>CmpBitmapPool, * (System)</Resolution>
+      <Resolution>CmpBitmapPool, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="CmpEventMgr">
-      <Resolution>CmpEventMgr, * (System)</Resolution>
+      <Resolution>CmpEventMgr, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="CmpEventMgr Implementation">
-      <Resolution>CmpEventMgr Implementation, * (System)</Resolution>
+      <Resolution>CmpEventMgr Implementation, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="CmpSchedule">
-      <Resolution>CmpSchedule, * (System)</Resolution>
+      <Resolution>CmpSchedule, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Component Manager">
-      <Resolution>Component Manager, * (System)</Resolution>
+      <Resolution>Component Manager, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="ElementCollections">
-      <Resolution>Element Collections, * (CODESYS)</Resolution>
+      <Resolution>Element Collections, 4.0.0.0 (CODESYS)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Motion Library">
+      <Resolution>Motion Library, 3.0.0.0 (Beckhoff UK)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Standard">
-      <Resolution>Tc2_Standard, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc2_Standard, 3.4.7.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Standard64">
-      <Resolution>Tc2_Standard, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc2_Standard, 3.4.7.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="StringUtils">
-      <Resolution>StringUtils, * (System)</Resolution>
+      <Resolution>StringUtils, 3.5.20.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SysCpuHandling">
-      <Resolution>SysCpuHandling, * (System)</Resolution>
+      <Resolution>SysCpuHandling, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SysDir">
-      <Resolution>SysDir, * (System)</Resolution>
+      <Resolution>SysDir, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SysFile">
-      <Resolution>SysFile, * (System)</Resolution>
+      <Resolution>SysFile, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SysMem">
-      <Resolution>SysMem, * (System)</Resolution>
+      <Resolution>SysMem, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SysSem">
-      <Resolution>SysSem, * (System)</Resolution>
+      <Resolution>SysSem, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SysSem Implementation">
-      <Resolution>SysSem Implementation, * (System)</Resolution>
+      <Resolution>SysSem Implementation, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="System_VisuElemBase">
       <Resolution>VisuElemBase, * (System)</Resolution>
@@ -400,58 +407,67 @@
       <Resolution>VisuNativeControl, * (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SysTime">
-      <Resolution>SysTime, * (System)</Resolution>
+      <Resolution>SysTime, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SysTimeCore">
-      <Resolution>SysTimeCore, * (System)</Resolution>
+      <Resolution>SysTimeCore, 3.5.17.0 (System)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="SysTimeRtc">
-      <Resolution>SysTimeRtc, * (System)</Resolution>
+      <Resolution>SysTimeRtc, 3.5.20.0 (System)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc2_Drive">
+      <Resolution>Tc2_Drive, 3.3.15.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_EtherCAT">
-      <Resolution>Tc2_EtherCAT, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc2_EtherCAT, 3.7.2.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_IoFunctions">
-      <Resolution>Tc2_IoFunctions, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc2_IoFunctions, 3.4.7.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_Math">
-      <Resolution>Tc2_Math, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc2_Math, 3.5.3.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_MC2">
-      <Resolution>Tc2_MC2, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc2_MC2, 3.3.73.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc2_MC2_Drive">
+      <Resolution>Tc2_MC2_Drive, 3.3.55.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_NC">
-      <Resolution>Tc2_NC, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc2_NC, 3.3.11.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_Standard">
-      <Resolution>Tc2_Standard, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc2_Standard, 3.4.7.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_System">
-      <Resolution>Tc2_System, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc2_System, 3.10.2.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_Utilities">
-      <Resolution>Tc2_Utilities, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc2_Utilities, 3.10.6.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_EventLogger">
-      <Resolution>Tc3_EventLogger, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc3_EventLogger, 3.3.15.0 (Beckhoff Automation GmbH)</Resolution>
+    </PlaceholderResolution>
+    <PlaceholderResolution Include="Tc3_JsonXml">
+      <Resolution>Tc3_JsonXml, 3.4.9.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_Mc3Definitions">
-      <Resolution>Tc3_Mc3Definitions, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc3_Mc3Definitions, 3.4.65.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_McCollisionAvoidance">
-      <Resolution>Tc3_McCollisionAvoidance, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc3_McCollisionAvoidance, 3.4.65.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_McCoordinatedMotion">
-      <Resolution>Tc3_McCoordinatedMotion, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc3_McCoordinatedMotion, 3.4.65.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_Module">
-      <Resolution>Tc3_Module, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc3_Module, 3.4.7.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_XTS_Utility">
-      <Resolution>Tc3_XTS_Utility, * (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc3_XTS_Utility, 4.4.18.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="VisuDialogs">
-      <Resolution>VisuDialogs, * (System)</Resolution>
+      <Resolution>VisuDialogs, 4.8.0.0 (System)</Resolution>
     </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>

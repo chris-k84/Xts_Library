@@ -12,10 +12,10 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[F_GetVersion.iMajor := 16;
 F_GetVersion.iMinor := 0;
-F_GetVersion.iBuild := 1;
+F_GetVersion.iBuild := 2;
 F_GetVersion.iRevision := 0;
-F_GetVersion.sVersion := '16.0.1';
-F_GetVersion.nFlags := 0;
+F_GetVersion.sVersion := '16.0.2';
+F_GetVersion.nFlags := 1;
 ]]></ST>
     </Implementation>
   </POU>
