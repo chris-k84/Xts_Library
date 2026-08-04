@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Xts" Id="{4538c683-94fc-49a1-b5ad-30ffec5e4eff}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT XTS EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XTS
@@ -448,14 +448,12 @@ END_IF
 Base_Library.Tracing.Trace.Verbose(_name, 'Register Mover Accepted');
 iMovers[_registeredNumberOfMovers] := MyMover;
 _registeredNumberOfMovers := _registeredNumberOfMovers + 1;
-DefaultEnableSequence.RegisterMovers(MyMover);
-DefaultDisableSequence.RegisterMovers(MyMover);
-FOR i := 1 TO _MyXtsHardware.DetectedNumberOfTracks DO
-	MyMover.RegisterTracks(Track := _MyXtsHardware.GetTrackInterfaceByNumber(i));
-END_FOR
-FOR i := 1 TO TO_UINT(_iXPU.GetDetectedMoverCount()) DO
-	IF MyMover.AxisRef.NcToPlc.AxisId = _iXPU.MoverTcIo(i).P_AxisId THEN
-		MyMover.MoverXtsIoEnvInterface := _iXPU.MoverTcIo(i);
+EnableSequence.RegisterMovers(MyMover);
+DisableSequence.RegisterMovers(MyMover);
+
+FOR i := 1 TO TO_UINT(_XPU.GetDetectedMoverCount()) DO
+	IF MyMover.AxisRef.NcToPlc.AxisId = _XPU.MoverTcIo(i).P_AxisId THEN
+		MyMover.MoverXtsIoEnvInterface := _XPU.MoverTcIo(i);
 	END_IF
 END_FOR]]></ST>
       </Implementation>

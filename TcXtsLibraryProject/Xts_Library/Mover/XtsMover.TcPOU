@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsMover" Id="{f9a43ed2-0578-4aed-857c-1a3adef0c7f6}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsMover EXTENDS CyclicBase IMPLEMENTS I_XtsMover, I_Resettable
@@ -16,16 +16,12 @@ VAR
 	TrackChangeTrigger : R_TRIG;
 	_MoverAbsMoveOptions : ST_MoveAbsoluteCAOptions;
 	_stTmsActPositions : ST_PositionInfo;
-	_CurrentTrack : I_XtsTrack;
+	_CurrentTrack : OTCID;
 	_myStatus : MoverStatus;
-	_MyCAGroup : I_CollisionGroup;
 	_ForwardOnly : BOOL := TRUE;
 	myControllerOid: OTCID;
 	MyId: UDINT;
 	Initialised : BOOL;
-	MyTrackCount : INT;
-	MyTracks : ARRAY[0..MaxTracks] OF I_XtsTrack;
-	NullTrack : XtsTrack('');
 	_SetForce: LREAL;
 	_SetCurrent: LREAL;
 	_Gap : LREAL;
@@ -72,7 +68,7 @@ _Acceleration := Acceleration;]]></ST>
     <Method Name="ActivateTrack" Id="{f7604675-5338-4e11-9132-b17d5df72cc8}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ActivateTrack : HRESULT
 VAR_INPUT
-	Track : INT;
+	Track : OTCID;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -93,22 +89,11 @@ IF NOT THIS^.IsStationary THEN
 	RETURN;
 END_IF
 
-IF Track > MyTrackCount THEN
-	ActivateTrack := -4;
-	Base_Library.Tracing.Trace.Warning(_Name, 'ActivateTrack Fail - Track not Registered');
-	RETURN;
-END_IF
-
-IF MyTracks[Track - 1].MyOTCID = 0  THEN
-	ActivateTrack := -5;
-	Base_Library.Tracing.Trace.Warning(_Name, 'ActivateTrack Fail - No Track');
-	RETURN;
-END_IF
 	
-Base_Library.Tracing.Trace.Verbose(_Name, 'ActivateTrack Request Accepted');
-MoverActivateTrackBehaviour.Execute(Track := MyTracks[Track - 1]);
-_MyInterface.SetActiveTrackObjectId(nTrackObjectId := MyTracks[Track - 1].MyOTCID);
-_CurrentTrack := MyTracks[Track - 1];
+Base_Library.Tracing.Trace.Verbose(MoverID, 'ActivateTrack Request Accepted');
+MoverActivateTrackBehaviour.Execute(Track := Track);
+_ipTcIoXtsMover.SetActiveTrackObjectId(nTrackObjectId := Track);
+_CurrentTrack := Track;
 ]]></ST>
       </Implementation>
     </Method>
@@ -126,8 +111,8 @@ IF NOT THIS^.IsStationary THEN
 	RETURN;
 END_IF 
 
-Base_Library.Tracing.Trace.Verbose(_Name, 'ActivateTrack Request Accpeted');
-MoverActivateTrackBehaviour.Execute(Track := NullTrack);
+Base_Library.Tracing.Trace.Verbose(MoverID, 'ActivateTrack Request Accpeted');
+MoverActivateTrackBehaviour.Execute(Track := 0);
 _CurrentTrack := 0;]]></ST>
       </Implementation>
     </Method>
@@ -338,15 +323,6 @@ END_IF
         </Implementation>
       </Set>
     </Property>
-    <Method Name="GetActiveTrackLength" Id="{4b840da8-e3cc-46e4-bf3c-0fcb89870f67}" FolderPath="Administration\">
-      <Declaration><![CDATA[METHOD GetActiveTrackLength : LREAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetActiveTrackLength := _CurrentTrack.TrackLength;]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="GetMoverCtrlOTCID" Id="{6852d0c0-13fb-4a6d-9e8b-5d538e770d2f}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD GetMoverCtrlOTCID : XtsMoverControllerOTCID
 VAR_INPUT
@@ -427,19 +403,13 @@ IF NOT _MyInterface.P_IsInitialized THEN
 	Base_Library.Tracing.Trace.Error(_Name, 'XPU Interface not ready');
 	RETURN;
 END_IF
-IF MyAxisRef.NcToPlc.AxisId = 0 THEN
-	Initialise := -4;
-	Base_Library.Tracing.Trace.Error(_Name, 'Mover has no NC link');
-	RETURN;
-END_IF
 
-Base_Library.Tracing.Trace.Verbose(_Name, 'Mover Init Success');
-myController := _MyInterface.MoverController;
-myControllerOid := _MyInterface.GetMoverControllerOid();
-MyId := _MyInterface.P_AxisId;
-_Name := _MyInterface.P_ObjectName;
-_Mover1 := _MyInterface.GetIsMover1();
-_CurrentTrack := MyTracks[MoversActiveTrack - 1];
+myController := _ipTcIoXtsMover.MoverController;
+myControllerOid := _ipTcIoXtsMover.GetMoverControllerOid();
+MyId := _ipTcIoXtsMover.P_AxisId;
+MoverID := CONCAT('Mover ', TO_STRING(MyId));
+_Mover1 := _ipTcIoXtsMover.GetIsMover1();
+_CurrentTrack := _ipTcIoXtsMover.GetActiveTrackObjectId();
 Initialised := TRUE;]]></ST>
       </Implementation>
     </Method>
@@ -531,19 +501,14 @@ _Jerk := Jerk;]]></ST>
       </Set>
     </Property>
     <Property Name="MoversActiveTrack" Id="{15471ba0-8341-48c7-a2d0-01ca6286078a}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY PUBLIC MoversActiveTrack : INT]]></Declaration>
+      <Declaration><![CDATA[PROPERTY PUBLIC MoversActiveTrack : OTCID]]></Declaration>
       <Get Name="Get" Id="{2721855b-e1d8-4f74-a352-28794ee4ae69}">
         <Declaration><![CDATA[VAR
 	i : INT;
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[FOR i := 0 TO MyTrackCount - 1 DO
-	IF MyTracks[i].MyOTCID =  _MyInterface.GetActiveTrackObjectId() THEN
-		MoversActiveTrack := i + 1;
-		EXIT;
-	END_IF
-END_FOR]]></ST>
+          <ST><![CDATA[MoversActiveTrack :=  _CurrentTrack;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -630,25 +595,6 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MyCAGroup" Id="{ef4ebc28-e3bd-4e4a-8472-4104ad14ebae}" FolderPath="Administration\">
-      <Declaration><![CDATA[PROPERTY MyCAGroup : I_CollisionGroup]]></Declaration>
-      <Get Name="Get" Id="{d4b3e253-6981-43ac-859c-776f6b4fec7d}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyCAGroup := _MyCAGroup;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{54c77228-8f9c-4310-9bfc-ef466b7143ba}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyCAGroup := MyCAGroup;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Property Name="PositiveDirectionOnly" Id="{993fe16b-05a5-4eca-a38c-6463f3e7295c}" FolderPath="Administration\">
       <Declaration><![CDATA[PROPERTY PositiveDirectionOnly : BOOL]]></Declaration>
       <Get Name="Get" Id="{581a1e54-141a-440c-9d85-39be9d6e8e36}">
@@ -668,37 +614,14 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="RegisterTracks" Id="{33623a4f-6a2b-45ed-b81c-64a295cf1295}" FolderPath="Administration\">
-      <Declaration><![CDATA[METHOD RegisterTracks : HRESULT
+    <Method Name="RegisterWithParent" Id="{0c8fc6cb-d807-4926-a588-870aa525c7f2}" FolderPath="Administration\">
+      <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
-	Track : I_XtsTrack;
+	Parent	: I_HostObjects;
 END_VAR
-VAR
-	Registered : BOOL;
-	i : INT;
-END_VAR]]></Declaration>
+]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Track = 0 THEN
-	RegisterTracks := -1;
-	RETURN;
-END_IF
-Registered := FALSE;
-FOR i := 0 TO 5 DO 
-	IF Track = MyTracks[i] THEN
-		Registered := TRUE;
-	END_IF
-END_FOR
-IF Registered THEN
-	RegisterTracks := -2;
-	RETURN;
-END_IF
-FOR i := 0 TO 5 DO
-	IF MyTracks[i] = 0 THEN
-		MyTracks[i] := Track;
-		MyTrackCount := MyTrackCount + 1;
-		EXIT;
-	END_IF
-END_FOR]]></ST>
+        <ST><![CDATA[Parent.RegisterCyclic(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{e9d8249c-2f88-4980-a483-ceda82c7ab80}" FolderPath="Commands\">
@@ -742,7 +665,7 @@ _MyInterface.MoverController.SetForceCouple(nForceCouple := XtsMoverCtrlOTCID);]
     <Method Name="SetMoverActiveTrack" Id="{d6a4b78b-2758-4ca3-91dd-004aef96a776}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD SetMoverActiveTrack : HRESULT
 VAR_INPUT
-	Track : INT;
+	Track : OTCID;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -755,19 +678,9 @@ IF NOT THIS^.IsStationary THEN
 	SetMoverActiveTrack := -3;
 	RETURN;
 END_IF
-
-IF Track > MyTrackCount THEN
-	SetMoverActiveTrack := -4;
-	RETURN;
-END_IF
-
-IF MyTracks[Track - 1].MyOTCID = 0  THEN
-	SetMoverActiveTrack := -5;
-	RETURN;
-END_IF
 	
-_MyInterface.SetActiveTrackObjectId(nTrackObjectId := MyTracks[Track - 1].MyOTCID);
-_CurrentTrack := MyTracks[Track - 1];]]></ST>
+_ipTcIoXtsMover.SetActiveTrackObjectId(nTrackObjectId := Track);
+_CurrentTrack := Track;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetParameterSet" Id="{a2d3312c-642a-4ded-95b4-a250a99284ac}" FolderPath="Administration\">

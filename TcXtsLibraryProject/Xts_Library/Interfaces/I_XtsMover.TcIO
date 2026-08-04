@@ -19,7 +19,7 @@
     <Method Name="ActivateTrack" Id="{ba6e327e-25a9-4189-a1a0-64429eeca8b6}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ActivateTrack : HRESULT
 VAR_INPUT
-	Track : INT;
+	Track : OTCID;
 END_VAR
 ]]></Declaration>
     </Method>
@@ -93,12 +93,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="GetActiveTrackLength" Id="{5c2216e1-42a4-4136-9c70-0f82d23b2aef}" FolderPath="Administration\">
-      <Declaration><![CDATA[METHOD GetActiveTrackLength : LREAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="GetMoverCtrlOTCID" Id="{863e8ade-d7f2-439e-8b15-5f1837c580a0}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD GetMoverCtrlOTCID : XtsMoverControllerOTCID
 VAR_INPUT
@@ -169,7 +163,7 @@ END_VAR
       </Set>
     </Property>
     <Property Name="MoversActiveTrack" Id="{f033ba71-1699-4f66-8762-38178a524724}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY PUBLIC MoversActiveTrack : INT]]></Declaration>
+      <Declaration><![CDATA[PROPERTY PUBLIC MoversActiveTrack : OTCID]]></Declaration>
       <Get Name="Get" Id="{ab30b8a7-22d3-4a5c-a941-ce17b5400c54}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
@@ -192,15 +186,6 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Property Name="MyCAGroup" Id="{7bdbd73e-c8bd-4342-9139-b02fb8b34afa}" FolderPath="Administration\">
-      <Declaration><![CDATA[PROPERTY MyCAGroup : I_CollisionGroup]]></Declaration>
-      <Get Name="Get" Id="{02d1886c-e164-4472-af91-ae6725f23e23}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-      <Set Name="Set" Id="{0add7ecc-1e34-4c45-86ea-05d00a10668e}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
-    </Property>
     <Property Name="PositiveDirectionOnly" Id="{ed0ab13d-fd6f-4b8b-a5b2-30d977b85665}" FolderPath="Administration\">
       <Declaration><![CDATA[PROPERTY PositiveDirectionOnly : BOOL]]></Declaration>
       <Get Name="Get" Id="{ca7928e2-abd0-4257-bca9-4dcae3e4cfec}">
@@ -210,12 +195,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="RegisterTracks" Id="{f708c3cc-b99d-4712-bcc3-26ae6f024fa0}" FolderPath="Administration\">
-      <Declaration><![CDATA[METHOD RegisterTracks : HRESULT
-VAR_INPUT
-	Track : I_XtsTrack;
-END_VAR]]></Declaration>
-    </Method>
     <Method Name="Reset" Id="{6858a2d4-c501-4639-b0f6-64db9416c8f9}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
@@ -232,7 +211,7 @@ END_VAR
     <Method Name="SetMoverActiveTrack" Id="{3fb3e9b5-fc2f-40d4-a659-03f62aab1916}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD SetMoverActiveTrack : HRESULT
 VAR_INPUT
-	Track : INT;
+	Track : OTCID;
 END_VAR
 ]]></Declaration>
     </Method>
