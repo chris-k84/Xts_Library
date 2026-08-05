@@ -14,9 +14,10 @@ VAR
 	iXPU : I_TcIoXtsProcessingUnit;
 	_MoverArray : ARRAY[0..MaxMovers] OF I_XtsMover;
 	iXtsInterfaceProvider : I_XtsInterfaceProvider;
-	ICollisionGroup : I_CollisionGroup;
-	EnableSequence : XtsEnableSequence;
-	DisableSequence : XtsDisableSequence;	
+	myCAGroup : CollisionGroup;
+	iCollisionGroup : I_CollisionGroup := myCAGroup;
+	EnableSequence : XtsEnableSequence := (MyCollisionGroup := iCollisionGroup);
+	DisableSequence : XtsDisableSequence := (MyCollisionGroup := iCollisionGroup);	
 	_Initialised : BOOL;
 	_HardwareDiscoveryComplete : BOOL;
 	EnabledTrigger : R_TRIG;
@@ -29,10 +30,10 @@ VAR
 	CAGroupError : BOOL;
 	_ErrorID : UDINT;
 	XtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart('');
-	IXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart('');
+	iXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF I_XtsPart('');
 	//_MyNumberParts : INT;
 	XtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
-	IXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
+	iXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF I_XtsTrack('');
 	//_MyNumberTracks : INT;
 	TrackOTCIDs: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF Tc3_XTS_Utility.OTCID;
 	HardwareDiscoveryState : XtsHardwareDiscoveryState;
@@ -78,7 +79,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[CheckPartsForError := FALSE;
 FOR i := 0 TO TO_INT(MyPartCount - 1) DO
-	IF iXtsParts[i].HasError THEN
+	IF iXtsParts[i] <> 0 AND_THEN iXtsParts[i].HasError THEN
 		CheckPartsForError := TRUE;
 	END_IF
 END_FOR]]></ST>
@@ -93,7 +94,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[FOR i := 0 TO TO_INT(MyPartCount - 1) DO
-	IF iXtsParts[i].GetCurrentError() <> 0 THEN
+	IF iXtsParts[i] <> 0 AND_THEN iXtsParts[i].GetCurrentError() <> 0 THEN
 		errorCode := XtsParts[i].GetCurrentError();
 		IF errorCode > CheckPartsForHighestErrorCode THEN
 			CheckPartsForHighestErrorCode := errorCode;
@@ -117,26 +118,11 @@ END_VAR
 	RETURN;
 END_IF
 
-IF NOT _HardwareDiscoveryComplete THEN
-	Cycle := -2;
-	RETURN;
-END_IF
-
-HardwareError := (_iXPU.GetDriveState() = (DriveState.Fault OR DriveState.FaultReactionActive)) OR _MyXtsHardware.AnyPartsInError;
-
-
-IF NOT _MoversDetected THEN
-	Cycle := -3;
-	RETURN;
-END_IF
-
-
-EnableResult := DefaultEnableSequence.Cycle();
-DisableResult := DefaultDisableSequence.Cycle();
-EnabledTrigger(CLK := DefaultEnableSequence.Done);
-DisabledTrigger(CLK := DefaultDisableSequence.Done);
-ResetSequence();
-
+EnableResult := EnableSequence.Cycle();
+DisableResult := DisableSequence.Cycle();
+myCAGroup.Cycle();
+EnabledTrigger(CLK := EnableSequence.Done);
+DisabledTrigger(CLK := DisableSequence.Done);
 IF EnabledTrigger.Q THEN
 	_XtsEnabled := TRUE;
 END_IF
@@ -144,7 +130,7 @@ IF DisabledTrigger.Q THEN
 	_XtsEnabled := FALSE;
 END_IF
 
-HardwareError := CheckPartsForError();
+HardwareError := iXPU.GetDriveState() = DriveState.Fault OR CheckPartsForError();
 CAGroupError := ICollisionGroup.HasError;
 
 IF CAGroupError THEN
@@ -281,15 +267,10 @@ VAR_INPUT
     bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change) 
 	Name : T_MaxString;  
 	MyXtsIoEnvVar : I_XtsInterfaceProvider;
-	//MyXtsHardware : I_XtsHardware;
-	//MyCAGroup : I_CollisionGroup;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[iXtsInterfaceProvider := MyXtsIoEnvVar;
-//_MyXtsHardware := MyXtsHardware;
-//ICollisionGroup := MyCAGroup;
-EnableSequence.MyCollisionGroup := ICollisionGroup;
-DisableSequence.MyCollisionGroup := ICollisionGroup;]]></ST>
+]]></ST>
       </Implementation>
     </Method>
     <Property Name="HasError" Id="{fc5d4c9f-c257-47d7-8282-ec3a9f63c6e5}" FolderPath="Status\">
