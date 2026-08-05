@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Xts" Id="{4538c683-94fc-49a1-b5ad-30ffec5e4eff}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Xts EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XTS, I_Object
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Xts 
+VAR_GENERIC CONSTANT
+    NumberOfParts  : UINT := 1;
+	NumberOfTracks : UINT := 1;
+	XtsXpuNumber : UINT := 1;
+END_VAR
+EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XTS, I_Object
 VAR
-	//MyName : STRING;
 	_MyXts : INT;
 	_XtsEnabled : BOOL;
 	iXPU : I_TcIoXtsProcessingUnit;
 	_MoverArray : ARRAY[0..MaxMovers] OF I_XtsMover;
 	iXtsInterfaceProvider : I_XtsInterfaceProvider;
 	ICollisionGroup : I_CollisionGroup;
-	_MyXtsHardware : I_XtsHardware;
-	XtsHwState : XtsMoverDetectionState;
 	EnableSequence : XtsEnableSequence;
 	DisableSequence : XtsDisableSequence;	
 	_Initialised : BOOL;
@@ -27,10 +30,10 @@ VAR
 	_ErrorID : UDINT;
 	XtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart('');
 	IXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart('');
-	_MyNumberParts : INT;
+	//_MyNumberParts : INT;
 	XtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
 	IXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
-	_MyNumberTracks : INT;
+	//_MyNumberTracks : INT;
 	TrackOTCIDs: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF Tc3_XTS_Utility.OTCID;
 	HardwareDiscoveryState : XtsHardwareDiscoveryState;
 	MoverDetectionState : XtsMoverDetectionState;
@@ -39,9 +42,6 @@ VAR
 	MoverIdDetectionState: MoverIdDetectionStateEnum;
 	MoverIdDetectionError: BOOL;
 	MoverIdDetected: BOOL;
-	_isInitialised: BOOL;
-	_hasXPU : BOOL;
-	Status : XtsHardwareStatus;
 END_VAR
 VAR CONSTANT
 	MaxMovers : INT := 255;
@@ -65,6 +65,39 @@ FOR i := 0 TO _registeredNumberOfMovers - 1 DO
 	IF NOT iMovers[i].IsStationary THEN
 		AreAllMoversStationary := FALSE;
 		EXIT;
+	END_IF
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CheckPartsForError" Id="{8aa34e06-0102-41ed-a3cf-341e27edd24f}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PRIVATE CheckPartsForError : BOOL
+VAR
+	i : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CheckPartsForError := FALSE;
+FOR i := 0 TO TO_INT(MyPartCount - 1) DO
+	IF iXtsParts[i].HasError THEN
+		CheckPartsForError := TRUE;
+	END_IF
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CheckPartsForHighestErrorCode" Id="{d1076989-3b85-4420-95cd-9ce0212afec4}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PRIVATE CheckPartsForHighestErrorCode : UDINT
+VAR
+	i : INT;
+	errorCode : UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i := 0 TO TO_INT(MyPartCount - 1) DO
+	IF iXtsParts[i].GetCurrentError() <> 0 THEN
+		errorCode := XtsParts[i].GetCurrentError();
+		IF errorCode > CheckPartsForHighestErrorCode THEN
+			CheckPartsForHighestErrorCode := errorCode;
+		END_IF
 	END_IF
 END_FOR]]></ST>
       </Implementation>
@@ -111,12 +144,15 @@ IF DisabledTrigger.Q THEN
 	_XtsEnabled := FALSE;
 END_IF
 
+HardwareError := CheckPartsForError();
 CAGroupError := ICollisionGroup.HasError;
 
 IF CAGroupError THEN
 	_ErrorID := ICollisionGroup.ErrorCode;
 END_IF
-
+IF HardwareError THEN
+	_ErrorID := CheckPartsForHighestErrorCode();
+END_IF
 IF NOT CAGroupError AND NOT HardwareError THEN
 	_ErrorID := 0;
 END_IF]]></ST>
@@ -128,31 +164,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _Initialised THEN
-	DisableXTS := -1;
-	RETURN;
-END_IF
-
-IF NOT _HardwareDiscoveryComplete THEN
-	DisableXTS := -2;
-	RETURN;
-END_IF
-
-IF NOT _MoversDetected THEN
-	DisableXTS := -3;
-	RETURN;
-END_IF
-
-IF NOT _XtsEnabled THEN
-	DisableXTS := -4;
-	RETURN;
-END_IF
-
-Base_Library.Tracing.Trace.Verbose(_Name, 'Disable Accepted');
-DefaultDisableSequence.Disable();]]></ST>
+        <ST><![CDATA[IF _XtsEnabled THEN
+	Base_Library.Tracing.Trace.Verbose(_Name, 'Disable Accepted');
+	DisableXTS := SUCCEEDED(DisableSequence.Disable());
+END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="DiscoverHardware" Id="{199dc34b-920a-40a0-b86e-d4d30a9fd81a}">
+    <Method Name="DiscoverHardware" Id="{199dc34b-920a-40a0-b86e-d4d30a9fd81a}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD DiscoverHardware : HRESULT
 VAR
 	i : INT;
@@ -173,13 +191,13 @@ CASE HardwareDiscoveryState OF
 	XtsHardwareDiscoveryState.GettingParts:
 		Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Running Part Discovery');
 		MyPartCount := iXPU.P_PartCount;
-		IF TO_INT(MyPartCount) = _MyNumberParts THEN
+		IF TO_INT(MyPartCount) = NumberOfParts THEN
 			FOR i := 0 TO (TO_INT(MyPartCount) - 1) DO
 				XtsParts[i].MyXtsIoEnvInterface := iXPU.PartTcIo(TO_UINT(i + 1));
 				IXtsParts[i] := XtsParts[i];
-// 				IF THIS^.XtsInSim THEN
-// 					XtsParts[i].SetInSim();
-// 				END_IF
+				IF iXPU.GetOperationMode() = OperationMode.Simulation THEN
+					XtsParts[i].SetInSim();
+				END_IF
 			END_FOR
 			HardwareDiscoveryState := XtsHardwareDiscoveryState.GettingTracks;
 		ELSE
@@ -190,7 +208,7 @@ CASE HardwareDiscoveryState OF
 		Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Running Track Discovery');
 		MyTrackCount := iXPU.P_TrackCount;
 		TrackOTCIDs := iXPU.P_TrackOids;
-		IF TO_INT(MyTrackCount) = _MyNumberTracks THEN
+		IF TO_INT(MyTrackCount) = NumberOfTracks THEN
 			FOR i := 0 TO UDINT_TO_INT(MyTrackCount - 1) DO
 				XtsTracks[i].MyXtsIoEnvInterface := iXPU.TrackTcIo(TO_UINT(i + 1));
 				XtsTracks[i].MyOTCID := TrackOTCIDs[i + 1];
@@ -235,28 +253,10 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _Initialised THEN
-	EnableXts := -1;
-	RETURN;
-END_IF
-
-IF NOT _HardwareDiscoveryComplete THEN
-	EnableXts := -2;
-	RETURN;
-END_IF
-
-IF NOT _MoversDetected THEN
-	EnableXts := -3;
-	RETURN;
-END_IF
-
-IF _XtsEnabled THEN
-	EnableXts := -4;
-	RETURN;
-END_IF
-
-Base_Library.Tracing.Trace.Verbose(_Name, 'Enable Accepted');
-DefaultEnableSequence.Enable();]]></ST>
+        <ST><![CDATA[IF NOT _XtsEnabled THEN
+	Base_Library.Tracing.Trace.Verbose(_Name, 'Enable Accepted');
+	EnableXts := SUCCEEDED(EnableSequence.Enable());
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Property Name="ErrorId" Id="{d9cfe84c-7a4b-4b34-a9ba-97d2ea994ecf}" FolderPath="Status\">
@@ -270,44 +270,6 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="ExpectedNumberOfParts" Id="{33632734-2180-4c77-982d-f6997ead5bb5}" FolderPath="Settings\">
-      <Declaration><![CDATA[PROPERTY ExpectedNumberOfParts : int]]></Declaration>
-      <Get Name="Get" Id="{ec285ff9-810a-46b0-8941-68dcdc1ab79d}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[ExpectedNumberOfParts := _MyXtsHardware.ExpectedNumberOfParts;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{4cb5fde4-6845-43ef-b95e-df4929829b0c}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyXtsHardware.ExpectedNumberOfParts := ExpectedNumberOfParts;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Property Name="ExpectedNumberOfTracks" Id="{6b69c4c6-afe3-46d9-bc08-86224f82f24a}" FolderPath="Settings\">
-      <Declaration><![CDATA[PROPERTY ExpectedNumberOfTracks : int]]></Declaration>
-      <Get Name="Get" Id="{cab0d03f-ccb1-4d2e-adb6-3d697ceee44c}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[ExpectedNumberOfTracks := _MyXtsHardware.ExpectedNumberOfTracks;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{b24fc04c-e333-4935-bdff-3eff5a7d9932}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyXtsHardware.ExpectedNumberOfTracks := ExpectedNumberOfTracks;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Method Name="FB_Init" Id="{d6ce6c85-5c43-4276-b07f-92a2e669b228}">
       <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
 //The return value is not evaluated. For a specific influence, you can also declare the
@@ -316,17 +278,18 @@ END_VAR
 METHOD FB_Init: BOOL
 VAR_INPUT
     bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
-    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)   
+    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change) 
+	Name : T_MaxString;  
 	MyXtsIoEnvVar : I_XtsInterfaceProvider;
-	MyXtsHardware : I_XtsHardware;
-	MyCAGroup : I_CollisionGroup;
+	//MyXtsHardware : I_XtsHardware;
+	//MyCAGroup : I_CollisionGroup;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[iXtsInterfaceProvider := MyXtsIoEnvVar;
-_MyXtsHardware := MyXtsHardware;
-ICollisionGroup := MyCAGroup;
-DefaultEnableSequence.MyCollisionGroup := ICollisionGroup;
-DefaultDisableSequence.MyCollisionGroup := ICollisionGroup;]]></ST>
+//_MyXtsHardware := MyXtsHardware;
+//ICollisionGroup := MyCAGroup;
+EnableSequence.MyCollisionGroup := ICollisionGroup;
+DisableSequence.MyCollisionGroup := ICollisionGroup;]]></ST>
       </Implementation>
     </Method>
     <Property Name="HasError" Id="{fc5d4c9f-c257-47d7-8282-ec3a9f63c6e5}" FolderPath="Status\">
@@ -336,11 +299,11 @@ DefaultDisableSequence.MyCollisionGroup := ICollisionGroup;]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[HasError := ICollisionGroup.HasError OR _MyXtsHardware.AnyPartsInError;]]></ST>
+          <ST><![CDATA[HasError := CAGroupError OR HardwareError;]]></ST>
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}">
+    <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR
 	i : INT;
@@ -406,52 +369,55 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="MoverDetection" Id="{dba45dd8-2a21-4df4-baaf-5aa299000bf6}">
+    <Method Name="MoverDetection" Id="{dba45dd8-2a21-4df4-baaf-5aa299000bf6}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD MoverDetection : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE MoverDetectionState OF
-	
 	XtsMoverDetectionState.SetATrackForDetection:
-		IF SUCCEEDED(_MyXtsHardware.SetATrackForDetection(1)) THEN
-			XtsHwState := XtsMoverDetectionState.TriggeringRedetection;
+		IF _Initialised AND _HardwareDiscoveryComplete THEN
+			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Mover Detection Started');
+			IXtsTracks[0].SetForDetection();
+			MoverDetectionState := XtsMoverDetectionState.TriggeringRedetection;
 		END_IF
-		
+	
 	XtsMoverDetectionState.TriggeringRedetection:
-		IF SUCCEEDED(_MyXtsHardware.TriggerMoverRedetection()) THEN
-			XtsHwState := XtsMoverDetectionState.WaitingForAllMoversValid;
+		IF iXPU.TriggerRedetection() THEN
+			MoverDetectionState := XtsMoverDetectionState.WaitingForAllMoversValid;
 		END_IF
 		
 	XtsMoverDetectionState.WaitingForAllMoversValid:
-		IF _MyXtsHardware.AllMoverPositionsValid THEN
-			XtsHwState := XtsMoverDetectionState.CheckingAllMoverFound;
+		IF iXPU.GetAreAllPositionsValid() THEN
+			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Mover Detection Complete');
+			MoverDetectionState := XtsMoverDetectionState.CheckingAllMoverFound;
 		END_IF
 	
 	XtsMoverDetectionState.CheckingAllMoverFound:
-		IF _MyXtsHardware.AreExpectedMoversFound() THEN
-			DetectedMoverCount := _MyXtsHardware.NumberOfMoversDetected;
-			XtsHwState := XtsMoverDetectionState.CheckIfXtsInSimMode;
+		IF iXPU.GetExpectedMoverCount() = iXPU.GetDetectedMoverCount() THEN
+			DetectedMoverCount := iXPU.GetDetectedMoverCount();
+			MoverDetectionState := XtsMoverDetectionState.CheckIfXtsInSimMode;
 		END_IF
 		
 	XtsMoverDetectionState.CheckIfXtsInSimMode:
-		IF _MyXtsHardware.XtsInSim THEN
-			XtsHwState := XtsMoverDetectionState.TriggeringMoverIdDetection;
+		IF iXPU.GetOperationMode() = OperationMode.Simulation THEN
+			MoverDetectionState := XtsMoverDetectionState.TriggeringMoverIdDetection;
 		ELSE
-			XtsHwState := XtsMoverDetectionState.CheckingXts24And48Volts;
+			MoverDetectionState := XtsMoverDetectionState.CheckingXts24And48Volts;
 		END_IF
 		
 	XtsMoverDetectionState.CheckingXts24And48Volts:
-		IF SUCCEEDED(_MyXtsHardware.IsHardware24VdcOK()) AND SUCCEEDED(_MyXtsHardware.IsHardware48VdcOK()) THEN
-			XtsHwState := XtsMoverDetectionState.TriggeringMoverIdDetection;
+		IF iXPU.GetIsDcLinkVoltageReady() THEN
+			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Mover ID Detection Starting');
+			MoverDetectionState := XtsMoverDetectionState.TriggeringMoverIdDetection;
 		END_IF
 	
 	XtsMoverDetectionState.TriggeringMoverIdDetection:
-		IF _MyXtsHardware.IsIDDetectionStandard() OR_ELSE SUCCEEDED(_MyXtsHardware.TriggerMoverIDDetection()) THEN
-			XtsHwState := XtsMoverDetectionState.XtsInitialised;
+		IF iXPU.GetMoverIdDetectionMode() = MoverIdDetectionMode.Standard OR_ELSE SUCCEEDED(TriggerMoverIDDetection()) THEN
+			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Mover ID Detection Complete');
+			MoverDetectionState := XtsMoverDetectionState.XtsInitialised;
 		END_IF
-	
 END_CASE]]></ST>
       </Implementation>
     </Method>
@@ -464,25 +430,6 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MyXts" Id="{b982f888-fcea-49f3-8b85-76339b257fce}" FolderPath="Settings\">
-      <Declaration><![CDATA[PROPERTY MyXts : INT]]></Declaration>
-      <Get Name="Get" Id="{7260ae55-6d72-4286-9779-c205f4bf658b}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyXts := _MyXtsHardware.MyXts;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{f9bbe24a-eac8-4b47-a949-a650212b0818}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyXtsHardware.MyXts := _MyXts := MyXts;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Method Name="RegisterMovers" Id="{a3bbc877-121f-4130-8916-a04d2ba4dd9d}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
 VAR_INPUT
@@ -494,17 +441,17 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF MyMover = 0 THEN
-	Base_Library.Tracing.Trace.Warning(_name, 'Register Mover Fail - null ptr');
+	Base_Library.Tracing.Trace.Warning(_Name, 'Register Mover Fail - null ptr');
 	RegisterMovers := -1;
 	RETURN;
 END_IF
 IF NOT _Initialised THEN
-	Base_Library.Tracing.Trace.Warning(_name, 'Register Mover Fail - not ready');
+	Base_Library.Tracing.Trace.Warning(_Name, 'Register Mover Fail - not ready');
 	RegisterMovers := -2;
 	RETURN;
 END_IF
-IF _registeredNumberOfMovers >= TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu THEN
-	Base_Library.Tracing.Trace.Warning(_name, 'Register Mover Fail - max movers reached');
+IF _registeredNumberOfMovers >= MaxMovers THEN
+	Base_Library.Tracing.Trace.Warning(_Name, 'Register Mover Fail - max movers reached');
 	RegisterMovers := -3;
 	RETURN;
 END_IF
@@ -515,13 +462,13 @@ FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
 	END_IF
 END_FOR
 IF MoverRegistered THEN
-	Base_Library.Tracing.Trace.Warning(_name, 'Register Mover Fail - registered');
+	Base_Library.Tracing.Trace.Warning(_Name, 'Register Mover Fail - registered');
 	RegisterMovers := -4;
 	RETURN;
 END_IF
 
-Base_Library.Tracing.Trace.Verbose(_name, 'Register Mover Accepted');
-iMovers[_registeredNumberOfMovers] := MyMover;
+Base_Library.Tracing.Trace.Verbose(_Name, 'Register Mover Accepted');
+_MoverArray[_registeredNumberOfMovers] := MyMover;
 _registeredNumberOfMovers := _registeredNumberOfMovers + 1;
 EnableSequence.RegisterMovers(MyMover);
 DisableSequence.RegisterMovers(MyMover);
@@ -550,47 +497,27 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _Initialised THEN
-	Reset := -1;
-	RETURN;
-END_IF
-
-IF NOT _HardwareDiscoveryComplete THEN
-	Reset := -2;
-	RETURN;
-END_IF
-
-ResetTrigger.CLK := TRUE;
+        <ST><![CDATA[Reset := SUCCEEDED(ICollisionGroup.Reset());
+iXPU.TriggerResetAllParts();
 Base_Library.Tracing.Trace.Verbose(_Name, 'Reset Accepted');]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ResetSequence" Id="{13cd689a-6bb1-4c04-93f3-31d6703e31bf}" FolderPath="Private\">
-      <Declaration><![CDATA[METHOD ResetSequence : HRESULT
+    <Method Name="ResetAPart" Id="{ea6e5381-c439-4c48-a079-83c8463314b8}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD PUBLIC ResetAPart : hresult
 VAR_INPUT
+	Part : INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[CASE ResetState OF
-	XtsResetState.Idle:
-		IF ResetTrigger.Q THEN
-			ResetState := XtsResetState.ResettingHardware;
-			_iXPU.TriggerResetAllParts();
-		END_IF	
-	XtsResetState.ResettingHardware:
-		IF NOT HardwareError THEN
-			ICollisionGroup.Reset();
-			ResetState := XtsResetState.ResettingCAGroup;
-		END_IF
-	XtsResetState.ResettingCAGroup:
-		IF NOT iCollisionGroup.HasError THEN
-			ResetState := XtsResetState.Done;
-		END_IF
-	XtsResetState.Done:
-		ResetTrigger.CLK := FALSE;
-		ResetState := XtsResetState.Idle;
-END_CASE
-ResetTrigger();
-]]></ST>
+        <ST><![CDATA[IF Part > MyPartCount THEN
+	ResetAPart := -1;
+END_IF
+
+IF Part = 0 THEN
+	ResetAPart := -2;
+END_IF
+
+IXtsParts[Part].ResetPart();]]></ST>
       </Implementation>
     </Method>
     <Method Name="StopXts" Id="{4b648283-f5f4-4d47-a58f-be53e519365d}" FolderPath="Operations\">
@@ -599,28 +526,31 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _Initialised THEN
-	StopXts := -1;
-	RETURN;
-END_IF
-
-IF NOT _HardwareDiscoveryComplete THEN
-	StopXts := -2;
-	RETURN;
-END_IF
-
-IF NOT _MoversDetected THEN
-	StopXts := -3;
-	RETURN;
-END_IF
-
-IF _XtsEnabled THEN
-	StopXts := -4;
-	RETURN;
-END_IF
-
-ICollisionGroup.GroupStop();
+        <ST><![CDATA[StopXTS := ICollisionGroup.GroupStop();
 Base_Library.Tracing.Trace.Verbose(_Name, 'Stop Accepted');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerMoverIdDetection" Id="{49e4cae6-2a7e-45cb-ba80-e12b965b943f}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PRIVATE TriggerMoverIdDetection : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MoverIdDetectionError 	:= MoverIdDetectionState = MoverIdDetectionStateEnum.Error;
+MoverIdDetected 	:= MoverIdDetectionState = MoverIdDetectionStateEnum.Valid;
+MoverIdDetectionState	:= iXPU.GetMoverIdDetectionState();
+
+IF iXPU.GetMoverIdDetectionMode() = MoverIdDetectionMode.Standard THEN
+	TriggerMoverIDDetection := -1;
+	RETURN;
+END_IF
+// 
+IF MoverIdDetectionState = MoverIdDetectionStateEnum.Running THEN
+	TriggerMoverIDDetection := -2;
+	RETURN;
+END_IF
+
+iXPU.TriggerMoverIdDetection();]]></ST>
       </Implementation>
     </Method>
   </POU>
