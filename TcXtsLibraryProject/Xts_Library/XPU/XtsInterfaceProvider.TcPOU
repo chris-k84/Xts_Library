@@ -40,6 +40,40 @@ END_IF
 GetCaGroupInterface := XtsIoEnvironment.Mc2CaGroup(TO_UINT(CAGroupNumber));]]></ST>
       </Implementation>
     </Method>
+    <Method Name="GetModuleInterface" Id="{9e8a4fd0-ade8-4386-8b86-2a458cce9585}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetModuleInterface : I_TcIoXtsPartModule
+VAR_INPUT
+	MyXts : INT;
+	Part : INT;
+	Module : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts)).PartTcIo(Part).ModuleTcIo(Module);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetPartInterface" Id="{f8a0e0e3-0f08-4154-a007-a3b6ddf4a82b}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetPartInterface : I_TcIoXtsXpuPart
+VAR_INPUT
+	MyXts : INT;
+	Part : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetPartInterface := XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts)).PartTcIo(Part);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetTrackInterface" Id="{458a2926-08f7-48fe-9ad8-86ada7442d2d}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetTrackInterface : I_TcIoXtsXpuTrack
+VAR_INPUT
+	MyXts : INT;
+	Track : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts)).TrackTcIo(Track);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="GetXPUInterface" Id="{a6b4198a-d372-4fc0-b700-debb44563dc0}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetXPUInterface : I_TcIoXtsProcessingUnit
 VAR_INPUT

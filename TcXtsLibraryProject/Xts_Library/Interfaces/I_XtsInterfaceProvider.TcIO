@@ -12,6 +12,31 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="GetModuleInterface" Id="{6293224e-8a01-4b62-a2a2-1d59c2b0a449}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetModuleInterface : I_TcIoXtsPartModule
+VAR_INPUT
+	MyXts : INT;
+	Part : INT;
+	Module : INT;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="GetPartInterface" Id="{ae98475f-6b95-442f-ab2a-2f757fe5f759}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetPartInterface : I_TcIoXtsXpuPart
+VAR_INPUT
+	MyXts : INT;
+	Part : INT;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="GetTrackInterface" Id="{eb2e9064-b92c-443d-93e7-69ac69d21432}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetTrackInterface : I_TcIoXtsXpuTrack
+VAR_INPUT
+	MyXts : INT;
+	Track : INT;
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="GetXPUInterface" Id="{01d39393-68d5-4f22-a8cb-82a779c4b78e}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetXPUInterface : I_TcIoXtsProcessingUnit
 VAR_INPUT
