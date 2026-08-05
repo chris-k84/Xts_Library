@@ -112,7 +112,7 @@
     <Compile Include="Interfaces\I_XtsHardware.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Interfaces\I_XtsIoEnvVar.TcIO">
+    <Compile Include="Interfaces\I_XtsInterfaceProvider.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Interfaces\I_XtsMotorModule.TcIO">
@@ -182,7 +182,7 @@
     <Compile Include="Types\stStationStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Types\XtsHardwareInitialisation.TcDUT">
+    <Compile Include="Types\XtsHardwareDiscoveryState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Types\XtsHardwareStatus.TcDUT">
@@ -194,16 +194,13 @@
     <Compile Include="Types\XtsPartStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Types\XtsResetState.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Types\XtsSystemInitialisation.TcDUT">
+    <Compile Include="Types\XtsMoverDetectionState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Version\Global_Version.TcGVL">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="XPU\XtsIoEnvVar.TcPOU">
+    <Compile Include="XPU\XtsInterfaceProvider.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Collision Group\CollisionGroup.TcPOU">

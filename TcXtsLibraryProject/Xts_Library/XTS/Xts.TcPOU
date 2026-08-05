@@ -1,33 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Xts" Id="{4538c683-94fc-49a1-b5ad-30ffec5e4eff}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT XTS EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XTS
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Xts EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XTS, I_Object
 VAR
-	// Status Flags
+	//MyName : STRING;
 	_MyXts : INT;
 	_XtsEnabled : BOOL;
-	_InSim : BOOL;
-	Initialising : BOOL;
+	iXPU : I_TcIoXtsProcessingUnit;
+	_MoverArray : ARRAY[0..MaxMovers] OF I_XtsMover;
+	iXtsInterfaceProvider : I_XtsInterfaceProvider;
+	ICollisionGroup : I_CollisionGroup;
+	_MyXtsHardware : I_XtsHardware;
+	XtsHwState : XtsMoverDetectionState;
+	EnableSequence : XtsEnableSequence;
+	DisableSequence : XtsDisableSequence;	
 	_Initialised : BOOL;
 	_HardwareDiscoveryComplete : BOOL;
-	_MoversDetected : BOOL;
-	
-	HardwareError : BOOL;
-	CAGroupError : BOOL;
-	_ErrorID : UDINT;
-	XtsHwState : XtsSystemInitialisation;
-	XtsOperatingMode : OperationMode;
-	
-	// XTS Components
-	_XtsIoEnvVar : I_XtsIoEnvVar;
-	_iXPU : I_TcIoXtsProcessingUnit;
-	iMovers : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
-	_MyXtsHardware : I_XtsHardware;
-	ICollisionGroup : I_CollisionGroup;
-	
-	// Behaviours
-	DefaultEnableSequence : XtsEnableSequence;
-	DefaultDisableSequence : XtsDisableSequence;	
 	EnabledTrigger : R_TRIG;
 	DisabledTrigger : R_TRIG;
 	ResetTrigger : R_TRIG;
@@ -44,8 +32,8 @@ VAR
 	IXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
 	_MyNumberTracks : INT;
 	TrackOTCIDs: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF Tc3_XTS_Utility.OTCID;
-	_MyXpu : Tc3_XTS_Utility.I_TcIoXtsProcessingUnit;
-	XtsIoEnvInitialiseState : XtsHardwareInitialisation;
+	HardwareDiscoveryState : XtsHardwareDiscoveryState;
+	MoverDetectionState : XtsMoverDetectionState;
 	MyPartCount: UDINT;
 	MyTrackCount: UDINT;
 	MoverIdDetectionState: MoverIdDetectionStateEnum;
@@ -166,45 +154,54 @@ DefaultDisableSequence.Disable();]]></ST>
     </Method>
     <Method Name="DiscoverHardware" Id="{199dc34b-920a-40a0-b86e-d4d30a9fd81a}">
       <Declaration><![CDATA[METHOD DiscoverHardware : HRESULT
-VAR_INPUT
+VAR
+	i : INT;
+	allInitialised : BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[XtsHardwareInitialisation.WaitingForXpu:
-		IF _MyXpu = 0 THEN
+        <ST><![CDATA[DiscoverHardware := -1;
+CASE HardwareDiscoveryState OF
+	XtsHardwareDiscoveryState.WaitingForXpu:
+		IF _Initialised THEN
 			RETURN;
 		ELSE
-			_MyName := _MyXpu.P_ObjectName;
-			XtsIoEnvInitialiseState := XtsHardwareInitialisation.GettingParts;
+			//MyName := iXPU.P_ObjectName;
+			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Starting Hardware Discovery');
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.GettingParts;
 		END_IF
-	XtsHardwareInitialisation.GettingParts:
-		MyPartCount := _MyXpu.P_PartCount;
+	XtsHardwareDiscoveryState.GettingParts:
+		Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Running Part Discovery');
+		MyPartCount := iXPU.P_PartCount;
 		IF TO_INT(MyPartCount) = _MyNumberParts THEN
 			FOR i := 0 TO (TO_INT(MyPartCount) - 1) DO
-				XtsParts[i].MyXtsIoEnvInterface := _MyXpu.PartTcIo(TO_UINT(i + 1));
+				XtsParts[i].MyXtsIoEnvInterface := iXPU.PartTcIo(TO_UINT(i + 1));
 				IXtsParts[i] := XtsParts[i];
-				IF THIS^.XtsInSim THEN
-					XtsParts[i].SetInSim();
-				END_IF
+// 				IF THIS^.XtsInSim THEN
+// 					XtsParts[i].SetInSim();
+// 				END_IF
 			END_FOR
-			XtsIoEnvInitialiseState := XtsHardwareInitialisation.GettingTracks;
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.GettingTracks;
 		ELSE
-			XtsIoEnvInitialiseState := XtsHardwareInitialisation.InitialisationFault;
+			Base_Library.Tracing.Trace.Error(Source := _Name, Message := 'Part count does not match detected part count');
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.DiscoveryFault;
 		END_IF
-	XtsHardwareInitialisation.GettingTracks:
-		MyTrackCount := _MyXpu.P_TrackCount;
-		TrackOTCIDs := _MyXpu.P_TrackOids;
+	XtsHardwareDiscoveryState.GettingTracks:
+		Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Running Track Discovery');
+		MyTrackCount := iXPU.P_TrackCount;
+		TrackOTCIDs := iXPU.P_TrackOids;
 		IF TO_INT(MyTrackCount) = _MyNumberTracks THEN
 			FOR i := 0 TO UDINT_TO_INT(MyTrackCount - 1) DO
-				XtsTracks[i].MyXtsIoEnvInterface := _MyXpu.TrackTcIo(TO_UINT(i + 1));
+				XtsTracks[i].MyXtsIoEnvInterface := iXPU.TrackTcIo(TO_UINT(i + 1));
 				XtsTracks[i].MyOTCID := TrackOTCIDs[i + 1];
 				IXtsTracks[i] := XtsTracks[i];
 			END_FOR
-			XtsIoEnvInitialiseState := XtsHardwareInitialisation.InitialisingXtsParts;
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.InitialisingXtsParts;
 		ELSE
-			XtsIoEnvInitialiseState := XtsHardwareInitialisation.InitialisationFault;
+			Base_Library.Tracing.Trace.Error(Source := _Name, Message := 'Track count does not match detected part count');
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.DiscoveryFault;
 		END_IF
-	XtsHardwareInitialisation.InitialisingXtsParts:
+	XtsHardwareDiscoveryState.InitialisingXtsParts:
 		allInitialised := TRUE;
 		FOR i := 0 TO UDINT_TO_INT(MyPartCount - 1) DO
 			IF FAILED(XtsParts[i].Initialise()) THEN
@@ -212,9 +209,9 @@ END_VAR
 			END_IF
 		END_FOR
 		IF allInitialised THEN
-			XtsIoEnvInitialiseState := XtsHardwareInitialisation.InitialisingXtsTracks;
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.InitialisingXtsTracks;
 		END_IF
-	XtsHardwareInitialisation.InitialisingXtsTracks:
+	XtsHardwareDiscoveryState.InitialisingXtsTracks:
 		allInitialised := TRUE;
 		FOR i := 0 TO UDINT_TO_INT(MyTrackCount - 1) DO
 			IF FAILED(XtsTracks[i].Initialise()) THEN
@@ -222,11 +219,12 @@ END_VAR
 			END_IF
 		END_FOR
 		IF allInitialised THEN
-			XtsIoEnvInitialiseState := XtsHardwareInitialisation.Initialised;
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.HardwareFound;
 		END_IF
-	XtsHardwareInitialisation.Initialised:
-		_isInitialised := TRUE;
-		Initialise := 0;
+	XtsHardwareDiscoveryState.HardwareFound:
+		Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Hardware Discovery Complete');
+		_HardwareDiscoveryComplete := TRUE;
+		DiscoverHardware := 0;
 END_CASE
 ]]></ST>
       </Implementation>
@@ -318,14 +316,13 @@ END_VAR
 METHOD FB_Init: BOOL
 VAR_INPUT
     bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
-    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change) 
-	Name : T_MaxString;  
-	MyXtsIoEnvVar : I_XtsIoEnvVar;
+    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)   
+	MyXtsIoEnvVar : I_XtsInterfaceProvider;
 	MyXtsHardware : I_XtsHardware;
 	MyCAGroup : I_CollisionGroup;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_XtsIoEnvVar := MyXtsIoEnvVar;
+        <ST><![CDATA[iXtsInterfaceProvider := MyXtsIoEnvVar;
 _MyXtsHardware := MyXtsHardware;
 ICollisionGroup := MyCAGroup;
 DefaultEnableSequence.MyCollisionGroup := ICollisionGroup;
@@ -351,23 +348,15 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Initialise := -1;
-CASE XtsHwState OF
-	XtsSystemInitialisation.WaitingForXtsIoEnvVar:
-		IF NOT Initialising THEN
-			Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'Waiting for XTS_UtilityLib');
-			Initialising := TRUE;
-		END_IF
-		IF _XtsIoEnvVar.Initialised THEN
-			Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'XTS_Utility Initiliased');
-			_iXPU := _XtsIoEnvVar.GetXPUInterface(_MyXts);
-			_name := _iXPU.P_ObjectName;
-			XtsOperatingMode := _iXPU.GetOperationMode();
-			_InSim := XtsOperatingMode = OperationMode.Simulation;
-			_MyXtsHardware.MyXpu := _iXPU;
-			DefaultEnableSequence.Name := _Name;
-			DefaultDisableSequence.Name := _Name;
-			XtsHwState := XtsSystemInitialisation.PassGroupReference;
-		END_IF
+Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Waiting for XTS_UtilityLib');
+IF iXtsInterfaceProvider.Initialised THEN
+	Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'XTS_Utility Initiliased');
+	iXPU := iXtsInterfaceProvider.GetXPUInterface(_MyXts);
+	//_MyXtsHardware.MyXpu := iXPU;
+	//XtsHwState := XtsSystemInitialisation.PassGroupReference;
+	Initialise := 0;
+	_Initialised := TRUE;	
+END_IF
 		
 
 	
@@ -381,13 +370,7 @@ CASE XtsHwState OF
 // 			MyName := _MyXtsHardware.MyName;
 // 			XtsHwState := XtsSystemInitialisation.SetATrackForDetection;
 // 		END_IF
-	
-	
-	
-	XtsSystemInitialisation.XtsInitialised:
-		Initialise := 0;
-		_Initialised := TRUE;	
-END_CASE]]></ST>
+	]]></ST>
       </Implementation>
     </Method>
     <Property Name="Initialised" Id="{a78fe92f-7cf8-4747-affa-2e0853d05d4c}" FolderPath="Status\">
@@ -429,43 +412,47 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[XtsSystemInitialisation.SetATrackForDetection:
+        <ST><![CDATA[CASE MoverDetectionState OF
+	
+	XtsMoverDetectionState.SetATrackForDetection:
 		IF SUCCEEDED(_MyXtsHardware.SetATrackForDetection(1)) THEN
-			XtsHwState := XtsSystemInitialisation.TriggeringRedetection;
+			XtsHwState := XtsMoverDetectionState.TriggeringRedetection;
 		END_IF
 		
-	XtsSystemInitialisation.TriggeringRedetection:
+	XtsMoverDetectionState.TriggeringRedetection:
 		IF SUCCEEDED(_MyXtsHardware.TriggerMoverRedetection()) THEN
-			XtsHwState := XtsSystemInitialisation.WaitingForAllMoversValid;
+			XtsHwState := XtsMoverDetectionState.WaitingForAllMoversValid;
 		END_IF
 		
-	XtsSystemInitialisation.WaitingForAllMoversValid:
+	XtsMoverDetectionState.WaitingForAllMoversValid:
 		IF _MyXtsHardware.AllMoverPositionsValid THEN
-			XtsHwState := XtsSystemInitialisation.CheckingAllMoverFound;
+			XtsHwState := XtsMoverDetectionState.CheckingAllMoverFound;
 		END_IF
 	
-	XtsSystemInitialisation.CheckingAllMoverFound:
+	XtsMoverDetectionState.CheckingAllMoverFound:
 		IF _MyXtsHardware.AreExpectedMoversFound() THEN
 			DetectedMoverCount := _MyXtsHardware.NumberOfMoversDetected;
-			XtsHwState := XtsSystemInitialisation.CheckIfXtsInSimMode;
+			XtsHwState := XtsMoverDetectionState.CheckIfXtsInSimMode;
 		END_IF
 		
-	XtsSystemInitialisation.CheckIfXtsInSimMode:
+	XtsMoverDetectionState.CheckIfXtsInSimMode:
 		IF _MyXtsHardware.XtsInSim THEN
-			XtsHwState := XtsSystemInitialisation.TriggeringMoverIdDetection;
+			XtsHwState := XtsMoverDetectionState.TriggeringMoverIdDetection;
 		ELSE
-			XtsHwState := XtsSystemInitialisation.CheckingXts24And48Volts;
+			XtsHwState := XtsMoverDetectionState.CheckingXts24And48Volts;
 		END_IF
 		
-	XtsSystemInitialisation.CheckingXts24And48Volts:
+	XtsMoverDetectionState.CheckingXts24And48Volts:
 		IF SUCCEEDED(_MyXtsHardware.IsHardware24VdcOK()) AND SUCCEEDED(_MyXtsHardware.IsHardware48VdcOK()) THEN
-			XtsHwState := XtsSystemInitialisation.TriggeringMoverIdDetection;
+			XtsHwState := XtsMoverDetectionState.TriggeringMoverIdDetection;
 		END_IF
 	
-	XtsSystemInitialisation.TriggeringMoverIdDetection:
+	XtsMoverDetectionState.TriggeringMoverIdDetection:
 		IF _MyXtsHardware.IsIDDetectionStandard() OR_ELSE SUCCEEDED(_MyXtsHardware.TriggerMoverIDDetection()) THEN
-			XtsHwState := XtsSystemInitialisation.XtsInitialised;
-		END_IF]]></ST>
+			XtsHwState := XtsMoverDetectionState.XtsInitialised;
+		END_IF
+	
+END_CASE]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoverHomeSequence" Id="{5c2deb91-ebd0-4a93-99ec-6a6bbbd5e076}" FolderPath="Operations\">
@@ -539,9 +526,9 @@ _registeredNumberOfMovers := _registeredNumberOfMovers + 1;
 EnableSequence.RegisterMovers(MyMover);
 DisableSequence.RegisterMovers(MyMover);
 
-FOR i := 1 TO TO_UINT(_XPU.GetDetectedMoverCount()) DO
-	IF MyMover.AxisRef.NcToPlc.AxisId = _XPU.MoverTcIo(i).P_AxisId THEN
-		MyMover.MoverXtsIoEnvInterface := _XPU.MoverTcIo(i);
+FOR i := 1 TO TO_UINT(iXPU.GetDetectedMoverCount()) DO
+	IF MyMover.AxisRef.NcToPlc.AxisId = iXPU.MoverTcIo(i).P_AxisId THEN
+		MyMover.MoverXtsIoEnvInterface := iXPU.MoverTcIo(i);
 	END_IF
 END_FOR]]></ST>
       </Implementation>
