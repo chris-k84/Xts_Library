@@ -18,7 +18,7 @@
     <Released>true</Released>
     <Title>Xts Library</Title>
     <Company>BeckhoffUK</Company>
-    <ProjectVersion>16.0.2</ProjectVersion>
+    <ProjectVersion>16.0.3</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory>
         <Id>{4c30be10-0c29-4796-921e-62ecfda40191}</Id>
@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Operations\TmsEmbarkStation.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="Operations\TriggerPoint.TcPOU">
       <SubType>Code</SubType>
@@ -350,7 +351,7 @@
       <Resolution>Element Collections, 4.0.0.0 (CODESYS)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Motion Library">
-      <Resolution>Motion Library, 3.0.0.0 (Beckhoff UK)</Resolution>
+      <Resolution>Motion Library, 4.0.2.0 (Beckhoff UK)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Standard">
       <Resolution>Tc2_Standard, 3.4.7.0 (Beckhoff Automation GmbH)</Resolution>
