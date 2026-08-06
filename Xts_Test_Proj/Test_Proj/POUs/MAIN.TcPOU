@@ -3,7 +3,7 @@
   <POU Name="MAIN" Id="{dc5d3262-2c75-40be-bcf4-e3452be8a2b3}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	TestXtsIoEnvVar : XtsIoEnvVar;
+	TestXtsIoEnvVar : XtsInterfaceProvider;
 	XtsHWTestSuite : XtsHardware_TestSuite;
 	XtsMoverTestSuite : XtsMover_TestSuite;
 	XtsTestSuite : Xts_TestSuite;

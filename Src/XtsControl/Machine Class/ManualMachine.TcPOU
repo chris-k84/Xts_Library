@@ -1,17 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <POU Name="ManualMachine" Id="{01bc7f0f-8a11-4b18-bb7f-35e7e0af063e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ManualMachine
 VAR
-	Movers : ARRAY[0..NumberOFSystemMovers] OF XtsMover('');
-	iMovers : ARRAY[0..NumberOFSystemMovers] OF I_XtsMover := [Movers[0]];
-	systemXtsioEnvVar : XtsIoEnvVar;	
-	systemXtsHardware : XTSHardware('MyXTS');				
-	systemCAGroup : CollisionGroup('');															
-	MyXts : ThisXTS('Test',systemXtsioEnvVar,systemXtsHardware,systemCAGroup) := (MyXts := 1, 
-																			ExpectedNumberOfParts := 2, 
+	Movers : ARRAY[0..NumberOFSystemMovers] OF XtsMover;
+	iMovers : ARRAY[0..NumberOFSystemMovers] OF I_XtsMover := [Movers[0],Movers[1],
+											Movers[2],Movers[3],
+											Movers[4],Movers[5],
+											Movers[6],Movers[7]];
+	systemXtsioEnvVar : XtsInterfaceProvider;	
+	//systemXtsHardware : XTSHardware('MyXTS');				
+	systemCAGroup : CollisionGroup;															
+	MyXts : Xts(*(systemXtsioEnvVar,systemXtsHardware,systemCAGroup)*)<1,1,1>;(* := (MyXts := 1, 
+																			ExpectedNumberOfParts := 1, 
 																			ExpectedNumberOfTracks := 1, 
-																			HomePosition := SystemConstants.XtsHomePosition);
+																			HomePosition := SystemConstants.XtsHomePosition);*)
 	initSequence : INT;
 	InitComplete : BOOL;
 	

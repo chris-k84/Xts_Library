@@ -3,7 +3,7 @@
   <POU Name="Xts_TestSuite" Id="{f988a3d2-66dc-4a17-94a6-1c6d0d5b97aa}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Xts_TestSuite
 VAR
-	dummyIoEnvVar : XtsIoEnvVar;
+	dummyIoEnvVar : XtsInterfaceProvider;
 	dummyXtsHw : XTSHardware('');
 	dummyCaGroup : CollisionGroup('');
 	testXts : StubXts('test',dummyIoEnvVar,dummyXtsHw,dummyCaGroup);

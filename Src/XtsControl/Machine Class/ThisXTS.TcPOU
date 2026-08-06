@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <POU Name="ThisXTS" Id="{adc628a7-7a2e-4111-937d-b66eb159493c}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ThisXTS EXTENDS Xts
+    <Declaration><![CDATA[FUNCTION_BLOCK ThisXTS EXTENDS Xts<1,1,1>
 VAR
 	_homePosition : LREAL;
 END_VAR
