@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="StubXts" Id="{59a8f0f1-3a37-4f6e-9e76-a82474ad05c1}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK StubXts EXTENDS Xts<1,1,1>
+    <Declaration><![CDATA[FUNCTION_BLOCK StubXts
+VAR_GENERIC CONSTANT
+    NuOfParts  : UINT := 1;
+	NuOfTracks : UINT := 1;
+	XpuNumber : UINT := 1;
+END_VAR EXTENDS Xts<NuOfParts,NuOfTracks,XpuNumber>
 VAR
 END_VAR
 ]]></Declaration>

@@ -30,9 +30,9 @@ VAR
 	CAGroupError : BOOL;
 	_ErrorID : UDINT;
 	XtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart('');
-	iXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF I_XtsPart('');
+	iXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF I_XtsPart;
 	XtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
-	iXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF I_XtsTrack('');
+	iXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF I_XtsTrack;
 	TrackOTCIDs: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF Tc3_XTS_Utility.OTCID;
 	HardwareDiscoveryState : XtsHardwareDiscoveryState;
 	MoverDetectionState : XtsMoverDetectionState;

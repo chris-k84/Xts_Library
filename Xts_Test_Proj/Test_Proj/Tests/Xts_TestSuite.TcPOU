@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Xts_TestSuite" Id="{f988a3d2-66dc-4a17-94a6-1c6d0d5b97aa}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Xts_TestSuite
 VAR
 	dummyIoEnvVar : XtsInterfaceProvider;
 	dummyXtsHw : XTSHardware('');
-	dummyCaGroup : CollisionGroup('');
-	testXts : StubXts('test',dummyIoEnvVar,dummyXtsHw,dummyCaGroup);
-	stubMover : XtsMover('');
+	dummyCaGroup : CollisionGroup;
+	testXts : StubXts<1,1,1>;//(dummyIoEnvVar,dummyXtsHw,dummyCaGroup);
+	stubMover : XtsMover;
 	stubIMover : I_XtsMover := stubMover;
 	stubIMoverEmpty : I_XtsMover;
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'XTS Test Suite');

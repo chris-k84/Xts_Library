@@ -37,7 +37,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_stTmsActPositions.fTrackPosition := testPos;
-_CurrentTrack := iStubTrack;]]></ST>
+//_CurrentTrack := iStubTrack;]]></ST>
       </Implementation>
     </Method>
     <Method Name="setDisabled" Id="{3b4d37b1-2aff-4bc5-8d73-849300142d9c}">
