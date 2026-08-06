@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsInterfaceProvider" Id="{03c3c931-6ee3-4ab9-88b9-320f3e1d8e15}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsInterfaceProvider IMPLEMENTS I_XtsInterfaceProvider, I_Object, I_Initialisable
@@ -6,7 +6,10 @@ VAR
 	XtsIoEnvironment : Tc3_XTS_Utility.FB_TcIoXtsEnvironment;
 	stXtsEnvironmentConfiguration	: ST_XtsEnvironmentConfiguration;
 	_Initialised : BOOL;
-	Initialising : BOOL;
+	cagroupcount: BOOL;
+	paramsetcount: UINT;
+	infoservercount: UINT;
+	xpucount: UINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -102,6 +105,11 @@ END_IF
 IF XtsIoEnvironment.Init(TRUE) THEN
 	XtsIoEnvironment.Init(FALSE);
 	_Initialised := TRUE;
+	//cagroupcount := XtsIoEnvironment.GetCaGroupCount(TRUE);
+//XtsIoEnvironment.P_CaGroupOids;
+	paramsetcount := XtsIoEnvironment.P_ParameterSetCount;
+	infoservercount := XtsIoEnvironment.P_InfoServerCount;
+	xpucount := XtsIoEnvironment.P_XpuCountUint;
 ELSE
 	Initialise := -1;
 END_IF]]></ST>

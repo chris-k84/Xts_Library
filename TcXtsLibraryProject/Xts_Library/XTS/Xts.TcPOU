@@ -9,7 +9,7 @@ VAR_GENERIC CONSTANT
 END_VAR
 EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XTS, I_Object
 VAR
-	_MyXts : INT;
+	//_MyXts : INT;
 	_XtsEnabled : BOOL;
 	iXPU : I_TcIoXtsProcessingUnit;
 	_MoverArray : ARRAY[0..MaxMovers] OF I_XtsMover;
@@ -166,7 +166,7 @@ END_VAR
         <ST><![CDATA[DiscoverHardware := -1;
 CASE HardwareDiscoveryState OF
 	XtsHardwareDiscoveryState.WaitingForXpu:
-		IF _Initialised THEN
+		IF NOT _Initialised THEN
 			RETURN;
 		ELSE
 			//MyName := iXPU.P_ObjectName;
@@ -315,7 +315,7 @@ Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Waiting for XTS_
 MyXtsInterfaceProvider.Initialise();
 IF iXtsInterfaceProvider.Initialised THEN
 	Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'XTS_Utility Initiliased');
-	iXPU := iXtsInterfaceProvider.GetXPUInterface(_MyXts);
+	iXPU := iXtsInterfaceProvider.GetXPUInterface(XtsXpuNumber);
 	//_MyXtsHardware.MyXpu := iXPU;
 	//XtsHwState := XtsSystemInitialisation.PassGroupReference;
 	Initialise := 0;

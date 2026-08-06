@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsTrack" Id="{0ed646c8-24dd-40d8-b451-d6e6a88b90d3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsTrack EXTENDS CyclicBase IMPLEMENTS I_XtsTrack, I_Initialisable
@@ -40,29 +40,34 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _MyInterface = 0 THEN
-	Initialise := -1;
-	Base_Library.Tracing.Trace.Error(_Name, 'No XPU interface for Init');
-	RETURN;
-END_IF
+        <ST><![CDATA[Initialise := -1;
+CASE XtsIoEnvInitialiseState OF
+	0:
+		IF _MyInterface <> 0 THEN
+			XtsIoEnvInitialiseState := 1;
+		ELSE
+			XtsIoEnvInitialiseState := 999;
+		END_IF
+	1:
+		MyPartCount := _MyInterface.GetPartCount();
+		XtsIoEnvInitialiseState := 2;
+	2:
+		XtsIoEnvInitialiseState := 3;
+		Parts REF= _MyInterface.GetPartInfoItems();
 
-IF NOT _MyInterface.P_IsInitialized THEN
-	Initialise := -2;
-	Base_Library.Tracing.Trace.Error(_Name, 'XPU Interface not ready');
-	RETURN;
-END_IF
-
-
-Base_Library.Tracing.Trace.Verbose(_Name, 'Track Init Success');
-MyPartCount := _MyInterface.GetPartCount();
-Parts REF= _MyInterface.GetPartInfoItems();
-_TrackLength := _MyInterface.GetLength();
-_TrackIsClosed := _MyInterface.GetIsClosed();
-_TrackPolarity := _MyInterface.GetPolarity();
-_NumberOfPartsInTrack := TO_INT(_MyInterface.GetPartCount());
-
-_IsInitialised := TRUE;
-]]></ST>
+	3:
+		IF _MyInterface.P_IsInitialized THEN
+			_TrackLength := _MyInterface.GetLength();
+			_TrackIsClosed := _MyInterface.GetIsClosed();
+			_TrackPolarity := _MyInterface.GetPolarity();
+			_NumberOfPartsInTrack := TO_INT(_MyInterface.GetPartCount());
+			_Name := _MyInterface.P_ObjectName;
+			XtsIoEnvInitialiseState := 4;
+		END_IF
+	4:
+		Initialise := 0;
+		_IsInitialised := TRUE;
+END_CASE]]></ST>
       </Implementation>
     </Method>
     <Property Name="Initialised" Id="{339e97b4-50a8-4342-a310-e8536eaede2f}" FolderPath="Status\">
