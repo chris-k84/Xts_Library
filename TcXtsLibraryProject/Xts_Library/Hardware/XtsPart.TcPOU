@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsPart" Id="{39541d00-22ec-4750-829d-4864a624597e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsPart EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XtsPart
@@ -159,16 +159,6 @@ IF _OperationMode = OperationMode.Normal THEN
 		XtsModules[i].AcknowledgeMessages();
 	END_FOR
 END_IF	]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="SetPartOperationMode" Id="{3d03b392-5590-4afc-85ba-e5ffd6ca9ea3}" FolderPath="Settings\">
-      <Declaration><![CDATA[METHOD SetPartOperationMode : hresult
-VAR_INPUT
-	Mode : OperationMode;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_OperationMode := Mode;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetPartOriginTransform" Id="{8b2a2802-8f42-46b7-9bd8-2e1c722c9321}" FolderPath="Commands\">
