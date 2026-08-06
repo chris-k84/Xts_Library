@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Xts" Id="{4538c683-94fc-49a1-b5ad-30ffec5e4eff}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT Xts 
+    <Declaration><![CDATA[FUNCTION_BLOCK Xts 
 VAR_GENERIC CONSTANT
     NumberOfParts  : UINT := 1;
 	NumberOfTracks : UINT := 1;
@@ -13,7 +13,8 @@ VAR
 	_XtsEnabled : BOOL;
 	iXPU : I_TcIoXtsProcessingUnit;
 	_MoverArray : ARRAY[0..MaxMovers] OF I_XtsMover;
-	iXtsInterfaceProvider : I_XtsInterfaceProvider;
+	MyXtsInterfaceProvider : XtsInterfaceProvider;
+	iXtsInterfaceProvider : I_XtsInterfaceProvider := MyXtsInterfaceProvider;
 	myCAGroup : CollisionGroup;
 	iCollisionGroup : I_CollisionGroup := myCAGroup;
 	EnableSequence : XtsEnableSequence := (MyCollisionGroup := iCollisionGroup);
@@ -291,23 +292,6 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="FB_Init" Id="{d6ce6c85-5c43-4276-b07f-92a2e669b228}">
-      <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
-//The return value is not evaluated. For a specific influence, you can also declare the
-//methods explicitly and provide additional code there with the standard initialization
-//code. You can evaluate the return value.
-METHOD FB_Init: BOOL
-VAR_INPUT
-    bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
-    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change) 
-	Name : T_MaxString;  
-	MyXtsIoEnvVar : I_XtsInterfaceProvider;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[iXtsInterfaceProvider := MyXtsIoEnvVar;
-]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="HasError" Id="{fc5d4c9f-c257-47d7-8282-ec3a9f63c6e5}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
       <Get Name="Get" Id="{e073db15-e4f5-4f0c-b72a-f5365dbb2c5c}">
@@ -328,6 +312,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[Initialise := -1;
 Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Waiting for XTS_UtilityLib');
+MyXtsInterfaceProvider.Initialise();
 IF iXtsInterfaceProvider.Initialised THEN
 	Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'XTS_Utility Initiliased');
 	iXPU := iXtsInterfaceProvider.GetXPUInterface(_MyXts);
@@ -438,7 +423,7 @@ END_CASE]]></ST>
       </Implementation>
     </Method>
     <Method Name="MoverHomeSequence" Id="{5c2deb91-ebd0-4a93-99ec-6a6bbbd5e076}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD PUBLIC Abstract MoverHomeSequence : BOOL
+      <Declaration><![CDATA[METHOD PUBLIC MoverHomeSequence : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>

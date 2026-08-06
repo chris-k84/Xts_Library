@@ -8,13 +8,13 @@ VAR
 											Movers[2],Movers[3],
 											Movers[4],Movers[5],
 											Movers[6],Movers[7]];
-	systemXtsioEnvVar : XtsInterfaceProvider;	
+	//systemXtsioEnvVar : XtsInterfaceProvider;	
 	//systemXtsHardware : XTSHardware('MyXTS');				
 	systemCAGroup : CollisionGroup;															
-	MyXts : Xts(*(systemXtsioEnvVar,systemXtsHardware,systemCAGroup)*)<1,1,1>;(* := (MyXts := 1, 
-																			ExpectedNumberOfParts := 1, 
-																			ExpectedNumberOfTracks := 1, 
-																			HomePosition := SystemConstants.XtsHomePosition);*)
+	MyXts : Xts<1,1,1>('');//(*(systemXtsioEnvVar,systemXtsHardware,systemCAGroup)*)<1,1,1>;(* := (MyXts := 1, 
+																			//ExpectedNumberOfParts := 1, 
+																			//ExpectedNumberOfTracks := 1, 
+																			//HomePosition := SystemConstants.XtsHomePosition);*)
 	initSequence : INT;
 	InitComplete : BOOL;
 	
@@ -35,7 +35,7 @@ VAR
 	i : INT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[systemXtsHardware.Cycle();
+        <ST><![CDATA[//systemXtsHardware.Cycle();
 systemCAGroup.Cycle();
 MyXts.Cycle();
 FOR i := 0 TO NumberOFSystemMovers DO
@@ -75,26 +75,26 @@ END_VAR
       <Implementation>
         <ST><![CDATA[CASE initSequence OF
 	0:
-		IF SUCCEEDED(systemXtsioEnvVar.Initialise()) THEN
+		IF SUCCEEDED(myxts.Initialise()) THEN
 			initSequence := 1;
 		END_IF
 	1:
-		IF SUCCEEDED(systemXtsHardware.Initialise()) AND SUCCEEDED(MyXts.Initialise()) THEN
+		IF SUCCEEDED(myxts.DiscoverHardware()) THEN//AND SUCCEEDED(MyXts.Initialise()) THEN
 			initSequence := 2;
 		END_IF
-	2:
-		FOR i := 0 TO NumberOFSystemMovers DO
-			MyXts.RegisterMovers(MyMover := iMovers[i]);
-		END_FOR
-		initSequence := 3;
-	3:
-		FOR i := 0 TO NumberOFSystemMovers DO
-			Movers[i].Initialise();
-		END_FOR
-		initSequence := 4;
-	4:
-		InitComplete := TRUE;
-		Initialise := TRUE;
+// 	2:
+// 		FOR i := 0 TO NumberOFSystemMovers DO
+// 			MyXts.RegisterMovers(MyMover := iMovers[i]);
+// 		END_FOR
+// 		initSequence := 3;
+// 	3:
+// 		FOR i := 0 TO NumberOFSystemMovers DO
+// 			Movers[i].Initialise();
+// 		END_FOR
+// 		initSequence := 4;
+// 	4:
+// 		InitComplete := TRUE;
+// 		Initialise := TRUE;
 END_CASE]]></ST>
       </Implementation>
     </Method>
