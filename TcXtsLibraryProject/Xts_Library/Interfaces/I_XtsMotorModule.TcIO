@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <Itf Name="I_XtsMotorModule" Id="{3515393f-36cc-43f5-8d97-3f2cabdfbcb7}">
     <Declaration><![CDATA[INTERFACE I_XtsMotorModule
@@ -39,5 +39,12 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Method Name="SetXtsIoPartInterface" Id="{a8001d92-f9ce-4bc4-9c63-f2a62ae96ce7}">
+      <Declaration><![CDATA[METHOD SetXtsIoPartInterface : HRESULT
+VAR_INPUT
+	ModuleInterface : Tc3_XTS_Utility.I_TcIoXtsPartModule;
+END_VAR
+]]></Declaration>
+    </Method>
   </Itf>
 </TcPlcObject>

@@ -7,13 +7,11 @@ VAR
 	XtsIoEnvInitialiseState : INT;
 	MyModuleCount : UDINT;
 	Status : XtsPartStatus;
-	XtsModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF XtsMotorModule('');
-	iXtsModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF I_XtsMotorModule;
-	PartStateRisingError: R_TRIG;	
-	PartStateFallingError: F_TRIG;	
+	IMyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF I_XtsMotorModule;
 	ModuleIndex: UDINT := 1;
 	CurrentErrorId : UDINT;
-	PartName: STRING;
+	//InSim : BOOL;
+	//PartName: STRING;
 	_IsInitialised : BOOL := FALSE;
 	_OperationMode: OperationMode;
 END_VAR]]></Declaration>
@@ -42,30 +40,8 @@ END_IF
 Status.PartDriveState := _MyInterface.GetDriveState();
 Status.IsDCLinkReady := _MyInterface.GetIsDcLinkVoltageReady();
 Status.IsPartActive := _MyInterface.GetIsActive();
-Status.AllModuleSsInOP := _MyInterface.GetAreAllModulesInOp();
-
-status.HasError := (Status.PartDriveState = DriveState.Fault) OR 
-				(Status.PartDriveState = DriveState.FaultReactionActive);
-
-PartStateRisingError(CLK := status.HasError);
-PartStateFallingError(CLK := status.HasError);
-IF PartStateRisingError.Q THEN
-	Base_Library.Tracing.Trace.Error(_Name, 'Part In Error');
-END_IF
-IF PartStateFallingError.Q THEN
-	Base_Library.Tracing.Trace.Info(_Name, 'Part Error Cleared');
-END_IF
-			
-status.ModuleControlVoltageOK := TRUE;
-FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-	IF NOT iXtsModules[i].ControlVdcOK THEN
-		status.ModuleControlVoltageOK := FALSE;
-	END_IF
-END_FOR
-
-FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-	XtsModules[i].Cycle();
-END_FOR]]></ST>
+Status.PartLength := _MyInterface.GetLength();
+Status.AllModuleSsInOP := _MyInterface.GetAreAllModulesInOp();]]></ST>
       </Implementation>
     </Method>
     <Property Name="HasError" Id="{9f27faee-7288-49b0-b8b5-9209e3993178}" FolderPath="Status\">
@@ -95,32 +71,13 @@ CASE XtsIoEnvInitialiseState OF
 			XtsIoEnvInitialiseState := 999;
 		END_IF
 	1:
-		MyModuleCount := _MyInterface.P_ModuleCount;
-		IF _OperationMode = OperationMode.Simulation THEN
-			XtsIoEnvInitialiseState := 3;
-			FOR i := 0 TO UDINT_TO_UINT(MyModuleCount - 1) DO
-				XtsModules[i].SetModuleOperationMode(Mode := OperationMode.Simulation);
-				iXtsModules[i] := XtsModules[i];
-			END_FOR
-		ELSE
-			FOR i := 0 TO UDINT_TO_UINT(MyModuleCount - 1) DO
-				XtsModules[i].SetXtsIoModuleInterface(_MyInterface.ModuleTcIo(i + 1));
-				iXtsModules[i] := XtsModules[i];
-			END_FOR
-			XtsIoEnvInitialiseState := 2;
+		IF _MyInterface.P_IsInitialized THEN
+			MyModuleCount := _MyInterface.P_ModuleCount;
+			_Name := _MyInterface.P_ObjectName;
+			Initialise := 0;
+			_IsInitialised := TRUE;
 		END_IF
 		
-	2:
-		XtsIoEnvInitialiseState := 3;
-		FOR i := 0 TO UDINT_TO_UINT(MyModuleCount-1) DO
-			IF FAILED(XtsModules[i].Initialise()) THEN
-				XtsIoEnvInitialiseState := 2;
-			END_IF
-		END_FOR
-	3:
-		PartName := _MyInterface.P_ObjectName;
-		Initialise := 0;
-		_IsInitialised := TRUE;
 END_CASE]]></ST>
       </Implementation>
     </Method>
@@ -135,17 +92,42 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="PartStatus" Id="{f6d4538d-bfc8-4957-b777-8eaf1c090b88}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY PartStatus : XtsPartStatus]]></Declaration>
-      <Get Name="Get" Id="{f7203cab-3794-483e-806f-411d2264085f}">
-        <Declaration><![CDATA[VAR
+    <Method Name="Is24VBusOK" Id="{d79d6eda-1f90-4384-9dda-ac7f4aaa7f07}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD Is24VBusOK : BOOL
+VAR
+	i : INT;
 END_VAR
 ]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[PartStatus := Status;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
+      <Implementation>
+        <ST><![CDATA[Is24VBusOK := TRUE;
+IF NOT InSim THEN
+	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
+		IF NOT XtsModules[i].ControlVdcOK THEN
+			Is24VBusOK := FALSE;
+		END_IF
+	END_FOR
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Is48VBusOK" Id="{44113d88-367f-494b-87cf-4655fd94d258}" FolderPath="Status\">
+      <Declaration><![CDATA[METHOD Is48VBusOK : BOOL
+VAR
+	i : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Is48VBusOK := TRUE;
+IF NOT InSim THEN
+	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
+		IF NOT XtsModules[i].MotorVdcOK THEN
+			Is48VBusOK := FALSE;
+		END_IF
+	END_FOR
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="ResetPart" Id="{a2c1bf74-a00f-4e37-abd0-e53201644a52}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD ResetPart : BOOL
 VAR
@@ -159,6 +141,41 @@ IF _OperationMode = OperationMode.Normal THEN
 		XtsModules[i].AcknowledgeMessages();
 	END_FOR
 END_IF	]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetModuleInPArt" Id="{d12c324f-b2df-4a43-aeae-30441a6984fe}" FolderPath="Settings\">
+      <Declaration><![CDATA[METHOD SetModuleInPArt : HRESULT
+VAR_INPUT
+	Module : I_XtsMotorModule;
+END_VAR
+VAR
+	i : UINT;
+	ModuleResgitered : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Module = 0 THEN
+	SetModuleInPArt := -1;
+	RETURN;
+END_IF
+
+FOR i := 0 TO (MyModuleCount - 1) DO
+	IF IMyModules[i] = Module THEN
+		ModuleResgitered := TRUE;
+		EXIT;
+	END_IF
+END_FOR
+IF ModuleResgitered THEN
+	Base_Library.Tracing.Trace.Warning(_Name, 'Register Module Fail - registered');
+	SetModuleInPArt := -2;
+	RETURN;
+END_IF
+
+FOR i := 0 TO (MyModuleCount - 1) DO
+	IF IMyModules[i] = 0 THEN
+		IMyModules[i] := Module;
+		EXIT;
+	END_IF
+END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetPartOriginTransform" Id="{8b2a2802-8f42-46b7-9bd8-2e1c722c9321}" FolderPath="Commands\">
@@ -177,16 +194,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF PartInterface = 0 THEN
-	Base_Library.Tracing.Trace.Error(_name, 'Part XPU interface not registered');
+        <ST><![CDATA[IF PartInterface <> 0 THEN
+	_MyInterface := PartInterface;
+ELSE
 	SetXtsIoPartInterface := -1;
-	RETURN;
 END_IF
 
-
-_MyInterface := PartInterface;
-_Name := _MyInterface.P_ObjectName;
-Base_Library.Tracing.Trace.Verbose(_name, 'Part XPU interface registered ok');]]></ST>
+]]></ST>
       </Implementation>
     </Method>
   </POU>

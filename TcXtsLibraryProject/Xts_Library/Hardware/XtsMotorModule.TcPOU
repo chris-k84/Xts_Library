@@ -1,11 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsMotorModule" Id="{447db564-ab24-433c-b078-4cedd1c7411e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsMotorModule EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XtsMotorModule
 VAR
 	_MyInterface : I_TcIoXtsPartModule;
 	_IsInitialised : BOOL;
-	_HasError : BOOL;
+	Nominal24Vdc : REAL := 24.0;
+	Nominal48Vdc : REAL := 48.0;
+	InSim : BOOL;
+	Module24Vdc: REAL;
+	Module48Vdc: REAL;
+	ModuleState: Tc3_XTS_Utility.DriveState;
+	ModuleStatus: Tc3_XTS_Utility.CoeStatusInfo;
+	//ModuleName: STRING;
 	MotorOid: OTCID;
 	SensorOid: OTCID;
 	_BTN: BTN;
@@ -68,17 +75,13 @@ END_VAR]]></Declaration>
 	RETURN;
 END_IF
 
-IF _OperationMode = OperationMode.Simulation THEN
-	RETURN;
-END_IF
-
-Status.CurrentLive:= _MyInterface.GetOverallCurrent();
-Status.MaxCurrent:=  _MyInterface.GetMaxOverallCurrentLast500ms();
-Status.Module24Vdc := _MyInterface.GetAuxiliaryVoltage24V();
-Status.Module48Vdc := _MyInterface.GetDCLinkVoltage();
-Status.ModuleDriveState := _MyInterface.GetDriveState();
-Status.ModuleCoEStatus := _MyInterface.GetDriveStatusInfo();
-Status.ModuleEtherCATState := _MyInterface.GetDriveEtherCatSlaveStateInfo();
+CurrentLive:= _MyModuleIoInterface.GetOverallCurrent();
+MaxCurrent:=  _MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
+Module24Vdc := _MyModuleIoInterface.GetAuxiliaryVoltage24V();
+Module48Vdc := _MyModuleIoInterface.GetDCLinkVoltage();
+ModuleState := _MyModuleIoInterface.GetDriveState();
+ModuleStatus := _MyModuleIoInterface.GetDriveStatusInfo();
+EtherCATState := _MyModuleIoInterface.GetDriveEtherCatSlaveStateInfo();
 
 IF _MyInterface.GetHasActiveError() THEN
 	DiagHistory := _MyInterface.GetLatestMessages();
@@ -140,18 +143,11 @@ END_VAR
 	RETURN;
 END_IF
 
-IF NOT _MyInterface.P_IsInitialized THEN
-	Initialise := -2;
-	Base_Library.Tracing.Trace.Error(_Name, 'XPU Interface not ready');
-	RETURN;
-END_IF
-
-Base_Library.Tracing.Trace.Verbose(_Name, 'Module Init Success');
-MotorOid := _MyInterface.GetMotorTerminalOid();
-SensorOid := _MyInterface.GetSensorTerminalOid();
-_BTN := _MyInterface.GetDriveBTN();
-_Infeed := _MyInterface.GetIsInfeed();
-Status.IsInfeed := _MyInterface.GetIsInfeed();
+MotorOid := _MyModuleIoInterface.GetMotorTerminalOid();
+SensorOid := _MyModuleIoInterface.GetSensorTerminalOid();
+_Name := _MyModuleIoInterface.P_ObjectName;
+_BTN := _MyModuleIoInterface.GetDriveBTN();
+_Infeed := _MyModuleIoInterface.GetIsInfeed();
 _IsInitialised := TRUE;
 ]]></ST>
       </Implementation>
@@ -178,46 +174,19 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="MotorVdcOK" Id="{7e0a9c2a-7b16-4c93-896b-922544ce7154}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY MotorVdcOK : BOOL]]></Declaration>
-      <Get Name="Get" Id="{cc82d0c3-e4a9-4072-a811-8d3f6ad007d9}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MotorVdcOK := Status.MotorVdcOK;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Method Name="SetModuleOperationMode" Id="{5168f174-52e1-4d17-9303-7340ec967fd8}" FolderPath="Settings\">
-      <Declaration><![CDATA[METHOD SetModuleOperationMode : hresult
-VAR_INPUT
-	Mode : OperationMode;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_OperationMode := Mode;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="SetXtsIoModuleInterface" Id="{d64a5400-2bf3-4adc-add3-a7c7ebe7eeb1}" FolderPath="Settings\">
-      <Declaration><![CDATA[METHOD SetXtsIoModuleInterface : HRESULT
+    <Method Name="SetXtsIoPartInterface" Id="{d64a5400-2bf3-4adc-add3-a7c7ebe7eeb1}" FolderPath="Settings\">
+      <Declaration><![CDATA[METHOD SetXtsIoPartInterface : HRESULT
 VAR_INPUT
 	ModuleInterface : Tc3_XTS_Utility.I_TcIoXtsPartModule;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF ModuleInterface = 0 THEN
-	SetXtsIoModuleInterface := -1;
-	Base_Library.Tracing.Trace.Error(_name, 'XPU interface not assigned');
-	RETURN;
+        <ST><![CDATA[IF ModuleInterface <> 0 THEN
+	_MyModuleIoInterface := ModuleInterface;
+	_Name := _MyModuleIoInterface.P_ObjectName;
+ELSE
+	SetXtsIoPartInterface := -1;
 END_IF
-
-
-_MyInterface := ModuleInterface;
-_Name := _MyInterface.P_ObjectName;
-_BTN := _MyInterface.GetDriveBTN();
-Base_Library.Tracing.Trace.Verbose(_name, 'XPU interface assigned ok');
-
 
 ]]></ST>
       </Implementation>
