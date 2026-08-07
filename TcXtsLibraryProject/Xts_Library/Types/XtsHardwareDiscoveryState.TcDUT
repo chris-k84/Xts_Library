@@ -8,11 +8,12 @@ TYPE XtsHardwareDiscoveryState :
 (
 	WaitingForXpu := 0,
 	GettingParts := 1,
-	GettingTracks := 2,
-	GettingModules := 3,	
-	InitialisingXtsParts := 4,
-	InitialisingXtsTracks := 5,
-	HardwareFound := 6,
+	InitialisingXtsParts := 2,
+	GettingTracks := 3,
+	InitialisingXtsTracks := 4,
+	GettingModules := 5,
+	InitialisingModules := 6,	
+	HardwareFound := 7,
 	DiscoveryFault := 99
 );
 END_TYPE

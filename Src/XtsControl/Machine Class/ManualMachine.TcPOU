@@ -10,8 +10,8 @@ VAR
 											Movers[6],Movers[7]];
 	//systemXtsioEnvVar : XtsInterfaceProvider;	
 	//systemXtsHardware : XTSHardware('MyXTS');				
-	systemCAGroup : CollisionGroup;															
-	MyXts : Xts<1,1,1>('');//(*(systemXtsioEnvVar,systemXtsHardware,systemCAGroup)*)<1,1,1>;(* := (MyXts := 1, 
+	//systemCAGroup : CollisionGroup;															
+	MyXts : Xts<1,1,10,1>('');//(*(systemXtsioEnvVar,systemXtsHardware,systemCAGroup)*)<1,1,1>;(* := (MyXts := 1, 
 																			//ExpectedNumberOfParts := 1, 
 																			//ExpectedNumberOfTracks := 1, 
 																			//HomePosition := SystemConstants.XtsHomePosition);*)

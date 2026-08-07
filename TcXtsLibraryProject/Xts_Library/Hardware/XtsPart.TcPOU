@@ -10,8 +10,6 @@ VAR
 	IMyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF I_XtsMotorModule;
 	ModuleIndex: UDINT := 1;
 	CurrentErrorId : UDINT;
-	//InSim : BOOL;
-	//PartName: STRING;
 	_IsInitialised : BOOL := FALSE;
 	_OperationMode: OperationMode;
 END_VAR]]></Declaration>
@@ -100,13 +98,13 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Is24VBusOK := TRUE;
-IF NOT InSim THEN
+//IF NOT InSim THEN
 	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-		IF NOT XtsModules[i].ControlVdcOK THEN
+		IF NOT iMyModules[i].ControlVdcOK THEN
 			Is24VBusOK := FALSE;
 		END_IF
 	END_FOR
-END_IF
+//END_IF
 ]]></ST>
       </Implementation>
     </Method>
@@ -118,13 +116,13 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Is48VBusOK := TRUE;
-IF NOT InSim THEN
-	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-		IF NOT XtsModules[i].MotorVdcOK THEN
-			Is48VBusOK := FALSE;
-		END_IF
-	END_FOR
-END_IF
+// IF NOT InSim THEN
+// 	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
+// 		IF NOT MyModules[i].MotorVdcOK THEN
+// 			Is48VBusOK := FALSE;
+// 		END_IF
+// 	END_FOR
+// END_IF
 ]]></ST>
       </Implementation>
     </Method>
@@ -136,11 +134,12 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[ResetPart := _MyInterface.TriggerReset();
-IF _OperationMode = OperationMode.Normal THEN
-	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-		XtsModules[i].AcknowledgeMessages();
-	END_FOR
-END_IF	]]></ST>
+// IF NOT InSim THEN
+// 	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
+// 		MyModules[i].AcknowledgeMessages();
+// 	END_FOR
+// END_IF	
+CurrentErrorId := 0;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetModuleInPArt" Id="{d12c324f-b2df-4a43-aeae-30441a6984fe}" FolderPath="Settings\">
@@ -158,7 +157,7 @@ END_VAR]]></Declaration>
 	RETURN;
 END_IF
 
-FOR i := 0 TO (MyModuleCount - 1) DO
+FOR i := 0 TO (TO_INT(MyModuleCount) - 1) DO
 	IF IMyModules[i] = Module THEN
 		ModuleResgitered := TRUE;
 		EXIT;
@@ -170,7 +169,7 @@ IF ModuleResgitered THEN
 	RETURN;
 END_IF
 
-FOR i := 0 TO (MyModuleCount - 1) DO
+FOR i := 0 TO (TO_INT(MyModuleCount) - 1) DO
 	IF IMyModules[i] = 0 THEN
 		IMyModules[i] := Module;
 		EXIT;

@@ -7,12 +7,10 @@ VAR
 	_IsInitialised : BOOL;
 	Nominal24Vdc : REAL := 24.0;
 	Nominal48Vdc : REAL := 48.0;
-	InSim : BOOL;
 	Module24Vdc: REAL;
 	Module48Vdc: REAL;
 	ModuleState: Tc3_XTS_Utility.DriveState;
 	ModuleStatus: Tc3_XTS_Utility.CoeStatusInfo;
-	//ModuleName: STRING;
 	MotorOid: OTCID;
 	SensorOid: OTCID;
 	_BTN: BTN;

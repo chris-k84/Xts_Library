@@ -198,10 +198,20 @@ CASE HardwareDiscoveryState OF
 					_InSim := TRUE;
 				END_IF
 			END_FOR
-			HardwareDiscoveryState := XtsHardwareDiscoveryState.GettingTracks;
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.InitialisingXtsParts;
 		ELSE
 			Base_Library.Tracing.Trace.Error(Source := _Name, Message := 'Part count does not match detected part count');
 			HardwareDiscoveryState := XtsHardwareDiscoveryState.DiscoveryFault;
+		END_IF
+	XtsHardwareDiscoveryState.InitialisingXtsParts:
+		allInitialised := TRUE;
+		FOR i := 0 TO UDINT_TO_INT(MyPartCount - 1) DO
+			IF FAILED(XtsParts[i].Initialise()) THEN
+				allInitialised := FALSE;
+			END_IF
+		END_FOR
+		IF allInitialised THEN
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.GettingTracks;
 		END_IF
 	XtsHardwareDiscoveryState.GettingTracks:
 		Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Running Track Discovery');
@@ -213,36 +223,36 @@ CASE HardwareDiscoveryState OF
 				XtsTracks[i].MyOTCID := TrackOTCIDs[i + 1];
 				IXtsTracks[i] := XtsTracks[i];
 			END_FOR
-			HardwareDiscoveryState := XtsHardwareDiscoveryState.InitialisingXtsParts;
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.InitialisingXtsTracks;
 		ELSE
 			Base_Library.Tracing.Trace.Error(Source := _Name, Message := 'Track count does not match detected part count');
 			HardwareDiscoveryState := XtsHardwareDiscoveryState.DiscoveryFault;
-		END_IF
-	XtsHardwareDiscoveryState.GettingModules:
-			FOR i := 0 TO (TO_INT(MyPartCount) - 1) DO
-				ModuleCount := iXPU.PartTcIo(TO_UINT(i + 1)).P_ModuleCount;
-				FOR j := 0 TO ModuleCount DO
-					Modules[MyModuleCount].SetXtsIoPartInterface(iXPU.PartTcIo(TO_UINT(i + 1)).ModuleTcIo(TO_UINT(j)));
-					iModules[MyModuleCount] := Modules[MyModuleCount];
-					XtsParts[i].SetModuleInPArt(iModules[MyModuleCount]);
-					MyModuleCount := MyModuleCount + 1;
-				END_FOR
-			END_FOR
-	
-	XtsHardwareDiscoveryState.InitialisingXtsParts:
-		allInitialised := TRUE;
-		FOR i := 0 TO UDINT_TO_INT(MyPartCount - 1) DO
-			IF FAILED(XtsParts[i].Initialise()) THEN
-				allInitialised := FALSE;
-			END_IF
-		END_FOR
-		IF allInitialised THEN
-			HardwareDiscoveryState := XtsHardwareDiscoveryState.InitialisingXtsTracks;
 		END_IF
 	XtsHardwareDiscoveryState.InitialisingXtsTracks:
 		allInitialised := TRUE;
 		FOR i := 0 TO UDINT_TO_INT(MyTrackCount - 1) DO
 			IF FAILED(XtsTracks[i].Initialise()) THEN
+				allInitialised := FALSE;
+			END_IF
+		END_FOR
+		IF allInitialised THEN
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.GettingModules;
+		END_IF
+	XtsHardwareDiscoveryState.GettingModules:
+			FOR i := 0 TO (TO_INT(MyPartCount) - 1) DO
+				ModuleCount := iXPU.PartTcIo(TO_UINT(i + 1)).P_ModuleCount;
+				FOR j := 0 TO (TO_INT(ModuleCount)-1) DO
+					Modules[MyModuleCount].SetXtsIoPartInterface(iXPU.PartTcIo(TO_UINT(i + 1)).ModuleTcIo(TO_UINT(j + 1)));
+					iModules[MyModuleCount] := Modules[MyModuleCount];
+					XtsParts[i].SetModuleInPArt(iModules[MyModuleCount]);
+					MyModuleCount := MyModuleCount + 1;
+				END_FOR
+			END_FOR
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.InitialisingModules;
+	XtsHardwareDiscoveryState.InitialisingModules:
+		allInitialised := TRUE;
+		FOR i := 0 TO TO_INT(MyModuleCount - 1) DO
+			IF FAILED(Modules[i].Initialise()) THEN
 				allInitialised := FALSE;
 			END_IF
 		END_FOR
