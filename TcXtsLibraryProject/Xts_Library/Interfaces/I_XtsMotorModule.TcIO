@@ -39,8 +39,8 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="SetXtsIoPartInterface" Id="{a8001d92-f9ce-4bc4-9c63-f2a62ae96ce7}">
-      <Declaration><![CDATA[METHOD SetXtsIoPartInterface : HRESULT
+    <Method Name="SetXtsIoModuleInterface" Id="{a8001d92-f9ce-4bc4-9c63-f2a62ae96ce7}">
+      <Declaration><![CDATA[METHOD SetXtsIoModuleInterface : HRESULT
 VAR_INPUT
 	ModuleInterface : Tc3_XTS_Utility.I_TcIoXtsPartModule;
 END_VAR
