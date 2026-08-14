@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <Itf Name="I_XtsPart" Id="{79728d50-0c5c-4ced-9546-66681745df5e}">
     <Declaration><![CDATA[INTERFACE I_XtsPart
@@ -9,15 +9,15 @@
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="Initialised" Id="{3af177d9-a3e1-46e8-b64f-75367b0c56c6}">
+    <Property Name="Initialised" Id="{0f1803c2-97a3-413f-afac-37a25fe59c5e}">
       <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
-      <Get Name="Get" Id="{b8e618ac-d1f4-42d7-bcd0-f86cb25c5ba7}">
+      <Get Name="Get" Id="{ff636974-ae5f-465c-b1a4-4aae674f1380}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="PartStatus" Id="{6d968c47-2ae9-4026-90a0-66318e763c17}">
+    <Property Name="PartStatus" Id="{95692ec5-3cd7-40d8-bd85-201b67a0642c}">
       <Declaration><![CDATA[PROPERTY PartStatus : XtsPartStatus]]></Declaration>
-      <Get Name="Get" Id="{b0473579-fd38-4e03-a7ac-9dac16fe6a9c}">
+      <Get Name="Get" Id="{df9c3817-067b-46eb-9018-b93bfc028ef8}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
