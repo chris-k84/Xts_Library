@@ -313,8 +313,6 @@ MyXtsInterfaceProvider.Initialise();
 IF iXtsInterfaceProvider.Initialised THEN
 	Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'XTS_Utility Initiliased');
 	iXPU := iXtsInterfaceProvider.GetXPUInterface(XtsXpuNumber);
-	//_MyXtsHardware.MyXpu := iXPU;
-	//XtsHwState := XtsSystemInitialisation.PassGroupReference;
 	Initialise := 0;
 	_Initialised := TRUE;	
 END_IF
@@ -325,12 +323,6 @@ END_IF
 // 	XtsSystemInitialisation.PassGroupReference:
 // 		ICollisionGroup.CAGroupXtsIoEnvInterface := _XtsIoEnvVar.GetCaGroupInterface(_MyXts);
 // 		XtsHwState := XtsSystemInitialisation.WaitingForHardwareToInitialise;
-// 	
-// 	XtsSystemInitialisation.WaitingForHardwareToInitialise:
-// 		IF _MyXtsHardware.Initialised THEN
-// 			MyName := _MyXtsHardware.MyName;
-// 			XtsHwState := XtsSystemInitialisation.SetATrackForDetection;
-// 		END_IF
 	]]></ST>
       </Implementation>
     </Method>
