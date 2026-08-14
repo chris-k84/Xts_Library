@@ -5,30 +5,18 @@
 VAR
 	_MyInterface : I_TcIoXtsPartModule;
 	_IsInitialised : BOOL;
-	Nominal24Vdc : REAL := 24.0;
-	Nominal48Vdc : REAL := 48.0;
-	Module24Vdc: REAL;
-	Module48Vdc: REAL;
-	ModuleState: Tc3_XTS_Utility.DriveState;
-	ModuleStatus: Tc3_XTS_Utility.CoeStatusInfo;
+	_HasError : BOOL;
 	MotorOid: OTCID;
 	SensorOid: OTCID;
 	_BTN: BTN;
-	_Infeed : BOOL;
-	_OperationMode : OperationMode;
 	Status : XtsModuleStatus;
 	DiagHistory: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxDiagMessagesPerModule] OF Tc3_XTS_Utility.DiagHistoryEntry;
-	ControlVoltageErrorRisingTrigger : R_TRIG;
-	ControlVoltageErrorFallingTrigger : F_TRIG;
-	MotorVoltageErrorRisingTrigger : R_TRIG;
-	MotorVoltageErrorFallingTrigger : F_TRIG;
-	ModuleStateRisingError : R_TRIG;
-	ModuleStateFallingError : F_TRIG;
 END_VAR
 VAR CONSTANT
 	Nominal24Vdc : REAL := 24.0;
 	Nominal48Vdc : REAL := 48.0;
-END_VAR]]></Declaration>
+END_VAR
+]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
@@ -56,7 +44,7 @@ _MyInterface.TriggerAcknowledgeMessages();]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[ControlVdcOK := Status.ControlVdcOK;]]></ST>
+          <ST><![CDATA[ControlVdcOK := _ControlVdcOK;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -73,49 +61,38 @@ END_VAR]]></Declaration>
 	RETURN;
 END_IF
 
-CurrentLive:= _MyModuleIoInterface.GetOverallCurrent();
-MaxCurrent:=  _MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
-Module24Vdc := _MyModuleIoInterface.GetAuxiliaryVoltage24V();
-Module48Vdc := _MyModuleIoInterface.GetDCLinkVoltage();
-ModuleState := _MyModuleIoInterface.GetDriveState();
+Status.CurrentLive:= _MyModuleIoInterface.GetOverallCurrent();
+Status.MaxCurrent:=  _MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
+Status.Module24Vdc := _MyModuleIoInterface.GetAuxiliaryVoltage24V();
+Status.Module48Vdc := _MyModuleIoInterface.GetDCLinkVoltage();
+Status.ModuleDriveState := _MyModuleIoInterface.GetDriveState();
 ModuleStatus := _MyModuleIoInterface.GetDriveStatusInfo();
-EtherCATState := _MyModuleIoInterface.GetDriveEtherCatSlaveStateInfo();
+Status.ModuleEtherCATState := _MyModuleIoInterface.GetDriveEtherCatSlaveStateInfo();
 
-IF _MyInterface.GetHasActiveError() THEN
-	DiagHistory := _MyInterface.GetLatestMessages();
+IF _MyModuleIoInterface.GetHasActiveError() THEN
+	DiagHistory := _MyModuleIoInterface.GetLatestMessages();
 END_IF
 
-Status.ControlVdcOK := (Status.Module24Vdc > (Nominal24Vdc * 0.8)) AND (Status.Module24Vdc < (Nominal24Vdc * 1.2));
-ControlVoltageErrorRisingTrigger(CLK :=  NOT Status.ControlVdcOK);
-IF ControlVoltageErrorRisingTrigger.Q THEN
+Status.ControlVdcOK := TRUE;
+IF (Status.Module24Vdc < (Nominal24Vdc * 0.8)) OR (Status.Module24Vdc > (Nominal24Vdc * 1.2)) THEN
 	Base_Library.Tracing.Trace.Error(_name,'Control Voltage out of range');
-END_IF
-ControlVoltageErrorFallingTrigger(CLK :=  NOT Status.ControlVdcOK);
-IF ControlVoltageErrorFallingTrigger.Q THEN
-	Base_Library.Tracing.Trace.Info(_name,'Control Voltage in range');
+	Status.ControlVdcOK := FALSE;
 END_IF
 
-Status.MotorVdcOK := (Status.Module48Vdc > (Nominal48Vdc * 0.8)) AND (Status.Module48Vdc < (Nominal48Vdc * 1.2));
-MotorVoltageErrorRisingTrigger(CLK := NOT Status.MotorVdcOK);
-IF MotorVoltageErrorRisingTrigger.Q THEN
+Status.MotorVdcOK := TRUE;
+IF (Status.Module48Vdc < (Nominal48Vdc * 0.8)) OR (Status.Module48Vdc > (Nominal48Vdc * 1.2)) THEN
 	Base_Library.Tracing.Trace.Error(_name, 'Motor voltage out of range');
-END_IF
-MotorVoltageErrorFallingTrigger(CLK := NOT Status.MotorVdcOK);
-IF MotorVoltageErrorFallingTrigger.Q THEN
-	Base_Library.Tracing.Trace.Info(_name, 'Motor voltage in range');
+	Status.MotorVdcOK := FALSE;
 END_IF
 
-Status.ModuleInFault := Status.ModuleDriveState = DriveState.Fault OR Status.ModuleDriveState = DriveState.FaultReactionActive;
-ModuleStateRisingError(CLK := Status.ModuleInFault);
-ModuleStateFallingError(CLK := Status.ModuleInFault);
-IF ModuleStateRisingError.Q THEN
+IF Status.ModuleDriveState = DriveState.Fault OR Status.ModuleDriveState = DriveState.FaultReactionActive THEN
+	_HasError := TRUE;
 	Base_Library.Tracing.Trace.Error(_name, 'Module in error state');
-END_IF
-IF ModuleStateFallingError.Q THEN
-	Base_Library.Tracing.Trace.Info(_name, 'Module in normal state');
+ELSE
+	_HasError := FALSE;
 END_IF
 
-_HasError := NOT Status.ControlVdcOK OR NOT Status.MotorVdcOK OR Status.ModuleInFault;]]></ST>
+]]></ST>
       </Implementation>
     </Method>
     <Property Name="HasError" Id="{ad2a93c0-6ba6-42ce-9110-768a7019bac4}" FolderPath="Status\">
@@ -145,7 +122,7 @@ MotorOid := _MyModuleIoInterface.GetMotorTerminalOid();
 SensorOid := _MyModuleIoInterface.GetSensorTerminalOid();
 _Name := _MyModuleIoInterface.P_ObjectName;
 _BTN := _MyModuleIoInterface.GetDriveBTN();
-_Infeed := _MyModuleIoInterface.GetIsInfeed();
+Status.IsInfeed := _MyModuleIoInterface.GetIsInfeed();
 _IsInitialised := TRUE;
 ]]></ST>
       </Implementation>
@@ -168,7 +145,18 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[ModuleStatus := Status;]]></ST>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="MotorVdcOK" Id="{7e0a9c2a-7b16-4c93-896b-922544ce7154}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY MotorVdcOK : BOOL]]></Declaration>
+      <Get Name="Get" Id="{cc82d0c3-e4a9-4072-a811-8d3f6ad007d9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MotorVdcOK := _MotorVdcOK;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -182,8 +170,10 @@ END_VAR
         <ST><![CDATA[IF ModuleInterface <> 0 THEN
 	_MyModuleIoInterface := ModuleInterface;
 	_Name := _MyModuleIoInterface.P_ObjectName;
+	Base_Library.Tracing.Trace.Verbose(_name, 'XPU interface assigned ok');
 ELSE
 	SetXtsIoPartInterface := -1;
+	Base_Library.Tracing.Trace.Error(_name, 'XPU interface not assigned');
 END_IF
 
 ]]></ST>

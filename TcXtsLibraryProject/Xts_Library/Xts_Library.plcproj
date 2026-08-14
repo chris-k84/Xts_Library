@@ -211,6 +211,7 @@
     </Compile>
     <Compile Include="Hardware\XTSHardware.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="Hardware\XtsMotorModule.TcPOU">
       <SubType>Code</SubType>
