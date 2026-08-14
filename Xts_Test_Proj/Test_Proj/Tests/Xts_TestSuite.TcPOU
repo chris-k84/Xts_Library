@@ -4,9 +4,9 @@
     <Declaration><![CDATA[FUNCTION_BLOCK Xts_TestSuite
 VAR
 	dummyIoEnvVar : XtsInterfaceProvider;
-	dummyXtsHw : XTSHardware('');
+	//dummyXtsHw : XTSHardware('');
 	dummyCaGroup : CollisionGroup;
-	testXts : StubXts<1,1,1>;//(dummyIoEnvVar,dummyXtsHw,dummyCaGroup);
+	testXts : StubXts<1,1,1,1>;//(dummyIoEnvVar,dummyXtsHw,dummyCaGroup);
 	stubMover : XtsMover;
 	stubIMover : I_XtsMover := stubMover;
 	stubIMoverEmpty : I_XtsMover;

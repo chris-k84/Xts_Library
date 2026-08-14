@@ -36,7 +36,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[//systemXtsHardware.Cycle();
-systemCAGroup.Cycle();
+//systemCAGroup.Cycle();
 MyXts.Cycle();
 FOR i := 0 TO NumberOFSystemMovers DO
 	Movers[i].Cycle();

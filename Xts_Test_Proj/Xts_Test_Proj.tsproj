@@ -216,7 +216,7 @@
 	</DataTypes>
 	<Project ProjectGUID="{D6CDE109-AFE6-47BF-82D3-4F48E24801D5}" TargetNetId="10.201.62.134.1.1" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
-			<Settings MaxCpus="8">
+			<Settings MaxCpus="20" PCoreAffinity="4095" ECoreAffinity="1044480">
 				<Cpu BaseTime="2500"/>
 				<IoIdleTask Affinity="#x00000001"/>
 			</Settings>

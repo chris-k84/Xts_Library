@@ -5,8 +5,9 @@
 VAR_GENERIC CONSTANT
     NuOfParts  : UINT := 1;
 	NuOfTracks : UINT := 1;
+	NuOfModules : UINT := 1;
 	XpuNumber : UINT := 1;
-END_VAR EXTENDS Xts<NuOfParts,NuOfTracks,XpuNumber>
+END_VAR EXTENDS Xts<NuOfParts,NuOfTracks, NuOfModules,XpuNumber>
 VAR
 END_VAR
 ]]></Declaration>
