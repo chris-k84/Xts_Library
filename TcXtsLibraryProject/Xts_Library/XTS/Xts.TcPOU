@@ -90,24 +90,6 @@ FOR i := 0 TO TO_INT(MyPartCount - 1) DO
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="CheckPartsForHighestErrorCode" Id="{d1076989-3b85-4420-95cd-9ce0212afec4}" FolderPath="Private\">
-      <Declaration><![CDATA[METHOD PRIVATE CheckPartsForHighestErrorCode : UDINT
-VAR
-	i : INT;
-	errorCode : UDINT;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[FOR i := 0 TO TO_INT(MyPartCount - 1) DO
-	IF iXtsParts[i] <> 0 AND_THEN iXtsParts[i].GetCurrentError() <> 0 THEN
-		errorCode := XtsParts[i].GetCurrentError();
-		IF errorCode > CheckPartsForHighestErrorCode THEN
-			CheckPartsForHighestErrorCode := errorCode;
-		END_IF
-	END_IF
-END_FOR]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="Cycle" Id="{da42838e-fb00-40a5-96f4-b787aa883566}">
       <Declaration><![CDATA[METHOD PUBLIC Cycle : HRESULT
 VAR
@@ -142,17 +124,18 @@ CAGroupError := ICollisionGroup.HasError;
 IF CAGroupError THEN
 	_ErrorID := ICollisionGroup.ErrorCode;
 END_IF
-IF HardwareError THEN
-	_ErrorID := CheckPartsForHighestErrorCode();
-END_IF
+
 IF NOT CAGroupError AND NOT HardwareError THEN
 	_ErrorID := 0;
 END_IF
 
-FOR i := 0 TO TcIoXtsEnvironmentParameterList.MaxPartsPerTrack DO
+FOR i := 0 TO MyModuleCount - 1 DO
+	Modules[i].Cycle();
+END_FOR
+FOR i := 0 TO MyPartCount - 1 DO
 	XtsParts[i].Cycle();
 END_FOR
-FOR i := 0 TO TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu DO
+FOR i := 0 TO MyTrackCount - 1 DO
 	XtsTracks[i].Cycle();
 END_FOR]]></ST>
       </Implementation>
