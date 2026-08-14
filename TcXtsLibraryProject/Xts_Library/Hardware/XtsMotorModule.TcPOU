@@ -44,7 +44,7 @@ _MyInterface.TriggerAcknowledgeMessages();]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[ControlVdcOK := _ControlVdcOK;]]></ST>
+          <ST><![CDATA[ControlVdcOK := Status.ControlVdcOK;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -66,7 +66,7 @@ Status.MaxCurrent:=  _MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
 Status.Module24Vdc := _MyModuleIoInterface.GetAuxiliaryVoltage24V();
 Status.Module48Vdc := _MyModuleIoInterface.GetDCLinkVoltage();
 Status.ModuleDriveState := _MyModuleIoInterface.GetDriveState();
-ModuleStatus := _MyModuleIoInterface.GetDriveStatusInfo();
+Status.ModuleCoEStatus := _MyModuleIoInterface.GetDriveStatusInfo();
 Status.ModuleEtherCATState := _MyModuleIoInterface.GetDriveEtherCatSlaveStateInfo();
 
 IF _MyModuleIoInterface.GetHasActiveError() THEN
@@ -160,7 +160,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MotorVdcOK := _MotorVdcOK;]]></ST>
+          <ST><![CDATA[MotorVdcOK := Status.MotorVdcOK;]]></ST>
         </Implementation>
       </Get>
     </Property>
