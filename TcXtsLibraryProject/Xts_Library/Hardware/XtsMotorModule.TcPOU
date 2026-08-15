@@ -61,16 +61,16 @@ END_VAR]]></Declaration>
 	RETURN;
 END_IF
 
-Status.CurrentLive:= _MyModuleIoInterface.GetOverallCurrent();
-Status.MaxCurrent:=  _MyModuleIoInterface.GetMaxOverallCurrentLast500ms();
-Status.Module24Vdc := _MyModuleIoInterface.GetAuxiliaryVoltage24V();
-Status.Module48Vdc := _MyModuleIoInterface.GetDCLinkVoltage();
-Status.ModuleDriveState := _MyModuleIoInterface.GetDriveState();
-Status.ModuleCoEStatus := _MyModuleIoInterface.GetDriveStatusInfo();
-Status.ModuleEtherCATState := _MyModuleIoInterface.GetDriveEtherCatSlaveStateInfo();
+Status.CurrentLive:= _MyInterface.GetOverallCurrent();
+Status.MaxCurrent:=  _MyInterface.GetMaxOverallCurrentLast500ms();
+Status.Module24Vdc := _MyInterface.GetAuxiliaryVoltage24V();
+Status.Module48Vdc := _MyInterface.GetDCLinkVoltage();
+Status.ModuleDriveState := _MyInterface.GetDriveState();
+Status.ModuleCoEStatus := _MyInterface.GetDriveStatusInfo();
+Status.ModuleEtherCATState := _MyInterface.GetDriveEtherCatSlaveStateInfo();
 
-IF _MyModuleIoInterface.GetHasActiveError() THEN
-	DiagHistory := _MyModuleIoInterface.GetLatestMessages();
+IF _MyInterface.GetHasActiveError() THEN
+	DiagHistory := _MyInterface.GetLatestMessages();
 END_IF
 
 Status.ControlVdcOK := TRUE;
@@ -112,21 +112,21 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _MyModuleIoInterface = 0 THEN
+        <ST><![CDATA[IF _MyInterface = 0 THEN
 	Initialise := -1;
 	Base_Library.Tracing.Trace.Error(_Name, 'No XPU interface for Init');
 	RETURN;
 END_IF
 
-IF NOT _MyModuleIoInterface.P_IsInitialized THEN
+IF NOT _MyInterface.P_IsInitialized THEN
 	Initialise := -2;
 	Base_Library.Tracing.Trace.Error(_Name, 'XPU Interface not ready');
 	RETURN;
 END_IF
 
-MotorOid := _MyModuleIoInterface.GetMotorTerminalOid();
-SensorOid := _MyModuleIoInterface.GetSensorTerminalOid();
-Status.IsInfeed := _MyModuleIoInterface.GetIsInfeed();
+MotorOid := _MyInterface.GetMotorTerminalOid();
+SensorOid := _MyInterface.GetSensorTerminalOid();
+Status.IsInfeed := _MyInterface.GetIsInfeed();
 _IsInitialised := TRUE;
 ]]></ST>
       </Implementation>
@@ -172,9 +172,9 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ModuleInterface <> 0 THEN
-	_MyModuleIoInterface := ModuleInterface;
-	_Name := _MyModuleIoInterface.P_ObjectName;
-	_BTN := _MyModuleIoInterface.GetDriveBTN();
+	_MyInterface := ModuleInterface;
+	_Name := _MyInterface.P_ObjectName;
+	_BTN := _MyInterface.GetDriveBTN();
 	Base_Library.Tracing.Trace.Verbose(_name, 'XPU interface assigned ok');
 ELSE
 	SetXtsIoModuleInterface := -1;
