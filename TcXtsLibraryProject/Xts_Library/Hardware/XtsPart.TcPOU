@@ -175,14 +175,16 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF PartInterface <> 0 THEN
-	Base_Library.Tracing.Trace.Verbose(_name, 'Part XPU interface registered ok');
-	_MyInterface := PartInterface;
-	_Name := _MyInterface.P_ObjectName;
-ELSE
+        <ST><![CDATA[IF PartInterface = 0 THEN
 	Base_Library.Tracing.Trace.Error(_name, 'Part XPU interface not registered');
 	SetXtsIoPartInterface := -1;
+	RETURN;
 END_IF
+
+
+Base_Library.Tracing.Trace.Verbose(_name, 'Part XPU interface registered ok');
+_MyInterface := PartInterface;
+_Name := _MyInterface.P_ObjectName;
 
 ]]></ST>
       </Implementation>

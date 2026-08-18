@@ -171,15 +171,18 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF ModuleInterface <> 0 THEN
-	_MyInterface := ModuleInterface;
-	_Name := _MyInterface.P_ObjectName;
-	_BTN := _MyInterface.GetDriveBTN();
-	Base_Library.Tracing.Trace.Verbose(_name, 'XPU interface assigned ok');
-ELSE
+        <ST><![CDATA[IF ModuleInterface = 0 THEN
 	SetXtsIoModuleInterface := -1;
 	Base_Library.Tracing.Trace.Error(_name, 'XPU interface not assigned');
+	RETURN;
 END_IF
+
+
+_MyInterface := ModuleInterface;
+_Name := _MyInterface.P_ObjectName;
+_BTN := _MyInterface.GetDriveBTN();
+Base_Library.Tracing.Trace.Verbose(_name, 'XPU interface assigned ok');
+
 
 ]]></ST>
       </Implementation>
