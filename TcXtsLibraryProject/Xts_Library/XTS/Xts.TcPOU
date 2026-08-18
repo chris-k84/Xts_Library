@@ -134,15 +134,22 @@ IF NOT CAGroupError AND NOT HardwareError THEN
 	_ErrorID := 0;
 END_IF
 
-FOR i := 0 TO MyModuleCount - 1 DO
-	Modules[i].Cycle();
-END_FOR
-FOR i := 0 TO MyPartCount - 1 DO
-	XtsParts[i].Cycle();
-END_FOR
-FOR i := 0 TO MyTrackCount - 1 DO
-	XtsTracks[i].Cycle();
-END_FOR]]></ST>
+IF MyModuleCount <> 0 THEN
+	FOR i := 0 TO MyModuleCount - 1 DO
+		Modules[i].Cycle();
+	END_FOR
+END_IF
+IF MyPartCount <> 0 THEN
+	FOR i := 0 TO MyPartCount - 1 DO
+		XtsParts[i].Cycle();
+	END_FOR
+END_IF
+IF MyTrackCount <> 0 THEN
+	FOR i := 0 TO MyTrackCount - 1 DO
+		XtsTracks[i].Cycle();
+	END_FOR
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="DisableXTS" Id="{e2a85e5a-c7bf-481d-be4f-81acebc29fb7}" FolderPath="Operations\">
