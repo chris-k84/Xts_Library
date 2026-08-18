@@ -131,7 +131,8 @@ END_IF
 
 Base_Library.Tracing.Trace.Verbose(_name, 'Part XPU interface registered ok');
 _MyInterface := Track;
-_OTCID := _MyInterface.P_ObjectId;]]></ST>
+_OTCID := _MyInterface.P_ObjectId;
+_Name := _MyInterface.P_ObjectName;]]></ST>
       </Implementation>
     </Method>
     <Property Name="TrackLength" Id="{f63b8800-afc4-4a64-a819-7bbd5ce82fd4}" FolderPath="Status\">
