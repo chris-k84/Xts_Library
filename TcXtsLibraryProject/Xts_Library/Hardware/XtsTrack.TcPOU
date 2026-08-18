@@ -87,44 +87,6 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="MyOTCID" Id="{d34cfe46-c497-4e94-b74d-f99a6000b358}" FolderPath="Settings\">
-      <Declaration><![CDATA[PROPERTY MyOTCID : OTCID]]></Declaration>
-      <Get Name="Get" Id="{855c0947-7cfe-4f24-8259-2331fd728b0d}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyOTCID := _OTCID;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{52d396c9-aa72-4a6c-b0f5-3d8704d35aca}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_OTCID := MyOTCID;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Property Name="MyXtsIoEnvInterface" Id="{de406d6a-fb33-4758-a1bb-071b44e09534}" FolderPath="Settings\">
-      <Declaration><![CDATA[PROPERTY MyXtsIoEnvInterface : I_TcIoXtsXpuTrack]]></Declaration>
-      <Get Name="Get" Id="{29c07896-dd74-4eb2-b4f6-620c540248e5}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyXtsIoEnvInterface := _MyInterface;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{efa5de65-cd69-47bf-b917-2b3471279c8e}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyInterface := MyXtsIoEnvInterface;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Property Name="NumberOfPartsInTrack" Id="{4227d870-553b-4fcb-8516-6ae7f6500149}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY NumberOfPartsInTrack : INT]]></Declaration>
       <Get Name="Get" Id="{47e7e73c-f2f4-4613-aa92-016379f2eda9}">
@@ -154,6 +116,24 @@ END_VAR
         <ST><![CDATA[SetForDetection := _MyInterface.SetIsIncludedInDetection(TRUE);]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetXtsIoTrackInterface" Id="{06598758-8638-4586-bb3c-21c1027f163e}" FolderPath="Settings\">
+      <Declaration><![CDATA[METHOD SetXtsIoTrackInterface : HRESULT
+VAR_INPUT
+	Track : I_TcIoXtsXpuTrack;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Track = 0 THEN
+	SetXtsIoTrackInterface := -1;
+	Base_Library.Tracing.Trace.Error(_name, 'Track XPU interface not registered');
+	RETURN;
+END_IF
+
+Base_Library.Tracing.Trace.Verbose(_name, 'Part XPU interface registered ok');
+_MyInterface := Track;
+_OTCID := _MyInterface.P_ObjectId;]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="TrackLength" Id="{f63b8800-afc4-4a64-a819-7bbd5ce82fd4}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY TrackLength : MC_Lreal]]></Declaration>
       <Get Name="Get" Id="{8c76ee9b-64b1-4933-b3fe-20fbe5dcfddc}">
@@ -162,6 +142,17 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[TrackLength := _MyInterface.GetLength();]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="TrackOTCID" Id="{ecd1a52d-79c4-481e-8400-e1243b100776}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY TrackOTCID : OTCID]]></Declaration>
+      <Get Name="Get" Id="{33e1ea11-5a56-4ac4-bbde-7b321485f67d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[TrackOTCID := _OTCID;]]></ST>
         </Implementation>
       </Get>
     </Property>

@@ -3,20 +3,23 @@
   <Itf Name="I_XtsTrack" Id="{b580e084-f2aa-4b9e-b34b-5773df679de5}">
     <Declaration><![CDATA[INTERFACE I_XtsTrack
 ]]></Declaration>
+    <Property Name="Initialised" Id="{63b93fae-489e-4fa4-9a04-463c2aaab046}">
+      <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
+      <Get Name="Get" Id="{acf85cd8-cc41-4b15-a0c9-0d126b5e1a06}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="IsTrackSetForDetection" Id="{b3d46c63-3436-40e6-816c-0d3d6f24401f}">
       <Declaration><![CDATA[PROPERTY IsTrackSetForDetection : BOOL]]></Declaration>
       <Get Name="Get" Id="{fb5f8c6b-7961-46c2-ac4d-21822b0c9d98}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="MyOTCID" Id="{8be67bfb-cfe2-4d62-98cc-25000c035505}">
-      <Declaration><![CDATA[PROPERTY MyOTCID : OTCID]]></Declaration>
-      <Get Name="Get" Id="{4e95c9bb-aa4d-4ade-9bfa-d3c230375802}">
+    <Property Name="NumberOfPartsInTrack" Id="{5a41d223-5b06-4117-a9c4-89aa3db2cd8a}">
+      <Declaration><![CDATA[PROPERTY NumberOfPartsInTrack : INT]]></Declaration>
+      <Get Name="Get" Id="{0509cfa9-8756-4bb0-bd14-44693991c7db}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
-      <Set Name="Set" Id="{5a69d026-ba0e-42f2-ad56-82e6069370de}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
     </Property>
     <Method Name="RemoveFromDetection" Id="{9e7f91cb-3f18-4120-a764-6e1db78d984c}">
       <Declaration><![CDATA[METHOD RemoveFromDetection : BOOL
@@ -33,6 +36,12 @@ END_VAR
     <Property Name="TrackLength" Id="{d09b154e-641d-4452-b45a-353375f2a798}">
       <Declaration><![CDATA[PROPERTY TrackLength : MC_Lreal]]></Declaration>
       <Get Name="Get" Id="{227be027-fd95-4a28-b451-be32068fa3af}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="TrackOTCID" Id="{823af48a-cd14-456b-a6b8-0cb52ed01612}">
+      <Declaration><![CDATA[PROPERTY TrackOTCID : OTCID]]></Declaration>
+      <Get Name="Get" Id="{019678c3-c211-4ff6-b015-fab376172a09}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>

@@ -202,8 +202,8 @@ CASE HardwareDiscoveryState OF
 		TrackOTCIDs := iXPU.P_TrackOids;
 		IF TO_INT(MyTrackCount) = NumberOfTracks THEN
 			FOR i := 0 TO UDINT_TO_INT(MyTrackCount - 1) DO
-				XtsTracks[i].MyXtsIoEnvInterface := iXPU.TrackTcIo(TO_UINT(i + 1));
-				XtsTracks[i].MyOTCID := TrackOTCIDs[i + 1];
+				XtsTracks[i].SetXtsIoTrackInterface(iXPU.TrackTcIo(TO_UINT(i + 1)));
+				//XtsTracks[i].MyOTCID := TrackOTCIDs[i + 1];
 				IXtsTracks[i] := XtsTracks[i];
 			END_FOR
 			HardwareDiscoveryState := XtsHardwareDiscoveryState.InitialisingXtsTracks;
