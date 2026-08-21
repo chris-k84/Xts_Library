@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StandardMoverDetection" Id="{744247ae-04e1-4969-9309-29980f43d20b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StandardMoverDetection IMPLEMENTS I_MoverDetectionAlgorithm
+VAR
+	iXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF I_XtsTrack;
+	iMoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
+	iXPU : I_TcIoXtsProcessingUnit;
+	MoverDetectionState : XtsMoverDetectionState;
+	StartFlag : BOOL;
+	ResetFlag : BOOL;
+	_DetectedMoverCount: UDINT;
+	MoverIdDetectionState: MoverIdDetectionStateEnum;
+	MoverIdDetectionError: BOOL;
+	MoverIdDetected: BOOL;
+	_busy : BOOL;
+	_done : BOOL;
+	_error : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Abort" Id="{26597c74-4029-447e-a786-072429fd8646}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD Abort : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Busy" Id="{7de3ebb0-a4b6-4ba8-a676-480469ee6c84}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Busy : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{d94c0ad5-3b9d-4d0e-bb80-bdaaf09cfddb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Busy := _busy;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Cycle" Id="{ca7e54fe-ab1d-4501-9422-498d01d08e54}">
+      <Declaration><![CDATA[METHOD Cycle : Base_Library.HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE MoverDetectionState OF
+	XtsMoverDetectionState.WaitingForCommandStart:
+		IF StartFlag THEN
+			StartFlag := FALSE;
+			_busy := TRUE;
+			_done := FALSE;
+			_error := FALSE;
+			Base_Library.Tracing.Trace.Verbose(Source := iXPU.P_ObjectName, Message := 'Mover Detection Started');
+			MoverDetectionState := XtsMoverDetectionState.SetATrackForDetection;
+		END_IF
+	XtsMoverDetectionState.SetATrackForDetection:
+		IXtsTracks[0].SetForDetection();
+		MoverDetectionState := XtsMoverDetectionState.TriggeringRedetection;
+	
+	XtsMoverDetectionState.TriggeringRedetection:
+		IF iXPU.TriggerRedetection() THEN
+			MoverDetectionState := XtsMoverDetectionState.WaitingForAllMoversValid;
+		END_IF
+		
+	XtsMoverDetectionState.WaitingForAllMoversValid:
+		IF iXPU.GetAreAllPositionsValid() THEN
+			Base_Library.Tracing.Trace.Verbose(Source := iXPU.P_ObjectName, Message := 'Mover Detection Complete');
+			MoverDetectionState := XtsMoverDetectionState.CheckingAllMoverFound;
+		END_IF
+	
+	XtsMoverDetectionState.CheckingAllMoverFound:
+		IF iXPU.GetExpectedMoverCount() = iXPU.GetDetectedMoverCount() THEN
+			_DetectedMoverCount := iXPU.GetDetectedMoverCount();
+			MoverDetectionState := XtsMoverDetectionState.TriggeringMoverIdDetection;
+		END_IF
+		
+	XtsMoverDetectionState.TriggeringMoverIdDetection:
+		IF iXPU.GetMoverIdDetectionMode() = MoverIdDetectionMode.Standard OR_ELSE SUCCEEDED(TriggerMoverIDDetection()) THEN
+			Base_Library.Tracing.Trace.Verbose(Source := iXPU.P_ObjectName, Message := 'Mover ID Detection Complete');
+			MoverDetectionState := XtsMoverDetectionState.WaitingForCommandStart;
+			_busy := FALSE;
+			_done := TRUE;
+		END_IF
+		
+	XtsMoverDetectionState.MoverDetectionFault:
+		IF ResetFlag THEN
+			ResetFlag := FALSE;
+			_error := FALSE;
+			MoverDetectionState := XtsMoverDetectionState.WaitingForCommandStart;
+		END_IF
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="DetectedMoverCount" Id="{8f21e2a7-94e9-4fac-bf40-130830a6435e}">
+      <Declaration><![CDATA[PROPERTY DetectedMoverCount : UDINT]]></Declaration>
+      <Get Name="Get" Id="{5b263380-d748-41dd-bfd1-9acc88eb9015}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[DetectedMoverCount := _DetectedMoverCount;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Done" Id="{3c307923-0537-4387-97c5-91c7df94444f}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Done : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{61630dd0-000e-4a6d-b174-fb82efe87251}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Done := _done;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Error" Id="{49b9de1e-4304-4b08-b048-a12a8d110617}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Error : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{99b1ff45-eeef-414e-b891-4cb8cddc003e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Error := _error;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Reset" Id="{4debf444-f915-47ef-8621-fa026afbedd9}">
+      <Declaration><![CDATA[METHOD Reset : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ResetFlag := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetComponents" Id="{85ce5b9a-63bb-4bb2-bedb-42a81ea16fe0}">
+      <Declaration><![CDATA[METHOD SetComponents : BOOL
+VAR_INPUT
+	XtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF I_XtsTrack;
+	MoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
+	XPU : I_TcIoXtsProcessingUnit;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[iXtsTracks := XtsTracks;
+iMoverArray := MoverArray;
+iXPU := XPU;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Start" Id="{507dae7d-fc01-4c32-8358-312d0dae6a9b}">
+      <Declaration><![CDATA[METHOD Start : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[StartFlag := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerMoverIdDetection" Id="{49e4cae6-2a7e-45cb-ba80-e12b965b943f}">
+      <Declaration><![CDATA[METHOD PRIVATE TriggerMoverIdDetection : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MoverIdDetectionError 	:= MoverIdDetectionState = MoverIdDetectionStateEnum.Error;
+MoverIdDetected 	:= MoverIdDetectionState = MoverIdDetectionStateEnum.Valid;
+MoverIdDetectionState	:= iXPU.GetMoverIdDetectionState();
+
+IF iXPU.GetMoverIdDetectionMode() = MoverIdDetectionMode.Standard THEN
+	TriggerMoverIDDetection := -1;
+	RETURN;
+END_IF
+// 
+IF MoverIdDetectionState = MoverIdDetectionStateEnum.Running THEN
+	TriggerMoverIDDetection := -2;
+	RETURN;
+END_IF
+
+iXPU.TriggerMoverIdDetection();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

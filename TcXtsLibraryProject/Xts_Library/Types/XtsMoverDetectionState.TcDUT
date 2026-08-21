@@ -4,18 +4,13 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 TYPE XtsMoverDetectionState :
 (
-	WaitingForXtsIoEnvVar := 0,
-	PassGroupReference := 1,
-	WaitingForHardwareToInitialise := 2,
-	SetATrackForDetection := 3,                                              
-	TriggeringRedetection := 4,
-	WaitingForAllMoversValid := 5,                                 
-	CheckingAllMoverFound := 6,
-	CheckIfXtsInSimMode := 7,
-	CheckingXts24And48Volts := 8,
+	WaitingForCommandStart := 0,
+	SetATrackForDetection := 1,                                              
+	TriggeringRedetection := 2,
+	WaitingForAllMoversValid := 3,                                 
+	CheckingAllMoverFound := 4,
 	TriggeringMoverIdDetection := 9,
-	XtsInitialised := 10,
-	InitialisationFault := 99
+	MoverDetectionFault := 99
 );
 END_TYPE
 ]]></Declaration>

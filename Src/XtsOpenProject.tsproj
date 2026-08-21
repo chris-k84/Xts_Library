@@ -6953,11 +6953,11 @@
 								<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Mover Info">
 									<Name>Movers</Name>
 									<Comment><![CDATA[Returns an array containing the object IDs of all movers on this part.]]></Comment>
-									<BitSize>32</BitSize>
+									<BitSize>256</BitSize>
 									<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
 									<ArrayInfo>
 										<LBound>0</LBound>
-										<Elements Min="1" Max="500">1</Elements>
+										<Elements Min="1" Max="500">8</Elements>
 									</ArrayInfo>
 									<PTCID>#x0308020b</PTCID>
 									<ContextId>1</ContextId>
@@ -7440,11 +7440,11 @@
 									<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Mover Info">
 										<Name>Movers</Name>
 										<Comment><![CDATA[Returns an array containing the object IDs of all movers currently on the module.]]></Comment>
-										<BitSize>0</BitSize>
+										<BitSize>96</BitSize>
 										<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
 										<ArrayInfo>
 											<LBound>0</LBound>
-											<Elements Min="0" MaxUnbounded="true">0</Elements>
+											<Elements Min="0" MaxUnbounded="true">3</Elements>
 										</ArrayInfo>
 										<PTCID>#x0308020b</PTCID>
 										<ContextId>1</ContextId>
@@ -7614,11 +7614,11 @@
 									<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Drive CoE - Info Data">
 										<Name>PCB Temperatures</Name>
 										<Comment><![CDATA[Returns the PCB temperatures.]]></Comment>
-										<BitSize>32</BitSize>
+										<BitSize>128</BitSize>
 										<BaseType GUID="{18071995-0000-0000-0000-00000000000D}">REAL</BaseType>
 										<ArrayInfo>
 											<LBound>0</LBound>
-											<Elements Min="1" Max="8">1</Elements>
+											<Elements Min="1" Max="8">4</Elements>
 										</ArrayInfo>
 										<Unit><![CDATA[°C]]></Unit>
 										<PTCID>#x030802be</PTCID>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_MoverDetectionAlgorithm" Id="{33d5f92a-ed58-4708-a470-1691ea7312ec}">
+    <Declaration><![CDATA[INTERFACE I_MoverDetectionAlgorithm EXTENDS i_Task
+]]></Declaration>
+    <Method Name="Abort" Id="{dd31e5d6-eaa0-46fc-b5ea-c32a606fe694}">
+      <Declaration><![CDATA[
+METHOD Abort : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Reset" Id="{b7d11555-81bd-4227-a0a5-39d83d020680}">
+      <Declaration><![CDATA[METHOD Reset : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SetComponents" Id="{a706bd72-b2c6-4d16-b576-edfdb2cd5c7a}">
+      <Declaration><![CDATA[METHOD SetComponents : BOOL
+VAR_INPUT
+	XtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF I_XtsTrack;
+	MoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
+	XPU : I_TcIoXtsProcessingUnit;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Start" Id="{b150b5fa-d8d3-410a-8834-e2b67794974e}">
+      <Declaration><![CDATA[METHOD Start : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

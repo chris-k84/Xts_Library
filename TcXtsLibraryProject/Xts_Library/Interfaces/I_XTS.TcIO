@@ -57,13 +57,6 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="RegisterMovers" Id="{e65bc655-b1b5-4ed3-91eb-2d51871a4d75}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
-VAR_INPUT
-	MyMover : I_XtsMover;
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="Reset" Id="{1314f0dc-0a66-4dbc-aa58-dd78d21ed251}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
