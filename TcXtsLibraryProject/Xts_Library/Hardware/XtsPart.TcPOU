@@ -11,6 +11,7 @@ VAR
 	_IsInitialised : BOOL := FALSE;
 	PartLength: LREAL;
 	_HasError : BOOL;
+	_OperationMode : OperationMode;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -157,6 +158,16 @@ FOR i := 0 TO (TO_INT(MyModuleCount) - 1) DO
 	END_IF
 END_FOR
 Base_Library.Tracing.Trace.Verbose(_Name, 'Register Module success');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetPartOperationMode" Id="{3d03b392-5590-4afc-85ba-e5ffd6ca9ea3}" FolderPath="Settings\">
+      <Declaration><![CDATA[METHOD SetPartOperationMode : hresult
+VAR_INPUT
+	Mode : OperationMode;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_OperationMode := Mode;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetPartOriginTransform" Id="{8b2a2802-8f42-46b7-9bd8-2e1c722c9321}" FolderPath="Commands\">

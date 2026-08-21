@@ -9,6 +9,7 @@ VAR
 	MotorOid: OTCID;
 	SensorOid: OTCID;
 	_BTN: BTN;
+	_OperationMode : OperationMode;
 	Status : XtsModuleStatus;
 	DiagHistory: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxDiagMessagesPerModule] OF Tc3_XTS_Utility.DiagHistoryEntry;
 END_VAR
@@ -58,6 +59,10 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF _MyInterface = 0 THEN
 	Cycle := -1;
+	RETURN;
+END_IF
+
+IF _OperationMode = OperationMode.Simulation THEN
 	RETURN;
 END_IF
 
@@ -164,6 +169,16 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="SetModuleOperationMode" Id="{5168f174-52e1-4d17-9303-7340ec967fd8}" FolderPath="Settings\">
+      <Declaration><![CDATA[METHOD SetModuleOperationMode : hresult
+VAR_INPUT
+	Mode : OperationMode;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_OperationMode := Mode;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SetXtsIoModuleInterface" Id="{d64a5400-2bf3-4adc-add3-a7c7ebe7eeb1}" FolderPath="Settings\">
       <Declaration><![CDATA[METHOD SetXtsIoModuleInterface : HRESULT
 VAR_INPUT
