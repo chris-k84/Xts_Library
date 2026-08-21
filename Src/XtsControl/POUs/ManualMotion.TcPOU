@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <POU Name="ManualMotion" Id="{a5adb654-adc6-4a54-b4ae-db744f224e8e}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM ManualMotion
@@ -33,15 +33,9 @@ IF Init AND Start THEN
 END_IF
 
 IF Reset THEN
-	IF fbMachine.Reset() THEN
-		Reset := FALSE;
-	END_IF
-END_IF
-
-IF Move1 THEN
-	IF fbMachine.RequestAMoveFromMover(Mover, Pos, Velo) THEN
-		Move1 := FALSE;
-	END_IF
+// 	IF fbMachine.RequestAMoveFromMover(Mover, Pos, Velo) THEN
+// 		Reset := FALSE;
+// 	END_IF
 END_IF]]></ST>
     </Implementation>
   </POU>

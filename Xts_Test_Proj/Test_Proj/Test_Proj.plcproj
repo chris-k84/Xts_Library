@@ -76,10 +76,6 @@
     <Compile Include="Tests\XtsCaGroupTestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\XtsHardware_TestSuite.TcPOU">
-      <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
     <Compile Include="Tests\XtsMover_TestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>

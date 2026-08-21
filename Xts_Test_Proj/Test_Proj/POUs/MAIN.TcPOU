@@ -4,7 +4,6 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	TestXtsIoEnvVar : XtsInterfaceProvider;
-	//XtsHWTestSuite : XtsHardware_TestSuite;
 	XtsMoverTestSuite : XtsMover_TestSuite;
 	XtsTestSuite : Xts_TestSuite;
 	ActivateTrackTestSuite : ActivateTrackTask_TestSuite;
@@ -25,14 +24,11 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT TestXtsIoEnvVar.Initialised THEN
 	IF SUCCEEDED(TestXtsIoEnvVar.Initialise()) THEN
-		//XtsHWTestSuite.XPUInterface := TestXtsIoEnvVar.GetXPUInterface(1);
-		//XtsHWTestSuite.XtsHWInterface := TestXtsIoEnvVar.GetXPUInterface(1);
 		XtsMoverTestSuite.MoverInterface := TestXtsIoEnvVar.GetXPUInterface(1).MoverTcIo(1);
 	END_IF
 	RETURN;
 END_IF
 
-//XtsHWTestSuite();
 XtsMoverTestSuite();
 XtsTestSuite();
 ActivateTrackTestSuite();
