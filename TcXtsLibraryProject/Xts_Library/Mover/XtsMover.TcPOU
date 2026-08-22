@@ -43,6 +43,8 @@ END_VAR]]></Declaration>
     <Folder Name="Administration" Id="{660864df-8996-42d7-8e95-bfca1c90696e}" />
     <Folder Name="Commands" Id="{db0a893b-cc1a-482e-a432-7e9d568c5112}" />
     <Folder Name="Dynamics" Id="{6b49cc7a-c913-475a-9f9a-db91d65d07e1}" />
+    <Folder Name="ICyclic" Id="{895ad701-1670-4c6d-921e-cd7ccab0c12a}" />
+    <Folder Name="Settings" Id="{9f30f828-4035-4456-8312-0a248b50e96f}" />
     <Folder Name="Status" Id="{b27ba391-8a3b-4e51-ae24-bae43a7b6e5f}" />
     <Property Name="Acceleration" Id="{5cd04126-8ceb-4f9d-a4c5-c87e7e11d0e6}" FolderPath="Dynamics\">
       <Declaration><![CDATA[PROPERTY PUBLIC Acceleration : MC_LREAL]]></Declaration>
@@ -91,7 +93,7 @@ END_IF
 	
 Base_Library.Tracing.Trace.Verbose(_Name, 'ActivateTrack Request Accepted');
 MoverActivateTrackBehaviour.Execute(Track := Track);
-_ipTcIoXtsMover.SetActiveTrackObjectId(nTrackObjectId := Track);
+_MyInterface.SetActiveTrackObjectId(nTrackObjectId := Track);
 _CurrentTrack := Track;
 ]]></ST>
       </Implementation>
@@ -322,24 +324,6 @@ END_IF
         </Implementation>
       </Set>
     </Property>
-    <Method Name="GetMoverCtrlOTCID" Id="{6852d0c0-13fb-4a6d-9e8b-5d538e770d2f}" FolderPath="Administration\">
-      <Declaration><![CDATA[METHOD GetMoverCtrlOTCID : XtsMoverControllerOTCID
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetMoverCtrlOTCID := _MyInterface.GetMoverControllerOid();]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GetMoverOTCID" Id="{0ee3ade7-076c-46ec-8833-0ad2fc45f400}" FolderPath="Administration\">
-      <Declaration><![CDATA[METHOD GetMoverOTCID : OTCID
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[//GetMoverCtrlOTCID := _ipTcIoXtsMover.P_AxisOid;]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="HaltAxis" Id="{b177db81-8e99-498a-a7a2-cd0938dd7a2c}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD PUBLIC HaltAxis : HRESULT
 VAR_INPUT
@@ -389,7 +373,6 @@ END_VAR]]></Declaration>
 	RETURN;
 END_IF
 IF _MyInterface = 0 THEN
-	Base_Library.Tracing.Trace.Error(_Name, 'No XPU interface for Init');
 	Initialise := -2;
 	RETURN;
 END_IF
@@ -399,35 +382,14 @@ IF NOT _MyInterface.P_IsInitialized THEN
 	RETURN;
 END_IF
 
-myController := _ipTcIoXtsMover.MoverController;
-myControllerOid := _ipTcIoXtsMover.GetMoverControllerOid();
-_Mover1 := _ipTcIoXtsMover.GetIsMover1();
-_CurrentTrack := _ipTcIoXtsMover.GetActiveTrackObjectId();
+myController := _MyInterface.MoverController;
+myControllerOid := _MyInterface.GetMoverControllerOid();
+_Mover1 := _MyInterface.GetIsMover1();
+_CurrentTrack := _MyInterface.GetActiveTrackObjectId();
+
 Initialised := TRUE;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="IsActive" Id="{382be57c-1eca-4414-86e7-197f5c6f4f45}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY IsActive : BOOL]]></Declaration>
-      <Get Name="Get" Id="{ea8b86db-8f1a-4f2a-bfa5-c492ca87a414}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[IsActive := _myStatus.isActive;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Property Name="IsAMover1" Id="{028ba926-1842-41e8-aa1c-c4ef6eef97c2}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY IsAMover1 : BOOL]]></Declaration>
-      <Get Name="Get" Id="{4143db0b-f9d6-45f3-9ff5-3b331e0fc8b8}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[IsAMover1 := _Mover1;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
     <Property Name="IsAvoidingCollision" Id="{da7886a8-9c9c-4ae2-bbae-548351ceb9d3}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY IsAvoidingCollision : BOOL]]></Declaration>
       <Get Name="Get" Id="{07cfba67-3f84-4db0-a72d-fbe6f6b78e00}">
@@ -493,7 +455,18 @@ _Jerk := Jerk;]]></ST>
         </Implementation>
       </Set>
     </Property>
-    <Property Name="MoversActiveTrack" Id="{15471ba0-8341-48c7-a2d0-01ca6286078a}" FolderPath="Status\">
+    <Property Name="MoverControllerOTCID" Id="{a4db780a-81d5-41ec-b487-05c17449440b}" FolderPath="Administration\">
+      <Declaration><![CDATA[PROPERTY MoverControllerOTCID : XtsMoverControllerOTCID]]></Declaration>
+      <Get Name="Get" Id="{6c95e33d-076d-42b9-9a19-c0145cd389a0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MoverControllerOTCID := _MyInterface.GetMoverControllerOid();]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="MoversActiveTrack" Id="{15471ba0-8341-48c7-a2d0-01ca6286078a}" FolderPath="Administration\">
       <Declaration><![CDATA[PROPERTY PUBLIC MoversActiveTrack : OTCID]]></Declaration>
       <Get Name="Get" Id="{2721855b-e1d8-4f74-a352-28794ee4ae69}">
         <Declaration><![CDATA[VAR
@@ -643,7 +616,7 @@ IF NOT THIS^.IsStationary THEN
 	RETURN;
 END_IF
 	
-_ipTcIoXtsMover.SetActiveTrackObjectId(nTrackObjectId := Track);
+_MyInterface.SetActiveTrackObjectId(nTrackObjectId := Track);
 _CurrentTrack := Track;]]></ST>
       </Implementation>
     </Method>
@@ -674,7 +647,7 @@ END_VAR
 _MyInterface.SetSimulatedStartUpPosition(Position);]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetXtsIoMoverInterface" Id="{6e9b4848-4a92-448f-8f39-57970843623a}" FolderPath="Administration\">
+    <Method Name="SetXtsIoMoverInterface" Id="{6e9b4848-4a92-448f-8f39-57970843623a}" FolderPath="Settings\">
       <Declaration><![CDATA[METHOD SetXtsIoMoverInterface : HRESULT
 VAR_INPUT
 	MoverInterface : I_TcIoXtsXpuMover;
@@ -688,11 +661,22 @@ END_VAR
 END_IF
 
 
-_ipTcIoXtsMover := MoverInterface;
-_Name := _ipTcIoXtsMover.P_ObjectName;
+_MyInterface := MoverInterface;
+_Name := _MyInterface.P_ObjectName;
 ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Status" Id="{7210093a-6aaa-412a-b61c-1cd78f6b0715}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Status : MoverStatus]]></Declaration>
+      <Get Name="Get" Id="{e48e107d-404f-4b57-801c-c1bdf333ce6b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Status := _myStatus;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="SwapMover" Id="{075d081f-a4ad-470f-95aa-ced1f28cc5a8}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD SwapMover : HRESULT
 VAR_INPUT

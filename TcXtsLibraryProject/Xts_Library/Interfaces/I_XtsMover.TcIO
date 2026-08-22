@@ -93,12 +93,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
-    <Method Name="GetMoverCtrlOTCID" Id="{863e8ade-d7f2-439e-8b15-5f1837c580a0}" FolderPath="Administration\">
-      <Declaration><![CDATA[METHOD GetMoverCtrlOTCID : XtsMoverControllerOTCID
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="HaltAxis" Id="{881642ff-213b-4030-944f-bd624c008c64}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD HaltAxis : HRESULT
 VAR_INPUT
@@ -114,18 +108,6 @@ END_VAR
     <Property Name="IdentInGroup" Id="{892b953d-abf1-49a8-bf89-421385c1791d}" FolderPath="Administration\">
       <Declaration><![CDATA[PROPERTY PUBLIC IdentInGroup : IDENT_IN_GROUP_REF]]></Declaration>
       <Get Name="Get" Id="{b023befb-8f40-468b-ada4-daaf368f7d24}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-    </Property>
-    <Property Name="IsActive" Id="{43095e03-0781-4c14-aea8-4bb8d9b5c9a9}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY IsActive : BOOL]]></Declaration>
-      <Get Name="Get" Id="{5c30f132-658c-45bd-986b-b41d82b1ab82}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-    </Property>
-    <Property Name="IsAMover1" Id="{2bbcc45a-af5d-48fd-a64e-6509262e5e53}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY IsAMover1 : BOOL]]></Declaration>
-      <Get Name="Get" Id="{35cbc1b6-e96d-405e-9119-f59168018c94}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
@@ -161,6 +143,12 @@ END_VAR
       <Set Name="Set" Id="{943274ff-ff90-4228-a079-22863adf0d58}">
         <Declaration><![CDATA[]]></Declaration>
       </Set>
+    </Property>
+    <Property Name="MoverControllerOTCID" Id="{13e218b9-2bea-4dd4-99ef-937e1bbb1164}" FolderPath="Administration\">
+      <Declaration><![CDATA[PROPERTY MoverControllerOTCID : XtsMoverControllerOTCID]]></Declaration>
+      <Get Name="Get" Id="{d029e370-b4ba-4dda-9878-9abacd0d9c2d}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
     </Property>
     <Property Name="MoversActiveTrack" Id="{f033ba71-1699-4f66-8762-38178a524724}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY PUBLIC MoversActiveTrack : OTCID]]></Declaration>
@@ -221,6 +209,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="Status" Id="{843cc6f2-28f6-454d-8096-e98e9da1d9b0}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Status : MoverStatus]]></Declaration>
+      <Get Name="Get" Id="{3185b859-98d3-4746-8b63-d05148eeea39}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="TriggerMoverArrive" Id="{ce200a85-cca0-47d0-8b7e-22e3d01f8c11}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD TriggerMoverArrive : HRESULT
 VAR_INPUT
