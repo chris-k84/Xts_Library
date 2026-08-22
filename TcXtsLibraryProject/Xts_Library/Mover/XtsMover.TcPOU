@@ -337,8 +337,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//GetMoverCtrlOTCID := _ipTcIoXtsMover.P_AxisOid;
-]]></ST>
+        <ST><![CDATA[//GetMoverCtrlOTCID := _ipTcIoXtsMover.P_AxisOid;]]></ST>
       </Implementation>
     </Method>
     <Method Name="HaltAxis" Id="{b177db81-8e99-498a-a7a2-cd0938dd7a2c}" FolderPath="Commands\">
@@ -382,9 +381,6 @@ END_VAR
     <Method Name="Initialise" Id="{158eaadb-7779-40c3-b4d7-ef64750e6b36}">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR_INPUT
-END_VAR
-VAR
-	i : INT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Initialised THEN

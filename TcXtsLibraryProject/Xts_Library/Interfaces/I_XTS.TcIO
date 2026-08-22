@@ -51,12 +51,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="MoverHomeSequence" Id="{80de9bd3-37be-4579-86bc-1293deec4463}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD PUBLIC Abstract MoverHomeSequence : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="Reset" Id="{1314f0dc-0a66-4dbc-aa58-dd78d21ed251}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT

@@ -387,15 +387,6 @@ END_VAR
         <ST><![CDATA[iMoverDetectionAlogrithm.Start();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoverHomeSequence" Id="{5c2deb91-ebd0-4a93-99ec-6a6bbbd5e076}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD PUBLIC MoverHomeSequence : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="RegisterWithParent" Id="{5a27c335-0022-4ddf-98ff-1436953bbdbd}">
       <Declaration><![CDATA[METHOD RegisterWithParent
 VAR_INPUT
