@@ -12,8 +12,10 @@ TYPE XtsHardwareDiscoveryState :
 	GettingTracks := 3,
 	InitialisingXtsTracks := 4,
 	GettingModules := 5,
-	InitialisingModules := 6,	
-	HardwareFound := 7,
+	InitialisingModules := 6,
+	GettingMovers := 7,
+	InitialisingMovers := 8,	
+	HardwareFound := 9,
 	DiscoveryFault := 99
 );
 END_TYPE

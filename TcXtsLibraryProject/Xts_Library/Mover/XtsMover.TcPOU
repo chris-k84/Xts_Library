@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsMover" Id="{f9a43ed2-0578-4aed-857c-1a3adef0c7f6}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsMover EXTENDS CyclicBase IMPLEMENTS I_XtsMover, I_Resettable
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsMover EXTENDS CyclicBase IMPLEMENTS I_XtsMover, I_Resettable, I_Object
 VAR
 	MyAxisRef : AXIS_REF;
 	_MyAxisStatus : ST_AxisStatus;
@@ -20,7 +20,6 @@ VAR
 	_myStatus : MoverStatus;
 	_ForwardOnly : BOOL := TRUE;
 	myControllerOid: OTCID;
-	MyId: UDINT;
 	Initialised : BOOL;
 	_SetForce: LREAL;
 	_SetCurrent: LREAL;
@@ -90,7 +89,7 @@ IF NOT THIS^.IsStationary THEN
 END_IF
 
 	
-Base_Library.Tracing.Trace.Verbose(MoverID, 'ActivateTrack Request Accepted');
+Base_Library.Tracing.Trace.Verbose(_Name, 'ActivateTrack Request Accepted');
 MoverActivateTrackBehaviour.Execute(Track := Track);
 _ipTcIoXtsMover.SetActiveTrackObjectId(nTrackObjectId := Track);
 _CurrentTrack := Track;
@@ -111,7 +110,7 @@ IF NOT THIS^.IsStationary THEN
 	RETURN;
 END_IF 
 
-Base_Library.Tracing.Trace.Verbose(MoverID, 'ActivateTrack Request Accpeted');
+Base_Library.Tracing.Trace.Verbose(_Name, 'ActivateTrack Request Accpeted');
 MoverActivateTrackBehaviour.Execute(Track := 0);
 _CurrentTrack := 0;]]></ST>
       </Implementation>
@@ -284,8 +283,8 @@ END_VAR
 METHOD FB_Init: BOOL
 VAR_INPUT
     bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
-    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change) 
-	Name : T_MaxString;  
+    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)
+	Name : T_MaxString;   
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TaskCollection.RegisterCyclic(EnableBehaviour);
@@ -406,8 +405,6 @@ END_IF
 
 myController := _ipTcIoXtsMover.MoverController;
 myControllerOid := _ipTcIoXtsMover.GetMoverControllerOid();
-MyId := _ipTcIoXtsMover.P_AxisId;
-MoverID := CONCAT('Mover ', TO_STRING(MyId));
 _Mover1 := _ipTcIoXtsMover.GetIsMover1();
 _CurrentTrack := _ipTcIoXtsMover.GetActiveTrackObjectId();
 Initialised := TRUE;]]></ST>
@@ -512,25 +509,6 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="MoverXtsIoEnvInterface" Id="{6aaf98f4-e1bc-4f35-afbe-48664404e767}" FolderPath="Administration\">
-      <Declaration><![CDATA[PROPERTY PUBLIC MoverXtsIoEnvInterface : I_TcIoXtsXpuMover]]></Declaration>
-      <Get Name="Get" Id="{5b75808a-7c24-4c09-8809-4a555d5acdb1}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MoverXtsIoEnvInterface := _MyInterface;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{57119448-dfbf-405e-ade1-72aad5224720}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyInterface := MoverXtsIoEnvInterface;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Method Name="MoveTo" Id="{ea6488b0-fefd-4f9f-a3b2-cfd8c6f64d05}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD PUBLIC MoveTo : HRESULT
 VAR_INPUT
@@ -614,16 +592,6 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="RegisterWithParent" Id="{0c8fc6cb-d807-4926-a588-870aa525c7f2}" FolderPath="Administration\">
-      <Declaration><![CDATA[METHOD RegisterWithParent
-VAR_INPUT
-	Parent	: I_HostObjects;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[Parent.RegisterCyclic(THIS^);]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="Reset" Id="{e9d8249c-2f88-4980-a483-ceda82c7ab80}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD PUBLIC Reset : HRESULT
 VAR_INPUT
@@ -710,17 +678,25 @@ END_VAR
 _MyInterface.SetSimulatedStartUpPosition(Position);]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Status" Id="{b6a8e4fc-5f49-414e-9d84-cce1a649f586}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY Status : MoverStatus]]></Declaration>
-      <Get Name="Get" Id="{57e46648-9a40-4e7a-bf2f-432d5c0dc60c}">
-        <Declaration><![CDATA[VAR
+    <Method Name="SetXtsIoMoverInterface" Id="{6e9b4848-4a92-448f-8f39-57970843623a}" FolderPath="Administration\">
+      <Declaration><![CDATA[METHOD SetXtsIoMoverInterface : HRESULT
+VAR_INPUT
+	MoverInterface : I_TcIoXtsXpuMover;
 END_VAR
 ]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[Status := _myStatus;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
+      <Implementation>
+        <ST><![CDATA[IF MoverInterface = 0 THEN
+	SetXtsIoMoverInterface := -1;
+	Base_Library.Tracing.Trace.Error(_name, 'XPU interface not assigned');
+	RETURN;
+END_IF
+
+
+_ipTcIoXtsMover := MoverInterface;
+_Name := _ipTcIoXtsMover.P_ObjectName;
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SwapMover" Id="{075d081f-a4ad-470f-95aa-ced1f28cc5a8}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD SwapMover : HRESULT
 VAR_INPUT

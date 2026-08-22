@@ -168,15 +168,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="MoverXtsIoEnvInterface" Id="{192fc175-f0e7-4171-9425-47deb3799f9d}" FolderPath="Administration\">
-      <Declaration><![CDATA[PROPERTY PUBLIC MoverXtsIoEnvInterface : I_TcIoXtsXpuMover]]></Declaration>
-      <Get Name="Get" Id="{e7a8a250-ae9b-4ad7-bf97-7690d04cb985}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-      <Set Name="Set" Id="{f163ce07-1471-4036-baf2-4d783308d9bd}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
-    </Property>
     <Method Name="MoveTo" Id="{ff1a94f0-d91e-4f1f-8540-ce9d25779d5e}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD MoveTo : HRESULT
 VAR_INPUT

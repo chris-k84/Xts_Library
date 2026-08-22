@@ -14,7 +14,7 @@ VAR
 	_XtsEnabled : BOOL;
 	_InSim : BOOL;
 	iXPU : I_TcIoXtsProcessingUnit;
-	MoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF XtsMover;
+	MoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF XtsMover('');
 	_iMoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
 	DefaultMoverDetectionAlgorithm : StandardMoverDetection;
 	iMoverDetectionAlogrithm : I_MoverDetectionAlgorithm := DefaultMoverDetectionAlgorithm;
@@ -165,11 +165,11 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="DiscoverHardware" Id="{199dc34b-920a-40a0-b86e-d4d30a9fd81a}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD DiscoverHardware : HRESULT
+      <Declaration><![CDATA[METHOD PROTECTED DiscoverHardware : HRESULT
 VAR
 	i,j : INT;
 	allInitialised : BOOL;
-	ModuleCount : INT;
+	ModuleCount : UINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -252,6 +252,29 @@ CASE HardwareDiscoveryState OF
 		IF allInitialised THEN
 			HardwareDiscoveryState := XtsHardwareDiscoveryState.HardwareFound;
 		END_IF
+	XtsHardwareDiscoveryState.GettingMovers:
+		MyMoverCount := iXPU.P_MoverCount;
+		IF MyMoverCount = NumberOfMovers THEN
+			FOR i := 0 TO (TO_INT(MyMoverCount) - 1) DO
+				MoverArray[i].SetXtsIoMoverInterface(iXPU.MoverTcIo(TO_UINT(i + 1)));
+				_iMoverArray[i] := MoverArray[i];
+			END_FOR
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.InitialisingMovers;
+		ELSE
+			Base_Library.Tracing.Trace.Error(Source := _Name, Message := 'Mover count does not match detected Mover count');
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.DiscoveryFault;
+		END_IF
+	XtsHardwareDiscoveryState.InitialisingMovers:
+		allInitialised := TRUE;
+		FOR i := 0 TO TO_INT(MyMoverCount - 1) DO
+			IF FAILED(moverarray[i].Initialise()) THEN
+				allInitialised := FALSE;
+			END_IF
+		END_FOR
+		IF allInitialised THEN
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.HardwareFound;
+		END_IF
+	
 	XtsHardwareDiscoveryState.HardwareFound:
 		Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Hardware Discovery Complete');
 		_HardwareDiscoveryComplete := TRUE;
@@ -308,15 +331,7 @@ IF iXtsInterfaceProvider.Initialised THEN
 	iXPU := iXtsInterfaceProvider.GetXPUInterface(XtsXpuNumber);
 	Initialise := 0;
 	_Initialised := TRUE;	
-END_IF
-		
-
-	
-		
-// 	XtsSystemInitialisation.PassGroupReference:
-// 		ICollisionGroup.CAGroupXtsIoEnvInterface := _XtsIoEnvVar.GetCaGroupInterface(_MyXts);
-// 		XtsHwState := XtsSystemInitialisation.WaitingForHardwareToInitialise;
-	]]></ST>
+END_IF	]]></ST>
       </Implementation>
     </Method>
     <Property Name="Initialised" Id="{a78fe92f-7cf8-4747-affa-2e0853d05d4c}" FolderPath="Status\">
@@ -364,7 +379,7 @@ END_VAR
       </Get>
     </Property>
     <Method Name="MoverDetection" Id="{dba45dd8-2a21-4df4-baaf-5aa299000bf6}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD MoverDetection : HRESULT
+      <Declaration><![CDATA[METHOD PROTECTED MoverDetection : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
