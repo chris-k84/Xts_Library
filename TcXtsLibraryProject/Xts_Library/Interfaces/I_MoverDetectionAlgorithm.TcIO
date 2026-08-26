@@ -10,6 +10,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="DetectedMoverCount" Id="{56fda154-0eef-4840-bd70-7005b92b3e2c}">
+      <Declaration><![CDATA[PROPERTY DetectedMoverCount : UDINT]]></Declaration>
+      <Get Name="Get" Id="{920f32c2-a114-4e59-b985-4870f90b8bff}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="Reset" Id="{b7d11555-81bd-4227-a0a5-39d83d020680}">
       <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT

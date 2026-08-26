@@ -11,11 +11,25 @@ VAR_GENERIC CONSTANT
 END_VAR
 EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XTS, I_Object
 VAR
+	// Status Flags
 	_XtsEnabled : BOOL;
 	_InSim : BOOL;
+	_Initialised : BOOL;
+	_HardwareDiscoveryComplete : BOOL;
+	_MoversDetected : BOOL;
+	HardwareError : BOOL;
+	CAGroupError : BOOL;
+	
+	// XTS Components
 	iXPU : I_TcIoXtsProcessingUnit;
 	MoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF XtsMover('');
 	_iMoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
+	Modules : ARRAY[0..MaxModules] OF XtsMotorModule('');
+	iModules : ARRAY[0..MaxModules] OF i_XtsMotorModule;
+	XtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart('');
+	iXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF I_XtsPart;
+	XtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
+	iXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF I_XtsTrack;
 	DefaultMoverDetectionAlgorithm : StandardMoverDetection;
 	iMoverDetectionAlogrithm : I_MoverDetectionAlgorithm := DefaultMoverDetectionAlgorithm;
 	MyXtsInterfaceProvider : XtsInterfaceProvider;
@@ -24,24 +38,19 @@ VAR
 	iCollisionGroup : I_CollisionGroup := myCAGroup;
 	EnableSequence : XtsEnableSequence := (MyCollisionGroup := iCollisionGroup);
 	DisableSequence : XtsDisableSequence := (MyCollisionGroup := iCollisionGroup);	
-	_Initialised : BOOL;
-	_HardwareDiscoveryComplete : BOOL;
+	
 	EnabledTrigger : R_TRIG;
 	DisabledTrigger : R_TRIG;
-	HardwareError : BOOL;
-	CAGroupError : BOOL;
+	
 	_ErrorID : UDINT;
-	Modules : ARRAY[0..MaxModules] OF XtsMotorModule('');
-	iModules : ARRAY[0..MaxModules] OF i_XtsMotorModule;
-	XtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart('');
-	iXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF I_XtsPart;
-	XtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
-	iXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF I_XtsTrack;
+	
 	MyPartCount: UDINT;
 	MyTrackCount: UDINT;
 	MyModuleCount : UDINT;
 	MyMoverCount : UDINT;
+	MoverDetectionState : TaskExecutionStates;
 	HardwareDiscoveryState: XtsHardwareDiscoveryState;
+	DetectionErrorTimeOut : TON := (PT := T#5S);
 END_VAR
 VAR CONSTANT
 	MaxModules : UINT := 1000;
@@ -164,7 +173,7 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="DiscoverHardware" Id="{199dc34b-920a-40a0-b86e-d4d30a9fd81a}" FolderPath="Operations\">
+    <Method Name="DiscoverHardware" Id="{199dc34b-920a-40a0-b86e-d4d30a9fd81a}" FolderPath="Private\">
       <Declaration><![CDATA[METHOD PROTECTED DiscoverHardware : HRESULT
 VAR
 	i,j : INT;
@@ -305,6 +314,17 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="HardwareDiscoveryComplete" Id="{fcb12539-9ecf-4d97-852d-df01fb1e37bf}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY HardwareDiscoveryComplete : BOOL]]></Declaration>
+      <Get Name="Get" Id="{cfc88a57-9c50-4df3-bc04-f9ffebfe29d4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[HardwareDiscoveryComplete := _HardwareDiscoveryComplete;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="HasError" Id="{fc5d4c9f-c257-47d7-8282-ec3a9f63c6e5}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
       <Get Name="Get" Id="{e073db15-e4f5-4f0c-b72a-f5365dbb2c5c}">
@@ -316,8 +336,8 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD Initialise : HRESULT
+    <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PROTECTED Initialise : HRESULT
 VAR
 	i : INT;
 END_VAR
@@ -378,24 +398,46 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="MoverDetection" Id="{dba45dd8-2a21-4df4-baaf-5aa299000bf6}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD PROTECTED MoverDetection : HRESULT
+    <Method Name="MoverDetectionSequence" Id="{f82b8e0a-0c27-4fcd-93ea-55c9ec1f276b}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PROTECTED MoverDetectionSequence : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iMoverDetectionAlogrithm.Start();]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="RegisterWithParent" Id="{5a27c335-0022-4ddf-98ff-1436953bbdbd}">
-      <Declaration><![CDATA[METHOD RegisterWithParent
-VAR_INPUT
-	Parent	: I_HostObjects;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[Parent.RegisterCyclic(THIS^);
-Parent.RegisterInitialisable(THIS^);]]></ST>
+        <ST><![CDATA[CASE MoverDetectionState OF
+	TaskExecutionStates.Idle:
+		IF iMoverDetectionAlogrithm.Busy THEN
+			MoverDetectionState := TaskExecutionStates.Running;
+			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Mover detection running');
+		END_IF
+	TaskExecutionStates.Running:
+		IF iMoverDetectionAlogrithm.Done THEN
+			MoverDetectionState := TaskExecutionStates.Done;
+			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Mover detection Finished');
+		END_IF
+	TaskExecutionStates.Done:
+		IF NOT iMoverDetectionAlogrithm.Error THEN
+			_MoversDetected := TRUE;
+			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := CONCAT(TO_STRING(iMoverDetectionAlogrithm.DetectedMoverCount), ' movers detected'));
+			MoverDetectionState := TaskExecutionStates.Idle;
+		ELSE
+			MoverDetectionState := TaskExecutionStates.Error;
+			DetectionErrorTimeOut.IN := TRUE;
+			Base_Library.Tracing.Trace.Error(Source := _Name, Message := 'error in mover detection - waiting to try again');
+		END_IF
+	TaskExecutionStates.Error:
+		IF DetectionErrorTimeOut.Q THEN
+			DetectionErrorTimeOut.IN := FALSE;
+			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'resetting detection');
+			iMoverDetectionAlogrithm.Reset();
+		END_IF
+		IF NOT iMoverDetectionAlogrithm.Error THEN
+			iMoverDetectionAlogrithm.Start();
+			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'triggering mover detection');
+			MoverDetectionState := TaskExecutionStates.Idle;
+		END_IF
+END_CASE
+DetectionErrorTimeOut();]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{f4cda3e0-308c-460d-87ee-c1616441d1b6}" FolderPath="Operations\">
@@ -435,6 +477,16 @@ END_VAR
       <Implementation>
         <ST><![CDATA[StopXTS := ICollisionGroup.GroupStop();
 Base_Library.Tracing.Trace.Verbose(_Name, 'Stop Accepted');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerMoverDetection" Id="{dba45dd8-2a21-4df4-baaf-5aa299000bf6}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD PROTECTED TriggerMoverDetection : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[iMoverDetectionAlogrithm.Start();
+Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Mover detection started');]]></ST>
       </Implementation>
     </Method>
   </POU>
