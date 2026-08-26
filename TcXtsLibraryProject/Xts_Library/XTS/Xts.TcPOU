@@ -19,9 +19,11 @@ VAR
 	_MoversDetected : BOOL;
 	HardwareError : BOOL;
 	CAGroupError : BOOL;
+	_ErrorID : UDINT;
 	
 	// XTS Components
-	iXPU : I_TcIoXtsProcessingUnit;
+	MyXtsInterfaceProvider : XtsInterfaceProvider;
+	iXtsInterfaceProvider : I_XtsInterfaceProvider := MyXtsInterfaceProvider;
 	MoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF XtsMover('');
 	_iMoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
 	Modules : ARRAY[0..MaxModules] OF XtsMotorModule('');
@@ -30,24 +32,26 @@ VAR
 	iXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF I_XtsPart;
 	XtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
 	iXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF I_XtsTrack;
-	DefaultMoverDetectionAlgorithm : StandardMoverDetection;
-	iMoverDetectionAlogrithm : I_MoverDetectionAlgorithm := DefaultMoverDetectionAlgorithm;
-	MyXtsInterfaceProvider : XtsInterfaceProvider;
-	iXtsInterfaceProvider : I_XtsInterfaceProvider := MyXtsInterfaceProvider;
+	
+	
 	myCAGroup : CollisionGroup;
 	iCollisionGroup : I_CollisionGroup := myCAGroup;
+	iXPU : I_TcIoXtsProcessingUnit;
+	
+	// Behaviours
 	EnableSequence : XtsEnableSequence := (MyCollisionGroup := iCollisionGroup);
 	DisableSequence : XtsDisableSequence := (MyCollisionGroup := iCollisionGroup);	
-	
+	DefaultMoverDetectionAlgorithm : StandardMoverDetection;
+	iMoverDetectionAlogrithm : I_MoverDetectionAlgorithm := DefaultMoverDetectionAlgorithm;
 	EnabledTrigger : R_TRIG;
 	DisabledTrigger : R_TRIG;
 	
-	_ErrorID : UDINT;
-	
+	// Hardware counts
 	MyPartCount: UDINT;
 	MyTrackCount: UDINT;
 	MyModuleCount : UDINT;
 	MyMoverCount : UDINT;
+	
 	MoverDetectionState : TaskExecutionStates;
 	HardwareDiscoveryState: XtsHardwareDiscoveryState;
 	DetectionErrorTimeOut : TON := (PT := T#5S);
@@ -62,22 +66,6 @@ END_VAR]]></Declaration>
     <Folder Name="Private" Id="{3792690f-dbde-4d97-aae6-86812312ba25}" />
     <Folder Name="Settings" Id="{cec05bdb-9232-4b5d-b91e-848bd7bc55d9}" />
     <Folder Name="Status" Id="{c34f5481-c408-4671-a299-9c4a6e31956c}" />
-    <Method Name="AreAllMoversStationary" Id="{f009ccd3-c388-424a-b98d-ae435064fa0b}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD AreAllMoversStationary : BOOL
-VAR
-	i : INT;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[AreAllMoversStationary := TRUE;
-FOR i := 0 TO TO_INT(MyMoverCount) - 1 DO
-	IF NOT _iMoverArray[i].IsStationary THEN
-		AreAllMoversStationary := FALSE;
-		EXIT;
-	END_IF
-END_FOR]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="CheckPartsForError" Id="{8aa34e06-0102-41ed-a3cf-341e27edd24f}" FolderPath="Private\">
       <Declaration><![CDATA[METHOD PRIVATE CheckPartsForError : BOOL
 VAR
@@ -115,11 +103,20 @@ IF NOT _HardwareDiscoveryComplete THEN
 END_IF
 
 iMoverDetectionAlogrithm.Cycle();
+HardwareError := iXPU.GetDriveState() = DriveState.Fault OR CheckPartsForError();
+
+IF NOT _MoversDetected THEN
+	Cycle := -3;
+	RETURN;
+END_IF
+
+
 EnableResult := EnableSequence.Cycle();
 DisableResult := DisableSequence.Cycle();
 myCAGroup.Cycle();
 EnabledTrigger(CLK := EnableSequence.Done);
 DisabledTrigger(CLK := DisableSequence.Done);
+
 IF EnabledTrigger.Q THEN
 	_XtsEnabled := TRUE;
 END_IF
@@ -127,7 +124,7 @@ IF DisabledTrigger.Q THEN
 	_XtsEnabled := FALSE;
 END_IF
 
-HardwareError := iXPU.GetDriveState() = DriveState.Fault OR CheckPartsForError();
+
 CAGroupError := ICollisionGroup.HasError;
 
 IF CAGroupError THEN
@@ -365,6 +362,17 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="IsEnabled" Id="{2e2a3eb7-41f9-4889-9a54-93f51d339119}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsEnabled : BOOL]]></Declaration>
+      <Get Name="Get" Id="{c1a60130-732b-467c-8f85-c88373ac5c2c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsEnabled := _XtsEnabled;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="IsIdle" Id="{3c144ba6-395b-4ea8-98ac-f2364ab509f3}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY IsIdle : BOOL]]></Declaration>
       <Get Name="Get" Id="{e2c9271f-6b55-4d9e-90f5-2964294aa055}">
@@ -373,17 +381,6 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[IsIdle := DefaultDisableSequence.Done;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Property Name="IsReady" Id="{2e2a3eb7-41f9-4889-9a54-93f51d339119}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY IsReady : BOOL]]></Declaration>
-      <Get Name="Get" Id="{c1a60130-732b-467c-8f85-c88373ac5c2c}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[IsReady := _XtsEnabled;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -440,6 +437,17 @@ END_CASE
 DetectionErrorTimeOut();]]></ST>
       </Implementation>
     </Method>
+    <Property Name="MoversFound" Id="{640e61ee-3b4d-4e87-a372-a0e90cf05e0a}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY MoversFound : BOOL]]></Declaration>
+      <Get Name="Get" Id="{f90a6e98-3a7e-4d4c-84cd-0660997af1eb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MoversFound := _MoversDetected;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Reset" Id="{f4cda3e0-308c-460d-87ee-c1616441d1b6}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT

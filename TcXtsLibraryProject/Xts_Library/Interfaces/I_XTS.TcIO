@@ -5,10 +5,6 @@
 ]]></Declaration>
     <Folder Name="Operations" Id="{fcac5daf-610f-4795-a9df-a1a0b59d368f}" />
     <Folder Name="Status" Id="{e945740f-30ab-470b-b703-ee9e691fdeff}" />
-    <Method Name="AreAllMoversStationary" Id="{b214b570-8dd1-4577-80c2-923199586750}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD AreAllMoversStationary : BOOL
-]]></Declaration>
-    </Method>
     <Method Name="DisableXTS" Id="{d730e6bc-30f4-400f-83c5-0a8ef7530dc6}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD DisableXTS : HRESULT
 VAR_INPUT
@@ -27,6 +23,12 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Property Name="HardwareDiscoveryComplete" Id="{33067911-0ab0-425c-aa31-6b5903dc31dc}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY HardwareDiscoveryComplete : BOOL]]></Declaration>
+      <Get Name="Get" Id="{e36a3ca7-9f57-4bf5-b5f8-309b3023dd5a}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="HasError" Id="{a76186d7-f25a-4e47-b556-421092bb4e8d}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
       <Get Name="Get" Id="{3ff785fc-785f-4d63-848a-2916e403262b}">
@@ -39,15 +41,27 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Property Name="IsEnabled" Id="{19895c70-7b9f-45b6-8ec3-b3d30ea37247}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsEnabled : BOOL]]></Declaration>
+      <Get Name="Get" Id="{df02b5ad-0914-47de-939c-37cf284a999e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="IsIdle" Id="{3d807905-f20e-485e-ad56-f26ffe7b0c98}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY IsIdle : BOOL]]></Declaration>
       <Get Name="Get" Id="{a5a22db1-22e5-48c9-ab7b-421717a7ccbd}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="IsReady" Id="{19895c70-7b9f-45b6-8ec3-b3d30ea37247}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY IsReady : BOOL]]></Declaration>
-      <Get Name="Get" Id="{df02b5ad-0914-47de-939c-37cf284a999e}">
+    <Property Name="IsRunningInSim" Id="{30a13086-f873-42c9-ae81-29ac59c2e4b7}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY IsRunningInSim : BOOL]]></Declaration>
+      <Get Name="Get" Id="{b57c98b2-25fc-4604-8826-ba351877e454}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="MoversFound" Id="{9657530a-4f1b-48d0-9d9e-f5d9b2680c2d}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY MoversFound : BOOL]]></Declaration>
+      <Get Name="Get" Id="{4c0760c5-4d43-45fd-8110-8b9f8c6e99cf}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
@@ -59,6 +73,12 @@ END_VAR
     </Method>
     <Method Name="StopXts" Id="{d7591d56-8a8c-46a1-bfd3-85f1f168760d}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD StopXts : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="TriggerMoverDetection" Id="{3b039465-ebff-4c71-951d-7ae1e9a52858}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD PROTECTED TriggerMoverDetection : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
