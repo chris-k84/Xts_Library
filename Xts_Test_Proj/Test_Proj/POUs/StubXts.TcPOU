@@ -7,7 +7,8 @@ VAR_GENERIC CONSTANT
 	NuOfTracks : UINT := 1;
 	NuOfModules : UINT := 1;
 	XpuNumber : UINT := 1;
-END_VAR EXTENDS Xts<NuOfParts,NuOfTracks, NuOfModules,XpuNumber>
+	NuofMovers : UINT := 1;
+END_VAR EXTENDS Xts<NuOfParts,NuOfTracks, NuOfModules,XpuNumber,NuofMovers >
 VAR
 END_VAR
 ]]></Declaration>
@@ -16,13 +17,6 @@ END_VAR
     </Implementation>
     <Method Name="Cycle" Id="{ba7fc6ec-53fe-46e8-b7e8-7d8528b5c436}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Initialise" Id="{abac4287-77d3-4784-8f98-5b30950ef3e3}">
-      <Declaration><![CDATA[METHOD Initialise : HRESULT
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -60,24 +54,6 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_Initialised := TRUE;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="setMoverNumberMax" Id="{5d9d367e-74e6-410a-9121-5a46c3dda01c}">
-      <Declaration><![CDATA[METHOD setMoverNumberMax : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_registeredNumberOfMovers := 255;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="setMoverNumberZero" Id="{8cc461ce-7c43-4e66-86ca-dfa650521876}">
-      <Declaration><![CDATA[METHOD setMoverNumberZero : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_registeredNumberOfMovers := 0;]]></ST>
       </Implementation>
     </Method>
     <Method Name="setNotInitialised" Id="{fabc083b-0f7d-43b1-ade2-afd02e1ebe1b}">

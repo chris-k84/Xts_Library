@@ -50,7 +50,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testMover.MoverXtsIoEnvInterface := _TestMoverInterface;
+	testMover.SetXtsIoMoverInterface(_TestMoverInterface);
 	Actual := SUCCEEDED(testMover.TriggerMoverArrive());
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -177,7 +177,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testMover.MoverXtsIoEnvInterface := _TestMoverInterface;
+	testMover.SetXtsIoMoverInterface(_TestMoverInterface);
 	testMover.setActive();
 	testMover.setStationary();
 	Actual := SUCCEEDED(testMover.TriggerMoverLeave());
@@ -314,7 +314,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testMover.setActive();
-	testMover.MoverXtsIoEnvInterface := _TestMoverInterface;
+	testMover.SetXtsIoMoverInterface(_TestMoverInterface);
 	Actual := testMover.TriggerMoverArrive() = -2;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -435,7 +435,7 @@ END_VAR]]></Declaration>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testMover.setMoving();
 	testMover.setActive();
-	testMover.MoverXtsIoEnvInterface := _TestMoverInterface;
+	testMover.SetXtsIoMoverInterface(_TestMoverInterface);
 	Actual := testMover.TriggerMoverLeave() = -3;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>

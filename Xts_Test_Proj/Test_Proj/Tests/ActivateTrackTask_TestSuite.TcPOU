@@ -54,7 +54,7 @@ VAR_INST
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	Actual := SUCCEEDED(testActivateTask.Execute(Track := stubTrack.MyOTCID));
+	Actual := SUCCEEDED(testActivateTask.Execute(Track := stubTrack.TrackOTCID));
 	testActivateTask.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -70,7 +70,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	//stubAxis.Status.Disabled := FALSE;
-	Actual := FAILED(testActivateTask.Execute(Track := stubTrack.MyOTCID));
+	Actual := FAILED(testActivateTask.Execute(Track := stubTrack.TrackOTCID));
 	testActivateTask.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -85,7 +85,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED(testActivateTask.Execute(Track := stubTrack.MyOTCID));
+	Actual := FAILED(testActivateTask.Execute(Track := stubTrack.TrackOTCID));
 	testActivateTask.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
@@ -101,7 +101,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testActivateTask.AxisRef REF= 16#0;
-	Actual := FAILED(testActivateTask.Execute(Track := stubTrack.MyOTCID));
+	Actual := FAILED(testActivateTask.Execute(Track := stubTrack.TrackOTCID));
 	testActivateTask.Abort();
 	testActivateTask.AxisRef REF= stubAxis;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
@@ -117,8 +117,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testActivateTask.Execute(Track := stubTrack.MyOTCID);
-	Actual := FAILED(testActivateTask.Execute(Track := stubTrack.MyOTCID));
+	testActivateTask.Execute(Track := stubTrack.TrackOTCID);
+	Actual := FAILED(testActivateTask.Execute(Track := stubTrack.TrackOTCID));
 	testActivateTask.Abort();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>

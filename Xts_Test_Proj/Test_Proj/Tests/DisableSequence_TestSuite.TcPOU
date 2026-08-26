@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="DisableSequence_TestSuite" Id="{f559856d-01d4-4848-9917-85e528e26102}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK DisableSequence_TestSuite
@@ -18,7 +18,7 @@ SequenceReportsCorrectMoverNumber_Test();]]></ST>
     <Method Name="SequenceAcceptsDisableCommand_Test" Id="{9968cbcb-1e07-4776-8222-2487796f2d34}">
       <Declaration><![CDATA[METHOD SequenceAcceptsDisableCommand_Test : BOOL
 VAR
-	stubCAGroup : CollisionGroup('');
+	stubCAGroup : CollisionGroup;
 	stub_Mover : XtsMover('');
 	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
@@ -36,7 +36,7 @@ END_IF]]></ST>
     <Method Name="SequenceAcceptsMover_Test" Id="{b4618248-f0d0-4c5f-875c-2296c561c8f6}">
       <Declaration><![CDATA[METHOD SequenceAcceptsMover_Test : BOOL
 VAR
-	stubCAGroup : CollisionGroup('');
+	stubCAGroup : CollisionGroup;
 	stub_Mover : XtsMover('');
 	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
@@ -122,7 +122,7 @@ END_IF]]></ST>
     <Method Name="SequenceReportsCorrectMoverNumber_Test" Id="{038270fa-a665-4122-9a47-fc495276d17e}">
       <Declaration><![CDATA[METHOD SequenceReportsCorrectMoverNumber_Test : BOOL
 VAR
-	stubCAGroup : CollisionGroup('');
+	stubCAGroup : CollisionGroup;
 	stub_Mover1 : stubMover('');
 	stub_Mover2 : stubMover('');
 	stub_Mover3 : stubMover('');

@@ -4,40 +4,18 @@
     <Declaration><![CDATA[FUNCTION_BLOCK Xts_TestSuite
 VAR
 	dummyIoEnvVar : XtsInterfaceProvider;
-	//dummyXtsHw : XTSHardware('');
 	dummyCaGroup : CollisionGroup;
-	testXts : StubXts<1,1,1,1>;//(dummyIoEnvVar,dummyXtsHw,dummyCaGroup);
-	stubMover : XtsMover;
+	testXts : StubXts<1,1,1,1,8>;
+	stubMover : XtsMover('');
 	stubIMover : I_XtsMover := stubMover;
 	stubIMoverEmpty : I_XtsMover;
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'XTS Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[XtsRejectsDuplicateRegistrations_Test();
-XtsRejectsEmptyMoverInterface_Test();
-XtsRejectsDisableWhenDisabled_Test();
-XtsRejectsEnableWhenEnabled_Test();
-XtsRejectsRegisterNotInitialised_Test();
-XtsRejectsTooManyMovers_Test();]]></ST>
+      <ST><![CDATA[XtsRejectsDisableWhenDisabled_Test();
+XtsRejectsEnableWhenEnabled_Test();]]></ST>
     </Implementation>
-    <Method Name="XtsAcceptsRegisterMover_Test" Id="{27731a7a-3d1e-4b13-bedd-236b27e5f6cb}">
-      <Declaration><![CDATA[METHOD XtsAcceptsRegisterMover_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testXts.SetDisabled();
-	testXts.setInitialised();
-	testXts.setMoverNumberZero();
-	Actual := SUCCEEDED(testXts.RegisterMovers(stubIMover));
-	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="XtsRejectsDisableWhenDisabled_Test" Id="{65525f81-11d3-467d-8594-1727392c33c6}">
       <Declaration><![CDATA[METHOD XtsRejectsDisableWhenDisabled_Test
 VAR_INST
@@ -49,35 +27,6 @@ END_VAR
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testXts.SetDisabled();
 	Actual := FAILED(testXts.DisableXTS());
-	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="XtsRejectsDuplicateRegistrations_Test" Id="{2abcd70d-a448-49f3-9d1e-d845a3867de7}">
-      <Declaration><![CDATA[METHOD XtsRejectsDuplicateRegistrations_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testXts.RegisterMovers(stubIMover);
-	Actual := FAILED(testXts.RegisterMovers(stubIMover));
-	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="XtsRejectsEmptyMoverInterface_Test" Id="{13a25e22-1073-4550-977d-af76eedfa7bf}">
-      <Declaration><![CDATA[METHOD XtsRejectsEmptyMoverInterface_Test : BOOL
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED(testXts.RegisterMovers(stubIMoverEmpty));
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -94,39 +43,6 @@ END_VAR
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	testXts.setEnabled();
 	Actual := FAILED(testXts.EnableXTS());
-	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="XtsRejectsRegisterNotInitialised_Test" Id="{07704721-46e7-49f5-8ab9-e9baee9b57a5}">
-      <Declaration><![CDATA[METHOD XtsRejectsRegisterNotInitialised_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testXts.SetDisabled();
-	testXts.setNotInitialised();
-	testXts.setMoverNumberZero();
-	Actual := FAILED(testXts.RegisterMovers(stubIMover));
-	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="XtsRejectsTooManyMovers_Test" Id="{e96592e6-bfa4-49c3-9de1-282f67ea610b}">
-      <Declaration><![CDATA[METHOD XtsRejectsTooManyMovers_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testXts.SetDisabled();
-	testXts.setInitialised();
-	testXts.setMoverNumberMax();
-	Actual := FAILED(testXts.RegisterMovers(stubIMover));
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

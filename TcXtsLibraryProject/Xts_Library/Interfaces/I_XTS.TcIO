@@ -78,7 +78,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="TriggerMoverDetection" Id="{3b039465-ebff-4c71-951d-7ae1e9a52858}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD PROTECTED TriggerMoverDetection : HRESULT
+      <Declaration><![CDATA[METHOD TriggerMoverDetection : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
