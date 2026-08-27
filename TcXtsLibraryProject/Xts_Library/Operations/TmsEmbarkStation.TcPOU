@@ -165,8 +165,8 @@ END_VAR
 		END_IF
 	
 	EmbarkStationStates.HasSwitch:
-		IF ((_MyTrackNumber = 1 AND SwitchAxisPosCtrl.isAtPosition(_Track1SwitchPosition))
-			OR (_MyTrackNumber = 2 AND SwitchAxisPosCtrl.isAtPosition(_Track2SwitchPosition))) AND NOT SwitchAxisPosCtrl.Assigned THEN
+		IF ((_MyTrackNumber = 1 AND SwitchAxisPosCtrl.CurrentPosition = _Track1SwitchPosition)
+			OR (_MyTrackNumber = 2 AND SwitchAxisPosCtrl.CurrentPosition = _Track2SwitchPosition)) AND NOT SwitchAxisPosCtrl.Assigned THEN
 				SwitchAxisPosCtrl.Assigned := TRUE;
 				_State := EmbarkStationStates.Boarding;
 		ELSIF NOT Called THEN
@@ -174,7 +174,7 @@ END_VAR
 		END_IF	
 		
 	EmbarkStationStates.Call:
-		IF NOT SwitchAxisPosCtrl.Assigned AND_THEN SwitchAxisPosCtrl.IsStationary() THEN
+		IF NOT SwitchAxisPosCtrl.Assigned AND_THEN SwitchAxisPosCtrl.IsStationary THEN
 			IF _MyTrackNumber = 1 THEN
 				SwitchAxisPosCtrl.Call(Position := _Track1SwitchPosition, Velocity := _SwitchVelocity);
 			ELSE
@@ -186,8 +186,8 @@ END_VAR
 		END_IF
 		
 	EmbarkStationStates.test:
-		IF (_MyTrackNumber = 1 AND SwitchAxisPosCtrl.isAtPosition(_Track1SwitchPosition))
-			OR (_MyTrackNumber = 2 AND SwitchAxisPosCtrl.isAtPosition(_Track2SwitchPosition)) THEN
+		IF (_MyTrackNumber = 1 AND SwitchAxisPosCtrl.CurrentPosition = _Track1SwitchPosition)
+			OR (_MyTrackNumber = 2 AND SwitchAxisPosCtrl.CurrentPosition = _Track2SwitchPosition) THEN
 				_State := EmbarkStationStates.Boarding;
 				Called := FALSE;
 		END_IF	
@@ -207,8 +207,8 @@ END_VAR
 		_State := EmbarkStationStates.Moving;
 		
 	EmbarkStationStates.Moving:
-		IF (_MyTrackNumber = 1 AND SwitchAxisPosCtrl.isAtPosition(position := _Track2SwitchPosition)) OR
-			(_MyTrackNumber = 2 AND SwitchAxisPosCtrl.isAtPosition(position := _Track1SwitchPosition)) THEN
+		IF (_MyTrackNumber = 1 AND SwitchAxisPosCtrl.CurrentPosition = _Track2SwitchPosition) OR
+			(_MyTrackNumber = 2 AND SwitchAxisPosCtrl.CurrentPosition = _Track1SwitchPosition) THEN
 			_State := EmbarkStationStates.ActivateTrackForMover;
 		END_IF
 		
