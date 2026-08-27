@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="Test" Id="{96d526fa-5a0b-4d94-948a-5a8d3e0795c1}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Test
+VAR
+// 	TestXtsIoEnvVar : XtsInterfaceProvider;
+// 	XtsMoverTestSuite : XtsMover_TestSuite;
+// 	XtsTestSuite : Xts_TestSuite;
+// 	ActivateTrackTestSuite : ActivateTrackTask_TestSuite;
+// 	EnableGroupTestSuite : EnableGroupTask_TestSuite;
+// 	DisableGroupTestSuite : DisableGroupTask_TestSuite;
+// 	HaltMoverTestSuite : HaltMoverTask_TestSuite;
+// 	ResetGroupTestSuite : ResetGroupTast_TestSuite;
+// 	GearCATestSuite : GearCATask_TestSuite;
+// 	MoveMoverTestSuite : MoveMoverTask_TestSuite;
+// 	AddMoverTestSuite : AddMover_TestSuite;
+// 	RemoveAllTestSuite : RemoveAllMover_TestSuite;
+// 	RemoveAMoverTestSuite : RemoveAMover_TestSuite;
+// 	CaGroupTestSuite : XtsCaGroupTestSuite;
+// 	GroupStopTestSuite : StopGroupTask_TestSuite;
+// 	EnableSequenceTestSuite : EnableSequence_TestSuite;
+// 	DisableSequenceTestSuite : DisableSequence_TestSuite;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// IF NOT TestXtsIoEnvVar.Initialised THEN
+// 	IF SUCCEEDED(TestXtsIoEnvVar.Initialise()) THEN
+// 		XtsMoverTestSuite.MoverInterface := TestXtsIoEnvVar.GetXPUInterface(1).MoverTcIo(1);
+// 	END_IF
+// 	RETURN;
+// END_IF
+// 
+// XtsMoverTestSuite();
+// XtsTestSuite();
+// ActivateTrackTestSuite();
+// EnableGroupTestSuite();
+// DisableGroupTestSuite();
+// HaltMoverTestSuite();
+// ResetGroupTestSuite();
+// 
+// GearCATestSuite();
+// MoveMoverTestSuite();
+// AddMoverTestSuite();
+// RemoveAllTestSuite();
+// RemoveAMoverTestSuite();
+// CaGroupTestSuite();
+// GroupStopTestSuite();
+// EnableSequenceTestSuite();
+// DisableSequenceTestSuite();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
