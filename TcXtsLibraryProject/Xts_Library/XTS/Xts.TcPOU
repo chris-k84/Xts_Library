@@ -526,7 +526,7 @@ IF Number > MyMoverCount THEN
 	RETURN;
 END_IF
 
-Mover := _iMoverArray[Mover - 1];]]></ST>
+Mover := _iMoverArray[Number - 1];]]></ST>
       </Implementation>
     </Method>
   </POU>
