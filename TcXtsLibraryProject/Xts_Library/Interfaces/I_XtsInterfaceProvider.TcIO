@@ -21,6 +21,14 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="GetMoverInterface" Id="{c3c1c4ec-37f7-43c3-b4f0-f5adbd96077a}" FolderPath="Commands\">
+      <Declaration><![CDATA[METHOD GetMoverInterface : I_TcIoXtsXpuMover
+VAR_INPUT
+	MyXts : INT;
+	Mover : INT;
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="GetPartInterface" Id="{ae98475f-6b95-442f-ab2a-2f757fe5f759}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD GetPartInterface : I_TcIoXtsXpuPart
 VAR_INPUT
