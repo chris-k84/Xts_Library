@@ -5,7 +5,8 @@
 VAR
 	dummyIoEnvVar : XtsInterfaceProvider;
 	dummyCaGroup : CollisionGroup;
-	testXts : StubXts<1,1,1,1,8>;
+	//testXts : Xts<1,1,1,1,1>('');
+	testXts : StubXts<1,1,1,1,8>('');
 	stubMover : XtsMover('');
 	stubIMover : I_XtsMover := stubMover;
 	stubIMoverEmpty : I_XtsMover;

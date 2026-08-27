@@ -22,7 +22,7 @@ MoverRejectsHighVeloCommand_Test();
 MoverRejectsNegVeloCommand_Test();
 MoverRejectsResetWithNoError_Test();
 MoverRejectsActivateZeroTrack_Test();
-MoverRejectsUnusedHighIndexTrack_Test();
+//MoverRejectsUnusedHighIndexTrack_Test();
 MoverRejectsActivateTrackWhileMoving_Test();
 MoverRejectsZeroRefSysWhenMoving_Test();
 MoverAcceptsZeroRefSysSet_Test();

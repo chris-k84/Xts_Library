@@ -8,7 +8,7 @@ VAR_GENERIC CONSTANT
 	NuOfModules : UINT := 1;
 	XpuNumber : UINT := 1;
 	NuofMovers : UINT := 1;
-END_VAR EXTENDS Xts<NuOfParts,NuOfTracks, NuOfModules,XpuNumber,NuofMovers >
+END_VAR EXTENDS Xts<NuOfParts,NuOfTracks, NuOfModules,XpuNumber,NuofMovers>
 VAR
 END_VAR
 ]]></Declaration>
@@ -17,6 +17,24 @@ END_VAR
     </Implementation>
     <Method Name="Cycle" Id="{ba7fc6ec-53fe-46e8-b7e8-7d8528b5c436}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_Init" Id="{231852fe-b03e-4ea0-9051-8a2adf83df1c}">
+      <Declaration><![CDATA[(*FB_Init is always available implicitly and it is used primarily for initialization.
+The return value is not evaluated. For a specific influence, you can also declare the
+methods explicitly and provide additional code there with the standard initialization
+code. You can evaluate the return value.*)
+METHOD FB_Init : BOOL
+VAR_INPUT
+	(* TRUE: the retain variables are initialized (reset warm / reset cold)*)
+	bInitRetains	: BOOL;
+	(* TRUE: the instance will be copied to the copy code afterward (online change)  *)
+	bInCopyCode	: BOOL;
+	Name	: Xts_Library.Base_Library.T_MaxString;
+END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
