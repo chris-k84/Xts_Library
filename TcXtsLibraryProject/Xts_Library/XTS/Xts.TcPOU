@@ -497,5 +497,37 @@ END_VAR
 Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Mover detection started');]]></ST>
       </Implementation>
     </Method>
+    <Method Name="TryGetXtsMover" Id="{bbfdea88-ee2b-42c3-a0ba-a1a9129fcbe5}" FolderPath="Operations\">
+      <Declaration><![CDATA[METHOD TryGetXtsMover : HRESULT
+VAR_INPUT
+	Number : UINT;	
+END_VAR
+VAR_OUTPUT
+	Mover : I_XtsMover;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT _Initialised THEN
+	TryGetXtsMover := -1;
+	RETURN;
+END_IF
+
+IF NOT _HardwareDiscoveryComplete THEN
+	TryGetXtsMover := -2;
+	RETURN;
+END_IF
+
+IF NOT _MoversDetected THEN
+	TryGetXtsMover := -3;
+	RETURN;
+END_IF
+
+IF Number > MyMoverCount THEN
+	TryGetXtsMover := -4;
+	RETURN;
+END_IF
+
+Mover := _iMoverArray[Mover - 1];]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
