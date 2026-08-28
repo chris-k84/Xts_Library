@@ -164,10 +164,28 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _XtsEnabled THEN
-	Base_Library.Tracing.Trace.Verbose(_Name, 'Disable Accepted');
-	DisableXTS := SUCCEEDED(DisableSequence.Disable());
-END_IF]]></ST>
+        <ST><![CDATA[IF NOT _Initialised THEN
+	DisableXTS := -1;
+	RETURN;
+END_IF
+
+IF NOT _HardwareDiscoveryComplete THEN
+	DisableXTS := -2;
+	RETURN;
+END_IF
+
+IF NOT _MoversDetected THEN
+	DisableXTS := -3;
+	RETURN;
+END_IF
+
+IF _XtsEnabled THEN
+	DisableXTS := -4;
+	RETURN;
+END_IF
+
+Base_Library.Tracing.Trace.Verbose(_Name, 'Disable Accepted');
+DisableSequence.Disable();]]></ST>
       </Implementation>
     </Method>
     <Method Name="DiscoverHardware" Id="{199dc34b-920a-40a0-b86e-d4d30a9fd81a}" FolderPath="Private\">
@@ -294,10 +312,28 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _XtsEnabled THEN
-	Base_Library.Tracing.Trace.Verbose(_Name, 'Enable Accepted');
-	EnableXts := SUCCEEDED(EnableSequence.Enable());
-END_IF]]></ST>
+        <ST><![CDATA[IF NOT _Initialised THEN
+	EnableXts := -1;
+	RETURN;
+END_IF
+
+IF NOT _HardwareDiscoveryComplete THEN
+	EnableXts := -2;
+	RETURN;
+END_IF
+
+IF NOT _MoversDetected THEN
+	EnableXts := -3;
+	RETURN;
+END_IF
+
+IF _XtsEnabled THEN
+	EnableXts := -4;
+	RETURN;
+END_IF
+
+Base_Library.Tracing.Trace.Verbose(_Name, 'Enable Accepted');
+EnableSequence.Enable();]]></ST>
       </Implementation>
     </Method>
     <Property Name="ErrorId" Id="{d9cfe84c-7a4b-4b34-a9ba-97d2ea994ecf}" FolderPath="Status\">
@@ -454,7 +490,17 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Reset := SUCCEEDED(ICollisionGroup.Reset());
+        <ST><![CDATA[IF NOT _Initialised THEN
+	DisableXTS := -1;
+	RETURN;
+END_IF
+
+IF NOT _HardwareDiscoveryComplete THEN
+	DisableXTS := -2;
+	RETURN;
+END_IF
+
+ICollisionGroup.Reset();
 iXPU.TriggerResetAllParts();
 Base_Library.Tracing.Trace.Verbose(_Name, 'Reset Accepted');]]></ST>
       </Implementation>
@@ -462,28 +508,58 @@ Base_Library.Tracing.Trace.Verbose(_Name, 'Reset Accepted');]]></ST>
     <Method Name="ResetAPart" Id="{ea6e5381-c439-4c48-a079-83c8463314b8}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD PUBLIC ResetAPart : hresult
 VAR_INPUT
-	Part : INT;
+	Part : UINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Part > MyPartCount THEN
-	ResetAPart := -1;
+        <ST><![CDATA[IF NOT _Initialised THEN
+	DisableXTS := -1;
+	RETURN;
+END_IF
+
+IF NOT _HardwareDiscoveryComplete THEN
+	DisableXTS := -2;
+	RETURN;
+END_IF
+
+IF Part > MyPartCount THEN
+	ResetAPart := -3;
 END_IF
 
 IF Part = 0 THEN
-	ResetAPart := -2;
+	ResetAPart := -4;
 END_IF
 
 IXtsParts[Part].ResetPart();]]></ST>
       </Implementation>
     </Method>
     <Method Name="StopXts" Id="{4b648283-f5f4-4d47-a58f-be53e519365d}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD StopXts : HRESULT
+      <Declaration><![CDATA[METHOD StopXts : hresult
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[StopXTS := ICollisionGroup.GroupStop();
+        <ST><![CDATA[IF NOT _Initialised THEN
+	StopXts := -1;
+	RETURN;
+END_IF
+
+IF NOT _HardwareDiscoveryComplete THEN
+	StopXts := -2;
+	RETURN;
+END_IF
+
+IF NOT _MoversDetected THEN
+	StopXts := -3;
+	RETURN;
+END_IF
+
+IF _XtsEnabled THEN
+	StopXts := -4;
+	RETURN;
+END_IF
+
+ICollisionGroup.GroupStop();
 Base_Library.Tracing.Trace.Verbose(_Name, 'Stop Accepted');]]></ST>
       </Implementation>
     </Method>
@@ -493,7 +569,17 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iMoverDetectionAlogrithm.Start();
+        <ST><![CDATA[IF NOT _Initialised THEN
+	EnableXts := -1;
+	RETURN;
+END_IF
+
+IF NOT _HardwareDiscoveryComplete THEN
+	EnableXts := -2;
+	RETURN;
+END_IF
+
+iMoverDetectionAlogrithm.Start();
 Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Mover detection started');]]></ST>
       </Implementation>
     </Method>
@@ -523,6 +609,11 @@ END_IF
 
 IF Number > MyMoverCount THEN
 	TryGetXtsMover := -4;
+	RETURN;
+END_IF
+
+IF Number = 0 THEN
+	TryGetXtsMover := -5;
 	RETURN;
 END_IF
 
