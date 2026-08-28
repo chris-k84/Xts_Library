@@ -491,12 +491,12 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT _Initialised THEN
-	DisableXTS := -1;
+	Reset := -1;
 	RETURN;
 END_IF
 
 IF NOT _HardwareDiscoveryComplete THEN
-	DisableXTS := -2;
+	Reset := -2;
 	RETURN;
 END_IF
 
@@ -513,12 +513,12 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT _Initialised THEN
-	DisableXTS := -1;
+	ResetAPart := -1;
 	RETURN;
 END_IF
 
 IF NOT _HardwareDiscoveryComplete THEN
-	DisableXTS := -2;
+	ResetAPart := -2;
 	RETURN;
 END_IF
 
@@ -570,12 +570,12 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT _Initialised THEN
-	EnableXts := -1;
+	TriggerMoverDetection := -1;
 	RETURN;
 END_IF
 
 IF NOT _HardwareDiscoveryComplete THEN
-	EnableXts := -2;
+	TriggerMoverDetection := -2;
 	RETURN;
 END_IF
 
