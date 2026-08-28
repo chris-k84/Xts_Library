@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StubPart" Id="{17764eb3-4e03-4888-b354-67eed1c30915}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StubPart IMPLEMENTS I_XtsPart
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="HasError" Id="{4a26f49f-962b-4fce-ac3a-1eea3e6c74b4}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY HasError : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{1910ef9e-c216-41f6-9eb6-a1f3a606f7a4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Initialised" Id="{7449a430-9e1d-4d81-b5d2-ca53e144ce0b}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY Initialised : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{70a577c7-e31a-41e4-aeb3-913fe1d722cb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="PartStatus" Id="{722ab0b3-aa8a-47de-a4f5-1deb35c51a40}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY PartStatus : Xts_Library.XtsPartStatus
+]]></Declaration>
+      <Get Name="Get" Id="{60a133d5-e0ad-4d36-a7bd-fac678a9bfa8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ResetPart" Id="{6ecad392-6345-4f1d-8320-f0009ef7b7f2}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD ResetPart : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetPartOriginTransform" Id="{0b007cd2-4639-437a-a1e5-de5d60f978b1}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD SetPartOriginTransform : BOOL
+VAR_INPUT
+	OriginTransform	: Xts_Library.Tc3_XTS_Utility.ST_OriginTransform;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

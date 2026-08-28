@@ -1,0 +1,1552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StubXPU" Id="{4e1570d4-9e7c-4172-8275-f24ccd10fce2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StubXPU IMPLEMENTS I_TcIOXtsProcessingUnit
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_exit" Id="{71377ea5-66fc-4847-af37-b98639684eef}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD FB_exit : BOOL
+VAR_INPUT
+	bInCopyCode	: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetActiveMoverCount" Id="{70fdf62e-4aae-4825-adbf-f2c100d2d576}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetActiveMoverCount : UDINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAdsPort" Id="{ae4857e7-0d16-4189-8964-6b0cfef29fa9}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetAdsPort : WORD
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAdsServicePort" Id="{da13eac6-b40b-4b4f-bf63-5c0d64e28ecc}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetAdsServicePort : WORD
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAnyParameter" Id="{a3611ef0-702c-4acd-9304-b5aaba817596}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetAnyParameter : BOOL
+VAR_INPUT
+	nData	: UDINT;
+	pData	: Tc3_XTS_Utility.PVOID;
+	pId	: Tc3_XTS_Utility.PTCID;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAreAllModulesInOp" Id="{1aad3bee-3528-44bd-b04b-2d78e093d89f}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetAreAllModulesInOp : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAreAllPositionsValid" Id="{756edd36-0e73-491d-8c6e-ee1cbd74b0a7}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetAreAllPositionsValid : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAreRegularCoeRequestsEnabled" Id="{b28f3b1f-358a-413e-8729-13f5c524fbe1}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetAreRegularCoeRequestsEnabled : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAutoDumpWritingTriggerOnFailingMoverIdDetection" Id="{71c6e566-a252-4458-aa6f-dbfa023aacd1}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetAutoDumpWritingTriggerOnFailingMoverIdDetection : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAutoDumpWritingTriggerOnModuleError" Id="{7be80d64-3c83-4091-8be3-01b49da0ac3c}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetAutoDumpWritingTriggerOnModuleError : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAutoDumpWritingTriggerOnModuleWarning" Id="{f03fd400-1e1b-4af1-80f8-d609ca49f229}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetAutoDumpWritingTriggerOnModuleWarning : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAutoDumpWritingTriggerOnMoverDetection" Id="{81206641-ff6f-49a2-b5e7-34003084e92c}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetAutoDumpWritingTriggerOnMoverDetection : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAutoDumpWritingTriggerOnMoverLost" Id="{1c06514e-024c-425c-a941-b2f447836f09}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetAutoDumpWritingTriggerOnMoverLost : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAuxTaskSyncMode" Id="{476352cb-980f-4e5b-bbaf-4649092f3d3a}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetAuxTaskSyncMode : Tc3_XTS_Utility.AuxTaskSyncMode
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetCalculateNormAmplitude" Id="{d061fada-63b8-433a-aa9a-2613d8034a12}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetCalculateNormAmplitude : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetCoeStateDeadTime" Id="{585c10df-0e97-47db-b8ba-019ebed34996}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetCoeStateDeadTime : UDINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetComObject" Id="{30a6a084-ec73-41ff-99b8-16f39a0e8662}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetComObject : BOOL
+VAR_INPUT
+	nObjectId	: Tc3_XTS_Utility.OTCID;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetCompletionCriteria" Id="{352215b9-279f-42b7-9c3d-3131ece7861b}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetCompletionCriteria : Tc3_XTS_Utility.MoverIdDetectionCompletionCriteria
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetConfiguredDetectionCount" Id="{ec47eff6-9a97-4f56-a7af-31556781e27f}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetConfiguredDetectionCount : UDINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetConfiguredRetryCount" Id="{ad02f605-69ca-46dd-800f-cb82b59cc7b9}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetConfiguredRetryCount : UDINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetDelayBetweenMoverPacks" Id="{b199548b-94c6-4d4b-a5d4-4eacca62d329}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetDelayBetweenMoverPacks : LREAL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetDelayBetweenMoversInPack" Id="{200b652d-22dd-48dc-b9d9-0d8652fb963c}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetDelayBetweenMoversInPack : LREAL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetDetectedMoverCount" Id="{6a09e45a-9da7-4e36-8ac4-1ab9067bb595}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetDetectedMoverCount : UDINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetDetectedMoverCountTotal" Id="{45d292bb-d6a8-41a3-8147-a0d9eba16106}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetDetectedMoverCountTotal : UDINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetDetectionCycleCount" Id="{ef0512b5-f289-4fe7-a198-3576060a3e38}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetDetectionCycleCount : UDINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetDetectionCycleCountTotal" Id="{a2f28b81-c3cf-4bee-9423-e26806e49170}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetDetectionCycleCountTotal : UDINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetDetectionState" Id="{a8c3adad-239d-4c5c-a532-2cd31a6aee16}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetDetectionState : Tc3_XTS_Utility.DetectionStateEnum
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetDriveState" Id="{f8ac6a5d-dc86-4d3a-a29a-10a7f982b734}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetDriveState : Tc3_XTS_Utility.DriveState
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetDumpWriterFallbackMode" Id="{5f6a0c8d-48e8-4aeb-af77-9947a5a18b55}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetDumpWriterFallbackMode : Tc3_XTS_Utility.DumpWriterFallbackMode
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetEtherCatMasterSyncTaskObjectId" Id="{375b93eb-c9d9-4f89-8d43-bba1a1b1ced3}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetEtherCatMasterSyncTaskObjectId : Tc3_XTS_Utility.OTCID
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetExpectedMoverCount" Id="{8f362519-b486-4951-b412-d3c52232722f}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetExpectedMoverCount : UDINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetExpectedMoverIds" Id="{845ad922-d557-48ce-9789-82cf4f88c628}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetExpectedMoverIds : ARRAY [1..2] OF Tc3_XTS_Utility.ST_ExpectedMoverIds
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetForceCompensation" Id="{528dc3d0-92f3-424d-8064-09e4fcc616a8}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetForceCompensation : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetGapToDefineMoverPack" Id="{3dfcd132-4eea-4057-b5db-494135095fb2}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetGapToDefineMoverPack : LREAL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetHasInputCheckError" Id="{454312ed-c83e-4254-9d31-ecd33577430b}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetHasInputCheckError : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetHasMoverIdDetectionError" Id="{5ba858bb-b428-421f-8807-6f553414bab1}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetHasMoverIdDetectionError : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIdDiagConfiguration" Id="{d791a578-4d69-42be-9df4-a7a3bb70b79f}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIdDiagConfiguration : REFERENCE TO Tc3_XTS_Utility.MoverIdDiagConfiguration
+VAR_OUTPUT
+	nError	: Tc3_XTS_Utility.HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIncludedTrackCheckTimeout" Id="{d71dd04b-9285-4d96-8d9d-01b4676ee20d}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIncludedTrackCheckTimeout : UDINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsAbortOnTeachingWarningsEnabled" Id="{f0971b21-a749-4f80-a099-08e122db581c}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsAbortOnTeachingWarningsEnabled : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsAutoDumpWritingEnabled" Id="{68ef4564-4d2b-487b-ae59-d121e49f4c46}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetIsAutoDumpWritingEnabled : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsCycleTimeWarningSuppressed" Id="{41bca3e5-d1bf-4eb7-b309-7400d84d87d2}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetIsCycleTimeWarningSuppressed : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsDcLinkVoltageReady" Id="{73e37324-5dde-4e19-897e-f3d370db4b49}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetIsDcLinkVoltageReady : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsDefaultTeachingAvailable" Id="{9806ddc1-e0de-4a31-99ba-085a37e3647f}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsDefaultTeachingAvailable : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsDetectionAfterStartupDisabled" Id="{9bee7901-d0b4-4c89-ba1a-d021bb83ed84}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetIsDetectionAfterStartupDisabled : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsInputCheckEnabled" Id="{4fdffabc-dab1-430f-8d97-e2fb5f51fc94}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsInputCheckEnabled : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsMoverFrozenErrorActivated" Id="{70a9ae70-7f77-43ad-9943-f753b3b995cc}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsMoverFrozenErrorActivated : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsMoverFrozenMonitoringEnabled" Id="{7097ff7b-4b93-4f8c-95cc-7a14ee671dd6}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetIsMoverFrozenMonitoringEnabled : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsMoverIdDetectionActive" Id="{7e37f84a-2c4b-4042-b5ad-9065f809b3c1}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsMoverIdDetectionActive : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsMoverIdDetectionValid" Id="{b55ab2ff-9650-4114-bf14-fc3622c7318d}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsMoverIdDetectionValid : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsPartBasedHandlingActivated" Id="{5c8efeb4-4b8e-46af-9c84-e6f2614fadb6}">
+      <Declaration><![CDATA[{attribute 'obsolete' := 'Tc3_XTS_Utility: Obsolete and hidden method "GetIsPartBasedHandlingActivated" was used. This method will not be supported in the future.'}
+{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsPartBasedHandlingActivated : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsPositionBasedErrorForwardingEnabled" Id="{a221a6af-4254-4793-ab82-0adf5408b9ba}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsPositionBasedErrorForwardingEnabled : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsPositionNoiseEnabled" Id="{14417235-d738-46a6-a8f5-44397ec9a994}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsPositionNoiseEnabled : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsRandomStartUpEnabled" Id="{0d7c2e84-2a8c-423f-b17b-efc166ab3db1}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetIsRandomStartUpEnabled : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsSlaveCommunicationInterrupted" Id="{5b03cff0-31cf-4934-8b00-92f9ff87607d}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetIsSlaveCommunicationInterrupted : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsSymbolAccessEnabled" Id="{0ac730ac-aa0a-4d59-a2cd-d53d04001efd}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetIsSymbolAccessEnabled : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsSystemManagerSimulationModeActive" Id="{9531c165-0545-435c-9cfd-c643e0c9169e}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsSystemManagerSimulationModeActive : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsTeachingChanged" Id="{11d0688f-5e38-4444-98e4-9d2a5d73efc5}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsTeachingChanged : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsTeachingCheckSumCheckEnabled" Id="{153cdd79-4137-4397-adc7-b8f2a8b98ba9}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsTeachingCheckSumCheckEnabled : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsTeachingEnabled" Id="{22d85028-490e-4997-8f55-c55587d16c80}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetIsTeachingEnabled : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsTeachingFileFormatUpToDate" Id="{eb91b5fc-9955-499c-83c6-8ee67ce39f9b}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsTeachingFileFormatUpToDate : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetIsTeachingValid" Id="{ecf56144-abb7-4628-9c88-2fc74373ee44}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetIsTeachingValid : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMagnetPlateType" Id="{8e089e66-daa8-4b83-ae2b-3a6f7bd14f58}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetMagnetPlateType : Tc3_XTS_Utility.MagnetPlateType
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMinMechanicalMoverDistance" Id="{9406ed9b-d71d-47bf-babe-0953338e014f}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetMinMechanicalMoverDistance : LREAL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetModuleId" Id="{f5edb571-4491-483a-a0f7-5a64dfafc56c}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetModuleId : Tc3_XTS_Utility.GUID
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverCount" Id="{fb4b7689-8196-4301-a70a-015dc1032bad}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetMoverCount : UDINT
+VAR_OUTPUT
+	nError	: Tc3_XTS_Utility.HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverDistance" Id="{3149e916-67b7-495d-96f8-2c10993e0909}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetMoverDistance : LREAL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverIdDetectionMode" Id="{b4b2fda3-9b51-475d-ac0f-becb4d19cf1d}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetMoverIdDetectionMode : Tc3_XTS_Utility.MoverIdDetectionMode
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverIdDetectionState" Id="{47c822fa-b3f9-49ef-98f0-4d9ef648150a}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetMoverIdDetectionState : Tc3_XTS_Utility.MoverIdDetectionStateEnum
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverIds" Id="{3a7478c7-adbf-4e79-bfea-39451221aed4}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetMoverIds : REFERENCE TO ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF STRING(3)
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverIdStartUpSimulationMode" Id="{8e7907af-2db3-4d46-ae0c-ab6d0adb81c1}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetMoverIdStartUpSimulationMode : Tc3_XTS_Utility.MoverIdStartUpSimulationMode
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverInterfaceByAxisId" Id="{a07dc7a3-aa91-4097-9301-fb9c23659b5d}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetMoverInterfaceByAxisId : Tc3_XTS_Utility.I_TcIoXtsXpuMover
+VAR_INPUT
+	nAxisId	: UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverNumberByAxisId" Id="{4748c898-092c-4184-acec-3db371449e8c}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetMoverNumberByAxisId : UINT
+VAR_INPUT
+	nAxisId	: UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverOids" Id="{b122d5b1-d581-461f-b100-92bdd276df54}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetMoverOids : BOOL
+VAR_OUTPUT
+	nError	: Tc3_XTS_Utility.HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverPositionAssignment" Id="{6aa6b1dd-9179-40ba-b960-e2b3c3d46eae}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetMoverPositionAssignment : Tc3_XTS_Utility.MoverPositionAssignment
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverPositions" Id="{51ae68e3-4bd5-4f80-9893-619e0221b84e}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetMoverPositions : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverSortOrder" Id="{0aeb5929-c0fe-4d96-a41a-b4b9a93a03d7}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetMoverSortOrder : Tc3_XTS_Utility.SortOrderEnum
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverType" Id="{9cde4839-8ecd-40a3-ae11-f5ab5a79593d}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetMoverType : Tc3_XTS_Utility.MoverType
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetNctCombinedModuleStatus" Id="{3719b2dd-b2c4-4fca-92e7-ed8712aaeeb3}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetNctCombinedModuleStatus : REFERENCE TO Tc3_XTS_Utility.NctCombinedModuleStatus
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetNctControllerOid" Id="{baa9cb3c-154e-4c03-aa7f-f022cbab3ec2}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetNctControllerOid : BOOL
+VAR_OUTPUT
+	nError	: Tc3_XTS_Utility.HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetNctModuleCount" Id="{db1882fe-b1ae-494c-b789-4b3652325e0d}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetNctModuleCount : UDINT
+VAR_OUTPUT
+	nError	: Tc3_XTS_Utility.HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetObjectName" Id="{df48a964-56c5-4ecd-a0e6-1ebfdcfc92f3}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetObjectName : STRING
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetOperationMode" Id="{f01d41f1-6056-403a-b870-9e20ea5b3c44}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetOperationMode : Tc3_XTS_Utility.OperationMode
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetOptimization" Id="{6413db08-81d2-468a-aaf9-fce00d910322}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetOptimization : Tc3_XTS_Utility.OptimizationEnum
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetPartCount" Id="{25ed10c7-2848-4417-a7dc-7a7ee46ff7d1}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetPartCount : UDINT
+VAR_OUTPUT
+	nError	: Tc3_XTS_Utility.HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetPartOids" Id="{e206a2da-2b42-46b7-95ae-3a7e9f29afce}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetPartOids : BOOL
+VAR_OUTPUT
+	nError	: Tc3_XTS_Utility.HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetPartOrigins" Id="{f1c6a088-c41a-4c26-896f-8f3390929d87}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetPartOrigins : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetPcType" Id="{20bd5b8c-e003-4671-8dda-16a44ffb6562}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetPcType : Tc3_XTS_Utility.XtsPcTypeEnum
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetPositionNoiseBandwidth" Id="{67631dd5-0bcb-4604-87ed-ceeae6304047}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetPositionNoiseBandwidth : LREAL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetPositionOffset" Id="{73bd4f1a-2f60-48ec-a74f-f9fbe4424de3}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetPositionOffset : LREAL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetPositionStartUpSimulationMode" Id="{df58d236-cb78-4a22-ad8a-3e731d4d48cc}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetPositionStartUpSimulationMode : Tc3_XTS_Utility.PositionStartUpSimulationMode
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetRandomInitMode" Id="{bf253bcc-a589-4da6-88fa-2a60ce2651e0}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetRandomInitMode : Tc3_XTS_Utility.RandomInitMode
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetRandomInitSeed" Id="{85171b10-5a73-4d87-90f2-db19ab3adeee}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetRandomInitSeed : DINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetRandomStartUpBandwidth" Id="{696443d7-f2ef-4fcd-aafe-18638d27f60f}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetRandomStartUpBandwidth : LREAL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetScannedModuleCount" Id="{99190d3f-a449-4fe3-92a1-33f140f440da}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetScannedModuleCount : UDINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetStartupDeviceWarningDelay" Id="{f975e501-d812-45e5-9ba7-fa04dfff130a}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetStartupDeviceWarningDelay : REAL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetTaskCount" Id="{756d5050-595c-4f0f-a36a-e18edd8f7891}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetTaskCount : UDINT
+VAR_OUTPUT
+	nError	: Tc3_XTS_Utility.HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetTaskObjectId" Id="{b773292b-a1ea-40e5-8388-b5e51651f044}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetTaskObjectId : Tc3_XTS_Utility.OTCID
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetTaskOids" Id="{ccbbea41-6a2e-472d-984a-f5355a5308ad}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetTaskOids : BOOL
+VAR_OUTPUT
+	nError	: Tc3_XTS_Utility.HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetTeachingCheckSum" Id="{355b9f14-5ad8-4607-a6bf-be66592500c6}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetTeachingCheckSum : REFERENCE TO ARRAY [1..16] OF BYTE
+VAR_OUTPUT
+	nError	: Tc3_XTS_Utility.HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetTeachingControllerState" Id="{38b64f81-efe2-4fe5-93f5-6ef15f941145}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetTeachingControllerState : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetTeachingFileNumber" Id="{6a9181e2-499b-42d3-acc1-8a752b110adb}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetTeachingFileNumber : UDINT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetTeachingMappingMode" Id="{68c8fb7c-b1c7-4657-bc7c-8fc42865a5a6}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetTeachingMappingMode : Tc3_XTS_Utility.TeachingMappingModeEnum
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetTeachingWarningLevel" Id="{55999bc9-b52f-4690-ab57-060705ee72c5}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetTeachingWarningLevel : Tc3_XTS_Utility.TeachingWarningLevel
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetTrackCount" Id="{da5357d7-2188-4bb9-ab44-0ee0953668c8}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetTrackCount : UDINT
+VAR_OUTPUT
+	nError	: Tc3_XTS_Utility.HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetTrackOids" Id="{96ad7e03-5019-4fc9-812e-5fc5b77cc4f1}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetTrackOids : BOOL
+VAR_OUTPUT
+	nError	: Tc3_XTS_Utility.HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetUsedEventLogger" Id="{469e92e3-41d6-4562-94f3-573bb6901e0e}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetUsedEventLogger : Tc3_XTS_Utility.EventMessenger
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetVersion" Id="{3a962144-9839-4db2-988d-8f241d9b04ef}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD GetVersion : REFERENCE TO Tc3_XTS_Utility.TcVersion
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetVersionString" Id="{d729dd41-fcb8-422d-ba36-d879b492b94e}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetVersionString : STRING
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetXpuObjectOid" Id="{14c575a5-7c22-452d-9d76-69e620ebb2da}">
+      <Declaration><![CDATA[{attribute 'obsolete' := 'Tc3_XTS_Utility: Obsolete and hidden method "GetXpuObjectOid" was used. This method will not be supported in the future. Use "Init" instead.'}
+{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD GetXpuObjectOid : BOOL
+VAR_INPUT
+	bExecute	: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Init" Id="{e4586124-08b9-41f7-99a8-59fc1e54455b}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD Init : BOOL
+VAR_INPUT
+	bExecute	: BOOL;
+	nObjectId	: Tc3_XTS_Utility.OTCID;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoverTcIo" Id="{8f6ed14c-8700-4fb9-ab76-d7dec8a5f237}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD MoverTcIo : Tc3_XTS_Utility.I_TcIoXtsXpuMover
+VAR_INPUT
+	nMover	: UINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="NctControllerTcIo" Id="{3f6614dc-a346-41a9-9281-62730e0a169a}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD NctControllerTcIo : Tc3_XTS_Utility.I_TcIoXtsNctController
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="P_Error" Id="{e68111d4-f391-4d07-862e-d55527f5c17b}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_Error : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{72b0583f-7ad5-48b8-aed3-1a36aa32334d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_ErrorId" Id="{fca9c532-c221-4063-9886-392a20f3aa27}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_ErrorId : UDINT
+]]></Declaration>
+      <Get Name="Get" Id="{0469e3c3-8da0-4dc7-a753-d9b1a2e7e4ac}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_InterfaceXtsEnvironment" Id="{6dfdebff-c776-4a11-adfb-74dc126056d8}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_InterfaceXtsEnvironment : Tc3_XTS_Utility.I_TcIoXtsEnvironment
+]]></Declaration>
+      <Get Name="Get" Id="{849d2258-00d8-411b-b612-ce40faeab559}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_IsInitialized" Id="{b0474e0d-d673-40b8-9ca7-56bd7c6fe1cd}">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'call'}
+{warning 'Add property implementation'}
+PROPERTY P_IsInitialized : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{e10292d5-8822-4c64-aded-a39c4fc45b85}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_MoverCount" Id="{1f7b91b8-125b-4c04-b222-d187ed215b3b}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_MoverCount : UINT
+]]></Declaration>
+      <Get Name="Get" Id="{83565f39-15f1-4f29-ba3a-195b400c9a07}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_MoverOids" Id="{42bf0710-881c-4bdf-a4dd-41f3365e53d9}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_MoverOids : REFERENCE TO ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF Tc3_XTS_Utility.OTCID
+]]></Declaration>
+      <Get Name="Get" Id="{4676157c-3335-4178-bbe9-19afd4b1c381}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_MoverPositions" Id="{dac3774c-610c-4ad1-8a71-faef454f89d0}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_MoverPositions : REFERENCE TO ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF Tc3_XTS_Utility.ST_XpuMoverPositons
+]]></Declaration>
+      <Get Name="Get" Id="{979a8f69-9386-492f-9819-5415d440d6f3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_NctControllerOid" Id="{de1b2072-18b6-4710-b108-2c67e1db10a1}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_NctControllerOid : REFERENCE TO Tc3_XTS_Utility.OTCID
+]]></Declaration>
+      <Get Name="Get" Id="{5ef25b42-cc77-4eeb-8e9b-22d4877b884c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_ObjectId" Id="{bea17867-c1d1-4125-ad6b-b6d64902abf4}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_ObjectId : Tc3_XTS_Utility.OTCID
+]]></Declaration>
+      <Get Name="Get" Id="{4f3dde4c-b42f-4424-9ef2-0ef61246410c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_ObjectName" Id="{d3b5a854-1848-499c-8c52-b61f15d84cd0}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_ObjectName : STRING
+]]></Declaration>
+      <Get Name="Get" Id="{b9f29f3b-0ee9-4f23-8330-391b706c1f63}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_PartCount" Id="{24f7dbff-1390-404e-b519-daed91a3ac46}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_PartCount : UINT
+]]></Declaration>
+      <Get Name="Get" Id="{15d42674-a51d-4e47-96ea-53d443c66de6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_PartOids" Id="{88647776-a09d-48f0-a0bb-ff858281db19}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_PartOids : REFERENCE TO ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsPartsPerXpu] OF Tc3_XTS_Utility.OTCID
+]]></Declaration>
+      <Get Name="Get" Id="{9a19b1d8-f9ca-430b-8bc2-266cb118e219}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_PartOrigins" Id="{31ea0f17-7c90-45be-90e0-7e56a8364e55}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_PartOrigins : REFERENCE TO ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsPartsPerXpu] OF Tc3_XTS_Utility.ST_OriginTransform
+]]></Declaration>
+      <Get Name="Get" Id="{4059346d-2d85-49ca-a8c1-d0c87111db4a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_TaskCount" Id="{f94f10cd-1f9a-44d7-8e44-b39da560aa4a}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_TaskCount : UINT
+]]></Declaration>
+      <Get Name="Get" Id="{42089499-a98c-44bb-aa72-62b0a6c33923}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_TaskOids" Id="{f2bbfb1c-d494-46ee-9cc0-33f010e4e9ba}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_TaskOids : REFERENCE TO ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTasksPerXpu] OF Tc3_XTS_Utility.OTCID
+]]></Declaration>
+      <Get Name="Get" Id="{aa2c2a0c-4ed4-49a7-a883-535c1aad99bf}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_TrackCount" Id="{561e6522-7ad8-4ca2-aef2-601ffc21a6d3}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_TrackCount : UINT
+]]></Declaration>
+      <Get Name="Get" Id="{8ca0d3cb-c0f3-44cd-a7f2-129a494def91}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_TrackOids" Id="{0e3ae6df-07a2-480e-9db3-c31e0bca59e2}">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_TrackOids : REFERENCE TO ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF Tc3_XTS_Utility.OTCID
+]]></Declaration>
+      <Get Name="Get" Id="{8f1b5cdd-a593-464b-86fb-0cb6de25e453}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="PartTcIo" Id="{f771b80a-0459-4f7f-9d24-64d165853975}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD PartTcIo : Tc3_XTS_Utility.I_TcIoXtsXpuPart
+VAR_INPUT
+	nPart	: UINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetAnyParameter" Id="{cfc84e7e-2538-457b-8fa6-85799ab3b338}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD SetAnyParameter : BOOL
+VAR_INPUT
+	nData	: UDINT;
+	pData	: Tc3_XTS_Utility.PVOID;
+	pId	: Tc3_XTS_Utility.PTCID;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetCoeStateDeadTime" Id="{f1965171-836c-4ada-a255-2d1ea6ad602e}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD SetCoeStateDeadTime : BOOL
+VAR_INPUT
+	nCoeStateDeadTime	: UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetCompletionCriteria" Id="{fd568723-a684-45fc-ad62-fe4962c4dc02}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD SetCompletionCriteria : BOOL
+VAR_INPUT
+	eCompletionCriteria	: Tc3_XTS_Utility.MoverIdDetectionCompletionCriteria;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetConfiguredDetectionCount" Id="{e6db8aea-ddca-4149-813a-51e89a0901f8}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD SetConfiguredDetectionCount : BOOL
+VAR_INPUT
+	nConfiguredMoverDetectionCount	: UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetConfiguredRetryCount" Id="{06ae419e-9417-429c-8065-b14a99316608}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD SetConfiguredRetryCount : BOOL
+VAR_INPUT
+	nConfiguredRetryCount	: UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetDelayBetweenMoverPacks" Id="{77bd2b16-c61c-40da-befa-a88a0a3b6e96}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD SetDelayBetweenMoverPacks : BOOL
+VAR_INPUT
+	fDelayBetweenMoverPacks	: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetDelayBetweenMoversInPack" Id="{4bc05756-5ffe-42a4-b518-4281de53121e}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD SetDelayBetweenMoversInPack : BOOL
+VAR_INPUT
+	fDelayBetweenMoversInPack	: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetDumpWriterFallbackMode" Id="{070dc561-69c5-4936-9f61-130bec111ad3}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD SetDumpWriterFallbackMode : BOOL
+VAR_INPUT
+	eDumpWriterFallbackMode	: Tc3_XTS_Utility.DumpWriterFallbackMode;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetExpectedMoverIds" Id="{9092891b-98f7-481f-801a-23dc3c93ef70}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD SetExpectedMoverIds : BOOL
+VAR_INPUT
+	arExpectedMoverIds	: ARRAY [1..2] OF Tc3_XTS_Utility.ST_ExpectedMoverIds;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetGapToDefineMoverPack" Id="{34b221af-56f0-4c8c-a6fd-ff095f63933c}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD SetGapToDefineMoverPack : BOOL
+VAR_INPUT
+	fGapToDefineMoverPack	: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetIsInputCheckEnabled" Id="{ccb62e64-07cb-43e4-97be-7a75af94e535}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD SetIsInputCheckEnabled : BOOL
+VAR_INPUT
+	bIsInputCheckEnabled	: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetIsMoverFrozenMonitoringEnabled" Id="{0097a726-0396-4322-8eeb-80f064ce7721}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD SetIsMoverFrozenMonitoringEnabled : BOOL
+VAR_INPUT
+	bIsMoverFrozenMonitoringEnabled	: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetMoverIdDetectionMode" Id="{43ba18ca-b41b-44da-a3b2-79c4a2a4e370}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD SetMoverIdDetectionMode : BOOL
+VAR_INPUT
+	eMoverIdDetectionMode	: Tc3_XTS_Utility.MoverIdDetectionMode;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetMoverPositionAssignment" Id="{052ee9a1-6eca-4611-a9a8-77b45270e48c}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD SetMoverPositionAssignment : BOOL
+VAR_INPUT
+	eMoverPositionAssignment	: Tc3_XTS_Utility.MoverPositionAssignment;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetPcType" Id="{511d1322-41e3-412e-99cf-f087373d013e}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD SetPcType : BOOL
+VAR_INPUT
+	ePcType	: Tc3_XTS_Utility.XtsPcTypeEnum;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="StartMovementTeaching" Id="{3243feaf-05bd-4d3c-8c9b-bc6b87b20299}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD StartMovementTeaching : BOOL
+VAR_INPUT
+	stStartMovementTeaching	: Tc3_XTS_Utility.ST_StartMovementTeaching;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="StartStandStillTeaching" Id="{801e7454-86bf-4706-b9ef-be3e0bbbc170}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD StartStandStillTeaching : BOOL
+VAR_INPUT
+	stStartStandStillTeaching	: Tc3_XTS_Utility.ST_StartStandStillTeaching;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="StopMovementTeaching" Id="{8767ed4e-11db-42bb-8a2f-e71c287838f1}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD StopMovementTeaching : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TrackTcIo" Id="{411264cf-9b71-4e24-89d4-43c38db0ce26}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD TrackTcIo : Tc3_XTS_Utility.I_TcIoXtsXpuTrack
+VAR_INPUT
+	nTrack	: UINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerDetection" Id="{449e0ddf-411d-4b3c-b370-7efa4c95f6f5}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD TriggerDetection : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerMoverIdDetection" Id="{e6f98a65-b7e4-4af9-9e59-7b70a65161a1}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD TriggerMoverIdDetection : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerNctResetAllParts" Id="{0c5e6fd6-e16b-41b0-b850-0a6836ec8b34}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD TriggerNctResetAllParts : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerRedetection" Id="{259c4f90-60b6-40e8-9ea8-54fbe75227a3}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD TriggerRedetection : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerResetAllParts" Id="{0667713f-cb48-4b67-ab57-96b1a856764a}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD TriggerResetAllParts : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerTeachingFileFormatUpdate" Id="{2d15600e-d648-4f8f-9c8e-15b6508f2369}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{warning 'Add method implementation '}
+METHOD TriggerTeachingFileFormatUpdate : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WriteDump" Id="{9fc09dcc-44b7-4cb9-b295-596f49d78e27}">
+      <Declaration><![CDATA[{warning 'Add method implementation '}
+METHOD WriteDump : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

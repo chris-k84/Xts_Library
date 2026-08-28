@@ -10,18 +10,13 @@ VAR_GENERIC CONSTANT
 	NuofMovers : UINT := 1;
 END_VAR EXTENDS Xts<NuOfParts,NuOfTracks, NuOfModules,XpuNumber,NuofMovers>
 VAR
+	i : UDINT;
+	stubXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF stubPart;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="Cycle" Id="{ba7fc6ec-53fe-46e8-b7e8-7d8528b5c436}">
-      <Declaration><![CDATA[METHOD Cycle : HRESULT
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="FB_Init" Id="{231852fe-b03e-4ea0-9051-8a2adf83df1c}">
       <Declaration><![CDATA[(*FB_Init is always available implicitly and it is used primarily for initialization.
 The return value is not evaluated. For a specific influence, you can also declare the
@@ -37,50 +32,64 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="MoverHomeSequence" Id="{75f313ff-91f0-4398-b273-e26bade55a8b}">
-      <Declaration><![CDATA[METHOD MoverHomeSequence : BOOL
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="SetDisabled" Id="{ffa0c583-2569-4ebd-98eb-9a7b4dc88c53}">
-      <Declaration><![CDATA[METHOD SetDisabled : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_XtsEnabled := FALSE;]]></ST>
+        <ST><![CDATA[FOR i := 0 TO TcIoXtsEnvironmentParameterList.MaxPartsPerTrack DO
+	iXtsParts[i] := stubXtsParts[i];
+END_FOR
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="setEnabled" Id="{626722de-9774-4f59-8220-0e027083d3f9}">
       <Declaration><![CDATA[METHOD setEnabled : BOOL
 VAR_INPUT
+	Value : BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_XtsEnabled := TRUE;]]></ST>
+        <ST><![CDATA[_XtsEnabled := Value;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setHardwareDiscovered" Id="{31efb4cf-7602-4d63-bc28-27635ca47255}">
+      <Declaration><![CDATA[METHOD setHardwareDiscovered : HRESULT
+VAR_INPUT
+	Value : BOOL;
+	NumberOFParts : UINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_HardwareDiscoveryComplete := Value;
+MyPartCount := NumberOFParts;]]></ST>
       </Implementation>
     </Method>
     <Method Name="setInitialised" Id="{2528f3aa-d996-4ef3-863b-9b23baf28b1f}">
       <Declaration><![CDATA[METHOD setInitialised : BOOL
 VAR_INPUT
+	Value : BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_Initialised := TRUE;]]></ST>
+        <ST><![CDATA[_Initialised := Value;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="setNotInitialised" Id="{fabc083b-0f7d-43b1-ade2-afd02e1ebe1b}">
-      <Declaration><![CDATA[METHOD setNotInitialised : BOOL
+    <Method Name="SetMoversDetected" Id="{e83e6ebb-002f-42f3-8c18-17622b1b661e}">
+      <Declaration><![CDATA[METHOD SetMoversDetected : HRESULT
 VAR_INPUT
+	Value : BOOL;
+	NumberOfMovers : UINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_Initialised := FALSE;]]></ST>
+        <ST><![CDATA[_MoversDetected := Value;
+MyMoverCount := NumberOfMovers;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setXPU" Id="{b9bad0ff-5900-49a4-8078-7e2a57d189f6}">
+      <Declaration><![CDATA[METHOD setXPU : HRESULT
+VAR_INPUT
+	stubXPU : I_TcIoXtsProcessingUnit;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[iXPU := stubXPU;]]></ST>
       </Implementation>
     </Method>
   </POU>

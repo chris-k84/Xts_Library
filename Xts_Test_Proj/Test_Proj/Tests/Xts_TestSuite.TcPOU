@@ -3,47 +3,597 @@
   <POU Name="Xts_TestSuite" Id="{f988a3d2-66dc-4a17-94a6-1c6d0d5b97aa}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Xts_TestSuite
 VAR
-	dummyIoEnvVar : XtsInterfaceProvider;
-	dummyCaGroup : CollisionGroup;
-	//testXts : Xts<1,1,1,1,1>('');
 	testXts : StubXts<1,1,1,1,8>('');
-	stubMover : XtsMover('');
-	stubIMover : I_XtsMover := stubMover;
-	stubIMoverEmpty : I_XtsMover;
+	testXpu : StubXPU;
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'XTS Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[XtsRejectsDisableWhenDisabled_Test();
-XtsRejectsEnableWhenEnabled_Test();]]></ST>
+      <ST><![CDATA[CycleRejectsWhenXtsNotDetected();
+CycleRejectsWhenXtsNotDiscovered();
+CycleRejectsWhenXtsNotInitialised();
+XtsAcceptsDisableWhenValid();
+XtsAcceptsEnableWhenValid();
+XtsAcceptsResetAPartWhenValid();
+XtsAcceptsResetWhenValid();
+XtsAcceptsTriggerDetectionWhenValid();
+XtsRejectsDisableWhenDisabled();
+XtsRejectsDisableWhenNotDetected();
+XtsRejectsDisableWhenNotDiscovered();
+XtsRejectsDisableWhenNotInitialised();
+XtsRejectsEnableWhenEnabled();
+XtsRejectsEnableWhenNotDetected();
+XtsRejectsEnableWhenNotDiscovered();
+XtsRejectsEnableWhenNotInitialised();
+XtsRejectsResetAPartWhenNotDiscovered();
+XtsRejectsResetAPartWhenNotInitialised();
+XtsRejectsResetAPartWhenOutOfRange();
+XtsRejectsResetAPartWhenZeroIndex();
+XtsRejectsResetWhenNotDiscovered();
+XtsRejectsResetWhenNotInitialised();
+XtsRejectsTriggerDetectionWhenNotDiscovered();
+XtsRejectsTriggerDetectionWhenNotInitialised();
+XtsRejectsTryGetMoverWhenNotDetected();
+XtsRejectsTryGetMoverWhenNotDiscovered();
+XtsRejectsTryGetMoverWhenNotInitialised();
+XtsRejectsTryGetMoverWhenOutOfRange();
+XtsRejectsTryGetMoverWhenZeroIndex();]]></ST>
     </Implementation>
-    <Method Name="XtsRejectsDisableWhenDisabled_Test" Id="{65525f81-11d3-467d-8594-1727392c33c6}">
-      <Declaration><![CDATA[METHOD XtsRejectsDisableWhenDisabled_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
+    <Method Name="CycleRejectsWhenXtsNotDetected" Id="{c9476195-0c9f-4a12-8ffb-341842fd6b03}">
+      <Declaration><![CDATA[METHOD CycleRejectsWhenXtsNotDetected : BOOL
+VAR
+	Expected : HRESULT := -3;
+	Actual	 : HRESULT;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testXts.SetDisabled();
-	Actual := FAILED(testXts.DisableXTS());
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	testXts.setXPU(testXpu);
+	Actual := testXts.Cycle();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="XtsRejectsEnableWhenEnabled_Test" Id="{0d306c58-1eca-439d-a25b-472acf610587}">
-      <Declaration><![CDATA[METHOD XtsRejectsEnableWhenEnabled_Test
-VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
+    <Method Name="CycleRejectsWhenXtsNotDiscovered" Id="{c97b554c-70ad-4dfd-8950-71fea422c15f}">
+      <Declaration><![CDATA[METHOD CycleRejectsWhenXtsNotDiscovered : BOOL
+VAR
+	Expected : HRESULT := -2;
+	Actual	 : HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.Cycle();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CycleRejectsWhenXtsNotInitialised" Id="{86b8e2c9-4909-46d7-a24a-30e7b0c4b2bc}">
+      <Declaration><![CDATA[METHOD CycleRejectsWhenXtsNotInitialised : BOOL
+VAR
+	Expected : HRESULT := -1;
+	Actual	 : HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(FALSE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.Cycle();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsAcceptsDisableWhenValid" Id="{9297a28a-0c2b-4af6-aa67-5dbc4a358fc7}">
+      <Declaration><![CDATA[METHOD XtsAcceptsDisableWhenValid : BOOL
+VAR
+	Expected : HRESULT := 0;
+	Actual	 : HRESULT;
 END_VAR
 
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	testXts.setEnabled();
-	Actual := FAILED(testXts.EnableXTS());
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(TRUE,1);
+	testXts.setEnabled(TRUE);
+	testXts.setXPU(testXpu);
+	Actual := testXts.DisableXTS();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsAcceptsEnableWhenValid" Id="{038fdca9-8a62-4bac-8b1c-67c0ed653dfc}">
+      <Declaration><![CDATA[METHOD XtsAcceptsEnableWhenValid : BOOL
+VAR
+	Expected : HRESULT := 0;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.setXPU(testXpu);
+	testXts.SetMoversDetected(TRUE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.EnableXTS();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsAcceptsResetAPartWhenValid" Id="{96d79dfb-8650-4852-b3e8-8fc0e07ec2ce}">
+      <Declaration><![CDATA[METHOD XtsAcceptsResetAPartWhenValid : BOOL
+VAR
+	Expected : HRESULT := 0;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,2);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	testXts.setXPU(testXpu);
+	Actual := testXts.ResetAPart(1);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsAcceptsResetWhenValid" Id="{8915fc1b-9fc6-42f3-9677-5244253366c9}">
+      <Declaration><![CDATA[METHOD XtsAcceptsResetWhenValid : BOOL
+VAR
+	Expected : HRESULT := 0;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	testXts.setXPU(testXpu);
+	Actual := testXts.Reset();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsAcceptsTriggerDetectionWhenValid" Id="{c27ab09e-67e9-4374-94cf-57d9db227d9c}">
+      <Declaration><![CDATA[METHOD XtsAcceptsTriggerDetectionWhenValid : BOOL
+VAR
+	Expected : HRESULT := 0;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	testXts.setXPU(testXpu);
+	Actual := testXts.TriggerMoverDetection();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsDisableWhenDisabled" Id="{d8fdb95a-6091-4864-b706-58f467ce0c7e}">
+      <Declaration><![CDATA[METHOD XtsRejectsDisableWhenDisabled
+VAR
+	Expected : HRESULT := -4;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(TRUE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.DisableXTS();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsDisableWhenNotDetected" Id="{dcde15d1-29fe-4c06-988d-d4812d3c4355}">
+      <Declaration><![CDATA[METHOD XtsRejectsDisableWhenNotDetected
+VAR
+	Expected : HRESULT := -3;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.DisableXTS();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsDisableWhenNotDiscovered" Id="{c70e1402-af3b-49b5-bd44-5a4b37c560cc}">
+      <Declaration><![CDATA[METHOD XtsRejectsDisableWhenNotDiscovered
+VAR
+	Expected : HRESULT := -2;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.DisableXTS();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsDisableWhenNotInitialised" Id="{23205c7b-ebad-4721-ac2e-5eac6ff16da9}">
+      <Declaration><![CDATA[METHOD XtsRejectsDisableWhenNotInitialised
+VAR
+	Expected : HRESULT := -1;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(FALSE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.DisableXTS();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsEnableWhenEnabled" Id="{0d306c58-1eca-439d-a25b-472acf610587}">
+      <Declaration><![CDATA[METHOD XtsRejectsEnableWhenEnabled
+VAR
+	Expected : HRESULT := -4;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(TRUE,1);
+	testXts.setEnabled(TRUE);
+	Actual := testXts.EnableXTS();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsEnableWhenNotDetected" Id="{1d7cedb2-a675-4c26-ba0f-1baa422eacf4}">
+      <Declaration><![CDATA[METHOD XtsRejectsEnableWhenNotDetected
+VAR
+	Expected : HRESULT := -3;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.EnableXTS();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsEnableWhenNotDiscovered" Id="{5def1c13-9112-48c8-b539-50bf329cfc64}">
+      <Declaration><![CDATA[METHOD XtsRejectsEnableWhenNotDiscovered
+VAR
+	Expected : HRESULT := -2;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.EnableXTS();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsEnableWhenNotInitialised" Id="{f074aa09-936e-4c34-82b7-3deba0062cdd}">
+      <Declaration><![CDATA[METHOD XtsRejectsEnableWhenNotInitialised
+VAR
+	Expected : HRESULT := -1;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(FALSE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.EnableXTS();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsResetAPartWhenNotDiscovered" Id="{f861b97e-5478-4576-95e6-833bab8093a4}">
+      <Declaration><![CDATA[METHOD XtsRejectsResetAPartWhenNotDiscovered
+VAR
+	Expected : HRESULT := -2;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.ResetAPart(1);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsResetAPartWhenNotInitialised" Id="{8223df91-4ae7-4532-810f-51e909c5e444}">
+      <Declaration><![CDATA[METHOD XtsRejectsResetAPartWhenNotInitialised
+VAR
+	Expected : HRESULT := -1;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(FALSE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.ResetAPart(1);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsResetAPartWhenOutOfRange" Id="{3ff192d8-8ef4-47cf-ad63-01d07b8a1528}">
+      <Declaration><![CDATA[METHOD XtsRejectsResetAPartWhenOutOfRange
+VAR
+	Expected : HRESULT := -3;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.ResetAPart(3);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsResetAPartWhenZeroIndex" Id="{66b4a109-fb55-4a7f-b87d-81b7df46f72b}">
+      <Declaration><![CDATA[METHOD XtsRejectsResetAPartWhenZeroIndex
+VAR
+	Expected : HRESULT := -4;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.ResetAPart(0);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsResetWhenNotDiscovered" Id="{d84b8878-23ac-4816-b2bb-d8bc41324eea}">
+      <Declaration><![CDATA[METHOD XtsRejectsResetWhenNotDiscovered
+VAR
+	Expected : HRESULT := -2;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.Reset();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsResetWhenNotInitialised" Id="{5630b560-d2d1-46bc-8a36-f21bf6bb5291}">
+      <Declaration><![CDATA[METHOD XtsRejectsResetWhenNotInitialised
+VAR
+	Expected : HRESULT := -1;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(FALSE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.Reset();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsTriggerDetectionWhenNotDiscovered" Id="{452c48ed-f21e-4d5e-87df-0c9ca99f6706}">
+      <Declaration><![CDATA[METHOD XtsRejectsTriggerDetectionWhenNotDiscovered
+VAR
+	Expected : HRESULT := -2;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.TriggerMoverDetection();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsTriggerDetectionWhenNotInitialised" Id="{87933c9a-71e6-45d5-bebc-33ede63c2b5a}">
+      <Declaration><![CDATA[METHOD XtsRejectsTriggerDetectionWhenNotInitialised
+VAR
+	Expected : HRESULT := -1;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(FALSE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.TriggerMoverDetection();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsTryGetMoverWhenNotDetected" Id="{b3ebf25f-76e1-4413-b016-a2a40dffa3c5}">
+      <Declaration><![CDATA[METHOD XtsRejectsTryGetMoverWhenNotDetected
+VAR
+	stubIMoverEmpty : I_XtsMover;
+	Expected : HRESULT := -3;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.TryGetXtsMover(Number := 1,Mover => stubIMoverEmpty);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsTryGetMoverWhenNotDiscovered" Id="{0c5c773e-8983-4c2c-a595-d63c30bd480d}">
+      <Declaration><![CDATA[METHOD XtsRejectsTryGetMoverWhenNotDiscovered
+VAR
+	stubIMoverEmpty : I_XtsMover;
+	Expected : HRESULT := -2;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.TryGetXtsMover(Number := 1,Mover => stubIMoverEmpty);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsTryGetMoverWhenNotInitialised" Id="{e347d942-4400-411b-91f4-4861a68b92b5}">
+      <Declaration><![CDATA[METHOD XtsRejectsTryGetMoverWhenNotInitialised
+VAR
+	stubIMoverEmpty : I_XtsMover;
+	Expected : HRESULT := -1;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(FALSE);
+	testXts.setHardwareDiscovered(FALSE,1);
+	testXts.SetMoversDetected(FALSE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.TryGetXtsMover(Number := 1,Mover => stubIMoverEmpty);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsTryGetMoverWhenOutOfRange" Id="{37971dc3-6206-457f-a559-ce6e2e2111ad}">
+      <Declaration><![CDATA[METHOD XtsRejectsTryGetMoverWhenOutOfRange
+VAR
+	stubIMoverEmpty : I_XtsMover;
+	Expected : HRESULT := -4;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(TRUE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.TryGetXtsMover(Number := 4,Mover => stubIMoverEmpty);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="XtsRejectsTryGetMoverWhenZeroIndex" Id="{492f1ddc-eac4-4ba2-a205-99c6af8dfcca}">
+      <Declaration><![CDATA[METHOD XtsRejectsTryGetMoverWhenZeroIndex
+VAR
+	stubIMoverEmpty : I_XtsMover;
+	Expected : HRESULT := -5;
+	Actual	 : HRESULT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	testXts.setInitialised(TRUE);
+	testXts.setHardwareDiscovered(TRUE,1);
+	testXts.SetMoversDetected(TRUE,1);
+	testXts.setEnabled(FALSE);
+	Actual := testXts.TryGetXtsMover(Number := 0,Mover => stubIMoverEmpty);
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
