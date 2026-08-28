@@ -179,7 +179,7 @@ IF NOT _MoversDetected THEN
 	RETURN;
 END_IF
 
-IF _XtsEnabled THEN
+IF NOT _XtsEnabled THEN
 	DisableXTS := -4;
 	RETURN;
 END_IF
