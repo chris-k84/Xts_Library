@@ -52,7 +52,10 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts)).PartTcIo(Part).ModuleTcIo(Module);]]></ST>
+        <ST><![CDATA[IF NOT Initialised THEN
+	RETURN;
+END_IF
+GetModuleInterface := XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts)).PartTcIo(Part).ModuleTcIo(Module);]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetMoverInterface" Id="{3c22037c-a890-4771-941e-6c3b9baf32f6}" FolderPath="Commands\">
