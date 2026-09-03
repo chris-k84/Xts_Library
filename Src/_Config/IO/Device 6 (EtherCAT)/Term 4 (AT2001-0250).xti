@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.20" ClassName="CFlbTermDef" SubType="9099">
+	<ImageDatas>
+		<ImageData Id="1000">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c30e0000c30e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff67e953ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff67e953ff00ffff00ffff00ffff00ffff00ffff00ffff00ff67e95367e95367e95367e95367e95367e95367e95367e95367e953ff00ffff00ffff00ffff00ffff00ffff00ffff00ff67e953ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff000000000000000000000000000000000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ff000000828282828282828282828282828282828282828282828282828282000000ff00ffff00ffff00ffff00ffff00ff000000828282000000828282000000828282000000828282000000828282000000ff00ffff00ffff00ffff00ffff00ff000000828282000000828282000000828282000000828282000000828282000000ff00ffff00ffff00ffff00ffff00ff000000828282000000828282000000828282000000828282000000828282000000ff00ffff00ffff00ffff00ffff00ff000000828282000000828282000000828282000000828282000000828282000000ff00ffff00ffff00ffff00ffff00ff000000828282828282828282828282828282828282828282828282828282000000ff00ffff00ffff00ffff00ffff00ff000000000000000000000000000000000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
+	</ImageDatas>
+	<Box Id="4" BoxType="9099" BoxFlags="#x00000020">
+		<Name>__FILENAME__</Name>
+		<ImageId>1000</ImageId>
+		<EtherCAT SlaveType="2" PdiType="#x0405" MboxDataLinkLayer="true" StateMBoxPolling="true" CfgModeSafeOp="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x07d15012" RevisionNo="#x001500fa" InfoDataAddr="true" InfoDataDcTimes="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="305" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="AT2001-0250 Motor module with feed 250 mm, 48V" Desc="AT2001-0250">
+			<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
+			<SyncMan>801080002200010002000000800080008000801022010000</SyncMan>
+			<SyncMan>001120002400010003000000000000002000001124010000</SyncMan>
+			<SyncMan>801120002000010004000000000000002000801120010000</SyncMan>
+			<Fmmu>0000000000000000001100020100000001000000000000000000000000000000</Fmmu>
+			<Fmmu>0000000000000000801100010100000002000000000000000000000000000000</Fmmu>
+			<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+			<BootStrapData>0010f400f410f400</BootStrapData>
+			<DcData>0003000000000000581b00000000000001000000000000000000000000000000</DcData>
+			<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000000000000581b000000000000000000030100000000000000000000000000000000000000000000000000000000000000</DcMode>
+			<Pdo Name="CC Inputs" Index="#x1a00" Flags="#x0011" SyncMan="3">
+				<Entry Name="Status" Index="#x6000" Sub="#x01">
+					<Type>UINT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.1" Index="#x6000" Sub="#x11">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.2" Index="#x6000" Sub="#x12">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.3" Index="#x6000" Sub="#x13">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.4" Index="#x6000" Sub="#x14">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.5" Index="#x6000" Sub="#x15">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.6" Index="#x6000" Sub="#x16">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.7" Index="#x6000" Sub="#x17">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.8" Index="#x6000" Sub="#x18">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.9" Index="#x6000" Sub="#x19">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.10" Index="#x6000" Sub="#x1a">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.11" Index="#x6000" Sub="#x1b">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.12" Index="#x6000" Sub="#x1c">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.13" Index="#x6000" Sub="#x1d">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.14" Index="#x6000" Sub="#x1e">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current actual value Ch.15" Index="#x6000" Sub="#x1f">
+					<Type>INT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="CC Outputs" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
+				<Entry Name="Control" Index="#x7000" Sub="#x01">
+					<Type>UINT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.1" Index="#x7000" Sub="#x11">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.2" Index="#x7000" Sub="#x12">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.3" Index="#x7000" Sub="#x13">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.4" Index="#x7000" Sub="#x14">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.5" Index="#x7000" Sub="#x15">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.6" Index="#x7000" Sub="#x16">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.7" Index="#x7000" Sub="#x17">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.8" Index="#x7000" Sub="#x18">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.9" Index="#x7000" Sub="#x19">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.10" Index="#x7000" Sub="#x1a">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.11" Index="#x7000" Sub="#x1b">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.12" Index="#x7000" Sub="#x1c">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.13" Index="#x7000" Sub="#x1d">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.14" Index="#x7000" Sub="#x1e">
+					<Type>INT</Type>
+				</Entry>
+				<Entry Name="Current setpoint value Ch.15" Index="#x7000" Sub="#x1f">
+					<Type>INT</Type>
+				</Entry>
+			</Pdo>
+			<CoeProfile ProfileNo="47190921"/>
+		</EtherCAT>
+		<Box File="Term 25 (AT2001-5250).xti" Id="25">
+			<EtherCAT PortABoxInfo="#x01000004"/>
+		</Box>
+	</Box>
+</TcSmItem>

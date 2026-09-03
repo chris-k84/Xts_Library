@@ -2,9 +2,8 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <POU Name="ManualMachine" Id="{01bc7f0f-8a11-4b18-bb7f-35e7e0af063e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ManualMachine
-VAR
-															
-	MyXts : Xts<1,1,10,1,1>('');
+VAR														
+	MyXts : Xts<2,1,2,1,1>('');
 	initSequence : INT;
 END_VAR
 VAR CONSTANT
@@ -33,6 +32,7 @@ END_VAR
 		IF SUCCEEDED(myxts.Initialise()) THEN
 			initSequence := 1;
 		END_IF
+		
 	1:
 		IF SUCCEEDED(myxts.DiscoverHardware()) THEN
 			initSequence := 2;
@@ -66,15 +66,14 @@ END_VAR
       <Declaration><![CDATA[METHOD Start : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Start := SUCCEEDED(MyXts.EnableXTS());
-]]></ST>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <Method Name="Stop" Id="{fbb70648-c073-41fc-bad0-78d07ae8f95d}">
       <Declaration><![CDATA[METHOD Stop : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Stop := SUCCEEDED(MyXts.DisableXTS());]]></ST>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
   </POU>
