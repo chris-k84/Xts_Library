@@ -63,7 +63,10 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetMoverInterface := XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts)).MoverTcIo(Mover);]]></ST>
+        <ST><![CDATA[IF NOT Initialised THEN
+	RETURN;
+END_IF
+GetMoverInterface := XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts)).MoverTcIo(Mover);]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetPartInterface" Id="{f8a0e0e3-0f08-4154-a007-a3b6ddf4a82b}" FolderPath="Commands\">
@@ -74,7 +77,10 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetPartInterface := XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts)).PartTcIo(Part);]]></ST>
+        <ST><![CDATA[IF NOT Initialised THEN
+	RETURN;
+END_IF
+GetPartInterface := XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts)).PartTcIo(Part);]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetTrackInterface" Id="{458a2926-08f7-48fe-9ad8-86ada7442d2d}" FolderPath="Commands\">
@@ -85,7 +91,11 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts)).TrackTcIo(Track);]]></ST>
+        <ST><![CDATA[IF NOT Initialised THEN
+	RETURN;
+END_IF
+
+GetTrackInterface := XtsIoEnvironment.XpuTcIo(TO_UINT(MyXts)).TrackTcIo(Track);]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetXPUInterface" Id="{a6b4198a-d372-4fc0-b700-debb44563dc0}" FolderPath="Commands\">
