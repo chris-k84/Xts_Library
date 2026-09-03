@@ -367,21 +367,19 @@ END_VAR
 VAR_INPUT
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Initialised THEN
-	Base_Library.Tracing.Trace.Error(_Name, 'Mover Already Initialised');
+        <ST><![CDATA[IF _MyInterface = 0 THEN
+	Base_Library.Tracing.Trace.Error(_Name, 'No XPU interface for Init');
 	Initialise := -1;
 	RETURN;
 END_IF
-IF _MyInterface = 0 THEN
-	Initialise := -2;
-	RETURN;
-END_IF
+
 IF NOT _MyInterface.P_IsInitialized THEN
-	Initialise := -3;
+	Initialise := -2;
 	Base_Library.Tracing.Trace.Error(_Name, 'XPU Interface not ready');
 	RETURN;
 END_IF
 
+Base_Library.Tracing.Trace.Verbose(_Name, 'Mover Init Success');
 myController := _MyInterface.MoverController;
 myControllerOid := _MyInterface.GetMoverControllerOid();
 _Mover1 := _MyInterface.GetIsMover1();

@@ -53,7 +53,7 @@ IF NOT _MyInterface.P_IsInitialized THEN
 END_IF
 
 
-
+Base_Library.Tracing.Trace.Verbose(_Name, 'Track Init Success');
 MyPartCount := _MyInterface.GetPartCount();
 Parts REF= _MyInterface.GetPartInfoItems();
 _TrackLength := _MyInterface.GetLength();

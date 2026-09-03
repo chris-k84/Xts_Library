@@ -129,6 +129,7 @@ IF NOT _MyInterface.P_IsInitialized THEN
 	RETURN;
 END_IF
 
+Base_Library.Tracing.Trace.Verbose(_Name, 'Module Init Success');
 MotorOid := _MyInterface.GetMotorTerminalOid();
 SensorOid := _MyInterface.GetSensorTerminalOid();
 Status.IsInfeed := _MyInterface.GetIsInfeed();
