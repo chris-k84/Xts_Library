@@ -16,7 +16,8 @@ TYPE XtsHardwareDiscoveryState :
 	GettingMovers := 7,
 	InitialisingMovers := 8,	
 	HardwareFound := 9,
-	DiscoveryFault := 99
+	DiscoveryFault := 99,
+	DiscoveryFailed := 999
 );
 END_TYPE
 ]]></Declaration>

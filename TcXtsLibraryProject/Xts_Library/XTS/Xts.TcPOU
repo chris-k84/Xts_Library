@@ -51,10 +51,10 @@ VAR
 	MyTrackCount: UDINT;
 	MyModuleCount : UDINT;
 	MyMoverCount : UDINT;
-	
+	SequenceFailCount : USINT;
 	MoverDetectionState : TaskExecutionStates;
 	HardwareDiscoveryState: XtsHardwareDiscoveryState;
-	DetectionErrorTimeOut : TON := (PT := T#5S);
+	DetectionErrorTimeOut : TON := (PT := T#500MS);
 END_VAR
 VAR CONSTANT
 	MaxModules : UINT := 1000;
@@ -192,7 +192,6 @@ DisableSequence.Disable();]]></ST>
       <Declaration><![CDATA[METHOD DiscoverHardware : HRESULT
 VAR
 	i,j : INT;
-	allInitialised : BOOL;
 	ModuleCount : UINT;
 END_VAR
 ]]></Declaration>
@@ -290,7 +289,23 @@ CASE HardwareDiscoveryState OF
 		Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Hardware Discovery Complete');
 		_HardwareDiscoveryComplete := TRUE;
 		DiscoverHardware := 0;
-END_CASE]]></ST>
+	XtsHardwareDiscoveryState.DiscoveryFault:
+		IF SequenceFailCount = 3 THEN
+			Base_Library.Tracing.Trace.Error(Source := _Name, Message := 'DISCOVERY FAILED - SYSTEM FAULT - RESTART REQUIRED');
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.DiscoveryFailed;
+		END_IF
+		IF NOT DetectionErrorTimeOut.IN THEN
+			Base_Library.Tracing.Trace.Error(Source := _Name, Message := 'error in hardware discovery - waiting to try again');
+			DetectionErrorTimeOut.IN := TRUE;
+			SequenceFailCount := SequenceFailCount + 1;
+		END_IF
+		IF DetectionErrorTimeOut.Q THEN
+			DetectionErrorTimeOut.IN := FALSE;
+			HardwareDiscoveryState := XtsHardwareDiscoveryState.DiscoveryFault;
+			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Restarting Hardware Discovery');
+		END_IF
+END_CASE
+DetectionErrorTimeOut();]]></ST>
       </Implementation>
     </Method>
     <Method Name="EnableXTS" Id="{e800781e-1435-4747-9cb4-9b9fab34ca22}" FolderPath="Operations\">
