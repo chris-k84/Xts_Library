@@ -106,6 +106,22 @@ END_IF
 iMoverDetectionAlogrithm.Cycle();
 HardwareError := iXPU.GetDriveState() = DriveState.Fault OR CheckPartsForError();
 
+IF MyModuleCount <> 0 THEN
+	FOR i := 0 TO MyModuleCount - 1 DO
+		Modules[i].Cycle();
+	END_FOR
+END_IF
+IF MyPartCount <> 0 THEN
+	FOR i := 0 TO MyPartCount - 1 DO
+		XtsParts[i].Cycle();
+	END_FOR
+END_IF
+IF MyTrackCount <> 0 THEN
+	FOR i := 0 TO MyTrackCount - 1 DO
+		XtsTracks[i].Cycle();
+	END_FOR
+END_IF
+
 IF NOT _MoversDetected THEN
 	Cycle := -3;
 	RETURN;
@@ -125,7 +141,6 @@ IF DisabledTrigger.Q THEN
 	_XtsEnabled := FALSE;
 END_IF
 
-
 CAGroupError := ICollisionGroup.HasError;
 
 IF CAGroupError THEN
@@ -134,22 +149,6 @@ END_IF
 
 IF NOT CAGroupError AND NOT HardwareError THEN
 	_ErrorID := 0;
-END_IF
-
-IF MyModuleCount <> 0 THEN
-	FOR i := 0 TO MyModuleCount - 1 DO
-		Modules[i].Cycle();
-	END_FOR
-END_IF
-IF MyPartCount <> 0 THEN
-	FOR i := 0 TO MyPartCount - 1 DO
-		XtsParts[i].Cycle();
-	END_FOR
-END_IF
-IF MyTrackCount <> 0 THEN
-	FOR i := 0 TO MyTrackCount - 1 DO
-		XtsTracks[i].Cycle();
-	END_FOR
 END_IF
 
 IF MyMoverCount <> 0 THEN

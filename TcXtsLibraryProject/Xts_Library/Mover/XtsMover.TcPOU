@@ -43,7 +43,6 @@ END_VAR]]></Declaration>
     <Folder Name="Administration" Id="{660864df-8996-42d7-8e95-bfca1c90696e}" />
     <Folder Name="Commands" Id="{db0a893b-cc1a-482e-a432-7e9d568c5112}" />
     <Folder Name="Dynamics" Id="{6b49cc7a-c913-475a-9f9a-db91d65d07e1}" />
-    <Folder Name="ICyclic" Id="{895ad701-1670-4c6d-921e-cd7ccab0c12a}" />
     <Folder Name="Settings" Id="{9f30f828-4035-4456-8312-0a248b50e96f}" />
     <Folder Name="Status" Id="{b27ba391-8a3b-4e51-ae24-bae43a7b6e5f}" />
     <Property Name="Acceleration" Id="{5cd04126-8ceb-4f9d-a4c5-c87e7e11d0e6}" FolderPath="Dynamics\">
