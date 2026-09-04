@@ -12,6 +12,12 @@ VAR
 	_OperationMode : OperationMode;
 	Status : XtsModuleStatus;
 	DiagHistory: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxDiagMessagesPerModule] OF Tc3_XTS_Utility.DiagHistoryEntry;
+	ControlVoltageErrorRisingTrigger : R_TRIG;
+	ControlVoltageErrorFallingTrigger : F_TRIG;
+	MotorVoltageErrorRisingTrigger : R_TRIG;
+	MotorVoltageErrorFallingTrigger : f_TRIG;
+	ModuleStateRisingError : R_TRIG;
+	ModuleStateFallingError : F_TRIG;
 END_VAR
 VAR CONSTANT
 	Nominal24Vdc : REAL := 24.0;
@@ -78,26 +84,37 @@ IF _MyInterface.GetHasActiveError() THEN
 	DiagHistory := _MyInterface.GetLatestMessages();
 END_IF
 
-Status.ControlVdcOK := TRUE;
-IF (Status.Module24Vdc < (Nominal24Vdc * 0.8)) OR (Status.Module24Vdc > (Nominal24Vdc * 1.2)) THEN
+Status.ControlVdcOK := (Status.Module24Vdc > (Nominal24Vdc * 0.8)) AND (Status.Module24Vdc < (Nominal24Vdc * 1.2));
+ControlVoltageErrorRisingTrigger(CLK :=  NOT Status.ControlVdcOK);
+IF ControlVoltageErrorRisingTrigger.Q THEN
 	Base_Library.Tracing.Trace.Error(_name,'Control Voltage out of range');
-	Status.ControlVdcOK := FALSE;
+END_IF
+ControlVoltageErrorFallingTrigger(CLK :=  NOT Status.ControlVdcOK);
+IF ControlVoltageErrorFallingTrigger.Q THEN
+	Base_Library.Tracing.Trace.Info(_name,'Control Voltage in range');
 END_IF
 
-Status.MotorVdcOK := TRUE;
-IF (Status.Module48Vdc < (Nominal48Vdc * 0.8)) OR (Status.Module48Vdc > (Nominal48Vdc * 1.2)) THEN
+Status.MotorVdcOK := (Status.Module48Vdc > (Nominal48Vdc * 0.8)) AND (Status.Module48Vdc < (Nominal48Vdc * 1.2));
+MotorVoltageErrorRisingTrigger(CLK := NOT Status.MotorVdcOK);
+IF MotorVoltageErrorRisingTrigger.Q THEN
 	Base_Library.Tracing.Trace.Error(_name, 'Motor voltage out of range');
-	Status.MotorVdcOK := FALSE;
+END_IF
+MotorVoltageErrorFallingTrigger(CLK := NOT Status.MotorVdcOK);
+IF MotorVoltageErrorFallingTrigger.Q THEN
+	Base_Library.Tracing.Trace.Info(_name, 'Motor voltage in range');
 END_IF
 
-IF Status.ModuleDriveState = DriveState.Fault OR Status.ModuleDriveState = DriveState.FaultReactionActive THEN
-	_HasError := TRUE;
+Status.ModuleInFault := Status.ModuleDriveState = DriveState.Fault OR Status.ModuleDriveState = DriveState.FaultReactionActive;
+ModuleStateRisingError(CLK := Status.ModuleInFault);
+ModuleStateFallingError(CLK := Status.ModuleInFault);
+IF ModuleStateRisingError.Q THEN
 	Base_Library.Tracing.Trace.Error(_name, 'Module in error state');
-ELSE
-	_HasError := FALSE;
+END_IF
+IF ModuleStateFallingError.Q THEN
+	Base_Library.Tracing.Trace.Info(_name, 'Module in normal state');
 END_IF
 
-]]></ST>
+_HasError := NOT Status.ControlVdcOK OR NOT Status.MotorVdcOK OR Status.ModuleInFault;]]></ST>
       </Implementation>
     </Method>
     <Property Name="HasError" Id="{ad2a93c0-6ba6-42ce-9110-768a7019bac4}" FolderPath="Status\">

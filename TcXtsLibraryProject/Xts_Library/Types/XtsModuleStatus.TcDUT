@@ -9,6 +9,7 @@ STRUCT
 	MaxCurrent: LREAL;
 	ControlVdcOK : BOOL;
 	MotorVdcOK : BOOL;
+	ModuleInFault : BOOL;
 	ModuleDriveState: Tc3_XTS_Utility.DriveState;
 	ModuleCoEStatus: Tc3_XTS_Utility.CoeStatusInfo;
 	ModuleEtherCATState: Tc3_XTS_Utility.EtherCatSlaveStateInfo;
