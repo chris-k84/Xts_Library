@@ -67,14 +67,14 @@ END_VAR
       <Declaration><![CDATA[METHOD Start : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[MyXts.EnableXTS();]]></ST>
       </Implementation>
     </Method>
     <Method Name="Stop" Id="{fbb70648-c073-41fc-bad0-78d07ae8f95d}">
       <Declaration><![CDATA[METHOD Stop : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[MyXts.DisableXTS();]]></ST>
       </Implementation>
     </Method>
   </POU>

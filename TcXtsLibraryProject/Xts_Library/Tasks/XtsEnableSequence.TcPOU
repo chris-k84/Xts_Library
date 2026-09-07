@@ -75,7 +75,7 @@ END_VAR]]></Declaration>
 	EnableState.Add_Mover:
 		IF Succeeded( icagroup.AddMoverToThisGroup(MoverToAdd := iMoverArray[moverIndex])) THEN
 			AddMoverString := '';
-			AddMoverString := CONCAT('- Mover ', TO_STRING(iMoverArray[moverIndex].IdentInGroup));
+			AddMoverString := CONCAT('- Mover ', TO_STRING(iMoverArray[moverIndex].AxisRef.NcToPlc.AxisId));
 			Base_Library.Tracing.Trace.Verbose(XtsName, CONCAT(AddMoverString, ' Added To Group'));
 			State := EnableState.Check_Add_Mover;
 		ELSE

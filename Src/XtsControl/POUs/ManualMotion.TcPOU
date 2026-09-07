@@ -34,11 +34,6 @@ END_IF
 
 IF Reset THEN
 	Reset := FALSE;
-	Tracing.Trace.Critical('Test', 'Test Critical');
-	Tracing.Trace.Error('Test', 'Test Error');
-	Tracing.Trace.Warning('Test', 'Test Warning');
-	Tracing.Trace.Info('Test', 'Test Info');
-	Tracing.Trace.Verbose('Test', 'Test Verbose');
 // 	IF fbMachine.RequestAMoveFromMover(Mover, Pos, Velo) THEN
 // 		Reset := FALSE;
 // 	END_IF

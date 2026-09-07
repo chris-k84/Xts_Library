@@ -214,6 +214,10 @@ CASE HardwareDiscoveryState OF
 				IXtsParts[i] := XtsParts[i];
 				IF iXPU.GetOperationMode() = OperationMode.Simulation THEN
 					_InSim := TRUE;
+					Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'XTS in Simulation Mode');
+				ELSE
+					_InSim := FALSE;
+					Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'XTS in Normal Mode');
 				END_IF
 			END_FOR
 			HardwareDiscoveryState := XtsHardwareDiscoveryState.InitialisingXtsParts;
@@ -256,6 +260,7 @@ CASE HardwareDiscoveryState OF
 				Modules[MyModuleCount].SetXtsIoModuleInterface(iXtsInterfaceProvider.GetModuleInterface(XtsXpuNumber, (TO_UINT(i + 1)), (TO_UINT(j + 1))));
 				iModules[MyModuleCount] := Modules[MyModuleCount];
 				XtsParts[i].SetModuleInPArt(iModules[MyModuleCount]);
+				Modules[MyModuleCount].SetModuleOperationMode(iXPU.GetOperationMode());
 				MyModuleCount := MyModuleCount + 1;
 			END_FOR
 		END_FOR
