@@ -53,26 +53,29 @@ END_VAR
 			_busy := TRUE;
 			_done := FALSE;
 			_error := FALSE;
-			Base_Library.Tracing.Trace.Verbose(Source := iXPU.P_ObjectName, Message := 'Mover Detection Started');
+			Base_Library.Tracing.Trace.Verbose(Source := iXPU.P_ObjectName, Message := 'Mover Detection Sequence Started');
 			MoverDetectionState := XtsMoverDetectionState.SetATrackForDetection;
 		END_IF
 	XtsMoverDetectionState.SetATrackForDetection:
+		Base_Library.Tracing.Trace.Verbose(Source := iXPU.P_ObjectName, Message := 'Track 1 set for detection');
 		IXtsTracks[0].SetForDetection();
 		MoverDetectionState := XtsMoverDetectionState.TriggeringRedetection;
 	
 	XtsMoverDetectionState.TriggeringRedetection:
+		Base_Library.Tracing.Trace.Verbose(Source := iXPU.P_ObjectName, Message := 'Mover Redetection Started');
 		IF iXPU.TriggerRedetection() THEN
 			MoverDetectionState := XtsMoverDetectionState.WaitingForAllMoversValid;
 		END_IF
 		
 	XtsMoverDetectionState.WaitingForAllMoversValid:
 		IF iXPU.GetAreAllPositionsValid() THEN
-			Base_Library.Tracing.Trace.Verbose(Source := iXPU.P_ObjectName, Message := 'Mover Detection Complete');
+			Base_Library.Tracing.Trace.Verbose(Source := iXPU.P_ObjectName, Message := 'All Movers Valid');
 			MoverDetectionState := XtsMoverDetectionState.CheckingAllMoverFound;
 		END_IF
 	
 	XtsMoverDetectionState.CheckingAllMoverFound:
 		IF iXPU.GetExpectedMoverCount() = iXPU.GetDetectedMoverCount() THEN
+			Base_Library.Tracing.Trace.Verbose(Source := iXPU.P_ObjectName, Message := 'Configured Movers = Detected Movers');
 			_DetectedMoverCount := iXPU.GetDetectedMoverCount();
 			MoverDetectionState := XtsMoverDetectionState.TriggeringMoverIdDetection;
 		END_IF

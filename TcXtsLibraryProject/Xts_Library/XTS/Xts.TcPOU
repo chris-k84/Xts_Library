@@ -103,7 +103,7 @@ IF NOT _HardwareDiscoveryComplete THEN
 	RETURN;
 END_IF
 
-iMoverDetectionAlogrithm.Cycle();
+MoverDetectionSequence();
 HardwareError := iXPU.GetDriveState() = DriveState.Fault OR CheckPartsForError();
 
 IF MyModuleCount <> 0 THEN
@@ -202,7 +202,7 @@ CASE HardwareDiscoveryState OF
 		IF NOT _Initialised THEN
 			RETURN;
 		ELSE
-			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Starting Hardware Discovery');
+			Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'Starting Hardware Discovery');
 			HardwareDiscoveryState := XtsHardwareDiscoveryState.GettingParts;
 		END_IF 
 	XtsHardwareDiscoveryState.GettingParts:
@@ -288,7 +288,8 @@ CASE HardwareDiscoveryState OF
 			END_IF
 		END_FOR
 	XtsHardwareDiscoveryState.HardwareFound:
-		Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Hardware Discovery Complete');
+		Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'Hardware Discovery Complete');
+		iMoverDetectionAlogrithm.SetComponents(iXtsTracks, _iMoverArray, iXPU);
 		_HardwareDiscoveryComplete := TRUE;
 		DiscoverHardware := 0;
 	XtsHardwareDiscoveryState.DiscoveryFault:
@@ -304,7 +305,11 @@ CASE HardwareDiscoveryState OF
 		IF DetectionErrorTimeOut.Q THEN
 			DetectionErrorTimeOut.IN := FALSE;
 			HardwareDiscoveryState := XtsHardwareDiscoveryState.GettingParts;
-			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Restarting Hardware Discovery');
+			MyPartCount := 0;
+			MyTrackCount := 0;
+			MyModuleCount := 0;
+			MyMoverCount := 0;
+			Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'Restarting Hardware Discovery');
 		END_IF
 END_CASE
 DetectionErrorTimeOut();]]></ST>
@@ -388,7 +393,7 @@ END_IF
 
 MyXtsInterfaceProvider.Initialise();
 IF iXtsInterfaceProvider.Initialised THEN
-	Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'XTS_Utility Initiliased');
+	Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'XTS_Utility Initiliased');
 	iXPU := iXtsInterfaceProvider.GetXPUInterface(XtsXpuNumber);
 	Initialise := 0;
 	Initialising := FALSE;
@@ -450,17 +455,17 @@ END_VAR
 	TaskExecutionStates.Idle:
 		IF iMoverDetectionAlogrithm.Busy THEN
 			MoverDetectionState := TaskExecutionStates.Running;
-			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Mover detection running');
+			Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'Mover detection running');
 		END_IF
 	TaskExecutionStates.Running:
 		IF iMoverDetectionAlogrithm.Done THEN
 			MoverDetectionState := TaskExecutionStates.Done;
-			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Mover detection Finished');
+			Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'Mover detection Finished');
 		END_IF
 	TaskExecutionStates.Done:
 		IF NOT iMoverDetectionAlogrithm.Error THEN
 			_MoversDetected := TRUE;
-			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := CONCAT(TO_STRING(iMoverDetectionAlogrithm.DetectedMoverCount), ' movers detected'));
+			Base_Library.Tracing.Trace.Info(Source := _Name, Message := CONCAT(TO_STRING(iMoverDetectionAlogrithm.DetectedMoverCount), ' movers detected'));
 			MoverDetectionState := TaskExecutionStates.Idle;
 		ELSE
 			MoverDetectionState := TaskExecutionStates.Error;
@@ -479,7 +484,8 @@ END_VAR
 			MoverDetectionState := TaskExecutionStates.Idle;
 		END_IF
 END_CASE
-DetectionErrorTimeOut();]]></ST>
+DetectionErrorTimeOut();
+iMoverDetectionAlogrithm.Cycle();]]></ST>
       </Implementation>
     </Method>
     <Property Name="MoversFound" Id="{640e61ee-3b4d-4e87-a372-a0e90cf05e0a}" FolderPath="Status\">

@@ -193,11 +193,9 @@ END_VAR
 END_IF
 
 
-Base_Library.Tracing.Trace.Verbose(_name, 'Part XPU interface registered ok');
 _MyInterface := PartInterface;
 _Name := _MyInterface.P_ObjectName;
-
-]]></ST>
+Base_Library.Tracing.Trace.Verbose(_name, 'Part XPU interface registered ok');]]></ST>
       </Implementation>
     </Method>
   </POU>
