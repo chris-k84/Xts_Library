@@ -25,8 +25,8 @@ VAR
 	// XTS Components
 	MyXtsInterfaceProvider : XtsInterfaceProvider;
 	iXtsInterfaceProvider : I_XtsInterfaceProvider := MyXtsInterfaceProvider;
-	MoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF XtsMover('');
-	_iMoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
+	XtsMovers : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF XtsMover('');
+	iXtsMovers : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
 	Modules : ARRAY[0..MaxModules] OF XtsMotorModule('');
 	iModules : ARRAY[0..MaxModules] OF i_XtsMotorModule;
 	XtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart('');
@@ -40,8 +40,11 @@ VAR
 	iXPU : I_TcIoXtsProcessingUnit;
 	
 	// Behaviours
-	EnableSequence : XtsEnableSequence := (MyCollisionGroup := iCollisionGroup);
-	DisableSequence : XtsDisableSequence := (MyCollisionGroup := iCollisionGroup);	
+	
+	DefaultEnableSequence : XtsEnableSequence;
+	DefaultDisableSequence : XtsDisableSequence;
+	iEnableSequence : I_MoverEnableAlgorithm := DefaultEnableSequence;
+	iDisableSequence : I_MoverDisableAlgorithm := DefaultDisableSequence;
 	DefaultMoverDetectionAlgorithm : StandardMoverDetection;
 	iMoverDetectionAlogrithm : I_MoverDetectionAlgorithm := DefaultMoverDetectionAlgorithm;
 	EnabledTrigger : R_TRIG;
@@ -127,12 +130,10 @@ IF NOT _MoversDetected THEN
 	RETURN;
 END_IF
 
-
-EnableResult := EnableSequence.Cycle();
-DisableResult := DisableSequence.Cycle();
-myCAGroup.Cycle();
-EnabledTrigger(CLK := EnableSequence.Done);
-DisabledTrigger(CLK := DisableSequence.Done);
+EnableResult := DefaultEnableSequence.Cycle();
+DisableResult := DefaultDisableSequence.Cycle();
+EnabledTrigger(CLK := DefaultEnableSequence.Done);
+DisabledTrigger(CLK := DefaultDisableSequence.Done);
 
 IF EnabledTrigger.Q THEN
 	_XtsEnabled := TRUE;
@@ -142,18 +143,17 @@ IF DisabledTrigger.Q THEN
 END_IF
 
 CAGroupError := ICollisionGroup.HasError;
-
 IF CAGroupError THEN
 	_ErrorID := ICollisionGroup.ErrorCode;
 END_IF
-
 IF NOT CAGroupError AND NOT HardwareError THEN
 	_ErrorID := 0;
 END_IF
 
+myCAGroup.Cycle();
 IF MyMoverCount <> 0 THEN
 	FOR i := 0 TO MyMoverCount - 1 DO
-		MoverArray[i].Cycle();
+		XtsMovers[i].Cycle();
 	END_FOR
 END_IF]]></ST>
       </Implementation>
@@ -185,7 +185,7 @@ IF NOT _XtsEnabled THEN
 END_IF
 
 Base_Library.Tracing.Trace.Verbose(_Name, 'Disable Accepted');
-DisableSequence.Disable();]]></ST>
+DefaultDisableSequence.Disable();]]></ST>
       </Implementation>
     </Method>
     <Method Name="DiscoverHardware" Id="{199dc34b-920a-40a0-b86e-d4d30a9fd81a}">
@@ -272,8 +272,8 @@ CASE HardwareDiscoveryState OF
 		MyMoverCount := iXPU.P_MoverCount;
 		IF MyMoverCount = NumberOfMovers THEN
 			FOR i := 0 TO (TO_INT(MyMoverCount) - 1) DO
-				MoverArray[i].SetXtsIoMoverInterface(iXtsInterfaceProvider.GetMoverInterface(XtsXpuNumber,(TO_UINT(i + 1))));
-				_iMoverArray[i] := MoverArray[i];
+				XtsMovers[i].SetXtsIoMoverInterface(iXtsInterfaceProvider.GetMoverInterface(XtsXpuNumber,(TO_UINT(i + 1))));
+				iXtsMovers[i] := XtsMovers[i];
 			END_FOR
 			HardwareDiscoveryState := XtsHardwareDiscoveryState.InitialisingMovers;
 		ELSE
@@ -283,13 +283,15 @@ CASE HardwareDiscoveryState OF
 	XtsHardwareDiscoveryState.InitialisingMovers:
 		HardwareDiscoveryState := XtsHardwareDiscoveryState.HardwareFound;
 		FOR i := 0 TO TO_INT(MyMoverCount - 1) DO
-			IF FAILED(moverarray[i].Initialise()) THEN
+			IF FAILED(XtsMovers[i].Initialise()) THEN
 				HardwareDiscoveryState := XtsHardwareDiscoveryState.DiscoveryFault;
 			END_IF
 		END_FOR
 	XtsHardwareDiscoveryState.HardwareFound:
 		Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'Hardware Discovery Complete');
-		iMoverDetectionAlogrithm.SetComponents(iXtsTracks, _iMoverArray, iXPU);
+		iMoverDetectionAlogrithm.SetComponents(iXtsTracks, iXtsMovers, iXPU);
+		iEnableSequence.SetComponents(iXtsMovers, iCollisionGroup, MyMoverCount);
+		iDisableSequence.SetComponents(iXtsMovers, iCollisionGroup, MyMoverCount);
 		_HardwareDiscoveryComplete := TRUE;
 		DiscoverHardware := 0;
 	XtsHardwareDiscoveryState.DiscoveryFault:
@@ -342,7 +344,7 @@ IF _XtsEnabled THEN
 END_IF
 
 Base_Library.Tracing.Trace.Verbose(_Name, 'Enable Accepted');
-EnableSequence.Enable();]]></ST>
+DefaultEnableSequence.Enable();]]></ST>
       </Implementation>
     </Method>
     <Property Name="ErrorId" Id="{d9cfe84c-7a4b-4b34-a9ba-97d2ea994ecf}" FolderPath="Status\">
@@ -395,6 +397,9 @@ MyXtsInterfaceProvider.Initialise();
 IF iXtsInterfaceProvider.Initialised THEN
 	Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'XTS_Utility Initiliased');
 	iXPU := iXtsInterfaceProvider.GetXPUInterface(XtsXpuNumber);
+	DefaultDisableSequence.Name := _Name;
+	DefaultEnableSequence.Name := _Name;
+	DefaultMoverDetectionAlgorithm.Name := _Name;
 	Initialise := 0;
 	Initialising := FALSE;
 	_Initialised := TRUE;	
@@ -632,7 +637,7 @@ IF Number = 0 THEN
 	RETURN;
 END_IF
 
-Mover := _iMoverArray[Number - 1];]]></ST>
+Mover := iXtsMovers[Number - 1];]]></ST>
       </Implementation>
     </Method>
   </POU>

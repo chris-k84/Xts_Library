@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <Itf Name="I_MoverDisableAlgorithm" Id="{88d2d5be-93c8-4054-ba32-89a88adb2d09}">
     <Declaration><![CDATA[INTERFACE I_MoverDisableAlgorithm EXTENDS i_Task
@@ -19,6 +19,15 @@ END_VAR
     <Method Name="Reset" Id="{2f514183-d44a-4af8-bf34-d4b92afcf649}">
       <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SetComponents" Id="{02927f80-cee4-4ccc-bf30-7be3bd61e23c}">
+      <Declaration><![CDATA[METHOD SetComponents : BOOL
+VAR_INPUT
+	MoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
+	CAGroup : I_CollisionGroup;
+	MoverCount : UDINT;
 END_VAR
 ]]></Declaration>
     </Method>

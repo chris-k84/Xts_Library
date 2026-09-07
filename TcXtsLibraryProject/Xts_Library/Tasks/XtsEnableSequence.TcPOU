@@ -1,24 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsEnableSequence" Id="{b7e7ab09-3a30-4ddb-a242-e0b5aa00cbc9}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsEnableSequence  IMPLEMENTS I_MoverEnableAlgorithm
 VAR
-	XtsName : T_MaxString;
-	iCAGRoup : I_CollisionGroup;
 	moverIndex : UINT;
 	AllMoversEnabled: BOOL;
 	EnableTrigger : BOOL;	
-	iMoverArray : ARRAY[0..MaxMovers] OF I_XtsMover;
-	_MoverCount : INT;
+	_MoverCount : UDINT;
+	iMoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
+	iCAGroup : I_CollisionGroup;
+	XtsName : T_MaxString;
 	State: EnableState;
 	_Done: BOOL;
 	_Error: BOOL;
 	_Busy: BOOL;
-	GroupEnableTimeOut : TON := (pt := T#5S);
-	EnableMoverTimeOut : TON := (pt := T#5S);
-END_VAR
-VAR CONSTANT
-	MaxMovers : INT := 255;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
@@ -46,7 +41,7 @@ END_VAR
     <Method Name="Cycle" Id="{2913b891-dfae-43d9-b9d3-4a1a1101f452}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR
-	i : INT;
+	i : UDINT;
 	AddMoverString : T_MaxString;
 END_VAR]]></Declaration>
       <Implementation>
@@ -65,22 +60,22 @@ END_VAR]]></Declaration>
 		
 	EnableState.Reset_Movers:
 		Base_Library.Tracing.Trace.Verbose(XtsName, '- Resetting Movers');
-		FOR i := 0 TO (_MoverCount-1) DO
+		FOR i := 0 TO (_MoverCount - 1) DO
 			iMoverArray[i].Reset();
 		END_FOR
 		State := EnableState.Reset_Group;
 		
 	EnableState.Reset_Group:
-		IF iCAGRoup.IsInErrorStop THEN
+		IF iCAGroup.IsInErrorStop THEN
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Resetting CAGroup');
-			iCAGRoup.Reset();
+			iCAGroup.Reset();
 		END_IF
 		State := EnableState.Add_Mover;
 		
 	EnableState.Add_Mover:
-		IF Succeeded( iCAGRoup.AddMoverToThisGroup(MoverToAdd := iMoverArray[moverIndex])) THEN
+		IF Succeeded( icagroup.AddMoverToThisGroup(MoverToAdd := iMoverArray[moverIndex])) THEN
 			AddMoverString := '';
-			AddMoverString := CONCAT('- Mover ', TO_STRING(iMoverArray[moverIndex].AxisRef.NcToPlc.AxisId));
+			AddMoverString := CONCAT('- Mover ', TO_STRING(iMoverArray[moverIndex].IdentInGroup));
 			Base_Library.Tracing.Trace.Verbose(XtsName, CONCAT(AddMoverString, ' Added To Group'));
 			State := EnableState.Check_Add_Mover;
 		ELSE
@@ -89,9 +84,9 @@ END_VAR]]></Declaration>
 			Base_Library.Tracing.Trace.Error(XtsName, CONCAT(AddMoverString,'- Add Mover Failed'));
 			State := EnableState.EnableSequenceError;
 		END_IF
-
+		
 	EnableState.Check_Add_Mover:
-		IF moverIndex <> (_MoverCount-1) THEN
+		IF moverIndex <> (_MoverCount - 1) THEN
 			moverIndex := moverIndex + 1;
 			State := EnableState.Add_Mover;
 		ELSE
@@ -108,7 +103,6 @@ END_VAR]]></Declaration>
 			AllMoversEnabled := TRUE AND iMoverArray[i].IsEnabled;
 		END_FOR
 		IF AllMoversEnabled THEN
-			EnableMoverTimeOut.IN := FALSE;
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Movers Enabled');
 			State := EnableState.Enable_Group;
 		END_IF
@@ -118,15 +112,13 @@ END_VAR]]></Declaration>
 		END_IF
 
 	EnableState.Enable_Group:
-		IF iCAGRoup.Enable() THEN
-			GroupEnableTimeOut.IN := TRUE;
-			Base_Library.Tracing.Trace.Verbose(XtsName, '- CAGroup Enabling');
+		IF iCAGroup.Enable() THEN
+			Base_Library.Tracing.Trace.Verbose(XtsName, '- CAGroup Enabled');
 			State := EnableState.Check_Standby;
 		END_IF
 		
 	EnableState.Check_Standby:
-		IF iCAGRoup.IsInStandBy THEN
-			GroupEnableTimeOut.IN := FALSE;
+		IF iCAGroup.IsInStandBy THEN
 			State := EnableState.Idle;
 			_Busy := FALSE;
 			_Done := TRUE;
@@ -178,7 +170,7 @@ IF _Busy THEN
 	RETURN;
 END_IF
 
-IF iCAGRoup = 0 THEN
+IF iCAGroup = 0 THEN
 	Enable := -3;
 	RETURN;
 END_IF
@@ -197,27 +189,6 @@ END_VAR
           <ST><![CDATA[Error := _Error;]]></ST>
         </Implementation>
       </Get>
-    </Property>
-    <Property Name="MyCollisionGroup" Id="{0c241349-a398-40a0-a115-326a5cd04bf6}">
-      <Declaration><![CDATA[PROPERTY MyCollisionGroup : I_CollisionGroup]]></Declaration>
-      <Get Name="Get" Id="{c45de961-c00e-41dd-bc0b-0921ea45f3ce}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyCollisionGroup := iCAGRoup;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{0715b558-a706-48d8-a891-3862516fa554}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[IF MyCollisionGroup <> 0 THEN
-	iCAGRoup := MyCollisionGroup;
-END_IF]]></ST>
-        </Implementation>
-      </Set>
     </Property>
     <Property Name="Name" Id="{52cf67ff-b6ca-4762-b511-ef24ddd9e725}">
       <Declaration><![CDATA[PROPERTY Name : T_MAXSTRING]]></Declaration>
@@ -238,30 +209,25 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Property Name="RegisteredMoverNumber" Id="{c8bee2ee-ca4a-4835-99be-311639b86acb}">
-      <Declaration><![CDATA[PROPERTY RegisteredMoverNumber : INT]]></Declaration>
-      <Get Name="Get" Id="{a58b5109-c013-43aa-a8d9-172f8459e56c}">
-        <Declaration><![CDATA[VAR
+    <Method Name="Reset" Id="{18e03b81-5621-4d61-8dd4-9bb9bd5ee968}">
+      <Declaration><![CDATA[METHOD Reset : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetComponents" Id="{0d002451-1421-4fb5-b1ba-e97af42ef1c7}">
+      <Declaration><![CDATA[METHOD SetComponents : BOOL
+VAR_INPUT
+	MoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
+	CAGroup : I_CollisionGroup;
+	MoverCount : UDINT;
 END_VAR
 ]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[RegisteredMoverNumber := _MoverCount;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Method Name="RegisterMovers" Id="{330a136c-c434-49ce-bb82-6de99c18307c}">
-      <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
-VAR_INPUT
-	MyMover : I_XtsMover;
-END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyMover = 0 THEN
-	RegisterMovers := -1;
-	RETURN;
-END_IF
-
-iMoverArray[_MoverCount] := MyMover;
-_MoverCount := _MoverCount + 1;]]></ST>
+        <ST><![CDATA[iMoverArray := MoverArray;
+iCAGroup := CAGroup;
+_MoverCount := MoverCount;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{b9d8eaad-637c-4dcb-a8aa-5298427739c9}">

@@ -1,15 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsDisableSequence" Id="{da9628bf-0fcc-432f-b10d-3ad4dd4b7f24}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsDisableSequence IMPLEMENTS I_MoverDisableAlgorithm
 VAR
-	XtsName : T_MaxString;
-	iCAGroup : I_CollisionGroup;
 	DisableTrigger: BOOL;
-	moverNumbers : UINT := 1;
 	AllMoversDisabled: BOOL;	
-	iMoverArray : ARRAY[0..MaxMovers] OF I_XtsMover;
-	_MoverCount : INT;
+	_MoverCount : UDINT;
+	iMoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
+	iCAGroup : I_CollisionGroup;
+	XtsName : T_MaxString;
 	CaGroupResetResult: BOOL;
 	State: DisableState;
 	DisableMoverTimeOut : TON := (PT := DEFAULT_ADS_TIMEOUT);
@@ -17,9 +16,6 @@ VAR
 	_Done: BOOL;
 	_Error: BOOL;
 	_Busy: BOOL;
-END_VAR
-VAR CONSTANT
-	MaxMovers : INT := 255;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
@@ -48,7 +44,7 @@ END_VAR
     <Method Name="Cycle" Id="{981b7190-eb15-4a0a-8875-0afb334ed36e}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR
-	i : INT;
+	i : UDINT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE State OF
@@ -71,19 +67,16 @@ END_VAR]]></Declaration>
 		State := DisableState.Remove_Movers;
 		
 	DisableState.Remove_Movers:
-		IF iCAGroup.IsInStandBy OR iCAGroup.IsInErrorStop THEN
+		IF iCAGroup.IsInStandBy THEN
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Removing Movers');
 			IF SUCCEEDED(iCAGroup.RemoveAllMovers()) THEN
-				GroupRemoveAllTimeOut.IN := TRUE;
 				State := DisableState.Disable_Movers;
 			END_IF
 		END_IF
 	
 	DisableState.Disable_Movers:
 		IF iCAGroup.AxisCount = 0 THEN
-			GroupRemoveAllTimeOut.IN := FALSE;
-			DisableMoverTimeOut.IN := TRUE;
-			FOR i := 0 TO (_MoverCount-1) DO
+			FOR i := 0 TO (_MoverCount - 1) DO
 				iMoverArray[i].DisableMover();
 			END_FOR
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Disabling Movers');
@@ -96,7 +89,7 @@ END_VAR]]></Declaration>
 		
 	DisableState.Disable_Group:
 		AllMoversDisabled := TRUE;
-		FOR i := 0 TO (_MoverCount-1) DO
+		FOR i := 0 TO (_MoverCount - 1) DO
 			AllMoversDisabled := AllMoversDisabled AND NOT iMoverArray[i].IsEnabled;
 		END_FOR
 		IF AllMoversDisabled THEN
@@ -113,7 +106,7 @@ END_VAR]]></Declaration>
 	DisableState.Reset_Group:
 		IF iCAGroup.IsInErrorStop THEN
 			iCAGroup.Reset();
-		END_IF	
+		END_IF
 		Base_Library.Tracing.Trace.Verbose(XtsName, '- Group Disabled');	
 		State := DisableState.Wait_For_Disabled;
 		
@@ -185,30 +178,9 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="MyCollisionGroup" Id="{c7fd1228-60ef-40d1-92d9-53941726749d}">
-      <Declaration><![CDATA[PROPERTY MyCollisionGroup : I_CollisionGroup]]></Declaration>
-      <Get Name="Get" Id="{f9297380-397a-4a19-b263-02faa8995379}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyCollisionGroup := iCAGroup;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{cab14c86-20cf-4862-8d26-8fda29b066be}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[IF MyCollisionGroup <> 0 THEN
-	iCAGroup := MyCollisionGroup;
-END_IF]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Property Name="Name" Id="{5e16715a-f42e-47f3-bc7c-03a164bf310b}">
+    <Property Name="Name" Id="{d60ff4a1-1564-44eb-9e2d-604545979e85}">
       <Declaration><![CDATA[PROPERTY Name : T_MAXSTRING]]></Declaration>
-      <Get Name="Get" Id="{300be2d2-4d52-47c7-a39c-5f955542aaa4}">
+      <Get Name="Get" Id="{9541a584-baad-4e29-8523-6265edae2bb6}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -216,40 +188,34 @@ END_VAR
           <ST><![CDATA[]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{3555c0d7-0e6b-4f32-8924-226bbc89b757}">
+      <Set Name="Set" Id="{9cef1a8e-8d58-41fd-994c-725ecc629bcc}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[XtsName := CONCAT(Name, ' Enable Sequence');]]></ST>
+          <ST><![CDATA[XtsName := CONCAT(Name, ' Disable Sequence');]]></ST>
         </Implementation>
       </Set>
     </Property>
-    <Property Name="RegisteredMoverNumber" Id="{0b14b6d7-805d-4a5c-be40-53935acbc08c}">
-      <Declaration><![CDATA[PROPERTY RegisteredMoverNumber : INT]]></Declaration>
-      <Get Name="Get" Id="{3589b4c1-9ef2-42e7-b046-82b21ded3781}">
-        <Declaration><![CDATA[VAR
-END_VAR
+    <Method Name="Reset" Id="{113baa4d-c467-43f5-96df-96216fb1bbbb}">
+      <Declaration><![CDATA[METHOD Reset : HRESULT
 ]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[RegisteredMoverNumber := _MoverCount;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Method Name="RegisterMovers" Id="{bd03069d-dc66-46bd-8900-f6243d7673f8}">
-      <Declaration><![CDATA[METHOD RegisterMovers : HRESULT
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetComponents" Id="{373c9af2-fa4c-4375-bef9-d7f4ad023fc4}">
+      <Declaration><![CDATA[METHOD SetComponents : BOOL
 VAR_INPUT
-	MyMover : I_XtsMover;
+	MoverArray : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
+	CAGroup : I_CollisionGroup;
+	MoverCount : UDINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyMover = 0 THEN
-	RegisterMovers := -1;
-	RETURN;
-END_IF
-
-iMoverArray[_MoverCount] := MyMover;
-_MoverCount := _MoverCount + 1;]]></ST>
+        <ST><![CDATA[iMoverArray := MoverArray;
+iCAGroup := CAGroup;
+_MoverCount := MoverCount;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{1832957b-67fd-4fd0-ba22-1e69838158ef}">

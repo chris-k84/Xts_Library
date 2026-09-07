@@ -46,6 +46,12 @@
     <Compile Include="Interfaces\I_MoverDetectionAlgorithm.TcIO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Interfaces\I_MoverEnableAlgorithm.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\I_MoverDisableAlgorithm.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mover Behaviours\ExtControlBehaviour.TcPOU">
       <SubType>Code</SubType>
     </Compile>

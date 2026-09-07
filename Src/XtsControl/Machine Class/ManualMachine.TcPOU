@@ -5,9 +5,6 @@
 VAR														
 	MyXts : Xts<2,1,2,1,1>('MyXts');
 	initSequence : INT;
-END_VAR
-VAR CONSTANT
-
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>

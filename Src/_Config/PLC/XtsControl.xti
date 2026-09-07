@@ -1315,7 +1315,7 @@ and will return to Group State Standby when the situation permits.
 		</DataType>
 	</DataTypes>
 	<Project GUID="{6CE98D97-B85B-476D-91E3-37ABB0FAE03C}" Name="XtsControl" PrjFilePath="..\..\XtsControl\XtsControl.plcproj" TmcFilePath="..\..\XtsControl\XtsControl.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x0000" FileArchiveSettings="#x0000">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="1" TmcHash="{4F843098-5FAE-386C-C556-B4D14A4E2F14}" TmcPath="XtsControl\XtsControl.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="1" TmcHash="{B46B3BE1-DED5-2E63-96A3-FD6C7E43FA3E}" TmcPath="XtsControl\XtsControl.tmc">
 			<Name>XtsControl Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="2" AreaNo="1">
@@ -1325,807 +1325,807 @@ and will return to Group State Standby when the situation permits.
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[0].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[0].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[1].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[1].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[2].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[2].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[3].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[3].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[4].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[4].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[5].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[5].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[6].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[6].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[7].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[7].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[8].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[8].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[9].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[9].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[10].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[10].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[11].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[11].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[12].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[12].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[13].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[13].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[14].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[14].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[15].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[15].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[16].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[16].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[17].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[17].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[18].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[18].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[19].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[19].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[20].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[20].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[21].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[21].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[22].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[22].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[23].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[23].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[24].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[24].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[25].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[25].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[26].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[26].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[27].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[27].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[28].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[28].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[29].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[29].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[30].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[30].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[31].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[31].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[32].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[32].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[33].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[33].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[34].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[34].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[35].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[35].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[36].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[36].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[37].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[37].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[38].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[38].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[39].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[39].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[40].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[40].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[41].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[41].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[42].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[42].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[43].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[43].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[44].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[44].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[45].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[45].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[46].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[46].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[47].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[47].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[48].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[48].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[49].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[49].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[50].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[50].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[51].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[51].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[52].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[52].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[53].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[53].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[54].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[54].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[55].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[55].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[56].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[56].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[57].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[57].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[58].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[58].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[59].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[59].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[60].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[60].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[61].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[61].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[62].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[62].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[63].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[63].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[64].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[64].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[65].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[65].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[66].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[66].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[67].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[67].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[68].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[68].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[69].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[69].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[70].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[70].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[71].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[71].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[72].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[72].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[73].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[73].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[74].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[74].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[75].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[75].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[76].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[76].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[77].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[77].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[78].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[78].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[79].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[79].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[80].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[80].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[81].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[81].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[82].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[82].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[83].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[83].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[84].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[84].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[85].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[85].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[86].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[86].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[87].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[87].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[88].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[88].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[89].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[89].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[90].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[90].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[91].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[91].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[92].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[92].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[93].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[93].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[94].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[94].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[95].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[95].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[96].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[96].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[97].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[97].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[98].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[98].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[99].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[99].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[100].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[100].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[101].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[101].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[102].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[102].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[103].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[103].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[104].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[104].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[105].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[105].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[106].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[106].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[107].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[107].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[108].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[108].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[109].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[109].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[110].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[110].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[111].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[111].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[112].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[112].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[113].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[113].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[114].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[114].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[115].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[115].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[116].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[116].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[117].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[117].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[118].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[118].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[119].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[119].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[120].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[120].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[121].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[121].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[122].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[122].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[123].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[123].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[124].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[124].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[125].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[125].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[126].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[126].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[127].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[127].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[128].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[128].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[129].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[129].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[130].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[130].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[131].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[131].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[132].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[132].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[133].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[133].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[134].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[134].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[135].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[135].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[136].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[136].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[137].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[137].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[138].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[138].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[139].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[139].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[140].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[140].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[141].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[141].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[142].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[142].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[143].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[143].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[144].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[144].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[145].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[145].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[146].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[146].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[147].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[147].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[148].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[148].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[149].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[149].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[150].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[150].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[151].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[151].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[152].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[152].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[153].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[153].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[154].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[154].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[155].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[155].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[156].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[156].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[157].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[157].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[158].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[158].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[159].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[159].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[160].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[160].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[161].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[161].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[162].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[162].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[163].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[163].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[164].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[164].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[165].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[165].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[166].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[166].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[167].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[167].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[168].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[168].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[169].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[169].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[170].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[170].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[171].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[171].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[172].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[172].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[173].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[173].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[174].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[174].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[175].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[175].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[176].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[176].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[177].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[177].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[178].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[178].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[179].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[179].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[180].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[180].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[181].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[181].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[182].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[182].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[183].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[183].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[184].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[184].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[185].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[185].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[186].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[186].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[187].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[187].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[188].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[188].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[189].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[189].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[190].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[190].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[191].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[191].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[192].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[192].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[193].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[193].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[194].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[194].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[195].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[195].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[196].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[196].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[197].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[197].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[198].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[198].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[199].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[199].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[200].MyAxisRef.PlcToNc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[200].MyAxisRef.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
@@ -2136,807 +2136,807 @@ and will return to Group State Standby when the situation permits.
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[0].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[0].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[1].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[1].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[2].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[2].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[3].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[3].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[4].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[4].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[5].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[5].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[6].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[6].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[7].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[7].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[8].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[8].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[9].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[9].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[10].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[10].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[11].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[11].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[12].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[12].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[13].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[13].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[14].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[14].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[15].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[15].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[16].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[16].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[17].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[17].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[18].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[18].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[19].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[19].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[20].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[20].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[21].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[21].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[22].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[22].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[23].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[23].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[24].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[24].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[25].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[25].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[26].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[26].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[27].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[27].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[28].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[28].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[29].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[29].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[30].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[30].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[31].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[31].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[32].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[32].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[33].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[33].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[34].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[34].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[35].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[35].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[36].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[36].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[37].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[37].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[38].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[38].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[39].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[39].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[40].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[40].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[41].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[41].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[42].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[42].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[43].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[43].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[44].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[44].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[45].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[45].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[46].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[46].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[47].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[47].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[48].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[48].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[49].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[49].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[50].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[50].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[51].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[51].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[52].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[52].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[53].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[53].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[54].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[54].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[55].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[55].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[56].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[56].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[57].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[57].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[58].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[58].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[59].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[59].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[60].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[60].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[61].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[61].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[62].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[62].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[63].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[63].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[64].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[64].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[65].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[65].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[66].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[66].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[67].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[67].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[68].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[68].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[69].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[69].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[70].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[70].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[71].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[71].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[72].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[72].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[73].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[73].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[74].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[74].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[75].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[75].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[76].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[76].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[77].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[77].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[78].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[78].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[79].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[79].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[80].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[80].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[81].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[81].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[82].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[82].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[83].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[83].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[84].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[84].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[85].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[85].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[86].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[86].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[87].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[87].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[88].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[88].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[89].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[89].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[90].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[90].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[91].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[91].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[92].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[92].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[93].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[93].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[94].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[94].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[95].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[95].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[96].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[96].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[97].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[97].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[98].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[98].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[99].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[99].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[100].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[100].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[101].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[101].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[102].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[102].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[103].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[103].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[104].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[104].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[105].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[105].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[106].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[106].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[107].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[107].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[108].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[108].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[109].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[109].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[110].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[110].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[111].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[111].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[112].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[112].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[113].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[113].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[114].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[114].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[115].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[115].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[116].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[116].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[117].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[117].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[118].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[118].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[119].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[119].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[120].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[120].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[121].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[121].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[122].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[122].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[123].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[123].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[124].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[124].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[125].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[125].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[126].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[126].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[127].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[127].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[128].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[128].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[129].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[129].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[130].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[130].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[131].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[131].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[132].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[132].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[133].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[133].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[134].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[134].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[135].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[135].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[136].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[136].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[137].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[137].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[138].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[138].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[139].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[139].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[140].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[140].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[141].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[141].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[142].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[142].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[143].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[143].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[144].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[144].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[145].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[145].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[146].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[146].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[147].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[147].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[148].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[148].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[149].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[149].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[150].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[150].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[151].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[151].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[152].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[152].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[153].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[153].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[154].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[154].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[155].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[155].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[156].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[156].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[157].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[157].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[158].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[158].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[159].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[159].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[160].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[160].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[161].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[161].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[162].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[162].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[163].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[163].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[164].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[164].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[165].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[165].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[166].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[166].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[167].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[167].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[168].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[168].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[169].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[169].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[170].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[170].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[171].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[171].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[172].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[172].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[173].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[173].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[174].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[174].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[175].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[175].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[176].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[176].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[177].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[177].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[178].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[178].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[179].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[179].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[180].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[180].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[181].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[181].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[182].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[182].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[183].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[183].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[184].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[184].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[185].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[185].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[186].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[186].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[187].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[187].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[188].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[188].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[189].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[189].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[190].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[190].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[191].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[191].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[192].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[192].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[193].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[193].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[194].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[194].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[195].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[195].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[196].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[196].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[197].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[197].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[198].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[198].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[199].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[199].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>ManualMotion.fbMachine.MyXts.MoverArray[200].MyAxisRef.NcToPlc</Name>
+					<Name>ManualMotion.fbMachine.MyXts.XtsMovers[200].MyAxisRef.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
