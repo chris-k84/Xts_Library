@@ -35,7 +35,7 @@ VAR
 	iXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF I_XtsTrack;
 	
 	
-	myCAGroup : CollisionGroup;
+	myCAGroup : CollisionGroup('');
 	iCollisionGroup : I_CollisionGroup := myCAGroup;
 	iXPU : I_TcIoXtsProcessingUnit;
 	
@@ -405,6 +405,7 @@ IF iXtsInterfaceProvider.Initialised THEN
 	DefaultDisableSequence.Name := _Name;
 	DefaultEnableSequence.Name := _Name;
 	DefaultMoverDetectionAlgorithm.Name := _Name;
+	myCAGroup.MyName := _Name;
 	Initialise := 0;
 	Initialising := FALSE;
 	_Initialised := TRUE;	

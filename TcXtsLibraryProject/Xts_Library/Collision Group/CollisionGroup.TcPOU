@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="CollisionGroup" Id="{8907fd76-d392-4030-a5c6-041188f5b990}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK CollisionGroup EXTENDS CyclicBase IMPLEMENTS I_CollisionGroup, I_Resettable
 VAR
 	stGroupInformation : CAGroupInfo;
 	_caGroup : Tc3_McCoordinatedMotion.AXES_GROUP_REF;
-	_MyInterface : I_Mc2CaGroup;
 	ReadGroupStatus : Tc3_McCoordinatedMotion.MC_GroupReadStatus;
 	ReadErrorCode : Tc3_McCoordinatedMotion.MC_GroupReadError;
 	resetCAGroup : ResetGroup := (MyCollisionGroup := THIS^);
@@ -87,28 +86,6 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="CAGroupXtsIoEnvInterface" Id="{212be6c7-141f-4d0f-8757-6216cdee75b6}">
-      <Declaration><![CDATA[PROPERTY CAGroupXtsIoEnvInterface : I_Mc2CaGroup]]></Declaration>
-      <Get Name="Get" Id="{58823424-db7c-4e8e-8355-ea0d3f334737}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[CAGroupXtsIoEnvInterface := _MyInterface;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{4e382846-3fb7-428a-a6d3-609bca8b4701}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyInterface := CAGroupXtsIoEnvInterface;
-IF _MyInterface <> 0 THEN
-	_Name := _MyInterface.P_ObjectName;
-END_IF]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Method Name="Cycle" Id="{6b3cc58f-cb00-45fb-b855-5eb19dbaab5d}">
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR
@@ -121,7 +98,7 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _MyInterface = 0 THEN
+        <ST><![CDATA[IF _caGroup.NcToPlc.Common.GroupType = MC_GROUP_TYPE.mcGroupTypeCA THEN
 	Cycle := -1;
 	RETURN;
 END_IF
@@ -130,6 +107,9 @@ IF _caGroup.NcToPlc.Common.GroupType <> MC_GROUP_TYPE.mcGroupTypeCA THEN
 	Cycle := -2;
 	RETURN;
 END_IF
+
+
+
 
 ReadGroupStatus(AxesGroup:= _caGroup, Enable:= TRUE );
 ReadErrorCode(AxesGroup := _caGroup, Enable := TRUE, GroupErrorId => GroupErrorCode);
@@ -272,6 +252,26 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="MyName" Id="{e6811d98-40d4-4440-8374-6ce3386e7963}">
+      <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
+      <Get Name="Get" Id="{e4b2e201-13a7-44e4-888f-38c692b30d08}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MyName := _Name;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{23a7c4bf-5187-4c13-ae50-a077450fa1d7}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Name := CONCAT(MyName, ' Collision Group');]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="RemoveAllMovers" Id="{72daaa8f-92d0-4f12-b8f9-45742cf249d6}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD RemoveAllMovers : HRESULT
 VAR
@@ -326,7 +326,7 @@ FOR i := 0 TO MaxMovers DO
 END_FOR
 IF NOT registered THEN
 	Base_Library.Tracing.Trace.Warning(_Name, 'Remove Fail - not registered');
-	RemoveAMover := -3;
+	RemoveAMover := -2;
 	RETURN;
 END_IF
 

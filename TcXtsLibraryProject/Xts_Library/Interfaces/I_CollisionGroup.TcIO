@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <Itf Name="I_CollisionGroup" Id="{3fc566cf-3f15-4187-97a8-f8d156c2ea05}">
     <Declaration><![CDATA[INTERFACE I_CollisionGroup
@@ -17,15 +17,6 @@ END_VAR
       <Get Name="Get" Id="{ea8e9e75-8d55-40e9-a8b8-94e9484ee31a}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
-    </Property>
-    <Property Name="CAGroupXtsIoEnvInterface" Id="{cd5d9462-f9cf-4d35-b22c-6eae8c9cec38}">
-      <Declaration><![CDATA[PROPERTY CAGroupXtsIoEnvInterface : I_Mc2CaGroup]]></Declaration>
-      <Get Name="Get" Id="{4b7a5dbd-2b80-4c96-b418-833e5507e708}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-      <Set Name="Set" Id="{a85ceeb9-ae20-4fa6-83c9-e0f32834f786}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
     </Property>
     <Method Name="Disable" Id="{716927af-8c3f-479d-962f-20b060f08214}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD Disable : BOOL
@@ -92,6 +83,15 @@ END_VAR
       <Get Name="Get" Id="{22fd8dae-d519-4985-b0ce-cc050c1bc3e4}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
+    </Property>
+    <Property Name="MyName" Id="{aff6cdf1-9b26-43a6-ba9d-689257a8f048}">
+      <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
+      <Get Name="Get" Id="{5ca3cf52-4b27-4e83-af5a-ee8b91d887f6}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{fa74012e-6050-43bf-830f-31fe3c733d43}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
     </Property>
     <Method Name="RemoveAllMovers" Id="{ef3d94da-4e03-448c-b177-7286a6d747e3}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD RemoveAllMovers : HRESULT

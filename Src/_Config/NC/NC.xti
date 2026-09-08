@@ -17,5 +17,14 @@
 			<Name>NC-Task 1 SVB</Name>
 		</SvbTask>
 		<Axis File="Mover Axis 1.xti" Id="1"/>
+		<Modules>
+			<Module File="Group1 (CA Group).xti"/>
+			<Parameters>
+				<Parameter>
+					<PTCID>#x300a11b</PTCID>
+					<Data>02010070</Data>
+				</Parameter>
+			</Parameters>
+		</Modules>
 	</NC>
 </TcSmItem>

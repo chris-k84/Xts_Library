@@ -118,16 +118,7 @@ END_VAR]]></Declaration>
 			_Done := TRUE;
 			Base_Library.Tracing.Trace.Info(XtsName, '- Disable Complete');
 		END_IF
-	DisableState.DisableSequenceError:
-		Base_Library.Tracing.Trace.Error(Source := XtsName, Message := 'Disable FAILED - SYSTEM FAULT - RESTART REQUIRED');
-		_Error := TRUE;
-		_Busy := FALSE;
-		DisableMoverTimeOut.IN := FALSE;
-		GroupRemoveAllTimeOut.IN := FALSE;
-		State := EnableState.EnableSequenceFailed;
-END_CASE
-DisableMoverTimeOut();
-GroupRemoveAllTimeOut();]]></ST>
+END_CASE]]></ST>
       </Implementation>
     </Method>
     <Method Name="Disable" Id="{024bbd18-8e3c-4aa1-9d04-45454423df20}">

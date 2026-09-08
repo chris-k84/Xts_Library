@@ -11,6 +11,8 @@ VAR
 	iCAGroup : I_CollisionGroup;
 	XtsName : T_MaxString;
 	State: EnableState;
+	EnableMoverTimeOut : TON := (PT := DEFAULT_ADS_TIMEOUT);
+	GroupEnableTimeOut : TON := (PT := DEFAULT_ADS_TIMEOUT);
 	_Done: BOOL;
 	_Error: BOOL;
 	_Busy: BOOL;
@@ -57,21 +59,18 @@ END_VAR]]></Declaration>
 			_Done := FALSE;
 			_Error := FALSE;
 		END_IF
-		
 	EnableState.Reset_Movers:
 		Base_Library.Tracing.Trace.Verbose(XtsName, '- Resetting Movers');
 		FOR i := 0 TO (_MoverCount - 1) DO
 			iMoverArray[i].Reset();
 		END_FOR
 		State := EnableState.Reset_Group;
-		
 	EnableState.Reset_Group:
 		IF iCAGroup.IsInErrorStop THEN
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Resetting CAGroup');
 			iCAGroup.Reset();
 		END_IF
 		State := EnableState.Add_Mover;
-		
 	EnableState.Add_Mover:
 		IF Succeeded( icagroup.AddMoverToThisGroup(MoverToAdd := iMoverArray[moverIndex])) THEN
 			AddMoverString := '';
@@ -79,30 +78,28 @@ END_VAR]]></Declaration>
 			Base_Library.Tracing.Trace.Verbose(XtsName, CONCAT(AddMoverString, ' Added To Group'));
 			State := EnableState.Check_Add_Mover;
 		ELSE
-			AddMoverString := '';
-			AddMoverString := CONCAT('- Mover ', TO_STRING(iMoverArray[moverIndex].AxisRef.NcToPlc.AxisId));
-			Base_Library.Tracing.Trace.Error(XtsName, CONCAT(AddMoverString,'- Add Mover Failed'));
+			Base_Library.Tracing.Trace.Error(XtsName, '- Add Mover Failed');
 			State := EnableState.EnableSequenceError;
 		END_IF
-		
 	EnableState.Check_Add_Mover:
 		IF moverIndex <> (_MoverCount - 1) THEN
 			moverIndex := moverIndex + 1;
 			State := EnableState.Add_Mover;
 		ELSE
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Enabling Movers');
+			EnableMoverTimeOut.IN := TRUE;
 			FOR i := 0 TO (_MoverCount-1) DO
 				iMoverArray[i].EnableMover();
 			END_FOR
 			State := EnableState.Enable_Movers;
 		END_IF
-		
 	EnableState.Enable_Movers:
 		AllMoversEnabled := TRUE;
 		FOR i := 0 TO (_MoverCount - 1) DO
 			AllMoversEnabled := TRUE AND iMoverArray[i].IsEnabled;
 		END_FOR
 		IF AllMoversEnabled THEN
+			EnableMoverTimeOut.IN := FALSE;
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Movers Enabled');
 			State := EnableState.Enable_Group;
 		END_IF
@@ -110,15 +107,15 @@ END_VAR]]></Declaration>
 			Base_Library.Tracing.Trace.Error(XtsName, '- Movers Havent Enabled');
 			State := EnableState.EnableSequenceError;
 		END_IF
-
 	EnableState.Enable_Group:
 		IF iCAGroup.Enable() THEN
+			GroupEnableTimeOut.IN := TRUE;
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- CAGroup Enabled');
 			State := EnableState.Check_Standby;
 		END_IF
-		
 	EnableState.Check_Standby:
 		IF iCAGroup.IsInStandBy THEN
+			GroupEnableTimeOut.IN := FALSE;
 			State := EnableState.Idle;
 			_Busy := FALSE;
 			_Done := TRUE;
@@ -131,13 +128,9 @@ END_VAR]]></Declaration>
 		END_IF
 	EnableState.EnableSequenceError:
 		Base_Library.Tracing.Trace.Error(Source := XtsName, Message := 'ENABLE FAILED - SYSTEM FAULT - RESTART REQUIRED');
-		_Error := TRUE;
-		_Busy := FALSE;
-		EnableMoverTimeOut.IN := FALSE;
-		GroupEnableTimeOut.IN := FALSE;
 		State := EnableState.EnableSequenceFailed;
+		
 END_CASE
-
 GroupEnableTimeOut();
 EnableMoverTimeOut();]]></ST>
       </Implementation>
