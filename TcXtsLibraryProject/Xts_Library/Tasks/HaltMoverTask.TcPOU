@@ -127,7 +127,7 @@ END_VAR
 END_IF
 
 IF NOT __ISVALIDREF(_axis) THEN
-	Execute	 := -1;
+	Execute	 := -2;
 	RETURN;
 END_IF
 

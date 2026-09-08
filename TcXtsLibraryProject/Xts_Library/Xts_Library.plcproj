@@ -15,10 +15,10 @@
     <Implicit_KindOfTask>{92f8e863-7ad7-43b9-a442-5e301b595df3}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{8e519945-2452-401e-b582-4dbb4d52b097}</Implicit_Jitter_Distribution>
     <LibraryReferences>{97c810ff-bbba-42d2-a0e7-45dbf1112fdb}</LibraryReferences>
-    <Released>true</Released>
+    <Released>false</Released>
     <Title>Xts Library</Title>
     <Company>BeckhoffUK</Company>
-    <ProjectVersion>16.0.3</ProjectVersion>
+    <ProjectVersion>16.0.4</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory>
         <Id>{4c30be10-0c29-4796-921e-62ecfda40191}</Id>
