@@ -38,6 +38,8 @@ END_VAR
 		IF SUCCEEDED(myxts.TriggerMoverDetection()) THEN
 			initSequence := 3;
 		END_IF
+	3:
+		Initialise := TRUE;
 END_CASE]]></ST>
       </Implementation>
     </Method>
@@ -67,14 +69,14 @@ END_VAR
       <Declaration><![CDATA[METHOD Start : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MyXts.EnableXTS();]]></ST>
+        <ST><![CDATA[Start := SUCCEEDED( MyXts.EnableXTS());]]></ST>
       </Implementation>
     </Method>
     <Method Name="Stop" Id="{fbb70648-c073-41fc-bad0-78d07ae8f95d}">
       <Declaration><![CDATA[METHOD Stop : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MyXts.DisableXTS();]]></ST>
+        <ST><![CDATA[Stop := Succeeded( MyXts.DisableXTS());]]></ST>
       </Implementation>
     </Method>
   </POU>
