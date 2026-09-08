@@ -295,8 +295,8 @@ and will return to Group State Standby when the situation permits.
 				</Context>
 			</Contexts>
 			<Parameters>
-				<Group Collapsed="true"><![CDATA[Geometry]]></Group>
-				<Group Collapsed="true"><![CDATA[Gap Control]]></Group>
+				<Group><![CDATA[Geometry]]></Group>
+				<Group><![CDATA[Gap Control]]></Group>
 				<Parameter HideParameter="true">
 					<Name>TraceLevel</Name>
 					<BitSize>32</BitSize>
@@ -482,11 +482,11 @@ and will return to Group State Standby when the situation permits.
 				</Value>
 				<Value>
 					<Name>Rail Length</Name>
-					<Value>3000</Value>
+					<Value>500</Value>
 				</Value>
 				<Value>
 					<Name>Rail Is Ring</Name>
-					<EnumText>TRUE</EnumText>
+					<EnumText>FALSE</EnumText>
 				</Value>
 				<Value>
 					<Name>Default Gap Control Mode</Name>

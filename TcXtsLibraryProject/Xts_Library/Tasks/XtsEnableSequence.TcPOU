@@ -110,7 +110,7 @@ END_VAR]]></Declaration>
 	EnableState.Enable_Group:
 		IF iCAGroup.Enable() THEN
 			GroupEnableTimeOut.IN := TRUE;
-			Base_Library.Tracing.Trace.Verbose(XtsName, '- CAGroup Enabled');
+			Base_Library.Tracing.Trace.Verbose(XtsName, '- CAGroup Enabling');
 			State := EnableState.Check_Standby;
 		END_IF
 	EnableState.Check_Standby:
