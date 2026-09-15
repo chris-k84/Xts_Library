@@ -6,8 +6,8 @@ STRUCT
 	PartDriveState: Tc3_XTS_Utility.DriveState;
 	IsDCLinkReady: BOOL;
 	IsPartActive: BOOL;
-	PartLength: LREAL;
 	AllModuleSsInOP: BOOL;
+	ModuleControlVoltageOK : BOOL;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>
