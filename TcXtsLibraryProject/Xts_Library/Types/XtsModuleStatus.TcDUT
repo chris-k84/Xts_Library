@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="XtsModuleStatus" Id="{3f18e60a-50e6-484a-acb1-9f78e3c896ba}">
+    <Declaration><![CDATA[TYPE XtsModuleStatus :
+STRUCT
+	Module24Vdc: REAL;
+	Module48Vdc: REAL;
+	CurrentLive: LREAL;
+	MaxCurrent: LREAL;
+	ControlVdcOK : BOOL;
+	MotorVdcOK : BOOL;
+	ModuleInFault : BOOL;
+	ModuleDriveState: Tc3_XTS_Utility.DriveState;
+	ModuleCoEStatus: Tc3_XTS_Utility.CoeStatusInfo;
+	ModuleEtherCATState: Tc3_XTS_Utility.EtherCatSlaveStateInfo;
+	IsInfeed : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
