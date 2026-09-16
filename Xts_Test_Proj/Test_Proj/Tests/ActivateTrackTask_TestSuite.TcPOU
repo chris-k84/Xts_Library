@@ -9,7 +9,7 @@ VAR
 	stubTrack : XtsTrack('');
 	testActivateTask : ActivateTrackTask := (AxisRef := stubAxis);
 	TestSequence : INT;
-	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\ActiveTrack_Tests.xml') := (TestSuiteName := 'ActiveTrack Test Suite');
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'ActiveTrack Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>

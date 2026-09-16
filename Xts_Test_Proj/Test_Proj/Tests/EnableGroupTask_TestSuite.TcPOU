@@ -3,7 +3,7 @@
   <POU Name="EnableGroupTask_TestSuite" Id="{d6808c9c-8ee3-49b7-b959-6f6cf8674f6b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK EnableGroupTask_TestSuite
 VAR
-	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\EnableGroup_Tests.xml') := (TestSuiteName := 'EnableGroup Test Suite');
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'EnableGroup Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>

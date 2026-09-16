@@ -3,7 +3,7 @@
   <POU Name="RemoveAllMover_TestSuite" Id="{eeedca17-e20e-45f9-84f5-4809781a4cf4}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK RemoveAllMover_TestSuite
 VAR
-	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\RemoveAll_Tests.xml') := (TestSuiteName := 'RemoveAll Test Suite');
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'RemoveAll Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>

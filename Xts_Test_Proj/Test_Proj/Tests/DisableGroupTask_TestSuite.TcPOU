@@ -3,7 +3,7 @@
   <POU Name="DisableGroupTask_TestSuite" Id="{408f9e89-352c-467f-9f88-651a03342266}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK DisableGroupTask_TestSuite
 VAR
-	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\DisableGroup_Tests.xml') := (TestSuiteName := 'DisableGroup Test Suite');
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'DisableGroup Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>

@@ -4,7 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK XtsMover_TestSuite
 VAR
 	_TestMoverInterface : I_TcIoXtsXpuMover;
-	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\XtsMover_Tests.xml') := (TestSuiteName := 'XtsMover Test Suite');
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'XtsMover Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>

@@ -3,7 +3,7 @@
   <POU Name="StopGroupTask_TestSuite" Id="{99aef4ad-4fc7-41c6-a957-800e5b929308}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK StopGroupTask_TestSuite
 VAR
-	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\StopGroup_Tests.xml') := (TestSuiteName := 'StopGroup Test Suite');
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'StopGroup Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>

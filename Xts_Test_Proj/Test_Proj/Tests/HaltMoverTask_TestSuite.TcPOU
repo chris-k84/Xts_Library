@@ -5,7 +5,7 @@
 VAR
 	stubAxis : AXIS_REF;
 	testHaltMover : HaltMoverTask := (AxisRef := stubAxis);
-	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\HaltMover_Tests.xml') := (TestSuiteName := 'HaltMover Test Suite');
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'HaltMover Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>

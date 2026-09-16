@@ -3,7 +3,7 @@
   <POU Name="EnableSequence_TestSuite" Id="{0a7c423d-1ec1-40a1-84cd-1f7627cf2709}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK EnableSequence_TestSuite
 VAR
-	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\EnableSequence_Tests.xml') := (TestSuiteName := 'EnableSequence Test Suite');
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'EnableSequence Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>

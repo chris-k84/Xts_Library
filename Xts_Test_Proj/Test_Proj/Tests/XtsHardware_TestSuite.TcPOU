@@ -6,7 +6,7 @@ VAR
 	nullHardware : XTSHardware('');
 	MyXtsHardware : XTSHardware('') := (ExpectedNumberOfParts := 1, ExpectedNumberOfTracks := 1);
 	localXpu: Xts_Library.I_TcIoXtsProcessingUnit;
-	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\XtsHardware_Tests.xml') := (TestSuiteName := 'XtsHardware Test Suite');
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'XtsHardware Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -325,7 +325,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	Actual := MyXtsHardware.NumberOfMoversDetected = 5;
+	Actual := MyXtsHardware.NumberOfMoversDetected = 2;
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

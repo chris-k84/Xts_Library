@@ -3,7 +3,7 @@
   <POU Name="ManualMachine" Id="{01bc7f0f-8a11-4b18-bb7f-35e7e0af063e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ManualMachine
 VAR
-		Movers : ARRAY[0..NumberOFSystemMovers] OF XtsMover;
+	Movers : ARRAY[0..NumberOFSystemMovers] OF XtsMover;
 	iMovers : ARRAY[0..NumberOFSystemMovers] OF I_XtsMover := [Movers[0],Movers[1],
 											Movers[2],Movers[3],
 											Movers[4],Movers[5],

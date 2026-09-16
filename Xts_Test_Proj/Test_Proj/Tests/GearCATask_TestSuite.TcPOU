@@ -3,7 +3,7 @@
   <POU Name="GearCATask_TestSuite" Id="{061b6bca-7336-459c-b0e8-a83117c82ddd}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK GearCATask_TestSuite
 VAR
-	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>('C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\GearTask_Tests.xml') := (TestSuiteName := 'GearTask Test Suite');
+	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'GearTask Test Suite');
 END_VAR
 ]]></Declaration>
     <Implementation>

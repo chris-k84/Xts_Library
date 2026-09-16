@@ -42,6 +42,12 @@
     <DefaultNamespace>Xts_Library</DefaultNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\I_MoverDisableAlgorithm.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\I_MoverEnableAlgorithm.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mover Behaviours\ExtControlBehaviour.TcPOU">
       <SubType>Code</SubType>
     </Compile>
