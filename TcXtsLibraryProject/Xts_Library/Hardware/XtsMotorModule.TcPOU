@@ -169,6 +169,7 @@ SensorOid := _MyInterface.GetSensorTerminalOid();
 ModuleName := _MyInterface.P_ObjectName;
 _BTN := _MyInterface.GetDriveBTN();
 _Infeed := _MyInterface.GetIsInfeed();
+_Name := _MyInterface.P_ObjectName;
 _IsInitialised := TRUE;
 ]]></ST>
       </Implementation>

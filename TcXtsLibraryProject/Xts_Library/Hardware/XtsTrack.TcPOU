@@ -62,6 +62,7 @@ CASE XtsIoEnvInitialiseState OF
 			_TrackIsClosed := _MyInterface.GetIsClosed();
 			_TrackPolarity := _MyInterface.GetPolarity();
 			_NumberOfPartsInTrack := TO_INT(_MyInterface.GetPartCount());
+			_Name := _MyInterface.P_ObjectName;
 			XtsIoEnvInitialiseState := 4;
 		END_IF
 	4:
