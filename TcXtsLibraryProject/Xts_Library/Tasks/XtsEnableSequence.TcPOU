@@ -13,8 +13,8 @@ VAR
 	_Done: BOOL;
 	_Error: BOOL;
 	_Busy: BOOL;
-	GroupEnableTimeOut : TON := (T#5S);
-	EnableMoverTimeOut : TON := (T#5S);
+	GroupEnableTimeOut : TON := (pt := T#5S);
+	EnableMoverTimeOut : TON := (pt := T#5S);
 END_VAR
 VAR CONSTANT
 	MaxMovers : INT := 255;
