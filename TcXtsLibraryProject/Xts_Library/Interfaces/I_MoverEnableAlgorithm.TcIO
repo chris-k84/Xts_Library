@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_MoverEnableAlgorithm" Id="{fc5ea72b-09f8-4cbb-94b5-463ddba58f35}">
+    <Declaration><![CDATA[INTERFACE I_MoverEnableAlgorithm EXTENDS i_Task
+]]></Declaration>
+    <Method Name="Abort" Id="{b0bc9a74-deef-4234-b8f9-c8c9d46ad2c9}">
+      <Declaration><![CDATA[
+METHOD Abort : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Enable" Id="{1180b379-2462-48af-a710-0e37d3d9156e}">
+      <Declaration><![CDATA[METHOD Enable : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Reset" Id="{0f25d9f6-907a-4ed5-8a8f-75e5bc9f2b4b}">
+      <Declaration><![CDATA[METHOD Reset : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

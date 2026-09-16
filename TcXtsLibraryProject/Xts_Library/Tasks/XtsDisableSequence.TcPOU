@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsDisableSequence" Id="{da9628bf-0fcc-432f-b10d-3ad4dd4b7f24}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsDisableSequence IMPLEMENTS I_Task
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsDisableSequence IMPLEMENTS I_MoverDisableAlgorithm
 VAR
+	XtsName : T_MaxString;
 	_caGroup : I_CollisionGroup;
 	DisableTrigger: BOOL;
 	moverNumbers : UINT := 1;
@@ -22,13 +23,12 @@ END_VAR]]></Declaration>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
     <Method Name="Abort" Id="{86211cf7-3baa-4942-994c-481ee3b2466c}">
-      <Declaration><![CDATA[METHOD Abort : BOOL
+      <Declaration><![CDATA[METHOD Abort : HRESULT
 VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[DisableTrigger := FALSE;
-State := 0;
-Abort := true;]]></ST>
+State := 0;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Busy" Id="{31fee075-b465-44b4-a7dd-aab9d5d631b4}">
@@ -52,7 +52,7 @@ END_VAR]]></Declaration>
         <ST><![CDATA[CASE State OF
 	DisableState.Idle:
 		IF DisableTrigger THEN
-			Base_Library.Tracing.Trace.Info('Disable Seqeuence', '- Disable Starting');
+			Base_Library.Tracing.Trace.Info(XtsName, '- Disable Starting');
 			Cycle := S_PENDING;
 			DisableTrigger := FALSE;
 			_Busy := TRUE;
@@ -63,14 +63,14 @@ END_VAR]]></Declaration>
 		
 	DisableState.Group_Stop:
 		IF _caGroup.IsMoving THEN
-			Base_Library.Tracing.Trace.Verbose('Disable Seqeuence', '- Group Stopping');
+			Base_Library.Tracing.Trace.Verbose(XtsName, '- Group Stopping');
 			_caGroup.GroupStop();
 		END_IF
 		State := DisableState.Remove_Movers;
 		
 	DisableState.Remove_Movers:
 		IF _caGroup.IsInStandBy THEN
-			Base_Library.Tracing.Trace.Verbose('Disable Seqeuence', '- Removing Movers');
+			Base_Library.Tracing.Trace.Verbose(XtsName, '- Removing Movers');
 			IF SUCCEEDED(_caGroup.RemoveAllMovers()) THEN
 				State := DisableState.Disable_Movers;
 			END_IF
@@ -81,7 +81,7 @@ END_VAR]]></Declaration>
 			FOR i := 0 TO (_registeredNumberOfMovers-1) DO
 				arrMovers[i].DisableMover();
 			END_FOR
-			Base_Library.Tracing.Trace.Verbose('Disable Seqeuence', '- Disabling Movers');
+			Base_Library.Tracing.Trace.Verbose(XtsName, '- Disabling Movers');
 			State := DisableState.Disable_Group;
 		END_IF
 		
@@ -91,7 +91,7 @@ END_VAR]]></Declaration>
 			AllMoversDisabled := AllMoversDisabled AND NOT arrMovers[i].IsEnabled;
 		END_FOR
 		IF AllMoversDisabled THEN
-			Base_Library.Tracing.Trace.Verbose('Disable Seqeuence', '- Mover Disabled');
+			Base_Library.Tracing.Trace.Verbose(XtsName, '- Mover Disabled');
 			State := DisableState.Reset_Group;
 			_caGroup.Disable();
 		END_IF
@@ -100,7 +100,7 @@ END_VAR]]></Declaration>
 		IF _caGroup.IsInErrorStop THEN
 			_caGroup.Reset();
 		END_IF	
-		Base_Library.Tracing.Trace.Verbose('Disable Seqeuence', '- Group Disabled');	
+		Base_Library.Tracing.Trace.Verbose(XtsName, '- Group Disabled');	
 		State := DisableState.Wait_For_Disabled;
 		
 	DisableState.Wait_For_Disabled:
@@ -109,7 +109,7 @@ END_VAR]]></Declaration>
 			Cycle := S_OK;
 			_Busy := FALSE;
 			_Done := TRUE;
-			Base_Library.Tracing.Trace.Info('Disable Seqeuence', '- Disable Complete');
+			Base_Library.Tracing.Trace.Info(XtsName, '- Disable Complete');
 		END_IF
 	ELSE
 		Cycle := E_FAIL;
@@ -188,6 +188,25 @@ END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>
+    <Property Name="Name" Id="{5e16715a-f42e-47f3-bc7c-03a164bf310b}">
+      <Declaration><![CDATA[PROPERTY Name : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{300be2d2-4d52-47c7-a39c-5f955542aaa4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{3555c0d7-0e6b-4f32-8924-226bbc89b757}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[XtsName := CONCAT(Name, ' Enable Sequence');]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Property Name="RegisteredMoverNumber" Id="{0b14b6d7-805d-4a5c-be40-53935acbc08c}">
       <Declaration><![CDATA[PROPERTY RegisteredMoverNumber : INT]]></Declaration>
       <Get Name="Get" Id="{3589b4c1-9ef2-42e7-b046-82b21ded3781}">
@@ -213,6 +232,13 @@ END_IF
 
 arrMovers[_registeredNumberOfMovers] := MyMover;
 _registeredNumberOfMovers := _registeredNumberOfMovers + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Reset" Id="{1832957b-67fd-4fd0-ba22-1e69838158ef}">
+      <Declaration><![CDATA[METHOD Reset : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
   </POU>

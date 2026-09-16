@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsEnableSequence" Id="{b7e7ab09-3a30-4ddb-a242-e0b5aa00cbc9}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsEnableSequence  IMPLEMENTS I_Task
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsEnableSequence  IMPLEMENTS I_MoverEnableAlgorithm
 VAR
+	XtsName : T_MaxString;
 	_caGroup : I_CollisionGroup;
 	moverIndex : UINT;
 	AllMoversEnabled: BOOL;
@@ -23,7 +24,7 @@ END_VAR]]></Declaration>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
     <Method Name="Abort" Id="{9cec9788-9ce4-4a9f-821c-172bdb3141aa}">
-      <Declaration><![CDATA[METHOD Abort : BOOL
+      <Declaration><![CDATA[METHOD Abort : HRESULT
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[EnableTrigger := FALSE;
@@ -52,7 +53,7 @@ END_VAR]]></Declaration>
         <ST><![CDATA[CASE State OF
 	EnableState.Idle:
 		IF EnableTrigger THEN
-			Base_Library.Tracing.Trace.Info('Enable Sequence', '- Enable Starting');
+			Base_Library.Tracing.Trace.Info(XtsName, '- Enable Starting');
 			Cycle := S_PENDING;
 			State := EnableState.Reset_Movers;
 			EnableTrigger := FALSE;
@@ -63,7 +64,7 @@ END_VAR]]></Declaration>
 		END_IF
 		
 	EnableState.Reset_Movers:
-		Base_Library.Tracing.Trace.Verbose('Enable Sequence', '- Resetting Movers');
+		Base_Library.Tracing.Trace.Verbose(XtsName, '- Resetting Movers');
 		FOR i := 0 TO (_registeredNumberOfMovers-1) DO
 			arrMovers[i].Reset();
 		END_FOR
@@ -71,7 +72,7 @@ END_VAR]]></Declaration>
 		
 	EnableState.Reset_Group:
 		IF _caGroup.IsInErrorStop THEN
-			Base_Library.Tracing.Trace.Verbose('Enable Sequence', '- Resetting CAGroup');
+			Base_Library.Tracing.Trace.Verbose(XtsName, '- Resetting CAGroup');
 			_caGroup.Reset();
 		END_IF
 		State := EnableState.Add_Mover;
@@ -80,10 +81,10 @@ END_VAR]]></Declaration>
 		IF Succeeded( _caGroup.AddMoverToThisGroup(MoverToAdd := arrMovers[moverIndex])) THEN
 			AddMoverString := '';
 			AddMoverString := CONCAT('- Mover ', TO_STRING(arrMovers[moverIndex].AxisRef.NcToPlc.AxisId));
-			Base_Library.Tracing.Trace.Verbose('Enable Sequence', CONCAT(AddMoverString, ' Added To Group'));
+			Base_Library.Tracing.Trace.Verbose(XtsName, CONCAT(AddMoverString, ' Added To Group'));
 			State := EnableState.Check_Add_Mover;
 		ELSE
-			Base_Library.Tracing.Trace.Error('Enable Sequence', '- Add Mover Failed');
+			Base_Library.Tracing.Trace.Error(XtsName, '- Add Mover Failed');
 			State := EnableState.EnableSequenceError;
 		END_IF
 
@@ -92,7 +93,7 @@ END_VAR]]></Declaration>
 			moverIndex := moverIndex + 1;
 			State := EnableState.Add_Mover;
 		ELSE
-			Base_Library.Tracing.Trace.Verbose('Enable Sequence', '- Enabling Movers');
+			Base_Library.Tracing.Trace.Verbose(XtsName, '- Enabling Movers');
 			FOR i := 0 TO (_registeredNumberOfMovers-1) DO
 				arrMovers[i].EnableMover();
 			END_FOR
@@ -106,18 +107,18 @@ END_VAR]]></Declaration>
 		END_FOR
 		IF AllMoversEnabled THEN
 			EnableMoverTimeOut.IN := FALSE;
-			Base_Library.Tracing.Trace.Verbose('Enable Sequence', '- Movers Enabled');
+			Base_Library.Tracing.Trace.Verbose(XtsName, '- Movers Enabled');
 			State := EnableState.Enable_Group;
 		END_IF
 		IF EnableMoverTimeOut.Q THEN
-			Base_Library.Tracing.Trace.Verbose('Enable Sequence', '- Movers Havent Enabled');
+			Base_Library.Tracing.Trace.Verbose(XtsName, '- Movers Havent Enabled');
 			State := EnableState.EnableSequenceError;
 		END_IF
 
 	EnableState.Enable_Group:
 		IF _caGroup.Enable() THEN
 			GroupEnableTimeOut.IN := TRUE;
-			Base_Library.Tracing.Trace.Verbose('Enable Sequence', '- CAGroup Enabling');
+			Base_Library.Tracing.Trace.Verbose(XtsName, '- CAGroup Enabling');
 			State := EnableState.Check_Standby;
 		END_IF
 		
@@ -128,14 +129,14 @@ END_VAR]]></Declaration>
 			_Busy := FALSE;
 			_Done := TRUE;
 			Cycle := S_OK;
-			Base_Library.Tracing.Trace.Info('Enable Sequence', '- Enable Complete');
+			Base_Library.Tracing.Trace.Info(XtsName, '- Enable Complete');
 		END_IF
 		IF GroupEnableTimeOut.Q THEN
-			Base_Library.Tracing.Trace.Error('Enable Sequence', '- Group hasnt Enabled');
+			Base_Library.Tracing.Trace.Error(XtsName, '- Group hasnt Enabled');
 			State := EnableState.EnableSequenceError;
 		END_IF
 	EnableState.EnableSequenceError:
-		Base_Library.Tracing.Trace.Error(Source := 'Enable Sequence', Message := 'ENABLE FAILED - SYSTEM FAULT - RESTART REQUIRED');
+		Base_Library.Tracing.Trace.Error(Source := XtsName, Message := 'ENABLE FAILED - SYSTEM FAULT - RESTART REQUIRED');
 		State := EnableState.EnableSequenceFailed;
 	ELSE
 		Cycle := E_FAIL;
@@ -217,6 +218,25 @@ END_IF]]></ST>
         </Implementation>
       </Set>
     </Property>
+    <Property Name="Name" Id="{52cf67ff-b6ca-4762-b511-ef24ddd9e725}">
+      <Declaration><![CDATA[PROPERTY Name : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{a2b7398c-3da2-452f-b1f5-87f6ef9c1ac9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{5f34baa4-89ce-45f4-8055-3eba61c3d13b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[XtsName := CONCAT(Name, ' Enable Sequence');]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Property Name="RegisteredMoverNumber" Id="{c8bee2ee-ca4a-4835-99be-311639b86acb}">
       <Declaration><![CDATA[PROPERTY RegisteredMoverNumber : INT]]></Declaration>
       <Get Name="Get" Id="{a58b5109-c013-43aa-a8d9-172f8459e56c}">
@@ -241,6 +261,13 @@ END_IF
 
 arrMovers[_registeredNumberOfMovers] := MyMover;
 _registeredNumberOfMovers := _registeredNumberOfMovers + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Reset" Id="{b9d8eaad-637c-4dcb-a8aa-5298427739c9}">
+      <Declaration><![CDATA[METHOD Reset : HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
   </POU>
