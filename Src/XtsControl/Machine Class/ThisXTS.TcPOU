@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <POU Name="ThisXTS" Id="{adc628a7-7a2e-4111-937d-b66eb159493c}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ThisXTS EXTENDS Xts
 VAR
@@ -35,7 +35,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[FOR i := 0 TO _registeredNumberOfMovers - 1 DO 
-	_MoverArray[i].MoveTo(_homePosition,1000.0,FALSE);
+	iMovers[i].MoveTo(_homePosition,1000.0,FALSE);
 END_FOR]]></ST>
       </Implementation>
     </Method>

@@ -22,6 +22,7 @@ VAR
 	CAGroupError : BOOL;
 	_ErrorID : UDINT;
 	Initialising : BOOL;
+	XtsOperatingMode : OperationMode;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
@@ -209,6 +210,7 @@ CASE XtsHwState OF
 			Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'XTS_Utility Initiliased');
 			_XPU := _XtsIoEnvVar.GetXPUInterface(_MyXts);
 			_name := _XPU.P_ObjectName;
+			XtsOperatingMode := _XPU.GetOperationMode();
 			_MyXtsHardware.MyXpu := _XPU;
 			EnableSequence.Name := _Name;
 			DisableSequence.Name := _Name;

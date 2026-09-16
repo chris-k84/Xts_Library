@@ -11,7 +11,7 @@ VAR
 	systemXtsioEnvVar : XtsIoEnvVar;	
 	systemXtsHardware : XTSHardware('MyXTS');				
 	systemCAGroup : CollisionGroup;															
-	MyXts : ThisXTS(systemXtsioEnvVar,systemXtsHardware,systemCAGroup) := (MyXts := 1, 
+	MyXts : ThisXTS('Test',systemXtsioEnvVar,systemXtsHardware,systemCAGroup) := (MyXts := 1, 
 																			ExpectedNumberOfParts := 1, 
 																			ExpectedNumberOfTracks := 1, 
 																			HomePosition := SystemConstants.XtsHomePosition);

@@ -16,7 +16,7 @@ VAR
 	InSim : BOOL;
 	PartName: STRING;
 	_IsInitialised : BOOL := FALSE;
-	_OperationMode: UDINT;
+	_OperationMode: OperationMode;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -106,13 +106,12 @@ CASE XtsIoEnvInitialiseState OF
 		END_IF
 	1:
 		MyModuleCount := _MyInterface.P_ModuleCount;
-		IF InSim THEN
+		IF _OperationMode = OperationMode.Simulation THEN
 			XtsIoEnvInitialiseState := 3;
 			FOR i := 0 TO UDINT_TO_UINT(MyModuleCount - 1) DO
 				XtsModules[i].SetInSim();
 				iXtsModules[i] := XtsModules[i];
 			END_FOR
-			InSim := true;
 		ELSE
 			FOR i := 0 TO UDINT_TO_UINT(MyModuleCount - 1) DO
 				XtsModules[i].MyModuleInterface := _MyInterface.ModuleTcIo(i + 1);
@@ -223,7 +222,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[InSim := true;]]></ST>
+        <ST><![CDATA[_OperationMode := OperationMode.Simulation;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetPartOriginTransform" Id="{8b2a2802-8f42-46b7-9bd8-2e1c722c9321}" FolderPath="Commands\">

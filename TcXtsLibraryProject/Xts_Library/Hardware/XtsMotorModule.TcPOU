@@ -9,7 +9,6 @@ VAR
 	MaxCurrent: LREAL;
 	Nominal24Vdc : REAL := 24.0;
 	Nominal48Vdc : REAL := 48.0;
-	InSim : BOOL;
 	Module24Vdc: REAL;
 	Module48Vdc: REAL;
 	ModuleState: Tc3_XTS_Utility.DriveState;
@@ -22,7 +21,7 @@ VAR
 	DiagHistory: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxDiagMessagesPerModule] OF Tc3_XTS_Utility.DiagHistoryEntry;
 	EtherCATState: Tc3_XTS_Utility.EtherCatSlaveStateInfo;
 	Status : XtsModuleStatus;
-	_OperationMode: UDINT;
+	_OperationMode: OperationMode;
 	ControlVoltageErrorRisingTrigger: R_TRIG;
 	ControlVoltageErrorFallingTrigger: R_TRIG;
 	MotorVoltageErrorRisingTrigger: R_TRIG;
@@ -58,7 +57,7 @@ _MyInterface.TriggerAcknowledgeMessages();]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[IF NOT InSim THEN
+          <ST><![CDATA[IF _OperationMode <> OperationMode.Simulation THEN
 	Act24Vdc := TO_LREAL(Module24Vdc);
 END_IF]]></ST>
         </Implementation>
@@ -71,7 +70,7 @@ END_IF]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[IF NOT InSim THEN
+          <ST><![CDATA[IF _OperationMode <> OperationMode.Simulation THEN
 	Act48Vdc := Module48Vdc;
 END_IF]]></ST>
         </Implementation>
@@ -224,7 +223,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[InSim := true;]]></ST>
+        <ST><![CDATA[_OperationMode := OperationMode.Simulation;]]></ST>
       </Implementation>
     </Method>
   </POU>

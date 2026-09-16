@@ -10,6 +10,7 @@ STRUCT
 	IsDCLinkVoltageReady : BOOL;
 	AreAnyPartsInError : BOOL;
 	State : DriveState;
+	XtsOperatingMode : OperationMode;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
