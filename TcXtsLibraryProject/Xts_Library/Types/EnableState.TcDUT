@@ -13,7 +13,9 @@ TYPE EnableState :
     Check_Add_Mover := 40,
     Enable_Movers := 50,
     Enable_Group := 60,
-    Check_Standby := 70
+    Check_Standby := 70,
+	EnableSequenceError := 90,
+	EnableSequenceFailed := 99
 );
 END_TYPE
 ]]></Declaration>

@@ -13,6 +13,8 @@ VAR
 	_Done: BOOL;
 	_Error: BOOL;
 	_Busy: BOOL;
+	GroupEnableTimeOut : TON := (T#5S);
+	EnableMoverTimeOut : TON := (T#5S);
 END_VAR
 VAR CONSTANT
 	MaxMovers : INT := 255;
@@ -44,11 +46,13 @@ END_VAR
       <Declaration><![CDATA[METHOD Cycle : HRESULT
 VAR
 	i : INT;
+	AddMoverString : T_MaxString;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE State OF
 	EnableState.Idle:
 		IF EnableTrigger THEN
+			Base_Library.Tracing.Trace.Info('Enable Sequence', '- Enable Starting');
 			Cycle := S_PENDING;
 			State := EnableState.Reset_Movers;
 			EnableTrigger := FALSE;
@@ -59,6 +63,7 @@ END_VAR]]></Declaration>
 		END_IF
 		
 	EnableState.Reset_Movers:
+		Base_Library.Tracing.Trace.Verbose('Enable Sequence', '- Resetting Movers');
 		FOR i := 0 TO (_registeredNumberOfMovers-1) DO
 			arrMovers[i].Reset();
 		END_FOR
@@ -66,21 +71,28 @@ END_VAR]]></Declaration>
 		
 	EnableState.Reset_Group:
 		IF _caGroup.IsInErrorStop THEN
+			Base_Library.Tracing.Trace.Verbose('Enable Sequence', '- Resetting CAGroup');
 			_caGroup.Reset();
 		END_IF
 		State := EnableState.Add_Mover;
 		
 	EnableState.Add_Mover:
 		IF Succeeded( _caGroup.AddMoverToThisGroup(MoverToAdd := arrMovers[moverIndex])) THEN
+			AddMoverString := '';
+			AddMoverString := CONCAT('- Mover ', TO_STRING(arrMovers[moverIndex].AxisRef.NcToPlc.AxisId));
+			Base_Library.Tracing.Trace.Verbose('Enable Sequence', CONCAT(AddMoverString, ' Added To Group'));
 			State := EnableState.Check_Add_Mover;
+		ELSE
+			Base_Library.Tracing.Trace.Error('Enable Sequence', '- Add Mover Failed');
+			State := EnableState.EnableSequenceError;
 		END_IF
-		
-		
+
 	EnableState.Check_Add_Mover:
 		IF moverIndex <> (_registeredNumberOfMovers-1) THEN
 			moverIndex := moverIndex + 1;
 			State := EnableState.Add_Mover;
 		ELSE
+			Base_Library.Tracing.Trace.Verbose('Enable Sequence', '- Enabling Movers');
 			FOR i := 0 TO (_registeredNumberOfMovers-1) DO
 				arrMovers[i].EnableMover();
 			END_FOR
@@ -89,32 +101,51 @@ END_VAR]]></Declaration>
 		
 	EnableState.Enable_Movers:
 		AllMoversEnabled := TRUE;
-		FOR i := 0 TO (_registeredNumberOfMovers-1) DO
+		FOR i := 0 TO (_registeredNumberOfMovers - 1) DO
 			AllMoversEnabled := TRUE AND arrMovers[i].IsEnabled;
 		END_FOR
 		IF AllMoversEnabled THEN
-			
+			EnableMoverTimeOut.IN := FALSE;
+			Base_Library.Tracing.Trace.Verbose('Enable Sequence', '- Movers Enabled');
 			State := EnableState.Enable_Group;
+		END_IF
+		IF EnableMoverTimeOut.Q THEN
+			Base_Library.Tracing.Trace.Verbose('Enable Sequence', '- Movers Havent Enabled');
+			State := EnableState.EnableSequenceError;
 		END_IF
 
 	EnableState.Enable_Group:
 		IF _caGroup.Enable() THEN
+			GroupEnableTimeOut.IN := TRUE;
+			Base_Library.Tracing.Trace.Verbose('Enable Sequence', '- CAGroup Enabling');
 			State := EnableState.Check_Standby;
 		END_IF
 		
 	EnableState.Check_Standby:
 		IF _caGroup.IsInStandBy THEN
+			GroupEnableTimeOut.IN := FALSE;
 			State := EnableState.Idle;
 			_Busy := FALSE;
 			_Done := TRUE;
 			Cycle := S_OK;
+			Base_Library.Tracing.Trace.Info('Enable Sequence', '- Enable Complete');
 		END_IF
+		IF GroupEnableTimeOut.Q THEN
+			Base_Library.Tracing.Trace.Error('Enable Sequence', '- Group hasnt Enabled');
+			State := EnableState.EnableSequenceError;
+		END_IF
+	EnableState.EnableSequenceError:
+		Base_Library.Tracing.Trace.Error(Source := 'Enable Sequence', Message := 'ENABLE FAILED - SYSTEM FAULT - RESTART REQUIRED');
+		State := EnableState.EnableSequenceFailed;
 	ELSE
 		Cycle := E_FAIL;
 		_Busy := FALSE;
 		_Done := FALSE;
 		_Error := TRUE;
-END_CASE]]></ST>
+END_CASE
+
+GroupEnableTimeOut();
+EnableMoverTimeOut();]]></ST>
       </Implementation>
     </Method>
     <Property Name="Done" Id="{81ec7814-89cb-4301-940b-bd26fe7c0dd9}">
