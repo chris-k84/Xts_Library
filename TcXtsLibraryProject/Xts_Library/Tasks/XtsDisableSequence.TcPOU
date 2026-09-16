@@ -52,6 +52,7 @@ END_VAR]]></Declaration>
         <ST><![CDATA[CASE State OF
 	DisableState.Idle:
 		IF DisableTrigger THEN
+			Base_Library.Tracing.Trace.Info('Disable Seqeuence', '- Disable Starting');
 			Cycle := S_PENDING;
 			DisableTrigger := FALSE;
 			_Busy := TRUE;
@@ -62,12 +63,14 @@ END_VAR]]></Declaration>
 		
 	DisableState.Group_Stop:
 		IF _caGroup.IsMoving THEN
+			Base_Library.Tracing.Trace.Verbose('Disable Seqeuence', '- Group Stopping');
 			_caGroup.GroupStop();
 		END_IF
 		State := DisableState.Remove_Movers;
 		
 	DisableState.Remove_Movers:
 		IF _caGroup.IsInStandBy THEN
+			Base_Library.Tracing.Trace.Verbose('Disable Seqeuence', '- Removing Movers');
 			IF SUCCEEDED(_caGroup.RemoveAllMovers()) THEN
 				State := DisableState.Disable_Movers;
 			END_IF
@@ -78,6 +81,7 @@ END_VAR]]></Declaration>
 			FOR i := 0 TO (_registeredNumberOfMovers-1) DO
 				arrMovers[i].DisableMover();
 			END_FOR
+			Base_Library.Tracing.Trace.Verbose('Disable Seqeuence', '- Disabling Movers');
 			State := DisableState.Disable_Group;
 		END_IF
 		
@@ -87,6 +91,7 @@ END_VAR]]></Declaration>
 			AllMoversDisabled := AllMoversDisabled AND NOT arrMovers[i].IsEnabled;
 		END_FOR
 		IF AllMoversDisabled THEN
+			Base_Library.Tracing.Trace.Verbose('Disable Seqeuence', '- Mover Disabled');
 			State := DisableState.Reset_Group;
 			_caGroup.Disable();
 		END_IF
@@ -95,6 +100,7 @@ END_VAR]]></Declaration>
 		IF _caGroup.IsInErrorStop THEN
 			_caGroup.Reset();
 		END_IF	
+		Base_Library.Tracing.Trace.Verbose('Disable Seqeuence', '- Group Disabled');	
 		State := DisableState.Wait_For_Disabled;
 		
 	DisableState.Wait_For_Disabled:
@@ -103,6 +109,7 @@ END_VAR]]></Declaration>
 			Cycle := S_OK;
 			_Busy := FALSE;
 			_Done := TRUE;
+			Base_Library.Tracing.Trace.Info('Disable Seqeuence', '- Disable Complete');
 		END_IF
 	ELSE
 		Cycle := E_FAIL;
