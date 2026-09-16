@@ -4,10 +4,10 @@
     <Declaration><![CDATA[FUNCTION_BLOCK XTSHardware EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XtsHardware, I_Object
 VAR
 	XtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart('');
-	IXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF XtsPart('');
+	IXtsParts : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxPartsPerTrack] OF I_XtsPart;
 	_MyNumberParts : INT;
 	XtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
-	IXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF XtsTrack('');
+	IXtsTracks : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF I_XtsTrack;
 	_MyNumberTracks : INT;
 	TrackOTCIDs: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxXtsTracksPerXpu] OF Tc3_XTS_Utility.OTCID;
 	_MyXpu : Tc3_XTS_Utility.I_TcIoXtsProcessingUnit;

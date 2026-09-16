@@ -7,8 +7,8 @@ VAR
 	XtsIoEnvInitialiseState : INT;
 	MyModuleCount : UDINT;
 	Status : XtsPartStatus;
-	MyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF XtsMotorModule('');
-	IMyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF I_XtsMotorModule;
+	XtsModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF XtsMotorModule('');
+	iXtsModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF I_XtsMotorModule;
 	PartStateRisingError: R_TRIG;	
 	PartStateFallingError: F_TRIG;	
 	ModuleIndex: UDINT := 1;
@@ -59,13 +59,13 @@ END_IF
 			
 status.ModuleControlVoltageOK := TRUE;
 FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-	IF NOT iMyModules[i].ControlVdcOK THEN
+	IF NOT iXtsModules[i].ControlVdcOK THEN
 		status.ModuleControlVoltageOK := FALSE;
 	END_IF
 END_FOR
 
 FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-	MyModules[i].Cycle();
+	XtsModules[i].Cycle();
 END_FOR]]></ST>
       </Implementation>
     </Method>
@@ -109,14 +109,14 @@ CASE XtsIoEnvInitialiseState OF
 		IF InSim THEN
 			XtsIoEnvInitialiseState := 3;
 			FOR i := 0 TO UDINT_TO_UINT(MyModuleCount - 1) DO
-				MyModules[i].SetInSim();
-				IMyModules[i] := MyModules[i];
+				XtsModules[i].SetInSim();
+				iXtsModules[i] := XtsModules[i];
 			END_FOR
 			InSim := true;
 		ELSE
 			FOR i := 0 TO UDINT_TO_UINT(MyModuleCount - 1) DO
-				MyModules[i].MyModuleInterface := _MyInterface.ModuleTcIo(i + 1);
-				IMyModules[i] := MyModules[i];
+				XtsModules[i].MyModuleInterface := _MyInterface.ModuleTcIo(i + 1);
+				iXtsModules[i] := XtsModules[i];
 			END_FOR
 			XtsIoEnvInitialiseState := 2;
 		END_IF
@@ -124,7 +124,7 @@ CASE XtsIoEnvInitialiseState OF
 	2:
 		XtsIoEnvInitialiseState := 3;
 		FOR i := 0 TO UDINT_TO_UINT(MyModuleCount-1) DO
-			IF FAILED(MyModules[i].Initialise()) THEN
+			IF FAILED(XtsModules[i].Initialise()) THEN
 				XtsIoEnvInitialiseState := 2;
 			END_IF
 		END_FOR
@@ -156,7 +156,7 @@ END_VAR
         <ST><![CDATA[Is24VBusOK := TRUE;
 IF NOT InSim THEN
 	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-		IF NOT MyModules[i].ControlVdcOK THEN
+		IF NOT XtsModules[i].ControlVdcOK THEN
 			Is24VBusOK := FALSE;
 		END_IF
 	END_FOR
@@ -174,7 +174,7 @@ END_VAR
         <ST><![CDATA[Is48VBusOK := TRUE;
 IF NOT InSim THEN
 	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-		IF NOT MyModules[i].MotorVdcOK THEN
+		IF NOT XtsModules[i].MotorVdcOK THEN
 			Is48VBusOK := FALSE;
 		END_IF
 	END_FOR
@@ -211,7 +211,7 @@ END_VAR
         <ST><![CDATA[ResetPart := _MyInterface.TriggerReset();
 IF NOT InSim THEN
 	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
-		MyModules[i].AcknowledgeMessages();
+		XtsModules[i].AcknowledgeMessages();
 	END_FOR
 END_IF	
 CurrentErrorId := 0;]]></ST>
