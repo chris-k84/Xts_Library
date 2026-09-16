@@ -121,6 +121,11 @@ END_VAR
 	RETURN;
 END_IF
 
+IF _caGroup.NcToPlc.Common.GroupType <> MC_GROUP_TYPE.mcGroupTypeCA THEN
+	Cycle := -2;
+	RETURN;
+END_IF
+
 
 ReadGroupStatus(AxesGroup:= _caGroup, Enable:= TRUE );
 ReadErrorCode(AxesGroup := _caGroup, Enable := TRUE, GroupErrorId => GroupErrorCode);

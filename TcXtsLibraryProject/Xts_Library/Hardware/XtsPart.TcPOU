@@ -9,12 +9,13 @@ VAR
 	Status : XtsPartStatus;
 	MyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF XtsMotorModule('');
 	IMyModules : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxModulesPerPart] OF I_XtsMotorModule;
+	PartStateRisingError: R_TRIG;	
+	PartStateFallingError: F_TRIG;	
 	ModuleIndex: UDINT := 1;
 	CurrentErrorId : UDINT;
 	InSim : BOOL;
 	PartName: STRING;
 	_IsInitialised : BOOL := FALSE;
-	_HasError : BOOL;
 	_OperationMode: UDINT;
 END_VAR]]></Declaration>
     <Implementation>
@@ -44,11 +45,18 @@ Status.IsDCLinkReady := _MyInterface.GetIsDcLinkVoltageReady();
 Status.IsPartActive := _MyInterface.GetIsActive();
 Status.AllModuleSsInOP := _MyInterface.GetAreAllModulesInOp();
 
-_HasError := FALSE;
-_HasError := (Status.PartDriveState = DriveState.Fault) OR 
-				(Status.PartDriveState = DriveState.FaultReactionActive) OR
-				(NOT Status.IsDCLinkReady);
-				
+status.HasError := (Status.PartDriveState = DriveState.Fault) OR 
+				(Status.PartDriveState = DriveState.FaultReactionActive);
+
+PartStateRisingError(CLK := status.HasError);
+PartStateFallingError(CLK := status.HasError);
+IF PartStateRisingError.Q THEN
+	Base_Library.Tracing.Trace.Error(_name, 'Part in error state');
+END_IF
+IF PartStateFallingError.Q THEN
+	Base_Library.Tracing.Trace.Info(_name, 'Part in normal state');
+END_IF
+			
 status.ModuleControlVoltageOK := TRUE;
 FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 	IF NOT iMyModules[i].ControlVdcOK THEN
