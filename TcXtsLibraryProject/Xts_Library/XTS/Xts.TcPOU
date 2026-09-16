@@ -216,26 +216,31 @@ CASE XtsHwState OF
 	XtsSystemInitialisation.WaitingForHardwareToInitialise:
 		IF _MyXtsHardware.Initialised THEN
 			MyName := _MyXtsHardware.MyName;
+			Base_Library.Tracing.Trace.Verbose(Source := MyName, Message := 'Mover Detection Sequence Started');
 			XtsHwState := XtsSystemInitialisation.SetATrackForDetection;
 		END_IF
 	
 	XtsSystemInitialisation.SetATrackForDetection:
 		IF SUCCEEDED(_MyXtsHardware.SetATrackForDetection(1)) THEN
+			Base_Library.Tracing.Trace.Verbose(Source := MyName, Message := 'Track 1 set for detection');
 			XtsHwState := XtsSystemInitialisation.TriggeringRedetection;
 		END_IF
 		
 	XtsSystemInitialisation.TriggeringRedetection:
+		Base_Library.Tracing.Trace.Verbose(Source := MyName, Message := 'Mover Redetection Started');
 		IF SUCCEEDED(_MyXtsHardware.TriggerMoverRedetection()) THEN
 			XtsHwState := XtsSystemInitialisation.WaitingForAllMoversValid;
 		END_IF
 		
 	XtsSystemInitialisation.WaitingForAllMoversValid:
 		IF _MyXtsHardware.AllMoverPositionsValid THEN
+			Base_Library.Tracing.Trace.Verbose(Source := MyName, Message := 'All Movers Valid');
 			XtsHwState := XtsSystemInitialisation.CheckingAllMoverFound;
 		END_IF
 	
 	XtsSystemInitialisation.CheckingAllMoverFound:
 		IF _MyXtsHardware.AreExpectedMoversFound() THEN
+			Base_Library.Tracing.Trace.Verbose(Source := MyName, Message := 'Configured Movers = Detected Movers');
 			DetectedMoverCount := _MyXtsHardware.NumberOfMoversDetected;
 			XtsHwState := XtsSystemInitialisation.CheckIfXtsInSimMode;
 		END_IF
@@ -254,6 +259,7 @@ CASE XtsHwState OF
 	
 	XtsSystemInitialisation.TriggeringMoverIdDetection:
 		IF _MyXtsHardware.IsIDDetectionStandard() OR_ELSE SUCCEEDED(_MyXtsHardware.TriggerMoverIDDetection()) THEN
+			Base_Library.Tracing.Trace.Verbose(Source := MyName, Message := 'Mover ID Detection Complete');
 			XtsHwState := XtsSystemInitialisation.XtsInitialised;
 		END_IF
 	
