@@ -84,7 +84,9 @@ END_VAR]]></Declaration>
 			Base_Library.Tracing.Trace.Verbose(XtsName, CONCAT(AddMoverString, ' Added To Group'));
 			State := EnableState.Check_Add_Mover;
 		ELSE
-			Base_Library.Tracing.Trace.Error(XtsName, '- Add Mover Failed');
+			AddMoverString := '';
+			AddMoverString := CONCAT('- Mover ', TO_STRING(arrMovers[moverIndex].AxisRef.NcToPlc.AxisId));
+			Base_Library.Tracing.Trace.Error(XtsName, CONCAT(AddMoverString,'- Add Mover Failed'));
 			State := EnableState.EnableSequenceError;
 		END_IF
 
@@ -172,7 +174,7 @@ END_VAR
 	RETURN;
 END_IF
 
-IF EnableTrigger THEN
+IF _Busy THEN
 	Enable := -2;
 	RETURN;
 END_IF

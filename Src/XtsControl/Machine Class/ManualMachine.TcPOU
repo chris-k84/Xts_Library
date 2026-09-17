@@ -87,22 +87,15 @@ RequestAMoveFromMover := TRUE;]]></ST>
       <Declaration><![CDATA[METHOD Start : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT MyXts.IsReady THEN
-	MyXts.EnableXTS();
-ELSE
-	MyXts.MoverHomeSequence();
-	Start := TRUE;
-END_IF]]></ST>
+        <ST><![CDATA[Start :=MyXts.EnableXTS();
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="Stop" Id="{fbb70648-c073-41fc-bad0-78d07ae8f95d}">
       <Declaration><![CDATA[METHOD Stop : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MyXts.DisableXTS() THEN
-	Stop := TRUE;
-END_IF
-]]></ST>
+        <ST><![CDATA[Stop := MyXts.DisableXTS();]]></ST>
       </Implementation>
     </Method>
   </POU>

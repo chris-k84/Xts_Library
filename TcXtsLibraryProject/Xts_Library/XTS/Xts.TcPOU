@@ -92,9 +92,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _XtsEnabled THEN
+        <ST><![CDATA[IF NOT _XtsEnabled THEN
+	RETURN;
+END_IF
+
+IF SUCCEEDED(DisableSequence.Disable()) THEN	
 	Base_Library.Tracing.Trace.Verbose(_name, 'Disable Accepted');
-	DisableXTS := SUCCEEDED(DisableSequence.Disable());
+	DisableXTS := TRUE;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -104,9 +108,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _XtsEnabled THEN
+        <ST><![CDATA[IF _XtsEnabled THEN
+	RETURN;
+END_IF
+
+IF SUCCEEDED(EnableSequence.Enable()) THEN
 	Base_Library.Tracing.Trace.Verbose(_name, 'Enable Accepted');
-	EnableXts := SUCCEEDED(EnableSequence.Enable());
+	EnableXts := TRUE;
 END_IF]]></ST>
       </Implementation>
     </Method>
