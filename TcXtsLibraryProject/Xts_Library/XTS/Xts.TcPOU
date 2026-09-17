@@ -211,7 +211,7 @@ END_VAR
 CASE XtsHwState OF
 	XtsSystemInitialisation.WaitingForXtsIoEnvVar:
 		IF NOT Initialising THEN
-			Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Waiting for XTS_UtilityLib');
+			Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'Waiting for XTS_UtilityLib');
 			Initialising := TRUE;
 		END_IF
 		IF _XtsIoEnvVar.Initialised THEN

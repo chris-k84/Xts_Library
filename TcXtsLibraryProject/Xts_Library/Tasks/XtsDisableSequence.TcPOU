@@ -130,7 +130,7 @@ END_VAR
 	RETURN;
 END_IF
 
-IF DisableTrigger THEN
+IF _busy THEN
 	Disable := -2;
 	RETURN;
 END_IF

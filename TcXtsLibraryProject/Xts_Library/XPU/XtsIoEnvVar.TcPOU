@@ -6,6 +6,7 @@ VAR
 	XtsIoEnvironment : Tc3_XTS_Utility.FB_TcIoXtsEnvironment;
 	stXtsEnvironmentConfiguration	: ST_XtsEnvironmentConfiguration;
 	_Initialised : BOOL;
+	Initialising : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -59,7 +60,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF XtsIoEnvironment.Init(TRUE) THEN
+        <ST><![CDATA[IF NOT 	Initialising THEN
+	Initialising := TRUE;
+	Base_Library.Tracing.Trace.Info(Source := 'XTS Utility Library', Message := 'Waiting for XTS_UtilityLib');
+END_IF
+
+IF XtsIoEnvironment.Init(TRUE) THEN
 	XtsIoEnvironment.Init(FALSE);
 	_Initialised := TRUE;
 ELSE
