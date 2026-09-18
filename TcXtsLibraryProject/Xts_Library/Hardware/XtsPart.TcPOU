@@ -12,6 +12,8 @@ VAR
 	PartLength: LREAL;
 	_HasError : BOOL;
 	_OperationMode : OperationMode;
+	PartStateRisingError : R_TRIG;
+	PartStateFallingError : F_TRIG;	
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -42,9 +44,16 @@ Status.AllModuleSsInOP := _MyInterface.GetAreAllModulesInOp();
 
 _HasError := FALSE;
 _HasError := (Status.PartDriveState = DriveState.Fault) OR 
-				(Status.PartDriveState = DriveState.FaultReactionActive) OR
-				(NOT Status.IsDCLinkReady);
-				
+				(Status.PartDriveState = DriveState.FaultReactionActive);
+PartStateRisingError(CLK := _HasError);
+PartStateFallingError(CLK := _HasError);
+IF PartStateRisingError.Q THEN
+	Base_Library.Tracing.Trace.Error(_Name, 'Part In Error');
+END_IF
+IF PartStateFallingError.Q THEN
+	Base_Library.Tracing.Trace.Info(_Name, 'Part Error Cleared');
+END_IF
+			
 status.ModuleControlVoltageOK := TRUE;
 FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 	IF NOT iMyModules[i].ControlVdcOK THEN
