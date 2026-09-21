@@ -172,7 +172,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[]]></ST>
+          <ST><![CDATA[ModuleStatus := Status;]]></ST>
         </Implementation>
       </Get>
     </Property>
