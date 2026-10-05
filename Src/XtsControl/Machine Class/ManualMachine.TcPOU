@@ -3,7 +3,7 @@
   <POU Name="ManualMachine" Id="{01bc7f0f-8a11-4b18-bb7f-35e7e0af063e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ManualMachine
 VAR														
-	MyXts : Xts<2,1,2,1,1>('MyXts');
+	MyXts : Xts<2,1,4,1,1>('MyXts');
 	initSequence : INT;
 END_VAR]]></Declaration>
     <Implementation>

@@ -2193,8 +2193,8 @@ External Setpoint Generation:
 			<OtherSettings AllowMotionCmdToSlave="true" AllowMotionCmdToExtSetGenAxis="true"/>
 		</AxisPara>
 		<Encoder Name="Enc" EncType="28">
-			<LinkedTo ObjectId="#x010100d0"/>
-			<EncPara ModuloFactor="500" ToleranceWndModuloStart="0.2" MaxCount="#xffffffff"/>
+			<LinkedTo ObjectId="#x01010110"/>
+			<EncPara ModuloFactor="1000" ToleranceWndModuloStart="0.2" MaxCount="#xffffffff"/>
 			<Vars VarGrpType="1">
 				<Name>Inputs</Name>
 				<Var>
@@ -2252,7 +2252,7 @@ External Setpoint Generation:
 			</Vars>
 		</Encoder>
 		<Drive Name="Drive" DrvType="22">
-			<LinkedTo ObjectId="#x010100d0"/>
+			<LinkedTo ObjectId="#x01010110"/>
 			<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00000100">
 				<Analog VeloReferenz="4200" TorqueSetpointScale="10"/>
 				<TimeComp TaskDelayCycles="1"/>
@@ -2328,7 +2328,7 @@ External Setpoint Generation:
 				<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 			</Var>
 		</Vars>
-		<Module Id="#x010100d0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
+		<Module Id="#x01010110" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
 			<Name>Mover Controller 1</Name>
 			<ImageId>1000</ImageId>
 			<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
@@ -2342,7 +2342,7 @@ External Setpoint Generation:
 					<Context>
 						<Id>1</Id>
 						<ManualConfig>
-							<OTCID>#x02010040</OTCID>
+							<OTCID>#x02010020</OTCID>
 						</ManualConfig>
 						<Priority>1</Priority>
 						<CycleTime>250000</CycleTime>

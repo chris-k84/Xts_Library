@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.20" ClassName="CDevEtherCATDef" SubType="111">
-	<Device Id="2" DevType="111" DevFlags="#x0003" AmsPort="28674" AmsNetId="10.201.62.134.3.1" RemoteName="Device 2 (EtherCAT)" InfoImageId="4">
+	<Device Id="2" DevType="111" DevFlags="#x0003" AmsPort="28674" AmsNetId="10.201.62.134.3.1" RemoteName="Device 2 (EtherCAT)" InfoImageId="5">
 		<Name>__FILENAME__</Name>
 		<AddressInfo>
 			<Pnp>
@@ -9,7 +9,7 @@
 				<DeviceData>00010590096a</DeviceData>
 			</Pnp>
 		</AddressInfo>
-		<Image Id="3" AddrType="9" ImageType="3">
+		<Image Id="4" AddrType="9" ImageType="3">
 			<Name>Image</Name>
 		</Image>
 		<Box File="Term 7 (AT2001-0250).xti" Id="7">
@@ -18,11 +18,11 @@
 		<Box File="Term 9 (AT2000-0250).xti" Id="9">
 			<EtherCAT PortABoxInfo="#x02000007"/>
 		</Box>
-		<EtherCAT DcSyncMode="2"/>
+		<EtherCAT DcSyncMode="3"/>
 	</Device>
 	<Mappings>
 		<OwnerA>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^Part 1^Module 1">
+			<OwnerB Name="TIRC^TcCOM Objects^Object1 (XtsProcessingUnit)^Part 1^Module 1">
 				<Link VarA="Term 7 (AT2001-0250)^CC Inputs^Current actual value Ch.1" VarB="Data Pointer^CurrentActualValues[0]"/>
 				<Link VarA="Term 7 (AT2001-0250)^CC Inputs^Current actual value Ch.10" VarB="Data Pointer^CurrentActualValues[9]"/>
 				<Link VarA="Term 7 (AT2001-0250)^CC Inputs^Current actual value Ch.11" VarB="Data Pointer^CurrentActualValues[10]"/>
@@ -88,7 +88,7 @@
 				<Link VarA="Term 7 (AT2001-0250)^Term 8 (AT2001-5250)^FB Inputs^Value Channel 31" VarB="Data Pointer^RawPositionValues[30]"/>
 				<Link VarA="Term 7 (AT2001-0250)^Term 8 (AT2001-5250)^FB Inputs^Value Channel 32" VarB="Data Pointer^RawPositionValues[31]"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^Part 1^Module 2">
+			<OwnerB Name="TIRC^TcCOM Objects^Object1 (XtsProcessingUnit)^Part 1^Module 2">
 				<Link VarA="Term 9 (AT2000-0250)^CC Inputs^Current actual value Ch.1" VarB="Data Pointer^CurrentActualValues[0]"/>
 				<Link VarA="Term 9 (AT2000-0250)^CC Inputs^Current actual value Ch.10" VarB="Data Pointer^CurrentActualValues[9]"/>
 				<Link VarA="Term 9 (AT2000-0250)^CC Inputs^Current actual value Ch.11" VarB="Data Pointer^CurrentActualValues[10]"/>

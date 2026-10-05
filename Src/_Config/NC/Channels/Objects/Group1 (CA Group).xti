@@ -482,7 +482,7 @@ and will return to Group State Standby when the situation permits.
 				</Value>
 				<Value>
 					<Name>Rail Length</Name>
-					<Value>500</Value>
+					<Value>1000</Value>
 				</Value>
 				<Value>
 					<Name>Rail Is Ring</Name>
