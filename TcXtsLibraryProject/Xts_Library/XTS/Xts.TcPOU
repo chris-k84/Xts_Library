@@ -9,7 +9,7 @@ VAR_GENERIC CONSTANT
 	XtsXpuNumber : UINT := 1;
 	NumberOfMovers : UINT := 1;
 END_VAR
-EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XTS, I_Object
+EXTENDS CyclicBase IMPLEMENTS I_XTS
 VAR
 	// Status Flags
 	_XtsEnabled : BOOL;
@@ -97,11 +97,13 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT _Initialised THEN	
+	Initialise();
 	Cycle  := -1;
 	RETURN;
 END_IF
 
 IF NOT _HardwareDiscoveryComplete THEN
+	DiscoverHardware();
 	Cycle := -2;
 	RETURN;
 END_IF
@@ -188,16 +190,15 @@ Base_Library.Tracing.Trace.Verbose(_Name, 'Disable Accepted');
 DefaultDisableSequence.Disable();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="DiscoverHardware" Id="{199dc34b-920a-40a0-b86e-d4d30a9fd81a}">
-      <Declaration><![CDATA[METHOD DiscoverHardware : HRESULT
+    <Method Name="DiscoverHardware" Id="{199dc34b-920a-40a0-b86e-d4d30a9fd81a}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PRIVATE DiscoverHardware : HRESULT
 VAR
 	i,j : INT;
 	ModuleCount : UINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[DiscoverHardware := -1;
-CASE HardwareDiscoveryState OF
+        <ST><![CDATA[CASE HardwareDiscoveryState OF
 	XtsHardwareDiscoveryState.WaitingForXpu:
 		IF NOT _Initialised THEN
 			RETURN;
@@ -385,15 +386,14 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}">
-      <Declaration><![CDATA[METHOD Initialise : HRESULT
+    <Method Name="Initialise" Id="{3c52ae7d-89c5-4979-a1bd-5023a279947c}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PRIVATE Initialise : HRESULT
 VAR
 	i : INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Initialise := -1;
-IF NOT Initialising THEN
+        <ST><![CDATA[IF NOT Initialising THEN
 	Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Waiting for XTS_UtilityLib');
 	Initialising := TRUE;
 END_IF
@@ -589,24 +589,24 @@ ICollisionGroup.GroupStop();
 Base_Library.Tracing.Trace.Verbose(_Name, 'Stop Accepted');]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TriggerMoverDetection" Id="{dba45dd8-2a21-4df4-baaf-5aa299000bf6}" FolderPath="Operations\">
+    <Method Name="TriggerMoverDetection" Id="{1e40ffc7-ada9-4fd1-b508-3b61745baa6f}" FolderPath="Operations\">
       <Declaration><![CDATA[METHOD TriggerMoverDetection : HRESULT
-VAR_INPUT
-END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT _Initialised THEN
 	TriggerMoverDetection := -1;
+	Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'Mover detection Error - XTS not initialised');
 	RETURN;
 END_IF
 
 IF NOT _HardwareDiscoveryComplete THEN
 	TriggerMoverDetection := -2;
+	Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'Mover detection Error - XTS hardware not found');
 	RETURN;
 END_IF
 
 iMoverDetectionAlogrithm.Start();
-Base_Library.Tracing.Trace.Verbose(Source := _Name, Message := 'Mover detection started');]]></ST>
+Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'Mover detection Starting');]]></ST>
       </Implementation>
     </Method>
     <Method Name="TryGetXtsMover" Id="{bbfdea88-ee2b-42c3-a0ba-a1a9129fcbe5}" FolderPath="Operations\">

@@ -5,6 +5,14 @@
 VAR														
 	MyXts : Xts<2,1,4,1,1>('MyXts');
 	initSequence : INT;
+	DummyVar1: UDINT;
+	DummyVar2: BOOL;
+	DummyVar3: BOOL;
+	DummyVar8: BOOL;
+	DummyVar6: BOOL;
+	DummyVar4: BOOL;
+	DummyVar5: BOOL;
+	DummyVar7: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -15,7 +23,16 @@ VAR
 	
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MyXts.Cycle();]]></ST>
+        <ST><![CDATA[MyXts.Cycle();
+
+DummyVar1 := MyXts.ErrorId;
+DummyVar2 := MyXts.HardwareDiscoveryComplete;
+DummyVar3 := MyXts.HasError;
+DummyVar4 := MyXts.Initialised;
+DummyVar5 := MyXts.IsEnabled;
+DummyVar6 := MyXts.IsIdle;
+DummyVar7 := MyXts.IsRunningInSim;
+DummyVar8 := MyXts.MoversFound;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Initialise" Id="{6b8163d9-bce6-4337-9033-0358a8ecc516}">
@@ -26,14 +43,14 @@ END_VAR
       <Implementation>
         <ST><![CDATA[CASE initSequence OF
 	0:
-		IF SUCCEEDED(myxts.Initialise()) THEN
-			initSequence := 1;
-		END_IF
+// 		IF SUCCEEDED(myxts.Initialise()) THEN
+// 			initSequence := 1;
+// 		END_IF
 		
 	1:
-		IF SUCCEEDED(myxts.DiscoverHardware()) THEN
-			initSequence := 2;
-		END_IF
+// 		IF SUCCEEDED(myxts.DiscoverHardware()) THEN
+// 			initSequence := 2;
+// 		END_IF
 	2:
 		IF SUCCEEDED(myxts.TriggerMoverDetection()) THEN
 			initSequence := 3;
