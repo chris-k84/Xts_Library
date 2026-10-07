@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="EnableGroupTask_TestSuite" Id="{d6808c9c-8ee3-49b7-b959-6f6cf8674f6b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK EnableGroupTask_TestSuite
@@ -51,7 +51,7 @@ END_IF]]></ST>
       <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Task
 VAR
 	stubCAGroup : CollisionGroup('');
-	testEnableGrp : EnableGroup:= (MyCollisionGroup := stubCAGroup);
+	testEnableGrp : EnableGroup := (MyCollisionGroup := stubCAGroup);;
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR

@@ -17,7 +17,7 @@ TaskRejectsInvalidCAGroup();]]></ST>
     <Method Name="TaskAcceptsMover_Test" Id="{76d622a8-3592-402c-963b-8fe6effd36e5}">
       <Declaration><![CDATA[METHOD TaskAcceptsMover_Test
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	stubAxis : XtsMover('');
 	stubAxis1 : XtsMover('');
 	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
@@ -53,7 +53,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsCyclewithNoCAGroup_Test" Id="{67079034-a882-4395-b22e-5f8c5fbf43fc}">
       <Declaration><![CDATA[METHOD TaskRejectsCyclewithNoCAGroup_Test
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	stubAxis : XtsMover('');
 	stubAxis1 : XtsMover('');
 	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
@@ -70,7 +70,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsDuplicateCommand_Test" Id="{caf75f25-819a-48cc-a5c7-cd789f30bab6}">
       <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Test
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	stubAxis : XtsMover('');
 	stubAxis1 : XtsMover('');
 	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
@@ -106,7 +106,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsInvalidMover_Test" Id="{e3b9e3da-2293-4563-b5f0-6f0df1b14381}">
       <Declaration><![CDATA[METHOD TaskRejectsInvalidMover_Test
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	stubAxis : XtsMover('');
 	stubAxis1 : XtsMover('');
 	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);

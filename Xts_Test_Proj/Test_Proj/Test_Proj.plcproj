@@ -128,7 +128,7 @@
       <Namespace>Tc3_XTS_Utility</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Xts Library">
-      <DefaultResolution>[Xts Library], * (BeckhoffUK)</DefaultResolution>
+      <DefaultResolution>[Xts Library], * (Beckhoff UK)</DefaultResolution>
       <Namespace>Xts_Library</Namespace>
     </PlaceholderReference>
   </ItemGroup>

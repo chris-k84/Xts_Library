@@ -8,12 +8,33 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[CAGroupAcceptsMoverRegister_Test();
-CAGroupAcceptsRemoveAMover_Test();
 CAGroupRejectsAddingSameMover_Test();
-CAGroupRejectsNullMover_Test();
-CAGroupRejectsRemoveAllWithNoMovers_Test();
+CAGroupRejectsAddingNullMover_Test();
+//CAGroupIncrementsRegisteredMovers_Test();
+//CAGroupRejectsAddingMoverWhenBusy_Test();
+CAGroupRejectsAddingWhenNotLinkedToCAGroup_Test();
+
+CAGroupAcceptsRemoveAMover_Test();
 CAGroupRejectsRemoveNullMover_Test();
-CAGroupRejectsRemovingNotGroupedMover_Test();]]></ST>
+CAGroupRejectsRemoveWhenBusy_Test();
+CAGroupRejectsRemovingNotGroupedMover_Test();
+CAGroupDecrementsRegisteredMovers_Test();
+
+CAGroupAcceptsRemoveAll_Test();
+CAGroupRejectsRemoveAllWithNoMovers_Test();
+CAGroupRejectsRemoveAllWhenBusy_Test();
+CAGroupRemoveAllClearsRegisteredMoverCount_Test();
+
+
+CAGroupEnableAcceptedWhenNotBusy_Test();
+//CAGroupEnableRejectedWhenBusy_Test();
+CAGroupDisableAcceptedWhenNotBusy_Test();
+//CAGroupDisableRejectedWhenBusy_Test();
+CAGroupStopAcceptedWhenNotBusy_Test();
+CAGroupStopRejectedWhenBusy_Test();
+
+CAGroupResetAcceptedWhenNotBusy_Test();
+CAGroupResetRejectedWhenBusy_Test();]]></ST>
     </Implementation>
     <Method Name="CAGroupAcceptsMoverRegister_Test" Id="{3be7f1bf-7951-4535-b2cf-3c01dcafa27e}">
       <Declaration><![CDATA[METHOD CAGroupAcceptsMoverRegister_Test
@@ -23,13 +44,36 @@ VAR_INST
 END_VAR
 VAR
 	stubMover : XtsMover('');
-	caGroup : CollisionGroup;
+	caGroup : CollisionGroup('');
+	axisRef : REFERENCE TO AXES_GROUP_REF;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
 	axisRef REF= caGroup.GroupRef;
 	axisRef.NcToPlc.Common.GroupType := MC_GROUP_TYPE.mcGroupTypeCA;
 	Actual := SUCCEEDED(caGroup.AddMoverToThisGroup(stubMover));
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupAcceptsRemoveAll_Test" Id="{642a5fca-2347-4d08-b497-6dc1508fa5a8}">
+      <Declaration><![CDATA[METHOD CAGroupAcceptsRemoveAll_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+	axisRef : REFERENCE TO AXES_GROUP_REF;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	axisRef REF= caGroup.GroupRef;
+	axisRef.NcToPlc.Common.GroupType := MC_GROUP_TYPE.mcGroupTypeCA;
+	caGroup.AddMoverToThisGroup(stubMover);
+	Actual := SUCCEEDED(caGroup.RemoveAllMovers());
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -42,7 +86,8 @@ VAR_INST
 END_VAR
 VAR
 	stubMover : XtsMover('');
-	caGroup : CollisionGroup;
+	caGroup : CollisionGroup('');
+	axisRef : REFERENCE TO AXES_GROUP_REF;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -54,29 +99,147 @@ END_VAR]]></Declaration>
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="CAGroupRejectsAddingSameMover_Test" Id="{d3aa7857-c4a4-46bc-a9ac-fdcae634440c}">
-      <Declaration><![CDATA[METHOD CAGroupRejectsAddingSameMover_Test
+    <Method Name="CAGroupDecrementsRegisteredMovers_Test" Id="{ea4580ba-c596-4267-98fe-ed6c1f1f4fd0}">
+      <Declaration><![CDATA[METHOD CAGroupDecrementsRegisteredMovers_Test : BOOL
+VAR_INST
+	Expected : UDINT := 0;
+	Actual	 : UDINT;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+	axisRef : REFERENCE TO AXES_GROUP_REF;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	axisRef REF= caGroup.GroupRef;
+	axisRef.NcToPlc.Common.GroupType := MC_GROUP_TYPE.mcGroupTypeCA;
+	caGroup.AddMoverToThisGroup(stubMover);
+	Actual := caGroup.AxisCount;
+	caGroup.RemoveAMover(stubMover);
+	Actual := caGroup.AxisCount;
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupDisableAcceptedWhenNotBusy_Test" Id="{e919378e-5ad7-4b1e-be7a-d8401255101b}">
+      <Declaration><![CDATA[METHOD CAGroupDisableAcceptedWhenNotBusy_Test : BOOL
 VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
 VAR
 	stubMover : XtsMover('');
-	caGroup : CollisionGroup;
-END_VAR]]></Declaration>
+	caGroup : CollisionGroup('');
+END_VAR
+]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	caGroup.AddMoverToThisGroup(stubMover);
-	Actual := FAILED(caGroup.AddMoverToThisGroup(stubMover));
+	Actual := caGroup.Disable();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="CAGroupRejectsNullMover_Test" Id="{3e1e7479-795e-4628-a844-4a6271b5314c}">
-      <Declaration><![CDATA[METHOD CAGroupRejectsNullMover_Test
+    <Method Name="CAGroupDisableRejectedWhenBusy_Test" Id="{eb8fb8de-2b5c-4116-b040-2da0b88d5a41}">
+      <Declaration><![CDATA[METHOD CAGroupDisableRejectedWhenBusy_Test : BOOL
 VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	caGroup.Disable();
+	Actual := caGroup.Disable();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupEnableAcceptedWhenNotBusy_Test" Id="{9bfe2499-49e2-49af-bcfb-3a401cb56bab}">
+      <Declaration><![CDATA[METHOD CAGroupEnableAcceptedWhenNotBusy_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := caGroup.Enable();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupEnableRejectedWhenBusy_Test" Id="{b2ed6218-6ef8-4e34-8c51-e6863098595e}">
+      <Declaration><![CDATA[METHOD CAGroupEnableRejectedWhenBusy_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	caGroup.Enable();
+	Actual := caGroup.Enable();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupIncrementsRegisteredMovers_Test" Id="{5d248209-30ab-47f4-90df-38e9f7690720}">
+      <Declaration><![CDATA[METHOD CAGroupIncrementsRegisteredMovers_Test : BOOL
+VAR_INST
+	Expected : UDINT := 1;
+	Actual	 : UDINT;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+	axisRef : REFERENCE TO AXES_GROUP_REF;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	axisRef REF= caGroup.GroupRef;
+	axisRef.NcToPlc.Common.GroupType := MC_GROUP_TYPE.mcGroupTypeCA;
+	caGroup.AddMoverToThisGroup(stubMover);
+	Actual := caGroup.AxisCount;
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupRejectsAddingMoverWhenBusy_Test" Id="{81d0559f-1f1d-4d94-85bd-3375a7f6fa98}">
+      <Declaration><![CDATA[METHOD CAGroupRejectsAddingMoverWhenBusy_Test : BOOL
+VAR_INST
+	Expected : HRESULT := -3;
+	Actual	 : HRESULT;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	caGroup.AddMoverToThisGroup(stubMover);
+	Actual := caGroup.AddMoverToThisGroup(stubMover);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupRejectsAddingNullMover_Test" Id="{3e1e7479-795e-4628-a844-4a6271b5314c}">
+      <Declaration><![CDATA[METHOD CAGroupRejectsAddingNullMover_Test
+VAR_INST
+	Expected : HRESULT := -1;
+	Actual	 : HRESULT;
 END_VAR
 VAR
 	iNullMover : I_XtsMover;
@@ -84,7 +247,64 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED(caGroup.AddMoverToThisGroup(iNullMover));
+	Actual := caGroup.AddMoverToThisGroup(iNullMover);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupRejectsAddingSameMover_Test" Id="{d3aa7857-c4a4-46bc-a9ac-fdcae634440c}">
+      <Declaration><![CDATA[METHOD CAGroupRejectsAddingSameMover_Test
+VAR_INST
+	Expected : HRESULT := -2;
+	Actual	 : HRESULT;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+	axisRef : REFERENCE TO AXES_GROUP_REF;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	axisRef REF= caGroup.GroupRef;
+	axisRef.NcToPlc.Common.GroupType := MC_GROUP_TYPE.mcGroupTypeCA;
+	caGroup.AddMoverToThisGroup(stubMover);
+	Actual := caGroup.AddMoverToThisGroup(stubMover);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupRejectsAddingWhenNotLinkedToCAGroup_Test" Id="{bb5bc615-eb86-44e1-9d87-59904dff5bd6}">
+      <Declaration><![CDATA[METHOD CAGroupRejectsAddingWhenNotLinkedToCAGroup_Test : BOOL
+VAR_INST
+	Expected : HRESULT := -4;
+	Actual	 : HRESULT;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	caGroup.AddMoverToThisGroup(stubMover);
+	Actual := caGroup.AddMoverToThisGroup(stubMover);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGRoupRejectsRemoveAllWhenBusy_Test" Id="{623d3b12-71ec-49f1-a3cd-2123c17515dd}">
+      <Declaration><![CDATA[METHOD CAGRoupRejectsRemoveAllWhenBusy_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	caGroup : CollisionGroup('');
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(caGroup.RemoveAllMovers());
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -108,8 +328,8 @@ END_IF]]></ST>
     <Method Name="CAGroupRejectsRemoveNullMover_Test" Id="{2f838e73-b56f-41d3-bbc7-57e02ba6a6a6}">
       <Declaration><![CDATA[METHOD CAGroupRejectsRemoveNullMover_Test
 VAR_INST
-	Expected : BOOL := TRUE;
-	Actual	 : BOOL;
+	Expected : HRESULT := -2;
+	Actual	 : HRESULT;
 END_VAR
 VAR
 	iNullMover : I_XtsMover;
@@ -117,7 +337,25 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED(caGroup.RemoveAMover(iNullMover));
+	Actual := caGroup.RemoveAMover(iNullMover);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupRejectsRemoveWhenBusy_Test" Id="{e5b79b3c-ba27-4449-a437-643806368769}">
+      <Declaration><![CDATA[METHOD CAGroupRejectsRemoveWhenBusy_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := FAILED(caGroup.RemoveAMover(stubMover));
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>
@@ -125,16 +363,109 @@ END_IF]]></ST>
     <Method Name="CAGroupRejectsRemovingNotGroupedMover_Test" Id="{fc0a30c9-1417-466f-9e68-cc28b4c3e131}">
       <Declaration><![CDATA[METHOD CAGroupRejectsRemovingNotGroupedMover_Test
 VAR_INST
+	Expected : HRESULT := -3;
+	Actual	 : HRESULT;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := caGroup.RemoveAMover(stubMover);
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupRemoveAllClearsRegisteredMoverCount_Test" Id="{b5f29695-989c-4b44-b09d-88c64f464fc4}">
+      <Declaration><![CDATA[METHOD CAGroupRemoveAllClearsRegisteredMoverCount_Test : BOOL
+VAR_INST
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
 END_VAR
 VAR
 	stubMover : XtsMover('');
-	caGroup : CollisionGroup;
+	caGroup : CollisionGroup('');
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	caGroup.AddMoverToThisGroup(stubMover);
+	Actual := SUCCEEDED(caGroup.RemoveAllMovers());
+	Actual := caGroup.AxisCount = 0;
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupResetAcceptedWhenNotBusy_Test" Id="{d1d709ba-4064-4d1f-94a6-b765a2ed86dc}">
+      <Declaration><![CDATA[METHOD CAGroupResetAcceptedWhenNotBusy_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	Actual := caGroup.Reset();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupResetRejectedWhenBusy_Test" Id="{c4195482-8b78-4663-97a8-893a94524d73}">
+      <Declaration><![CDATA[METHOD CAGroupResetRejectedWhenBusy_Test : BOOL
+VAR_INST
+	Expected : BOOL := FALSE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	caGroup.Reset();
+	Actual := caGroup.Reset();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupStopAcceptedWhenNotBusy_Test" Id="{b096d5bd-318c-4d3f-a3af-fe114d56fd94}">
+      <Declaration><![CDATA[METHOD CAGroupStopAcceptedWhenNotBusy_Test : BOOL
+VAR_INST
+	Expected : BOOL := TRUE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
-	Actual := FAILED(caGroup.RemoveAMover(stubMover));
+	Actual := caGroup.GroupStop();
+	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CAGroupStopRejectedWhenBusy_Test" Id="{62742c68-89a2-4d58-8b5a-f214f5633d6d}">
+      <Declaration><![CDATA[METHOD CAGroupStopRejectedWhenBusy_Test : BOOL
+VAR_INST
+	Expected : BOOL := FALSE;
+	Actual	 : BOOL;
+END_VAR
+VAR
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
+	caGroup.GroupStop();
+	Actual := caGroup.GroupStop();
 	ThisTestSuite.Test(__POUNAME()).AssertEqual(Expected, Actual);
 END_IF]]></ST>
       </Implementation>

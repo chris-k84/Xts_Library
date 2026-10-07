@@ -37,7 +37,6 @@ EnableGroupTestSuite();
 DisableGroupTestSuite();
 HaltMoverTestSuite();
 ResetGroupTestSuite();
-
 GearCATestSuite();
 MoveMoverTestSuite();
 AddMoverTestSuite();
