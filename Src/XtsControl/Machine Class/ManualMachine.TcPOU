@@ -13,6 +13,7 @@ VAR
 	DummyVar4: BOOL;
 	DummyVar5: BOOL;
 	DummyVar7: BOOL;
+	myMover : I_XtsMover;	
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -43,16 +44,15 @@ END_VAR
       <Implementation>
         <ST><![CDATA[CASE initSequence OF
 	0:
-// 		IF SUCCEEDED(myxts.Initialise()) THEN
-// 			initSequence := 1;
-// 		END_IF
-		
+		IF MyXts.HardwareDiscoveryComplete THEN
+			initSequence := 1;
+		END_IF
 	1:
-// 		IF SUCCEEDED(myxts.DiscoverHardware()) THEN
-// 			initSequence := 2;
-// 		END_IF
-	2:
 		IF SUCCEEDED(myxts.TriggerMoverDetection()) THEN
+			initSequence := 2;
+		END_IF
+	2:
+		IF SUCCEEDED(MyXts.TryGetXtsMover(Number := 1, Mover => myMover)) THEN
 			initSequence := 3;
 		END_IF
 	3:
@@ -73,13 +73,13 @@ END_VAR
 // RequestAMoveFromMover := TRUE;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Reset" Id="{9c62a341-0dbb-4873-bc91-bfb015f50a5a}">
+    <Method Name="Reset" Id="{395bc196-295d-428d-92a8-a410798a676c}">
       <Declaration><![CDATA[METHOD Reset : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Reset := SUCCEEDED(MyXts.Reset());]]></ST>
+        <ST><![CDATA[Reset := SUCCEEDED(myxts.Reset());]]></ST>
       </Implementation>
     </Method>
     <Method Name="Start" Id="{02461f05-6499-4d09-bb40-4c0779bf05a4}">

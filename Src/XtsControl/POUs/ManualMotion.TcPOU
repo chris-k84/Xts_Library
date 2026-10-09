@@ -30,11 +30,10 @@ IF Init AND Start THEN
 	END_IF
 END_IF
 
-IF Reset THEN
-	Reset := FALSE;
-// 	IF fbMachine.RequestAMoveFromMover(Mover, Pos, Velo) THEN
-// 		Reset := FALSE;
-// 	END_IF
+IF Init AND Reset THEN
+	IF fbMachine.Reset() THEN
+		Reset := FALSE;
+	END_IF
 END_IF]]></ST>
     </Implementation>
   </POU>
