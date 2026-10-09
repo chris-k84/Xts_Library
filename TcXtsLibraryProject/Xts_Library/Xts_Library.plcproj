@@ -193,6 +193,9 @@
     <Compile Include="Types\XtsMoverDetectionState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\XtsResetState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Version\Global_Version.TcGVL">
       <SubType>Code</SubType>
     </Compile>

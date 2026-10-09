@@ -49,6 +49,7 @@ VAR
 	iMoverDetectionAlogrithm : I_MoverDetectionAlgorithm := DefaultMoverDetectionAlgorithm;
 	EnabledTrigger : R_TRIG;
 	DisabledTrigger : R_TRIG;
+	ResetTrigger : R_TRIG;
 	
 	// Hardware counts
 	MyPartCount: UDINT;
@@ -58,6 +59,7 @@ VAR
 	SequenceFailCount : USINT;
 	MoverDetectionState : TaskExecutionStates;
 	HardwareDiscoveryState: XtsHardwareDiscoveryState;
+	ResetState : XtsResetState;
 	DetectionErrorTimeOut : TON := (PT := T#500MS);
 END_VAR
 VAR CONSTANT
@@ -109,7 +111,7 @@ IF NOT _HardwareDiscoveryComplete THEN
 END_IF
 
 MoverDetectionSequence();
-HardwareError := iXPU.GetDriveState() = DriveState.Fault OR CheckPartsForError();
+HardwareError := (iXPU.GetDriveState() = (DriveState.Fault OR DriveState.FaultReactionActive)) OR CheckPartsForError();
 
 IF MyModuleCount <> 0 THEN
 	FOR i := 0 TO MyModuleCount - 1 DO
@@ -136,6 +138,7 @@ EnableResult := DefaultEnableSequence.Cycle();
 DisableResult := DefaultDisableSequence.Cycle();
 EnabledTrigger(CLK := DefaultEnableSequence.Done);
 DisabledTrigger(CLK := DefaultDisableSequence.Done);
+ResetSequence();
 
 IF EnabledTrigger.Q THEN
 	_XtsEnabled := TRUE;
@@ -526,8 +529,7 @@ IF NOT _HardwareDiscoveryComplete THEN
 	RETURN;
 END_IF
 
-ICollisionGroup.Reset();
-iXPU.TriggerResetAllParts();
+ResetTrigger.CLK := TRUE;
 Base_Library.Tracing.Trace.Verbose(_Name, 'Reset Accepted');]]></ST>
       </Implementation>
     </Method>
@@ -557,6 +559,34 @@ IF Part = 0 THEN
 END_IF
 
 IXtsParts[Part].ResetPart();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ResetSequence" Id="{13cd689a-6bb1-4c04-93f3-31d6703e31bf}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD ResetSequence : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE ResetState OF
+	XtsResetState.Idle:
+		IF ResetTrigger.Q THEN
+			ResetState := XtsResetState.ResettingHardware;
+			iXPU.TriggerResetAllParts();
+		END_IF	
+	XtsResetState.ResettingHardware:
+		IF NOT HardwareError THEN
+			ICollisionGroup.Reset();
+			ResetState := XtsResetState.ResettingCAGroup;
+		END_IF
+	XtsResetState.ResettingCAGroup:
+		IF NOT iCollisionGroup.HasError THEN
+			ResetState := XtsResetState.Done;
+		END_IF
+	XtsResetState.Done:
+		ResetTrigger.CLK := FALSE;
+END_CASE
+ResetTrigger();
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="StopXts" Id="{4b648283-f5f4-4d47-a58f-be53e519365d}" FolderPath="Operations\">
