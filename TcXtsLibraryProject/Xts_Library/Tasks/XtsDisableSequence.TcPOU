@@ -70,12 +70,15 @@ END_VAR]]></Declaration>
 		IF iCAGroup.IsInStandBy THEN
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Removing Movers');
 			IF SUCCEEDED(iCAGroup.RemoveAllMovers()) THEN
+				GroupRemoveAllTimeOut.IN := TRUE;
 				State := DisableState.Disable_Movers;
 			END_IF
 		END_IF
 	
 	DisableState.Disable_Movers:
 		IF iCAGroup.AxisCount = 0 THEN
+			GroupRemoveAllTimeOut.IN := FALSE;
+			DisableMoverTimeOut.IN := TRUE;
 			FOR i := 0 TO (_MoverCount - 1) DO
 				iMoverArray[i].DisableMover();
 			END_FOR
@@ -118,7 +121,16 @@ END_VAR]]></Declaration>
 			_Done := TRUE;
 			Base_Library.Tracing.Trace.Info(XtsName, '- Disable Complete');
 		END_IF
-END_CASE]]></ST>
+	DisableState.DisableSequenceError:
+		Base_Library.Tracing.Trace.Error(Source := XtsName, Message := 'Disable FAILED - SYSTEM FAULT - RESTART REQUIRED');
+		_Error := TRUE;
+		_Busy := FALSE;
+		DisableMoverTimeOut.IN := FALSE;
+		GroupRemoveAllTimeOut.IN := FALSE;
+		State := EnableState.EnableSequenceFailed;
+END_CASE
+DisableMoverTimeOut();
+GroupRemoveAllTimeOut();]]></ST>
       </Implementation>
     </Method>
     <Method Name="Disable" Id="{024bbd18-8e3c-4aa1-9d04-45454423df20}">
