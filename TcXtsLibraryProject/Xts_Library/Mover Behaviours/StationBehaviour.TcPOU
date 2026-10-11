@@ -1,44 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="StationBehaviour" Id="{50af290e-a0d7-45b3-a647-c8828b096bd1}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK StationBehaviour IMPLEMENTS I_Cyclic, I_Resettable, I_Object
+    <Declaration><![CDATA[FUNCTION_BLOCK StationBehaviour EXTENDS CyclicBase IMPLEMENTS I_Resettable
 VAR
 	State : StationBehaviourState;  
-	CurrentStation : UINT;
-	TargetStationPosition : MC_LREAL;
-	_MoverVelocity : MC_LREAL := 1000.0;
+	iCurrentStation : I_Station;
+	_StationPosition : MC_LREAL;
 	stSequenceInfo : StationBehaviourInfo;
-	StationNumber : INT;
-	StationArray : ARRAY[0..19] OF I_Station;
-	Process : IProcess;
-	ThisMover : I_XtsMover;
+	iMover : I_XtsMover;
+	iStationManager : I_StationManager;
 	ExecuteSequence : BOOL;
-	_startPosition : MC_LREAL;
-	_XtsNoHome : BOOL;
 	_NonModuloMoves : BOOL := FALSE;
+	_Velocity : LREAL;
+	_Acceleration : LREAL;
+	_Deceleration : LREAL;
+	_Jerk : LREAL;
+	_Gap : LREAL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
-    <Property Name="AbsoluteMoves" Id="{17b68adf-bca0-4be6-993f-8e20810fcd58}">
-      <Declaration><![CDATA[PROPERTY AbsoluteMoves : bool]]></Declaration>
-      <Get Name="Get" Id="{9984e65c-22d5-4260-98b6-c2626c7cc30d}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[AbsoluteMoves := _NonModuloMoves;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{2d9b4a71-c7c5-4acd-9b62-753da375193c}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_NonModuloMoves := AbsoluteMoves;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Method Name="Cycle" Id="{0bc270b2-0e7a-4545-b872-87f2d15ca3f5}">
       <Declaration><![CDATA[METHOD PUBLIC Cycle : HRESULT
 VAR_INPUT
@@ -46,40 +27,47 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE State OF
-	StationBehaviourState.WaitForMoverEnabled:
-		IF ThisMover.IsEnabled THEN
+	
+	StationBehaviourState.WaitingForMoverReady:
+		IF iMover.IsEnabled THEN
 			State := StationBehaviourState.WaitingForStart;
 		END_IF
-		
 	StationBehaviourState.WaitingForStart:
 		IF ExecuteSequence THEN
-			State := StationBehaviourState.MovingToStart;
+			State := StationBehaviourState.RequestingDestination;
 		END_IF
-		
-	StationBehaviourState.MovingToStart:
-		IF (ThisMover.ActualTrackPosition > _startPosition - 0.3 AND ThisMover.ActualTrackPosition < _startPosition + 0.3) OR _XtsNoHome THEN
-			State := StationBehaviourState.MoveToFirstStation;
-		END_IF
+    StationBehaviourState.RequestingDestination:
+		iCurrentStation := iStationManager.RequestNextStation(iCurrentStation);
+		State := StationBehaviourState.TriggeringMoveToStation;
+    StationBehaviourState.TriggeringMoveToStation:
+		IF SUCCEEDED(iMover.MoveTo(RequiredPosition := iCurrentStation.Position,
+						MoveVelocity := _Velocity,
+						NonModuloMove := FALSE)) THEN
+			State := StationBehaviourState.MovingToDestination;
+		ELSE
 			
-	StationBehaviourState.MoveToFirstStation:
-		IF StationArray[CurrentStation] <> 0 THEN
-			IF SUCCEEDED(ThisMover.MoveTo(RequiredPosition := StationArray[CurrentStation].Position,
-								MoveVelocity := _MoverVelocity,
-								NonModuloMove := _NonModuloMoves)) THEN
-								
-				TargetStationPosition := StationArray[CurrentStation].Position;
-				State := StationBehaviourState.MovingToCurrentStation;
-			END_IF
 		END_IF
+    StationBehaviourState.MovingToDestination:
 
-	StationBehaviourState.MovingToCurrentStation:
-		IF ThisMover.IsStationary THEN 
-			IF (ThisMover.ActualTrackPosition > TargetStationPosition - 0.3 AND ThisMover.ActualTrackPosition < TargetStationPosition + 0.3) THEN
-				State := StationBehaviourState.ArrivedAtStation;
-			ELSE
-				State := StationBehaviourState.MoverQueueingAtStation;
+    StationBehaviourState.ConfirmingArrival:
+		IF iMover.IsStationary AND NOT iMover.IsAvoidingCollision THEN 
+			IF (iMover.ActualTrackPosition > iCurrentStation.Position - 0.1 AND iMover.ActualTrackPosition < iCurrentStation.Position + 0.1) THEN
+				State := StationBehaviourState.WaitingForStationProcess;
+				iCurrentStation.MyMover(THIS^);
 			END_IF
 		END_IF
+	
+    StationBehaviourState.WaitingForStationProcess:
+		
+    StationBehaviourState.ExecutingStationProcess:
+		
+    StationBehaviourState.ReleasingStation:
+		
+    StationBehaviourState.Stopped:
+    StationBehaviourState.Error:
+
+		
+		
 	
 	StationBehaviourState.ArrivedAtStation:
 		IF SUCCEEDED(StationArray[CurrentStation].MyMover(ThisMover)) THEN
@@ -91,7 +79,7 @@ END_VAR
 		END_IF
 		
 	StationBehaviourState.MoverQueueingAtStation:
-		IF NOT ThisMover.IsStationary THEN
+		IF NOT iMover.IsStationary THEN
 				State := StationBehaviourState.MovingToCurrentStation;
 		END_IF
 
@@ -101,23 +89,23 @@ END_VAR
 		END_IF
 
 	StationBehaviourState.StartingProcess:
-		ThisMover.MoveTo(RequiredPosition := Process.EndPosition,
+		iMover.MoveTo(RequiredPosition := Process.EndPosition,
 								MoveVelocity := Process.ProcessVelocity,
 								NonModuloMove := _NonModuloMoves);
 		State := StationBehaviourState.MoverInProcess;
 								
 	StationBehaviourState.MoverInProcess:
-		IF ThisMover.IsStationary THEN 
-			IF (ThisMover.ActualTrackPosition > Process.EndPosition - 0.3 AND ThisMover.ActualTrackPosition < Process.EndPosition + 0.3) THEN
+		IF iMover.IsStationary THEN 
+			IF (iMover.ActualTrackPosition > Process.EndPosition - 0.3 AND iMover.ActualTrackPosition < Process.EndPosition + 0.3) THEN
 				State := StationBehaviourState.CheckIfFinalStation;
 			END_IF
 		END_IF
 	
 	StationBehaviourState.CheckIfFinalStation:
-		IF CurrentStation = StationNumber - 1 THEN
-			CurrentStation := 0; 
+		IF iCurrentStation = StationNumber - 1 THEN
+			iCurrentStation := 0; 
 			TargetStationPosition := StationArray[CurrentStation].Position;
-			IF SUCCEEDED(ThisMover.MoveTo(RequiredPosition := TargetStationPosition,
+			IF SUCCEEDED(iMover.MoveTo(RequiredPosition := TargetStationPosition,
 							MoveVelocity := _MoverVelocity,
 							NonModuloMove := _NonModuloMoves)) THEN
 				State := StationBehaviourState.MovingToCurrentStation;
@@ -128,23 +116,23 @@ END_VAR
 		
 	StationBehaviourState.MovingToNextStation:
 		TargetStationPosition := StationArray[CurrentStation + 1].Position;
-		IF 	SUCCEEDED(ThisMover.MoveTo(RequiredPosition := TargetStationPosition,
+		IF 	SUCCEEDED(iMover.MoveTo(RequiredPosition := TargetStationPosition,
 							MoveVelocity := _MoverVelocity,
 							NonModuloMove := _NonModuloMoves)) THEN	
-			CurrentStation := CurrentStation + 1;
+			iCurrentStation := iCurrentStation + 1;
 			State := StationBehaviourState.MovingToCurrentStation;
 		END_IF	
 	StationBehaviourState.Stopped;
 		IF ExecuteSequence THEN
 			TargetStationPosition := StationArray[CurrentStation].Position;
-			IF CurrentStation = 0 THEN
-				IF 	SUCCEEDED(ThisMover.MoveTo(RequiredPosition := TargetStationPosition,
+			IF iCurrentStation = 0 THEN
+				IF 	SUCCEEDED(iMover.MoveTo(RequiredPosition := TargetStationPosition,
 									MoveVelocity := _MoverVelocity,
 									NonModuloMove := _NonModuloMoves)) THEN	
 					State := StationBehaviourState.MovingToCurrentStation;
 				END_IF	
 			ELSE
-				IF 	SUCCEEDED(ThisMover.MoveTo(RequiredPosition := TargetStationPosition,
+				IF 	SUCCEEDED(iMover.MoveTo(RequiredPosition := TargetStationPosition,
 									MoveVelocity := _MoverVelocity,
 									NonModuloMove := _NonModuloMoves)) THEN	
 					State := StationBehaviourState.MovingToCurrentStation;
@@ -159,92 +147,10 @@ END_VAR
 END_CASE
 
 //Cyclic update info data
-stSequenceInfo.CurrentStation := UINT_TO_INT(CurrentStation);
-stSequenceInfo.MoverId := ThisMover.AxisRef.NcToPlc.AxisId;
+stSequenceInfo.CurrentStation := UINT_TO_INT(iCurrentStation);
+stSequenceInfo.MoverId := iMover.AxisRef.NcToPlc.AxisId;
 stSequenceInfo.State := State;
-stSequenceInfo.Velocity := ThisMover.AxisRef.NcToPlc.ActVelo;]]></ST>
-      </Implementation>
-    </Method>
-    <Property Name="MoverVelocity" Id="{4f2224ad-0534-4bd9-a8e4-5b63b7e53b5c}">
-      <Declaration><![CDATA[PROPERTY MoverVelocity : mc_lreal]]></Declaration>
-      <Get Name="Get" Id="{0bf3cfa6-cc44-4232-989f-70bced017a55}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MoverVelocity := _MoverVelocity;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{a9bdfb5a-ef56-4b9e-9f78-288684e24d6c}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MoverVelocity := MoverVelocity;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Property Name="MyMover" Id="{d0dbd650-93c6-4e7f-a733-abc40a2f12bf}">
-      <Declaration><![CDATA[PROPERTY MyMover : I_XtsMover]]></Declaration>
-      <Get Name="Get" Id="{52e46adf-1b9f-404f-a8d7-de686d91d4ef}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyMover := ThisMover;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{a9693a81-065c-4ba2-8a99-3606c71cf06a}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[ThisMover := MyMover;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Property Name="MyStartPosition" Id="{30ed087d-d896-49f8-aaff-c511c0d55a71}">
-      <Declaration><![CDATA[PROPERTY MyStartPosition : MC_LREAL]]></Declaration>
-      <Get Name="Get" Id="{ebcb0d89-302c-4f5d-86e5-f5e15f136ea5}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyStartPosition := _startPosition;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{57b76837-f6ca-44d6-8033-7a2d9ee3e944}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_startPosition := MyStartPosition;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Method Name="RegisterAStation" Id="{14d9a1a8-6162-46e7-9803-61945cdf77e8}">
-      <Declaration><![CDATA[METHOD RegisterAStation : HRESULT
-VAR_INPUT
-	Station : I_Station;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF Station = 0 THEN
-	RegisterAStation  := -1;
-	RETURN;
-END_IF
-StationArray[StationNumber] := Station;
-StationNumber := StationNumber + 1;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="RegisterWithParent" Id="{4ad7e011-f71b-4cbe-b657-57f840858ed2}">
-      <Declaration><![CDATA[METHOD RegisterWithParent
-VAR_INPUT
-	Parent	: I_HostObjects;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[Parent.RegisterCyclic(THIS^);]]></ST>
+stSequenceInfo.Velocity := iMover.AxisRef.NcToPlc.ActVelo;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{01dd3306-e903-4754-85c4-ea13c41e0b8c}">
@@ -254,14 +160,54 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[State := StationBehaviourState.WaitingForStart;
-CurrentStation := 0;
+iCurrentStation := 0;
 TargetStationPosition := 0.0;
-stSequenceInfo.CurrentStation := UINT_TO_INT(CurrentStation);
-stSequenceInfo.MoverId := ThisMover.AxisRef.NcToPlc.AxisId;
+stSequenceInfo.CurrentStation := UINT_TO_INT(iCurrentStation);
+stSequenceInfo.MoverId := iMover.AxisRef.NcToPlc.AxisId;
 stSequenceInfo.State := State;
-stSequenceInfo.Velocity := ThisMover.AxisRef.NcToPlc.ActVelo;
+stSequenceInfo.Velocity := iMover.AxisRef.NcToPlc.ActVelo;
 ExecuteSequence := FALSE;
 Reset := 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetDynamics" Id="{457b81b5-790d-467f-b5d4-a7cc5e910b6b}">
+      <Declaration><![CDATA[METHOD SetDynamics : BOOL
+VAR_INPUT
+	Velocity : LREAL;
+	Acceleration : LREAL;
+	Deceleration : LREAL;
+	Jerk : LREAL;
+	Gap : LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF iMover <> 0 THEN
+	_Velocity := Velocity;
+	_Acceleration := iMover.Acceleration := Acceleration;
+	_Deceleration := iMover.Deceleration := Deceleration;
+	_Jerk := iMover.Jerk := Jerk;
+	_Gap := iMover.Gap := Gap;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetMover" Id="{c7197946-5ad1-4459-b1bb-45e2cc4f592d}">
+      <Declaration><![CDATA[METHOD SetMover : BOOL
+VAR_INPUT
+	Mover : I_XtsMover;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[iMover := Mover;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetStationManager" Id="{8a2bc8de-e1dc-41af-9d71-20180e5df04f}">
+      <Declaration><![CDATA[METHOD SetStationManager : BOOL
+VAR_INPUT
+	StationManager : I_StationManager;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[iStationManager := StationManager;]]></ST>
       </Implementation>
     </Method>
     <Method Name="StartIndexing" Id="{6e4b7f28-1f53-404c-b56b-f1310c888415}">
@@ -280,27 +226,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[State := StationBehaviourState.Stopped;
-ThisMover.HaltAxis();]]></ST>
+iMover.HaltAxis();]]></ST>
       </Implementation>
     </Method>
-    <Property Name="XtsNoHome" Id="{7aad9af3-71dc-4b8d-9a2b-19016c2a644b}">
-      <Declaration><![CDATA[PROPERTY XtsNoHome : BOOL]]></Declaration>
-      <Get Name="Get" Id="{d3413585-01ef-4909-a612-e4cda3a7b8e0}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[XtsNoHome := _XtsNoHome;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{ca6f67d3-9265-4c0f-849c-5e4c98f82e9b}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_XtsNoHome := XtsNoHome;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
   </POU>
 </TcPlcObject>

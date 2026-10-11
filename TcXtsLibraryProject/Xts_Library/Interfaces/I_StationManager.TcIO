@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_StationManager" Id="{1c569d71-00c9-4f53-9f61-8233173963d5}">
+    <Declaration><![CDATA[INTERFACE I_StationManager
+]]></Declaration>
+    <Method Name="RequestNextStation" Id="{d1283a8d-933d-493b-b5bb-6cbad947f201}">
+      <Declaration><![CDATA[METHOD RequestNextStation : I_Station
+VAR_INPUT
+	CurrentStation : I_Station;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

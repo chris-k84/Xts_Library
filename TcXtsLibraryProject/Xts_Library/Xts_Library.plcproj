@@ -52,6 +52,9 @@
     <Compile Include="Interfaces\I_MoverDisableAlgorithm.TcIO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Interfaces\I_StationManager.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mover Behaviours\ExtControlBehaviour.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -59,6 +62,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\Station.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\StationManager.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\StationSample.TcPOU">

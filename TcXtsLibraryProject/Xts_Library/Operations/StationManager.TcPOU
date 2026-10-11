@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StationManager" Id="{418f6d70-c56b-4637-a051-e7236429bb6c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StationManager EXTENDS CyclicBase IMPLEMENTS I_StationManager
+VAR
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Cycle" Id="{21a5c4b4-f2de-4c1d-964f-e4b998889ed1}">
+      <Declaration><![CDATA[METHOD Cycle : Base_Library.HRESULT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RequestNextStation" Id="{0f9d2668-e50b-4e8a-9785-225d9d2f5583}">
+      <Declaration><![CDATA[METHOD RequestNextStation : I_Station
+VAR_INPUT
+	CurrentStation : I_Station;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
