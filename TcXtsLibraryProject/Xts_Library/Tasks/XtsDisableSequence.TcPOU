@@ -67,7 +67,7 @@ END_VAR]]></Declaration>
 		State := DisableState.Remove_Movers;
 		
 	DisableState.Remove_Movers:
-		IF iCAGroup.IsInStandBy THEN
+		IF iCAGroup.IsInStandBy OR iCAGroup.IsInErrorStop THEN
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Removing Movers');
 			IF SUCCEEDED(iCAGroup.RemoveAllMovers()) THEN
 				GroupRemoveAllTimeOut.IN := TRUE;
