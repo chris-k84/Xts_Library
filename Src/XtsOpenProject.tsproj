@@ -3989,7 +3989,7 @@
 							<Group><![CDATA[Teaching]]></Group>
 							<Group Collapsed="true"><![CDATA[Diagnostics]]></Group>
 							<Group><![CDATA[Development]]></Group>
-							<Group Collapsed="true"><![CDATA[Advanced]]></Group>
+							<Group><![CDATA[Advanced]]></Group>
 							<Group Collapsed="true"><![CDATA[Simulation]]></Group>
 							<Group Collapsed="true"><![CDATA[Structure]]></Group>
 							<Group><![CDATA[Drive Info]]></Group>
@@ -6632,7 +6632,7 @@
 							</Value>
 							<Value>
 								<Name>IsPositionBasedErrorForwardingEnabled</Name>
-								<EnumText>FALSE</EnumText>
+								<EnumText>TRUE</EnumText>
 							</Value>
 							<Value>
 								<Name>IsSymbolAccessEnabled</Name>

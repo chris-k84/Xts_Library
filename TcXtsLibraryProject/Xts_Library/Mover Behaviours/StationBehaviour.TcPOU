@@ -45,7 +45,7 @@ END_VAR
 						NonModuloMove := FALSE)) THEN
 			State := StationBehaviourState.MovingToDestination;
 		ELSE
-			
+			;
 		END_IF
     StationBehaviourState.MovingToDestination:
 

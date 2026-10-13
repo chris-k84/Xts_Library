@@ -584,6 +584,7 @@ END_VAR
 		END_IF
 	XtsResetState.Done:
 		ResetTrigger.CLK := FALSE;
+		ResetState := XtsResetState.Idle;
 END_CASE
 ResetTrigger();
 ]]></ST>
