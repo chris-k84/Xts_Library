@@ -69,7 +69,7 @@ END_VAR]]></Declaration>
 		State := DisableState.Remove_Movers;
 		
 	DisableState.Remove_Movers:
-		IF _caGroup.IsInStandBy THEN
+		IF _caGroup.IsInStandBy OR _caGroup.IsInErrorStop THEN
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Removing Movers');
 			IF SUCCEEDED(_caGroup.RemoveAllMovers()) THEN
 				State := DisableState.Disable_Movers;
