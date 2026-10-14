@@ -93,12 +93,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="MyName" Id="{989d2fa8-4a9f-4077-ad60-57e1e6700080}">
-      <Declaration><![CDATA[PROPERTY MyName : string]]></Declaration>
-      <Get Name="Get" Id="{962bda42-6307-4da5-99e1-648fbb7790b1}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-    </Property>
     <Method Name="RemoveAllMovers" Id="{ef3d94da-4e03-448c-b177-7286a6d747e3}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD RemoveAllMovers : HRESULT
 VAR_INPUT
