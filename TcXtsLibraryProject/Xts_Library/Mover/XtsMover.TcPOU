@@ -366,20 +366,26 @@ END_VAR
 VAR_INPUT
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _MyInterface = 0 THEN
-	Base_Library.Tracing.Trace.Error(_Name, 'No XPU interface for Init');
+        <ST><![CDATA[IF Initialised THEN
+	Base_Library.Tracing.Trace.Error(_Name, 'Mover Already Initialised');
 	Initialise := -1;
 	RETURN;
 END_IF
 
-IF NOT _MyInterface.P_IsInitialized THEN
+IF _MyInterface = 0 THEN
+	Base_Library.Tracing.Trace.Error(_Name, 'No XPU interface for Init');
 	Initialise := -2;
+	RETURN;
+END_IF
+
+IF NOT _MyInterface.P_IsInitialized THEN
+	Initialise := -3;
 	Base_Library.Tracing.Trace.Error(_Name, 'XPU Interface not ready');
 	RETURN;
 END_IF
 
 IF MyAxisRef.NcToPlc.AxisId = 0 THEN
-	Initialise := -3;
+	Initialise := -4;
 	Base_Library.Tracing.Trace.Error(_Name, 'Mover has no NC link');
 	RETURN;
 END_IF

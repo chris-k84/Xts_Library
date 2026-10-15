@@ -9,6 +9,7 @@ VAR
 	MotorOid: OTCID;
 	SensorOid: OTCID;
 	_BTN: BTN;
+	_Infeed : BOOL;
 	_OperationMode : OperationMode;
 	Status : XtsModuleStatus;
 	DiagHistory: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxDiagMessagesPerModule] OF Tc3_XTS_Utility.DiagHistoryEntry;
@@ -149,6 +150,8 @@ END_IF
 Base_Library.Tracing.Trace.Verbose(_Name, 'Module Init Success');
 MotorOid := _MyInterface.GetMotorTerminalOid();
 SensorOid := _MyInterface.GetSensorTerminalOid();
+_BTN := _MyInterface.GetDriveBTN();
+_Infeed := _MyInterface.GetIsInfeed();
 Status.IsInfeed := _MyInterface.GetIsInfeed();
 _IsInitialised := TRUE;
 ]]></ST>
