@@ -3,12 +3,6 @@
   <Itf Name="I_XtsPart" Id="{79728d50-0c5c-4ced-9546-66681745df5e}">
     <Declaration><![CDATA[INTERFACE I_XtsPart
 ]]></Declaration>
-    <Method Name="GetCurrentError" Id="{7903d85b-fb75-4c9a-8606-29b5130c9d6a}">
-      <Declaration><![CDATA[METHOD GetCurrentError : UDINT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Property Name="HasError" Id="{3ffc12c8-866b-44c4-898c-7d9325cf0ff0}">
       <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
       <Get Name="Get" Id="{70faffad-0039-4f70-9833-ebc8c15c9c40}">

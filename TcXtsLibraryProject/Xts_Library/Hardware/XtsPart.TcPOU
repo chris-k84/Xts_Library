@@ -69,15 +69,6 @@ FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetCurrentError" Id="{397b05da-5d11-4ea0-a858-00e1feeb8a6c}" FolderPath="Status\">
-      <Declaration><![CDATA[METHOD GetCurrentError : UDINT
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[GetCurrentError := CurrentErrorId;]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="HasError" Id="{9f27faee-7288-49b0-b8b5-9209e3993178}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
       <Get Name="Get" Id="{24f72123-333a-4c51-8f13-0cc8f2466b17}">
@@ -168,8 +159,7 @@ IF NOT InSim THEN
 	FOR i := 0 TO (UDINT_TO_UINT(MyModuleCount) - 1) DO
 		XtsModules[i].AcknowledgeMessages();
 	END_FOR
-END_IF	
-CurrentErrorId := 0;]]></ST>
+END_IF	]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetPartOperationMode" Id="{3d03b392-5590-4afc-85ba-e5ffd6ca9ea3}" FolderPath="Settings\">
