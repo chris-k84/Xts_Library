@@ -26,7 +26,6 @@ HardwareRejectsHighIndexTrackRemoval_Test();
 HardwareRejectsHighIndexTrackSet_Test();
 HardwareRejectsNullTrackRemoval_Test();
 HardwareRejectsNullTrackSet_Test();
-HardwareReturnsCorrectMoverNumber_Test();
 HardwareAcceptsValidMoverDetectionNumber_Test();
 HardwareRejectsTooManyMoversForDetection_Test();
 HardwareRejectsSetNegativeMoverNumber_Test();
@@ -37,7 +36,8 @@ HardwareRejectsTriggerDetectionWithNoRef_Test();
 HardwareAcceptsTriggerRedetectionCommand_Test();
 HardwareRejectsTriggerRedetectionWithNoRef_Test();
 HArdwareAcceptsMover1DetectionCommand_Test();
-HardwareRejectsMover1DetectionInStandardMode_Test();]]></ST>
+HardwareRejectsMover1DetectionInStandardMode_Test();
+HardwareReturnsCorrectMoverNumber_Test();]]></ST>
     </Implementation>
     <Method Name="HArdwareAcceptsMover1DetectionCommand_Test" Id="{1eb9d286-88a2-4ceb-9442-caa77ceb3e4f}">
       <Declaration><![CDATA[METHOD HArdwareAcceptsMover1DetectionCommand_Test
