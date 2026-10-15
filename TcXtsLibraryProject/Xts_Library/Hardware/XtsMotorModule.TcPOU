@@ -44,32 +44,6 @@ AcknowledgeMessages := TRUE;
 _MyInterface.TriggerAcknowledgeMessages();]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Act24Vdc" Id="{f6c86bec-4292-4235-b61e-7c9d80a41ad3}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY Act24Vdc : LREAL]]></Declaration>
-      <Get Name="Get" Id="{eba3fda3-f091-4c73-8154-7af21351cd1f}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[IF _OperationMode <> OperationMode.Simulation THEN
-	Act24Vdc := TO_LREAL(Status.Module24Vdc);
-END_IF]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Property Name="Act48Vdc" Id="{47f71546-4c7d-414d-8c93-4cd2c4d0b2af}" FolderPath="Status\">
-      <Declaration><![CDATA[PROPERTY Act48Vdc : LREAL]]></Declaration>
-      <Get Name="Get" Id="{0b052b59-11b8-4a64-9d85-41c4c123b87d}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[IF _OperationMode <> OperationMode.Simulation THEN
-	Act48Vdc := Status.Module48Vdc;
-END_IF]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
     <Property Name="ControlVdcOK" Id="{2528651b-d48c-4c45-aa23-04cc6babc183}" FolderPath="Status\">
       <Declaration><![CDATA[PROPERTY ControlVdcOK : BOOL]]></Declaration>
       <Get Name="Get" Id="{c497a289-f203-435a-9fe1-0c3e338da054}">
@@ -222,32 +196,37 @@ END_IF]]></ST>
         </Implementation>
       </Get>
     </Property>
-    <Property Name="MyModuleInterface" Id="{2168d719-80a8-412e-a875-7c102bb8a0d2}">
-      <Declaration><![CDATA[PROPERTY MyModuleInterface : I_TcIoXtsPartModule]]></Declaration>
-      <Get Name="Get" Id="{89cf633f-414b-41a7-b6da-6e0666d662cd}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MyModuleInterface := _MyInterface;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{c9ca3467-a5fd-4003-89ce-a9baa660bd96}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_MyInterface := MyModuleInterface;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Method Name="SetInSim" Id="{13eee03f-0b41-4595-95d5-55a5ef2b6f3f}" FolderPath="Commands\">
-      <Declaration><![CDATA[METHOD SetInSim : HRESULT
+    <Method Name="SetModuleOperationMode" Id="{5168f174-52e1-4d17-9303-7340ec967fd8}" FolderPath="Settings\">
+      <Declaration><![CDATA[METHOD SetModuleOperationMode : hresult
 VAR_INPUT
+	Mode : OperationMode;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_OperationMode := OperationMode.Simulation;]]></ST>
+        <ST><![CDATA[_OperationMode := Mode;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetXtsIoModuleInterface" Id="{d64a5400-2bf3-4adc-add3-a7c7ebe7eeb1}" FolderPath="Settings\">
+      <Declaration><![CDATA[METHOD SetXtsIoModuleInterface : HRESULT
+VAR_INPUT
+	ModuleInterface : Tc3_XTS_Utility.I_TcIoXtsPartModule;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ModuleInterface = 0 THEN
+	SetXtsIoModuleInterface := -1;
+	Base_Library.Tracing.Trace.Error(_name, 'XPU interface not assigned');
+	RETURN;
+END_IF
+
+
+_MyInterface := ModuleInterface;
+_Name := _MyInterface.P_ObjectName;
+_BTN := _MyInterface.GetDriveBTN();
+Base_Library.Tracing.Trace.Verbose(_name, 'XPU interface assigned ok');
+
+
+]]></ST>
       </Implementation>
     </Method>
   </POU>
