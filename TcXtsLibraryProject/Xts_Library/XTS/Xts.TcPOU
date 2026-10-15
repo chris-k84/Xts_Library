@@ -5,7 +5,7 @@
 VAR
 	_MyXts : INT;
 	_XtsEnabled : BOOL;
-	_XPU : I_TcIoXtsProcessingUnit;
+	_iXPU : I_TcIoXtsProcessingUnit;
 	iMovers : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
 	_XtsIoEnvVar : I_XtsIoEnvVar;
 	ICollisionGroup : I_CollisionGroup;
@@ -69,18 +69,18 @@ IF EnabledTrigger.Q THEN
 	_XtsEnabled := TRUE;
 END_IF
 IF DisabledTrigger.Q THEN
-	_XtsEnabled := false;
+	_XtsEnabled := FALSE;
 END_IF
 
-HardwareError := _MyXtsHardware.AnyPartsInError;
+
 CAGroupError := ICollisionGroup.HasError;
+HardwareError := (_iXPU.GetDriveState() = (DriveState.Fault OR DriveState.FaultReactionActive)) OR _MyXtsHardware.AnyPartsInError;
+
 
 IF CAGroupError THEN
 	_ErrorID := ICollisionGroup.ErrorCode;
 END_IF
-IF HardwareError THEN
-	_ErrorID := _MyXtsHardware.GetPartErrorCode();
-END_IF
+
 IF NOT CAGroupError AND NOT HardwareError THEN
 	_ErrorID := 0;
 END_IF]]></ST>
@@ -216,10 +216,10 @@ CASE XtsHwState OF
 		END_IF
 		IF _XtsIoEnvVar.Initialised THEN
 			Base_Library.Tracing.Trace.Info(Source := _Name, Message := 'XTS_Utility Initiliased');
-			_XPU := _XtsIoEnvVar.GetXPUInterface(_MyXts);
-			_name := _XPU.P_ObjectName;
-			XtsOperatingMode := _XPU.GetOperationMode();
-			_MyXtsHardware.MyXpu := _XPU;
+			_iXPU := _XtsIoEnvVar.GetXPUInterface(_MyXts);
+			_name := _iXPU.P_ObjectName;
+			XtsOperatingMode := _iXPU.GetOperationMode();
+			_MyXtsHardware.MyXpu := _iXPU;
 			EnableSequence.Name := _Name;
 			DisableSequence.Name := _Name;
 			XtsHwState := XtsSystemInitialisation.PassGroupReference;
@@ -390,9 +390,9 @@ DisableSequence.RegisterMovers(MyMover);
 FOR i := 1 TO _MyXtsHardware.DetectedNumberOfTracks DO
 	MyMover.RegisterTracks(Track := _MyXtsHardware.GetTrackInterfaceByNumber(i));
 END_FOR
-FOR i := 1 TO TO_UINT(_XPU.GetDetectedMoverCount()) DO
-	IF MyMover.AxisRef.NcToPlc.AxisId = _XPU.MoverTcIo(i).P_AxisId THEN
-		MyMover.MoverXtsIoEnvInterface := _XPU.MoverTcIo(i);
+FOR i := 1 TO TO_UINT(_iXPU.GetDetectedMoverCount()) DO
+	IF MyMover.AxisRef.NcToPlc.AxisId = _iXPU.MoverTcIo(i).P_AxisId THEN
+		MyMover.MoverXtsIoEnvInterface := _iXPU.MoverTcIo(i);
 	END_IF
 END_FOR]]></ST>
       </Implementation>
