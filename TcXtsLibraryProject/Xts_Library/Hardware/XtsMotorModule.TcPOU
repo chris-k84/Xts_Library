@@ -5,20 +5,20 @@
 VAR
 	_MyInterface : I_TcIoXtsPartModule;
 	_IsInitialised : BOOL;
+	_HasError : BOOL;
 	MotorOid: OTCID;
 	SensorOid: OTCID;
 	_BTN: BTN;
 	_Infeed : BOOL;
-	DiagHistory: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxDiagMessagesPerModule] OF Tc3_XTS_Utility.DiagHistoryEntry;
+	_OperationMode : OperationMode;
 	Status : XtsModuleStatus;
-	_OperationMode: OperationMode;
-	ControlVoltageErrorRisingTrigger: R_TRIG;
-	ControlVoltageErrorFallingTrigger: R_TRIG;
-	MotorVoltageErrorRisingTrigger: R_TRIG;
-	MotorVoltageErrorFallingTrigger: R_TRIG;
-	_HasError: BOOL;
-	ModuleStateRisingError: R_TRIG;
-	ModuleStateFallingError: F_TRIG;
+	DiagHistory: ARRAY [1..Tc3_XTS_Utility.TcIoXtsEnvironmentParameterList.MaxDiagMessagesPerModule] OF Tc3_XTS_Utility.DiagHistoryEntry;
+	ControlVoltageErrorRisingTrigger : R_TRIG;
+	ControlVoltageErrorFallingTrigger : F_TRIG;
+	MotorVoltageErrorRisingTrigger : R_TRIG;
+	MotorVoltageErrorFallingTrigger : F_TRIG;
+	ModuleStateRisingError : R_TRIG;
+	ModuleStateFallingError : F_TRIG;
 END_VAR
 VAR CONSTANT
 	Nominal24Vdc : REAL := 24.0;
@@ -28,6 +28,7 @@ END_VAR]]></Declaration>
       <ST><![CDATA[]]></ST>
     </Implementation>
     <Folder Name="Commands" Id="{2c57c3e7-9e33-442c-b661-553dd998e7e1}" />
+    <Folder Name="Settings" Id="{a31ea8a5-3ecf-4e96-bec6-1505f77550e4}" />
     <Folder Name="Status" Id="{068e24b8-ffac-477a-847b-d306caa5617e}" />
     <Method Name="AcknowledgeMessages" Id="{22451bbb-5ae0-42af-9e4d-a9e5962b9f38}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD AcknowledgeMessages : BOOL
@@ -145,6 +146,17 @@ END_IF
 _HasError := NOT Status.ControlVdcOK OR NOT Status.MotorVdcOK OR Status.ModuleInFault;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="HasError" Id="{ad2a93c0-6ba6-42ce-9110-768a7019bac4}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY HasError : BOOL]]></Declaration>
+      <Get Name="Get" Id="{8ea1610f-f288-4ad1-9662-3ab9ae557be5}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[HasError := _HasError;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Initialise" Id="{0d230f78-299f-458d-bcac-a537a1290197}">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR_INPUT
@@ -169,6 +181,7 @@ SensorOid := _MyInterface.GetSensorTerminalOid();
 _Name := _MyInterface.P_ObjectName;
 _BTN := _MyInterface.GetDriveBTN();
 _Infeed := _MyInterface.GetIsInfeed();
+Status.IsInfeed := _MyInterface.GetIsInfeed();
 _IsInitialised := TRUE;
 ]]></ST>
       </Implementation>
@@ -181,6 +194,17 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[Initialised := _IsInitialised;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ModuleStatus" Id="{6fc9c027-ec3a-4f11-b20a-3cf2deae906c}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY ModuleStatus : XtsModuleStatus]]></Declaration>
+      <Get Name="Get" Id="{bfc69e45-cdd3-4b3f-a38e-4a3662601048}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ModuleStatus := Status;]]></ST>
         </Implementation>
       </Get>
     </Property>
