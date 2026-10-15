@@ -51,10 +51,7 @@ _MyInterface.TriggerAcknowledgeMessages();]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[ControlVdcOK := TRUE;
-IF (Status.Module24Vdc < (Nominal24Vdc * 0.8)) OR (Status.Module24Vdc > (Nominal24Vdc * 1.2)) THEN
-	ControlVdcOK := FALSE;
-END_IF]]></ST>
+          <ST><![CDATA[ControlVdcOK := Status.ControlVdcOK;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -189,10 +186,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MotorVdcOK := TRUE;
-IF (Status.Module48Vdc < (Nominal48Vdc * 0.8)) OR (Status.Module48Vdc > (Nominal48Vdc * 1.2)) THEN
-	MotorVdcOK := FALSE;
-END_IF]]></ST>
+          <ST><![CDATA[MotorVdcOK := Status.MotorVdcOK;]]></ST>
         </Implementation>
       </Get>
     </Property>

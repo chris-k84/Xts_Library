@@ -15,21 +15,20 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="Is24VBusOK" Id="{500c1a0d-a9c2-44cc-a7f0-1636e31cb371}">
-      <Declaration><![CDATA[METHOD Is24VBusOK : BOOL]]></Declaration>
-    </Method>
-    <Method Name="Is48VBusOK" Id="{65d6ebc5-d4c7-4450-a659-11bf3882ab2b}">
-      <Declaration><![CDATA[METHOD Is48VBusOK : BOOL
-]]></Declaration>
-    </Method>
+    <Property Name="Initialised" Id="{3af177d9-a3e1-46e8-b64f-75367b0c56c6}">
+      <Declaration><![CDATA[PROPERTY Initialised : BOOL]]></Declaration>
+      <Get Name="Get" Id="{b8e618ac-d1f4-42d7-bcd0-f86cb25c5ba7}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="PartStatus" Id="{6d968c47-2ae9-4026-90a0-66318e763c17}">
+      <Declaration><![CDATA[PROPERTY PartStatus : XtsPartStatus]]></Declaration>
+      <Get Name="Get" Id="{b0473579-fd38-4e03-a7ac-9dac16fe6a9c}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="ResetPart" Id="{6cd3b4ca-ad47-4f23-a5e9-46a25492ff53}">
       <Declaration><![CDATA[METHOD ResetPart : BOOL
-]]></Declaration>
-    </Method>
-    <Method Name="SetInSim" Id="{c9eb2856-51f9-4b2b-8bd3-e7c7234a0028}">
-      <Declaration><![CDATA[METHOD SetInSim : HRESULT
-VAR_INPUT
-END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="SetPartOriginTransform" Id="{2de4d845-cfb8-4557-b610-ba9d0390b496}">
