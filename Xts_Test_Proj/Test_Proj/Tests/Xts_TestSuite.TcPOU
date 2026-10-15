@@ -5,9 +5,9 @@
 VAR
 	dummyIoEnvVar : XtsIoEnvVar;
 	dummyXtsHw : XTSHardware('');
-	dummyCaGroup : CollisionGroup;
+	dummyCaGroup : CollisionGroup('');
 	testXts : StubXts('test',dummyIoEnvVar,dummyXtsHw,dummyCaGroup);
-	stubMover : XtsMover;
+	stubMover : XtsMover('');
 	stubIMover : I_XtsMover := stubMover;
 	stubIMoverEmpty : I_XtsMover;
 	ThisTestSuite : TestSuite<TestSuiteParameter.MaxTestCount>(ResultFile := JUnitResultFile) := (TestSuiteName := 'XTS Test Suite');

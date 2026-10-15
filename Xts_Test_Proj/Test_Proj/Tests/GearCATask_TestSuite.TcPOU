@@ -24,8 +24,8 @@ TaskRejectsSlaveSameAsMaster_Test();]]></ST>
     <Method Name="TaskAcceptsGearCommand_Test" Id="{acd9c547-0c6e-4db9-bf91-fa3e2f9bc389}">
       <Declaration><![CDATA[METHOD TaskAcceptsGearCommand_Test
 VAR
-	testMaster : XtsMover;
-	testAxis : XtsMover;
+	testMaster : XtsMover('');
+	testAxis : XtsMover('');
 	testGearTask : GearCATask := (slaveAxis := testAxis, MasterAxis := testMaster);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -42,7 +42,7 @@ END_IF]]></ST>
     <Method Name="TaskAcceptsMasterAxisRef_Test" Id="{3dbb10c8-a050-4f84-a313-4e8a48bc1f62}">
       <Declaration><![CDATA[METHOD TaskAcceptsMasterAxisRef_Test
 VAR
-	testMaster : XtsMover;
+	testMaster : XtsMover('');
 	iTestMaster : I_XtsMover := testMaster;
 	testGearTask : GearCATask;
 	Expected : BOOL := TRUE;
@@ -60,7 +60,7 @@ END_IF]]></ST>
     <Method Name="TaskAcceptsSlaveAxisRef_Test" Id="{14457ff7-f154-4e41-97da-03af2af55014}">
       <Declaration><![CDATA[METHOD TaskAcceptsSlaveAxisRef_Test
 VAR
-	testSlave : XtsMover;
+	testSlave : XtsMover('');
 	iTestSlave : I_XtsMover := testSlave;
 	testGearTask : GearCATask;
 	Expected : BOOL := TRUE;
@@ -78,8 +78,8 @@ END_IF]]></ST>
     <Method Name="TaskCorrectlyClearsAxes_Test" Id="{94ee14b4-bec0-4267-8161-7197588a842c}">
       <Declaration><![CDATA[METHOD TaskCorrectlyClearsAxes_Test
 VAR
-	testMaster : XtsMover;
-	testAxis : XtsMover;
+	testMaster : XtsMover('');
+	testAxis : XtsMover('');
 	testGearTask : GearCATask := (slaveAxis := testAxis, MasterAxis := testMaster);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -96,7 +96,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectCyclewithNoMasterRefs_Test" Id="{dc5295ee-0a48-4be8-81f1-301f8ca559bd}">
       <Declaration><![CDATA[METHOD TaskRejectCyclewithNoMasterRefs_Test
 VAR
-	testAxis : XtsMover;
+	testAxis : XtsMover('');
 	testGearTask : GearCATask := (slaveAxis := testAxis);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -111,7 +111,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectCyclewithNoSlaveAxisRef_Test" Id="{78458915-68cb-441b-9d0d-8cb297e74b27}">
       <Declaration><![CDATA[METHOD TaskRejectCyclewithNoSlaveAxisRef_Test
 VAR
-	testMaster : XtsMover;
+	testMaster : XtsMover('');
 	testGearTask : GearCATask := (MasterAxis := testMaster);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -126,7 +126,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectGearwithNoMasterRefs_Test" Id="{3962e37a-30d9-468d-8447-b46584f032b9}">
       <Declaration><![CDATA[METHOD TaskRejectGearwithNoMasterRefs_Test
 VAR
-	testAxis : XtsMover;
+	testAxis : XtsMover('');
 	testGearTask : GearCATask := (slaveAxis := testAxis);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -141,8 +141,8 @@ END_IF]]></ST>
     <Method Name="TaskRejectsDuplicateGearIn_Test" Id="{e6e0c511-05f8-4a0a-8d53-1681a7fdf699}">
       <Declaration><![CDATA[METHOD TaskRejectsDuplicateGearIn_Test
 VAR
-	testMaster : XtsMover;
-	testAxis : XtsMover;
+	testMaster : XtsMover('');
+	testAxis : XtsMover('');
 	testGearTask : GearCATask := (slaveAxis := testAxis, MasterAxis := testMaster);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -159,7 +159,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsGearWithNoSlaveAxisRef_Test" Id="{d54072f7-f527-4fd9-b2c7-75d741a10e69}">
       <Declaration><![CDATA[METHOD TaskRejectsGearWithNoSlaveAxisRef_Test
 VAR
-	testMaster : XtsMover;
+	testMaster : XtsMover('');
 	testGearTask : GearCATask := (MasterAxis := testMaster);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -174,7 +174,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsMasterSameAsSlave_Test" Id="{30593857-c161-4d9d-8a66-202bfd14e491}">
       <Declaration><![CDATA[METHOD TaskRejectsMasterSameAsSlave_Test
 VAR
-	testAxis : XtsMover;
+	testAxis : XtsMover('');
 	iTestSlave : I_XtsMover := testAxis;
 	testGearTask : GearCATask := (slaveAxis := testAxis);
 	Expected : BOOL := TRUE;
@@ -192,7 +192,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsNullMasterAxis_Test" Id="{594104a9-e481-4ea4-a346-7e2881409eed}">
       <Declaration><![CDATA[METHOD TaskRejectsNullMasterAxis_Test
 VAR
-	testMaster : XtsMover;
+	testMaster : XtsMover('');
 	iTestMaster : I_XtsMover := testMaster;
 	testGearTask : GearCATask := (MasterAxis := testMaster);
 	Expected : BOOL := TRUE;
@@ -210,7 +210,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsNullSlaveAxis_Test" Id="{74f37f6c-29fc-48cc-95c1-16ca4005feae}">
       <Declaration><![CDATA[METHOD TaskRejectsNullSlaveAxis_Test
 VAR
-	testSlave : XtsMover;
+	testSlave : XtsMover('');
 	iTestSlave : I_XtsMover := testSlave;
 	testGearTask : GearCATask := (SlaveAxis := testSlave);
 	Expected : BOOL := TRUE;
@@ -228,7 +228,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsSlaveSameAsMaster_Test" Id="{e89b6cb1-bd72-4a2c-8070-36d5c3b2ebe1}">
       <Declaration><![CDATA[METHOD TaskRejectsSlaveSameAsMaster_Test
 VAR
-	testAxis : XtsMover;
+	testAxis : XtsMover('');
 	iTestAxis : I_XtsMover := testAxis;
 	testGearTask : GearCATask := (MasterAxis := testAxis);
 	Expected : BOOL := TRUE;

@@ -46,7 +46,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -63,7 +63,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -80,7 +80,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -97,7 +97,7 @@ VAR_INST
 	Actual	 : mc_lreal;
 END_VAR
 VAR
-	testMover : XtsMover;
+	testMover : XtsMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -114,7 +114,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -133,7 +133,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -152,7 +152,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -172,7 +172,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -192,7 +192,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -210,7 +210,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	teststubMover : stubMover;
+	teststubMover : stubMover('');
 	stubTrack : XtsTrack('');
 END_VAR]]></Declaration>
       <Implementation>
@@ -227,7 +227,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -256,7 +256,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	teststubMover : stubMover;
+	teststubMover : stubMover('');
 	stubTrack : XtsTrack('');
 END_VAR]]></Declaration>
       <Implementation>
@@ -275,7 +275,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : XtsMover;
+	testMover : XtsMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -291,7 +291,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -308,7 +308,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -327,7 +327,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : XtsMover;
+	testMover : XtsMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -343,7 +343,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -360,7 +360,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	teststubMover : stubMover;
+	teststubMover : stubMover('');
 	stubTrack : XtsTrack('');
 END_VAR]]></Declaration>
       <Implementation>
@@ -378,7 +378,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -396,7 +396,7 @@ VAR_INST
 	Actual	 : mc_lreal;
 END_VAR
 VAR
-	testMover : XtsMover;
+	testMover : XtsMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -413,7 +413,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : XtsMover;
+	testMover : XtsMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -429,7 +429,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -448,7 +448,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -464,7 +464,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -482,7 +482,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : XtsMover;
+	testMover : XtsMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -498,7 +498,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	teststubMover : stubMover;
+	teststubMover : stubMover('');
 	stubTrack : I_XtsTrack;
 END_VAR
 ]]></Declaration>
@@ -516,7 +516,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : XtsMover;
+	testMover : XtsMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -532,7 +532,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -549,7 +549,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -567,7 +567,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	testMover : stubMover;
+	testMover : stubMover('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN

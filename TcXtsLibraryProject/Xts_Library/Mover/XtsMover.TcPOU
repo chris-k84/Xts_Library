@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsMover" Id="{f9a43ed2-0578-4aed-857c-1a3adef0c7f6}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK XtsMover IMPLEMENTS I_Cyclic, I_XtsMover, I_Resettable, I_Object
+    <Declaration><![CDATA[FUNCTION_BLOCK XtsMover EXTENDS CyclicBase IMPLEMENTS I_XtsMover, I_Resettable
 VAR
 	MyAxisRef : AXIS_REF;
 	_MyAxisStatus : ST_AxisStatus;
@@ -12,7 +12,7 @@ VAR
 	HaltBehaviour : HaltMoverTask := (AxisRef := MyAxisRef);
 	ResetBehaviour : CoEResetTask := (AxisRef := MyAxisRef);
 	MoverActivateTrackBehaviour : ActivateTrackTask:= (AxisRef := MyAxisRef);
-	_ipTcIoXtsMover	: I_TcIoXtsXpuMover;
+	_MyInterface	: I_TcIoXtsXpuMover;
 	TrackChangeTrigger : R_TRIG;
 	_MoverAbsMoveOptions : ST_MoveAbsoluteCAOptions;
 	_stTmsActPositions : ST_PositionInfo;
@@ -22,7 +22,6 @@ VAR
 	_ForwardOnly : BOOL := TRUE;
 	myControllerOid: OTCID;
 	MyId: UDINT;
-	MoverID : T_MaxString;
 	Initialised : BOOL;
 	MyTrackCount : INT;
 	MyTracks : ARRAY[0..MaxTracks] OF I_XtsTrack;
@@ -80,36 +79,36 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF Track = 0 THEN
 	ActivateTrack := -1;
-	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateTrack Fail - Null Track');
+	Base_Library.Tracing.Trace.Warning(_Name, 'ActivateTrack Fail - Null Track');
 	RETURN;
 END_IF
 IF MoverActivateTrackBehaviour.Busy THEN
 	ActivateTrack := -2;
-	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateTrack Fail - Activating');
+	Base_Library.Tracing.Trace.Warning(_Name, 'ActivateTrack Fail - Activating');
 	RETURN;
 END_IF
 
 IF NOT THIS^.IsStationary THEN
 	ActivateTrack := -3;
-	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateTrack Fail - Moving');
+	Base_Library.Tracing.Trace.Warning(_Name, 'ActivateTrack Fail - Moving');
 	RETURN;
 END_IF
 
 IF Track > MyTrackCount THEN
 	ActivateTrack := -4;
-	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateTrack Fail - Track not Registered');
+	Base_Library.Tracing.Trace.Warning(_Name, 'ActivateTrack Fail - Track not Registered');
 	RETURN;
 END_IF
 
 IF MyTracks[Track - 1].MyOTCID = 0  THEN
 	ActivateTrack := -5;
-	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateTrack Fail - No Track');
+	Base_Library.Tracing.Trace.Warning(_Name, 'ActivateTrack Fail - No Track');
 	RETURN;
 END_IF
 	
-Base_Library.Tracing.Trace.Verbose(MoverID, 'ActivateTrack Request Accepted');
+Base_Library.Tracing.Trace.Verbose(_Name, 'ActivateTrack Request Accepted');
 MoverActivateTrackBehaviour.Execute(Track := MyTracks[Track - 1]);
-_ipTcIoXtsMover.SetActiveTrackObjectId(nTrackObjectId := MyTracks[Track - 1].MyOTCID);
+_MyInterface.SetActiveTrackObjectId(nTrackObjectId := MyTracks[Track - 1].MyOTCID);
 _CurrentTrack := MyTracks[Track - 1];
 ]]></ST>
       </Implementation>
@@ -119,16 +118,16 @@ _CurrentTrack := MyTracks[Track - 1];
       <Implementation>
         <ST><![CDATA[IF MoverActivateTrackBehaviour.Busy THEN
 	ActivateZeroReferenceSystem := -1;
-	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateZeroTrack Fail - Activating');
+	Base_Library.Tracing.Trace.Warning(_Name, 'ActivateZeroTrack Fail - Activating');
 	RETURN;
 END_IF
 IF NOT THIS^.IsStationary THEN
 	ActivateZeroReferenceSystem := -2;
-	Base_Library.Tracing.Trace.Warning(MoverID, 'ActivateZeroTrack Fail - Moving');
+	Base_Library.Tracing.Trace.Warning(_Name, 'ActivateZeroTrack Fail - Moving');
 	RETURN;
 END_IF 
 
-Base_Library.Tracing.Trace.Verbose(MoverID, 'ActivateTrack Request Accpeted');
+Base_Library.Tracing.Trace.Verbose(_Name, 'ActivateTrack Request Accpeted');
 MoverActivateTrackBehaviour.Execute(Track := NullTrack);
 _CurrentTrack := 0;]]></ST>
       </Implementation>
@@ -189,7 +188,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Cycle" Id="{b5956233-12ba-4cb8-805f-5693aec42bed}" FolderPath="ICyclic\">
+    <Method Name="Cycle" Id="{b5956233-12ba-4cb8-805f-5693aec42bed}">
       <Declaration><![CDATA[METHOD PUBLIC  Cycle : HRESULT
 VAR_INPUT
 END_VAR]]></Declaration>
@@ -202,18 +201,18 @@ END_VAR]]></Declaration>
 		_MoverAbsMoveOptions.DynamicsReferenceSystem := MoverActivateTrackBehaviour.NewTrackId;
 		MoveBehaviour.Options := _MoverAbsMoveOptions;	
 	END_IF
-	IF _ipTcIoXtsMover <> 0 THEN
-		_stTmsActPositions := _ipTcIoXtsMover.GetPositionInfo();
-		_SetForce := _ipTcIoXtsMover.GetSetForce();
-		_SetCurrent := _ipTcIoXtsMover.GetSetCurrent();
-		_myStatus.isMover1 := _ipTcIoXtsMover.GetIsMover1();
-		_myStatus.isActive := _ipTcIoXtsMover.GetIsActive();
-		_myStatus.isFrozen := _ipTcIoXtsMover.GetIsFrozen();
-		_myStatus.isLost := _ipTcIoXtsMover.GetIsLost();
-		_myStatus.isReadyForPositioning := _ipTcIoXtsMover.GetIsReadyForPositioning();
-		_myStatus.hasControllerError := _ipTcIoXtsMover.GetMoverControllerError();
-		_myStatus.driveState := _ipTcIoXtsMover.GetDriveStatus();
-		_DistanceDrivenInMM := _ipTcIoXtsMover.GetDistanceDriven();
+	IF _MyInterface <> 0 THEN
+		_stTmsActPositions := _MyInterface.GetPositionInfo();
+		_SetForce := _MyInterface.GetSetForce();
+		_SetCurrent := _MyInterface.GetSetCurrent();
+		_myStatus.isMover1 := _MyInterface.GetIsMover1();
+		_myStatus.isActive := _MyInterface.GetIsActive();
+		_myStatus.isFrozen := _MyInterface.GetIsFrozen();
+		_myStatus.isLost := _MyInterface.GetIsLost();
+		_myStatus.isReadyForPositioning := _MyInterface.GetIsReadyForPositioning();
+		_myStatus.hasControllerError := _MyInterface.GetMoverControllerError();
+		_myStatus.driveState := _MyInterface.GetDriveStatus();
+		_DistanceDrivenInMM := _MyInterface.GetDistanceDriven();
 	END_IF
 	_AvoidingCollision := MyAxisRef.NcToPlc.StateDWord2.Flags.AvoidingCollision;
 ELSE
@@ -253,11 +252,11 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF NOT THIS^.IsEnabled THEN
 	DisableMover := -1;
-	Base_Library.Tracing.Trace.Warning(MoverID, 'Disable request Fail - Disabled'); 
+	Base_Library.Tracing.Trace.Warning(_Name, 'Disable request Fail - Disabled'); 
 	RETURN;
 END_IF
 	
-Base_Library.Tracing.Trace.Verbose(MoverID, 'Disable Request Accepted');
+Base_Library.Tracing.Trace.Verbose(_Name, 'Disable Request Accepted');
 EnableBehaviour.Disable();]]></ST>
       </Implementation>
     </Method>
@@ -269,16 +268,16 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF EnableBehaviour.Busy THEN
 	EnableMover := -1;
-	Base_Library.Tracing.Trace.Warning(MoverID, 'Enable Request Failed - Enabling');
+	Base_Library.Tracing.Trace.Warning(_Name, 'Enable Request Failed - Enabling');
 	RETURN;
 END_IF
 IF THIS^.IsEnabled THEN
 	EnableMover := -2;
-	Base_Library.Tracing.Trace.Warning(MoverID, 'Enable Request Failed - Enabled');
+	Base_Library.Tracing.Trace.Warning(_Name, 'Enable Request Failed - Enabled');
 	RETURN;
 END_IF
 	
-Base_Library.Tracing.Trace.Verbose(MoverID, 'Enable Request Accepted');
+Base_Library.Tracing.Trace.Verbose(_Name, 'Enable Request Accepted');
 EnableBehaviour.Enable();]]></ST>
       </Implementation>
     </Method>
@@ -301,7 +300,8 @@ END_VAR
 METHOD FB_Init: BOOL
 VAR_INPUT
     bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
-    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)   
+    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change) 
+	Name : T_MaxString;  
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TaskCollection.RegisterCyclic(EnableBehaviour);
@@ -354,7 +354,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetMoverCtrlOTCID := _ipTcIoXtsMover.GetMoverControllerOid();]]></ST>
+        <ST><![CDATA[GetMoverCtrlOTCID := _MyInterface.GetMoverControllerOid();]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetMoverOTCID" Id="{0ee3ade7-076c-46ec-8833-0ad2fc45f400}" FolderPath="Administration\">
@@ -375,11 +375,11 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF HaltBehaviour.Busy THEN
 	HaltAxis := -1;
-	Base_Library.Tracing.Trace.Warning(MoverID, 'Halt Request Fail - Halting');
+	Base_Library.Tracing.Trace.Warning(_Name, 'Halt Request Fail - Halting');
 	RETURN;
 END_IF
 	
-Base_Library.Tracing.Trace.Verbose(MoverID, 'Halt Request Accepted');
+Base_Library.Tracing.Trace.Verbose(_Name, 'Halt Request Accepted');
 HaltBehaviour.Execute();]]></ST>
       </Implementation>
     </Method>
@@ -405,7 +405,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Initialise" Id="{158eaadb-7779-40c3-b4d7-ef64750e6b36}" FolderPath="Administration\">
+    <Method Name="Initialise" Id="{158eaadb-7779-40c3-b4d7-ef64750e6b36}">
       <Declaration><![CDATA[METHOD Initialise : HRESULT
 VAR_INPUT
 END_VAR
@@ -414,26 +414,32 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF Initialised THEN
+	Base_Library.Tracing.Trace.Error(_Name, 'Mover Already Initialised');
 	Initialise := -1;
 	RETURN;
 END_IF
-IF _ipTcIoXtsMover = 0 THEN
+IF _MyInterface = 0 THEN
+	Base_Library.Tracing.Trace.Error(_Name, 'No XPU interface for Init');
 	Initialise := -2;
 	RETURN;
 END_IF
-IF NOT IsDetected THEN
+IF NOT _MyInterface.P_IsInitialized THEN
 	Initialise := -3;
+	Base_Library.Tracing.Trace.Error(_Name, 'XPU Interface not ready');
 	RETURN;
 END_IF
-IF MyTrackCount = 0 THEN
+IF MyAxisRef.NcToPlc.AxisId = 0 THEN
 	Initialise := -4;
+	Base_Library.Tracing.Trace.Error(_Name, 'Mover has no NC link');
 	RETURN;
 END_IF
-myController := _ipTcIoXtsMover.MoverController;
-myControllerOid := _ipTcIoXtsMover.GetMoverControllerOid();
-MyId := _ipTcIoXtsMover.P_AxisId;
-MoverID := CONCAT('Mover ', TO_STRING(MyId));
-_Mover1 := _ipTcIoXtsMover.GetIsMover1();
+
+Base_Library.Tracing.Trace.Verbose(_Name, 'Mover Init Success');
+myController := _MyInterface.MoverController;
+myControllerOid := _MyInterface.GetMoverControllerOid();
+MyId := _MyInterface.P_AxisId;
+_Name := _MyInterface.P_ObjectName;
+_Mover1 := _MyInterface.GetIsMover1();
 _CurrentTrack := MyTracks[MoversActiveTrack - 1];
 Initialised := TRUE;]]></ST>
       </Implementation>
@@ -534,7 +540,7 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[FOR i := 0 TO MyTrackCount - 1 DO
-	IF MyTracks[i].MyOTCID =  _ipTcIoXtsMover.GetActiveTrackObjectId() THEN
+	IF MyTracks[i].MyOTCID =  _MyInterface.GetActiveTrackObjectId() THEN
 		MoversActiveTrack := i + 1;
 		EXIT;
 	END_IF
@@ -549,7 +555,7 @@ END_FOR]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MoverXtsIoEnvInterface := _ipTcIoXtsMover;]]></ST>
+          <ST><![CDATA[MoverXtsIoEnvInterface := _MyInterface;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{57119448-dfbf-405e-ade1-72aad5224720}">
@@ -557,7 +563,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_ipTcIoXtsMover := MoverXtsIoEnvInterface;]]></ST>
+          <ST><![CDATA[_MyInterface := MoverXtsIoEnvInterface;]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -571,25 +577,25 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF MoveBehaviour.Busy THEN
-	Base_Library.Tracing.Trace.Warning(MoverID, 'Mover Called While Busy');
+	Base_Library.Tracing.Trace.Warning(_Name, 'Mover Called While Busy');
 END_IF
 IF MoveVelocity > _MaxMoverVelocity THEN
-	Base_Library.Tracing.Trace.Warning(MoverID, 'Move Velo Too High');
+	Base_Library.Tracing.Trace.Warning(_Name, 'Move Velo Too High');
 	MoveTo := -2;
 	RETURN;
 END_IF
 IF MoveVelocity <= 0.0 THEN
-	Base_Library.Tracing.Trace.Warning(MoverID, 'Move Velo Less Than Zero');
+	Base_Library.Tracing.Trace.Warning(_Name, 'Move Velo Less Than Zero');
 	MoveTo := -3;
 	RETURN;
 END_IF
 IF Gap <= 50.0 THEN
-	Base_Library.Tracing.Trace.Warning(MoverID, 'Move Gasp Too Small');
+	Base_Library.Tracing.Trace.Warning(_Name, 'Move Gasp Too Small');
 	MoveTo := -4;
 	RETURN;
 END_IF
 
-Base_Library.Tracing.Trace.Verbose(moverID, concat('Move Accepted to : ',TO_STRING(RequiredPosition)));
+Base_Library.Tracing.Trace.Verbose(_Name, concat('Move Accepted to : ',TO_STRING(RequiredPosition)));
 
 IF NonModuloMove THEN
 	THIS^.MoveBehaviour.MoveTo(Position := RequiredPosition, 
@@ -713,18 +719,18 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ResetBehaviour.Busy THEN
-	Base_Library.Tracing.Trace.Warning(MoverID, 'Reset Request Failed - Reseting');
+	Base_Library.Tracing.Trace.Warning(_Name, 'Reset Request Failed - Reseting');
 	Reset := -1;
 	RETURN;
 END_IF
  
 IF NOT (_MyAxisStatus.Error OR _MyAxisStatus.NotMoving) THEN
-	Base_Library.Tracing.Trace.Warning(MoverID, 'Reset Request Failed - Not Allowed');
+	Base_Library.Tracing.Trace.Warning(_Name, 'Reset Request Failed - Not Allowed');
 	Reset := -2;
 	RETURN;
 END_IF
 
-Base_Library.Tracing.Trace.Verbose(MoverID, 'Reset Request Accepted');
+Base_Library.Tracing.Trace.Verbose(_Name, 'Reset Request Accepted');
 ResetBehaviour.Reset();
 MoveBehaviour.Abort();]]></ST>
       </Implementation>
@@ -736,12 +742,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _ipTcIoXtsMover = 0 THEN
+        <ST><![CDATA[IF _MyInterface = 0 THEN
 	SetForceCouple := - 1;
 	RETURN;
 END_IF
 
-_ipTcIoXtsMover.MoverController.SetForceCouple(nForceCouple := XtsMoverCtrlOTCID);]]></ST>
+_MyInterface.MoverController.SetForceCouple(nForceCouple := XtsMoverCtrlOTCID);]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetMoverActiveTrack" Id="{d6a4b78b-2758-4ca3-91dd-004aef96a776}" FolderPath="Administration\">
@@ -771,7 +777,7 @@ IF MyTracks[Track - 1].MyOTCID = 0  THEN
 	RETURN;
 END_IF
 	
-_ipTcIoXtsMover.SetActiveTrackObjectId(nTrackObjectId := MyTracks[Track - 1].MyOTCID);
+_MyInterface.SetActiveTrackObjectId(nTrackObjectId := MyTracks[Track - 1].MyOTCID);
 _CurrentTrack := MyTracks[Track - 1];]]></ST>
       </Implementation>
     </Method>
@@ -798,8 +804,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_ipTcIoXtsMover.SetSimulatedStartUpPart(Part);
-_ipTcIoXtsMover.SetSimulatedStartUpPosition(Position);]]></ST>
+        <ST><![CDATA[_MyInterface.SetSimulatedStartUpPart(Part);
+_MyInterface.SetSimulatedStartUpPosition(Position);]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwapMover" Id="{075d081f-a4ad-470f-95aa-ced1f28cc5a8}" FolderPath="Administration\">
@@ -809,7 +815,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_ipTcIoXtsMover.swapmover(nSwapMoverObjectId := MoverToSwapWith);
+        <ST><![CDATA[_MyInterface.swapmover(nSwapMoverObjectId := MoverToSwapWith);
 ]]></ST>
       </Implementation>
     </Method>
@@ -819,7 +825,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _ipTcIoXtsMover = 0 THEN
+        <ST><![CDATA[IF _MyInterface = 0 THEN
 	TriggerMoverArrive := - 1;
 	RETURN;
 END_IF
@@ -828,7 +834,7 @@ IF _myStatus.isActive THEN
 	RETURN;
 END_IF
 
-_ipTcIoXtsMover.TriggerArrive();]]></ST>
+_MyInterface.TriggerArrive();]]></ST>
       </Implementation>
     </Method>
     <Method Name="TriggerMoverLeave" Id="{074e60e5-1df3-46d8-92fd-930fc05fcb13}" FolderPath="Administration\">
@@ -837,7 +843,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _ipTcIoXtsMover = 0 THEN
+        <ST><![CDATA[IF _MyInterface = 0 THEN
 	TriggerMoverLeave := -1;
 	RETURN;
 END_IF
@@ -850,7 +856,7 @@ IF NOT IsStationary THEN
 	RETURN;
 END_IF
 
-_ipTcIoXtsMover.TriggerLeave();]]></ST>
+_MyInterface.TriggerLeave();]]></ST>
       </Implementation>
     </Method>
   </POU>
