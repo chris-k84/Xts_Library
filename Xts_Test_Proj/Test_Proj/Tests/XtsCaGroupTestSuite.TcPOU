@@ -22,8 +22,8 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	stubMover : XtsMover;
-	caGroup : CollisionGroup;
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -39,8 +39,8 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	stubMover : XtsMover;
-	caGroup : CollisionGroup;
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -57,8 +57,8 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	stubMover : XtsMover;
-	caGroup : CollisionGroup;
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -76,7 +76,7 @@ VAR_INST
 END_VAR
 VAR
 	iNullMover : I_XtsMover;
-	caGroup : CollisionGroup;
+	caGroup : CollisionGroup('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -92,7 +92,7 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	caGroup : CollisionGroup;
+	caGroup : CollisionGroup('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -109,7 +109,7 @@ VAR_INST
 END_VAR
 VAR
 	iNullMover : I_XtsMover;
-	caGroup : CollisionGroup;
+	caGroup : CollisionGroup('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN
@@ -125,8 +125,8 @@ VAR_INST
 	Actual	 : BOOL;
 END_VAR
 VAR
-	stubMover : XtsMover;
-	caGroup : CollisionGroup;
+	stubMover : XtsMover('');
+	caGroup : CollisionGroup('');
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ThisTestSuite.Test(__POUNAME()).ExecuteTest() THEN

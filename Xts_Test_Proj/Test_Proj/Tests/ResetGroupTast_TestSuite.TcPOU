@@ -16,7 +16,7 @@ TaskRejectsInvalidCAGroup();]]></ST>
     <Method Name="TaskAcceptsCommand_test" Id="{33819b9d-d6e9-4a11-93aa-6faaa56f06d1}">
       <Declaration><![CDATA[METHOD TaskAcceptsCommand_test
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	testResetGrp : ResetGroup:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -47,7 +47,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsDuplicateCommand_Test" Id="{1cbfb6a6-8030-48b4-9845-d88e05778f2a}">
       <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Test
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	testResetGrp : ResetGroup:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -79,7 +79,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsInvalidCAGroup" Id="{412a97d1-c198-4a08-b6c9-0b185fbef295}">
       <Declaration><![CDATA[METHOD TaskRejectsInvalidCAGroup
 VAR
-	stubGroup : CollisionGroup;
+	stubGroup : CollisionGroup('');
 	iStubCAGRoup : I_CollisionGroup := stubGroup;
 	testResetGrp : ResetGroup:= (MyCollisionGroup := stubGroup);
 	Expected : BOOL := TRUE;

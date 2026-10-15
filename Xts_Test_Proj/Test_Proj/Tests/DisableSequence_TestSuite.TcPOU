@@ -18,8 +18,8 @@ SequenceReportsCorrectMoverNumber_Test();]]></ST>
     <Method Name="SequenceAcceptsDisableCommand_Test" Id="{9968cbcb-1e07-4776-8222-2487796f2d34}">
       <Declaration><![CDATA[METHOD SequenceAcceptsDisableCommand_Test : BOOL
 VAR
-	stubCAGroup : CollisionGroup;
-	stub_Mover : XtsMover;
+	stubCAGroup : CollisionGroup('');
+	stub_Mover : XtsMover('');
 	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -36,8 +36,8 @@ END_IF]]></ST>
     <Method Name="SequenceAcceptsMover_Test" Id="{b4618248-f0d0-4c5f-875c-2296c561c8f6}">
       <Declaration><![CDATA[METHOD SequenceAcceptsMover_Test : BOOL
 VAR
-	stubCAGroup : CollisionGroup;
-	stub_Mover : XtsMover;
+	stubCAGroup : CollisionGroup('');
+	stub_Mover : XtsMover('');
 	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -55,7 +55,7 @@ END_IF]]></ST>
     <Method Name="SequenceRejectsCommandWithNoAxes_Test" Id="{23a2eea3-b5fb-4474-bc7a-20d66dc6a2ed}">
       <Declaration><![CDATA[METHOD SequenceRejectsCommandWithNoAxes_Test : BOOL
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -71,7 +71,7 @@ END_IF]]></ST>
     <Method Name="SequenceRejectsCommandWithNoCAGroup_Test" Id="{d0d31a4d-e07f-4a4c-9dd5-b75eb64a2cab}">
       <Declaration><![CDATA[METHOD SequenceRejectsCommandWithNoCAGroup_Test : BOOL
 VAR
-	stub_Mover : stubMover;
+	stub_Mover : stubMover('');
 	DisableSequence : XtsDisableSequence;
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -88,7 +88,7 @@ END_IF]]></ST>
     <Method Name="SequenceRejectsDuplicateCommand_Test" Id="{8dc243ec-fddf-46dc-ad15-142d6952e617}">
       <Declaration><![CDATA[METHOD SequenceRejectsDuplicateCommand_Test : BOOL
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -122,10 +122,10 @@ END_IF]]></ST>
     <Method Name="SequenceReportsCorrectMoverNumber_Test" Id="{038270fa-a665-4122-9a47-fc495276d17e}">
       <Declaration><![CDATA[METHOD SequenceReportsCorrectMoverNumber_Test : BOOL
 VAR
-	stubCAGroup : CollisionGroup;
-	stub_Mover1 : stubMover;
-	stub_Mover2 : stubMover;
-	stub_Mover3 : stubMover;
+	stubCAGroup : CollisionGroup('');
+	stub_Mover1 : stubMover('');
+	stub_Mover2 : stubMover('');
+	stub_Mover3 : stubMover('');
 	DisableSequence : XtsDisableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;

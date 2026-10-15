@@ -5,7 +5,7 @@
 VAR
 	stGroupInformation : CAGroupInfo;
 	_caGroup : Tc3_McCoordinatedMotion.AXES_GROUP_REF;
-	_ICaGroup : I_Mc2CaGroup;
+	_MyInterface : I_Mc2CaGroup;
 	ReadGroupStatus : Tc3_McCoordinatedMotion.MC_GroupReadStatus;
 	ReadErrorCode : Tc3_McCoordinatedMotion.MC_GroupReadError;
 	resetCAGroup : ResetGroup := (MyCollisionGroup := THIS^);
@@ -58,6 +58,12 @@ IF addMover.Busy THEN
 	RETURN;
 END_IF
 
+IF _caGroup.NcToPlc.Common.GroupType <> MC_GROUP_TYPE.mcGroupTypeCA THEN
+	Base_Library.Tracing.Trace.Error(_Name, 'Register Mover Fail - No Link to NC');
+	AddMoverToThisGroup := -4;
+	RETURN;
+END_IF
+
 Base_Library.Tracing.Trace.Verbose(_Name, 'Register Mover Accepted');
 addMover.AddMover(MoverToAdd := MoverToAdd);
 MoverToAdd.MyCAGroup  := THIS^;
@@ -88,7 +94,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[CAGroupXtsIoEnvInterface := _ICaGroup;]]></ST>
+          <ST><![CDATA[CAGroupXtsIoEnvInterface := _MyInterface;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{4e382846-3fb7-428a-a6d3-609bca8b4701}">
@@ -96,9 +102,9 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_ICaGroup := CAGroupXtsIoEnvInterface;
-IF _ICaGroup <> 0 THEN
-	_Name := _ICaGroup.P_ObjectName;
+          <ST><![CDATA[_MyInterface := CAGroupXtsIoEnvInterface;
+IF _MyInterface <> 0 THEN
+	_Name := _MyInterface.P_ObjectName;
 END_IF]]></ST>
         </Implementation>
       </Set>
@@ -115,7 +121,7 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _ICaGroup = 0 THEN
+        <ST><![CDATA[IF _MyInterface = 0 THEN
 	Cycle := -1;
 	RETURN;
 END_IF
@@ -320,7 +326,7 @@ FOR i := 0 TO MaxMovers DO
 END_FOR
 IF NOT registered THEN
 	Base_Library.Tracing.Trace.Warning(_Name, 'Remove Fail - not registered');
-	RemoveAMover := -2;
+	RemoveAMover := -3;
 	RETURN;
 END_IF
 

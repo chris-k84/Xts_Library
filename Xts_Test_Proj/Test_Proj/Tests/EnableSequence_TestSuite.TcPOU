@@ -18,8 +18,8 @@ SequenceReportsCorrectMoverNumber_Test();]]></ST>
     <Method Name="SequenceAcceptsEnableCommand_Test" Id="{d8f7a973-bbd5-4c8b-b462-c79ceb666984}">
       <Declaration><![CDATA[METHOD SequenceAcceptsEnableCommand_Test : BOOL
 VAR
-	stubCAGroup : CollisionGroup;
-	stubMover : XtsMover;
+	stubCAGroup : CollisionGroup('');
+	stubMover : XtsMover('');
 	EnableSequence : XtsEnableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -37,8 +37,8 @@ END_IF]]></ST>
     <Method Name="SequenceAcceptsMover_Test" Id="{e91a3164-80ca-4533-820c-a6b0c8f9e00c}">
       <Declaration><![CDATA[METHOD SequenceAcceptsMover_Test : BOOL
 VAR
-	stubCAGroup : CollisionGroup;
-	stub_Mover : XtsMover;
+	stubCAGroup : CollisionGroup('');
+	stub_Mover : XtsMover('');
 	EnableSequence : XtsEnableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -56,7 +56,7 @@ END_IF]]></ST>
     <Method Name="SequenceRejectsCommandWithNoAxes_Test" Id="{9fde4aaf-da0d-421e-9b7a-9666ee182b4f}">
       <Declaration><![CDATA[METHOD SequenceRejectsCommandWithNoAxes_Test : BOOL
 VAR
-		stubCAGroup : CollisionGroup;
+		stubCAGroup : CollisionGroup('');
 	EnableSequence : XtsEnableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -87,7 +87,7 @@ END_IF]]></ST>
     <Method Name="SequenceRejectsDuplicateCommand_Test" Id="{dfff0d2b-4c84-4d2f-bcd5-ddbfacfc030e}">
       <Declaration><![CDATA[METHOD SequenceRejectsDuplicateCommand_Test : BOOL
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	EnableSequence : XtsEnableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -121,10 +121,10 @@ END_IF]]></ST>
     <Method Name="SequenceReportsCorrectMoverNumber_Test" Id="{98aae470-b0db-41b9-8128-0a32e5302399}">
       <Declaration><![CDATA[METHOD SequenceReportsCorrectMoverNumber_Test : BOOL
 VAR
-	stubCAGroup : CollisionGroup;
-	stub_Mover1 : stubMover;
-	stub_Mover2 : stubMover;
-	stub_Mover3 : stubMover;
+	stubCAGroup : CollisionGroup('');
+	stub_Mover1 : stubMover('');
+	stub_Mover2 : stubMover('');
+	stub_Mover3 : stubMover('');
 	EnableSequence : XtsEnableSequence := (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;

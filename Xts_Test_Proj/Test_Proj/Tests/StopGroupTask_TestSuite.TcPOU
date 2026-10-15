@@ -18,7 +18,7 @@ TaskRejectsInvalidCAGroup();]]></ST>
     <Method Name="TaskAcceptsValidCommand_Test" Id="{bbbd6c90-0584-49fd-9b9a-b03e6807aed2}">
       <Declaration><![CDATA[METHOD TaskAcceptsValidCommand_Test
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	testStopGrp : StopMoverGroup:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -64,7 +64,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsDuplicateCommand_Test" Id="{bffcdbff-9e58-4f9c-b472-3c027ffeccec}">
       <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Test
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	testStopGrp : StopMoverGroup:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -81,7 +81,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsInvalidCAGroup" Id="{18fb45de-e16e-44a2-89fb-912d3460aea0}">
       <Declaration><![CDATA[METHOD TaskRejectsInvalidCAGroup
 VAR
-	stubGroup : CollisionGroup;
+	stubGroup : CollisionGroup('');
 	iStubCAGRoup : I_CollisionGroup := stubGroup;
 	testStopGrp : StopMoverGroup:= (MyCollisionGroup := stubGroup);
 	Expected : BOOL := TRUE;
@@ -99,7 +99,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsZeroDecel_Test" Id="{2ad511e9-12d7-4d9d-9f2e-89b206f19ab8}">
       <Declaration><![CDATA[METHOD TaskRejectsZeroDecel_Test
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	testStopGrp : StopMoverGroup:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -118,7 +118,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsZeroJerk_Test" Id="{0cdab2f7-a911-4354-b921-151032733675}">
       <Declaration><![CDATA[METHOD TaskRejectsZeroJerk_Test
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	testStopGrp : StopMoverGroup:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;

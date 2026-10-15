@@ -16,7 +16,7 @@ TaskRejectsRemoveAllWithNoGroup_Test();]]></ST>
     <Method Name="TaskAcceptsRemoveCommand_Test" Id="{2cfd4574-9937-4592-b537-84fc1b0143b7}">
       <Declaration><![CDATA[METHOD TaskAcceptsRemoveCommand_Test
 VAR
-	stubGroup : CollisionGroup;
+	stubGroup : CollisionGroup('');
 	testRemoveAll : RemoveAllMoverFromGroup := (MyCollisionGroup := stubGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -47,7 +47,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsDuplicateCommand_Test" Id="{915ffafe-cf86-4fb1-bd7f-804ac745cb61}">
       <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Test
 VAR
-	stubGroup : CollisionGroup;
+	stubGroup : CollisionGroup('');
 	testRemoveAll : RemoveAllMoverFromGroup := (MyCollisionGroup := stubGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -63,7 +63,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsInvalidCAGroup" Id="{9e44dde0-69a2-4313-9725-298644851780}">
       <Declaration><![CDATA[METHOD TaskRejectsInvalidCAGroup
 VAR
-	stubGroup : CollisionGroup;
+	stubGroup : CollisionGroup('');
 	iStubCAGRoup : I_CollisionGroup := stubGroup;
 	testRemoveAll : RemoveAllMoverFromGroup := (MyCollisionGroup := stubGroup);
 	Expected : BOOL := TRUE;

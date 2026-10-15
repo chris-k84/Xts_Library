@@ -17,9 +17,9 @@ TaskRejectsInvalidCAGroup();]]></ST>
     <Method Name="TaskAcceptsMover_Test" Id="{76d622a8-3592-402c-963b-8fe6effd36e5}">
       <Declaration><![CDATA[METHOD TaskAcceptsMover_Test
 VAR
-	stubCAGroup : CollisionGroup;
-	stubAxis : XtsMover;
-	stubAxis1 : XtsMover;
+	stubCAGroup : CollisionGroup('');
+	stubAxis : XtsMover('');
+	stubAxis1 : XtsMover('');
 	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -35,7 +35,7 @@ END_IF]]></ST>
     <Method Name="TaskAcceptsValidCAGroup" Id="{3c10fd1e-0467-4752-98d7-57c24a691c09}">
       <Declaration><![CDATA[METHOD TaskAcceptsValidCAGroup
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	istuibCAGroup : I_CollisionGroup := stubCAGroup;
 	testMoverToGrp : AddMoverToGroupTask;
 	Expected : BOOL := TRUE;
@@ -53,9 +53,9 @@ END_IF]]></ST>
     <Method Name="TaskRejectsCyclewithNoCAGroup_Test" Id="{67079034-a882-4395-b22e-5f8c5fbf43fc}">
       <Declaration><![CDATA[METHOD TaskRejectsCyclewithNoCAGroup_Test
 VAR
-	stubCAGroup : CollisionGroup;
-	stubAxis : XtsMover;
-	stubAxis1 : XtsMover;
+	stubCAGroup : CollisionGroup('');
+	stubAxis : XtsMover('');
+	stubAxis1 : XtsMover('');
 	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -70,9 +70,9 @@ END_IF]]></ST>
     <Method Name="TaskRejectsDuplicateCommand_Test" Id="{caf75f25-819a-48cc-a5c7-cd789f30bab6}">
       <Declaration><![CDATA[METHOD TaskRejectsDuplicateCommand_Test
 VAR
-	stubCAGroup : CollisionGroup;
-	stubAxis : XtsMover;
-	stubAxis1 : XtsMover;
+	stubCAGroup : CollisionGroup('');
+	stubAxis : XtsMover('');
+	stubAxis1 : XtsMover('');
 	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
@@ -88,7 +88,7 @@ END_IF]]></ST>
     <Method Name="TaskRejectsInvalidCAGroup" Id="{416b9f46-b726-406d-ae68-ebe97a7a40e7}">
       <Declaration><![CDATA[METHOD TaskRejectsInvalidCAGroup
 VAR
-	stubCAGroup : CollisionGroup;
+	stubCAGroup : CollisionGroup('');
 	iStubCAGroup : I_CollisionGroup := stubCAGroup;
 	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
@@ -106,9 +106,9 @@ END_IF]]></ST>
     <Method Name="TaskRejectsInvalidMover_Test" Id="{e3b9e3da-2293-4563-b5f0-6f0df1b14381}">
       <Declaration><![CDATA[METHOD TaskRejectsInvalidMover_Test
 VAR
-	stubCAGroup : CollisionGroup;
-	stubAxis : XtsMover;
-	stubAxis1 : XtsMover;
+	stubCAGroup : CollisionGroup('');
+	stubAxis : XtsMover('');
+	stubAxis1 : XtsMover('');
 	testMoverToGrp : AddMoverToGroupTask:= (MyCollisionGroup := stubCAGroup);
 	Expected : BOOL := TRUE;
 	Actual	 : BOOL;
