@@ -5,9 +5,6 @@
 VAR
 	_MyInterface : I_TcIoXtsPartModule;
 	_IsInitialised : BOOL;
-	Nominal24Vdc : REAL := 24.0;
-	Nominal48Vdc : REAL := 48.0;
-	ModuleName: STRING;
 	MotorOid: OTCID;
 	SensorOid: OTCID;
 	_BTN: BTN;
@@ -23,7 +20,10 @@ VAR
 	ModuleStateRisingError: R_TRIG;
 	ModuleStateFallingError: F_TRIG;
 END_VAR
-]]></Declaration>
+VAR CONSTANT
+	Nominal24Vdc : REAL := 24.0;
+	Nominal48Vdc : REAL := 48.0;
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
@@ -151,17 +151,24 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT _MyInterface.P_IsInitialized THEN
+        <ST><![CDATA[IF _MyInterface = 0 THEN
 	Initialise := -1;
+	Base_Library.Tracing.Trace.Error(_Name, 'No XPU interface for Init');
 	RETURN;
 END_IF
 
+IF NOT _MyInterface.P_IsInitialized THEN
+	Initialise := -2;
+	Base_Library.Tracing.Trace.Error(_Name, 'XPU Interface not ready');
+	RETURN;
+END_IF
+
+Base_Library.Tracing.Trace.Verbose(_Name, 'Module Init Success');
 MotorOid := _MyInterface.GetMotorTerminalOid();
 SensorOid := _MyInterface.GetSensorTerminalOid();
-ModuleName := _MyInterface.P_ObjectName;
+_Name := _MyInterface.P_ObjectName;
 _BTN := _MyInterface.GetDriveBTN();
 _Infeed := _MyInterface.GetIsInfeed();
-_Name := _MyInterface.P_ObjectName;
 _IsInitialised := TRUE;
 ]]></ST>
       </Implementation>
