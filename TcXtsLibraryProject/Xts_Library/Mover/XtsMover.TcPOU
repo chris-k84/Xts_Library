@@ -797,6 +797,17 @@ END_VAR
 _MyInterface.SetSimulatedStartUpPosition(Position);]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Status" Id="{b6a8e4fc-5f49-414e-9d84-cce1a649f586}" FolderPath="Status\">
+      <Declaration><![CDATA[PROPERTY Status : MoverStatus]]></Declaration>
+      <Get Name="Get" Id="{57e46648-9a40-4e7a-bf2f-432d5c0dc60c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Status := _myStatus;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="SwapMover" Id="{075d081f-a4ad-470f-95aa-ced1f28cc5a8}" FolderPath="Administration\">
       <Declaration><![CDATA[METHOD SwapMover : HRESULT
 VAR_INPUT

@@ -10,13 +10,13 @@
 ]]></Declaration>
     </Method>
     <Method Name="DisableXTS" Id="{d730e6bc-30f4-400f-83c5-0a8ef7530dc6}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD DisableXTS : BOOL
+      <Declaration><![CDATA[METHOD DisableXTS : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="EnableXTS" Id="{a90bf243-5fbb-42eb-a2e5-eb1ea9f490a9}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD EnableXTS : BOOL
+      <Declaration><![CDATA[METHOD EnableXTS : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -71,7 +71,7 @@ END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="StopXts" Id="{d7591d56-8a8c-46a1-bfd3-85f1f168760d}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD StopXts : BOOL
+      <Declaration><![CDATA[METHOD StopXts : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
