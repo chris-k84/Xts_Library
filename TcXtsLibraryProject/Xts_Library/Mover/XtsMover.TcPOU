@@ -701,16 +701,6 @@ FOR i := 0 TO 5 DO
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="RegisterWithParent" Id="{0c8fc6cb-d807-4926-a588-870aa525c7f2}" FolderPath="Administration\">
-      <Declaration><![CDATA[METHOD RegisterWithParent
-VAR_INPUT
-	Parent	: I_HostObjects;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[Parent.RegisterCyclic(THIS^);]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="Reset" Id="{e9d8249c-2f88-4980-a483-ceda82c7ab80}" FolderPath="Commands\">
       <Declaration><![CDATA[METHOD PUBLIC Reset : HRESULT
 VAR_INPUT
