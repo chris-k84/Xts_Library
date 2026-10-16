@@ -149,7 +149,6 @@ END_IF
 Base_Library.Tracing.Trace.Verbose(_Name, 'Module Init Success');
 MotorOid := _MyInterface.GetMotorTerminalOid();
 SensorOid := _MyInterface.GetSensorTerminalOid();
-_Name := _MyInterface.P_ObjectName;
 _BTN := _MyInterface.GetDriveBTN();
 _Infeed := _MyInterface.GetIsInfeed();
 Status.IsInfeed := _MyInterface.GetIsInfeed();
