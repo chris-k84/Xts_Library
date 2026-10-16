@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="XtsResetState" Id="{dd747b37-d26a-4058-8f31-1a51dab41710}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+TYPE XtsResetState :
+(
+	Idle := 0,
+	ResettingHardware := 1,
+	ResettingCAGroup := 2,
+	Done
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

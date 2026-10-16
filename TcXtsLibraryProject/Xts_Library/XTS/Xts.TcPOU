@@ -1,33 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="Xts" Id="{4538c683-94fc-49a1-b5ad-30ffec5e4eff}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT XTS EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XTS, I_Object
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT XTS EXTENDS CyclicBase IMPLEMENTS I_Initialisable, I_XTS
 VAR
+	// Status Flags
 	_MyXts : INT;
 	_XtsEnabled : BOOL;
-	_iXPU : I_TcIoXtsProcessingUnit;
-	iMovers : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
-	_XtsIoEnvVar : I_XtsIoEnvVar;
-	ICollisionGroup : I_CollisionGroup;
-	_MyXtsHardware : I_XtsHardware;
-	XtsHwState : XtsSystemInitialisation;
-	EnableSequence : XtsEnableSequence;
-	DisableSequence : XtsDisableSequence;	
+	_InSim : BOOL;
+	Initialising : BOOL;
 	_Initialised : BOOL;
-	EnabledTrigger : R_TRIG;
-	DisabledTrigger : R_TRIG;
-	_registeredNumberOfMovers: INT;
 	DetectedMoverCount : UDINT;
 	HardwareError : BOOL;
 	CAGroupError : BOOL;
 	_ErrorID : UDINT;
-	Initialising : BOOL;
+	XtsHwState : XtsSystemInitialisation;
 	XtsOperatingMode : OperationMode;
+	
+	// XTS Components
+	_XtsIoEnvVar : I_XtsIoEnvVar;
+	_iXPU : I_TcIoXtsProcessingUnit;
+	iMovers : ARRAY[0..TcIoXtsEnvironmentParameterList.MaxXtsMoversPerXpu] OF I_XtsMover;
+	_MyXtsHardware : I_XtsHardware;
+	ICollisionGroup : I_CollisionGroup;
+	
+	// Behaviours
+	EnableSequence : XtsEnableSequence;
+	DisableSequence : XtsDisableSequence;	
+	EnabledTrigger : R_TRIG;
+	DisabledTrigger : R_TRIG;
+	ResetTrigger : R_TRIG;
+	ResetState : XtsResetState;
+	_registeredNumberOfMovers: INT;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[{analysis -2}]]></ST>
     </Implementation>
     <Folder Name="Operations" Id="{0e8598c4-3d58-4c14-a12f-6fd3f3ea02bf}" />
+    <Folder Name="Private" Id="{3792690f-dbde-4d97-aae6-86812312ba25}" />
     <Folder Name="Settings" Id="{cec05bdb-9232-4b5d-b91e-848bd7bc55d9}" />
     <Folder Name="Status" Id="{c34f5481-c408-4671-a299-9c4a6e31956c}" />
     <Method Name="AreAllMoversStationary" Id="{f009ccd3-c388-424a-b98d-ae435064fa0b}" FolderPath="Status\">
@@ -72,7 +81,7 @@ IF DisabledTrigger.Q THEN
 	_XtsEnabled := FALSE;
 END_IF
 
-
+ResetSequence();
 CAGroupError := ICollisionGroup.HasError;
 HardwareError := (_iXPU.GetDriveState() = (DriveState.Fault OR DriveState.FaultReactionActive)) OR _MyXtsHardware.AnyPartsInError;
 
@@ -219,6 +228,7 @@ CASE XtsHwState OF
 			_iXPU := _XtsIoEnvVar.GetXPUInterface(_MyXts);
 			_name := _iXPU.P_ObjectName;
 			XtsOperatingMode := _iXPU.GetOperationMode();
+			_InSim := XtsOperatingMode = OperationMode.Simulation;
 			_MyXtsHardware.MyXpu := _iXPU;
 			EnableSequence.Name := _Name;
 			DisableSequence.Name := _Name;
@@ -409,14 +419,47 @@ Parent.RegisterInitialisable(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{f4cda3e0-308c-460d-87ee-c1616441d1b6}" FolderPath="Operations\">
-      <Declaration><![CDATA[METHOD Reset : BOOL
+      <Declaration><![CDATA[METHOD Reset : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Reset := SUCCEEDED(ICollisionGroup.Reset());
-_MyXtsHardware.ResetAllParts();
-Base_Library.Tracing.Trace.Verbose(_name, 'Reset Accepted');]]></ST>
+        <ST><![CDATA[IF NOT _Initialised THEN
+	Reset := -1;
+	RETURN;
+END_IF
+
+ResetTrigger.CLK := TRUE;
+Base_Library.Tracing.Trace.Verbose(_Name, 'Reset Accepted');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ResetSequence" Id="{13cd689a-6bb1-4c04-93f3-31d6703e31bf}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD ResetSequence : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE ResetState OF
+	XtsResetState.Idle:
+		IF ResetTrigger.Q THEN
+			ResetState := XtsResetState.ResettingHardware;
+			_iXPU.TriggerResetAllParts();
+		END_IF	
+	XtsResetState.ResettingHardware:
+		IF NOT HardwareError THEN
+			ICollisionGroup.Reset();
+			ResetState := XtsResetState.ResettingCAGroup;
+		END_IF
+	XtsResetState.ResettingCAGroup:
+		IF NOT iCollisionGroup.HasError THEN
+			ResetState := XtsResetState.Done;
+		END_IF
+	XtsResetState.Done:
+		ResetTrigger.CLK := FALSE;
+		ResetState := XtsResetState.Idle;
+END_CASE
+ResetTrigger();
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="StopXts" Id="{4b648283-f5f4-4d47-a58f-be53e519365d}" FolderPath="Operations\">
