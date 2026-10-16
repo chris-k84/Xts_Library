@@ -4,14 +4,16 @@
     <Declaration><![CDATA[FUNCTION_BLOCK XtsDisableSequence IMPLEMENTS I_MoverDisableAlgorithm
 VAR
 	XtsName : T_MaxString;
-	_caGroup : I_CollisionGroup;
+	iCAGroup : I_CollisionGroup;
 	DisableTrigger: BOOL;
 	moverNumbers : UINT := 1;
 	AllMoversDisabled: BOOL;	
-	arrMovers : ARRAY[0..MaxMovers] OF I_XtsMover;
-	_registeredNumberOfMovers : INT;
+	iMoverArray : ARRAY[0..MaxMovers] OF I_XtsMover;
+	_MoverCount : INT;
 	CaGroupResetResult: BOOL;
 	State: DisableState;
+	DisableMoverTimeOut : TON := (PT := DEFAULT_ADS_TIMEOUT);
+	GroupRemoveAllTimeOut : TON := (PT := DEFAULT_ADS_TIMEOUT);
 	_Done: BOOL;
 	_Error: BOOL;
 	_Busy: BOOL;
@@ -62,61 +64,77 @@ END_VAR]]></Declaration>
 		END_IF
 		
 	DisableState.Group_Stop:
-		IF _caGroup.IsMoving THEN
+		IF iCAGroup.IsMoving THEN
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Group Stopping');
-			_caGroup.GroupStop();
+			iCAGroup.GroupStop();
 		END_IF
 		State := DisableState.Remove_Movers;
 		
 	DisableState.Remove_Movers:
-		IF _caGroup.IsInStandBy OR _caGroup.IsInErrorStop THEN
+		IF iCAGroup.IsInStandBy OR iCAGroup.IsInErrorStop THEN
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Removing Movers');
-			IF SUCCEEDED(_caGroup.RemoveAllMovers()) THEN
+			IF SUCCEEDED(iCAGroup.RemoveAllMovers()) THEN
+				GroupRemoveAllTimeOut.IN := TRUE;
 				State := DisableState.Disable_Movers;
 			END_IF
 		END_IF
 	
 	DisableState.Disable_Movers:
-		IF _caGroup.AxisCount = 0 THEN
-			FOR i := 0 TO (_registeredNumberOfMovers-1) DO
-				arrMovers[i].DisableMover();
+		IF iCAGroup.AxisCount = 0 THEN
+			GroupRemoveAllTimeOut.IN := FALSE;
+			DisableMoverTimeOut.IN := TRUE;
+			FOR i := 0 TO (_MoverCount-1) DO
+				iMoverArray[i].DisableMover();
 			END_FOR
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Disabling Movers');
 			State := DisableState.Disable_Group;
 		END_IF
+		IF GroupRemoveAllTimeOut.Q THEN
+			Base_Library.Tracing.Trace.Error(XtsName, '- Group Remove All Movers Error');
+			State := DisableState.DisableSequenceError;
+		END_IF
 		
 	DisableState.Disable_Group:
 		AllMoversDisabled := TRUE;
-		FOR i := 0 TO (_registeredNumberOfMovers-1) DO
-			AllMoversDisabled := AllMoversDisabled AND NOT arrMovers[i].IsEnabled;
+		FOR i := 0 TO (_MoverCount-1) DO
+			AllMoversDisabled := AllMoversDisabled AND NOT iMoverArray[i].IsEnabled;
 		END_FOR
 		IF AllMoversDisabled THEN
+			DisableMoverTimeOut.IN := FALSE;
 			Base_Library.Tracing.Trace.Verbose(XtsName, '- Mover Disabled');
 			State := DisableState.Reset_Group;
-			_caGroup.Disable();
+			iCAGroup.Disable();
+		END_IF
+		IF DisableMoverTimeOut.Q THEN
+			Base_Library.Tracing.Trace.Error(XtsName, '- Movers Havent Disabled');
+			State := DisableState.DisableSequenceError;
 		END_IF
 		
 	DisableState.Reset_Group:
-		IF _caGroup.IsInErrorStop THEN
-			_caGroup.Reset();
+		IF iCAGroup.IsInErrorStop THEN
+			iCAGroup.Reset();
 		END_IF	
 		Base_Library.Tracing.Trace.Verbose(XtsName, '- Group Disabled');	
 		State := DisableState.Wait_For_Disabled;
 		
 	DisableState.Wait_For_Disabled:
-		IF _caGroup.IsDisabled THEN
+		IF iCAGroup.IsDisabled THEN
 			State := DisableState.Idle;
 			Cycle := S_OK;
 			_Busy := FALSE;
 			_Done := TRUE;
 			Base_Library.Tracing.Trace.Info(XtsName, '- Disable Complete');
 		END_IF
-	ELSE
-		Cycle := E_FAIL;
-		_Busy := FALSE;
-		_Done := FALSE;
+	DisableState.DisableSequenceError:
+		Base_Library.Tracing.Trace.Error(Source := XtsName, Message := 'Disable FAILED - SYSTEM FAULT - RESTART REQUIRED');
 		_Error := TRUE;
-END_CASE]]></ST>
+		_Busy := FALSE;
+		DisableMoverTimeOut.IN := FALSE;
+		GroupRemoveAllTimeOut.IN := FALSE;
+		State := EnableState.EnableSequenceFailed;
+END_CASE
+DisableMoverTimeOut();
+GroupRemoveAllTimeOut();]]></ST>
       </Implementation>
     </Method>
     <Method Name="Disable" Id="{024bbd18-8e3c-4aa1-9d04-45454423df20}">
@@ -125,7 +143,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF _registeredNumberOfMovers = 0 THEN
+        <ST><![CDATA[IF _MoverCount = 0 THEN
 	Disable := -1;
 	RETURN;
 END_IF
@@ -135,7 +153,7 @@ IF _busy THEN
 	RETURN;
 END_IF
 
-IF _caGroup = 0 THEN
+IF iCAGroup = 0 THEN
 	Disable := -3;
 	RETURN;
 END_IF
@@ -174,7 +192,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[MyCollisionGroup := _caGroup;]]></ST>
+          <ST><![CDATA[MyCollisionGroup := iCAGroup;]]></ST>
         </Implementation>
       </Get>
       <Set Name="Set" Id="{cab14c86-20cf-4862-8d26-8fda29b066be}">
@@ -183,7 +201,7 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[IF MyCollisionGroup <> 0 THEN
-	_caGroup := MyCollisionGroup;
+	iCAGroup := MyCollisionGroup;
 END_IF]]></ST>
         </Implementation>
       </Set>
@@ -214,7 +232,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[RegisteredMoverNumber := _registeredNumberOfMovers;]]></ST>
+          <ST><![CDATA[RegisteredMoverNumber := _MoverCount;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -230,8 +248,8 @@ END_VAR
 	RETURN;
 END_IF
 
-arrMovers[_registeredNumberOfMovers] := MyMover;
-_registeredNumberOfMovers := _registeredNumberOfMovers + 1;]]></ST>
+iMoverArray[_MoverCount] := MyMover;
+_MoverCount := _MoverCount + 1;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{1832957b-67fd-4fd0-ba22-1e69838158ef}">

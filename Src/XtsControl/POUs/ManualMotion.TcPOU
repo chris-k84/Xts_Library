@@ -11,6 +11,7 @@ VAR
 	Mover : INT;
 	Pos : LREAL;
 	Velo : LREAL;
+	Move1 : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -32,8 +33,14 @@ IF Init AND Start THEN
 END_IF
 
 IF Reset THEN
-	IF fbMachine.RequestAMoveFromMover(Mover, Pos, Velo) THEN
+	IF fbMachine.Reset() THEN
 		Reset := FALSE;
+	END_IF
+END_IF
+
+IF Move1 THEN
+	IF fbMachine.RequestAMoveFromMover(Mover, Pos, Velo) THEN
+		Move1 := FALSE;
 	END_IF
 END_IF]]></ST>
     </Implementation>

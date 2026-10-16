@@ -12,7 +12,9 @@ TYPE DisableState :
     Disable_Movers := 30,
     Disable_Group := 40,
 	Reset_Group := 50,
-    Wait_For_Disabled := 60
+    Wait_For_Disabled := 60,
+	DisableSequenceError := 90,
+	DisableSequenceFailed := 99
 );
 END_TYPE
 ]]></Declaration>
