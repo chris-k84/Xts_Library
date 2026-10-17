@@ -1,0 +1,376 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.27" ClassName="CTComObjDef">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{C6B263E5-92B6-4C38-9797-D7C1CD9BDBB1}" Namespace="XTS">VelocityLoopType</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[OFF]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[Velocity loop is switched off.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[PID_VELOCITY]]></Text>
+				<Enum>1</Enum>
+				<Comment><![CDATA[PID velocity loop standard.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[PID_VELOCITY_STANDSTILL]]></Text>
+				<Enum>2</Enum>
+				<Comment><![CDATA[PID velocity loop with extra standstill kp and Tn.]]></Comment>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</Name>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>Major</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Minor</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Build</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Revision</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+		</DataType>
+	</DataTypes>
+	<ImageDatas>
+		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab00aaa7a7009393930093939300d9d7d700404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000aeabab009393930093939300dcdbdb0040404000c2c8d800d2d0d000c1bfbf00a6a4a400c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae009393930093939300dfdede0040404000a1b3e100d5d4d4009694940072717100cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b2009393930093939300e3e1e100404040007599ec00d9d7d7007e7e7e0087868600c5c4c400cccaca00c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b5009393930093939300e6e5e50040404000477cf500dad9d90081808000aeadad00a1a0a000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b8009393930093939300e9e8e80040404000165bfc00b9b8b800a2a1a100d4d2d2007f7f7f00d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc009393930093939300edecec0040404000195efc00a7aec300d2d1d100dcdbdb00adacac00d5d4d400b2bcd7007293e300a2b0d400c8c6c600c5c3c300c2bfbf009393930093939300f0efef00404040005d8bf60081a2f000e3e1e100dfdede00dcdbdb00b9c2dd00145afb005d87ea00155afa0099aad600c8c6c600c5c3c3009393930093939300eeeded0040404000a9bef100326efa00e6e5e500e3e1e100dfdede00487bf3007698e900d5d4d40094aade002060f700c8c8cb00c8c6c6009393930093939300ecebeb00404040006d6e70000d51ed0057678c006e6e6e0056678d000d51ef006a6d73006e6e6e006e6e6e001f56d5003c5faf00cbc9c9009393930093939300ebe9e90040404000eeeded0097b3f500306dfb00d0d7ea00336ff9008da8ec00dfdede00dcdbdb00d9d7d700b8c2da002362f700cfcdcd009393930093939300e9e7e70040404000ecebeb00eeeded006691f800155bfd006590f500e4e4e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d0009393930093939300e7e5e500e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
+	</ImageDatas>
+	<Module Id="#x01010040" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
+		<Name>__FILENAME__</Name>
+		<ImageId>1000</ImageId>
+		<TmcDesc GUID="{E9D8B517-6857-41D8-A4A3-60C89603D74A}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
+			<Name>XtsMoverVelocityControllerParameterSet</Name>
+			<CLSID ClassFactory="TcIoXts">{E9D8B517-6857-41D8-A4A3-60C89603D74A}</CLSID>
+			<Info>
+				<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab00aaa7a7009393930093939300d9d7d700404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000aeabab009393930093939300dcdbdb0040404000c2c8d800d2d0d000c1bfbf00a6a4a400c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae009393930093939300dfdede0040404000a1b3e100d5d4d4009694940072717100cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b2009393930093939300e3e1e100404040007599ec00d9d7d7007e7e7e0087868600c5c4c400cccaca00c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b5009393930093939300e6e5e50040404000477cf500dad9d90081808000aeadad00a1a0a000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b8009393930093939300e9e8e80040404000165bfc00b9b8b800a2a1a100d4d2d2007f7f7f00d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc009393930093939300edecec0040404000195efc00a7aec300d2d1d100dcdbdb00adacac00d5d4d400b2bcd7007293e300a2b0d400c8c6c600c5c3c300c2bfbf009393930093939300f0efef00404040005d8bf60081a2f000e3e1e100dfdede00dcdbdb00b9c2dd00145afb005d87ea00155afa0099aad600c8c6c600c5c3c3009393930093939300eeeded0040404000a9bef100326efa00e6e5e500e3e1e100dfdede00487bf3007698e900d5d4d40094aade002060f700c8c8cb00c8c6c6009393930093939300ecebeb00404040006d6e70000d51ed0057678c006e6e6e0056678d000d51ef006a6d73006e6e6e006e6e6e001f56d5003c5faf00cbc9c9009393930093939300ebe9e90040404000eeeded0097b3f500306dfb00d0d7ea00336ff9008da8ec00dfdede00dcdbdb00d9d7d700b8c2da002362f700cfcdcd009393930093939300e9e7e70040404000ecebeb00eeeded006691f800155bfd006590f500e4e4e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d0009393930093939300e7e5e500e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
+			</Info>
+			<InitSequence>PSO</InitSequence>
+			<Contexts>
+				<Context>
+					<Id>1</Id>
+				</Context>
+			</Contexts>
+			<Interfaces>
+				<Interface>
+					<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+				</Interface>
+			</Interfaces>
+			<Parameters>
+				<Group><![CDATA[General]]></Group>
+				<Group><![CDATA[Optimization]]></Group>
+				<Group Collapsed="true"><![CDATA[Advanced]]></Group>
+				<Group><![CDATA[Info]]></Group>
+				<Group><![CDATA[Structure]]></Group>
+				<Parameter Group="General">
+					<Name>VelocityLoopType</Name>
+					<Comment><![CDATA[Define the type of the velocity control.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{C6B263E5-92B6-4C38-9797-D7C1CD9BDBB1}" Namespace="XTS">VelocityLoopType</BaseType>
+					<Default>
+						<EnumText>PID_VELOCITY_STANDSTILL</EnumText>
+					</Default>
+					<PTCID>#x03080431</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>Kp</Name>
+					<Comment><![CDATA[Proportional gain of velocity control.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[Ns/m]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>4850.0</Max>
+						<Value>120.9</Value>
+					</Default>
+					<PTCID>#x0308043a</PTCID>
+					<ContextId>1</ContextId>
+					<DependOn DownloadAnyway="true">
+						<PTCID>#x03080431</PTCID>
+						<Equals>
+							<EnumText>PID_VELOCITY</EnumText>
+						</Equals>
+						<Equals>
+							<EnumText>PID_VELOCITY_STANDSTILL</EnumText>
+						</Equals>
+					</DependOn>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>Kp_standstill</Name>
+					<Comment><![CDATA[Proportional gain at standstill of velocity control.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[Ns/m]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>4850.0</Max>
+						<Value>80.0</Value>
+					</Default>
+					<PTCID>#x0308043b</PTCID>
+					<ContextId>1</ContextId>
+					<DependOn DownloadAnyway="true">
+						<PTCID>#x03080431</PTCID>
+						<Equals>
+							<EnumText>PID_VELOCITY_STANDSTILL</EnumText>
+						</Equals>
+					</DependOn>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>Tn</Name>
+					<Comment><![CDATA[Integral time constant of velocity control.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[s]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>10.0</Max>
+						<Value>0.05</Value>
+					</Default>
+					<PTCID>#x03080432</PTCID>
+					<ContextId>1</ContextId>
+					<DependOn DownloadAnyway="true">
+						<PTCID>#x03080431</PTCID>
+						<Equals>
+							<EnumText>PID_VELOCITY</EnumText>
+						</Equals>
+						<Equals>
+							<EnumText>PID_VELOCITY_STANDSTILL</EnumText>
+						</Equals>
+					</DependOn>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>Tn_standstill</Name>
+					<Comment><![CDATA[Integral time constant at standstill of velocity control.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[s]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>10.0</Max>
+						<Value>0.05</Value>
+					</Default>
+					<PTCID>#x03080433</PTCID>
+					<ContextId>1</ContextId>
+					<DependOn DownloadAnyway="true">
+						<PTCID>#x03080431</PTCID>
+						<Equals>
+							<EnumText>PID_VELOCITY_STANDSTILL</EnumText>
+						</Equals>
+					</DependOn>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>Kd</Name>
+					<Comment><![CDATA[Differential gain of velocity control.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[Ns²/m]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>3.75</Max>
+						<Value>0.0</Value>
+					</Default>
+					<PTCID>#x03080434</PTCID>
+					<ContextId>1</ContextId>
+					<DependOn DownloadAnyway="true">
+						<PTCID>#x03080431</PTCID>
+						<Equals>
+							<EnumText>PID_VELOCITY</EnumText>
+						</Equals>
+						<Equals>
+							<EnumText>PID_VELOCITY_STANDSTILL</EnumText>
+						</Equals>
+					</DependOn>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>Kd_standstill</Name>
+					<Comment><![CDATA[Differential gain at standstill of velocity control.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[Ns²/m]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Max>3.75</Max>
+						<Value>0.0</Value>
+					</Default>
+					<PTCID>#x03080435</PTCID>
+					<ContextId>1</ContextId>
+					<DependOn DownloadAnyway="true">
+						<PTCID>#x03080431</PTCID>
+						<Equals>
+							<EnumText>PID_VELOCITY_STANDSTILL</EnumText>
+						</Equals>
+					</DependOn>
+				</Parameter>
+				<Parameter Group="Optimization">
+					<Name>ResetIPartAtMotionStart</Name>
+					<Comment><![CDATA[Reset the integral part once a new motion command start.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+					<PTCID>#x03080436</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Optimization">
+					<Name>ResetIPartWithBipolarForceLimitChange</Name>
+					<Comment><![CDATA[Reset the integral part when the BipolarForceLimit is changed.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+					<PTCID>#x03080437</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Optimization">
+					<Name>ResetIPartWithFollErrorSignChangeAndBipolarForceLimit</Name>
+					<Comment><![CDATA[Reset the integral part when the sign of the following error change while the cyclic BipolarForceLimit is activ.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+					<PTCID>#x03080438</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Advanced">
+					<Name>MaxVelocity</Name>
+					<Comment><![CDATA[Maximum velocity as input for the velocity control used as limiter.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm/s]]></Unit>
+					<Default>
+						<Min>0.0</Min>
+						<Value>4200.0</Value>
+					</Default>
+					<PTCID>#x03080439</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
+					<Name>VersionString</Name>
+					<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
+					<BitSize>384</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00010000002F}">STRING(47)</BaseType>
+					<PTCID>#x03080287</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Info">
+					<Name>Version</Name>
+					<Comment><![CDATA[Returns the version of the driver.]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</BaseType>
+					<PTCID>#x03080510</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter HideParameter="true" ReadOnly="true" Group="Structure">
+					<Name>ModuleId</Name>
+					<Comment><![CDATA[Module ID of this TcCOM module (read only).]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000021}">GUID</BaseType>
+					<Default>
+						<Data>17b5d8e95768d841a4a360c89603d74a</Data>
+					</Default>
+					<PTCID>#x03080001</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+			</Parameters>
+			<Properties>
+				<Property>
+					<Name>Category</Name>
+					<Value>XTS</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>TcIoXts</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsMoverVelocityControllerParameterSet</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsMoverParameterSetChild</Value>
+				</Property>
+				<Property>
+					<Name>ChildCategory</Name>
+					<Value>XtsMoverVelocityControllerParameterSetChild</Value>
+				</Property>
+			</Properties>
+			<ParentOTCID>#x01010010</ParentOTCID>
+			<ParameterValues>
+				<Value>
+					<Name>VelocityLoopType</Name>
+					<EnumText>PID_VELOCITY_STANDSTILL</EnumText>
+				</Value>
+				<Value>
+					<Name>Kp</Name>
+					<Value>120.9</Value>
+				</Value>
+				<Value>
+					<Name>Kp_standstill</Name>
+					<Value>80</Value>
+				</Value>
+				<Value>
+					<Name>Tn</Name>
+					<Value>0.05</Value>
+				</Value>
+				<Value>
+					<Name>Tn_standstill</Name>
+					<Value>0.05</Value>
+				</Value>
+				<Value>
+					<Name>Kd</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>Kd_standstill</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>ResetIPartAtMotionStart</Name>
+					<EnumText>FALSE</EnumText>
+				</Value>
+				<Value>
+					<Name>ResetIPartWithBipolarForceLimitChange</Name>
+					<EnumText>FALSE</EnumText>
+				</Value>
+				<Value>
+					<Name>ResetIPartWithFollErrorSignChangeAndBipolarForceLimit</Name>
+					<EnumText>FALSE</EnumText>
+				</Value>
+				<Value>
+					<Name>MaxVelocity</Name>
+					<Value>4200</Value>
+				</Value>
+				<Value>
+					<Name>ModuleId</Name>
+					<Data>17b5d8e95768d841a4a360c89603d74a</Data>
+				</Value>
+			</ParameterValues>
+		</TmcDesc>
+	</Module>
+</TcSmItem>

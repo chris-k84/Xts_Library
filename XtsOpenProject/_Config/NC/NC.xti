@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.27" ClassName="CNcSafTaskDef" SubType="0">
+	<NC>
+		<SafTask Priority="4" CycleTime="20000" AmsPort="501" Affinity="#x00000020" IoAtBegin="true" SafTaskInfo="256" HighPrioAds="true">
+			<Name>NC-Task 1</Name>
+			<Vars VarGrpType="1" InsertType="1">
+				<Name>Inputs</Name>
+			</Vars>
+			<Vars VarGrpType="2" InsertType="1">
+				<Name>Outputs</Name>
+			</Vars>
+			<Image Id="1" AddrType="1" ImageType="1">
+				<Name>Image</Name>
+			</Image>
+		</SafTask>
+		<SvbTask Priority="8" CycleTime="100000" AmsPort="511" Affinity="#x00000020">
+			<Name>NC-Task 1 SVB</Name>
+		</SvbTask>
+		<Axis File="Mover Axis 1.xti" Id="1"/>
+		<Axis File="Axis 1.xti" Id="2"/>
+		<Axis File="Axis 2.xti" Id="3"/>
+		<Instance Id="#x05000100" KeepUnrestoredLinks="2">
+			<Name>Mc-Instance for NcPtp</Name>
+			<ImageId>4</ImageId>
+			<TmcDesc GUID="{6445FBA6-B920-4AD2-873B-8C61DD652099}">
+				<Name>MC Instance</Name>
+				<CLSID ClassFactory="TcNc3">{05030084-0000-0000-F000-000000000064}</CLSID>
+				<InitSequence>PSO</InitSequence>
+				<Contexts>
+					<Context>
+						<Id>0</Id>
+						<Name>MET</Name>
+					</Context>
+					<Context>
+						<Id>1</Id>
+						<Name>MPT</Name>
+					</Context>
+					<Context>
+						<Id>3</Id>
+						<Name>MJT</Name>
+					</Context>
+				</Contexts>
+				<Parameters>
+					<Parameter ReadOnly="true">
+						<Name>Execution-Task OID (MET)</Name>
+						<Comment><![CDATA[OID of task used for very time-critical command execution (Motion-Execution-Task)]]></Comment>
+						<BitSize>32</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+						<PTCID>#x03002060</PTCID>
+					</Parameter>
+					<Parameter ReadOnly="true">
+						<Name>Preparation-Task OID (MPT)</Name>
+						<Comment><![CDATA[OID of task used for less time-critical command preparation (Motion-Preparation-Task)]]></Comment>
+						<BitSize>32</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+						<PTCID>#x03002061</PTCID>
+					</Parameter>
+					<Parameter ReadOnly="true">
+						<Name>Job-Task OID (MJT)</Name>
+						<Comment><![CDATA[OID of JobTask for asynchronous processing (Motion-Job-Task)]]></Comment>
+						<BitSize>32</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+						<Properties>
+							<Property>
+								<Name>TcJobTaskOID</Name>
+							</Property>
+						</Properties>
+						<PTCID>#x0300a11b</PTCID>
+					</Parameter>
+				</Parameters>
+				<Properties>
+					<Property>
+						<Name>Category</Name>
+						<Value>TcNc3Instance</Value>
+					</Property>
+					<Property>
+						<Name>Category</Name>
+						<Value>HideTcComContextPP</Value>
+					</Property>
+					<Property>
+						<Name>ChildCategory</Name>
+						<Value>MC Object</Value>
+					</Property>
+				</Properties>
+				<ParentOTCID>#x05000010</ParentOTCID>
+				<ParameterValues>
+					<Value>
+						<Name>Execution-Task OID (MET)</Name>
+						<Value>83886096</Value>
+					</Value>
+					<Value>
+						<Name>Preparation-Task OID (MPT)</Name>
+						<Value>83886112</Value>
+					</Value>
+					<Value>
+						<Name>Job-Task OID (MJT)</Name>
+						<Value>33620096</Value>
+					</Value>
+				</ParameterValues>
+			</TmcDesc>
+		</Instance>
+		<Modules>
+			<Module File="Group1 (CA Group).xti"/>
+		</Modules>
+	</NC>
+</TcSmItem>

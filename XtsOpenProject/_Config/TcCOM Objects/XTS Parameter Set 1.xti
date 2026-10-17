@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.27" ClassName="CTComObjDef">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{E5805EFC-D377-4AFA-A6C1-5D144A5CB7BF}" Namespace="XTS">XtsMoverGeneralParameterSetOTCID</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+			<Properties>
+				<Property>
+					<Name>OTCID</Name>
+				</Property>
+				<Property>
+					<Name>TcCategoryOID</Name>
+					<Value>XtsMoverGeneralParameterSet</Value>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{D41FC6C6-967E-4D92-A785-ED8B2870DBDF}" Namespace="XTS">XtsMoverEncoderParameterSetOTCID</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+			<Properties>
+				<Property>
+					<Name>OTCID</Name>
+				</Property>
+				<Property>
+					<Name>TcCategoryOID</Name>
+					<Value>XtsMoverEncoderParameterSet</Value>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{0F14747F-ABC6-49FC-A701-289C6B51E327}" Namespace="XTS">XtsMoverPositionControllerParameterSetOTCID</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+			<Properties>
+				<Property>
+					<Name>OTCID</Name>
+				</Property>
+				<Property>
+					<Name>TcCategoryOID</Name>
+					<Value>XtsMoverPositionControllerParameterSet</Value>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{6915C527-0E32-40C1-9136-38122B4E655A}" Namespace="XTS">XtsMoverVelocityControllerParameterSetOTCID</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+			<Properties>
+				<Property>
+					<Name>OTCID</Name>
+				</Property>
+				<Property>
+					<Name>TcCategoryOID</Name>
+					<Value>XtsMoverVelocityControllerParameterSet</Value>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{B4F53DB9-7FDE-4B19-8BB9-578D61E79423}" Namespace="XTS">XtsMoverFilterParameterSetOTCID</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+			<Properties>
+				<Property>
+					<Name>OTCID</Name>
+				</Property>
+				<Property>
+					<Name>TcCategoryOID</Name>
+					<Value>XtsMoverFilterParameterSet</Value>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{51432EDE-5797-4FC5-9F0A-01CC2A890394}" Namespace="XTS">XtsMoverFeedForwardParameterSetOTCID</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+			<Properties>
+				<Property>
+					<Name>OTCID</Name>
+				</Property>
+				<Property>
+					<Name>TcCategoryOID</Name>
+					<Value>XtsMoverFeedForwardParameterSet</Value>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</Name>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>Major</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Minor</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Build</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Revision</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+		</DataType>
+	</DataTypes>
+	<ImageDatas>
+		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900404040004040400040404000404040004040400040404000404040004040400040404000404040009393930093939300d9d7d700d5d4d400d2d0d000cfcdcd0040404000c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00404040009393930093939300dcdbdb00d9d7d700a4a4a400a4a4a40040404000cccaca00c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200404040009393930093939300c8c8c800c8c8c800a4a4a400d5d4d40040404000cfcdcd0040404000c8c6c60040404000404040004040400040404000b8b5b500404040009393930093939300c8c8c800dfdede00a4a4a400d9d7d70040404000d2d0d000cfcdcd00cccaca00c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800404040009393930093939300c8c8c800e3e1e100a4a4a400dcdbdb0040404000d5d4d40040404000cfcdcd0040404000404040004040400040404000bebcbc00404040009393930093939300c8c8c800e6e5e500a4a4a400dfdede0040404000d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00404040009393930093939300c8c8c800e9e8e800a4a4a400e3e1e10040404000dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00626262004040400040404000404040009393930093939300c8c8c800edecec00a4a4a400e6e5e50040404000dfdede00dcdbdb00d9d7d700d5d4d400d2d0d00063636300a6a4a4006a696900696868009393930093939300c8c8c800f0efef00a4a4a400e9e8e80040404000e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400636262006160600068686800c5c3c3009393930093939300c8c8c800eeeded00a4a4a400edecec004040400040404000404040004040400040404000404040004040400065646400cccaca00cbc9c9009393930093939300c8c8c800ecebeb00a4a4a400f0efef00edecec00e9e8e800e6e5e500e3e1e100dedddd00b5b5b500b3b2b200d3d2d200d2d0d000cfcdcd009393930093939300c8c8c800ebe9e900a4a4a400a4a4a400a4a4a400a4a4a400a4a4a400a4a4a400a4a4a400b2b2b200dbdada00d9d7d700d5d4d400d2d0d0009393930093939300c8c8c800e9e7e700ebe9e900ecebeb00eeeded00f0efef00ecebeb00d2d2d200d1d0d000e2e0e000dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
+	</ImageDatas>
+	<Module Id="#x01010010" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
+		<Name>__FILENAME__</Name>
+		<ImageId>1000</ImageId>
+		<TmcDesc GUID="{B055B40D-DEC1-4D72-961C-D151E31A9BA5}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
+			<Name>XtsMoverParameterSet</Name>
+			<CLSID ClassFactory="TcIoXts">{B055B40D-DEC1-4D72-961C-D151E31A9BA5}</CLSID>
+			<Info>
+				<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900404040004040400040404000404040004040400040404000404040004040400040404000404040009393930093939300d9d7d700d5d4d400d2d0d000cfcdcd0040404000c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00404040009393930093939300dcdbdb00d9d7d700a4a4a400a4a4a40040404000cccaca00c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200404040009393930093939300c8c8c800c8c8c800a4a4a400d5d4d40040404000cfcdcd0040404000c8c6c60040404000404040004040400040404000b8b5b500404040009393930093939300c8c8c800dfdede00a4a4a400d9d7d70040404000d2d0d000cfcdcd00cccaca00c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800404040009393930093939300c8c8c800e3e1e100a4a4a400dcdbdb0040404000d5d4d40040404000cfcdcd0040404000404040004040400040404000bebcbc00404040009393930093939300c8c8c800e6e5e500a4a4a400dfdede0040404000d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00404040009393930093939300c8c8c800e9e8e800a4a4a400e3e1e10040404000dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00626262004040400040404000404040009393930093939300c8c8c800edecec00a4a4a400e6e5e50040404000dfdede00dcdbdb00d9d7d700d5d4d400d2d0d00063636300a6a4a4006a696900696868009393930093939300c8c8c800f0efef00a4a4a400e9e8e80040404000e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400636262006160600068686800c5c3c3009393930093939300c8c8c800eeeded00a4a4a400edecec004040400040404000404040004040400040404000404040004040400065646400cccaca00cbc9c9009393930093939300c8c8c800ecebeb00a4a4a400f0efef00edecec00e9e8e800e6e5e500e3e1e100dedddd00b5b5b500b3b2b200d3d2d200d2d0d000cfcdcd009393930093939300c8c8c800ebe9e900a4a4a400a4a4a400a4a4a400a4a4a400a4a4a400a4a4a400a4a4a400b2b2b200dbdada00d9d7d700d5d4d400d2d0d0009393930093939300c8c8c800e9e7e700ebe9e900ecebeb00eeeded00f0efef00ecebeb00d2d2d200d1d0d000e2e0e000dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
+			</Info>
+			<InitSequence>PSO</InitSequence>
+			<Contexts>
+				<Context>
+					<Id>1</Id>
+				</Context>
+			</Contexts>
+			<Interfaces>
+				<Interface>
+					<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+				</Interface>
+			</Interfaces>
+			<Parameters>
+				<Group><![CDATA[General]]></Group>
+				<Group><![CDATA[Structure]]></Group>
+				<Group><![CDATA[Info]]></Group>
+				<Parameter Group="General">
+					<Name>GeneralParameterSet</Name>
+					<Comment><![CDATA[Set the general parameter set of this parameter set.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{E5805EFC-D377-4AFA-A6C1-5D144A5CB7BF}" Namespace="XTS">XtsMoverGeneralParameterSetOTCID</BaseType>
+					<Default>
+						<Value>#x00000000</Value>
+					</Default>
+					<PTCID>#x03080412</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>EncoderParameterSet</Name>
+					<Comment><![CDATA[Set the encoder parameter set of this parameter set.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{D41FC6C6-967E-4D92-A785-ED8B2870DBDF}" Namespace="XTS">XtsMoverEncoderParameterSetOTCID</BaseType>
+					<Default>
+						<Value>#x00000000</Value>
+					</Default>
+					<PTCID>#x03080413</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>PositionControllerParameterSet</Name>
+					<Comment><![CDATA[Set the position controller parameter set of this parameter set.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{0F14747F-ABC6-49FC-A701-289C6B51E327}" Namespace="XTS">XtsMoverPositionControllerParameterSetOTCID</BaseType>
+					<Default>
+						<Value>#x00000000</Value>
+					</Default>
+					<PTCID>#x03080414</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>VelocityControllerParameterSet</Name>
+					<Comment><![CDATA[Set the velocity controller parameter set of this parameter set.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{6915C527-0E32-40C1-9136-38122B4E655A}" Namespace="XTS">XtsMoverVelocityControllerParameterSetOTCID</BaseType>
+					<Default>
+						<Value>#x00000000</Value>
+					</Default>
+					<PTCID>#x03080415</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>FilterParameterSets</Name>
+					<Comment><![CDATA[Set the filter parameter sets of this parameter set.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{B4F53DB9-7FDE-4B19-8BB9-578D61E79423}" Namespace="XTS">XtsMoverFilterParameterSetOTCID</BaseType>
+					<ArrayInfo>
+						<LBound>0</LBound>
+						<Elements Min="1" MaxUnbounded="true">1</Elements>
+					</ArrayInfo>
+					<Default>
+						<Value>#x00000000</Value>
+					</Default>
+					<PTCID>#x03080416</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>FeedForwardParameterSet</Name>
+					<Comment><![CDATA[Set the feed forward parameter set of this parameter set.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{51432EDE-5797-4FC5-9F0A-01CC2A890394}" Namespace="XTS">XtsMoverFeedForwardParameterSetOTCID</BaseType>
+					<Default>
+						<Value>#x00000000</Value>
+					</Default>
+					<PTCID>#x03080417</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Structure">
+					<Name>FilterCount</Name>
+					<Comment><![CDATA[Actual count of filter sets.]]></Comment>
+					<BitSize>16</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+					<PTCID>#x03080418</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
+					<Name>VersionString</Name>
+					<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
+					<BitSize>384</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00010000002F}">STRING(47)</BaseType>
+					<PTCID>#x03080287</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Info">
+					<Name>Version</Name>
+					<Comment><![CDATA[Returns the version of the driver.]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</BaseType>
+					<PTCID>#x03080510</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter HideParameter="true" ReadOnly="true" Group="Structure">
+					<Name>ModuleId</Name>
+					<Comment><![CDATA[Module ID of this TcCOM module (read only).]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000021}">GUID</BaseType>
+					<Default>
+						<Data>0db455b0c1de724d961cd151e31a9ba5</Data>
+					</Default>
+					<PTCID>#x03080001</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+			</Parameters>
+			<Properties>
+				<Property>
+					<Name>Category</Name>
+					<Value>XTS</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>TcIoXts</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsMoverParameterSet</Value>
+				</Property>
+				<Property>
+					<Name>ChildCategory</Name>
+					<Value>XtsMoverParameterSetChild</Value>
+				</Property>
+			</Properties>
+			<ParameterValues>
+				<Value>
+					<Name>GeneralParameterSet</Name>
+					<Value>16842848</Value>
+				</Value>
+				<Value>
+					<Name>EncoderParameterSet</Name>
+					<Value>16842832</Value>
+				</Value>
+				<Value>
+					<Name>PositionControllerParameterSet</Name>
+					<Value>16842800</Value>
+				</Value>
+				<Value>
+					<Name>VelocityControllerParameterSet</Name>
+					<Value>16842816</Value>
+				</Value>
+				<Value>
+					<Name>FilterParameterSets[0]</Name>
+					<Value>16842864</Value>
+				</Value>
+				<Value>
+					<Name>FeedForwardParameterSet</Name>
+					<Value>16842784</Value>
+				</Value>
+				<Value>
+					<Name>ModuleId</Name>
+					<Data>0db455b0c1de724d961cd151e31a9ba5</Data>
+				</Value>
+			</ParameterValues>
+		</TmcDesc>
+		<Module File="Filter.xti"/>
+		<Module File="General.xti"/>
+		<Module File="Encoder.xti"/>
+		<Module File="Velocity Controller.xti"/>
+		<Module File="Position Controller.xti"/>
+		<Module File="Feed Forward.xti"/>
+	</Module>
+</TcSmItem>

@@ -1,20 +1,30 @@
-
-# Visual Studio files
+# VS Shell project specific files and folders
 *.bak
 *.sln
 *.suo
+**/.vs/
 *.~u
+*.project.~u
 .vs
 UpgradeLog.htm
 
 # TwinCAT files
-
-## .tmc file should not be ignored. Results in broken links.
-## .tpy file can be ignored. They are a holdover from CoDeSys and aren't used much by beckhoff
-## Source: https://infosys.beckhoff.com/english.php?content=../content/1033/tc3_sourcecontrol/18014398915785483.html&id=
-*.tmc
+# TwinCAT PLC
+*.plcproj.bak
+*.plcproj.orig
 *.tpy
+*.tclrs
+*.compileinfo
+*.asm
+*.core
 LineIDs.dbg
+LineIDs.dbg.bak
+
+# TwinCAT C++ and shared types
+# ignoring the TMC file is only useful for plain PLC programming
+# as soon as shared data types (via tmc), C++ or in general TcCom-Module are used, the TMC file has to be part of the repository
+*.tmc
+*.tmcRefac
 
 !Events_ComponentBase.tmc
 !Events_PackMLBase.tmc
@@ -25,10 +35,29 @@ LineIDs.dbg
 *.tszip
 *.tfzip
 
-## Build files
-_CompileInfo
-_Boot
-_Libraries
+# TwinCAT project files
+*.tsproj.bak
+*.tsproj.b?k
+*.tsproj.orig
+*.tspproj.bak
+*.xti.bak
+*.xti.bk?
+*.xti.orig
+*.xtv.bak
+*.xtv.bk?
+
+# exclude not required folders
+**/_Boot/
+**/_CompileInfo/
+**/_Libraries/*/
+**/_ModuleInstall/
+**/_Deployment/
+**/_Repository/
+
+# To include a specific library directory (i.e. third party/custom libs), 
+# use pattern `!/**/_Libraries/<directory name>/` i.e. `!/**/_Libraries/www.tcunit.org/`
+# 
+!/**/_Libraries/Beckhoff Automation LLC/
 
 ## TwinCAT licence files are machine specific
 TrialLicense.tclrs
@@ -36,8 +65,6 @@ TrialLicense.tclrs
 # Project Specific files
 ## Folder contains TwinCAT scope data. Should not be source controlled.
 ScopeData
-
-*.tmcRefac
 
 *.library
 

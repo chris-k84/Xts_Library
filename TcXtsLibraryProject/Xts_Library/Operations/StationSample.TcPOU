@@ -33,6 +33,7 @@ VAR_INPUT
 	bInitRetains	: BOOL;
 	(* TRUE: the instance will be copied to the copy code afterward (online change)   *)
 	bInCopyCode	: BOOL;
+	Name : T_MaxString;
 	Position	: LREAL;
 	DummyOperationTime : TIME;
 END_VAR
