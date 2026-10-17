@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <Itf Name="I_XtsMotorModule" Id="{3515393f-36cc-43f5-8d97-3f2cabdfbcb7}">
     <Declaration><![CDATA[INTERFACE I_XtsMotorModule

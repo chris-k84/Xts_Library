@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <Itf Name="I_MoverEnableAlgorithm" Id="{fc5ea72b-09f8-4cbb-94b5-463ddba58f35}">
     <Declaration><![CDATA[INTERFACE I_MoverEnableAlgorithm EXTENDS i_Task

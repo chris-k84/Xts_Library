@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="XtsDisableSequence" Id="{da9628bf-0fcc-432f-b10d-3ad4dd4b7f24}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK XtsDisableSequence IMPLEMENTS I_MoverDisableAlgorithm
@@ -219,13 +219,6 @@ END_VAR
         <ST><![CDATA[iMoverArray := MoverArray;
 iCAGroup := CAGroup;
 _MoverCount := MoverCount;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="Reset" Id="{1832957b-67fd-4fd0-ba22-1e69838158ef}">
-      <Declaration><![CDATA[METHOD Reset : HRESULT
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
   </POU>

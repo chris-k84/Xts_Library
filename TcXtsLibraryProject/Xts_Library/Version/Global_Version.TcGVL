@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <GVL Name="Global_Version" Id="{e78b1c7b-fbdf-486e-ac70-aee233bacb57}">
+  <GVL Name="Global_Version" Id="{3b18b43d-fb0e-438a-8377-7275a94c418a}">
     <Declaration><![CDATA[{attribute 'TcGenerated'}
 {attribute 'no-analysis'}
 {attribute 'linkalways'}

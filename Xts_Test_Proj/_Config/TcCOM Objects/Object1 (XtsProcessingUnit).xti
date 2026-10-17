@@ -2206,9 +2206,19 @@
 			<Contexts>
 				<Context>
 					<Id>1</Id>
+					<ManualConfig>
+						<OTCID>#x02010040</OTCID>
+					</ManualConfig>
+					<Priority>1</Priority>
+					<CycleTime>10000000</CycleTime>
 				</Context>
 				<Context>
 					<Id>2</Id>
+					<ManualConfig>
+						<OTCID>#x02010050</OTCID>
+					</ManualConfig>
+					<Priority>2</Priority>
+					<CycleTime>10000000</CycleTime>
 				</Context>
 			</Contexts>
 			<Interfaces>
@@ -4615,11 +4625,11 @@
 			<ParameterValues>
 				<Value>
 					<Name>AdsPort</Name>
-					<Value>0</Value>
+					<Value>351</Value>
 				</Value>
 				<Value>
 					<Name>TaskOID</Name>
-					<Value>0</Value>
+					<Value>33620032</Value>
 				</Value>
 				<Value>
 					<Name>OperationMode</Name>
@@ -4949,7 +4959,7 @@
 			<InterfacePointerValues>
 				<Value>
 					<Name>AuxiliaryTask</Name>
-					<OTCID>#x00000000</OTCID>
+					<OTCID>#x02010050</OTCID>
 				</Value>
 			</InterfacePointerValues>
 		</TmcDesc>

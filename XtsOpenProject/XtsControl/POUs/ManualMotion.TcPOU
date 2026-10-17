@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.21">
   <POU Name="ManualMotion" Id="{a5adb654-adc6-4a54-b4ae-db744f224e8e}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM ManualMotion
 VAR

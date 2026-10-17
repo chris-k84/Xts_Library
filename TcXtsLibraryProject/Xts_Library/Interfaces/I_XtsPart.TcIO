@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <Itf Name="I_XtsPart" Id="{79728d50-0c5c-4ced-9546-66681745df5e}">
     <Declaration><![CDATA[INTERFACE I_XtsPart

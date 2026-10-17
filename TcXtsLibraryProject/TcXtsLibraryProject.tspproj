@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.27">
-	<Project ProjectGUID="{A01E9F18-6203-4AC7-B84B-C4FB6B399443}" Target64Bit="true" ShowHideConfigurations="#x3c7">
+	<Project ProjectGUID="{FE548CA2-9BB9-425A-AD87-2B93D0BB9DE4}" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
 			<TypeSystem>
 				<AdditionalTmcFile Name="Events" File="Events.tmc"/>

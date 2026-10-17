@@ -671,6 +671,11 @@
 			<Contexts>
 				<Context>
 					<Id>1</Id>
+					<ManualConfig>
+						<OTCID>#x02010040</OTCID>
+					</ManualConfig>
+					<Priority>1</Priority>
+					<CycleTime>10000000</CycleTime>
 				</Context>
 			</Contexts>
 			<Interfaces>
@@ -1512,11 +1517,11 @@
 				</Value>
 				<Value>
 					<Name>AdsPort</Name>
-					<Value>0</Value>
+					<Value>351</Value>
 				</Value>
 				<Value>
 					<Name>TaskOID</Name>
-					<Value>0</Value>
+					<Value>33620032</Value>
 				</Value>
 				<Value>
 					<Name>ModuleId</Name>

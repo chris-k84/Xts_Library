@@ -6,6 +6,12 @@
 				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
+				<Task Id="4" Priority="1" CycleTime="100000" AmsPort="351" AdtTasks="true">
+					<Name>XTS Task 1</Name>
+				</Task>
+				<Task Id="5" Priority="2" CycleTime="100000" AmsPort="352" AdtTasks="true">
+					<Name>XTS AUX Task 1</Name>
+				</Task>
 			</Tasks>
 			<Modules>
 				<Module File="Object1 (XtsProcessingUnit).xti"/>
