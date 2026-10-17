@@ -2188,10 +2188,10 @@
 	<ImageDatas>
 		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab00aaa7a7009393930093939300d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c9005d5c5c00c5c3c300c2bfbf005d5c5c00bbb8b800b8b5b500b4b2b200b1aeae00aeabab009393930093939300dcdbdb00d9d7d700d2d1d100817f7f005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c007a787800b6b3b300b4b2b200b1aeae009393930093939300dfdede00dcdbdb008382820082818100cfcdcd00cfcdcd00cbc9c900c8c6c600c5c3c300bfbdbd007b7979007a787800b8b5b500b4b2b2009393930093939300e3e1e100dfdede005d5c5c00d6d4d400d4d3d300b8b8b800b6b4b400b3b2b200b0b0b000c4c2c200bfbdbd005d5c5c00bbb8b800b8b5b5009393930093939300e6e5e5005d5c5c005d5c5c00d7d6d60074737300767676007c7b7b007c7b7b007675750073727200c1bfbf005d5c5c005d5c5c00bbb8b8009393930093939300e9e8e800e6e5e5005d5c5c00b9b9b90082828200a4a4a400a4a4a400a4a4a400a4a4a40081818100a8a7a7005d5c5c00c2bfbf00bebcbc009393930093939300edecec00e9e8e8005d5c5c00c6c4c40078777700a3a3a300a4a4a400a4a4a400a4a4a40078777700b3b1b1005d5c5c00c5c3c300c2bfbf009393930093939300f0efef005d5c5c005d5c5c00e6e5e50097969600727171006e6d6d006e6c6c00716f6f0094929200cfcdcd005d5c5c005d5c5c00c5c3c3009393930093939300eeeded00f0efef005d5c5c00e6e5e500e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400cfcdcd005d5c5c00cccaca00c8c6c6009393930093939300ecebeb00eeeded008a89890089888800e6e5e500e6e5e500e3e1e100dfdede00dcdbdb00d6d4d40082818100817f7f00cfcdcd00cbc9c9009393930093939300ebe9e900ecebeb00eae9e9008a8989005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c0083828200d2d1d100d2d0d000cfcdcd009393930093939300e9e7e700ebe9e900ecebeb00eeeded00f0efef005d5c5c00e9e8e800e6e5e5005d5c5c00dfdede00dcdbdb00d9d7d700d5d4d400d2d0d0009393930093939300e7e5e500e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
 	</ImageDatas>
-	<Module Id="#x01010010" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.31.0">
+	<Module Id="#x01010080" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
 		<Name>__FILENAME__</Name>
 		<ImageId>1000</ImageId>
-		<TmcDesc GUID="{53A0BC71-1B01-456F-8AF4-C892F791F4C2}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.31.0">
+		<TmcDesc GUID="{53A0BC71-1B01-456F-8AF4-C892F791F4C2}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
 			<Name>XtsProcessingUnit</Name>
 			<CLSID ClassFactory="TcIoXts">{61827435-7B03-4734-A344-F5A75F8060C8}</CLSID>
 			<Info>
@@ -2210,7 +2210,7 @@
 						<OTCID>#x02010040</OTCID>
 					</ManualConfig>
 					<Priority>1</Priority>
-					<CycleTime>10000000</CycleTime>
+					<CycleTime>250000</CycleTime>
 				</Context>
 				<Context>
 					<Id>2</Id>
@@ -2218,7 +2218,7 @@
 						<OTCID>#x02010050</OTCID>
 					</ManualConfig>
 					<Priority>2</Priority>
-					<CycleTime>10000000</CycleTime>
+					<CycleTime>250000</CycleTime>
 				</Context>
 			</Contexts>
 			<Interfaces>
@@ -2507,11 +2507,11 @@
 				<Parameter Group="Mover Id Detection">
 					<Name>ExpectedMoverIds</Name>
 					<Comment><![CDATA[Configure the expected mover IDs for ID detection mode MultipleMover1.]]></Comment>
-					<BitSize>64</BitSize>
+					<BitSize>128</BitSize>
 					<BaseType GUID="{930B13C0-30B5-4638-9AA5-14E048B57061}" Namespace="XTS">ExpectedMoverIdConfig</BaseType>
 					<ArrayInfo>
 						<LBound>0</LBound>
-						<Elements Min="1" Max="2">1</Elements>
+						<Elements Min="1" Max="2">2</Elements>
 					</ArrayInfo>
 					<PTCID>#x03080267</PTCID>
 					<ContextId>1</ContextId>
@@ -2715,7 +2715,7 @@
 					<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
 					<ArrayInfo>
 						<LBound>0</LBound>
-						<Elements>16</Elements>
+						<Elements Min="0" Max="0">16</Elements>
 					</ArrayInfo>
 					<PTCID>#x00000054</PTCID>
 					<ContextId>1</ContextId>
@@ -3366,7 +3366,7 @@
 					<PTCID>#x030802e1</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Mover Detection">
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Mover Detection">
 					<Name>ActiveMoverCount</Name>
 					<Comment><![CDATA[Returns the count of active movers.]]></Comment>
 					<BitSize>32</BitSize>
@@ -3374,7 +3374,7 @@
 					<PTCID>#x030802b7</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Mover Detection">
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Mover Detection">
 					<Name>AreAllPositionsValid</Name>
 					<Comment><![CDATA[Returns true if all mover positions are valid.]]></Comment>
 					<BitSize>8</BitSize>
@@ -3398,7 +3398,7 @@
 					<PTCID>#x030802ec</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Mover Detection">
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Mover Detection">
 					<Name>DetectionState</Name>
 					<Comment><![CDATA[Returns the state of the detection process.]]></Comment>
 					<BitSize>32</BitSize>
@@ -3406,7 +3406,7 @@
 					<PTCID>#x030802ed</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Mover Detection">
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Mover Detection">
 					<Name>DetectedMoverCountTotal</Name>
 					<Comment><![CDATA[Returns the number of detected movers currently in the system.]]></Comment>
 					<BitSize>32</BitSize>
@@ -3414,7 +3414,7 @@
 					<PTCID>#x0308033e</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Mover Detection">
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Mover Detection">
 					<Name>DetectedMoverCount</Name>
 					<Comment><![CDATA[Returns the number of detected movers during the latest detection cycle.]]></Comment>
 					<BitSize>32</BitSize>
@@ -3422,7 +3422,7 @@
 					<PTCID>#x03080257</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Mover Detection">
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Mover Detection">
 					<Name>ExpectedMoverCount</Name>
 					<Comment><![CDATA[Returns the number of expected movers - equal to the number of created mover objects.]]></Comment>
 					<BitSize>32</BitSize>
@@ -3522,7 +3522,7 @@
 					<PTCID>#x03080287</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Info">
 					<Name>Version</Name>
 					<Comment><![CDATA[Returns the version of the driver.]]></Comment>
 					<BitSize>128</BitSize>
@@ -3541,7 +3541,7 @@
 					<PTCID>#x03080001</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Drive Info">
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Drive Info">
 					<Name>DriveState</Name>
 					<Comment><![CDATA[Returns the state of the drive system.]]></Comment>
 					<BitSize>32</BitSize>
@@ -3549,7 +3549,7 @@
 					<PTCID>#x000000a0</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="Drive Info">
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Drive Info">
 					<Name>IsDcLinkVoltageReady</Name>
 					<Comment><![CDATA[Returns true if the DC Link voltage of all modules is ready.]]></Comment>
 					<BitSize>8</BitSize>
@@ -3557,7 +3557,7 @@
 					<PTCID>#x0308054f</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="EtherCAT Slave">
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="EtherCAT Slave">
 					<Name>AreAllModulesInOp</Name>
 					<Comment><![CDATA[Returns true if all modules of the part in EtherCAT state OP (requires PartBasedHandling).]]></Comment>
 					<BitSize>8</BitSize>
@@ -3565,7 +3565,7 @@
 					<PTCID>#x030805c3</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="EtherCAT Slave">
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="EtherCAT Slave">
 					<Name>IsSlaveCommunicationInterrupted</Name>
 					<Comment><![CDATA[Returns true when at least one module of the part has an interrupted communication to it's EtherCAT Slave (requires PartBasedHandling).]]></Comment>
 					<BitSize>8</BitSize>
@@ -3581,7 +3581,7 @@
 					<PTCID>#x0308028f</PTCID>
 					<ContextId>1</ContextId>
 				</Parameter>
-				<Parameter OnlineParameter="true" ReadOnly="true" Group="NCT Inputs">
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="NCT Inputs">
 					<Name>NctCombinedModuleStatus</Name>
 					<Comment><![CDATA[Returns the combined status of all NCT modules.]]></Comment>
 					<BitSize>16</BitSize>
@@ -4645,7 +4645,7 @@
 				</Value>
 				<Value>
 					<Name>MoverSortOrder</Name>
-					<EnumText>Ascending</EnumText>
+					<EnumText>Descending</EnumText>
 				</Value>
 				<Value>
 					<Name>MinMechanicalMoverDistance</Name>
@@ -4705,7 +4705,15 @@
 				</Value>
 				<Value>
 					<Name>ExpectedMoverIds[0].Count</Name>
-					<Value>2</Value>
+					<Value>1</Value>
+				</Value>
+				<Value>
+					<Name>ExpectedMoverIds[1].Id</Name>
+					<String>-</String>
+				</Value>
+				<Value>
+					<Name>ExpectedMoverIds[1].Count</Name>
+					<Value>1</Value>
 				</Value>
 				<Value>
 					<Name>CompletionCriteria</Name>
@@ -4857,7 +4865,7 @@
 				</Value>
 				<Value>
 					<Name>PcType</Name>
-					<EnumText>Empty</EnumText>
+					<EnumText>C6030_i7Gen9</EnumText>
 				</Value>
 				<Value>
 					<Name>AuxTaskSyncMode</Name>
@@ -4885,7 +4893,7 @@
 				</Value>
 				<Value>
 					<Name>Optimization</Name>
-					<EnumText>MaximizePositionAccuracyOP1</EnumText>
+					<EnumText>CombinationOC1</EnumText>
 				</Value>
 				<Value>
 					<Name>ForceCompensation</Name>

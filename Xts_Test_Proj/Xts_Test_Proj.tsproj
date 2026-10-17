@@ -2,21 +2,32 @@
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.27">
 	<Project ProjectGUID="{CB024737-0025-4BC6-BD0C-7B139123F486}" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
+			<Settings MaxCpus="8">
+				<Cpu CpuId="1"/>
+				<Cpu CpuId="5"/>
+				<Cpu CpuId="6" BaseTime="2500"/>
+				<Cpu CpuId="7" BaseTime="2500"/>
+				<IoIdleTask Affinity="#x00000002"/>
+			</Settings>
 			<Tasks>
-				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
+				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" Affinity="#x00000002" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
-				<Task Id="4" Priority="1" CycleTime="100000" AmsPort="351" AdtTasks="true">
+				<Task Id="4" Priority="1" CycleTime="2500" AmsPort="351" Affinity="#x00000080" AdtTasks="true">
 					<Name>XTS Task 1</Name>
 				</Task>
-				<Task Id="5" Priority="2" CycleTime="100000" AmsPort="352" AdtTasks="true">
+				<Task Id="5" Priority="2" CycleTime="2500" AmsPort="352" Affinity="#x00000040" AdtTasks="true">
 					<Name>XTS AUX Task 1</Name>
 				</Task>
 			</Tasks>
 			<Modules>
-				<Module File="Object1 (XtsProcessingUnit).xti"/>
+				<Module File="XTS ProcessingUnit 1.xti"/>
+				<Module File="XTS Parameter Set 1.xti"/>
 			</Modules>
 		</System>
+		<Motion>
+			<NC File="NC.xti"/>
+		</Motion>
 		<Plc>
 			<Project File="Test_Proj.xti"/>
 		</Plc>

@@ -1309,7 +1309,7 @@ and will return to Group State Standby when the situation permits.
 			</SubItem>
 		</DataType>
 	</DataTypes>
-	<Instance TmcHash="{D54CF303-0547-FC06-304B-45CE463AF4F6}">
+	<Instance TmcHash="{F70B3347-EDAE-4334-B7A5-E729FAEBE8EB}">
 		<Vars VarGrpType="1">
 			<Name>PlcTask Inputs</Name>
 			<Var>

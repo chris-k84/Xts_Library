@@ -70,7 +70,6 @@ END_VAR]]></Declaration>
     </Implementation>
     <Folder Name="Operations" Id="{0e8598c4-3d58-4c14-a12f-6fd3f3ea02bf}" />
     <Folder Name="Private" Id="{3792690f-dbde-4d97-aae6-86812312ba25}" />
-    <Folder Name="Settings" Id="{cec05bdb-9232-4b5d-b91e-848bd7bc55d9}" />
     <Folder Name="Status" Id="{c34f5481-c408-4671-a299-9c4a6e31956c}" />
     <Method Name="CheckPartsForError" Id="{8aa34e06-0102-41ed-a3cf-341e27edd24f}" FolderPath="Private\">
       <Declaration><![CDATA[METHOD PRIVATE CheckPartsForError : BOOL
@@ -562,7 +561,7 @@ IXtsParts[Part].ResetPart();]]></ST>
       </Implementation>
     </Method>
     <Method Name="ResetSequence" Id="{13cd689a-6bb1-4c04-93f3-31d6703e31bf}" FolderPath="Private\">
-      <Declaration><![CDATA[METHOD ResetSequence : HRESULT
+      <Declaration><![CDATA[METHOD PROTECTED ResetSequence : HRESULT
 VAR_INPUT
 END_VAR
 ]]></Declaration>

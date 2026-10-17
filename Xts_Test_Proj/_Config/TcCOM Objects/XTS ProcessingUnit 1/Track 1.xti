@@ -1,0 +1,358 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.27" ClassName="CTComObjDef">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{81A5642A-C195-4045-8A89-E31FB7115424}" Namespace="XTS">Polarity</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000009}">DINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Positive]]></Text>
+				<Enum>1</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Negative]]></Text>
+				<Enum>-1</Enum>
+			</EnumInfo>
+			<Default>
+				<EnumText>Positive</EnumText>
+			</Default>
+		</DataType>
+		<DataType>
+			<Name GUID="{1FB245F2-A0D0-4DC2-81C8-7FC44537B350}">TrackPartConfigItem</Name>
+			<BitSize>64</BitSize>
+			<SubItem>
+				<Name>ObjectID</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Polarity</Name>
+				<Type GUID="{81A5642A-C195-4045-8A89-E31FB7115424}" Namespace="XTS">Polarity</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+				<Default>
+					<EnumText>Positive</EnumText>
+				</Default>
+			</SubItem>
+			<Hides>
+				<Hide GUID="{66BC7680-5B7E-45E6-AB6E-2AAC8A1ABFD4}"/>
+			</Hides>
+			<Relations>
+				<Relation>
+					<Type GUID="{66BC7680-5B7E-45E6-AB6E-2AAC8A1ABFD4}"></Type>
+				</Relation>
+			</Relations>
+		</DataType>
+		<DataType>
+			<Name GUID="{A2D072DD-872D-4A7C-A872-D1E20739B9EE}">TrackPartInfoItem</Name>
+			<BitSize>192</BitSize>
+			<SubItem>
+				<Name>ObjectID</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Polarity</Name>
+				<Type GUID="{81A5642A-C195-4045-8A89-E31FB7115424}" Namespace="XTS">Polarity</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+				<Default>
+					<EnumText>Positive</EnumText>
+				</Default>
+			</SubItem>
+			<SubItem>
+				<Name>Offset</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Length</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+			<Hides>
+				<Hide GUID="{5F9978D2-E36D-494B-881E-05717B1C3B56}"/>
+			</Hides>
+			<Relations>
+				<Relation>
+					<Type GUID="{5F9978D2-E36D-494B-881E-05717B1C3B56}"></Type>
+				</Relation>
+			</Relations>
+		</DataType>
+		<DataType>
+			<Name GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</Name>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>Major</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Minor</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Build</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Revision</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+		</DataType>
+	</DataTypes>
+	<ImageDatas>
+		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab00aaa7a7009393930093939300d9d7d700d5d4d400d2d0d000a5a3a3005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c009393930093939300dcdbdb00d9d7d700c5c5c500646262005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c009393930093939300dfdede00dbdada007c7b7b005d5c5c0082808000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b2009393930093939300e3e1e100a1a1a1005d5c5c006a696900cccbcb00d2d0d000cfcdcd00cccaca00c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b5009393930093939300cccbcb00605f5f005e5d5d00b7b6b600d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800939393009393930055b81b0055b81b0055b81b0055b81b0055b81b0055b81b0055b71b005a8340005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c00939393009393930055b81b0055b81b0055b81b0055b81b0055b81b0055b81b0055b81b0055b71b00598241005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c009393930093939300f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00a7cd8f0056b81c0056b81c009dc68300cfcdcd00cbc9c900c8c6c600c5c3c3009393930093939300eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00a7cd8f0056b81c0056b81c009dc68300cfcdcd00cccaca00c8c6c6009393930093939300ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00a7cd8f0056b81c0056b81c009dc68300cfcdcd00cbc9c9009393930093939300ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00a4cc8b0056b81c0055b81b0055b81b0055b81b009393930093939300e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00a7cd8f0056b81c0055b81b0055b81b009393930093939300e7e5e500e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
+	</ImageDatas>
+	<Module Id="#x010100e0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
+		<Name>__FILENAME__</Name>
+		<ImageId>1000</ImageId>
+		<TmcDesc GUID="{4EBEBA88-A772-4DC6-8AA0-C3959356823A}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
+			<Name>XtsTrack</Name>
+			<CLSID ClassFactory="TcIoXts">{AAB804B1-26EB-4240-BC7B-2DBE6FE99982}</CLSID>
+			<Info>
+				<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab00aaa7a7009393930093939300d9d7d700d5d4d400d2d0d000a5a3a3005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c009393930093939300dcdbdb00d9d7d700c5c5c500646262005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c009393930093939300dfdede00dbdada007c7b7b005d5c5c0082808000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b2009393930093939300e3e1e100a1a1a1005d5c5c006a696900cccbcb00d2d0d000cfcdcd00cccaca00c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b5009393930093939300cccbcb00605f5f005e5d5d00b7b6b600d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800939393009393930055b81b0055b81b0055b81b0055b81b0055b81b0055b81b0055b71b005a8340005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c00939393009393930055b81b0055b81b0055b81b0055b81b0055b81b0055b81b0055b81b0055b71b00598241005d5c5c005d5c5c005d5c5c005d5c5c005d5c5c009393930093939300f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00a7cd8f0056b81c0056b81c009dc68300cfcdcd00cbc9c900c8c6c600c5c3c3009393930093939300eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00a7cd8f0056b81c0056b81c009dc68300cfcdcd00cccaca00c8c6c6009393930093939300ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00a7cd8f0056b81c0056b81c009dc68300cfcdcd00cbc9c9009393930093939300ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00a4cc8b0056b81c0055b81b0055b81b0055b81b009393930093939300e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00a7cd8f0056b81c0055b81b0055b81b009393930093939300e7e5e500e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
+			</Info>
+			<InitSequence>PSO</InitSequence>
+			<Contexts>
+				<Context>
+					<Id>1</Id>
+				</Context>
+			</Contexts>
+			<Interfaces>
+				<Interface>
+					<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+				</Interface>
+				<Interface>
+					<Type GUID="{03000018-0000-0000-E000-000000000064}">ITcWatchSource</Type>
+				</Interface>
+			</Interfaces>
+			<Parameters>
+				<Group><![CDATA[Info]]></Group>
+				<Group><![CDATA[General]]></Group>
+				<Group><![CDATA[Mover Detection]]></Group>
+				<Group Collapsed="true"><![CDATA[Structure]]></Group>
+				<Parameter HideParameter="true" Group="Info">
+					<Name>TaskOID</Name>
+					<Comment><![CDATA[Gets/Sets the XTS Task that is used for calculations for the XtsTrack.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+					<Default>
+						<Value>#x00000000</Value>
+					</Default>
+					<PTCID>#x03002060</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>IsClosed</Name>
+					<Comment><![CDATA[Configure if the Track is closed.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+					<PTCID>#x0308021d</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>Polarity</Name>
+					<Comment><![CDATA[Configure the direction of the part. Only positive is supported at the moment.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{81A5642A-C195-4045-8A89-E31FB7115424}" Namespace="XTS">Polarity</BaseType>
+					<Default>
+						<EnumText>Positive</EnumText>
+					</Default>
+					<PTCID>#x03080201</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>Offset</Name>
+					<Comment><![CDATA[Configure the offset for the Track.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<PTCID>#x03080202</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>PartConfigItems</Name>
+					<Comment><![CDATA[Configure Part configuration items containing the Part object id and the Part polarity within the Track. Only positive polarity is supported at the moment.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{1FB245F2-A0D0-4DC2-81C8-7FC44537B350}">TrackPartConfigItem</BaseType>
+					<ArrayInfo>
+						<LBound>0</LBound>
+						<Elements Min="1" Max="100">1</Elements>
+					</ArrayInfo>
+					<PTCID>#x03080204</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Mover Detection">
+					<Name>IsIncludedInDetection</Name>
+					<Comment><![CDATA[Configure if this Track is included in the Mover detection.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+					<PTCID>#x03080226</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="Mover Detection">
+					<Name>DetectionPriority</Name>
+					<Comment><![CDATA[Set the priority for the Mover detection on this Track.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+					<PTCID>#x0308053f</PTCID>
+					<ContextId>1</ContextId>
+					<DependOn DownloadAnyway="true">
+						<PTCID>#x03080226</PTCID>
+						<Equals>
+							<EnumText>TRUE</EnumText>
+						</Equals>
+					</DependOn>
+				</Parameter>
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Info">
+					<Name>Length</Name>
+					<Comment><![CDATA[Returns the length of the Track.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[mm]]></Unit>
+					<PTCID>#x03080206</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Info">
+					<Name>ModuleCount</Name>
+					<Comment><![CDATA[Returns the number of modules.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+					<PTCID>#x03080207</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Info">
+					<Name>PartCount</Name>
+					<Comment><![CDATA[Returns the number of Parts.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+					<PTCID>#x03080203</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Info">
+					<Name>PartInfoItems</Name>
+					<Comment><![CDATA[Returns an array of Part information items containing the Part object id, the Part polarity within the Track, the Part offset in the Track and the actual Part length.]]></Comment>
+					<BitSize>192</BitSize>
+					<BaseType GUID="{A2D072DD-872D-4A7C-A872-D1E20739B9EE}">TrackPartInfoItem</BaseType>
+					<ArrayInfo>
+						<LBound>0</LBound>
+						<Elements Min="1" Max="100">1</Elements>
+					</ArrayInfo>
+					<PTCID>#x03080205</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
+					<Name>VersionString</Name>
+					<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
+					<BitSize>384</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00010000002F}">STRING(47)</BaseType>
+					<PTCID>#x03080287</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Info">
+					<Name>Version</Name>
+					<Comment><![CDATA[Returns the version of the driver.]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</BaseType>
+					<PTCID>#x03080510</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter HideParameter="true" ReadOnly="true" Group="Structure">
+					<Name>ModuleId</Name>
+					<Comment><![CDATA[Module ID of this TcCOM module (read only).]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000021}">GUID</BaseType>
+					<Default>
+						<Data>88babe4e72a7c64d8aa0c3959356823a</Data>
+					</Default>
+					<PTCID>#x03080001</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+			</Parameters>
+			<EventMessages>
+				<EventMessage>
+					<Id>9029</Id>
+					<Message><![CDATA[Could not register by {0}.]]></Message>
+				</EventMessage>
+			</EventMessages>
+			<Properties>
+				<Property>
+					<Name>Category</Name>
+					<Value>XTS</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>TcIoXts</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsTrack</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsProcessingUnitChild</Value>
+				</Property>
+				<Property>
+					<Name>ChildCategory</Name>
+					<Value>XtsTrackChild</Value>
+				</Property>
+			</Properties>
+			<ParentOTCID>#x01010080</ParentOTCID>
+			<ParameterValues>
+				<Value>
+					<Name>TaskOID</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>IsClosed</Name>
+					<EnumText>TRUE</EnumText>
+				</Value>
+				<Value>
+					<Name>Polarity</Name>
+					<EnumText>Positive</EnumText>
+				</Value>
+				<Value>
+					<Name>Offset</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>PartConfigItems[0].ObjectID</Name>
+					<Value>16842992</Value>
+				</Value>
+				<Value>
+					<Name>PartConfigItems[0].Polarity</Name>
+					<EnumText>Positive</EnumText>
+				</Value>
+				<Value>
+					<Name>IsIncludedInDetection</Name>
+					<EnumText>TRUE</EnumText>
+				</Value>
+				<Value>
+					<Name>DetectionPriority</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>ModuleId</Name>
+					<Data>88babe4e72a7c64d8aa0c3959356823a</Data>
+				</Value>
+			</ParameterValues>
+		</TmcDesc>
+	</Module>
+</TcSmItem>

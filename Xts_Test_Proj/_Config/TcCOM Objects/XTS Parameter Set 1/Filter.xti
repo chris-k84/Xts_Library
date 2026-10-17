@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.27" ClassName="CTComObjDef">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{EF2712FD-F0CA-400A-8C6B-8930124726DF}" Namespace="XTS">FilterType</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[FILTER_OFF]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[Filter is switched off.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[LOWPASS1]]></Text>
+				<Enum>1</Enum>
+				<Comment><![CDATA[First order low pass filter.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[HIGHPASS1]]></Text>
+				<Enum>2</Enum>
+				<Comment><![CDATA[First order high pass filter.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[PIDT1]]></Text>
+				<Enum>3</Enum>
+				<Comment><![CDATA[First order low and high pass filter.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[LOWPASS2]]></Text>
+				<Enum>4</Enum>
+				<Comment><![CDATA[Second order low pass filter.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[HIGHPASS2]]></Text>
+				<Enum>5</Enum>
+				<Comment><![CDATA[Second order high pass filter.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[NOTCH]]></Text>
+				<Enum>7</Enum>
+				<Comment><![CDATA[Band-rejection filter.]]></Comment>
+			</EnumInfo>
+			<Default>
+				<EnumText>LOWPASS2</EnumText>
+			</Default>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</Name>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>Major</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Minor</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Build</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Revision</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+		</DataType>
+	</DataTypes>
+	<ImageDatas>
+		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab00aaa7a7009393930093939300d9d7d700404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000aeabab009393930093939300dcdbdb0040404000d5d4d400d2d0d000cfcdcd00cccaca00c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae009393930093939300dfdede0040404000d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b2009393930093939300e3e1e10040404000dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00cccaca00c8c6c600c5c3c300c2bfbf00b3b6c0004575e500a7acbc009393930093939300e6e5e50040404000dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600aab3cb00205ff4004c79e400b7b6b9009393930093939300e9e8e80040404000e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd009bacd6001458f9007291dc00c2bfbf00bebcbc009393930093939300edecec0040404000e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400809ce2001359fa0096a9d700c8c6c600c5c3c300c2bfbf009393930093939300f0efef0040404000e9e8e800e6e5e500e3e1e100dfdede00d9d9db00658dec001f61f900b2bcd700cfcdcd00cbc9c900c8c6c600c5c3c3009393930093939300eeeded0040404000004dff00004dff00004dff00004dff00004dff001f57d700686d77006e6e6e006e6e6e006e6e6e006e6e6e00c8c6c6009393930093939300ecebeb0040404000f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c9009393930093939300ebe9e90040404000eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd009393930093939300e9e7e70040404000ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d0009393930093939300e7e5e500e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
+	</ImageDatas>
+	<Module Id="#x01010070" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
+		<Name>__FILENAME__</Name>
+		<ImageId>1000</ImageId>
+		<TmcDesc GUID="{FAEB97D8-ED6E-4986-8449-630C65D48156}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|4.4.35.0">
+			<Name>XtsMoverFilterParameterSet</Name>
+			<CLSID ClassFactory="TcIoXts">{FAEB97D8-ED6E-4986-8449-630C65D48156}</CLSID>
+			<Info>
+				<ImageData>424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae00aeabab00aaa7a7009393930093939300d9d7d700404040004040400040404000404040004040400040404000404040004040400040404000404040004040400040404000aeabab009393930093939300dcdbdb0040404000d5d4d400d2d0d000cfcdcd00cccaca00c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b200b1aeae009393930093939300dfdede0040404000d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600c5c3c300c2bfbf00bebcbc00bbb8b800b8b5b500b4b2b2009393930093939300e3e1e10040404000dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00cccaca00c8c6c600c5c3c300c2bfbf00b3b6c0004575e500a7acbc009393930093939300e6e5e50040404000dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c900c8c6c600aab3cb00205ff4004c79e400b7b6b9009393930093939300e9e8e80040404000e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd009bacd6001458f9007291dc00c2bfbf00bebcbc009393930093939300edecec0040404000e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400809ce2001359fa0096a9d700c8c6c600c5c3c300c2bfbf009393930093939300f0efef0040404000e9e8e800e6e5e500e3e1e100dfdede00d9d9db00658dec001f61f900b2bcd700cfcdcd00cbc9c900c8c6c600c5c3c3009393930093939300eeeded0040404000004dff00004dff00004dff00004dff00004dff001f57d700686d77006e6e6e006e6e6e006e6e6e006e6e6e00c8c6c6009393930093939300ecebeb0040404000f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd00cbc9c9009393930093939300ebe9e90040404000eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d000cfcdcd009393930093939300e9e7e70040404000ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d400d2d0d0009393930093939300e7e5e500e9e7e700ebe9e900ecebeb00eeeded00f0efef00edecec00e9e8e800e6e5e500e3e1e100dfdede00dcdbdb00d9d7d700d5d4d4009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300939393009393930093939300</ImageData>
+			</Info>
+			<InitSequence>PSO</InitSequence>
+			<Contexts>
+				<Context>
+					<Id>1</Id>
+				</Context>
+			</Contexts>
+			<Interfaces>
+				<Interface>
+					<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+				</Interface>
+			</Interfaces>
+			<Parameters>
+				<Group><![CDATA[General]]></Group>
+				<Group><![CDATA[Info]]></Group>
+				<Group><![CDATA[Structure]]></Group>
+				<Parameter Group="General">
+					<Name>Type</Name>
+					<Comment><![CDATA[Type of the filter.]]></Comment>
+					<BitSize>32</BitSize>
+					<BaseType GUID="{EF2712FD-F0CA-400A-8C6B-8930124726DF}" Namespace="XTS">FilterType</BaseType>
+					<Default>
+						<EnumText>LOWPASS2</EnumText>
+					</Default>
+					<PTCID>#x0308043c</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>LowPassFrequency</Name>
+					<Comment><![CDATA[Set the low pass frequency.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[Hz]]></Unit>
+					<Default>
+						<Value>250.0</Value>
+					</Default>
+					<PTCID>#x0308043d</PTCID>
+					<ContextId>1</ContextId>
+					<DependOn DownloadAnyway="true">
+						<PTCID>#x0308043c</PTCID>
+						<Equals>
+							<EnumText>NOTCH</EnumText>
+						</Equals>
+						<Equals>
+							<EnumText>PIDT1</EnumText>
+						</Equals>
+						<Equals>
+							<EnumText>LOWPASS1</EnumText>
+						</Equals>
+						<Equals>
+							<EnumText>LOWPASS2</EnumText>
+						</Equals>
+					</DependOn>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>LowPassDamping</Name>
+					<Comment><![CDATA[Set the low pass damping (for second order filter).]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Default>
+						<Value>0.8</Value>
+					</Default>
+					<PTCID>#x0308043e</PTCID>
+					<ContextId>1</ContextId>
+					<DependOn DownloadAnyway="true">
+						<PTCID>#x0308043c</PTCID>
+						<Equals>
+							<EnumText>NOTCH</EnumText>
+						</Equals>
+						<Equals>
+							<EnumText>LOWPASS2</EnumText>
+						</Equals>
+					</DependOn>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>HighPassFrequency</Name>
+					<Comment><![CDATA[Set the high pass frequency.]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Unit><![CDATA[Hz]]></Unit>
+					<Default>
+						<Value>0.0</Value>
+					</Default>
+					<PTCID>#x0308043f</PTCID>
+					<ContextId>1</ContextId>
+					<DependOn DownloadAnyway="true">
+						<PTCID>#x0308043c</PTCID>
+						<Equals>
+							<EnumText>NOTCH</EnumText>
+						</Equals>
+						<Equals>
+							<EnumText>PIDT1</EnumText>
+						</Equals>
+						<Equals>
+							<EnumText>HIGHPASS1</EnumText>
+						</Equals>
+						<Equals>
+							<EnumText>HIGHPASS2</EnumText>
+						</Equals>
+					</DependOn>
+				</Parameter>
+				<Parameter Group="General">
+					<Name>HighPassDamping</Name>
+					<Comment><![CDATA[Set the high pass damping (for second order filter).]]></Comment>
+					<BitSize>64</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</BaseType>
+					<Default>
+						<Value>0.0</Value>
+					</Default>
+					<PTCID>#x03080440</PTCID>
+					<ContextId>1</ContextId>
+					<DependOn DownloadAnyway="true">
+						<PTCID>#x0308043c</PTCID>
+						<Equals>
+							<EnumText>NOTCH</EnumText>
+						</Equals>
+						<Equals>
+							<EnumText>HIGHPASS2</EnumText>
+						</Equals>
+					</DependOn>
+				</Parameter>
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true" Group="Info">
+					<Name>VersionString</Name>
+					<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
+					<BitSize>384</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-00010000002F}">STRING(47)</BaseType>
+					<PTCID>#x03080287</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter OnlineParameter="true" CreateSymbol="true" ReadOnly="true" Group="Info">
+					<Name>Version</Name>
+					<Comment><![CDATA[Returns the version of the driver.]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{C8A3EBBF-E67F-491F-AAC6-16D5D5E9699B}" Namespace="XTS">TcVersion</BaseType>
+					<PTCID>#x03080510</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+				<Parameter HideParameter="true" ReadOnly="true" Group="Structure">
+					<Name>ModuleId</Name>
+					<Comment><![CDATA[Module ID of this TcCOM module (read only).]]></Comment>
+					<BitSize>128</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000021}">GUID</BaseType>
+					<Default>
+						<Data>d897ebfa6eed86498449630c65d48156</Data>
+					</Default>
+					<PTCID>#x03080001</PTCID>
+					<ContextId>1</ContextId>
+				</Parameter>
+			</Parameters>
+			<Properties>
+				<Property>
+					<Name>Category</Name>
+					<Value>XTS</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>TcIoXts</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsMoverFilterParameterSet</Value>
+				</Property>
+				<Property>
+					<Name>Category</Name>
+					<Value>XtsMoverParameterSetChild</Value>
+				</Property>
+				<Property>
+					<Name>ChildCategory</Name>
+					<Value>XtsMoverFilterParameterSetChild</Value>
+				</Property>
+			</Properties>
+			<ParentOTCID>#x01010010</ParentOTCID>
+			<ParameterValues>
+				<Value>
+					<Name>Type</Name>
+					<EnumText>LOWPASS2</EnumText>
+				</Value>
+				<Value>
+					<Name>LowPassFrequency</Name>
+					<Value>250</Value>
+				</Value>
+				<Value>
+					<Name>LowPassDamping</Name>
+					<Value>0.8</Value>
+				</Value>
+				<Value>
+					<Name>HighPassFrequency</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>HighPassDamping</Name>
+					<Value>0</Value>
+				</Value>
+				<Value>
+					<Name>ModuleId</Name>
+					<Data>d897ebfa6eed86498449630c65d48156</Data>
+				</Value>
+			</ParameterValues>
+		</TmcDesc>
+	</Module>
+</TcSmItem>
